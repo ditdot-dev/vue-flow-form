@@ -1,29 +1,51 @@
 # calculator
 
-## Project setup
+## Installation
+
+Requirements:
+
+* [Node.js](https://nodejs.org/en/) version 8.9 or above (8.11.0+ recommended
+* [npm](https://www.npmjs.com/get-npm) version 3+ (or [yarn](https://yarnpkg.com/lang/en/docs/install/) version 1.16+)
+* [Git](https://git-scm.com/)
+
+After checking the prerequisites, follow these simple steps to install and use Vue Form:
+
 ```
-npm install
+# clone the repo
+$ git clone https://github.com/ditdot-dev/vue-form.git myproject
+
+# go into app's directory and install dependencies:
+$ cd myproject
 ```
 
-### Compiles and hot-reloads for development
+Then, if you use npm:
+
 ```
-npm run serve --watch
+$ npm install
+
+# serve with hot reload at localhost:8080 by default.
+$ npm run serve
+
+# build for production
+$ npm run build
 ```
 
-### Compiles and minifies for production
+If you use yarn:
+
 ```
-npm run build
+$ yarn install
+
+# serve with hot reload at localhost:8080 by default.
+$ yarn serve
+
+# build for production
+$ yarn build
 ```
 
-### Run your tests
-```
-npm run test
-```
+# Browser Support
 
-### Lints and fixes files
-```
-npm run lint
-```
+Modern browsers and IE11
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+# License
+
+[MIT](https://github.com/ditdot-dev/vue-form/LICENSE) license.
