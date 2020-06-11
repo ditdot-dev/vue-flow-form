@@ -1,0 +1,22 @@
+{
+  "name": "calculator",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build"
+  },
+  "dependencies": {
+    "core-js": "^3.6.5",
+    "vue": "^2.6.11",
+    "vue-currency-input": "^1.18.4",
+    "vue-scrollto": "^2.18.1",
+    "vue-textarea-autosize": "^1.1.1",
+    "vue-the-mask": "^0.11.1"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "^4.4.1",
+    "@vue/cli-service": "^4.4.1",
+    "vue-template-compiler": "^2.6.11"
+  }
+}

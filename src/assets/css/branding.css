@@ -1,0 +1,84 @@
+body {
+  color: #18181A;
+  font-family: 'Roboto', sans-serif;
+  background-color: #fff;
+}
+
+.vertical-form input[type=text],
+.vertical-form input[type=number],
+.vertical-form input[type=tel],
+.vertical-form input[type=email],
+.vertical-form input[type=url],
+.vertical-form textarea,
+span.faux-form {
+  border-bottom-color: #999;
+}
+
+.vertical-form input,
+.vertical-form select option {
+  color: #18181A;
+}
+
+a {
+  color: #18181A;
+}
+
+a:active {
+  color: #18181A;
+}
+
+.f-arrow-down svg {
+  fill: #18181A;
+}
+
+ul.f-radios li {
+  color: #18181A;
+}
+
+ul.f-radios li.f-selected,
+ul.f-radios li:active {
+  border-color: #18181A;
+  background-color: #18181A;
+  color: #fff;
+}
+
+ul.f-radios li.f-other.f-selected input {
+  color: #fff;
+
+}
+
+.text-thin,
+.vertical-form select option {
+  font-family: 'Roboto', sans-serif;
+}
+
+a,
+span,
+.o-btn-action span {
+  font-family: 'Roboto', sans-serif;
+}
+
+html,
+.vertical-form select {
+  font-family: 'Roboto', sans-serif;
+}
+
+.o-btn-action {
+  background-color: #18181A;
+  border-radius: 0;
+  text-transform: lowercase;
+}
+
+.o-btn-action:hover,
+.o-btn-action:focus {
+  background-color: #18181A;
+  opacity: .9;
+}
+
+.f-progress-bar-inner {
+  background-color: #18181A;
+}
+
+.f-required {
+  display: none;
+}

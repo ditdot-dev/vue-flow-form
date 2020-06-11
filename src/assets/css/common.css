@@ -1,0 +1,748 @@
+html {
+  line-height: 1.25;
+  -webkit-font-smoothing: antialiased;
+  -moz-font-smoothing: antialiased;
+  -o-font-smoothing: antialiased;
+  font-size: 16px;
+}
+
+@media screen and (max-width:1024px) {
+  html {
+    font-size: 16px
+  }
+}
+
+@media screen and (min-width:1440px) {
+  html {
+    font-size: 20px
+  }
+}
+
+@media screen and (min-width:1920px) {
+  html {
+    font-size: 22px
+  }
+}
+
+@media screen and (min-width:2560px) {
+  html {
+    font-size: 28px
+  }
+}
+
+body {
+  font-family: sans-serif;
+  margin: 0;
+  font-size: 0.875rem;
+  font-weight: 400;
+  line-height: 1.43;
+  min-height: 260px;
+}
+
+/**/
+a,
+a:hover,
+a:active,
+a:focus,
+:focus {
+  outline: 0;
+  text-decoration: none;
+}
+
+*,
+*:before,
+*:after {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+/*ie*/
+main {
+  display: block;
+}
+
+/**/
+ol.reset-list,
+ul.reset-list,
+ol.reset-list ol,
+ul.reset-list ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+ol,
+ul {
+  margin-top: 0;
+  margin-bottom: 22px;
+}
+
+/*utils*/
+.text-muted {
+  color: #999;
+}
+
+.clearfix:after {
+  visibility: hidden;
+  display: block;
+  font-size: 0;
+  content: " ";
+  clear: both;
+  height: 0;
+}
+
+/**/
+.container {
+  padding: 0 8vw;
+  width: 100%;
+  margin-top: 2vh;
+  margin-bottom: 4vh;
+}
+
+/*header*/
+header .container {
+  margin: 0;
+}
+
+header {
+  padding: 0.6rem 0;
+  z-index: 1400;
+  left: 0px;
+  right: 0px;
+  height: 5rem;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+
+}
+
+img.logo,
+svg.logo {
+  width: auto;
+  height: 1.4vw;
+  height: 32px;
+  max-width: 360px;
+  margin-top: 1.8vh;
+  opacity: 1;
+  margin-left: 10vw;
+}
+
+.text-thin {
+  font-weight: 300;
+}
+
+.o-btn-action {
+  z-index: 1;
+  cursor: pointer;
+  padding: 0 1.4rem 0;
+  text-align: center;
+  margin-bottom: 20px;
+  display: inline-block;
+  line-height: 46px;
+  height: 42px;
+  font-weight: 700;
+}
+
+.vertical-form .o-btn-action {
+  text-align: center;
+}
+
+.o-btn-action span {
+  color: rgb(255, 255, 255);
+  font-size: 1rem;
+  user-select: none;
+  text-decoration: none;
+  transition: all 0.4s ease 0s;
+}
+
+
+/*vertical-form*/
+
+
+.vertical-form {
+  margin-top: 24vh;
+  margin-left: 10vw;
+  margin-right: 10vw;
+  margin-bottom: 90px;
+  position: relative;
+}
+
+.vertical-form .container {
+  margin-top: 2vh;
+  margin-bottom: 2vh;
+}
+
+.vertical-form * {
+  text-align: left;
+}
+
+.vertical-form h2 {
+  font-weight: 700;
+}
+
+span.faux-form {
+  border-bottom: 1px solid;
+  display: inline-block;
+  margin-right: .6rem;
+  margin-left: 0;
+  position: relative;
+  white-space: nowrap;
+}
+
+span.f-title,
+span.f-sub {
+  color: #999;
+  display: block;
+  font-size: 1.267rem;
+}
+
+span.f-sub {
+  margin-bottom: 8px;
+}
+
+span.f-text {
+  margin-right: .6rem;
+}
+
+.vertical-form select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background: transparent;
+  border-radius: 0;
+  border: 0;
+  cursor: pointer;
+  font-size: 1rem;
+  line-height: 1.3;
+  margin: 0;
+  opacity: 0;
+  outline: 0;
+  padding: 0 0;
+  width: 100%;
+  padding-top: 1.04rem;
+  padding-bottom: 1.04rem;
+  position: absolute;
+  z-index: 1;
+}
+
+.vertical-form input[type=text],
+.vertical-form input[type=number],
+.vertical-form input[type=tel],
+.vertical-form input[type=email],
+.vertical-form input[type=url],
+.vertical-form textarea {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-color: transparent;
+  border: 0;
+  border-bottom: 1px solid;
+  border-radius: 0;
+  line-height: 1.1;
+  margin: 0 .6rem 0 0;
+  outline: 0;
+  padding: 0.22rem 0.4rem;
+  font-size: 1.6rem;
+  font-weight: 700;
+}
+
+.vertical-form textarea {
+  outline: none;
+  resize: vertical;
+}
+
+.vertical-form input[type=number],
+.vertical-form input[type=tel] {
+  max-width: 9.4rem;
+}
+
+.vertical-form input[type=text],
+.vertical-form input[type=email] {
+  max-width: 10.2rem;
+}
+
+.vertical-form input[type=text].input-city {
+  max-width: 11.8rem;
+}
+
+.vertical-form button,
+.vertical-form input {
+  -webkit-appearance: none;
+  overflow: visible;
+}
+
+span.f-empty {
+  display: inline-block;
+  min-width: 6.2rem;
+  padding-right: 28px;
+}
+
+.f-arrow-down {
+  display: inline-block;
+  margin-left: .2em;
+  pointer-events: none;
+  width: 20px;
+  height: 100%;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+}
+
+.f-arrow-down svg {
+  width: 100%;
+  height: auto;
+}
+
+span.f-arrow-down {
+  line-height: 1.3;
+}
+
+.vertical-form h2,
+.vertical-form .fh2 {
+  font-size: 2.4rem;
+  line-height: 1.3;
+  margin-bottom: 20px;
+}
+
+span.f-title,
+span.f-sub {
+  font-weight: 400;
+}
+
+span.f-title {
+  line-height: 1.5;
+}
+
+span.f-title,
+span.f-text {
+  margin-bottom: 8px;
+}
+
+.vertical-form h2 {
+  padding-right: 4rem;
+}
+
+p.description {
+  color: #999;
+  margin-top: 0;
+}
+
+.q-is-active {
+  opacity: 1;
+}
+
+.q-is-completed .q-inner {
+  opacity: .5;
+  transform: scale(0.7);
+  -webkit-transform-origin: left center;
+  transform-origin: left center;
+  transition: transform .2s linear;
+}
+
+.q-is-completed .q-inner p.fh2,
+.q-is-completed .q-inner p.description {
+  margin-bottom: 12px;
+}
+
+.q-is-completed .q-inner:hover {
+  opacity: 1;
+}
+
+.title-not-active {
+  display: none;
+}
+
+/*type*/
+small.f-number {
+  font-weight: 300;
+}
+
+small.f-number {
+  font-size: 100%;
+  display: none;
+}
+
+small.f-number::after {
+  content: "\002d";
+}
+
+.full-width {
+  display: block;
+  width: 100%;
+}
+
+.vertical-form .full-width input[type=text],
+.vertical-form .full-width input[type=number],
+.vertical-form .full-width input[type=tel],
+.vertical-form .full-width input[type=email],
+.vertical-form .full-width input[type=url],
+.vertical-form .full-width textarea {
+  max-width: 100%;
+  width: 100%;
+  padding-left: .2rem;
+  padding-right: .2rem;
+}
+
+.f-enter-desc {
+  margin-left: 0.6rem;
+}
+
+/*f-radios*/
+ul.f-radios {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  max-width: 600px;
+  min-width: 160px;
+}
+
+.f-radios-desc {
+  display: block;
+  font-size: 1.4rem;
+}
+
+ul.f-radios li {
+  padding: .5rem .6rem .2em;
+  color: #999;
+  border: 1px solid #999;
+  margin: .3rem 0 .4rem;
+  font-weight: 300;
+  line-height: 1.2;
+  cursor: default;
+  -webkit-touch-callout: none;
+  /* iOS Safari */
+  -webkit-user-select: none;
+  /* Safari */
+  -ms-user-select: none;
+  /* Internet Explorer/Edge */
+  user-select: none;
+  /* Non-prefixed version, currently*/
+}
+
+ul.f-radios li.f-other input[type=text] {
+  border-bottom: none;
+  width: 100%;
+  padding: 0;
+  line-height: 1.2;
+}
+
+ul.f-radios li:active {
+  background-color: #f6f6f6;
+}
+
+.f-radios-desc,
+ul.f-radios li,
+ul.f-radios li input[type=text] {
+  font-size: 1rem;
+}
+
+ul.f-radios li span.f-label {
+  margin-left: 20px;
+  display: block;
+}
+
+ul.f-radios li {
+  position: relative;
+}
+
+ul.f-radios li span.f-key {
+  position: absolute;
+}
+
+ul.f-radios li.f-selected {
+  background: #f4f4f4;
+}
+
+.q-form.q-is-inactive {
+  display: none;
+}
+
+.f-footer {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  font-size: 1rem;
+  line-height: 1.2;
+}
+
+.f-footer .footer-inner-wrap {
+  text-align: right;
+  background-color: #fff;
+  padding: 10px 20px 6px;
+  opacity: .9;
+}
+
+.f-progress {
+  color: #999;
+  font-weight: 300;
+}
+
+.f-progress,
+.f-nav {
+  display: inline-block;
+}
+
+.f-prev,
+.f-next,
+.f-progress {
+  margin: 0 .2em;
+  padding: .2em .2em;
+}
+
+.f-progress {
+  top: -1px;
+  position: relative;
+}
+
+a.f-disabled {
+  opacity: .4 !important;
+  cursor: default !important;
+  pointer-events: none !important;
+}
+
+.f-prev svg,
+.f-next svg {
+  display: inline-block;
+  fill: rgb(0, 0, 0);
+  transition: fill 0.2s ease 0s;
+  width: 23px;
+  height: 13px;
+}
+
+.f-nav-text {
+  display: none;
+}
+
+.f-invalid {
+  color: #FF5555;
+}
+
+.f-instructions {
+  font-size: 0.875rem;
+  font-weight: 400;
+}
+
+.f-answer.full-width {
+  margin-top: 28px;
+}
+
+.f-key {
+  margin-right: 8px;
+  color: #999;
+}
+
+/*progress-bar*/
+.f-progress-bar {
+  height: 1px;
+  background-color: #bbb;
+  position: static;
+  display: inline-block;
+  width: 54px;
+  vertical-align: middle;
+  margin: 0 6px 0 0;
+}
+
+.f-progress-bar-inner {
+  background-color: #111;
+  height: 1px;
+  transition: width .3s ease;
+}
+
+.field-sectionbreaktype,
+.field-submittype {
+  max-width: 680px;
+}
+
+/*media-start*/
+
+@media only screen and (max-width: 1024px) {
+  header {
+    position: static;
+    top: auto;
+    left: auto;
+    width: 100%;
+  }
+
+  .vertical-form {
+    margin-top: 16vh;
+  }
+
+  .vertical-form select {
+    padding-top: .9rem;
+    padding-bottom: .9rem;
+  }
+
+  .f-arrow-down {
+    width: 18px;
+  }
+
+  .vertical-form {
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  img.logo,
+  svg.logo {
+    margin-left: 0;
+  }
+
+  header {
+    height: auto;
+  }
+}
+
+
+@media only screen and (max-width: 768px) {
+  ul.f-radios li {
+    margin: .4rem 0 .6rem;
+    padding: .6rem .6rem .2em;
+  }
+
+  .q-is-completed .q-inner {
+    transform: scale(0.76);
+  }
+
+  span.f-empty {
+    min-width: 5.2rem;
+    padding-right: 24px;
+  }
+
+  .vertical-form input[type=number],
+  .vertical-form input[type=tel] {
+    max-width: 6.8rem;
+  }
+
+  .vertical-form input[type=text] {
+    max-width: 8rem;
+  }
+
+  .vertical-form input[type=text].input-city {
+    max-width: 9rem;
+  }
+
+  .vertical-form h2,
+  .vertical-form .fh2 {
+    font-size: 2rem;
+    padding-right: 0;
+  }
+
+  .vertical-form input[type=text],
+  .vertical-form input[type=number],
+  .vertical-form input[type=tel],
+  .vertical-form input[type=email],
+  .vertical-form input[type=url],
+  .vertical-form textarea {
+    font-size: 1.8rem;
+  }
+
+  span.f-title,
+  span.f-sub {
+    font-size: 1.3rem;
+  }
+
+  .f-radios-desc,
+  ul.f-radios li,
+  ul.f-radios li input[type=text] {
+    font-size: 1.1rem;
+  }
+
+  .vertical-form select {
+    padding-top: .46rem;
+    padding-bottom: .46rem;
+  }
+
+  .q-is-completed .q-inner:hover {
+    opacity: .5;
+  }
+
+  .f-footer {
+    font-size: 1rem;
+  }
+}
+
+@media screen and (max-width:480px) {
+  .vertical-form {
+    margin-top: 10vh;
+  }
+
+  .f-arrow-down {
+    width: 12px;
+  }
+
+  .vertical-form input[type=text],
+  .vertical-form input[type=number],
+  .vertical-form input[type=tel],
+  .vertical-form input[type=email],
+  .vertical-form input[type=url],
+  .vertical-form textarea {
+    font-size: 1.2rem;
+    line-height: 1.3;
+  }
+
+  .vertical-form h2,
+  .vertical-form .fh2 {
+    font-size: 1.8em;
+  }
+
+  span.f-title,
+  span.f-sub {
+    font-size: 1.1rem;
+  }
+
+  span.f-title {
+    line-height: 1.6;
+  }
+
+  .f-radios-desc {
+    font-size: .8rem;
+  }
+
+  ul.f-radios li,
+  ul.f-radios li input[type=text] {
+    font-size: .9rem;
+  }
+
+  ul.f-radios li {
+    padding-bottom: .4em;
+  }
+
+  .vertical-form select {
+    font-size: 1rem;
+    padding-top: .2rem;
+    padding-bottom: .2rem;
+  }
+
+  span.f-empty {
+    min-width: 3.8rem;
+    padding-right: 20px;
+  }
+
+  .vertical-form input[type=number],
+  .vertical-form input[type=tel] {
+    max-width: 5.2rem;
+  }
+
+  .vertical-form input[type=text] {
+    max-width: 6.6rem;
+  }
+
+  .vertical-form input[type=text].input-city {
+    max-width: 8rem;
+  }
+
+  .f-footer .footer-inner-wrap {
+    background-color: #f6f6f6;
+  }
+
+  .o-btn-action {
+    line-height: 42px;
+    height: 38px;
+  }
+
+  .field-sectionbreaktype p {
+    font-size: 1rem;
+  }
+}
