@@ -18,7 +18,7 @@ $ git clone https://github.com/ditdot-dev/vue-form.git myproject
 $ cd myproject
 ```
 
-Then, if you use npm:
+If you use npm:
 
 ```
 $ npm install
@@ -48,4 +48,4 @@ Modern browsers and IE11
 
 # License
 
-[MIT](https://github.com/ditdot-dev/vue-form/LICENSE) license.
+[MIT](https://github.com/ditdot-dev/vue-form/blob/master/LICENSE) license.
