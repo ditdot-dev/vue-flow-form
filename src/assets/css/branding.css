@@ -1,6 +1,12 @@
+body,
+textarea,
+input,
+.vertical-form select option {
+  font-family: 'Poppins', sans-serif;
+}
+
 body {
   color: #18181A;
-  font-family: 'Roboto', sans-serif;
   background-color: #fff;
 }
 
@@ -44,23 +50,6 @@ ul.f-radios li:active {
 
 ul.f-radios li.f-other.f-selected input {
   color: #fff;
-
-}
-
-.text-thin,
-.vertical-form select option {
-  font-family: 'Roboto', sans-serif;
-}
-
-a,
-span,
-.o-btn-action span {
-  font-family: 'Roboto', sans-serif;
-}
-
-html,
-.vertical-form select {
-  font-family: 'Roboto', sans-serif;
 }
 
 .o-btn-action {
