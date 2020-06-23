@@ -1,12 +1,13 @@
 html {
   line-height: 1.25;
+  -webkit-text-size-adjust: 100%;
   -webkit-font-smoothing: antialiased;
   -moz-font-smoothing: antialiased;
   -o-font-smoothing: antialiased;
   font-size: 16px;
 }
 
-@media screen and (max-width:1024px) {
+@media screen and (max-width:1023px) {
   html {
     font-size: 16px
   }
@@ -83,6 +84,18 @@ ul {
   color: #999;
 }
 
+.text-thin {
+  font-weight: 300;
+}
+
+.disabled,
+[disabled] {
+  opacity: .4;
+  user-select: none;
+  pointer-events: none;
+  cursor: not-allowed;
+}
+
 .clearfix:after {
   visibility: hidden;
   display: block;
@@ -108,31 +121,27 @@ header .container {
 header {
   padding: 0.6rem 0;
   z-index: 1400;
-  left: 0px;
-  right: 0px;
+  left: 0;
+  right: 0;
   height: 5rem;
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-
 }
 
 img.logo,
 svg.logo {
   width: auto;
   height: 1.4vw;
-  height: 32px;
+  height: 24px;
   max-width: 360px;
   margin-top: 1.8vh;
   opacity: 1;
-  margin-left: 10vw;
+  margin-left: 9vw;
 }
 
-.text-thin {
-  font-weight: 300;
-}
-
+/*btns*/
 .o-btn-action {
   z-index: 1;
   cursor: pointer;
@@ -157,29 +166,19 @@ svg.logo {
   transition: all 0.4s ease 0s;
 }
 
-
 /*vertical-form*/
-
-
 .vertical-form {
   margin-top: 24vh;
   margin-left: 10vw;
   margin-right: 10vw;
   margin-bottom: 90px;
   position: relative;
+  text-align: left;
 }
 
 .vertical-form .container {
   margin-top: 2vh;
   margin-bottom: 2vh;
-}
-
-.vertical-form * {
-  text-align: left;
-}
-
-.vertical-form h2 {
-  font-weight: 700;
 }
 
 span.faux-form {
@@ -206,6 +205,7 @@ span.f-text {
   margin-right: .6rem;
 }
 
+/*form-elements*/
 .vertical-form select {
   -webkit-appearance: none;
   -moz-appearance: none;
@@ -299,13 +299,6 @@ span.f-arrow-down {
   line-height: 1.3;
 }
 
-.vertical-form h2,
-.vertical-form .fh2 {
-  font-size: 2.4rem;
-  line-height: 1.3;
-  margin-bottom: 20px;
-}
-
 span.f-title,
 span.f-sub {
   font-weight: 400;
@@ -318,10 +311,6 @@ span.f-title {
 span.f-title,
 span.f-text {
   margin-bottom: 8px;
-}
-
-.vertical-form h2 {
-  padding-right: 4rem;
 }
 
 p.description {
@@ -350,6 +339,7 @@ p.description {
   opacity: 1;
 }
 
+/**/
 .title-not-active {
   display: none;
 }
@@ -455,10 +445,12 @@ ul.f-radios li.f-selected {
   background: #f4f4f4;
 }
 
+/**/
 .q-form.q-is-inactive {
   display: none;
 }
 
+/*footer*/
 .f-footer {
   position: fixed;
   bottom: 0;
@@ -551,6 +543,7 @@ a.f-disabled {
   transition: width .3s ease;
 }
 
+/**/
 .field-sectionbreaktype,
 .field-submittype {
   max-width: 680px;
@@ -558,7 +551,7 @@ a.f-disabled {
 
 /*media-start*/
 
-@media only screen and (max-width: 1024px) {
+@media only screen and (max-width: 1023px) {
   header {
     position: static;
     top: auto;
@@ -592,10 +585,11 @@ a.f-disabled {
   header {
     height: auto;
   }
+
 }
 
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 767px) {
   ul.f-radios li {
     margin: .4rem 0 .6rem;
     padding: .6rem .6rem .2em;
@@ -621,12 +615,6 @@ a.f-disabled {
 
   .vertical-form input[type=text].input-city {
     max-width: 9rem;
-  }
-
-  .vertical-form h2,
-  .vertical-form .fh2 {
-    font-size: 2rem;
-    padding-right: 0;
   }
 
   .vertical-form input[type=text],
@@ -661,9 +649,10 @@ a.f-disabled {
   .f-footer {
     font-size: 1rem;
   }
+
 }
 
-@media screen and (max-width:480px) {
+@media screen and (max-width:479px) {
   .vertical-form {
     margin-top: 10vh;
   }
@@ -680,11 +669,6 @@ a.f-disabled {
   .vertical-form textarea {
     font-size: 1.2rem;
     line-height: 1.3;
-  }
-
-  .vertical-form h2,
-  .vertical-form .fh2 {
-    font-size: 1.8em;
   }
 
   span.f-title,
@@ -745,4 +729,5 @@ a.f-disabled {
   .field-sectionbreaktype p {
     font-size: 1rem;
   }
+
 }

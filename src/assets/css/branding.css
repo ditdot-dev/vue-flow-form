@@ -1,6 +1,7 @@
 body,
 textarea,
 input,
+select,
 .vertical-form select option {
   font-family: 'Poppins', sans-serif;
 }
@@ -25,11 +26,8 @@ span.faux-form {
   color: #18181A;
 }
 
-a {
-  color: #18181A;
-}
-
-a:active {
+a,
+a:active  {
   color: #18181A;
 }
 
