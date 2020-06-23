@@ -44,7 +44,7 @@ $ yarn build
 
 # Browser Support
 
-Modern browsers and IE11
+Modern browsers and IE11.
 
 # License
 
