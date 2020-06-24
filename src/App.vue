@@ -1,38 +1,50 @@
 <template>
-  <survey
-    ref="survey"
-    v-bind:questions="questions"
-    v-bind:language="language"
-    v-bind:submitted="sent"
-  >
-    <template v-slot:complete>
-      <p>
-        <span class="fh2">Thank you. 🙏</span>
-        <br />
-        <br />
-        <span class="section-text">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua
-        </span>
-      </p>
-    </template>
-    <template v-slot:completeButton>
-      <a
-        ref="button"
-        href="#"
-        v-on:click="submitData"
-        v-bind:class="{'f-disabled': sending}"
-        v-if="!sent"
-      >
-        <div class="o-btn-action">
-          <span>{{ language.submitText }}</span>
-        </div>
+  <div>
+    <header>
+      <div class="container">
+        <svg class="logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 35.606 11.211">
+          <path d="M.134.837H3.21V8.01h4.203v2.18H.134V.837z"/>
+          <path d="M11.875.59c1.48 0 2.668.448 3.567 1.344s1.35 2.052 1.35 3.47c0 1.48-.445 2.7-1.336 3.632S13.38 10.45 11.9 10.45c-1.678 0-2.954-.54-3.827-1.622-.717-.9-1.08-2.022-1.09-3.397-.01-1.36.39-2.484 1.193-3.374C9.06 1.08 10.292.59 11.875.59zm0 2.283c-.563 0-1.003.222-1.323.662-.338.467-.507 1.124-.507 1.972 0 .865.162 1.524.487 1.978a1.58 1.58 0 0 0 1.369.682c.588 0 1.04-.223 1.355-.668s.474-1.07.474-1.875c0-1.834-.62-2.75-1.855-2.75z"/>
+          <path d="M21.565 7.078V5.055h4.217v5.163h-1.986l-.13-.908c-.693.76-1.617 1.142-2.777 1.142-1.383 0-2.488-.437-3.313-1.3s-1.243-2.03-1.252-3.464c-.01-1.462.385-2.65 1.18-3.567.875-1.012 2.11-1.518 3.7-1.518 1.21 0 2.207.303 3 .907s1.264 1.457 1.447 2.556h-2.92c-.207-.787-.73-1.182-1.57-1.182-.553 0-.988.236-1.303.707s-.475 1.153-.475 2.043c0 1.695.652 2.542 1.96 2.542.363 0 .695-.103.998-.306a1.29 1.29 0 0 0 .572-.784h-1.35v.002z"/>
+          <path d="M30.556.59c1.48 0 2.668.448 3.568 1.344s1.348 2.052 1.348 3.47c0 1.48-.443 2.7-1.336 3.632S32.06 10.45 30.58 10.45c-1.678 0-2.953-.54-3.826-1.622-.72-.892-1.082-2.022-1.1-3.398-.008-1.357.39-2.48 1.193-3.372C27.74 1.08 28.974.59 30.556.59zm0 2.283c-.563 0-1.002.222-1.322.662-.336.467-.506 1.125-.506 1.972 0 .865.162 1.524.486 1.978s.78.682 1.37.682 1.04-.223 1.355-.668.475-1.07.475-1.875c-.002-1.834-.62-2.75-1.857-2.75z"/>
+        </svg>
+      </div>
+    </header>
 
-        <span class="f-enter-desc">{{ language.pressEnter }}</span>
-      </a>
-      <p v-if="error">Error submitting data, please try again.</p>
-      <p v-if="sent">Data submitted succesfully.</p>
-    </template>
-  </survey>
+    <survey
+      ref="survey"
+      v-bind:questions="questions"
+      v-bind:language="language"
+      v-bind:submitted="sent"
+    >
+      <template v-slot:complete>
+        <p>
+          <span class="fh2">Thank you. 🙏</span>
+          <span class="section-text">
+            Great work, the survey is completed, and our demo is done. You can review your answers or press submit.
+          </span>
+        </p>
+        <p class="description">Note: No data will be saved and/or sent in this demo.</p>
+      </template>
+      <template v-slot:completeButton>
+        <a
+          ref="button"
+          href="#"
+          v-on:click="submitData"
+          v-bind:class="{'f-disabled': sending}"
+          v-if="!sent"
+        >
+          <div class="o-btn-action">
+            <span>{{ language.submitText }}</span>
+          </div>
+
+          <span class="f-enter-desc">{{ language.pressEnter }}</span>
+        </a>
+        <p class="text-alert" v-if="error">Error submitting data, please try again.</p>
+        <p class="text-success" v-if="sent">Submitted succesfully.</p>
+      </template>
+    </survey>
+  </div>
 </template>
 
 <script>
@@ -54,599 +66,136 @@
         questions: [
           new QuestionModel({
             id: 'first_name',
-            title: "Let's start by getting some basic info 😊",
+            title: "Hi! Welcome to our demo survey 😊",
             question: 'What is your first name?',
             type: QuestionType.Text,
-            required: true
+            required: true,
+            placeholder: 'Start typing here...'
           }),
           new QuestionModel({
             id: 'email',
-            question: "What's your email?",
+            title: "Nice to meet you 👀, let's continue",
+            question: "Provide an example email.",
             type: QuestionType.Email,
             required: true,
-            placeholder: 'Type your email here...'
+            placeholder: 'Start typing here...'
           }),
           new QuestionModel({
             id: 'phone',
-            question: 'What is the best phone number to reach you?',
+            question: 'Doing great! 👍 Go ahead and try with a phone number.',
             type: QuestionType.Phone,
             required: true,
             placeholder: '(###) ###-####'
           }),
           new QuestionModel({
-            id: 'practice',
-            question: 'What practice do you work at?',
-            subtitle: 'If multiple, please list them.',
+            id: 'movies',
+            question: 'List your favorite movies. 🍿',
             type: QuestionType.LongText,
-            required: true
-          }),
-          new QuestionModel({
-            id: 'url',
-            question: "What's your practice website?",
-            type: QuestionType.Url,
             required: true,
-            placeholder: 'https://'
+            placeholder: 'Start typing here...'
           }),
           new QuestionModel({
-            id: 'role',
-            question: 'What is your role?',
+            id: 'multiple_choice',
+            title: "FYI, You can always go back 👈, use the up arrow on the bottom.",
+            question: 'Multiple choice question:',
             type: QuestionType.MultipleChoice,
             multiple: false,
             allowOther: true,
             required: true,
             options: [
               new ChoiceOption({
-                label: 'Dentist and owner'
+                label: 'Answer 1'
               }),
               new ChoiceOption({
-                label: 'Dental Hygienist'
-              }),
+                label: 'Answer 2'
+               }),
               new ChoiceOption({
-                label: 'Dental Assistant'
-              }),
-              new ChoiceOption({
-                label: 'Office Manager'
-              }),
-              new ChoiceOption({
-                label: 'Dentist but not Owner'
-              }),
-              new ChoiceOption({
-                label: 'Non-Dentist Practice Owner'
+                label: 'Answer 3'
               })
             ]
           }),
           new QuestionModel({
-            id: 'type',
-            question: 'What type of dentists are at your practice?',
+            id: 'multiple_choices',
+            question: 'Multiple choices question:',
             type: QuestionType.MultipleChoice,
             multiple: true,
-            multiplePrompt: 'Select all that apply',
-            allowOther: true,
+            multiplePrompt: 'Select all that apply. 👇',
             required: true,
             options: [
               new ChoiceOption({
-                label: 'General Practitioner (GP)'
+                label: 'Answer 1'
               }),
               new ChoiceOption({
-                label: 'Periodontist'
+                label: 'Answer 2'
               }),
               new ChoiceOption({
-                label: 'Oral Surgeon'
+                label: 'Answer 3'
               }),
               new ChoiceOption({
-                label: 'Endodontist'
-              }),
-              new ChoiceOption({
-                label: 'Prosthodontist'
-              }),
-              new ChoiceOption({
-                label: 'Orthodontist'
-              }),
-              new ChoiceOption({
-                label: 'None of the above'
+                label: 'Answer 4'
               })
             ]
           }),
           new QuestionModel({
-            id: 'break',
+            id: 'break_1',
             content:
               '<span class="fh2">Awesome, thank you. 🙏</span>' +
-              '<br><br>' +
-              '<span class="section-text">Dandy Labs provides the highest quality and best fit possible. ' +
-              'Our partners eliminate up to 92% of chair-site adjustments after switching.' +
-              '<br><br>' +
-              "Now, let's dive into how your practice is operated...</span>",
-            description:
-              'Note: we are currently accepting practices on a limited basis, and are prioritizing those who take the time to answer the remaining questions.',
+              '<span class="section-text">You arrived at the section break of our little demo survey. To continue exploring, just press enter or use the continue button.</span>',
+            description: 'Note: We will take a look at our multiple path feature next.',
             type: QuestionType.SectionBreak
           }),
           new QuestionModel({
-            id: 'num_doctors',
-            question: 'How many doctors work actively in your practice?',
-            type: QuestionType.MultipleChoice,
+            id: 'choose_path',
+            title: "Where would you like to go? 🤔",
+            question: 'Choose your path:',
+            type: QuestionType.Dropdown,
             multiple: false,
+            placeholder: 'Select',
+            inline: true,
             required: true,
             options: [
               new ChoiceOption({
-                label: '1 (Just me)'
+                label: 'Path A'
               }),
               new ChoiceOption({
-                label: '2'
-              }),
-              new ChoiceOption({
-                label: '3'
-              }),
-              new ChoiceOption({
-                label: '4'
-              }),
-              new ChoiceOption({
-                label: '5'
-              }),
-              new ChoiceOption({
-                label: '6'
-              }),
-              new ChoiceOption({
-                label: '7'
-              }),
-              new ChoiceOption({
-                label: '8'
-              }),
-              new ChoiceOption({
-                label: '9'
-              }),
-              new ChoiceOption({
-                label: '10+'
-              })
-            ]
-          }),
-          new QuestionModel({
-            id: 'num_assistants',
-            question: 'How many assistants work at your practice?',
-            type: QuestionType.MultipleChoice,
-            multiple: false,
-            required: true,
-            options: [
-              new ChoiceOption({
-                label: '1'
-              }),
-              new ChoiceOption({
-                label: '2'
-              }),
-              new ChoiceOption({
-                label: '3'
-              }),
-              new ChoiceOption({
-                label: '4'
-              }),
-              new ChoiceOption({
-                label: '5'
-              }),
-              new ChoiceOption({
-                label: '6'
-              }),
-              new ChoiceOption({
-                label: '7'
-              }),
-              new ChoiceOption({
-                label: '8'
-              }),
-              new ChoiceOption({
-                label: '9'
-              }),
-              new ChoiceOption({
-                label: '10+'
-              })
-            ]
-          }),
-          new QuestionModel({
-            id: 'num_operatories',
-            question: 'How many operatories does your practice have?',
-            type: QuestionType.MultipleChoice,
-            multiple: false,
-            required: true,
-            options: [
-              new ChoiceOption({
-                label: '2'
-              }),
-              new ChoiceOption({
-                label: '3-4'
-              }),
-              new ChoiceOption({
-                label: '5-6'
-              }),
-              new ChoiceOption({
-                label: '7-10'
-              }),
-              new ChoiceOption({
-                label: '10+'
-              })
-            ]
-          }),
-          new QuestionModel({
-            id: 'num_crowns_bridges_veneers',
-            question: 'How many crowns / bridges / veneers does your practice order monthly?',
-            subtitle: 'An estimate is fine',
-            type: QuestionType.MultipleChoice,
-            multiple: false,
-            required: true,
-            allowOther: true,
-            options: [
-              new ChoiceOption({
-                label: '<10'
-              }),
-              new ChoiceOption({
-                label: '10-15'
-              }),
-              new ChoiceOption({
-                label: '15-20'
-              }),
-              new ChoiceOption({
-                label: '20-30'
-              }),
-              new ChoiceOption({
-                label: '30-40'
-              }),
-              new ChoiceOption({
-                label: '40-50'
-              }),
-              new ChoiceOption({
-                label: '50+'
-              })
-            ]
-          }),
-          new QuestionModel({
-            id: 'materials_crowns',
-            question: 'What materials do you primarily use for crowns / inlays / onlays / veneers?',
-            type: QuestionType.MultipleChoice,
-            multiple: false,
-            required: true,
-            allowOther: true,
-            options: [
-              new ChoiceOption({
-                label: 'Zirconia (Solid, High Translucency/Esthetic, Layered)'
-              }),
-              new ChoiceOption({
-                label: 'E.Max (Lithium Disilicate)'
-              }),
-              new ChoiceOption({
-                label: 'PFM'
-              }),
-              new ChoiceOption({
-                label: 'Full Cast (Any metal types)'
-              })
-            ]
-          }),
-          new QuestionModel({
-            id: 'materials_bridges',
-            question: 'What materials do you primarily use for bridges?',
-            type: QuestionType.MultipleChoice,
-            multiple: false,
-            required: true,
-            allowOther: true,
-            options: [
-              new ChoiceOption({
-                label: 'Zirconia (Solid, High Translucency/Esthetic, Layered)'
-              }),
-              new ChoiceOption({
-                label: 'E.Max (Lithium Disilicate)'
-              }),
-              new ChoiceOption({
-                label: 'PFM'
-              }),
-              new ChoiceOption({
-                label: 'Full Cast (Any metal types)'
-              })
-            ]
-          }),
-          new QuestionModel({
-            id: 'num_implants',
-            question: 'How many implants or dentures does your practice order a month?',
-            subtitle: 'An estimate is fine',
-            type: QuestionType.MultipleChoice,
-            multiple: false,
-            required: true,
-            allowOther: true,
-            options: [
-              new ChoiceOption({
-                label: '0-5'
-              }),
-              new ChoiceOption({
-                label: '5-10'
-              }),
-              new ChoiceOption({
-                label: '10-15'
-              }),
-              new ChoiceOption({
-                label: '15-20'
-              }),
-              new ChoiceOption({
-                label: '20-30'
-              }),
-              new ChoiceOption({
-                label: '30-40'
-              }),
-              new ChoiceOption({
-                label: '40-50'
-              }),
-              new ChoiceOption({
-                label: '50+'
-              })
-            ]
-          }),
-          new QuestionModel({
-            id: 'models',
-            question: 'Do you normally receive models with your orders?',
-            type: QuestionType.MultipleChoice,
-            multiple: false,
-            required: true,
-            options: [
-              new ChoiceOption({
-                label: 'Yes'
-              }),
-              new ChoiceOption({
-                label: 'No'
-              })
-            ]
-          }),
-          new QuestionModel({
-            id: 'milling_machine',
-            question: 'Does your practice have an in-office milling machine?',
-            type: QuestionType.MultipleChoice,
-            multiple: false,
-            required: true,
-            options: [
-              new ChoiceOption({
-                label: 'Yes'
-              }),
-              new ChoiceOption({
-                label: 'No'
-              })
-            ]
-          }),
-          new QuestionModel({
-            id: 'dental_labs',
-            question: 'Please list all dental labs you work with and what you use each lab for:',
-            subtitle: 'Ex. ABC Dental Lab = lab for implants, DEF Dental Lab = lab for crowns.',
-            type: QuestionType.LongText,
-            required: true
-          }),
-          new QuestionModel({
-            id: 'turnaround_time',
-            question: 'What is the average turnaround time for your main lab?',
-            subtitle: 'ie. number of days from when the patient leaves your chair until you get the crown back',
-            type: QuestionType.MultipleChoice,
-            multiple: false,
-            required: true,
-            options: [
-              new ChoiceOption({
-                label: '1-2 days'
-              }),
-              new ChoiceOption({
-                label: '3-4 days'
-              }),
-              new ChoiceOption({
-                label: '5-6 days'
-              }),
-              new ChoiceOption({
-                label: '1 week'
-              }),
-              new ChoiceOption({
-                label: '1-2 weeks'
-              }),
-              new ChoiceOption({
-                label: '2-3 weeks'
-              }),
-              new ChoiceOption({
-                label: '3-4 weeks'
-              }),
-              new ChoiceOption({
-                label: '1+ months'
-              })
-            ]
-          }),
-          new QuestionModel({
-            id: 'dental_lab_most_important_trait',
-            question: 'Which trait below matters most to you when working with a dental lab?',
-            type: QuestionType.MultipleChoice,
-            multiple: false,
-            required: true,
-            allowOther: true,
-            options: [
-              new ChoiceOption({
-                label: 'Price'
-              }),
-              new ChoiceOption({
-                label: 'Fit (amount of adjustments required)'
-              }),
-              new ChoiceOption({
-                label: 'Turnaround Time'
-              }),
-              new ChoiceOption({
-                label:
-                  'Customer Support (how quickly you can get in touch with a tech)'
-              }),
-              new ChoiceOption({
-                label: 'Aesthetics/Accurate Shading'
-              })
-            ]
-          }),
-          new QuestionModel({
-            id: 'dental_lab_least_important_trait',
-            question: 'Which trait below matters most to you when working with a dental lab?',
-            type: QuestionType.MultipleChoice,
-            multiple: false,
-            required: true,
-            allowOther: true,
-            options: [
-              new ChoiceOption({
-                label: 'Price'
-              }),
-              new ChoiceOption({
-                label: 'Fit (amount of adjustments required)'
-              }),
-              new ChoiceOption({
-                label: 'Turnaround Time'
-              }),
-              new ChoiceOption({
-                label:
-                  'Customer Support (how quickly you can get in touch with a tech)'
-              }),
-              new ChoiceOption({
-                label: 'Aesthetics/Accurate Shading'
-              })
-            ]
-          }),
-          new QuestionModel({
-            id: 'dental_lab_satisfaction',
-            question: 'How happy are you with your dental lab(s)?',
-            type: QuestionType.MultipleChoice,
-            multiple: false,
-            required: true,
-            allowOther: true,
-            options: [
-              new ChoiceOption({
-                label: 'Very Happy'
-              }),
-              new ChoiceOption({
-                label: 'Satisfied'
-              }),
-              new ChoiceOption({
-                label: 'Neutral'
-              }),
-              new ChoiceOption({
-                label: 'Dissatisfied'
-              }),
-              new ChoiceOption({
-                label: 'Very Disappointed'
-              })
-            ]
-          }),
-          new QuestionModel({
-            id: 'lab_change',
-            question:
-              'Is there anything you would change when working with your labs?',
-            type: QuestionType.LongText,
-            required: false
-          }),
-          new QuestionModel({
-            id: 'practice_management_software',
-            question: 'Which practice management software do you use?',
-            type: QuestionType.MultipleChoice,
-            multiple: false,
-            required: true,
-            allowOther: true,
-            options: [
-              new ChoiceOption({
-                label: 'Dentrix'
-              }),
-              new ChoiceOption({
-                label: 'Denticon'
-              }),
-              new ChoiceOption({
-                label: 'Eaglesoft'
-              }),
-              new ChoiceOption({
-                label: 'OpenDental'
-              })
-            ]
-          }),
-          new QuestionModel({
-            id: 'aligners',
-            question: 'Do you offer clear aligners to your patients?',
-            type: QuestionType.MultipleChoice,
-            multiple: false,
-            required: true,
-            options: [
-              new ChoiceOption({
-                label: 'Yes'
-              }),
-              new ChoiceOption({
-                label: 'No'
+                label: 'Path B',
+                value: 'path_b'
               })
             ],
             jump: {
-              No: 'scanner'
+              path_b: 'path_b'
+            }
+          }),
+           new QuestionModel({
+            id: 'path_a',
+            content:
+              '<span class="fh2">Excellent choice sir! 🥳</span>' +
+              '<span class="section-text">Press enter or use the continue button for the final submit screen.</span>',
+            type: QuestionType.SectionBreak,
+            jump: {
+              _other: '_submit'
             }
           }),
           new QuestionModel({
-            id: 'aligner_brands',
-            question: 'What brands do you offer?',
-            type: QuestionType.MultipleChoice,
-            multiple: false,
-            required: true,
-            allowOther: true,
-            options: [
-              new ChoiceOption({
-                label: 'Invisalign'
-              }),
-              new ChoiceOption({
-                label: 'ClearCorrect'
-              })
-            ]
-          }),
-          new QuestionModel({
-            id: 'num_aligners',
-            question: 'How many clear aligner cases does your practice sell per year?',
+            id: 'path_b',
+            title: "Path B",
+            question: 'Hmm, are you sure?',
+            subtitle: 'Path A sounds like a winner! 😉',
             type: QuestionType.MultipleChoice,
             multiple: false,
             required: true,
             options: [
               new ChoiceOption({
-                label: '0-10'
+                label: 'Ok, let\'s go with A',
+                value: 'path_a'
               }),
               new ChoiceOption({
-                label: '10-25'
-              }),
-              new ChoiceOption({
-                label: '25+'
-              })
-            ]
-          }),
-          new QuestionModel({
-            id: 'scanner',
-            question: 'Do you have an intra-oral scanner?',
-            type: QuestionType.MultipleChoice,
-            multiple: false,
-            required: true,
-            options: [
-              new ChoiceOption({
-                label: 'Yes'
-              }),
-              new ChoiceOption({
-                label: 'No'
+                label: 'Yes, finish the survey'
               })
             ],
             jump: {
-              No: '_submit'
+              path_a: 'path_a'
             }
-          }),
-          new QuestionModel({
-            id: 'scanner_type',
-            question: 'What kind of scanner do you have?',
-            type: QuestionType.MultipleChoice,
-            multiple: false,
-            required: true,
-            allowOther: true,
-            options: [
-              new ChoiceOption({
-                label: 'Carestream'
-              }),
-              new ChoiceOption({
-                label: 'Cerec Primescan'
-              }),
-              new ChoiceOption({
-                label: 'Dental Wings'
-              }),
-              new ChoiceOption({
-                label: 'iTero'
-              }),
-              new ChoiceOption({
-                label: 'Medit'
-              }),
-              new ChoiceOption({
-                label: 'Trios'
-              })
-            ]
           })
         ]
       }
@@ -696,7 +245,7 @@
 
 <style lang="css">
   @import './assets/css/normalize.css';
-  @import './assets/css/font.css';
+  @import './assets/css/typography.css';
   @import './assets/css/common.css';
   @import './assets/css/branding.css';
   @import './assets/css/animations.css';

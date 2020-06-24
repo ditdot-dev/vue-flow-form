@@ -1,5 +1,5 @@
 <template>
-  <span v-if="question.content" v-html="question.content" class="f-content"></span>
+    <span v-if="question.content" v-html="question.content" class="f-content"></span>
 </template>
 
 <script>

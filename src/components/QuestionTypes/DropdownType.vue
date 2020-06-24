@@ -13,7 +13,7 @@
       </option>
     </select>
     <span>
-      <span class="f-empty">{{ answerLabel }}</span>
+      <span class="f-empty" v-bind:class="{'f-answered': this.question.answered}">{{ answerLabel }}</span>
       <span class="f-arrow-down">
         <svg version="1.1" id="Capa_1"
           xmlns="http://www.w3.org/2000/svg"
@@ -52,7 +52,7 @@
           }
         }
 
-        return null
+        return this.question.placeholder
       }
     }
   }

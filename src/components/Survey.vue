@@ -132,7 +132,8 @@
     },
     computed: {
       questionListActivePath() {
-        let questions = [],
+        let
+          questions = [],
           index = 0,
           serialIndex = 0,
           nextId
@@ -175,7 +176,8 @@
         return questions
       },
       questionList() {
-        let questions = [],
+        let
+          questions = [],
           index = 0
 
         for (index = 0; index < this.questionListActivePath.length; index++) {
@@ -192,6 +194,7 @@
           if (question.answered && index === this.questionListActivePath.length - 1) {
             this.completed = true
             this.activeQuestionIndex = index + 1
+
             this.$nextTick(() => {
               this.$refs.button && this.$refs.button.focus()
             })
@@ -205,6 +208,7 @@
       },
       numCompletedQuestions() {
         let num = 0
+
         for (let i = 0; i < this.questionListActivePath.length; i++) {
           if (this.questionListActivePath[i].answered) {
             ++num
@@ -218,9 +222,7 @@
           return 0
         }
 
-        return Math.floor(
-          (this.numCompletedQuestions / this.numActiveQuestions) * 100
-        )
+        return Math.floor((this.numCompletedQuestions / this.numActiveQuestions) * 100)
       },
       config() {
         return {

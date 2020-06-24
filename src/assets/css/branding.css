@@ -11,6 +11,13 @@ body {
   background-color: #fff;
 }
 
+header{
+  background-color: #BBEBD5;
+}
+header svg.logo{
+  fill: rgba(0,0,0,0.9);
+}
+
 .vertical-form input[type=text],
 .vertical-form input[type=number],
 .vertical-form input[type=tel],
@@ -37,6 +44,7 @@ a:active  {
 
 ul.f-radios li {
   color: #18181A;
+  border: 1px solid #999;
 }
 
 ul.f-radios li.f-selected,
@@ -68,4 +76,27 @@ ul.f-radios li.f-other.f-selected input {
 
 .f-required {
   display: none;
+}
+
+.text-alert,
+.f-invalid{
+  color: #F44336;
+}
+
+.text-success{
+  color: #4CAF50;
+}
+
+span.f-empty {
+  color: #999;
+}
+span.f-answered{
+  color: #18181A;
+}
+
+.f-key,
+span.f-title,
+span.f-sub,
+p.description {
+  color: #999;
 }
