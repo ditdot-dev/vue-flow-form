@@ -85,6 +85,10 @@
         this.goToNext()
       },
       goToNext() {
+        if (this.question.type === QuestionType.SectionBreak) {
+          this.dirty = true
+        }
+
         if (this.valid()) {
           this.enterPressed = true
         }
@@ -108,7 +112,7 @@
         this.$emit('input', this.answer)
       },
       valid() {
-        if (!this.question.required && !this.hasValue) {
+        if (!this.question.required && !this.hasValue && this.dirty) {
           return true
         }
 

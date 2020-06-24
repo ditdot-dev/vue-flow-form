@@ -1,7 +1,21 @@
+body,
+textarea,
+input,
+select,
+.vertical-form select option {
+  font-family: 'Poppins', sans-serif;
+}
+
 body {
   color: #18181A;
-  font-family: 'Roboto', sans-serif;
   background-color: #fff;
+}
+
+header{
+  background-color: #BBEBD5;
+}
+header svg.logo{
+  fill: rgba(0,0,0,0.9);
 }
 
 .vertical-form input[type=text],
@@ -19,11 +33,8 @@ span.faux-form {
   color: #18181A;
 }
 
-a {
-  color: #18181A;
-}
-
-a:active {
+a,
+a:active  {
   color: #18181A;
 }
 
@@ -33,6 +44,7 @@ a:active {
 
 ul.f-radios li {
   color: #18181A;
+  border: 1px solid #999;
 }
 
 ul.f-radios li.f-selected,
@@ -44,23 +56,6 @@ ul.f-radios li:active {
 
 ul.f-radios li.f-other.f-selected input {
   color: #fff;
-
-}
-
-.text-thin,
-.vertical-form select option {
-  font-family: 'Roboto', sans-serif;
-}
-
-a,
-span,
-.o-btn-action span {
-  font-family: 'Roboto', sans-serif;
-}
-
-html,
-.vertical-form select {
-  font-family: 'Roboto', sans-serif;
 }
 
 .o-btn-action {
@@ -81,4 +76,27 @@ html,
 
 .f-required {
   display: none;
+}
+
+.text-alert,
+.f-invalid{
+  color: #F44336;
+}
+
+.text-success{
+  color: #4CAF50;
+}
+
+span.f-empty {
+  color: #999;
+}
+span.f-answered{
+  color: #18181A;
+}
+
+.f-key,
+span.f-title,
+span.f-sub,
+p.description {
+  color: #999;
 }
