@@ -107,10 +107,6 @@
         type: LanguageModel,
         default: new LanguageModel()
       },
-      inline: {
-        type: Boolean,
-        default: false
-      },
       submitted: {
         type: Boolean,
         default: false
@@ -223,11 +219,6 @@
         }
 
         return Math.floor((this.numCompletedQuestions / this.numActiveQuestions) * 100)
-      },
-      config() {
-        return {
-          inline: this.inline
-        }
       },
       onLastStep() {
         return this.activeQuestionIndex === this.questionListActivePath.length

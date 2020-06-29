@@ -48,20 +48,6 @@ export class ChoiceOption {
   }
 }
 
-export const DropdownOptions = {
-  YesNo: [
-    DropdownOptionBlank,
-    {
-      label: 'Yes',
-      value: 1
-    },
-    {
-      label: 'No',
-      value: 0
-    }
-  ]
-}
-
 export default class QuestionModel {
   constructor(options) {
     this.question = ''

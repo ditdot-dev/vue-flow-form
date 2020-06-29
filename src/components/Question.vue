@@ -31,22 +31,21 @@
 
       <p v-if="question.description" class="description">{{ question.description }}</p>
 
-      <div v-if="!config.inline">
-        <a
-          class="animate fade-in-up f-enter"
-          ref="button"
-          href="#"
-          v-if="showOk()"
-          v-on:click="onEnter"
-        >
-          <div class="o-btn-action">
-            <span v-if="question.type === QuestionType.SectionBreak">{{ language.continue }}</span>
-            <span v-else>{{ language.ok }}</span>
-          </div>
+      <a
+        class="animate fade-in-up f-enter"
+        ref="button"
+        href="#"
+        v-if="showOk()"
+        v-on:click="onEnter"
+      >
+        <div class="o-btn-action">
+          <span v-if="question.type === QuestionType.SectionBreak">{{ language.continue }}</span>
+          <span v-else>{{ language.ok }}</span>
+        </div>
 
-          <span class="f-enter-desc">{{ language.pressEnter }}</span>
-        </a>
-      </div>
+        <span class="f-enter-desc">{{ language.pressEnter }}</span>
+      </a>
+
       <div v-if="showInvalid()" class="f-invalid">{{ language.invalidPrompt }}</div>
     </div>
   </div>
@@ -81,7 +80,6 @@
     props: {
       question: QuestionModel,
       language: LanguageModel,
-      config: Object,
       value: [String, Array],
       active: {
         type: Boolean,
@@ -111,12 +109,6 @@
       },
       onTransitionEnd() {
         this.enterPressed = false
-
-        if (this.config.inline) {
-          this.$scrollTo('body', 600, {
-            offset: document.body.scrollHeight
-          })
-        }
       },
       onEnter() {
         const q = this.$refs.questionComponent

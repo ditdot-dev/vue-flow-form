@@ -49,7 +49,7 @@
 
 <script>
   import Survey from './components/Survey'
-  import QuestionModel, { QuestionType, ChoiceOption, DropdownOptionBlank, DropdownOptions } from './models/QuestionModel'
+  import QuestionModel, { QuestionType, ChoiceOption } from './models/QuestionModel'
   import LanguageModel from './models/LanguageModel'
 
   export default {
