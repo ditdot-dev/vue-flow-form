@@ -8,7 +8,6 @@
           v-bind:question="q"
           v-bind:language="language"
           v-bind:key="q.id || 'q' + index"
-          v-bind:config="config"
           v-bind:active="q.index === activeQuestionIndex"
           v-model="q.answer"
           v-on:answer="questionAnswered"
@@ -138,7 +137,6 @@
           let question = this.questions[index]
 
           question.index = serialIndex
-          question.config = this.config
           question.language = this.language
 
           questions.push(question)
