@@ -77,7 +77,7 @@
             title: "Nice to meet you 👀, let's continue",
             question: "Provide an example email.",
             type: QuestionType.Email,
-            required: true,
+            required: false,
             placeholder: 'Start typing here...'
           }),
           new QuestionModel({
@@ -242,11 +242,3 @@
     }
   }
 </script>
-
-<style lang="css">
-  @import './assets/css/normalize.css';
-  @import './assets/css/typography.css';
-  @import './assets/css/common.css';
-  @import './assets/css/branding.css';
-  @import './assets/css/animations.css';
-</style>
