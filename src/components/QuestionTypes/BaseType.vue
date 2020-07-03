@@ -138,7 +138,17 @@
         return this.question.placeholder || this.language.placeholder
       },
       hasValue() {
-        return this.dataValue !== null && this.dataValue.trim().length > 0
+        if (this.dataValue !== null) {
+          let v = this.dataValue
+
+          if (v.trim) {
+            v = v.trim()
+          }
+
+          return v.length > 0
+        }
+
+        return false
       }
     }
   }
