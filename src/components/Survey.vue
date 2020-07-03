@@ -136,7 +136,7 @@
         do {
           let question = this.questions[index]
 
-          question.index = serialIndex
+          question.setIndex(serialIndex)
           question.language = this.language
 
           questions.push(question)

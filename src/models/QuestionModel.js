@@ -50,6 +50,7 @@ export class ChoiceOption {
 
 export default class QuestionModel {
   constructor(options) {
+    this.id = null
     this.question = ''
     this.answer = ''
     this.answered = false
@@ -99,5 +100,13 @@ export default class QuestionModel {
     }
 
     return nextId
+  }
+
+  setIndex(index) {
+    if (!this.id) {
+      this.id = 'q_' + index
+    }
+
+    this.index = index
   }
 }
