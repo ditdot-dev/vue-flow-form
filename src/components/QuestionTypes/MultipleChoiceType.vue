@@ -14,7 +14,7 @@
         class="f-other"
         v-if="question.allowOther"
         v-on:click="startEditOther"
-        v-bind:class="{'f-selected': question.other}"
+        v-bind:class="{'f-selected': question.other, 'f-focus': editingOther}"
       >
         <span class="f-key" v-if="!editingOther">{{ toggleKey(question.options.length) }}</span>
         <input
