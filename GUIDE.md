@@ -35,7 +35,14 @@
   * `title` - text above the question (optional)
   * `subtitle` - text below question (optional)
   * `description` - text below HTML input (optional)
-  * `content` - text, used only with SectionBreak
+  * `content` - HTML, used only with SectionBreak
+    * can be either a raw HTML string or a render function
+    * if passing a render function, it needs to have `h` as the first argument, eg.:
+    ```
+      content: function(h) {
+        return <div> ... </div>
+      }
+    ```
   * `required` - is field required or not (true/false - default is false)
   * `options` - `ChoiceOption` array (used only with Dropdown and MultipleChoice)
     * `ChoiceOption` must have a `label` defined (this is what will be shown to the user)

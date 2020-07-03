@@ -138,9 +138,12 @@
           }),
           new QuestionModel({
             id: 'break_1',
-            content:
-              '<span class="fh2">Awesome, thank you. 🙏</span>' +
-              '<span class="section-text">You arrived at the section break of our little demo survey. To continue exploring, just press enter or use the continue button.</span>',
+            content(h) {
+              return <span>
+                <span class="fh2">Awesome, thank you. 🙏</span>
+                <span class="section-text">You arrived at the section break of our little demo survey. To continue exploring, just press enter or use the continue button.</span>
+              </span>
+            },
             description: 'Note: We will take a look at our multiple path feature next.',
             type: QuestionType.SectionBreak
           }),
