@@ -69,7 +69,7 @@
           <a
             class="f-next"
             href="#"
-            v-bind:class="{'f-disabled': activeQuestionIndex >= questionList.length - 1}"
+            v-bind:class="{'f-disabled': !nextQuestionAvailable()}"
             v-on:click.prevent="goToNextQuestion()"
           >
             <svg
@@ -111,6 +111,12 @@
         default: false
       }
     },
+    data() {
+      return {
+        completed: false,
+        activeQuestionIndex: 0
+      }
+    },
     mounted() {
       document.addEventListener('keyup', this.onKeyListener)
       window.addEventListener('beforeunload', this.beforeUnload)
@@ -118,12 +124,6 @@
     beforeDestroy() {
       document.removeEventListener('keyup', this.onKeyListener)
       window.removeEventListener('beforeunload', this.beforeUnload)
-    },
-    data() {
-      return {
-        completed: false,
-        activeQuestionIndex: 0
-      }
     },
     computed: {
       questionListActivePath() {
@@ -200,6 +200,9 @@
       numActiveQuestions() {
         return this.questionListActivePath.length
       },
+      activeQuestion() {
+        return this.questionListActivePath[this.activeQuestionIndex]
+      },
       numCompletedQuestions() {
         let num = 0
 
@@ -229,13 +232,6 @@
           event.returnValue = ''
         }
       },
-      activeQuestion() {
-        if (this.$refs.questions) {
-          return this.$refs.questions[this.activeQuestionIndex]
-        }
-
-        return null
-      },
       onKeyListener(e) {
         if (e.shiftKey) {
           return
@@ -245,9 +241,25 @@
           this.emitEnter()
         }
       },
+      activeQuestionComponent() {
+        if (this.$refs.questions) {
+          return this.$refs.questions[this.activeQuestionIndex]
+        }
+
+        return null
+      },
       emitEnter() {
-        const q = this.activeQuestion()
+        const q = this.activeQuestionComponent()
         q && q.onEnter()
+      },
+      nextQuestionAvailable() {
+        const q = this.activeQuestion
+  
+        if (q && !q.required) {
+          return true
+        }
+
+        return this.activeQuestionIndex < this.questionList.length - 1
       },
       questionAnswered(question) {
         if (question.valid()) {
@@ -256,7 +268,7 @@
           }
 
           this.$nextTick(() => {
-            const q = this.activeQuestion()
+            const q = this.activeQuestionComponent()
 
             if (q) {
               q.focusField()
@@ -271,8 +283,8 @@
         }
       },
       goToNextQuestion() {
-        if (this.activeQuestionIndex < this.questionList.length - 1) {
-          ++this.activeQuestionIndex
+        if (this.nextQuestionAvailable()) {
+          this.activeQuestionComponent().setAnswered()
         }
       }
     },

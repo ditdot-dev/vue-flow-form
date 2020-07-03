@@ -143,6 +143,12 @@
         }
 
         return q.showInvalid()
+      },
+      setAnswered() {
+        const q = this.$refs.questionComponent
+
+        q.dirty = true
+        q.goToNext()
       }
     },
     computed: {
