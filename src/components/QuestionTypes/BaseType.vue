@@ -138,7 +138,7 @@
         return this.question.placeholder || this.language.placeholder
       },
       hasValue() {
-        return this.dataValue !== null && this.dataValue.length > 0
+        return this.dataValue !== null && this.dataValue.trim().length > 0
       }
     }
   }
