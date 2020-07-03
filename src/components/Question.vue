@@ -119,15 +119,19 @@
         }
       },
       showOk() {
+        const q = this.$refs.questionComponent
+
         if (this.question.type === QuestionType.SectionBreak) {
           return this.active
+        }
+
+        if (this.question.type === QuestionType.Dropdown) {
+          return q && q.hasValue
         }
 
         if (this.question.type === QuestionType.MultipleChoice && !this.question.multiple) {
           return this.question.other
         }
-
-        const q = this.$refs.questionComponent
 
         if (!q || !this.dataValue) {
           return false
