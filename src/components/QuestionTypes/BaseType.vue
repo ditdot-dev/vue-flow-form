@@ -116,8 +116,8 @@
           return true
         }
 
-        if (this.question.mask && this.dataValue.length === this.question.mask.length) {
-          return true
+        if (this.question.mask && this.dataValue.length !== this.question.mask.length) {
+          return false
         }
 
         if (this.validate()) {
