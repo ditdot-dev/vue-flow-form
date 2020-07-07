@@ -166,7 +166,8 @@
       },
       onChangeOther() {
         if (this.editingOther) {
-          let value = [],
+          let
+            value = [],
             self = this
 
           this.question.options.forEach(function(option) {

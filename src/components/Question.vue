@@ -166,11 +166,15 @@
     },
     watch: {
       dataValue(value) {
-        this.question.answer = value
+        const q = this.$refs.questionComponent
         let sendEnter = false
 
+        this.question.answer = value
+
         if (this.question.type === QuestionType.MultipleChoice && !this.question.multiple) {
-          sendEnter = true
+          if (!q || !q.editingOther) {
+            sendEnter = true
+          }
         } else if (this.question.type === QuestionType.Dropdown) {
           sendEnter = true
         }
