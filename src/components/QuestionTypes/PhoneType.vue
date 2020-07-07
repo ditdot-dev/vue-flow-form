@@ -1,7 +1,7 @@
 <template>
   <the-mask
     ref="input"
-    v-bind:mask="mask"
+    v-bind:mask="question.mask"
     v-bind:value="value"
     type="tel"
     v-bind:masked="false"
@@ -18,7 +18,6 @@
   import BaseType from './BaseType'
   import LanguageModel from '../../models/LanguageModel'
   import { TheMask } from 'vue-the-mask'
-
   export default {
     extends: BaseType,
     components: {
@@ -28,8 +27,7 @@
     props: {},
     data() {
       return {
-        inputType: 'tel', 
-        mask: this.question.mask
+        inputType: 'tel'
       }
     }
   }

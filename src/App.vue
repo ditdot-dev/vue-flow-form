@@ -85,8 +85,7 @@
             question: 'Doing great! 👍 Go ahead and try with a phone number.',
             type: QuestionType.Phone,
             required: true,
-            mask: "(###) ###-####",
-            placeholder: '(###) ###-####'
+            mask: '(###) ###-####'
           }),
           new QuestionModel({
             id: 'movies',

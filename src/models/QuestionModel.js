@@ -76,8 +76,13 @@ export default class QuestionModel {
 
     Object.assign(this, options)
 
-    if (this.type === QuestionType.Phone && !this.mask) {
-      this.mask = '(###) ###-####'
+    if (this.type === QuestionType.Phone) {
+      if (!this.mask) {
+        this.mask = '(###) ###-####'
+      }
+      if (!this.placeholder) {
+        this.placeholder = this.mask
+      }
     }
     if (this.multiple) {
       this.answer = []
