@@ -1,7 +1,7 @@
 <template>
   <the-mask
     ref="input"
-    mask="(###) ###-####"
+    v-bind:mask="mask"
     v-bind:value="value"
     type="tel"
     v-bind:masked="false"
@@ -28,7 +28,8 @@
     props: {},
     data() {
       return {
-        inputType: 'tel'
+        inputType: 'tel', 
+        mask: this.question.mask
       }
     }
   }
