@@ -13,6 +13,7 @@
 
     <survey
       ref="survey"
+      v-on:complete="onComplete"
       v-bind:questions="questions"
       v-bind:language="language"
       v-bind:submitted="sent"
@@ -30,7 +31,7 @@
         <a
           ref="button"
           href="#"
-          v-on:click="submitData"
+          v-on:click="$refs.survey.submitData()"
           v-bind:class="{'f-disabled': sending}"
           v-if="!sent"
         >
@@ -77,7 +78,7 @@
             title: "Nice to meet you 👀, let's continue",
             question: "Provide an example email.",
             type: QuestionType.Email,
-            required: false,
+            required: true,
             placeholder: 'Start typing here...'
           }),
           new QuestionModel({
@@ -171,9 +172,12 @@
           }),
            new QuestionModel({
             id: 'path_a',
-            content:
-              '<span class="fh2">Excellent choice sir! 🥳</span>' +
-              '<span class="section-text">Press enter or use the continue button for the final submit screen.</span>',
+            content(h) {
+              return <span>
+                <span class="fh2">Excellent choice! 🥳</span>
+                <span class="section-text">Press enter or use the continue button for the final submit screen.</span>
+              </span>
+            },
             type: QuestionType.SectionBreak,
             jump: {
               _other: '_submit'
@@ -203,21 +207,9 @@
         ]
       }
     },
-    mounted() {
-      document.addEventListener('keyup', this.onKeyListener)
-    },
-    beforeDestroy() {
-      document.removeEventListener('keyup', this.onKeyListener)
-    },
     methods: {
-      onKeyListener: function(e) {
-        if (!this.$refs.survey.onLastStep) {
-          return
-        }
-
-        if (e.key === 'Enter' || e.key === 'Tab') {
-          this.submitData()
-        }
+      onComplete(questions) {
+        this.submitData()
       },
       getData() {
         let data = {

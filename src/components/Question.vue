@@ -125,19 +125,11 @@
           return this.active
         }
 
-        if (this.question.type === QuestionType.Dropdown) {
-          return q && q.hasValue
-        }
-
-        if (this.question.type === QuestionType.MultipleChoice && !this.question.multiple) {
-          return this.question.other
-        }
-
         if (!q || !this.dataValue) {
           return false
         }
 
-        return q.hasValue && !q.enterPressed
+        return q.hasValue && q.valid()
       },
       showInvalid() {
         const q = this.$refs.questionComponent
@@ -151,8 +143,10 @@
       setAnswered() {
         const q = this.$refs.questionComponent
 
-        q.dirty = true
-        q.goToNext()
+        if (q) {
+          q.dirty = true
+        }
+        this.onEnter()
       }
     },
     computed: {
@@ -173,6 +167,17 @@
     watch: {
       dataValue(value) {
         this.question.answer = value
+        let sendEnter = false
+
+        if (this.question.type === QuestionType.MultipleChoice && !this.question.multiple) {
+          sendEnter = true
+        } else if (this.question.type === QuestionType.Dropdown) {
+          sendEnter = true
+        }
+
+        if (sendEnter) {
+          this.onEnter()
+        }
       }
     }
   }

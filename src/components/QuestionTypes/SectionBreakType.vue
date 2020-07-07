@@ -18,6 +18,11 @@
       if (this.question.content) {
         return <div domPropsInnerHTML={this.question.content} class="f-content"></div>
       }
+    },
+    methods: {
+      valid() {
+        return this.active
+      }
     }
   }
 </script>

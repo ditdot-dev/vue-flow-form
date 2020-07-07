@@ -7,7 +7,7 @@
           v-for="(q, index) in questionList"
           v-bind:question="q"
           v-bind:language="language"
-          v-bind:key="q.id || 'q' + index"
+          v-bind:key="'q' + index"
           v-bind:active="q.index === activeQuestionIndex"
           v-model="q.answer"
           v-on:answer="questionAnswered"
@@ -47,7 +47,7 @@
           <a
             class="f-prev"
             href="#"
-            v-bind:class="{'f-disabled': activeQuestionIndex === 0}"
+            v-bind:class="{'f-disabled': activeQuestionIndex === 0 || submitted}"
             v-on:click.prevent="goToPreviousQuestion()"
           >
             <svg
@@ -114,19 +114,56 @@
     data() {
       return {
         completed: false,
-        activeQuestionIndex: 0
+        activeQuestionIndex: 0,
+        questionList: [],
+        questionListActivePath: []
       }
     },
     mounted() {
       document.addEventListener('keyup', this.onKeyListener)
       window.addEventListener('beforeunload', this.beforeUnload)
+
+      this.setQuestions()
     },
     beforeDestroy() {
       document.removeEventListener('keyup', this.onKeyListener)
       window.removeEventListener('beforeunload', this.beforeUnload)
     },
     computed: {
-      questionListActivePath() {
+      numActiveQuestions() {
+        return this.questionListActivePath.length
+      },
+      activeQuestion() {
+        return this.questionListActivePath[this.activeQuestionIndex]
+      },
+      numCompletedQuestions() {
+        let num = 0
+
+        for (let i = 0; i < this.questionListActivePath.length; i++) {
+          if (this.questionListActivePath[i].answered) {
+            ++num
+          }
+        }
+
+        return num
+      },
+      percentCompleted() {
+        if (!this.numActiveQuestions) {
+          return 0
+        }
+
+        return Math.floor((this.numCompletedQuestions / this.numActiveQuestions) * 100)
+      },
+      onLastStep() {
+        return this.activeQuestionIndex === this.questionListActivePath.length
+      }
+    },
+    methods: {
+      setQuestions() {
+        this.setQuestionListActivePath()
+        this.setQuestionList()
+      },
+      setQuestionListActivePath() {
         let
           questions = [],
           index = 0,
@@ -167,9 +204,9 @@
           ++serialIndex
         } while (index < this.questions.length)
 
-        return questions
+        this.questionListActivePath = questions
       },
-      questionList() {
+      setQuestionList() {
         let
           questions = [],
           index = 0
@@ -180,52 +217,13 @@
           questions.push(question)
 
           if (!question.answered) {
-            this.activeQuestionIndex = index
             this.completed = false
             break
           }
-
-          if (question.answered && index === this.questionListActivePath.length - 1) {
-            this.completed = true
-            this.activeQuestionIndex = index + 1
-
-            this.$nextTick(() => {
-              this.$refs.button && this.$refs.button.focus()
-            })
-          }
         }
 
-        return questions
+        this.questionList = questions
       },
-      numActiveQuestions() {
-        return this.questionListActivePath.length
-      },
-      activeQuestion() {
-        return this.questionListActivePath[this.activeQuestionIndex]
-      },
-      numCompletedQuestions() {
-        let num = 0
-
-        for (let i = 0; i < this.questionListActivePath.length; i++) {
-          if (this.questionListActivePath[i].answered) {
-            ++num
-          }
-        }
-
-        return num
-      },
-      percentCompleted() {
-        if (!this.numActiveQuestions) {
-          return 0
-        }
-
-        return Math.floor((this.numCompletedQuestions / this.numActiveQuestions) * 100)
-      },
-      onLastStep() {
-        return this.activeQuestionIndex === this.questionListActivePath.length
-      }
-    },
-    methods: {
       beforeUnload(event) {
         if (this.activeQuestionIndex > 0 && !this.submitted) {
           event.preventDefault()
@@ -250,7 +248,12 @@
       },
       emitEnter() {
         const q = this.activeQuestionComponent()
-        q && q.onEnter()
+
+        if (q) {
+          q.onEnter()
+        } else if (this.completed && this.onLastStep) {
+          this.submitData()
+        }
       },
       nextQuestionAvailable() {
         const q = this.activeQuestion
@@ -263,16 +266,22 @@
       },
       questionAnswered(question) {
         if (question.valid()) {
-          if (this.activeQuestionIndex < this.questionList.length) {
+          if (this.activeQuestionIndex < this.questionListActivePath.length) {
             ++this.activeQuestionIndex
           }
 
           this.$nextTick(() => {
+            this.setQuestions()
             const q = this.activeQuestionComponent()
 
             if (q) {
               q.focusField()
               this.activeQuestionIndex = q.question.index
+            } else if (this.activeQuestionIndex === this.questionListActivePath.length - 1) {
+              this.completed = true
+              this.activeQuestionIndex = index + 1
+
+              this.$refs.button && this.$refs.button.focus()
             }
           })
         }
@@ -286,6 +295,9 @@
         if (this.nextQuestionAvailable()) {
           this.activeQuestionComponent().setAnswered()
         }
+      },
+      submitData() {
+        this.$emit('complete', this.questionList)
       }
     },
     components: {
