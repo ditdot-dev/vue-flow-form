@@ -47,6 +47,7 @@
   * `options` - `ChoiceOption` array (used only with Dropdown and MultipleChoice)
     * `ChoiceOption` must have a `label` defined (this is what will be shown to the user)
     * if `value` is not defined, `label` will be used
+  * `inline` - if true, displays the field next to the question, used only with Dropdown (true/false - default is false)
   * `helpText` - help text, used only with LongText and MultipleChoice (optional)
     * if not defined, the default values from LanguageModel will be used (multipleChoiceHelpText for MultipleChoice and longTextHelpText for LongText)
   * `multiple` - used only with MultipleChoice, defines if multiple answers can be chosen (true/false - default is false)
