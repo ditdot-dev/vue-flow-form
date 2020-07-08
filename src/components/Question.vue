@@ -184,11 +184,7 @@
 
         this.question.answer = value
 
-        if (this.question.type === QuestionType.MultipleChoice && !this.question.multiple) {
-          if (!q || !q.editingOther) {
-            sendEnter = true
-          }
-        } else if (this.question.type === QuestionType.Dropdown) {
+        if (this.question.type === QuestionType.Dropdown) {
           sendEnter = true
         }
 
