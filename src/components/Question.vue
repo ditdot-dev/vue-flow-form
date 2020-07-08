@@ -1,35 +1,14 @@
 <template>
   <div class="animate fade-in-up q-form" v-bind:class="mainClasses">
     <div class="q-inner" ref="qinner">
-      <div class="section-wrap">
-        <p v-bind:class="{'fh2': question.type !== QuestionType.SectionBreak}">
-          <span class="f-title" v-if="question.title">{{ question.title }}</span>
+      <p v-bind:class="{'fh2': question.type !== QuestionType.SectionBreak}">
+        <span class="f-title" v-if="question.title">{{ question.title }}</span>
 
-          <span class="f-text" v-if="question.question">
-            {{ question.question }}&nbsp;
-            <span class="f-required" v-if="question.required">*</span>
+        <span class="f-text" v-if="question.question">
+          {{ question.question }}&nbsp;
+          <span class="f-required" v-if="question.required">*</span>
 
-            <span v-if="question.inline" class="f-answer">
-              <component
-                ref="questionComponent"
-                v-bind:is="question.type"
-                v-bind:question="question"
-                v-bind:language="language"
-                v-model="dataValue"
-                v-bind:active="active"
-              />
-            </span>
-          </span>
-
-          <span class="f-sub" v-if="question.subtitle || question.type === QuestionType.LongText || question.multiple">
-            <span v-if="question.subtitle">{{ question.subtitle }}</span>
-
-            <span class="f-help" v-if="question.type === QuestionType.LongText">{{ language.longTextLineBreak }}</span>
-
-            <span class="f-help" v-if="question.multiple">{{ question.multiplePrompt || language.multiplePrompt }}</span>
-          </span>
-
-          <span v-if="!question.inline" class="f-answer full-width">
+          <span v-if="question.inline" class="f-answer">
             <component
               ref="questionComponent"
               v-bind:is="question.type"
@@ -39,11 +18,30 @@
               v-bind:active="active"
             />
           </span>
-        </p>
+        </span>
 
-        <p v-if="question.description" class="description">{{ question.description }}</p>
-      </div>
+        <span class="f-sub" v-if="question.subtitle || question.type === QuestionType.LongText || question.multiple">
+          <span v-if="question.subtitle">{{ question.subtitle }}</span>
 
+          <span class="f-help" v-if="question.type === QuestionType.LongText">{{ language.longTextLineBreak }}</span>
+
+          <span class="f-help" v-if="question.multiple">{{ question.multiplePrompt || language.multiplePrompt }}</span>
+        </span>
+
+        <span v-if="!question.inline" class="f-answer full-width">
+          <component
+            ref="questionComponent"
+            v-bind:is="question.type"
+            v-bind:question="question"
+            v-bind:language="language"
+            v-model="dataValue"
+            v-bind:active="active"
+          />
+        </span>
+      </p>
+      
+      <p v-if="question.description" class="description">{{ question.description }}</p>
+  
       <a
         class="animate fade-in-up f-enter"
         ref="button"
