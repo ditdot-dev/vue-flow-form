@@ -53,9 +53,12 @@
         this.enterPressed = false
         clearTimeout(this.timeoutId)
 
-        if ($event && this.allowedChars !== null && this.allowedChars.indexOf($event.key) === -1) {
-          $event.preventDefault()
-          return false
+        if ($event && this.allowedChars !== null) {
+          const alwaysAllow = ['ArrowLeft', 'ArrowRight', 'Delete', 'Backspace']
+
+          if (alwaysAllow.indexOf($event.key) === -1 && this.allowedChars.indexOf($event.key) === -1) {
+            $event.preventDefault()
+          }
         }
       },
       onChange($event) {

@@ -147,7 +147,6 @@
 
         this.setAnswer(this.dataValue)
         this.emitAnswer()
-        this.sendEnter()
       },
       _removeAnswer(value) {
         const index = this.dataValue.indexOf(value)
@@ -193,14 +192,6 @@
       },
       stopEditOther() {
         this.editingOther = false
-
-        this.sendEnter()
-      },
-      sendEnter() {
-        if (!this.question.multiple && this.valid()) {
-          clearTimeout(this.timeoutId)
-          this.timeoutId = setTimeout(this.onEnter, 100)
-        }
       }
     }
   }

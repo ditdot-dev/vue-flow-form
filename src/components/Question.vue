@@ -1,12 +1,33 @@
 <template>
   <div class="animate fade-in-up q-form" v-bind:class="mainClasses">
     <div class="q-inner" ref="qinner">
-      <p v-bind:class="{'fh2': question.type !== QuestionType.SectionBreak}">
-        <span class="f-title" v-if="question.title">{{ question.title }}</span>
+      <div class="section-wrap">
+        <p v-bind:class="{'fh2': question.type !== QuestionType.SectionBreak}">
+          <span class="f-title" v-if="question.title">{{ question.title }}</span>
 
-        <span class="f-text" v-if="question.question">
-          {{ question.question }}&nbsp;
-          <span class="f-required" v-if="question.required">*</span>
+          <span class="f-text" v-if="question.question">
+            {{ question.question }}&nbsp;
+            <span class="f-required" v-if="question.required">*</span>
+
+            <span v-if="question.inline" class="f-answer">
+              <component
+                ref="questionComponent"
+                v-bind:is="question.type"
+                v-bind:question="question"
+                v-bind:language="language"
+                v-model="dataValue"
+                v-bind:active="active"
+              />
+            </span>
+          </span>
+
+          <span class="f-sub" v-if="question.subtitle || question.type === QuestionType.LongText || question.multiple">
+            <span v-if="question.subtitle">{{ question.subtitle }}</span>
+
+            <span class="f-help" v-if="question.type === QuestionType.LongText">{{ question.helpText || language.longTextHelpText }}</span>
+
+            <span class="f-help" v-if="question.multiple">{{ question.helpText || language.multipleChoiceHelpText }}</span>
+          </span>
 
           <span v-if="question.inline" class="f-answer">
             <component
@@ -182,11 +203,7 @@
 
         this.question.answer = value
 
-        if (this.question.type === QuestionType.MultipleChoice && !this.question.multiple) {
-          if (!q || !q.editingOther) {
-            sendEnter = true
-          }
-        } else if (this.question.type === QuestionType.Dropdown) {
+        if (this.question.type === QuestionType.Dropdown) {
           sendEnter = true
         }
 
