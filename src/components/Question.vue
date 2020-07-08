@@ -24,9 +24,9 @@
           <span class="f-sub" v-if="question.subtitle || question.type === QuestionType.LongText || question.multiple">
             <span v-if="question.subtitle">{{ question.subtitle }}</span>
 
-            <span class="f-help" v-if="question.type === QuestionType.LongText">{{ language.longTextLineBreak }}</span>
+            <span class="f-help" v-if="question.type === QuestionType.LongText">{{ question.helpText || language.longTextHelpText }}</span>
 
-            <span class="f-help" v-if="question.multiple">{{ question.multiplePrompt || language.multiplePrompt }}</span>
+            <span class="f-help" v-if="question.multiple">{{ question.helpText || language.multipleChoiceHelpText }}</span>
           </span>
 
           <span v-if="!question.inline" class="f-answer full-width">

@@ -63,7 +63,6 @@ export default class QuestionModel {
     this.required = false
     this.jump = null
     this.placeholder = null
-    this.config = {}
     this.mask = ''
     this.multiple = false
     this.allowOther = false
@@ -73,6 +72,7 @@ export default class QuestionModel {
     this.subtitle = null
     this.content = null
     this.inline = false
+    this.helpText = null
 
     Object.assign(this, options)
 

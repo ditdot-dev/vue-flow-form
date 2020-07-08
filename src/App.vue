@@ -120,7 +120,7 @@
             question: 'Multiple choices question:',
             type: QuestionType.MultipleChoice,
             multiple: true,
-            multiplePrompt: 'Select all that apply. 👇',
+            helpText: 'Select all that apply. 👇',
             required: true,
             options: [
               new ChoiceOption({
