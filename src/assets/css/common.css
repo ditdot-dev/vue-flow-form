@@ -188,10 +188,6 @@ span.faux-form {
   white-space: nowrap;
 }
 
-.full-width span.faux-form{
-  width: 100%;
-}
-
 span.f-title,
 span.f-sub {
   font-weight: 400;
@@ -207,10 +203,17 @@ span.f-text {
 span.f-sub {
   margin-bottom: 8px;
   margin-top: 6px;
- 
 }
 span.f-sub span{
   margin-right: .4em;
+}
+
+span.f-sub span.f-help{
+  display: block;
+}
+
+span.f-sub span + span.f-help {
+  margin-top: 8px;
 }
 
 span.f-text {
@@ -227,7 +230,7 @@ span.f-text {
   border: 0;
   cursor: pointer;
   font-size: 1rem;
-  line-height: 1.3;
+  line-height: 1.32;
   margin: 0;
   opacity: 0;
   outline: 0;
@@ -264,14 +267,6 @@ span.f-text {
   outline: none;
   resize: vertical;
 }
-.vertical-form input[type=number],
-.vertical-form input[type=url],
-.vertical-form input[type=tel],
-.vertical-form input[type=text],
-.vertical-form input[type=text].input-city,
-.vertical-form input[type=email] {
-  max-width: 10rem;
-}
 
 .vertical-form button,
 .vertical-form input {
@@ -279,12 +274,28 @@ span.f-text {
   overflow: visible;
 }
 
+.vertical-form .full-width input[type=text],
+.vertical-form .full-width input[type=number],
+.vertical-form .full-width input[type=tel],
+.vertical-form .full-width input[type=email],
+.vertical-form .full-width input[type=url],
+.vertical-form .full-width textarea,
+.vertical-form .full-width span.faux-form{
+  width: 100%;
+  padding-left: .2rem;
+  padding-right: .2rem;
+}
+
+/**/
+
 span.f-empty {
   display: inline-block;
-  min-width: 6.2rem;
+  min-width: 6rem;
   padding-right: 28px;
   font-weight: 300;
+  padding-bottom: 4px;
 }
+
 span.f-answered{
   font-weight: 900;
 }
@@ -308,13 +319,13 @@ span.f-answered{
 
 p.description {
   margin-top: 0;
+  padding-right: 4rem;
 }
 
 .q-is-active {
   opacity: 1;
 }
 
-/**/
 .title-not-active {
   display: none;
 }
@@ -323,33 +334,9 @@ p.description {
   display: none;
 }
 
-/**/
-small.f-number {
-  font-weight: 300;
-  font-size: 100%;
-  display: none;
-}
-
-small.f-number::after {
-  content: "\002d";
-}
-
 .full-width {
   display: block;
   width: 100%;
-}
-
-.vertical-form .full-width input[type=text],
-.vertical-form input[type=text].input-city,
-.vertical-form .full-width input[type=number],
-.vertical-form .full-width input[type=tel],
-.vertical-form .full-width input[type=email],
-.vertical-form .full-width input[type=url],
-.vertical-form .full-width textarea {
-  max-width: 100%;
-  width: 100%;
-  padding-left: .2rem;
-  padding-right: .2rem;
 }
 
 .f-enter-desc {
@@ -377,13 +364,9 @@ ul.f-radios li {
   line-height: 1.2;
   cursor: default;
   -webkit-touch-callout: none;
-  /* iOS Safari */
   -webkit-user-select: none;
-  /* Safari */
   -ms-user-select: none;
-  /* Internet Explorer/Edge */
   user-select: none;
-  /* Non-prefixed version, currently*/
 }
 
 ul.f-radios li.f-other input[type=text] {
@@ -509,15 +492,30 @@ a.f-disabled {
 }
 
 /**/
+
+.section-wrap{
+  margin-bottom: 28px;
+}
+
 .field-sectionbreaktype,
 .field-submittype {
   max-width: 680px;
 }
+
 @media only screen and (min-width: 1440px) {
   .field-sectionbreaktype,
   .field-submittype {
     max-width: 800px;
   }
+
+}
+
+@media only screen and (min-width: 1920px) {
+  .field-sectionbreaktype,
+  .field-submittype {
+    max-width: 960px;
+  }
+
 }
 
 
@@ -551,26 +549,19 @@ a.f-disabled {
 
 }
 
-
 @media only screen and (max-width: 767px) {
-
   span.f-empty {
-    min-width: 5.2rem;
+    min-width: 5rem;
     padding-right: 24px;
-  }
-
-  .vertical-form input[type=number],
-  .vertical-form input[type=url],
-  .vertical-form input[type=tel],
-  .vertical-form input[type=text],
-  .vertical-form input[type=text].input-city,
-  .vertical-form input[type=email] {
-    max-width: 8rem;
   }
 
   .vertical-form select {
     padding-top: .46rem;
     padding-bottom: .46rem;
+  }
+  
+  p.description{
+    padding-right: 0;
   }
 
 }
@@ -616,20 +607,6 @@ a.f-disabled {
     font-size: 1rem;
     padding-top: .4rem;
     padding-bottom: .4rem;
-  }
-
-  span.f-empty {
-    min-width: 3.8rem;
-    padding-right: 20px;
-  }
-
-  .vertical-form input[type=number],
-  .vertical-form input[type=url],
-  .vertical-form input[type=tel],
-  .vertical-form input[type=text],
-  .vertical-form input[type=text].input-city,
-  .vertical-form input[type=email] {
-    max-width: 6rem;
   }
 
   .f-footer .footer-inner-wrap {

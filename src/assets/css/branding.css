@@ -14,6 +14,7 @@ body {
 header{
   background-color: #BBEBD5;
 }
+
 header svg.logo{
   fill: rgba(0,0,0,0.9);
 }
@@ -24,7 +25,7 @@ header svg.logo{
 .vertical-form input[type=email],
 .vertical-form input[type=url],
 .vertical-form textarea,
-span.faux-form {
+.vertical-form span.faux-form {
   border-bottom-color: #999;
 }
 
@@ -90,6 +91,7 @@ ul.f-radios li.f-other.f-selected input {
 span.f-empty {
   color: #999;
 }
+
 span.f-answered{
   color: #18181A;
 }
