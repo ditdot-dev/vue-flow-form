@@ -67,7 +67,7 @@
 
         this.onKeyDown()
 
-        if (this.question.config.inline) {
+        if (this.question.inline) {
           const self = this
           const delay = this.question.type === QuestionType.Dropdown ? 250 : 1000
 
