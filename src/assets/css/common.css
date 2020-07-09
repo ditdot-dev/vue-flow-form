@@ -13,7 +13,7 @@ html {
   }
 }
 
-@media screen and (min-width:1440px) {
+@media screen and (min-width:1366px) {
   html {
     font-size: 18px
   }
@@ -27,7 +27,7 @@ html {
 
 @media screen and (min-width:2560px) {
   html {
-    font-size: 28px
+    font-size: 26px
   }
 }
 
@@ -100,7 +100,7 @@ ul.reset-list {
 
 /**/
 .container {
-  padding: 0 7vw;
+  padding: 0 8vw;
   width: 100%;
   margin-top: 2vh;
   margin-bottom: 4vh;
@@ -137,7 +137,7 @@ svg.logo {
   margin-bottom: 20px;
   text-align: center;
   display: inline-block;
-  line-height: 46px;
+  line-height: 45px;
   height: 44px;
   font-weight: 700;
 }
@@ -253,6 +253,10 @@ span.faux-form {
   width: 100%;
   padding-left: .2rem;
   padding-right: .2rem;
+}
+
+.f-required {
+  display: none; /*hides required asterisks*/
 }
 
 .f-answer.full-width {
@@ -371,13 +375,12 @@ ul.f-radios li input[type=text] {
 }
 
 ul.f-radios li span.f-label {
-  margin-left: 20px;
+  margin-left: 1rem;
   display: block;
 }
 
 ul.f-radios li span.f-key {
   position: absolute;
-  margin-right: 8px;
 }
 
 ul.f-radios li.f-selected {
