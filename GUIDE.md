@@ -71,8 +71,11 @@
 # Survey component slots:
 
 * `complete` - Complete/submit screen content 
+  * This is the content of your custom complete screen, by default the `thankYouText` language string is used,
+  but you can customize this screen to look like you want
 * `completeButton` - Complete/submit screen button
-* `completeAfter` - Complete/submit screen content below button
+  * If you override the button, the `complete` event will not be called
+  so you'll need to handle the button onClick event manually
 
 # Submitting data:
 
