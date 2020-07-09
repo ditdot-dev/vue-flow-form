@@ -12,7 +12,7 @@ export default class LanguageModel {
     this.next = 'Next'
     this.percentCompleted = ':percent% completed'
     this.invalidPrompt = 'Please fill out the field correctly'
-    this.thankYouText = 'Thank you! 😊'
+    this.thankYouText = 'Thank you!'
 
     Object.assign(this, options || {})
   }

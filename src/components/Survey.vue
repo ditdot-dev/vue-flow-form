@@ -10,7 +10,7 @@
           v-bind:key="'q' + index"
           v-bind:active="q.index === activeQuestionIndex"
           v-model="q.answer"
-          v-on:answer="questionAnswered"
+          v-on:answer="onQuestionAnswered"
         />
 
         <div v-if="activeQuestionIndex === questionListActivePath.length" class="animate fade-in-up field-submittype">
@@ -21,7 +21,7 @@
           </slot>
 
           <slot name="completeButton">
-            <a ref="button" href="#" v-on:click="$emit('complete', this.questionList)">
+            <a ref="button" href="#" v-on:click="submit()" v-if="!submitted">
               <div class="o-btn-action">
                 <span>{{ language.submitText }}</span>
               </div>
@@ -29,8 +29,6 @@
               <span class="f-enter-desc">{{ language.pressEnter }}</span>
             </a>
           </slot>
-
-          <slot name="completeAfter"></slot>
         </div>
       </div>
     </div>
@@ -69,7 +67,7 @@
           <a
             class="f-next"
             href="#"
-            v-bind:class="{'f-disabled': !nextQuestionAvailable()}"
+            v-bind:class="{'f-disabled': !isNextQuestionAvailable()}"
             v-on:click.prevent="goToNextQuestion()"
           >
             <svg
@@ -97,9 +95,24 @@
 <script>
   import Question from './Question'
   import LanguageModel from '../models/LanguageModel'
+  import Vue from 'vue'
+  import VueScrollTo from 'vue-scrollto'
+  import VueTextareaAutosize from 'vue-textarea-autosize'
+
+  // Set up the components we're using
+  Vue.use(VueScrollTo)
+  Vue.use(VueTextareaAutosize)
+
+  // Add a simple replace filter
+  Vue.filter('replace', function (value, search, replace) {
+    return value.replace(search, replace)
+  })
 
   export default {
     name: 'Survey',
+    components: {
+      Question
+    },
     props: {
       questions: Array,
       language: {
@@ -133,20 +146,23 @@
       numActiveQuestions() {
         return this.questionListActivePath.length
       },
+
       activeQuestion() {
         return this.questionListActivePath[this.activeQuestionIndex]
       },
+
       numCompletedQuestions() {
         let num = 0
 
-        for (let i = 0; i < this.questionListActivePath.length; i++) {
-          if (this.questionListActivePath[i].answered) {
+        for (let question of this.questionListActivePath) {
+          if (question.answered) {
             ++num
           }
         }
 
         return num
       },
+
       percentCompleted() {
         if (!this.numActiveQuestions) {
           return 0
@@ -154,18 +170,35 @@
 
         return Math.floor((this.numCompletedQuestions / this.numActiveQuestions) * 100)
       },
-      onLastStep() {
+
+      isOnLastStep() {
         return this.activeQuestionIndex === this.questionListActivePath.length
       }
     },
     methods: {
+      /**
+       * Returns currently active question component (if any).
+       */
+      activeQuestionComponent() {
+        if (this.$refs.questions) {
+          return this.$refs.questions[this.activeQuestionIndex]
+        }
+
+        return null
+      },
+
       setQuestions() {
         this.setQuestionListActivePath()
         this.setQuestionList()
       },
+
+      /**
+       * This method goes through all questions and sets the ones
+       * that are in the current path (taking note of logic jumps)
+       */
       setQuestionListActivePath() {
+        const questions = []
         let
-          questions = [],
           index = 0,
           serialIndex = 0,
           nextId
@@ -206,10 +239,17 @@
 
         this.questionListActivePath = questions
       },
+
+      /**
+       * Sets the question list array
+       * (all questions up to, and including, the current one)
+       */
       setQuestionList() {
         const questions = [];
 
-        for (let question of this.questionListActivePath) {
+        for (let index = 0; index < this.questionListActivePath.length; index++) {
+          const question = this.questionListActivePath[index]
+
           questions.push(question)
 
           if (!question.answered) {
@@ -220,12 +260,21 @@
 
         this.questionList = questions
       },
+
+      /**
+       * If we have any answered questions, notify user before leaving
+       * the page.
+       */
       beforeUnload(event) {
         if (this.activeQuestionIndex > 0 && !this.submitted) {
           event.preventDefault()
           event.returnValue = ''
         }
       },
+
+      /**
+       * Global key listener, listens for Enter or tab key events.
+       */
       onKeyListener(e) {
         if (e.shiftKey) {
           return
@@ -235,23 +284,33 @@
           this.emitEnter()
         }
       },
-      activeQuestionComponent() {
-        if (this.$refs.questions) {
-          return this.$refs.questions[this.activeQuestionIndex]
-        }
 
-        return null
-      },
       emitEnter() {
         const q = this.activeQuestionComponent()
 
         if (q) {
+          // Send enter event to the current question component
           q.onEnter()
-        } else if (this.completed && this.onLastStep) {
-          this.submitData()
+        } else if (this.completed && this.isOnLastStep) {
+          // We're finished - emit complete event
+          this.emitComplete()
         }
       },
-      nextQuestionAvailable() {
+
+      submit() {
+        this.emitComplete()
+        this.submitted = true
+      },
+
+      emitComplete() {
+        this.$emit('complete', this.questionList)
+      },     
+
+      /**
+       * Checks if we have another question and if we
+       * can jump to it.
+       */
+      isNextQuestionAvailable() {
         const q = this.activeQuestion
   
         if (q && !q.required) {
@@ -260,8 +319,9 @@
 
         return this.activeQuestionIndex < this.questionList.length - 1
       },
-      questionAnswered(question) {
-        if (question.valid()) {
+
+      onQuestionAnswered(question) {
+        if (question.isValid()) {
           if (this.activeQuestionIndex < this.questionListActivePath.length) {
             ++this.activeQuestionIndex
           }
@@ -278,6 +338,7 @@
                 q.focusField()
                 this.activeQuestionIndex = q.question.index
               } else if (this.activeQuestionIndex === this.questionListActivePath.length - 1) {
+                // No more questions left - set "completed" to true
                 this.completed = true
                 this.activeQuestionIndex = this.questionListActivePath.length
 
@@ -287,6 +348,10 @@
           })
         }
       },
+
+      /**
+       * Jumps to previous question.
+       */
       goToPreviousQuestion() {
         this.blurFocus()
 
@@ -294,22 +359,24 @@
           --this.activeQuestionIndex
         }
       },
+
+      /**
+       * Jumps to next question.
+       */
       goToNextQuestion() {
         this.blurFocus()
 
-        if (this.nextQuestionAvailable()) {
-          this.activeQuestionComponent().setAnswered()
+        if (this.isNextQuestionAvailable()) {
+          this.emitEnter()
         }
       },
+
+      /**
+       * Removes focues from the currently focused DOM element.
+       */
       blurFocus() {
         document.activeElement && document.activeElement.blur()
-      },
-      submitData() {
-        this.$emit('complete', this.questionList)
       }
-    },
-    components: {
-      Question
     }
   }
 </script>

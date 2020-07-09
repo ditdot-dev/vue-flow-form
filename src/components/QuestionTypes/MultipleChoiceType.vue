@@ -7,7 +7,7 @@
         v-bind:class="{'f-selected': option.selected}"
         v-bind:key="'m' + index"
       >
-        <span class="f-key">{{ toggleKey(index) }}</span>
+        <span class="f-key">{{ getToggleKey(index) }}</span>
         <span class="f-label">{{ option.choiceLabel() }}</span>
       </li>
       <li
@@ -16,7 +16,7 @@
         v-on:click="startEditOther"
         v-bind:class="{'f-selected': question.other, 'f-focus': editingOther}"
       >
-        <span class="f-key" v-if="!editingOther">{{ toggleKey(question.options.length) }}</span>
+        <span class="f-key" v-if="!editingOther">{{ getToggleKey(question.options.length) }}</span>
         <input
           v-if="editingOther"
           v-model="question.other"
@@ -46,8 +46,7 @@
     name: 'MultipleChoiceType',
     data() {
       return {
-        editingOther: false,
-        timeoutId: null
+        editingOther: false
       }
     },
     mounted() {
@@ -80,9 +79,14 @@
         this.removeKeyListener()
         document.addEventListener('keyup', this.onKeyListener)
       },
+
       removeKeyListener() {
         document.removeEventListener('keyup', this.onKeyListener)
       },
+
+      /**
+       * Listens for keyboard events (A, B, C, ...)
+       */
       onKeyListener($event) {
         if (this.active && !this.editingOther && $event.key && $event.key.length === 1) {
           let keyCode = $event.key.toUpperCase().charCodeAt(0)
@@ -102,7 +106,8 @@
           }
         }
       },
-      toggleKey(index) {
+
+      getToggleKey(index) {
         const key = 65 + index
 
         if (key <= 90) {
@@ -111,12 +116,12 @@
 
         return ''
       },
+
       toggleAnswer(option) {
         if (!this.question.multiple) {
           if (this.question.allowOther) {
             this.question.other = this.dataValue = null
             this.setAnswer(this.dataValue)
-            this.emitAnswer()
           }
 
           for (let i = 0; i < this.question.options.length; i++) {
@@ -130,6 +135,7 @@
 
         this._toggleAnswer(option)
       },
+
       _toggleAnswer(option) {
         option.toggle()
 
@@ -146,8 +152,8 @@
         }
 
         this.setAnswer(this.dataValue)
-        this.emitAnswer()
       },
+
       _removeAnswer(value) {
         const index = this.dataValue.indexOf(value)
 
@@ -155,6 +161,7 @@
           this.dataValue.splice(index, 1)
         }
       },
+
       startEditOther() {
         this.editingOther = true
         this.enterPressed = false
@@ -163,6 +170,7 @@
           this.$refs.otherInput.focus()
         })
       },
+
       onChangeOther() {
         if (this.editingOther) {
           let
@@ -187,9 +195,9 @@
 
           this.dataValue = value
           this.setAnswer(this.dataValue)
-          this.emitAnswer()
         }
       },
+      
       stopEditOther() {
         this.editingOther = false
       }

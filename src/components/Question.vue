@@ -16,6 +16,7 @@
               v-bind:language="language"
               v-model="dataValue"
               v-bind:active="active"
+              v-on:next="onEnter"
             />
           </span>
         </span>
@@ -36,6 +37,7 @@
             v-bind:language="language"
             v-model="dataValue"
             v-bind:active="active"
+            v-on:next="onEnter"
           />
         </span>
       </p>
@@ -46,7 +48,7 @@
         class="animate fade-in-up f-enter"
         ref="button"
         href="#"
-        v-if="showOk()"
+        v-if="showOkButton()"
         v-on:click="onEnter"
       >
         <div class="o-btn-action">
@@ -99,7 +101,6 @@
     },
     data() {
       return {
-        timeoutId: null,
         QuestionType: QuestionType,
         dataValue: null
       }
@@ -116,20 +117,27 @@
     methods: {
       focusField() {
         let el = this.$refs.questionComponent
+        
         el && el.focus()
       },
+
       onTransitionEnd() {
         this.enterPressed = false
       },
+
       onEnter() {
         const q = this.$refs.questionComponent
 
         if (q) {
           this.$emit('answer', q)
-          q.goToNext()
+          q.onEnter()
         }
       },
-      showOk() {
+
+      /**
+       * Check if the "OK" button should be shown.
+       */
+      showOkButton() {
         const q = this.$refs.questionComponent
 
         if (this.question.type === QuestionType.SectionBreak) {
@@ -140,8 +148,12 @@
           return false
         }
 
-        return q.hasValue && q.valid()
+        return q.hasValue && q.isValid()
       },
+
+      /**
+       * Determins if the invalid message should be shown.
+       */
       showInvalid() {
         const q = this.$refs.questionComponent
 
@@ -150,22 +162,11 @@
         }
 
         return q.showInvalid()
-      },
-      setAnswered() {
-        const q = this.$refs.questionComponent
-
-        if (q) {
-          q.dirty = true
-        }
-        this.onEnter()
       }
     },
     computed: {
-      completed() {
-        return this.question.answered
-      },
       mainClasses() {
-        let classes = {
+        const classes = {
           'q-is-active': this.active,
           'q-is-inactive': !this.active
         }
@@ -173,22 +174,6 @@
         classes['field-' + this.question.type.toLowerCase()] = true
 
         return classes
-      }
-    },
-    watch: {
-      dataValue(value) {
-        const q = this.$refs.questionComponent
-        let sendEnter = false
-
-        this.question.answer = value
-
-        if (this.question.type === QuestionType.Dropdown) {
-          sendEnter = true
-        }
-
-        if (sendEnter) {
-          this.onEnter()
-        }
       }
     }
   }

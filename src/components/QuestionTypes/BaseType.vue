@@ -18,7 +18,8 @@
         dataValue: '',
         answer: null,
         enterPressed: false,
-        allowedChars: null
+        allowedChars: null,
+        alwaysAllowedKeys: ['ArrowLeft', 'ArrowRight', 'Delete', 'Backspace']
       }
     },
     mounted() {
@@ -27,94 +28,82 @@
       }
     },
     methods: {
+      /**
+       * This method can be overriden in custom components to 
+       * change the answer before going through validation.
+       */
       fixAnswer(answer) {
         return answer
       },
+
       getElement() {
         let el = this.$refs.input
 
-        if (el && el.$el) {
-          return el.$el
+        // Sometimes the input is nested so we need to find it
+        while (el && el.$el) {
+          el = el.$el
         }
 
         return el
       },
+
       focus() {
         const el = this.getElement()
 
         el && el.focus()
       },
+
       blur() {
         const el = this.getElement()
 
         el && el.blur()
       },
+
       onKeyDown($event) {
         this.enterPressed = false
         clearTimeout(this.timeoutId)
 
         if ($event && this.allowedChars !== null) {
-          const alwaysAllow = ['ArrowLeft', 'ArrowRight', 'Delete', 'Backspace']
-
-          if (alwaysAllow.indexOf($event.key) === -1 && this.allowedChars.indexOf($event.key) === -1) {
+          // Check if the entered character is allowed.
+          // We always allow keys from the alwaysAllowedKeys array.
+          if (this.alwaysAllowedKeys.indexOf($event.key) === -1 && this.allowedChars.indexOf($event.key) === -1) {
             $event.preventDefault()
           }
         }
       },
+
       onChange($event) {
         this.dirty = true
         this.dataValue = $event.target.value
 
         this.onKeyDown()
-
-        if (this.question.inline) {
-          const self = this
-          const delay = this.question.type === QuestionType.Dropdown ? 250 : 1000
-
-          this.timeoutId = setTimeout(() => {
-            self.onEnter()
-          }, delay)
-        } else {
-          if (this.question.type === QuestionType.Dropdown) {
-            this.onEnter()
-          } else {
-            this.setAnswer(this.dataValue)
-            this.emitAnswer()
-          }
-        }
+        this.setAnswer(this.dataValue)
       },
+
       onEnter() {
         this.enterPressed = true
-        this.goToNext()
-      },
-      goToNext() {
+
         if (this.question.type === QuestionType.SectionBreak) {
           this.dirty = true
         }
 
-        if (this.valid()) {
-          this.enterPressed = true
-        }
-
-        this.question.answered = false
-
         this.dataValue = this.fixAnswer(this.dataValue)
         this.setAnswer(this.dataValue)
-        this.question.answered = this.valid()
-        this.emitAnswer()
-        this.valid() ? this.blur() : this.focus()
+        this.isValid() ? this.blur() : this.focus()
       },
-      setAnswer(answer) {
-        if (!this.valid()) {
-          this.question.answered = false
-        }
 
+      setAnswer(answer) {
+        this.question.answered = this.isValid()
         this.answer = this.question.answer = answer
-      },
-      emitAnswer() {
+
         this.$emit('input', this.answer)
       },
-      valid() {
+
+      showInvalid() {
+        return this.dirty && this.enterPressed && !this.isValid()
+      },
+
+      isValid() {
         if (!this.question.required && !this.hasValue && this.dirty) {
           return true
         }
@@ -129,17 +118,20 @@
 
         return false
       },
+      
+      /**
+       * This method validates the input and is meant to be overriden
+       * in custom question types.
+       */
       validate() {
         return this.hasValue
-      },
-      showInvalid() {
-        return this.dirty && this.enterPressed && !this.valid()
       }
     },
     computed: {
       placeholder() {
         return this.question.placeholder || this.language.placeholder
       },
+
       hasValue() {
         if (this.dataValue !== null) {
           let v = this.dataValue
@@ -157,5 +149,4 @@
   }
 </script>
 
-<style scoped>
-</style>
+<style></style>

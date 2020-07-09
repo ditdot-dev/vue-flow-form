@@ -20,7 +20,7 @@
       }
     },
     methods: {
-      valid() {
+      isValid() {
         return this.active
       }
     }

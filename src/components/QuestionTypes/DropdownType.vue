@@ -42,17 +42,22 @@
     name: 'DropdownType',
     computed: {
       answerLabel() {
-        for (let i = 0; i < this.question.options.length; i++) {
-          const option = this.question.options[i]
-
+        for (let option of this.question.options) {
           if (option.choiceValue() === this.dataValue) {
-            this.onEnter()
-
             return option.choiceLabel()
           }
         }
 
         return this.question.placeholder
+      }
+    },
+    watch: {
+       dataValue(value) {
+         if (this.isValid()) {
+          this.onEnter()
+          
+          this.$emit('next')
+        }
       }
     }
   }

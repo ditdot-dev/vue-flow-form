@@ -12,7 +12,7 @@
     },
     methods: {
       validate() {
-        return this.hasValue && /(.+)@(.+)/.test(this.dataValue)
+        return this.hasValue && /^[^@]+@.+[^.]$/.test(this.dataValue)
       }
     }
   }

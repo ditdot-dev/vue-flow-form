@@ -18,13 +18,13 @@
   import BaseType from './BaseType'
   import LanguageModel from '../../models/LanguageModel'
   import { TheMask } from 'vue-the-mask'
+  
   export default {
     extends: BaseType,
     components: {
       TheMask
     },
     name: 'PhoneType',
-    props: {},
     data() {
       return {
         inputType: 'tel'

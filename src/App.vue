@@ -31,8 +31,7 @@
         <a
           ref="button"
           href="#"
-          v-on:click="$refs.survey.submitData()"
-          v-bind:class="{'f-disabled': sending}"
+          v-on:click="onSendData()"
           v-if="!sent"
         >
           <div class="o-btn-action">
@@ -41,7 +40,7 @@
 
           <span class="f-enter-desc">{{ language.pressEnter }}</span>
         </a>
-        <p class="text-alert" v-if="error">Error submitting data, please try again.</p>
+
         <p class="text-success" v-if="sent">Submitted succesfully.</p>
       </template>
     </survey>
@@ -60,9 +59,7 @@
     },
     data() {
       return {
-        sending: false,
         sent: false,
-        error: false,
         language: new LanguageModel(),
         questions: [
           new QuestionModel({
@@ -208,11 +205,32 @@
       }
     },
     methods: {
-      onComplete(questions) {
-        this.submitData()
+      onComplete(questionList) {
+        // This method will only be called if you don't override the
+        // completeButton slot.
+
+        this.onSendData()
       },
+      
+      onSendData() {
+        this.sent = true
+
+        const data = this.getData()
+        /*
+          You can use Fetch API to send the data to your server, eg.:
+
+          fetch(url, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+          })
+        */
+      },
+
       getData() {
-        let data = {
+        const data = {
           questions: [],
           answers: []
         }
@@ -230,9 +248,6 @@
         })
 
         return data
-      },
-      submitData() {
-        this.sent = true
       }
     }
   }
