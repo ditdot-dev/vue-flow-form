@@ -71,7 +71,7 @@
           const self = this
           const delay = this.question.type === QuestionType.Dropdown ? 250 : 1000
 
-          this.timeoutId = setTimeout(function() {
+          this.timeoutId = setTimeout(() => {
             self.onEnter()
           }, delay)
         } else {

@@ -207,13 +207,9 @@
         this.questionListActivePath = questions
       },
       setQuestionList() {
-        let
-          questions = [],
-          index = 0
+        const questions = [];
 
-        for (index = 0; index < this.questionListActivePath.length; index++) {
-          let question = this.questionListActivePath[index]
-
+        for (let question of this.questionListActivePath) {
           questions.push(question)
 
           if (!question.answered) {
@@ -272,29 +268,41 @@
 
           this.$nextTick(() => {
             this.setQuestions()
-            const q = this.activeQuestionComponent()
 
-            if (q) {
-              q.focusField()
-              this.activeQuestionIndex = q.question.index
-            } else if (this.activeQuestionIndex === this.questionListActivePath.length - 1) {
-              this.completed = true
-              this.activeQuestionIndex = index + 1
+            // Nested $nextTick so we're 100% sure that setQuestions
+            // actually updated the question array
+            this.$nextTick(() => {
+              const q = this.activeQuestionComponent()
 
-              this.$refs.button && this.$refs.button.focus()
-            }
+              if (q) {
+                q.focusField()
+                this.activeQuestionIndex = q.question.index
+              } else if (this.activeQuestionIndex === this.questionListActivePath.length - 1) {
+                this.completed = true
+                this.activeQuestionIndex = this.questionListActivePath.length
+
+                this.$refs.button && this.$refs.button.focus()
+              }
+            })
           })
         }
       },
       goToPreviousQuestion() {
+        this.blurFocus()
+
         if (this.activeQuestionIndex > 0) {
           --this.activeQuestionIndex
         }
       },
       goToNextQuestion() {
+        this.blurFocus()
+
         if (this.nextQuestionAvailable()) {
           this.activeQuestionComponent().setAnswered()
         }
+      },
+      blurFocus() {
+        document.activeElement && document.activeElement.blur()
       },
       submitData() {
         this.$emit('complete', this.questionList)
