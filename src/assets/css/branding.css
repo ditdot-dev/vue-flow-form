@@ -2,7 +2,7 @@ body,
 textarea,
 input,
 select,
-.vertical-form select option {
+select option {
   font-family: 'Poppins', sans-serif;
 }
 
@@ -61,7 +61,6 @@ ul.f-radios li.f-other.f-selected input {
 
 .o-btn-action {
   background-color: #18181A;
-  border-radius: 0;
   text-transform: lowercase;
 }
 
@@ -73,10 +72,6 @@ ul.f-radios li.f-other.f-selected input {
 
 .f-progress-bar-inner {
   background-color: #18181A;
-}
-
-.f-required {
-  display: none;
 }
 
 .text-alert,

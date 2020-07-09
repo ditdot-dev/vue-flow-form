@@ -13,7 +13,7 @@ html {
   }
 }
 
-@media screen and (min-width:1440px) {
+@media screen and (min-width:1366px) {
   html {
     font-size: 18px
   }
@@ -27,7 +27,7 @@ html {
 
 @media screen and (min-width:2560px) {
   html {
-    font-size: 28px
+    font-size: 26px
   }
 }
 
@@ -39,7 +39,6 @@ body {
   min-height: 260px;
 }
 
-/**/
 a {
   cursor: pointer;
 }
@@ -47,8 +46,7 @@ a {
 a,
 a:hover,
 a:active,
-a:focus,
-:focus {
+a:focus {
   outline: 0;
   text-decoration: none;
 }
@@ -65,11 +63,6 @@ ol,
 ul {
   margin-top: 0;
   margin-bottom: 22px;
-}
-
-/*ie*/
-main {
-  display: block;
 }
 
 /*utils*/
@@ -99,9 +92,7 @@ main {
 }
 
 ol.reset-list,
-ul.reset-list,
-ol.reset-list ol,
-ul.reset-list ul {
+ul.reset-list {
   list-style: none;
   margin: 0;
   padding: 0;
@@ -109,27 +100,26 @@ ul.reset-list ul {
 
 /**/
 .container {
-  padding: 0 7vw;
+  padding: 0 8vw;
   width: 100%;
   margin-top: 2vh;
   margin-bottom: 4vh;
 }
 
 /*header*/
-header .container {
-  margin: 0;
-  line-height: 0;
-}
-
 header {
   padding: 0.9rem 10vw;
   z-index: 1400;
+  top: 0;
   left: 0;
   right: 0;
   position: fixed;
-  top: 0;
-  left: 0;
   width: 100%;
+}
+
+header .container {
+  margin: 0;
+  line-height: 0;
 }
 
 img.logo,
@@ -144,16 +134,12 @@ svg.logo {
   z-index: 1;
   cursor: pointer;
   padding: 0 1.4rem 0;
-  text-align: center;
   margin-bottom: 20px;
+  text-align: center;
   display: inline-block;
-  line-height: 46px;
+  line-height: 45px;
   height: 44px;
   font-weight: 700;
-}
-
-.o-btn-action {
-  text-align: center;
 }
 
 .o-btn-action span {
@@ -197,7 +183,6 @@ svg.logo {
 }
 
 /*form-elements*/
-
 span.faux-form {
   border-bottom: 1px solid;
   display: inline-block;
@@ -270,6 +255,14 @@ span.faux-form {
   padding-right: .2rem;
 }
 
+.f-required {
+  display: none; /*hides required asterisks*/
+}
+
+.f-answer.full-width {
+  margin-top: 28px;
+}
+
 span.f-empty {
   display: inline-block;
   min-width: 6rem;
@@ -299,7 +292,7 @@ span.f-answered{
   height: auto;
 }
 
-/*form-type*/
+/*misc-typography*/
 span.f-title,
 span.f-sub {
   font-weight: 400;
@@ -316,8 +309,9 @@ span.f-sub {
   margin-bottom: 8px;
   margin-top: 6px;
 }
+
 span.f-sub span{
-  margin-right: .4em;
+  margin-right: .4rem;
 }
 
 span.f-sub span.f-help{
@@ -337,19 +331,13 @@ p.description {
   padding-right: 4rem;
 }
 
-
-/*f-radios*/
+/*f-radios (multiple-choice)*/
 ul.f-radios {
   margin: 0;
   padding: 0;
   list-style-type: none;
-  max-width: 600px;
+  max-width: 590px;
   min-width: 160px;
-}
-
-.f-radios-desc {
-  display: block;
-  font-size: 1.4rem;
 }
 
 ul.f-radios li {
@@ -362,6 +350,7 @@ ul.f-radios li {
   -webkit-user-select: none;
   -ms-user-select: none;
   user-select: none;
+  position: relative;
 }
 
 ul.f-radios li.f-other input[type=text] {
@@ -375,19 +364,19 @@ ul.f-radios li:active {
   background-color: #f6f6f6;
 }
 
-.f-radios-desc,
-ul.f-radios li,
-ul.f-radios li input[type=text] {
-  font-size: 1rem;
-}
-
-ul.f-radios li span.f-label {
-  margin-left: 20px;
+.f-radios-desc {
   display: block;
 }
 
-ul.f-radios li {
-  position: relative;
+.f-radios-desc,
+ul.f-radios li,
+ul.f-radios li input[type=text] {
+  font-size: 0.94rem;
+}
+
+ul.f-radios li span.f-label {
+  margin-left: 1rem;
+  display: block;
 }
 
 ul.f-radios li span.f-key {
@@ -461,19 +450,6 @@ a.f-disabled {
   display: none;
 }
 
-.f-instructions {
-  font-size: 0.875rem;
-  font-weight: 400;
-}
-
-.f-answer.full-width {
-  margin-top: 28px;
-}
-
-.f-key {
-  margin-right: 8px;
-}
-
 /*progress-bar*/
 .f-progress-bar {
   height: 1px;
@@ -528,17 +504,14 @@ a.f-disabled {
     width: 100%;
     height: auto;
     overflow: hidden;
+    padding-left: 0;
+    padding-right: 0;
   }
 
   .vertical-form {
     margin-top: 16vh;
     margin-left: 0;
     margin-right: 0;
-  }
-
-  header{
-    padding-left: 0;
-    padding-right: 0;
   }
 
   .vertical-form select {
@@ -552,6 +525,7 @@ a.f-disabled {
   .container{
     padding: 0 6vw;
   }
+
   span.f-empty {
     min-width: 5rem;
     padding-right: 24px;
@@ -568,10 +542,6 @@ a.f-disabled {
     margin-top: 10vh;
   }
 
-  .f-arrow-down {
-    width: 12px;
-  }
-
   .vertical-form input[type=text],
   .vertical-form input[type=number],
   .vertical-form input[type=tel],
@@ -583,6 +553,16 @@ a.f-disabled {
     padding: 0.22rem 0.4rem;
   }
 
+  .vertical-form select {
+    font-size: 1rem;
+    padding-top: .4rem;
+    padding-bottom: .4rem;
+  }
+
+  .f-arrow-down {
+    width: 12px;
+  }
+
   span.f-title,
   span.f-sub {
     font-size: 1.1rem;
@@ -592,19 +572,9 @@ a.f-disabled {
     line-height: 1.6;
   }
 
-  .f-radios-desc {
-    font-size: .8rem;
-  }
-
   ul.f-radios li,
   ul.f-radios li input[type=text] {
     font-size: .9rem;
-  }
-
-  .vertical-form select {
-    font-size: 1rem;
-    padding-top: .4rem;
-    padding-bottom: .4rem;
   }
 
   .f-footer .footer-inner-wrap {
@@ -627,8 +597,10 @@ a.f-disabled {
     padding-top: .8rem;
     padding-bottom: .8rem;
   }
+
   .f-footer .footer-inner-wrap {
     padding-top: 10px;
     padding-bottom: 10px;
   }
+
 }
