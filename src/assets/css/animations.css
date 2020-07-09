@@ -6,8 +6,8 @@
 
 ========================================================================== */
 .animate {
-  -webkit-animation-duration: .6s;
-  animation-duration: .6s;
+  -webkit-animation-duration: .5s;
+  animation-duration: .5s;
   -webkit-animation-fill-mode: both;
   animation-fill-mode: both;
 }

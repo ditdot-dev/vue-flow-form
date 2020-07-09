@@ -76,7 +76,7 @@ ul.f-radios li.f-other.f-selected input {
 }
 
 .f-required {
-  display: none;
+  /*display: none;*/
 }
 
 .text-alert,

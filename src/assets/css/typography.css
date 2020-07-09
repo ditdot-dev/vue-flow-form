@@ -8,7 +8,7 @@ ul {
 h1,
 .fh1 {
   font-weight: 900;
-  font-size: 3.6vw;
+  font-size: 3.4rem;
   margin-top: 0;
   margin-bottom: 0;
 }
@@ -74,7 +74,7 @@ h3,
 
   h2,
   .fh2 {
-    font-size: 1.6em;
+    font-size: 1.6rem;
   }
 
 }
