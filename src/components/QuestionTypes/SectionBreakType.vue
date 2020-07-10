@@ -21,7 +21,7 @@
     },
     methods: {
       isValid() {
-        return this.active
+        return true
       }
     }
   }

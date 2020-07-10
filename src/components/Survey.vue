@@ -13,7 +13,7 @@
           v-on:answer="onQuestionAnswered"
         />
 
-        <div v-if="activeQuestionIndex === questionListActivePath.length" class="animate fade-in-up field-submittype">
+        <div v-if="isOnLastStep" class="animate fade-in-up field-submittype">
           <slot name="complete">
             <p>
               <span class="fh2">{{ language.thankYouText }}</span>
@@ -118,29 +118,26 @@
       language: {
         type: LanguageModel,
         default: new LanguageModel()
-      },
-      submitted: {
-        type: Boolean,
-        default: false
       }
     },
     data() {
       return {
         completed: false,
+        submitted: false,
         activeQuestionIndex: 0,
         questionList: [],
         questionListActivePath: []
       }
     },
     mounted() {
-      document.addEventListener('keyup', this.onKeyListener)
-      window.addEventListener('beforeunload', this.beforeUnload)
+      document.addEventListener('keyup', this.onKeyListener, true)
+      window.addEventListener('beforeunload', this.onBeforeUnload)
 
       this.setQuestions()
     },
     beforeDestroy() {
-      document.removeEventListener('keyup', this.onKeyListener)
-      window.removeEventListener('beforeunload', this.beforeUnload)
+      document.removeEventListener('keyup', this.onKeyListener, true)
+      window.removeEventListener('beforeunload', this.onBeforeUnload)
     },
     computed: {
       numActiveQuestions() {
@@ -253,7 +250,12 @@
           questions.push(question)
 
           if (!question.answered) {
-            this.completed = false
+            if (this.completed) {
+              // The "completed" status changed - user probably changed an
+              // already entered answer.
+              this.completed = false
+              this.emitComplete()
+            }
             break
           }
         }
@@ -265,7 +267,7 @@
        * If we have any answered questions, notify user before leaving
        * the page.
        */
-      beforeUnload(event) {
+      onBeforeUnload(event) {
         if (this.activeQuestionIndex > 0 && !this.submitted) {
           event.preventDefault()
           event.returnValue = ''
@@ -273,7 +275,7 @@
       },
 
       /**
-       * Global key listener, listens for Enter or tab key events.
+       * Global key listener, listens for Enter or Tab key events.
        */
       onKeyListener(e) {
         if (e.shiftKey) {
@@ -281,6 +283,8 @@
         }
 
         if (e.key === 'Enter' || e.key === 'Tab') {
+          e.stopPropagation()
+
           this.emitEnter()
         }
       },
@@ -292,19 +296,23 @@
           // Send enter event to the current question component
           q.onEnter()
         } else if (this.completed && this.isOnLastStep) {
-          // We're finished - emit complete event
-          this.emitComplete()
+          // We're finished - submit form
+          this.submit()
         }
       },
 
       submit() {
-        this.emitComplete()
+        this.emitSubmit()
         this.submitted = true
       },
 
       emitComplete() {
-        this.$emit('complete', this.questionList)
-      },     
+        this.$emit('complete', this.completed, this.questionList)
+      },
+
+      emitSubmit() {
+        this.$emit('submit', this.questionList)
+      },
 
       /**
        * Checks if we have another question and if we
@@ -337,15 +345,21 @@
               if (q) {
                 q.focusField()
                 this.activeQuestionIndex = q.question.index
-              } else if (this.activeQuestionIndex === this.questionListActivePath.length - 1) {
+              } else if (this.isOnLastStep) {
                 // No more questions left - set "completed" to true
                 this.completed = true
                 this.activeQuestionIndex = this.questionListActivePath.length
-
+                
+                // Emit "complete" event
+                this.emitComplete()
+                
                 this.$refs.button && this.$refs.button.focus()
               }
             })
           })
+        } else if (this.completed) {
+          this.completed = false
+          this.emitComplete()
         }
       },
 
