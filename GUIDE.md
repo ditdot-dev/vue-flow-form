@@ -95,4 +95,7 @@ function onSubmit(questionList) {
 
 ## Submitting data:
 
-* the `submit` event emits an event with the question list as the only parameter. You can then send the data to your backend using `fetch` API or something like `Axios`. If you've overriden the default `completeButton` slot, implement the `complete` event to know when the user is in the complete screen and handle the rest manually.
+* the `submit` event emits an event with the question list as the only parameter.
+You can then send the data to your backend using `fetch` API or something like `Axios`.
+If you've overriden the default `completeButton` slot, implement the `complete`
+event to know when the user is in the complete screen and handle the rest manually.

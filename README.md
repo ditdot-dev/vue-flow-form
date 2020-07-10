@@ -42,10 +42,10 @@ $ yarn serve
 $ yarn build
 ```
 
-# Browser Support
+## Browser Support
 
 Modern browsers and IE11.
 
-# License
+## License
 
 [MIT](https://github.com/ditdot-dev/vue-form/blob/master/LICENSE) license.
