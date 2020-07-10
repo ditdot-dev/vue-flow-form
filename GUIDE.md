@@ -1,10 +1,12 @@
-# Files/folders:
+# Guide
+
+## Files/folders:
 
 * **CSS**: src/assets/css
 * **Vue components**: src/components, src/components/QuestionTypes
 * **Models**: src/models
 
-# Usage (example in App.vue):
+## Usage (example in App.vue):
 
 * Import necessary components and classes
 * Create question list
@@ -14,7 +16,7 @@
     * language is defined by creating a new instance of `LanguageModel` and setting its properties
   * add `complete` event listener if you want to submit data to the backend
 
-# Question types:
+## Question types:
 
 * Text - `QuestionType.Text`
 * LongText (Textarea) - `QuestionType.LongText`
@@ -26,7 +28,7 @@
 * MultipleChoice - `QuestionType.MultipleChoice`
 * SectionBreak - `QuestionType.SectionBreak`
 
-# Defining questions:
+## Defining questions:
 
 * Create a new instance of `QuestionModel`
   * `type` - (one of `QuestionType` constants above)
@@ -64,11 +66,11 @@
       ```
       Object key `_other` will be used when no other keys match the answer. Object value `_submit` will jump to form submit button
 
-# Survey component events:
+## Survey component events:
 
 * `complete` - emitted when clicking the "submit survey" button
 
-# Survey component slots:
+## Survey component slots:
 
 * `complete` - Complete/submit screen content 
   * This is the content of your custom complete screen, by default the `thankYouText` language string is used,
@@ -77,6 +79,6 @@
   * If you override the button, the `complete` event will not be called
   so you'll need to handle the button onClick event manually
 
-# Submitting data:
+## Submitting data:
 
 * the `complete` event emits an event with the question list as the only parameter. You can then submit the data to your backend using `fetch` API or something like `Axios`
