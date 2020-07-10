@@ -14,9 +14,9 @@
     <survey
       ref="survey"
       v-on:complete="onComplete"
+      v-on:submit="onSubmit"
       v-bind:questions="questions"
       v-bind:language="language"
-      v-bind:submitted="sent"
     >
       <template v-slot:complete>
         <p>
@@ -32,7 +32,7 @@
           ref="button"
           href="#"
           v-on:click="onSendData()"
-          v-if="!sent"
+          v-if="!submitted"
         >
           <div class="o-btn-action">
             <span>{{ language.submitText }}</span>
@@ -41,7 +41,7 @@
           <span class="f-enter-desc">{{ language.pressEnter }}</span>
         </a>
 
-        <p class="text-success" v-if="sent">Submitted succesfully.</p>
+        <p class="text-success" v-if="submitted">Submitted succesfully.</p>
       </template>
     </survey>
   </div>
@@ -53,13 +53,14 @@
   import LanguageModel from './models/LanguageModel'
 
   export default {
-    name: 'app',
+    name: 'example',
     components: {
       Survey
     },
     data() {
       return {
-        sent: false,
+        submitted: false,
+        completed: false,
         language: new LanguageModel(),
         questions: [
           new QuestionModel({
@@ -204,16 +205,35 @@
         ]
       }
     },
+    mounted() {
+      document.addEventListener('keyup', this.onKeyListener)
+    },
+    beforeDestroy() {
+      document.removeEventListener('keyup', this.onKeyListener)
+    },
     methods: {
-      onComplete(questionList) {
+      onKeyListener($event) {
+        // We've overriden the default "complete" slot so
+        // we need to implement the "keyup" listener manually.
+
+        if ($event.key === 'Enter' && this.completed && !this.submitted) {
+          this.onSendData()
+        }
+      },
+
+      onComplete(completed, questionList) {
+        // This method is called whenever the "completed" status is changed.
+        this.completed = completed
+      },
+
+      onSubmit(questionList) {
         // This method will only be called if you don't override the
         // completeButton slot.
-
         this.onSendData()
       },
       
       onSendData() {
-        this.sent = true
+        this.submitted = true
 
         const data = this.getData()
         /*
