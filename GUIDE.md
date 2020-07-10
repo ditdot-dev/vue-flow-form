@@ -1,10 +1,12 @@
-# Files/folders:
+# Guide
+
+## Files/folders:
 
 * **CSS**: src/assets/css
 * **Vue components**: src/components, src/components/QuestionTypes
 * **Models**: src/models
 
-# Usage (example in App.vue):
+## Usage (example in Example.vue):
 
 * Import necessary components and classes
 * Create question list
@@ -12,9 +14,9 @@
   * Add the question list as `questions` prop
   * Add language model as `language` prop (optional)
     * language is defined by creating a new instance of `LanguageModel` and setting its properties
-  * add `complete` event listener if you want to submit data to the backend
+  * add `submit` and/or `complete` event listeners if you want to submit data to the backend
 
-# Question types:
+## Question types:
 
 * Text - `QuestionType.Text`
 * LongText (Textarea) - `QuestionType.LongText`
@@ -26,7 +28,7 @@
 * MultipleChoice - `QuestionType.MultipleChoice`
 * SectionBreak - `QuestionType.SectionBreak`
 
-# Defining questions:
+## Defining questions:
 
 * Create a new instance of `QuestionModel`
   * `type` - (one of `QuestionType` constants above)
@@ -64,11 +66,25 @@
       ```
       Object key `_other` will be used when no other keys match the answer. Object value `_submit` will jump to form submit button
 
-# Survey component events:
+## Survey component events:
 
-* `complete` - emitted when clicking the "submit survey" button
+* `complete` - emitted whenever the "completed" status changes, the first parameter is the status, the second is the question list, eg.:
+  ```
+  function onComplete(completed, questionList) {
+    // Handle status change.
+  }
+  ```
+  If the user completes the form, then goes back and changes any of the answers to make them invalid, this event will again be called
+  with `false` as the first parameter, so make sure to handle this correctly in your app.
+* `submit` - when the default "submit" button is clicked - if you override the default `completeButton` slot, this event won't be called
+(example in Example.vue)
+```
+function onSubmit(questionList) {
+  // Handle submit event using .
+}
+```
 
-# Survey component slots:
+## Survey component slots:
 
 * `complete` - Complete/submit screen content 
   * This is the content of your custom complete screen, by default the `thankYouText` language string is used,
@@ -77,6 +93,6 @@
   * If you override the button, the `complete` event will not be called
   so you'll need to handle the button onClick event manually
 
-# Submitting data:
+## Submitting data:
 
-* the `complete` event emits an event with the question list as the only parameter. You can then submit the data to your backend using `fetch` API or something like `Axios`
+* the `submit` event emits an event with the question list as the only parameter. You can then send the data to your backend using `fetch` API or something like `Axios`. If you've overriden the default `completeButton` slot, implement the `complete` event to know when the user is in the complete screen and handle the rest manually.
