@@ -129,6 +129,11 @@
         questionListActivePath: []
       }
     },
+    watch: {
+      completed: function(){
+        this.emitComplete()
+      }
+    },
     mounted() {
       document.addEventListener('keyup', this.onKeyListener, true)
       window.addEventListener('beforeunload', this.onBeforeUnload)
@@ -254,7 +259,6 @@
               // The "completed" status changed - user probably changed an
               // already entered answer.
               this.completed = false
-              this.emitComplete()
             }
             break
           }
@@ -350,16 +354,12 @@
                 this.completed = true
                 this.activeQuestionIndex = this.questionListActivePath.length
                 
-                // Emit "complete" event
-                this.emitComplete()
-                
                 this.$refs.button && this.$refs.button.focus()
               }
             })
           })
         } else if (this.completed) {
           this.completed = false
-          this.emitComplete()
         }
       },
 
