@@ -1,7 +1,10 @@
+// Create and setup your form here
+ 
 <template>
   <div>
     <header>
       <div class="container">
+       <!-- Add custom logo here -->
         <svg class="logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 35.606 11.211">
           <path d="M.134.837H3.21V8.01h4.203v2.18H.134V.837z"/>
           <path d="M11.875.59c1.48 0 2.668.448 3.567 1.344s1.35 2.052 1.35 3.47c0 1.48-.445 2.7-1.336 3.632S13.38 10.45 11.9 10.45c-1.678 0-2.954-.54-3.827-1.622-.717-.9-1.08-2.022-1.09-3.397-.01-1.36.39-2.484 1.193-3.374C9.06 1.08 10.292.59 11.875.59zm0 2.283c-.563 0-1.003.222-1.323.662-.338.467-.507 1.124-.507 1.972 0 .865.162 1.524.487 1.978a1.58 1.58 0 0 0 1.369.682c.588 0 1.04-.223 1.355-.668s.474-1.07.474-1.875c0-1.834-.62-2.75-1.855-2.75z"/>
@@ -18,6 +21,8 @@
       v-bind:questions="questions"
       v-bind:language="language"
     >
+    <!-- Custom content for the Complete/Submit screen slots in the Survey component -->
+      <!-- We've overriden the default "complete" slot content -->
       <template v-slot:complete>
         <p>
           <span class="fh2">Thank you. 🙏</span>
@@ -27,6 +32,8 @@
         </p>
         <p class="description">Note: No data will be saved and/or sent in this demo.</p>
       </template>
+
+      <!-- We've overriden the default "completeButton" slot content -->
       <template v-slot:completeButton>
         <a
           ref="button"
@@ -48,6 +55,7 @@
 </template>
 
 <script>
+  // Import necessary components and classes
   import Survey from './components/Survey'
   import QuestionModel, { QuestionType, ChoiceOption } from './models/QuestionModel'
   import LanguageModel from './models/LanguageModel'
@@ -62,6 +70,7 @@
         submitted: false,
         completed: false,
         language: new LanguageModel(),
+        // Create question list with QuestionModel instances
         questions: [
           new QuestionModel({
             id: 'first_name',

@@ -1,3 +1,5 @@
+// Used as the basis and extended by other Question Type components
+
 <template></template>
 
 <script>

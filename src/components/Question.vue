@@ -1,3 +1,5 @@
+// Single question template and logic
+
 <template>
   <div class="animate fade-in-up q-form" v-bind:class="mainClasses">
     <div class="q-inner" ref="qinner">
@@ -6,6 +8,7 @@
 
         <span class="f-text" v-if="question.question">
           {{ question.question }}&nbsp;
+          <!-- Required questions are marked by an asterisk (*) -->
           <span class="f-required" v-if="question.required">*</span>
 
           <span v-if="question.inline" class="f-answer">
@@ -115,6 +118,9 @@
       this.$refs.qinner.removeEventListener('transitionend', this.onTransitionEnd)
     },
     methods: {
+      /**
+       * Autofocus the input box of the current question
+       */
       focusField() {
         let el = this.$refs.questionComponent
         
@@ -125,6 +131,9 @@
         this.enterPressed = false
       },
 
+      /**
+       * Emits "answer" event and calls "onEnter" method on Enter press
+       */ 
       onEnter() {
         const q = this.$refs.questionComponent
 
