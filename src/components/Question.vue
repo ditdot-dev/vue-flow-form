@@ -7,19 +7,8 @@
         <span class="f-text" v-if="question.question">
           {{ question.question }}&nbsp;
           <span class="f-required" v-if="question.required">*</span>
-
-          <span v-if="question.inline" class="f-answer">
-            <component
-              ref="questionComponent"
-              v-bind:is="question.type"
-              v-bind:question="question"
-              v-bind:language="language"
-              v-model="dataValue"
-              v-bind:active="active"
-              v-on:next="onEnter"
-            />
-          </span>
         </span>
+        
 
         <span class="f-sub" v-if="question.subtitle || question.type === QuestionType.LongText || question.multiple">
           <span v-if="question.subtitle">{{ question.subtitle }}</span>
@@ -29,7 +18,7 @@
           <span class="f-help" v-if="question.multiple">{{ question.helpText || language.multipleChoiceHelpText }}</span>
         </span>
 
-        <span v-if="!question.inline" class="f-answer full-width">
+        <span class="f-answer" v-bind:class="question.inline ? '' : 'full-width' ">
           <component
             ref="questionComponent"
             v-bind:is="question.type"
