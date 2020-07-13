@@ -1,3 +1,5 @@
+// Form template and logic
+
 <template>
   <div class="vertical-form">
     <div class="container">
@@ -13,14 +15,17 @@
           v-on:answer="onQuestionAnswered"
         />
 
+        <!-- Complete/Submit screen slots -->   
         <div v-if="isOnLastStep" class="animate fade-in-up field-submittype">
           <slot name="complete">
+            <!-- Default content for the "complete" slot -->
             <p>
               <span class="fh2">{{ language.thankYouText }}</span>
             </p>
           </slot>
 
           <slot name="completeButton">
+            <!-- Default content for the "completeButton" slot -->
             <a ref="button" href="#" v-on:click="submit()" v-if="!submitted">
               <div class="o-btn-action">
                 <span>{{ language.submitText }}</span>
@@ -127,6 +132,11 @@
         activeQuestionIndex: 0,
         questionList: [],
         questionListActivePath: []
+      }
+    },
+    watch: {
+      completed() {
+        this.emitComplete()
       }
     },
     mounted() {
@@ -254,7 +264,6 @@
               // The "completed" status changed - user probably changed an
               // already entered answer.
               this.completed = false
-              this.emitComplete()
             }
             break
           }
@@ -328,6 +337,9 @@
         return this.activeQuestionIndex < this.questionList.length - 1
       },
 
+      /**
+       * Triggered by the "answer" event in the Question component
+       */
       onQuestionAnswered(question) {
         if (question.isValid()) {
           if (this.activeQuestionIndex < this.questionListActivePath.length) {
@@ -350,16 +362,12 @@
                 this.completed = true
                 this.activeQuestionIndex = this.questionListActivePath.length
                 
-                // Emit "complete" event
-                this.emitComplete()
-                
                 this.$refs.button && this.$refs.button.focus()
               }
             })
           })
         } else if (this.completed) {
           this.completed = false
-          this.emitComplete()
         }
       },
 
@@ -386,7 +394,7 @@
       },
 
       /**
-       * Removes focues from the currently focused DOM element.
+       * Removes focus from the currently focused DOM element.
        */
       blurFocus() {
         document.activeElement && document.activeElement.blur()

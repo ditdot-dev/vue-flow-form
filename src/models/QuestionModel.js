@@ -1,3 +1,5 @@
+//Global data store
+
 import MultipleChoiceType from '../components/QuestionTypes/MultipleChoiceType'
 import TextType from '../components/QuestionTypes/TextType'
 import PhoneType from '../components/QuestionTypes/PhoneType'
@@ -76,6 +78,7 @@ export default class QuestionModel {
 
     Object.assign(this, options)
 
+    // Sets default mask and placeholder value on PhoneType question
     if (this.type === QuestionType.Phone) {
       if (!this.mask) {
         this.mask = '(###) ###-####'

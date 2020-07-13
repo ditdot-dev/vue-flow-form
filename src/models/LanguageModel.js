@@ -1,3 +1,5 @@
+//Language data store
+
 export default class LanguageModel {
   constructor(options) {
     this.ok = 'OK'
