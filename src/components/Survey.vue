@@ -130,7 +130,8 @@
       }
     },
     watch: {
-      completed: function(){
+      completed(){
+      // Changes in "completed" trigger the "complete" event
         this.emitComplete()
       }
     },
