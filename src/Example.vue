@@ -226,6 +226,9 @@
         // we need to implement the "keyup" listener manually.
 
         if ($event.key === 'Enter' && this.completed && !this.submitted) {
+          // Set `submitted` to true so the form knows not to allow back/forward
+          // navigation anymore.
+          this.$refs.survey.submitted = true
           this.onSendData()
         }
       },
