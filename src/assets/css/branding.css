@@ -1,3 +1,21 @@
+/*
+    Copyright (c) 2020 - present, DITDOT Ltd. - MIT Licence
+    https://www.ditdot.hr/en
+*/
+
+/*
+  basic theme color and font styles
+*/
+
+:root {
+  --bg-color: #fff;
+  --main-text-color: #181818;
+  --secondary-text-color: #999;
+  --tertiary-text-color: #f1f1f1;
+  --main-accent-color: #0DBC79;
+  --secondary-accent-color: #BBEBD5;
+}
+
 body,
 textarea,
 input,
@@ -7,12 +25,12 @@ select option {
 }
 
 body {
-  color: #18181A;
-  background-color: #fff;
+  background-color: var(--bg-color);
+  color: var(--main-text-color);
 }
 
 header{
-  background-color: #BBEBD5;
+  background-color: var(--secondary-accent-color);
 }
 
 header svg.logo{
@@ -26,74 +44,228 @@ header svg.logo{
 .vertical-form input[type=url],
 .vertical-form textarea,
 .vertical-form span.faux-form {
-  border-bottom-color: #999;
+  border-bottom-color: var(--secondary-text-color);
 }
 
+.vertical-form textarea,
 .vertical-form input,
 .vertical-form select option {
-  color: #18181A;
+  color: var(--main-text-color);
 }
 
 a,
-a:active  {
-  color: #18181A;
+a:active {
+  color: var(--main-text-color);
 }
 
-.f-arrow-down svg {
-  fill: #18181A;
+/*placeholder*/
+::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+  color: var(--secondary-text-color);
+  opacity: 1;
+  font-weight: 300;
 }
 
+::-moz-placeholder { /* Firefox 19+ */
+  color: var(--secondary-text-color);
+  opacity: 1;
+  font-weight: 300;
+}
+
+:-ms-input-placeholder { /* IE 10+ */
+  color: var(--secondary-text-color);
+  opacity: 1;
+  font-weight: 300;
+}
+
+:-moz-placeholder { /* Firefox 18- */
+  color: #999;
+  opacity: 1;
+  font-weight: 300;
+}
+
+/*field-multiplechoicetype*/
 ul.f-radios li {
-  color: #18181A;
-  border: 1px solid #999;
+  border: 1px solid var(--secondary-text-color);
 }
 
 ul.f-radios li.f-selected,
 ul.f-radios li:active {
-  border-color: #18181A;
-  background-color: #18181A;
-  color: #fff;
+  border-color: var(--main-text-color);
+  background-color: var(--tertiary-text-color);
 }
 
 ul.f-radios li.f-other.f-selected input {
-  color: #fff;
+  color: inherit;
 }
 
+.f-key{
+  color: var(--secondary-text-color);
+}
+
+/*field-dropdowntype*/
+span.f-empty {
+  color: var(--secondary-text-color);
+}
+
+span.f-answered{
+  color: var(--main-text-color);
+}
+
+.f-arrow-down svg {
+  fill: var(--main-text-color);
+}
+
+/*buttons*/
 .o-btn-action {
-  background-color: #18181A;
-  text-transform: lowercase;
+  color: var(--bg-color);
+  background-color: var(--main-text-color);
 }
 
 .o-btn-action:hover,
 .o-btn-action:focus {
-  background-color: #18181A;
+  background-color: var(--main-text-color);
   opacity: .9;
 }
 
-.f-progress-bar-inner {
-  background-color: #18181A;
+/*footer*/
+.f-footer .footer-inner-wrap{
+  background-color: rgba(255,255,255,0.75);
 }
 
+@media screen and (max-width:479px) {
+  .f-footer .footer-inner-wrap{
+    background-color: rgba(0,0,0,0.05);
+  }
+
+}
+
+.f-footer .f-prev svg,
+.f-footer .f-next svg {
+  fill: var(--main-text-color);
+}
+
+.f-progress {
+  color: var(--secondary-text-color);
+}
+
+.f-progress-bar {
+  background-color: var(--secondary-text-color);
+  filter: brightness(1.2);
+}
+
+.f-progress-bar-inner {
+  background-color: var(--main-text-color);
+}
+
+.f-prev:hover,
+.f-next:hover{
+  background-color: rgba(0,0,0,0.07);
+}
+
+/*alerts*/
 .text-alert,
 .f-invalid{
-  color: #F44336;
+  color: #F5554A;
 }
 
 .text-success{
   color: #4CAF50;
 }
 
-span.f-empty {
-  color: #999;
-}
-
-span.f-answered{
-  color: #18181A;
-}
-
-.f-key,
+/*text-muted*/
 span.f-title,
 span.f-sub,
-p.description {
-  color: #999;
+p.description,
+.text-muted {
+  color: var(--secondary-text-color);
+}
+
+/*
+  dark mode styles
+*/
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg-color: #313640;
+    --main-text-color: #fff;
+    --secondary-text-color: #AEB6BF;
+    --tertiary-text-color: #41464F;
+    --main-accent-color: #41B883;
+    --secondary-accent-color: #A0DBC1;
+  }
+
+  header{
+    background-color: transparent;
+  }
+
+  header svg.logo{
+    fill: var(--main-accent-color);
+  }
+
+  .vertical-form textarea,
+  .vertical-form input,
+  .vertical-form select option {
+    color: var(--main-accent-color);
+  }
+
+  span.f-answered{
+    color: var(--main-accent-color);
+  }
+
+  .f-arrow-down svg {
+    fill: var(--main-accent-color);
+  }
+  
+  .text-success{
+    color: var(--main-accent-color);
+  }
+
+  /*footer*/
+  .f-footer .footer-inner-wrap{
+    background-color: var(--bg-color);
+  }
+
+  .f-footer .f-prev svg,
+  .f-footer .f-next svg {
+    fill: var(--main-accent-color);
+  }
+
+  .f-footer .f-prev.f-disabled svg,
+  .f-footer .f-next.f-disabled svg {
+    fill: var(--main-text-color);
+  }
+
+  .f-footer .footer-inner-wrap{
+    background-color: var(--bg-color);
+  }
+
+  .f-prev:hover,
+  .f-next:hover{
+    background-color: rgba(0,0,0,0.2);
+  }
+
+  .f-progress-bar {
+    background-color: var(--secondary-text-color);
+    filter: brightness(1);
+  }
+
+  .f-progress-bar-inner {
+    background-color: var(--main-accent-color);
+  }
+
+  /*field-multiplechoicetype*/
+  ul.f-radios li.f-selected{
+    color: var(--main-accent-color);
+  }
+
+  ul.f-radios li{
+    font-weight: 900;
+    color: var(--secondary-text-color);
+  }
+
+  .f-key{
+    font-weight: 400;
+    color: var(--main-accent-color);
+  }
+
 }
