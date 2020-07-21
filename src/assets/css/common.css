@@ -1,3 +1,8 @@
+/*
+    Copyright (c) 2020 - present, DITDOT Ltd. - MIT Licence
+    https://www.ditdot.hr/en
+*/
+
 html {
   line-height: 1.25;
   -webkit-text-size-adjust: 100%;
@@ -66,10 +71,6 @@ ul {
 }
 
 /*utils*/
-.text-muted {
-  color: #999;
-}
-
 .text-thin {
   font-weight: 300;
 }
@@ -108,7 +109,7 @@ ul.reset-list {
 
 /*header*/
 header {
-  padding: 0.9rem 10vw;
+  padding: 1rem 10vw;
   z-index: 1400;
   top: 0;
   left: 0;
@@ -124,12 +125,12 @@ header .container {
 
 img.logo,
 svg.logo {
-  height: 19px;
+  height: 18px;
   max-width: 240px;
   opacity: 1;
 }
 
-/*btns*/
+/*buttons*/
 .o-btn-action {
   z-index: 1;
   cursor: pointer;
@@ -139,11 +140,11 @@ svg.logo {
   display: inline-block;
   line-height: 45px;
   height: 44px;
-  font-weight: 700;
+  font-weight: 900;
+  text-transform: lowercase;
 }
 
 .o-btn-action span {
-  color: rgb(255, 255, 255);
   font-size: 1rem;
   user-select: none;
   text-decoration: none;
@@ -211,6 +212,14 @@ span.faux-form {
   z-index: 1;
 }
 
+.vertical-form select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  padding-left: 8px;
+  padding-right: 8px;
+}
+
 .vertical-form input[type=text],
 .vertical-form input[type=number],
 .vertical-form input[type=tel],
@@ -229,7 +238,7 @@ span.faux-form {
   outline: 0;
   padding: 0.32rem 0.4rem;
   font-size: 1.7rem;
-  font-weight: 700;
+  font-weight: 900;
 }
 
 .vertical-form textarea {
@@ -290,6 +299,64 @@ span.f-answered{
 .f-arrow-down svg {
   width: 100%;
   height: auto;
+}
+
+/*typography*/
+li,
+p,
+ul {
+  font-size: 1.1rem;
+  line-height: 1.34;
+}
+
+h1,
+.fh1 {
+  font-weight: 900;
+  font-size: 3.4rem;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+h2,
+.fh2 {
+  font-weight: 900;
+  font-size: 2.4rem;
+  line-height: 1.34;
+  padding-right: 4rem;
+  margin-bottom: 20px;
+}
+
+h3,
+.fh3 {
+  font-weight: 300;
+  font-size: 1.5rem;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.fh1,
+.fh2,
+.fh3{
+  display: block;
+}
+
+@media screen and (max-width:767px) {
+
+  h2,
+  .fh2 {
+    font-size: 2.2rem;
+    padding-right: 0;
+  }
+
+}
+
+@media screen and (max-width:479px), (max-height:400px) {
+
+  h2,
+  .fh2 {
+    font-size: 1.4rem;
+  }
+
 }
 
 /*misc-typography*/
@@ -360,10 +427,6 @@ ul.f-radios li.f-other input[type=text] {
   line-height: 1.2;
 }
 
-ul.f-radios li:active {
-  background-color: #f6f6f6;
-}
-
 .f-radios-desc {
   display: block;
 }
@@ -383,10 +446,6 @@ ul.f-radios li span.f-key {
   position: absolute;
 }
 
-ul.f-radios li.f-selected {
-  background: #f4f4f4;
-}
-
 /*footer*/
 .f-footer {
   position: fixed;
@@ -399,13 +458,10 @@ ul.f-radios li.f-selected {
 
 .f-footer .footer-inner-wrap {
   text-align: right;
-  background-color: #fff;
   padding: 12px 20px 12px;
-  opacity: .9;
 }
 
 .f-progress {
-  color: #999;
   font-weight: 300;
 }
 
@@ -414,15 +470,10 @@ ul.f-radios li.f-selected {
   display: inline-block;
 }
 
-.f-prev:hover,
-.f-next:hover{
-  background-color: rgba(0,0,0,0.08);
-}
-
 .f-prev,
 .f-next,
 .f-progress {
-  margin: 0 .2em;
+  margin: 0 .18em;
   padding: .2em .2em;
 }
 
@@ -440,7 +491,6 @@ a.f-disabled {
 .f-prev svg,
 .f-next svg {
   display: inline-block;
-  fill: rgb(0, 0, 0);
   transition: fill 0.2s ease 0s;
   width: 23px;
   height: 13px;
@@ -453,7 +503,6 @@ a.f-disabled {
 /*progress-bar*/
 .f-progress-bar {
   height: 1px;
-  background-color: #bbb;
   position: static;
   display: inline-block;
   width: 64px;
@@ -462,7 +511,6 @@ a.f-disabled {
 }
 
 .f-progress-bar-inner {
-  background-color: #18181A;
   height: 1px;
   transition: width .3s ease;
 }
@@ -477,8 +525,9 @@ a.f-disabled {
   max-width: 680px;
 }
 
-
-/*media-start*/
+/*
+  media-start
+*/
 
 @media only screen and (min-width: 1440px) {
   .field-sectionbreaktype,
@@ -503,7 +552,6 @@ a.f-disabled {
     left: auto;
     width: 100%;
     height: auto;
-    overflow: hidden;
     padding-left: 0;
     padding-right: 0;
   }
@@ -577,10 +625,6 @@ a.f-disabled {
     font-size: .9rem;
   }
 
-  .f-footer .footer-inner-wrap {
-    background-color: #f6f6f6;
-  }
-
   .o-btn-action {
     line-height: 40px;
     height: 40px;
@@ -592,8 +636,13 @@ a.f-disabled {
 
 }
 
-@media screen and (max-height:400px) {
+@media screen and (max-height:420px) {
   header {
+    position: static;
+    top: auto;
+    left: auto;
+    width: 100%;
+    height: auto;
     padding-top: .8rem;
     padding-bottom: .8rem;
   }
@@ -601,6 +650,10 @@ a.f-disabled {
   .f-footer .footer-inner-wrap {
     padding-top: 10px;
     padding-bottom: 10px;
+  }
+
+  .vertical-form {
+      margin-top: 10vh;
   }
 
 }
