@@ -6,7 +6,7 @@
         v-on:click="toggleAnswer(option)"
         v-bind:class="{'f-selected': option.selected}"
         v-bind:key="'m' + index"
-        :aria-label="language.ariaMultipleChoice|replace(':letter', getToggleKey(index))"
+        v-bind:aria-label="language.ariaMultipleChoice|replace(':letter', getToggleKey(index))"
       >
         <span class="f-key">{{ getToggleKey(index) }}</span>
         <span class="f-label">{{ option.choiceLabel() }}</span>
@@ -16,7 +16,7 @@
         v-if="question.allowOther"
         v-on:click="startEditOther"
         v-bind:class="{'f-selected': question.other, 'f-focus': editingOther}"
-        aria-label="Type your answer here"
+        v-bind:aria-label="language.ariaTypeAnswer"
       >
         <span class="f-key" v-if="!editingOther">{{ getToggleKey(question.options.length) }}</span>
         <input
