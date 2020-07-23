@@ -9,7 +9,7 @@
         <span class="f-text" v-if="question.question">
           {{ question.question }}&nbsp;
           <!-- Required questions are marked by an asterisk (*) -->
-          <span class="f-required" v-if="question.required">*</span>
+          <span class="f-required" v-if="question.required" aria-label='required'><span aria-hidden="true">*</span></span>
 
           <span v-if="question.inline" class="f-answer">
             <component
@@ -53,6 +53,8 @@
         href="#"
         v-if="showOkButton()"
         v-on:click="onEnter"
+        role ="button"
+        aria-label="Press to continue"
       >
         <div class="o-btn-action">
           <span v-if="question.type === QuestionType.SectionBreak">{{ language.continue }}</span>

@@ -26,7 +26,7 @@
 
           <slot name="completeButton">
             <!-- Default content for the "completeButton" slot -->
-            <a ref="button" href="#" v-on:click="submit()" v-if="!submitted">
+            <a ref="button" href="#" v-on:click="submit()" v-if="!submitted" role=button aria-label="Press to submit">
               <div class="o-btn-action">
                 <span>{{ language.submitText }}</span>
               </div>
@@ -52,6 +52,8 @@
             href="#"
             v-bind:class="{'f-disabled': activeQuestionIndex === 0 || submitted}"
             v-on:click.prevent="goToPreviousQuestion()"
+            role="button"
+            aria-label="Previous question"
           >
             <svg
               version="1.1"
@@ -74,6 +76,8 @@
             href="#"
             v-bind:class="{'f-disabled': !isNextQuestionAvailable()}"
             v-on:click.prevent="goToNextQuestion()"
+            role="button"
+            aria-label="Next question"
           >
             <svg
               version="1.1"
