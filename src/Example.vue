@@ -40,6 +40,8 @@
           href="#"
           v-on:click="onSendData()"
           v-if="!submitted"
+          role="button"
+          aria-label="Press to submit"
         >
           <div class="o-btn-action">
             <span>{{ language.submitText }}</span>

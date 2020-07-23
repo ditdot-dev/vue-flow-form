@@ -15,6 +15,13 @@ export default class LanguageModel {
     this.percentCompleted = ':percent% completed'
     this.invalidPrompt = 'Please fill out the field correctly'
     this.thankYouText = 'Thank you!'
+    this.ariaOk = 'Press to continue', 
+    this.ariaRequired = 'This step is required', 
+    this.ariaPrev = 'Previous step', 
+    this.ariaNext = 'Next step', 
+    this.ariaSubmitText = 'Press to submit'
+    this.ariaMultipleChoice = 'Press :letter to select'
+      
 
     Object.assign(this, options || {})
   }
