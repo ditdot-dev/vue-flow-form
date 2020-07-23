@@ -6,7 +6,7 @@
         v-on:click="toggleAnswer(option)"
         v-bind:class="{'f-selected': option.selected}"
         v-bind:key="'m' + index"
-        :aria-label="`Press ${getToggleKey(index)} to select`"
+        :aria-label="language.ariaMultipleChoice|replace(':letter', getToggleKey(index))"
       >
         <span class="f-key">{{ getToggleKey(index) }}</span>
         <span class="f-label">{{ option.choiceLabel() }}</span>

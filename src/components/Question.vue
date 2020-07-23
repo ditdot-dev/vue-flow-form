@@ -9,7 +9,7 @@
         <span class="f-text" v-if="question.question">
           {{ question.question }}&nbsp;
           <!-- Required questions are marked by an asterisk (*) -->
-          <span class="f-required" v-if="question.required" aria-label='required'><span aria-hidden="true">*</span></span>
+          <span class="f-required" v-if="question.required" :aria-label="language.ariaRequired"><span aria-hidden="true">*</span></span>
 
           <span v-if="question.inline" class="f-answer">
             <component
@@ -54,7 +54,7 @@
         v-if="showOkButton()"
         v-on:click="onEnter"
         role ="button"
-        aria-label="Press to continue"
+        :aria-label="language.ariaOk"
       >
         <div class="o-btn-action">
           <span v-if="question.type === QuestionType.SectionBreak">{{ language.continue }}</span>
@@ -64,7 +64,7 @@
         <span class="f-enter-desc">{{ language.pressEnter }}</span>
       </a>
 
-      <div v-if="showInvalid()" class="f-invalid">{{ language.invalidPrompt }}</div>
+      <div v-if="showInvalid()" class="f-invalid" role='alert' aria-live='assertive'>{{ language.invalidPrompt }}</div>
     </div>
   </div>
 </template>

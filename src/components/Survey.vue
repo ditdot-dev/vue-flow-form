@@ -26,7 +26,7 @@
 
           <slot name="completeButton">
             <!-- Default content for the "completeButton" slot -->
-            <a ref="button" href="#" v-on:click="submit()" v-if="!submitted" role=button aria-label="Press to submit">
+            <a ref="button" href="#" v-on:click="submit()" v-if="!submitted" role=button :aria-label="language.ariaSubmitText">
               <div class="o-btn-action">
                 <span>{{ language.submitText }}</span>
               </div>
@@ -53,7 +53,7 @@
             v-bind:class="{'f-disabled': activeQuestionIndex === 0 || submitted}"
             v-on:click.prevent="goToPreviousQuestion()"
             role="button"
-            aria-label="Previous question"
+            :aria-label="language.ariaPrev"
           >
             <svg
               version="1.1"
@@ -64,12 +64,13 @@
               width="42.333px"
               height="28.334px"
               viewBox="78.833 5.5 42.333 28.334"
+              aria-hidden='true'
             >
               <path
                 d="M82.039,31.971L100,11.442l17.959,20.529L120,30.187L101.02,8.492c-0.258-0.295-0.629-0.463-1.02-0.463c-0.39,0-0.764,0.168-1.02,0.463L80,30.187L82.039,31.971z"
               />
             </svg>
-            <span class="f-nav-text">{{ language.prev }}</span>
+            <span class="f-nav-text" aria-hidden="true">{{ language.prev }}</span>
           </a>
           <a
             class="f-next"
@@ -77,7 +78,7 @@
             v-bind:class="{'f-disabled': !isNextQuestionAvailable()}"
             v-on:click.prevent="goToNextQuestion()"
             role="button"
-            aria-label="Next question"
+            :aria-label="language.ariaNext"
           >
             <svg
               version="1.1"
@@ -88,12 +89,13 @@
               width="42.333px"
               height="28.334px"
               viewBox="78.833 5.5 42.333 28.334"
+              aria-hidden ="true"
             >
               <path
                 d="M117.963,8.031l-17.961,20.529L82.042,8.031l-2.041,1.784l18.98,21.695c0.258,0.295,0.629,0.463,1.02,0.463c0.39,0,0.764-0.168,1.02-0.463l18.98-21.695L117.963,8.031z"
               />
             </svg>
-            <span class="f-nav-text">{{ language.next }}</span>
+            <span class="f-nav-text" aria-hidden="true">{{ language.next }}</span>
           </a>
         </div>
       </div>
