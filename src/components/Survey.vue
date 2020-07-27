@@ -147,12 +147,14 @@
     },
     mounted() {
       document.addEventListener('keyup', this.onKeyListener, true)
+      document.addEventListener('keydown', this.onBackKeyListener)
       window.addEventListener('beforeunload', this.onBeforeUnload)
 
       this.setQuestions()
     },
     beforeDestroy() {
       document.removeEventListener('keyup', this.onKeyListener, true)
+      document.removeEventListener('keydown', this.onBackKeyListener)
       window.removeEventListener('beforeunload', this.onBeforeUnload)
     },
     computed: {
@@ -303,6 +305,14 @@
           this.emitEnter()
         }
       },
+
+      onBackKeyListener(e) {
+        if (e.shiftKey && e.key === 'Tab' ) {
+          e.stopPropagation()
+          e.preventDefault()
+          this.goToPreviousQuestion()
+        }
+      }, 
 
       emitEnter() {
         const q = this.activeQuestionComponent()
