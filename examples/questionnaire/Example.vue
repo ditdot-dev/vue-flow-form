@@ -58,9 +58,9 @@
 
 <script>
   // Import necessary components and classes
-  import Survey from './components/Survey'
-  import QuestionModel, { QuestionType, ChoiceOption } from './models/QuestionModel'
-  import LanguageModel from './models/LanguageModel'
+  import Survey from '../../src/components/Survey.vue'
+  import QuestionModel, { QuestionType, ChoiceOption } from '../../src/models/QuestionModel'
+  import LanguageModel from '../../src/models/LanguageModel'
 
   export default {
     name: 'example',
