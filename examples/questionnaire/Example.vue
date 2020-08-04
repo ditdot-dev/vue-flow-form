@@ -286,3 +286,7 @@
     }
   }
 </script>
+
+<style lang="css">
+  @import './branding.css';
+</style>
