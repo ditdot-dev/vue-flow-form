@@ -63,6 +63,7 @@
   import Survey from '../../src/components/Survey.vue'
   import QuestionModel, { QuestionType, ChoiceOption} from '../../src/models/QuestionModel'
   import LanguageModel from '../../src/models/LanguageModel'
+  import cssVars from '../../ponyfill'
 
   export default {
     name: 'example',
