@@ -3,15 +3,37 @@
 <template>
   <div class="animate fade-in-up q-form" v-bind:class="mainClasses">
     <div class="q-inner" ref="qinner">
-      <p v-bind:class="{'fh2': question.type !== QuestionType.SectionBreak}">
-        <span class="f-title" v-if="question.title">{{ question.title }}</span>
+      <div v-bind:class="{'section-wrap':question.type === QuestionType.SectionBreak}">
+        <p v-bind:class="{'fh2': question.type !== QuestionType.SectionBreak}">
+          <span class="f-title" v-if="question.title">{{ question.title }}</span>
 
-        <span class="f-text" v-if="question.question">
-          {{ question.question }}&nbsp;
-          <!-- Required questions are marked by an asterisk (*) -->
-          <span class="f-required" v-if="question.required" v-bind:aria-label="language.ariaRequired"><span aria-hidden="true">*</span></span>
+          <span class="f-text" v-if="question.question">
+            {{ question.question }}&nbsp;
+            <!-- Required questions are marked by an asterisk (*) -->
+            <span class="f-required" v-if="question.required" v-bind:aria-label="language.ariaRequired"><span aria-hidden="true">*</span></span>
 
-          <span v-if="question.inline" class="f-answer">
+            <span v-if="question.inline" class="f-answer">
+              <component
+                ref="questionComponent"
+                v-bind:is="question.type"
+                v-bind:question="question"
+                v-bind:language="language"
+                v-model="dataValue"
+                v-bind:active="active"
+                v-on:next="onEnter"
+              />
+            </span>
+          </span>
+
+          <span class="f-sub" v-if="question.subtitle || question.type === QuestionType.LongText || question.multiple">
+            <span v-if="question.subtitle">{{ question.subtitle }}</span>
+
+            <span class="f-help" v-if="question.type === QuestionType.LongText">{{ question.helpText || language.longTextHelpText }}</span>
+
+            <span class="f-help" v-if="question.multiple">{{ question.helpText || language.multipleChoiceHelpText }}</span>
+          </span>
+
+          <span v-if="!question.inline" class="f-answer full-width">
             <component
               ref="questionComponent"
               v-bind:is="question.type"
@@ -22,31 +44,11 @@
               v-on:next="onEnter"
             />
           </span>
-        </span>
-
-        <span class="f-sub" v-if="question.subtitle || question.type === QuestionType.LongText || question.multiple">
-          <span v-if="question.subtitle">{{ question.subtitle }}</span>
-
-          <span class="f-help" v-if="question.type === QuestionType.LongText">{{ question.helpText || language.longTextHelpText }}</span>
-
-          <span class="f-help" v-if="question.multiple">{{ question.helpText || language.multipleChoiceHelpText }}</span>
-        </span>
-
-        <span v-if="!question.inline" class="f-answer full-width">
-          <component
-            ref="questionComponent"
-            v-bind:is="question.type"
-            v-bind:question="question"
-            v-bind:language="language"
-            v-model="dataValue"
-            v-bind:active="active"
-            v-on:next="onEnter"
-          />
-        </span>
-      </p>
+        </p>
+        
+        <p v-if="question.description" class="description">{{ question.description }}</p>
+      </div>
       
-      <p v-if="question.description" class="description">{{ question.description }}</p>
-  
       <a
         class="animate fade-in-up f-enter"
         ref="button"

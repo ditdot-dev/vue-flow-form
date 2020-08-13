@@ -19,9 +19,11 @@
         <div v-if="isOnLastStep" class="animate fade-in-up field-submittype">
           <slot name="complete">
             <!-- Default content for the "complete" slot -->
-            <p>
-              <span class="fh2">{{ language.thankYouText }}</span>
-            </p>
+            <div class="section-wrap">
+              <p>
+                <span class="fh2">{{ language.thankYouText }}</span>
+              </p>
+            </div>
           </slot>
 
           <slot name="completeButton">
