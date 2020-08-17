@@ -8,6 +8,7 @@
       v-on:keydown="onKeyDown"
       v-bind:required="question.required"
     >
+      <option value=""></option>
       <option v-for="(option, index) in question.options" v-bind:disabled="option.disabled" v-bind:value="option.choiceValue()" v-bind:key="'o' + index">
         {{ option.choiceLabel() }}
       </option>

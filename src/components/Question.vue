@@ -4,7 +4,7 @@
   <div class="animate q-form" v-bind:class="mainClasses">
     <div class="q-inner" ref="qinner">
       <div v-bind:class="{'section-wrap':question.type === QuestionType.SectionBreak}">
-        <p v-bind:class="{'fh2': question.type !== QuestionType.SectionBreak}">
+        <div v-bind:class="{'fh2': question.type !== QuestionType.SectionBreak}">
           <span class="f-title" v-if="question.title">{{ question.title }}</span>
 
           <span class="f-text" v-if="question.question">
@@ -44,8 +44,7 @@
               v-on:next="onEnter"
             />
           </span>
-        </p>
-        
+        </div>
         <p v-if="question.description" class="description">{{ question.description }}</p>
       </div>
       
