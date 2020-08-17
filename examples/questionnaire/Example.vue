@@ -23,14 +23,16 @@
     >
     <!-- Custom content for the Complete/Submit screen slots in the Survey component -->
       <!-- We've overriden the default "complete" slot content -->
-      <template v-slot:complete>
-        <p>
-          <span class="fh2">Thank you. 🙏</span>
-          <span class="section-text">
-            Great work, the survey is completed, and our demo is done. You can review your answers or press submit.
-          </span>
-        </p>
-        <p class="description">Note: No data will be saved and/or sent in this demo.</p>
+     <template v-slot:complete>
+        <div class="section-wrap">
+          <p>
+            <span class="fh2">Thank you. 🙏</span>
+            <span class="section-text">
+              Great work, the survey is completed, and our demo is done. You can review your answers or press submit.
+            </span>
+          </p>
+          <p class="description">Note: No data will be saved and/or sent in this demo.</p>
+        </div>  
       </template>
 
       <!-- We've overriden the default "completeButton" slot content -->
