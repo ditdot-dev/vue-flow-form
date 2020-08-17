@@ -62,8 +62,9 @@
   * `required` - is field required or not (true/false - default is false)
     * turn on/off the `required` asterisk next to the question in vue-form/src/assets/css/common.css: 
     ```
-      f-required {
+      .f-required {
         display: inline; /* or display: none; to turn off */
+      }     
     ```    
   * `options` - `ChoiceOption` array (used only with Dropdown and MultipleChoice)
     * `ChoiceOption` must have a `label` defined (this is what will be shown to the user)
