@@ -3,7 +3,7 @@
 <template>
   <div>
     <header>
-      <div class="container">
+      <div class="f-container">
        <!-- Add custom logo here -->
         <svg class="logo" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMinYMid meet" viewBox="0 0 35.606 11.211">
           <path d="M.134.837H3.21V8.01h4.203v2.18H.134V.837z"/>
