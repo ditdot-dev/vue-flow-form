@@ -12,12 +12,12 @@
 * Set corresponding JavaScript entry file in vue.config.js 
   ```
   module.exports = {
-  publicPath: '',
-  pages: {
-    index: {
-    entry: // add .js entry file path here,
-    template: 'public/index.html',
-    filename: 'index.html'
+    publicPath: '',
+    pages: {
+      index: {
+        entry: // add .js entry file path here,
+        template: 'public/index.html',
+        filename: 'index.html'
       }
     }
   }
