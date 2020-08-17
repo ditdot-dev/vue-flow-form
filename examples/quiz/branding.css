@@ -52,19 +52,19 @@ header svg.logo{
   fill: var(--main-text-color);
 }
 
-.vertical-form input[type=text],
-.vertical-form input[type=number],
-.vertical-form input[type=tel],
-.vertical-form input[type=email],
-.vertical-form input[type=url],
-.vertical-form textarea,
-.vertical-form span.faux-form {
+.v-form input[type=text],
+.v-form input[type=number],
+.v-form input[type=tel],
+.v-form input[type=email],
+.v-form input[type=url],
+.v-form textarea,
+.v-form span.faux-form {
   border-bottom-color: var(--secondary-text-color);
 }
 
-.vertical-form textarea,
-.vertical-form input,
-.vertical-form select option {
+.v-form textarea,
+.v-form input,
+.v-form select option {
   color: var(--form-input-color);
 }
 
