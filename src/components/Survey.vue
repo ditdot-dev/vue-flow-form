@@ -1,8 +1,8 @@
 // Form template and logic
 
 <template>
-  <div class="vertical-form">
-    <div class="container">
+  <div class="v-form">
+    <div class="f-container">
       <div class="form-wrap">
         <question
           ref="questions"
