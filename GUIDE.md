@@ -5,17 +5,16 @@
 * **CSS**: src/assets/css, examples/*example-name*/branding.css
 * **Vue components**: src/components, src/components/QuestionTypes
 * **Models**: src/models
-* **Demo examples**: examples
 
-## Usage (example in Example.vue):
+## Usage (examples in examples/*/Example.vue):
 
 * Set corresponding JavaScript entry file in vue.config.js 
-  ```
+  ```js
   module.exports = {
     publicPath: '',
     pages: {
       index: {
-        entry: // add .js entry file path here,
+        entry: 'examples/questionnaire/main.js', // Replace with your .js entry file path
         template: 'public/index.html',
         filename: 'index.html'
       }
@@ -29,6 +28,15 @@
   * Add language model as `language` prop (optional)
     * language is defined by creating a new instance of `LanguageModel` and setting its properties
   * add `submit` and/or `complete` event listeners if you want to submit data to the backend
+
+## Included examples:
+
+* Questionnaire (default):
+  * example containing a sample questionnaire
+* Quiz:
+  * example showing how the component can be used in a more advanced way
+  * this example shows the number of correctly answered questions after submitting the form, along with an accompanying message
+  * to view this example, change the entry point in vue.config.js to `'examples/quiz/main.js'`
 
 ## Question types:
 
