@@ -13,15 +13,18 @@
           v-bind:active="q.index === activeQuestionIndex"
           v-model="q.answer"
           v-on:answer="onQuestionAnswered"
+          v-bind:reverse="reverse"
         />
 
         <!-- Complete/Submit screen slots -->   
         <div v-if="isOnLastStep" class="animate fade-in-up field-submittype">
           <slot name="complete">
             <!-- Default content for the "complete" slot -->
-            <p>
-              <span class="fh2">{{ language.thankYouText }}</span>
-            </p>
+            <div class="section-wrap">
+              <p>
+                <span class="fh2">{{ language.thankYouText }}</span>
+              </p>
+            </div>
           </slot>
 
           <slot name="completeButton">
@@ -109,6 +112,10 @@
   import Vue from 'vue'
   import VueScrollTo from 'vue-scrollto'
   import VueTextareaAutosize from 'vue-textarea-autosize'
+  import cssVars from 'css-vars-ponyfill';
+  
+  //IE variables ponyfill
+  cssVars();
 
   // Set up the components we're using
   Vue.use(VueScrollTo)
@@ -137,7 +144,8 @@
         submitted: false,
         activeQuestionIndex: 0,
         questionList: [],
-        questionListActivePath: []
+        questionListActivePath: [],
+        reverse: false
       }
     },
     watch: {
@@ -396,6 +404,7 @@
         if (this.activeQuestionIndex > 0) {
           --this.activeQuestionIndex
         }
+        this.reverse = true;
       },
 
       /**
@@ -407,6 +416,7 @@
         if (this.isNextQuestionAvailable()) {
           this.emitEnter()
         }
+        this.reverse = false;
       },
 
       /**

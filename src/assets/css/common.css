@@ -341,16 +341,6 @@ h3,
   display: block;
 }
 
-div.fh2,
-div.q-inner > div {
-  margin-top: 1em;
-  margin-bottom: 1em;
-}
-
-span.section-text {
-
-}
-
 @media screen and (max-width:767px) {
 
   h2,
@@ -527,9 +517,14 @@ a.f-disabled {
 }
 
 /**/
-.section-wrap{
-  margin-bottom: 28px;
+.section-wrap {
+  margin-bottom: 36px;
 }
+
+.section-wrap > div {
+  margin-bottom: 20px;
+}
+
 
 .field-sectionbreaktype,
 .field-submittype {

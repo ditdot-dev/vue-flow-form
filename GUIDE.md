@@ -2,12 +2,26 @@
 
 ## Files/folders:
 
-* **CSS**: src/assets/css
+* **CSS**: src/assets/css, examples/*example-name*/branding.css
 * **Vue components**: src/components, src/components/QuestionTypes
 * **Models**: src/models
+* **Demo examples**: examples
 
 ## Usage (example in Example.vue):
 
+* Set corresponding JavaScript entry file in vue.config.js 
+  ```
+  module.exports = {
+    publicPath: '',
+    pages: {
+      index: {
+        entry: // add .js entry file path here,
+        template: 'public/index.html',
+        filename: 'index.html'
+      }
+    }
+  }
+  ```
 * Import necessary components and classes
 * Create question list
 * Add `Survey` component
@@ -46,13 +60,23 @@
       }
     ```
   * `required` - is field required or not (true/false - default is false)
+    * turn on/off the `required` asterisk next to the question in vue-form/src/assets/css/common.css: 
+    ```
+      .f-required {
+        display: inline; /* or display: none; to turn off */
+      }     
+    ```    
   * `options` - `ChoiceOption` array (used only with Dropdown and MultipleChoice)
     * `ChoiceOption` must have a `label` defined (this is what will be shown to the user)
     * if `value` is not defined, `label` will be used
   * `inline` - if true, displays the field next to the question, used only with Dropdown (true/false - default is false)
+  * `placeholder` - define custom placeholder for the input fields
+    * if not defined, the default value from LanguageModel will be used 
+  * `mask` - number input mask, used only with Phone (optional)
   * `helpText` - help text, used only with LongText and MultipleChoice (optional)
     * if not defined, the default values from LanguageModel will be used (multipleChoiceHelpText for MultipleChoice and longTextHelpText for LongText)
   * `multiple` - used only with MultipleChoice, defines if multiple answers can be chosen (true/false - default is false)
+  * `allowOther` - used only with MultipleChoice, adds custom text field to the MultipleChoice selection
   * `jump` - define which question to jump to after answering (function or object)
     * **function**: it will get the question model as the only parameter and must return the id to jump to
     * **object**: must define object with possible answer values and jump IDs, eg.:  
@@ -80,7 +104,7 @@
 (example in Example.vue)
 ```
 function onSubmit(questionList) {
-  // Handle submit event using .
+  // Handle submit event. 
 }
 ```
 
@@ -99,3 +123,28 @@ function onSubmit(questionList) {
 You can then send the data to your backend using `fetch` API or something like `Axios`.
 If you've overriden the default `completeButton` slot, implement the `complete`
 event to know when the user is in the complete screen and handle the rest manually.
+
+##  Theming: 
+
+* Create/change the theme of the application in the examples/*example-name*/branding.css. CSS variables support for legacy browsers is included.
+* Enable dark mode support by using the `prefers-color-scheme` media query
+  ```
+  @media (prefers-color-scheme: dark) {
+      /* dark mode styles go here */
+  }
+  ```
+* You can further customize other aspects of the app for your particular needs in the src/assets/css
+
+## How to contribute:
+
+* Pull requests and potential features are welcome.
+  ```
+  # clone repo
+  $ git clone https://github.com/ditdot-dev/vue-form.git 
+  
+  # create a new branch
+  $ git checkout -b new_branch_name
+  
+  # make changes, test and submit pull request with description of changes
+  ```
+* If you think you have found a bug, create an issue that thoroughly explains the problem, with clear steps to reproduce.

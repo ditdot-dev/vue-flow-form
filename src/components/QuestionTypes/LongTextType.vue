@@ -22,6 +22,17 @@
 
   export default {
     extends: BaseType,
-    name: 'LongTextType'
+    name: 'LongTextType', 
+    mounted() {
+      window.addEventListener('resize', this.onResizeListener)
+    },
+    beforeDestroy() {
+      window.removeEventListener('resize', this.onResizeListener)
+    },
+    methods: {
+      onResizeListener(){
+        this.$refs.input.resize()
+      }
+    }
   }
 </script>
