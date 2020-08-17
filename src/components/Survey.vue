@@ -113,10 +113,9 @@
   import VueScrollTo from 'vue-scrollto'
   import VueTextareaAutosize from 'vue-textarea-autosize'
   import PortalVue from 'portal-vue'
-  import cssVars from 'css-vars-ponyfill';
   
-  //IE variables ponyfill
-  cssVars();
+  // IE variables ponyfill
+  window.cssVars && cssVars()
 
   // Set up the components we're using
   Vue.use(VueScrollTo)
