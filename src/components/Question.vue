@@ -13,15 +13,7 @@
             <span class="f-required" v-if="question.required" v-bind:aria-label="language.ariaRequired"><span aria-hidden="true">*</span></span>
 
             <span v-if="question.inline" class="f-answer">
-              <component
-                ref="questionComponent"
-                v-bind:is="question.type"
-                v-bind:question="question"
-                v-bind:language="language"
-                v-model="dataValue"
-                v-bind:active="active"
-                v-on:next="onEnter"
-              />
+              <portal-target v-bind:name="'p-inline' + question.id" slim />
             </span>
           </span>
 
@@ -34,19 +26,24 @@
           </span>
 
           <span v-if="!question.inline" class="f-answer full-width">
-            <component
-              ref="questionComponent"
-              v-bind:is="question.type"
-              v-bind:question="question"
-              v-bind:language="language"
-              v-model="dataValue"
-              v-bind:active="active"
-              v-on:next="onEnter"
-            />
+            <portal-target v-bind:name="'p-default' + question.id" slim />
           </span>
         </div>
         <p v-if="question.description" class="description">{{ question.description }}</p>
       </div>
+
+      <portal v-bind:to="(question.inline ? 'p-inline' : 'p-default') + question.id">
+        <!-- We use portals to render the question component to the correct location in the DOM -->
+        <component
+          ref="questionComponent"
+          v-bind:is="question.type"
+          v-bind:question="question"
+          v-bind:language="language"
+          v-model="dataValue"
+          v-bind:active="active"
+          v-on:next="onEnter"
+        />
+      </portal>
       
       <a
         class="animate fade-in-up f-enter"
