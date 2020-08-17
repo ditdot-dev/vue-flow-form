@@ -160,6 +160,7 @@
       window.addEventListener('beforeunload', this.onBeforeUnload)
 
       this.setQuestions()
+      this.focusActiveQuestion()
     },
     beforeDestroy() {
       document.removeEventListener('keyup', this.onKeyListener, true)
@@ -404,7 +405,10 @@
 
         if (this.activeQuestionIndex > 0) {
           --this.activeQuestionIndex
+
+          this.focusActiveQuestion()
         }
+
         this.reverse = true
       },
 
@@ -417,7 +421,18 @@
         if (this.isNextQuestionAvailable()) {
           this.emitEnter()
         }
+
         this.reverse = false
+      },
+
+      focusActiveQuestion() {
+        this.$nextTick(() => {
+          const q = this.activeQuestionComponent()
+
+          if (q) {
+            q.focusField()
+          }
+        })
       },
 
       /**
