@@ -424,7 +424,7 @@
        * Removes focus from the currently focused DOM element.
        */
       blurFocus() {
-        document.activeElement && document.activeElement.blur()
+        document.activeElement && document.activeElement.blur && document.activeElement.blur()
       }
     }
   }
