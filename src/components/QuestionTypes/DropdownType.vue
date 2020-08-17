@@ -8,13 +8,13 @@
       v-on:keydown="onKeyDown"
       v-bind:required="question.required"
     >
-      <option value=""></option>
+      <option v-if="question.required" value=""></option>
       <option v-for="(option, index) in question.options" v-bind:disabled="option.disabled" v-bind:value="option.choiceValue()" v-bind:key="'o' + index">
         {{ option.choiceLabel() }}
       </option>
     </select>
     <span>
-      <span class="f-empty" v-bind:class="{'f-answered': this.question.answered}">{{ answerLabel }}</span>
+      <span class="f-empty" v-bind:class="{'f-answered': this.question.answer && this.question.answered}">{{ answerLabel }}</span>
       <span class="f-arrow-down">
         <svg version="1.1" id="Capa_1"
           xmlns="http://www.w3.org/2000/svg"

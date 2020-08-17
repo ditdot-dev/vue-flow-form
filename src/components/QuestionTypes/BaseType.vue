@@ -126,7 +126,7 @@
        * in custom question types.
        */
       validate() {
-        return this.hasValue
+        return !this.question.required || this.hasValue
       }
     },
     computed: {
