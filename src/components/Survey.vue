@@ -13,6 +13,7 @@
           v-bind:active="q.index === activeQuestionIndex"
           v-model="q.answer"
           v-on:answer="onQuestionAnswered"
+          v-bind:reverse="reverse"
         />
 
         <!-- Complete/Submit screen slots -->   
@@ -139,7 +140,8 @@
         submitted: false,
         activeQuestionIndex: 0,
         questionList: [],
-        questionListActivePath: []
+        questionListActivePath: [],
+        reverse: false
       }
     },
     watch: {
@@ -398,6 +400,7 @@
         if (this.activeQuestionIndex > 0) {
           --this.activeQuestionIndex
         }
+        this.reverse = true;
       },
 
       /**
@@ -409,6 +412,7 @@
         if (this.isNextQuestionAvailable()) {
           this.emitEnter()
         }
+        this.reverse = false;
       },
 
       /**

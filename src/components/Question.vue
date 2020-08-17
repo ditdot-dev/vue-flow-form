@@ -1,7 +1,7 @@
 // Single question template and logic
 
 <template>
-  <div class="animate fade-in-up q-form" v-bind:class="mainClasses">
+  <div class="animate q-form" v-bind:class="mainClasses">
     <div class="q-inner" ref="qinner">
       <div v-bind:class="{'section-wrap':question.type === QuestionType.SectionBreak}">
         <p v-bind:class="{'fh2': question.type !== QuestionType.SectionBreak}">
@@ -104,6 +104,10 @@
       active: {
         type: Boolean,
         default: false
+      },
+      reverse: {
+        type:Boolean, 
+        default: false
       }
     },
     data() {
@@ -181,7 +185,9 @@
       mainClasses() {
         const classes = {
           'q-is-active': this.active,
-          'q-is-inactive': !this.active
+          'q-is-inactive': !this.active,
+          'fade-in-down': this.reverse,
+          'fade-in-up': !this.reverse
         }
 
         classes['field-' + this.question.type.toLowerCase()] = true
