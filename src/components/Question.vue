@@ -3,7 +3,7 @@
 <template>
   <div class="animate fade-in-up q-form" v-bind:class="mainClasses">
     <div class="q-inner" ref="qinner">
-      <p v-bind:class="{'fh2': question.type !== QuestionType.SectionBreak}">
+      <div v-bind:class="{'fh2': question.type !== QuestionType.SectionBreak}">
         <span class="f-title" v-if="question.title">{{ question.title }}</span>
 
         <span class="f-text" v-if="question.question">
@@ -32,7 +32,7 @@
           <span class="f-help" v-if="question.multiple">{{ question.helpText || language.multipleChoiceHelpText }}</span>
         </span>
 
-        <span v-if="!question.inline" class="f-answer full-width">
+        <div v-if="!question.inline" class="f-answer full-width">
           <component
             ref="questionComponent"
             v-bind:is="question.type"
@@ -42,8 +42,8 @@
             v-bind:active="active"
             v-on:next="onEnter"
           />
-        </span>
-      </p>
+        </div>
+      </div>
       
       <p v-if="question.description" class="description">{{ question.description }}</p>
   
