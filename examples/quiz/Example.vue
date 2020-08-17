@@ -363,20 +363,21 @@
 
       arrayEquals(a, b) {
         return Array.isArray(a) && Array.isArray(b) && a.length === b.length &&
-               a.every((val, index) => val === b[index]);
+               a.every((val, index) => val === b[index])
       },
 
       calculateScore() {
         this.questions.forEach(question => {
-          if(question.question){
+          if (question.question) {
             let answer = question.answer
-            if(typeof answer === 'object'){
+            if (typeof answer === 'object') {
               answer.sort((a, b) => a - b)
-              if(this.arrayEquals(answer, this.answers[question.id])){
-                this.score ++
+
+              if (this.arrayEquals(answer, this.answers[question.id])) {
+                this.score++
               }
             }
-            if (answer == this.answers[question.id]){
+            if (answer == this.answers[question.id]) {
                 this.score++
             }
           }

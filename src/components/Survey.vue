@@ -269,7 +269,7 @@
        * (all questions up to, and including, the current one)
        */
       setQuestionList() {
-        const questions = [];
+        const questions = []
 
         for (let index = 0; index < this.questionListActivePath.length; index++) {
           const question = this.questionListActivePath[index]
@@ -405,7 +405,7 @@
         if (this.activeQuestionIndex > 0) {
           --this.activeQuestionIndex
         }
-        this.reverse = true;
+        this.reverse = true
       },
 
       /**
@@ -417,7 +417,7 @@
         if (this.isNextQuestionAvailable()) {
           this.emitEnter()
         }
-        this.reverse = false;
+        this.reverse = false
       },
 
       /**
