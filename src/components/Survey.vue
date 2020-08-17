@@ -112,6 +112,7 @@
   import Vue from 'vue'
   import VueScrollTo from 'vue-scrollto'
   import VueTextareaAutosize from 'vue-textarea-autosize'
+  import PortalVue from 'portal-vue'
   import cssVars from 'css-vars-ponyfill';
   
   //IE variables ponyfill
@@ -120,6 +121,7 @@
   // Set up the components we're using
   Vue.use(VueScrollTo)
   Vue.use(VueTextareaAutosize)
+  Vue.use(PortalVue)
 
   // Add a simple replace filter
   Vue.filter('replace', function (value, search, replace) {

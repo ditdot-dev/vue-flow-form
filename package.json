@@ -9,6 +9,7 @@
   "dependencies": {
     "core-js": "^3.6.5",
     "css-vars-ponyfill": "^2.3.2",
+    "portal-vue": "^2.1.7",
     "vue": "^2.6.11",
     "vue-currency-input": "^1.18.4",
     "vue-scrollto": "^2.18.1",
