@@ -528,7 +528,7 @@ a.f-disabled {
 
 .field-sectionbreaktype,
 .field-submittype {
-  max-width: 680px;
+  max-width: 780px;
 }
 
 /*
@@ -538,7 +538,7 @@ a.f-disabled {
 @media only screen and (min-width: 1440px) {
   .field-sectionbreaktype,
   .field-submittype {
-    max-width: 800px;
+    max-width: 940px;
   }
 
 }
@@ -546,7 +546,7 @@ a.f-disabled {
 @media only screen and (min-width: 1920px) {
   .field-sectionbreaktype,
   .field-submittype {
-    max-width: 960px;
+    max-width: 1400px;
   }
 
 }
