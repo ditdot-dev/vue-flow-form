@@ -110,7 +110,6 @@
   import Question from './Question'
   import LanguageModel from '../models/LanguageModel'
   import Vue from 'vue'
-  import VueScrollTo from 'vue-scrollto'
   import VueTextareaAutosize from 'vue-textarea-autosize'
   import PortalVue from 'portal-vue'
   
@@ -118,7 +117,6 @@
   window.cssVars && cssVars()
 
   // Set up the components we're using
-  Vue.use(VueScrollTo)
   Vue.use(VueTextareaAutosize)
   Vue.use(PortalVue)
 
