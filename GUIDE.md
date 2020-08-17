@@ -60,6 +60,11 @@
       }
     ```
   * `required` - is field required or not (true/false - default is false)
+    * turn on/off the `required` asterisk next to the question in vue-form/src/assets/css/common.css: 
+    ```
+      f-required {
+        display: inline; /* or display: none; to turn off */
+    ```    
   * `options` - `ChoiceOption` array (used only with Dropdown and MultipleChoice)
     * `ChoiceOption` must have a `label` defined (this is what will be shown to the user)
     * if `value` is not defined, `label` will be used
@@ -70,6 +75,7 @@
   * `helpText` - help text, used only with LongText and MultipleChoice (optional)
     * if not defined, the default values from LanguageModel will be used (multipleChoiceHelpText for MultipleChoice and longTextHelpText for LongText)
   * `multiple` - used only with MultipleChoice, defines if multiple answers can be chosen (true/false - default is false)
+  * `allowOther` - used only with MultipleChoice, adds custom text field to the MultipleChoice selection
   * `jump` - define which question to jump to after answering (function or object)
     * **function**: it will get the question model as the only parameter and must return the id to jump to
     * **object**: must define object with possible answer values and jump IDs, eg.:  
