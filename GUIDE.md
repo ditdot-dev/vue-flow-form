@@ -6,9 +6,10 @@
 * **Vue components**: src/components, src/components/QuestionTypes
 * **Models**: src/models
 
-## Usage (examples in examples/*/Example.vue):
+## Usage (examples in examples/*example-name*/Example.vue):
 
-* Set corresponding JavaScript entry file in vue.config.js 
+* Set corresponding JavaScript entry file in vue.config.js    
+
   ```js
   module.exports = {
     publicPath: '',
@@ -61,15 +62,17 @@
   * `description` - text below HTML input (optional)
   * `content` - HTML, used only with SectionBreak
     * can be either a raw HTML string or a render function
-    * if passing a render function, it needs to have `h` as the first argument, eg.:
-    ```
+    * if passing a render function, it needs to have `h` as the first argument, eg.:    
+
+    ```css
       content: function(h) {
         return <div> ... </div>
       }
     ```
   * `required` - is field required or not (true/false - default is false)
-    * turn on/off the `required` asterisk next to the question in vue-form/src/assets/css/common.css: 
-    ```
+    * turn on/off the `required` asterisk next to the question in vue-form/src/assets/css/common.css:    
+
+    ```css
       .f-required {
         display: inline; /* or display: none; to turn off */
       }     
@@ -87,8 +90,9 @@
   * `allowOther` - used only with MultipleChoice, adds custom text field to the MultipleChoice selection
   * `jump` - define which question to jump to after answering (function or object)
     * **function**: it will get the question model as the only parameter and must return the id to jump to
-    * **object**: must define object with possible answer values and jump IDs, eg.:  
-      ```
+    * **object**: must define object with possible answer values and jump IDs, eg.:    
+    
+      ```js
       {
         a: 'jump_a',
         b: 'jump_b',
@@ -100,8 +104,9 @@
 
 ## Survey component events:
 
-* `complete` - emitted whenever the "completed" status changes, the first parameter is the status, the second is the question list, eg.:
-  ```
+* `complete` - emitted whenever the "completed" status changes, the first parameter is the status, the second is the question list, eg.:    
+
+  ```js
   function onComplete(completed, questionList) {
     // Handle status change.
   }
@@ -109,8 +114,9 @@
   If the user completes the form, then goes back and changes any of the answers to make them invalid, this event will again be called
   with `false` as the first parameter, so make sure to handle this correctly in your app.
 * `submit` - when the default "submit" button is clicked - if you override the default `completeButton` slot, this event won't be called
-(example in Example.vue)
-```
+(example in Example.vue)    
+
+```js
 function onSubmit(questionList) {
   // Handle submit event. 
 }
@@ -135,8 +141,9 @@ event to know when the user is in the complete screen and handle the rest manual
 ##  Theming: 
 
 * Create/change the theme of the application in the examples/*example-name*/branding.css. CSS variables support for legacy browsers is included.
-* Enable dark mode support by using the `prefers-color-scheme` media query
-  ```
+* Enable dark mode support by using the `prefers-color-scheme` media query    
+
+  ```css
   @media (prefers-color-scheme: dark) {
       /* dark mode styles go here */
   }
@@ -145,8 +152,9 @@ event to know when the user is in the complete screen and handle the rest manual
 
 ## How to contribute:
 
-* Pull requests and potential features are welcome.
-  ```
+* Pull requests and potential features are welcome.    
+
+  ```shell
   # clone repo
   $ git clone https://github.com/ditdot-dev/vue-form.git 
   
@@ -155,4 +163,4 @@ event to know when the user is in the complete screen and handle the rest manual
   
   # make changes, test and submit pull request with description of changes
   ```
-* If you think you have found a bug, create an issue that thoroughly explains the problem, with clear steps to reproduce.
+* If you think you found a bug, create an issue that thoroughly explains the problem, with clear steps to reproduce.

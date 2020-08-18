@@ -68,6 +68,11 @@
 </template>
 
 <script>
+  /*
+    Copyright (c) 2020 - present, DITDOT Ltd. - MIT Licence
+    https://www.ditdot.hr/en
+  */
+
   import LanguageModel from '../models/LanguageModel'
   import QuestionModel, { QuestionType } from '../models/QuestionModel'
   import DropdownType from './QuestionTypes/DropdownType'

@@ -107,6 +107,11 @@
 </template>
 
 <script>
+  /*!
+    Copyright (c) 2020 - present, DITDOT Ltd. - MIT Licence
+    https://www.ditdot.hr/en
+  */
+
   import Question from './Question'
   import LanguageModel from '../models/LanguageModel'
   import Vue from 'vue'

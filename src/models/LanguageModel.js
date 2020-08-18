@@ -1,4 +1,9 @@
-//Language data store
+/*
+  Copyright (c) 2020 - present, DITDOT Ltd. - MIT Licence
+  https://www.ditdot.hr/en
+*/
+
+// Language data store
 
 export default class LanguageModel {
   constructor(options) {

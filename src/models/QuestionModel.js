@@ -1,4 +1,9 @@
-//Global data store
+/*
+  Copyright (c) 2020 - present, DITDOT Ltd. - MIT Licence
+  https://www.ditdot.hr/en
+*/
+
+// Global data store
 
 import MultipleChoiceType from '../components/QuestionTypes/MultipleChoiceType'
 import TextType from '../components/QuestionTypes/TextType'
