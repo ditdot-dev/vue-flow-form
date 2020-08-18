@@ -1,10 +1,15 @@
 # Vue Form
 
+<p align="center">
+  <img src="https://www.ditdot.hr/demo/v-form/visuals/v-form-green-rotate-01.png" alt="v-form screenshot">
+</p>
+
+
 ## Installation
 
 Requirements:
 
-* [Node.js](https://nodejs.org/en/) version 8.9 or above (8.11.0+ recommended
+* [Node.js](https://nodejs.org/en/) version 8.9 or above (8.11.0+ recommended)
 * [npm](https://www.npmjs.com/get-npm) version 3+ (or [yarn](https://yarnpkg.com/lang/en/docs/install/) version 1.16+)
 * [Git](https://git-scm.com/)
 

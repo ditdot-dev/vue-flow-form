@@ -16,6 +16,11 @@
 </template>
 
 <script>
+  /*
+    Copyright (c) 2020 - present, DITDOT Ltd. - MIT Licence
+    https://www.ditdot.hr/en
+  */
+
   import QuestionModel, { QuestionType } from '../../models/QuestionModel'
   import BaseType from './BaseType'
   import LanguageModel from '../../models/LanguageModel'

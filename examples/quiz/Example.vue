@@ -59,6 +59,11 @@
 </template>
 
 <script>
+  /*
+    Copyright (c) 2020 - present, DITDOT Ltd. - MIT Licence
+    https://www.ditdot.hr/en
+  */
+
   // Import necessary components and classes
   import Survey from '../../src/components/Survey.vue'
   import QuestionModel, { QuestionType, ChoiceOption} from '../../src/models/QuestionModel'
