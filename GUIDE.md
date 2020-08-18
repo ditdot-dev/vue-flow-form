@@ -64,14 +64,14 @@
     * can be either a raw HTML string or a render function
     * if passing a render function, it needs to have `h` as the first argument, eg.:    
 
-    ```css
+    ```js
       content: function(h) {
         return <div> ... </div>
       }
     ```
   * `required` - is field required or not (true/false - default is false)
     * turn on/off the `required` asterisk next to the question in vue-form/src/assets/css/common.css:    
-
+    
     ```css
       .f-required {
         display: inline; /* or display: none; to turn off */
