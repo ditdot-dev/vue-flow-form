@@ -15,7 +15,7 @@ Requirements:
 
 After checking the prerequisites, follow these simple steps to install and use Vue Form:
 
-```
+```shell
 # clone the repo
 $ git clone https://github.com/ditdot-dev/vue-form.git myproject
 
@@ -25,7 +25,7 @@ $ cd myproject
 
 If you use npm:
 
-```
+```shell
 $ npm install
 
 # serve with hot reload at localhost:8080 by default.
@@ -37,7 +37,7 @@ $ npm run build
 
 If you use yarn:
 
-```
+```shell
 $ yarn install
 
 # serve with hot reload at localhost:8080 by default.
@@ -46,6 +46,8 @@ $ yarn serve
 # build for production
 $ yarn build
 ```
+
+Made with [Vue.js](https://vuejs.org/)
 
 ## Browser Support
 
