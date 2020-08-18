@@ -1,12 +1,13 @@
 <template>
   <div class="f-radios-wrap">
-    <ul class="f-radios" v-bind:class="{'f-multiple': question.multiple}">
+    <ul class="f-radios" v-bind:class="{'f-multiple': question.multiple}" role="listbox">
       <li
         v-for="(option, index) in question.options"
         v-on:click="toggleAnswer(option)"
         v-bind:class="{'f-selected': option.selected}"
         v-bind:key="'m' + index"
         v-bind:aria-label="language.ariaMultipleChoice|replace(':letter', getToggleKey(index))"
+        role="option"
       >
         <span class="f-key">{{ getToggleKey(index) }}</span>
         <span class="f-label">{{ option.choiceLabel() }}</span>
@@ -17,6 +18,7 @@
         v-on:click="startEditOther"
         v-bind:class="{'f-selected': question.other, 'f-focus': editingOther}"
         v-bind:aria-label="language.ariaTypeAnswer"
+        role="option"
       >
         <span class="f-key" v-if="!editingOther">{{ getToggleKey(question.options.length) }}</span>
         <input
