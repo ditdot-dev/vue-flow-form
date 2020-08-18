@@ -164,3 +164,5 @@ event to know when the user is in the complete screen and handle the rest manual
   # make changes, test and submit pull request with description of changes
   ```
 * If you think you found a bug, create an issue that thoroughly explains the problem, with clear steps to reproduce.
+
+Made with [Vue.js](https://vuejs.org/)
