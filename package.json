@@ -10,7 +10,6 @@
     "core-js": "^3.6.5",
     "portal-vue": "^2.1.7",
     "vue": "^2.6.11",
-    "vue-currency-input": "^1.18.4",
     "vue-textarea-autosize": "^1.1.1",
     "vue-the-mask": "^0.11.1"
   },
