@@ -8,7 +8,7 @@
 */
 
 :root {
-  --bg-color: #fff;
+  --bg-color: #F9F6FB;
   --main-text-color: #181818;
   --secondary-text-color: #7f8c8d;
   --tertiary-text-color: #f1f1f1;
@@ -20,13 +20,13 @@
   --button-color: var(--main-accent-color);
   --button-hover-color: var(--secondary-accent-color);
   --button-text-color: #fff;
-  --main-form-bg-color: #fff;
-  --secondary-form-bg-color:  #34495e;
+  --main-form-bg-color: #F9F6FB;
+  --secondary-form-bg-color:  #475A6D;
   --form-input-color: var(--main-text-color);
-  --field-key-color: var(--secondary-text-color);
+  --field-key-color: var(--main-accent-color);
   --arrow-color: var(--main-text-color);
   --arrow-hover-color: rgba(0,0,0,0.07);
-  --footer-color: rgba(255,255,255,0.75);
+  --footer-color: rgba(249,246,251,0.75);
   --progress-bar-color: var(--main-text-color);
 }
 
@@ -45,7 +45,7 @@ body {
 
 header{
   background-color: var(--header-color);
-  border-bottom: 3px solid var(--header-border-color);
+  border-bottom: 2px solid var(--header-border-color);
 }
 
 header svg.logo{

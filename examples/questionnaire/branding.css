@@ -181,6 +181,61 @@ p.description,
 }
 
 /*
+  vue.js like theme with green background
+*/
+
+/*
+
+:root {
+  --bg-color: #41B883;
+  --main-text-color: #fff;
+  --secondary-text-color: #CFEDE0;
+  --tertiary-text-color: #67C69C;
+  --main-accent-color: #111;
+}
+
+header{
+  background-color: transparent;
+}
+
+.f-footer .footer-inner-wrap{
+  background-color: transparent;
+}
+
+header svg.logo{
+  fill: var(--main-accent-color);
+}
+
+.v-form textarea,
+.v-form input,
+.v-form select option{
+  color: var(--main-accent-color);;
+}
+
+ul.f-radios li.f-selected, ul.f-radios li:active {
+  border-color: var(--main-text-color);
+  background-color: var(--tertiary-text-color);
+}
+
+.text-alert,
+.f-invalid{
+  color: red
+}
+
+p.text-success{
+  color: yellow;
+}
+
+.f-progress-bar-inner {
+  background-color: var(--main-accent-color);
+}
+.f-progress {
+  opacity: 0.7;
+}
+*/
+
+
+/*
   dark mode styles
 */
 

@@ -6,8 +6,8 @@
 
 ========================================================================== */
 .animate {
-  -webkit-animation-duration: .5s;
-  animation-duration: .5s;
+  -webkit-animation-duration: .4s;
+  animation-duration: .4s;
   -webkit-animation-fill-mode: both;
   animation-fill-mode: both;
 }
@@ -29,7 +29,7 @@
 @keyframes fadeInDown {
   0% {
     opacity: 0;
-    transform: translate3d(0, -14px, 0);
+    transform: translate3d(0, -12px, 0);
   }
 
   100% {
@@ -45,7 +45,7 @@
 @keyframes fadeInLeft {
   0% {
     opacity: 0;
-    transform: translate3d(-14px, 0, 0);
+    transform: translate3d(-12px, 0, 0);
   }
 
   100% {
@@ -61,7 +61,7 @@
 @keyframes fadeInRight {
   0% {
     opacity: 0;
-    transform: translate3d(14px, 0, 0);
+    transform: translate3d(12px, 0, 0);
   }
 
   100% {
@@ -77,7 +77,7 @@
 @keyframes fadeInUp {
   0% {
     opacity: 0;
-    transform: translate3d(0, 14px, 0);
+    transform: translate3d(0, 12px, 0);
   }
 
   100% {
