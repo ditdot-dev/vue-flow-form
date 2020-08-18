@@ -311,6 +311,7 @@
           e.stopPropagation()
 
           this.emitEnter()
+          this.reverse = false
         }
       },
 
