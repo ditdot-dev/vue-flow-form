@@ -10,7 +10,7 @@
           <span class="f-text" v-if="question.question">
             {{ question.question }}&nbsp;
             <!-- Required questions are marked by an asterisk (*) -->
-            <span class="f-required" v-if="question.required" v-bind:aria-label="language.ariaRequired"><span aria-hidden="true">*</span></span>
+            <span class="f-required" v-if="question.required" v-bind:aria-label="language.ariaRequired" role="note"><span aria-hidden="true">*</span></span>
 
             <span v-if="question.inline" class="f-answer">
               <portal-target v-bind:name="'p-inline' + question.id" slim />
@@ -25,9 +25,9 @@
             <span class="f-help" v-if="question.multiple">{{ question.helpText || language.multipleChoiceHelpText }}</span>
           </span>
 
-          <span v-if="!question.inline" class="f-answer full-width">
+          <div v-if="!question.inline" class="f-answer full-width">
             <portal-target v-bind:name="'p-default' + question.id" slim />
-          </span>
+          </div>
         </div>
         <p v-if="question.description" class="description">{{ question.description }}</p>
       </div>
