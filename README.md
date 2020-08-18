@@ -1,7 +1,7 @@
 # Vue Form
 
 <p align="center">
-  <img src="https://www.ditdot.hr/demo/v-form/visuals/v-form-green-rotate-01.png" alt="v-form screenshot">
+  <img src="https://www.ditdot.hr/demo/v-form/visuals/v-form-green-full-rotate-01.png" alt="v-form screenshots">
 </p>
 
 
