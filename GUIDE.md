@@ -165,4 +165,8 @@ event to know when the user is in the complete screen and handle the rest manual
   ```
 * If you think you found a bug, create an issue that thoroughly explains the problem, with clear steps to reproduce.
 
+## Installation & Browser Support:
+
+* [README](https://github.com/ditdot-dev/vue-form/blob/master/README.md)
+
 Made with [Vue.js](https://vuejs.org/)
