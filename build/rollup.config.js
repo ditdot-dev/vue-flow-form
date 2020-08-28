@@ -58,7 +58,7 @@ export default [
         extensions: ['.mjs', '.js', '.json', '.node', '.vue']
       }),
       del({
-        targets: 'dist/vue-flow.umd.css',
+        targets: 'dist/vue-flow-form.umd.css',
         hook: 'writeBundle'
       })
     ]
