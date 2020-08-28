@@ -4,7 +4,7 @@
   <div class="v-form">
     <div class="f-container">
       <div class="form-wrap">
-        <question
+        <flow-form-question
           ref="questions"
           v-for="(q, index) in questionList"
           v-bind:question="q"
@@ -47,7 +47,7 @@
           <div class="f-progress-bar">
             <div class="f-progress-bar-inner" v-bind:style="'width: ' + percentCompleted + '%;'"></div>
           </div>
-          {{ language.percentCompleted|replace(':percent', percentCompleted) }}
+          {{ language.percentCompleted.replace(':percent', percentCompleted) }}
         </div>
         <div class="f-nav">
           <a
@@ -112,34 +112,22 @@
     https://www.ditdot.hr/en
   */
 
-  import Question from './Question'
+  import FlowFormQuestion from './Question.vue'
   import LanguageModel from '../models/LanguageModel'
-  import Vue from 'vue'
-  import VueTextareaAutosize from 'vue-textarea-autosize'
-  import PortalVue from 'portal-vue'
   
   // IE variables ponyfill
   window.cssVars && cssVars()
 
-  // Set up the components we're using
-  Vue.use(VueTextareaAutosize)
-  Vue.use(PortalVue)
-
-  // Add a simple replace filter
-  Vue.filter('replace', function (value, search, replace) {
-    return value.replace(search, replace)
-  })
-
   export default {
-    name: 'Survey',
+    name: 'FlowForm',
     components: {
-      Question
+      FlowFormQuestion
     },
     props: {
       questions: Array,
       language: {
         type: LanguageModel,
-        default: new LanguageModel()
+        default: () => new LanguageModel()
       }
     },
     data() {
@@ -182,11 +170,11 @@
       numCompletedQuestions() {
         let num = 0
 
-        for (let question of this.questionListActivePath) {
+        this.questionListActivePath.forEach(question => {
           if (question.answered) {
             ++num
           }
-        }
+        })
 
         return num
       },

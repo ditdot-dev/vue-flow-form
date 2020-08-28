@@ -5,26 +5,16 @@
 
 // Global data store
 
-import MultipleChoiceType from '../components/QuestionTypes/MultipleChoiceType'
-import TextType from '../components/QuestionTypes/TextType'
-import PhoneType from '../components/QuestionTypes/PhoneType'
-import EmailType from '../components/QuestionTypes/EmailType'
-import LongTextType from '../components/QuestionTypes/LongTextType'
-import UrlType from '../components/QuestionTypes/UrlType'
-import SectionBreakType from '../components/QuestionTypes/SectionBreakType'
-import NumberType from '../components/QuestionTypes/NumberType'
-import DropdownType from '../components/QuestionTypes/DropdownType'
-
 export const QuestionType = {
-  Dropdown: DropdownType.name,
-  MultipleChoice: MultipleChoiceType.name,
-  Text: TextType.name,
-  LongText: LongTextType.name,
-  Email: EmailType.name,
-  Phone: PhoneType.name,
-  Url: UrlType.name,
-  Number: NumberType.name,
-  SectionBreak: SectionBreakType.name
+  Dropdown: 'FlowFormDropdownType',
+  MultipleChoice: 'FlowFormMultipleChoiceType',
+  Text: 'FlowFormTextType',
+  LongText: 'FlowFormLongTextType',
+  Email: 'FlowFormEmailType',
+  Phone: 'FlowFormPhoneType',
+  Url: 'FlowFormUrlType',
+  Number: 'FlowFormNumberType',
+  SectionBreak: 'FlowFormSectionBreakType'
 }
 
 export const DropdownOptionBlank = {
@@ -105,7 +95,7 @@ export default class QuestionModel {
     let nextId = null
 
     if (typeof this.jump === 'function') {
-      nextId = this.jump.call(this, question)
+      nextId = this.jump.call(this)
     } else if (this.jump[this.answer]) {
       nextId = this.jump[this.answer]
     } else if (this.jump['_other']) {

@@ -40,15 +40,17 @@
     https://www.ditdot.hr/en
   */
 
-  import QuestionModel, { QuestionType } from '../../models/QuestionModel'
-  import BaseType from './BaseType'
+  import BaseType from './BaseType.vue'
+  import { QuestionType } from '../../models/QuestionModel'
 
   export default {
     extends: BaseType,
-    name: 'DropdownType',
+    name: QuestionType.Dropdown,
     computed: {
       answerLabel() {
-        for (let option of this.question.options) {
+        for (let i = 0; i < this.question.options.length; i++) {
+          let option = this.question.options[i]
+
           if (option.choiceValue() === this.dataValue) {
             return option.choiceLabel()
           }

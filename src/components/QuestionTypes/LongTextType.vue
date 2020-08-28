@@ -21,13 +21,17 @@
     https://www.ditdot.hr/en
   */
 
-  import QuestionModel, { QuestionType } from '../../models/QuestionModel'
-  import BaseType from './BaseType'
+  import BaseType from './BaseType.vue'
   import LanguageModel from '../../models/LanguageModel'
+  import { QuestionType } from '../../models/QuestionModel'
+  import TextareaAutosize from 'vue-textarea-autosize/src/components/TextareaAutosize'
 
   export default {
     extends: BaseType,
-    name: 'LongTextType', 
+    name: QuestionType.LongText,
+    components: {
+      TextareaAutosize
+    },
     mounted() {
       window.addEventListener('resize', this.onResizeListener)
     },
@@ -35,7 +39,7 @@
       window.removeEventListener('resize', this.onResizeListener)
     },
     methods: {
-      onResizeListener(){
+      onResizeListener() {
         this.$refs.input.resize()
       }
     }

@@ -5,7 +5,12 @@
 </p>
 
 
-## Installation
+## Demo
+
+* [Questionnaire example](https://www.ditdot.hr)
+* [Quiz example](https://www.ditdot.hr)
+
+## Example Project
 
 Requirements:
 
@@ -17,7 +22,7 @@ After checking the prerequisites, follow these simple steps to install and use V
 
 ```shell
 # clone the repo
-$ git clone https://github.com/ditdot-dev/vue-form.git myproject
+$ git clone https://github.com/ditdot-dev/vue-flow-form.git myproject
 
 # go into app's directory and install dependencies:
 $ cd myproject
@@ -49,10 +54,78 @@ $ yarn build
 
 Made with [Vue.js](https://vuejs.org/)
 
+## Usage as npm package
+
+```shell
+npm install vue-flow-form --save
+```
+
+And then in your App.vue file:
+
+```vue
+<template>
+ <flow-form v-bind:questions="questions" />
+</template>
+
+<script>
+  // Import necessary components and classes
+  import FlowForm from 'vue-flow-form/src/components/FlowForm'
+  import QuestionModel, { QuestionType, ChoiceOption } from 'vue-flow-form/src/models/QuestionModel'
+
+  export default {
+    name: 'example',
+    components: {
+      FlowForm
+    },
+    data() {
+      return {
+        questions: [
+          // QuestioModel array
+        ]
+      }
+    }
+  }
+</script>
+```
+
+## JavaScript via CDN
+
+HTML:
+
+```html
+  ...
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.2.6/vue.min.js"></script>
+  <!-- Flow Form -->
+  <script src="https://unpkg.com/vue-flow-form@1.0.0"></script>
+  ...
+```
+
+JavaScript:
+
+```js
+var app = new Vue({
+  el: '#app',
+  data: function() {
+    return {
+      questions: [
+        new FlowForm.default.QuestionModel({
+          question: '...',
+          type: FlowForm.default.QuestionType.MultipleChoice,
+          options: [
+            new FlowForm.default.ChoiceOption({
+              label: '...'
+            })
+          ]
+        })
+      ]
+    }
+  }
+});
+```
 ## Browser Support
 
 Modern browsers and IE11.
 
 ## License
 
-[MIT](https://github.com/ditdot-dev/vue-form/blob/master/LICENSE) license.
+[MIT](https://github.com/ditdot-dev/vue-flow-form/blob/master/LICENSE) license.

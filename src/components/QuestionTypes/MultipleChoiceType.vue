@@ -47,12 +47,12 @@
     https://www.ditdot.hr/en
   */
 
-  import QuestionModel from '../../models/QuestionModel'
-  import BaseType from './BaseType'
+  import BaseType from './BaseType.vue'
+  import { QuestionType } from '../../models/QuestionModel'
 
   export default {
     extends: BaseType,
-    name: 'MultipleChoiceType',
+    name: QuestionType.MultipleChoice,
     data() {
       return {
         editingOther: false

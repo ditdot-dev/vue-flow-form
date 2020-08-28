@@ -18,13 +18,13 @@
     https://www.ditdot.hr/en
   */
 
-  import QuestionModel, { QuestionType } from '../../models/QuestionModel'
-  import BaseType from './BaseType'
+  import BaseType from './BaseType.vue'
+  import { QuestionType } from '../../models/QuestionModel'
   import LanguageModel from '../../models/LanguageModel'
 
   export default {
     extends: BaseType,
-    name: 'TextType',
+    name: QuestionType.Text,
     data() {
       return {
         inputType: 'text'

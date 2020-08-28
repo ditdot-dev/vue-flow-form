@@ -24,7 +24,7 @@
   ```
 * Import necessary components and classes
 * Create question list
-* Add `Survey` component
+* Add `FlowForm` component
   * Add the question list as `questions` prop
   * Add language model as `language` prop (optional)
     * language is defined by creating a new instance of `LanguageModel` and setting its properties
@@ -70,7 +70,7 @@
       }
       ```
   * `required` - is field required or not (true/false - default is false)
-    * turn on/off the `required` asterisk next to the question in vue-form/src/assets/css/common.css:    
+    * turn on/off the `required` asterisk next to the question in vue-flow-form/src/assets/css/common.css:    
 
       ```css
       .f-required {
@@ -102,7 +102,7 @@
       ```
       Object key `_other` will be used when no other keys match the answer. Object value `_submit` will jump to form submit button
 
-## Survey component events:
+## FlowForm component events:
 
 * `complete` - emitted whenever the "completed" status changes, the first parameter is the status, the second is the question list, eg.:    
 
@@ -122,7 +122,7 @@
   }
   ```
 
-## Survey component slots:
+## FlowForm component slots:
 
 * `complete` - Complete/submit screen content 
   * This is the content of your custom complete screen, by default the `thankYouText` language string is used,
@@ -156,7 +156,7 @@ event to know when the user is in the complete screen and handle the rest manual
 
   ```shell
   # clone repo
-  $ git clone https://github.com/ditdot-dev/vue-form.git 
+  $ git clone https://github.com/ditdot-dev/vue-flow-form.git 
   
   # create a new branch
   $ git checkout -b new_branch_name

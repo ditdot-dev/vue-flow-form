@@ -4,12 +4,12 @@
     https://www.ditdot.hr/en
   */
 
-  import QuestionModel from '../../models/QuestionModel'
-  import TextType from './TextType'
+  import TextType from './TextType.vue'
+  import { QuestionType } from '../../models/QuestionModel'
 
   export default {
     extends: TextType,
-    name: 'EmailType',
+    name: QuestionType.Email,
     data() {
       return {
         inputType: 'email'

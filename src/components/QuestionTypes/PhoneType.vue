@@ -19,17 +19,17 @@
     https://www.ditdot.hr/en
   */
 
-  import QuestionModel, { QuestionType } from '../../models/QuestionModel'
-  import BaseType from './BaseType'
+  import BaseType from './BaseType.vue'
   import LanguageModel from '../../models/LanguageModel'
-  import { TheMask } from 'vue-the-mask'
+  import { QuestionType } from '../../models/QuestionModel'
+  import TheMask from 'vue-the-mask/src/component'
   
   export default {
     extends: BaseType,
     components: {
       TheMask
     },
-    name: 'PhoneType',
+    name: QuestionType.Phone,
     data() {
       return {
         inputType: 'tel'

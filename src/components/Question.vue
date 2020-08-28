@@ -13,7 +13,15 @@
             <span class="f-required" v-if="question.required" v-bind:aria-label="language.ariaRequired" role="note"><span aria-hidden="true">*</span></span>
 
             <span v-if="question.inline" class="f-answer">
-              <portal-target v-bind:name="'p-inline' + question.id" slim />
+              <component
+                ref="questionComponent"
+                v-bind:is="question.type"
+                v-bind:question="question"
+                v-bind:language="language"
+                v-model="dataValue"
+                v-bind:active="active"
+                v-on:next="onEnter"
+              />
             </span>
           </span>
 
@@ -26,25 +34,20 @@
           </span>
 
           <div v-if="!question.inline" class="f-answer full-width">
-            <portal-target v-bind:name="'p-default' + question.id" slim />
+            <component
+              ref="questionComponent"
+              v-bind:is="question.type"
+              v-bind:question="question"
+              v-bind:language="language"
+              v-model="dataValue"
+              v-bind:active="active"
+              v-on:next="onEnter"
+            />
           </div>
         </div>
         <p v-if="question.description" class="description">{{ question.description }}</p>
       </div>
 
-      <portal v-bind:to="(question.inline ? 'p-inline' : 'p-default') + question.id">
-        <!-- We use portals to render the question component to the correct location in the DOM -->
-        <component
-          ref="questionComponent"
-          v-bind:is="question.type"
-          v-bind:question="question"
-          v-bind:language="language"
-          v-model="dataValue"
-          v-bind:active="active"
-          v-on:next="onEnter"
-        />
-      </portal>
-      
       <a
         class="animate fade-in-up f-enter"
         ref="button"
@@ -75,28 +78,28 @@
 
   import LanguageModel from '../models/LanguageModel'
   import QuestionModel, { QuestionType } from '../models/QuestionModel'
-  import DropdownType from './QuestionTypes/DropdownType'
-  import EmailType from './QuestionTypes/EmailType'
-  import LongTextType from './QuestionTypes/LongTextType'
-  import MultipleChoiceType from './QuestionTypes/MultipleChoiceType'
-  import NumberType from './QuestionTypes/NumberType'
-  import PhoneType from './QuestionTypes/PhoneType'
-  import SectionBreakType from './QuestionTypes/SectionBreakType'
-  import TextType from './QuestionTypes/TextType'
-  import UrlType from './QuestionTypes/UrlType'
+  import FlowFormDropdownType from './QuestionTypes/DropdownType.vue'
+  import FlowFormEmailType from './QuestionTypes/EmailType.vue'
+  import FlowFormLongTextType from './QuestionTypes/LongTextType.vue'
+  import FlowFormMultipleChoiceType from './QuestionTypes/MultipleChoiceType.vue'
+  import FlowFormNumberType from './QuestionTypes/NumberType.vue'
+  import FlowFormPhoneType from './QuestionTypes/PhoneType.vue'
+  import FlowFormSectionBreakType from './QuestionTypes/SectionBreakType.vue'
+  import FlowFormTextType from './QuestionTypes/TextType.vue'
+  import FlowFormUrlType from './QuestionTypes/UrlType.vue'
 
   export default {
-    name: 'Question',
+    name: 'FlowFormQuestion',
     components: {
-      DropdownType,
-      EmailType,
-      LongTextType,
-      MultipleChoiceType,
-      NumberType,
-      PhoneType,
-      SectionBreakType,
-      TextType,
-      UrlType
+      FlowFormDropdownType,
+      FlowFormEmailType,
+      FlowFormLongTextType,
+      FlowFormMultipleChoiceType,
+      FlowFormNumberType,
+      FlowFormPhoneType,
+      FlowFormSectionBreakType,
+      FlowFormTextType,
+      FlowFormUrlType
     },
     props: {
       question: QuestionModel,
@@ -107,7 +110,7 @@
         default: false
       },
       reverse: {
-        type:Boolean, 
+        type: Boolean,
         default: false
       }
     },

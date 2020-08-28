@@ -4,17 +4,13 @@
     https://www.ditdot.hr/en
   */
 
-  import QuestionModel, { QuestionType } from '../../models/QuestionModel'
-  import TextType from './TextType'
+  import TextType from './TextType.vue'
   import LanguageModel from '../../models/LanguageModel'
-  import { TheMask } from 'vue-the-mask'
+  import { QuestionType } from '../../models/QuestionModel'
 
   export default {
     extends: TextType,
-    components: {
-      TheMask
-    },
-    name: 'NumberType',
+    name: QuestionType.Number,
     data() {
       return {
         inputType: 'tel',

@@ -1,21 +1,75 @@
 {
-  "name": "v-form",
-  "version": "0.1.0",
-  "private": true,
+  "name": "vue-flow-form",
+  "author": "DITDOT",
+  "description": "Create conversational conditional-logic forms with Vue.js.",
+  "version": "1.0.0",
+  "private": false,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ditdot-dev/vue-flow-form.git"
+  },
+  "keywords": [
+    "vue",
+    "vue2",
+    "vuejs",
+    "forms",
+    "survey-form",
+    "questionnaire",
+    "quiz",
+    "typeform",
+    "form-generator",
+    "vue-component",
+    "conversational-ui"
+  ],
+  "license": "MIT",
+  "homepage": "",
+  "main": "dist/vue-flow-form.umd.js",
+  "module": "dist/vue-flow-form.esm.js",
+  "browser": "dist/vue-flow-form.common.js",
+  "jsdelivr": "dist/vue-flow-form.umd.min.js",
+  "unpkg": "dist/vue-flow-form.umd.min.js",
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build"
+    "build": "vue-cli-service build",
+    "build:npm": "rollup --config build/rollup.config.js"
+  },
+  "eslintConfig": {
+    "root": true,
+    "extends": [
+      "plugin:vue/essential"
+    ],
+    "rules": {
+      "no-unused-vars": "off"
+    }
   },
   "dependencies": {
-    "core-js": "^3.6.5",
-    "portal-vue": "^2.1.7",
-    "vue": "^2.6.11",
     "vue-textarea-autosize": "^1.1.1",
     "vue-the-mask": "^0.11.1"
   },
   "devDependencies": {
+    "@rollup/plugin-alias": "^3.1.1",
+    "@rollup/plugin-buble": "^0.21.3",
+    "@rollup/plugin-commonjs": "^11.1.0",
+    "@rollup/plugin-node-resolve": "^9.0.0",
     "@vue/cli-plugin-babel": "^4.4.1",
     "@vue/cli-service": "^4.4.1",
+    "babel-helper-vue-jsx-merge-props": "^2.0.2",
+    "babel-plugin-syntax-jsx": "^6.18.0",
+    "babel-plugin-transform-vue-jsx": "^3.3.0",
+    "postcss-import": "^12.0.1",
+    "prettier-eslint": "^8.8.2",
+    "rollup": "^1.17.0",
+    "rollup-plugin-cleanup": "^3.1.1",
+    "rollup-plugin-copy": "^3.3.0",
+    "rollup-plugin-css-only": "^2.1.0",
+    "rollup-plugin-delete": "^2.0.0",
+    "rollup-plugin-postcss": "^3.1.6",
+    "rollup-plugin-terser": "^7.0.0",
+    "rollup-plugin-vue": "^5.0.1",
+    "vue": "^2.6.11",
     "vue-template-compiler": "^2.6.11"
   }
 }

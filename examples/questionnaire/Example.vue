@@ -14,14 +14,14 @@
       </div>
     </header>
 
-    <survey
-      ref="survey"
+    <flow-form
+      ref="flowform"
       v-on:complete="onComplete"
       v-on:submit="onSubmit"
       v-bind:questions="questions"
       v-bind:language="language"
     >
-    <!-- Custom content for the Complete/Submit screen slots in the Survey component -->
+    <!-- Custom content for the Complete/Submit screen slots in the FlowForm component -->
       <!-- We've overriden the default "complete" slot content -->
      <template v-slot:complete>
         <div class="section-wrap">
@@ -54,7 +54,7 @@
 
         <p class="text-success" v-if="submitted">Submitted succesfully.</p>
       </template>
-    </survey>
+    </flow-form>
   </div>
 </template>
 
@@ -65,14 +65,14 @@
   */
 
   // Import necessary components and classes
-  import Survey from '../../src/components/Survey.vue'
+  import FlowForm from '../../src/components/FlowForm.vue'
   import QuestionModel, { QuestionType, ChoiceOption } from '../../src/models/QuestionModel'
   import LanguageModel from '../../src/models/LanguageModel'
 
   export default {
     name: 'example',
     components: {
-      Survey
+      FlowForm
     },
     data() {
       return {
@@ -237,7 +237,7 @@
         if ($event.key === 'Enter' && this.completed && !this.submitted) {
           // Set `submitted` to true so the form knows not to allow back/forward
           // navigation anymore.
-          this.$refs.survey.submitted = true
+          this.$refs.flowform.submitted = true
           this.onSendData()
         }
       },

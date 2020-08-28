@@ -1,7 +1,5 @@
 // Used as the basis and extended by other Question Type components
 
-<template></template>
-
 <script>
   /*
     Copyright (c) 2020 - present, DITDOT Ltd. - MIT Licence
@@ -12,7 +10,7 @@
   import LanguageModel from '../../models/LanguageModel'
 
   export default {
-    name: 'BaseType',
+    name: 'FlowFormBaseType',
     props: {
       language: LanguageModel,
       question: QuestionModel,

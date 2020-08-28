@@ -15,14 +15,14 @@
       </div>
     </header>
 
-    <survey
-      ref="survey"
+    <flow-form
+      ref="flowform"
       v-on:complete="onComplete"
       v-on:submit="onQuizSubmit"
       v-bind:questions="questions"
       v-bind:language="language"
     >
-    <!-- Custom content for the Complete/Submit screen slots in the Survey component -->
+    <!-- Custom content for the Complete/Submit screen slots in the FlowForm component -->
       <!-- We've overriden the default "complete" slot content -->
       <template v-slot:complete>
         <p>
@@ -52,7 +52,7 @@
         <p class="text-success" v-else-if="submitted && score < 7">"You scored {{ score }} out of {{ total }}. Not bad at all!"</p>
         <p class="text-success" v-else-if="submitted && score <= total">"You scored {{ score }} out of {{ total }}. Wow, that's impressive!"</p>
       </template>
-    </survey>
+    </flow-form>
   </div>
 </template>
 
@@ -63,14 +63,14 @@
   */
 
   // Import necessary components and classes
-  import Survey from '../../src/components/Survey.vue'
+  import FlowForm from '../../src/components/FlowForm.vue'
   import QuestionModel, { QuestionType, ChoiceOption} from '../../src/models/QuestionModel'
   import LanguageModel from '../../src/models/LanguageModel'
 
   export default {
     name: 'example',
     components: {
-      Survey
+      FlowForm
     },
     data() {
       return {
