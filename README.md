@@ -97,6 +97,10 @@ HTML:
   <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.2.6/vue.min.js"></script>
   <!-- Flow Form -->
   <script src="https://unpkg.com/vue-flow-form@1.0.0"></script>
+  <!-- Flow Form base CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/vue-flow-form@1.0.0/vue-flow-form.min.css">
+  <!-- Optional theme.css -->
+  <link rel="stylesheet" href="https://unpkg.com/vue-flow-form@1.0.0/vue-flow-form.theme.css">
   ...
 ```
 
@@ -128,7 +132,7 @@ Modern browsers and IE11.
 
 ## Project Documentation
 
-[Guide](https://github.com/ditdot-dev/vue-form/blob/master/GUIDE.md)
+[Guide](https://github.com/ditdot-dev/vue-flow-form/blob/master/GUIDE.md)
 
 ## License
 
