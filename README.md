@@ -126,6 +126,10 @@ var app = new Vue({
 
 Modern browsers and IE11.
 
+## Project Documentation
+
+[Guide](https://github.com/ditdot-dev/vue-form/blob/master/GUIDE.md)
+
 ## License
 
 [MIT](https://github.com/ditdot-dev/vue-flow-form/blob/master/LICENSE) license.
