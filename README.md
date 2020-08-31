@@ -96,11 +96,11 @@ HTML:
   ...
   <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.2.6/vue.min.js"></script>
   <!-- Flow Form -->
-  <script src="https://unpkg.com/vue-flow-form@1.0.0"></script>
+  <script src="https://unpkg.com/@ditdot-dev/vue-flow-form"></script>
   <!-- Flow Form base CSS -->
-  <link rel="stylesheet" href="https://unpkg.com/vue-flow-form@1.0.0/vue-flow-form.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/@ditdot-dev/vue-flow-form/dist/vue-flow-form.min.css">
   <!-- Optional theme.css -->
-  <link rel="stylesheet" href="https://unpkg.com/vue-flow-form@1.0.0/vue-flow-form.theme.css">
+  <link rel="stylesheet" href="https://unpkg.com/@ditdot-dev/vue-flow-form/dist/vue-flow-form.theme.css">
   ...
 ```
 
