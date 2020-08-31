@@ -1,5 +1,5 @@
 {
-  "name": "vue-flow-form",
+  "name": "@ditdot-dev/vue-flow-form",
   "author": "DITDOT",
   "description": "Create conversational conditional-logic forms with Vue.js.",
   "version": "1.0.0",
@@ -22,7 +22,7 @@
     "conversational-ui"
   ],
   "license": "MIT",
-  "homepage": "",
+  "homepage": "https://www.ditdot.hr/en",
   "main": "dist/vue-flow-form.umd.js",
   "module": "dist/vue-flow-form.esm.js",
   "browser": "dist/vue-flow-form.common.js",
