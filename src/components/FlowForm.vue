@@ -115,8 +115,6 @@
   import FlowFormQuestion from './Question.vue'
   import LanguageModel from '../models/LanguageModel'
   
-  // IE variables ponyfill
-  window.cssVars && cssVars()
 
   export default {
     name: 'FlowForm',
