@@ -1,10 +1,10 @@
 # Vue Flow Form
 
+Create conversational conditional-logic forms with Vue.js.
+
 <p align="center">
   <img src="https://www.ditdot.hr/demo/vff/visuals/v-form-green-full-rotate-02.png" alt="v-form screenshots">
 </p>
-
-Create conversational conditional-logic forms with Vue.js.
 
 ## Demo
 
