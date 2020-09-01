@@ -1,9 +1,8 @@
-# Vue Form
+# Vue Flow Form
 
 <p align="center">
   <img src="https://www.ditdot.hr/demo/v-form/visuals/v-form-green-full-rotate-01.png" alt="v-form screenshots">
 </p>
-
 
 ## Demo
 
@@ -57,14 +56,14 @@ Made with [Vue.js](https://vuejs.org/)
 ## Usage as npm package
 
 ```shell
-npm install vue-flow-form --save
+npm install @ditdot-dev/vue-flow-form --save
 ```
 
 And then in your App.vue file:
 
 ```vue
 <template>
- <flow-form v-bind:questions="questions" />
+  <flow-form v-bind:questions="questions" />
 </template>
 
 <script>
@@ -81,6 +80,15 @@ And then in your App.vue file:
       return {
         questions: [
           // QuestioModel array
+          new QuestionModel({
+            question: '...',
+            type: QuestionType.MultipleChoice,
+            options: [
+              new ChoiceOption({
+                label: '...'
+              })
+            ]
+          })
         ]
       }
     }
@@ -93,15 +101,22 @@ And then in your App.vue file:
 HTML:
 
 ```html
-  ...
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.2.6/vue.min.js"></script>
-  <!-- Flow Form -->
-  <script src="https://unpkg.com/@ditdot-dev/vue-flow-form"></script>
-  <!-- Flow Form base CSS -->
-  <link rel="stylesheet" href="https://unpkg.com/@ditdot-dev/vue-flow-form/dist/vue-flow-form.min.css">
-  <!-- Optional theme.css -->
-  <link rel="stylesheet" href="https://unpkg.com/@ditdot-dev/vue-flow-form/dist/vue-flow-form.theme.css">
-  ...
+<html>
+  <head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.2.6/vue.min.js"></script>
+    <!-- Flow Form -->
+    <script src="https://unpkg.com/@ditdot-dev/vue-flow-form"></script>
+    <!-- Flow Form base CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/@ditdot-dev/vue-flow-form/dist/vue-flow-form.min.css">
+    <!-- Optional theme.css -->
+    <link rel="stylesheet" href="https://unpkg.com/@ditdot-dev/vue-flow-form/dist/vue-flow-form.theme.css">
+  </head>
+  <body>
+    <div id="app">
+      <flow-form v-bind:questions="questions" />
+    </div>
+  </body>
+</html>
 ```
 
 JavaScript:
