@@ -55,6 +55,23 @@ Made with [Vue.js](https://vuejs.org/)
 
 ## Usage as npm package
 
+If you don't already have an existing Vue project, the easiest way to create one is to use [Vue CLI](https://cli.vuejs.org/):
+
+```shell
+$ npm install -g @vue/cli
+# OR
+$ yarn global add @vue/cli
+```
+
+And then create a project:
+
+```shell
+$ vue create my-project
+$ cd my-project
+```
+
+To add Vue Flow Form as a dependency to your Vue project, use the following:
+
 ```shell
 npm install @ditdot-dev/vue-flow-form --save
 ```
