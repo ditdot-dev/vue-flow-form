@@ -169,7 +169,7 @@ Modern browsers and IE11.
 
 ## Project Documentation
 
-[Guide](https://github.com/ditdot-dev/vue-flow-form/blob/master/GUIDE.md)
+[Guide](https://www.ditdot.hr/en/docs/vue-flow-form-guide)
 
 ## License
 
