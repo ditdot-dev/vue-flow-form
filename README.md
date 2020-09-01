@@ -1,13 +1,13 @@
 # Vue Flow Form
 
 <p align="center">
-  <img src="https://www.ditdot.hr/demo/v-form/visuals/v-form-green-full-rotate-01.png" alt="v-form screenshots">
+  <img src="https://www.ditdot.hr/demo/vff/visuals/v-form-green-full-rotate-02.png" alt="v-form screenshots">
 </p>
 
 ## Demo
 
-* [Questionnaire example](https://www.ditdot.hr)
-* [Quiz example](https://www.ditdot.hr)
+* [Questionnaire example](https://www.ditdot.hr/demo/vff/questionnaire/)
+* [Quiz example](https://www.ditdot.hr/demo/vff/quiz/)
 
 ## Example Project
 
