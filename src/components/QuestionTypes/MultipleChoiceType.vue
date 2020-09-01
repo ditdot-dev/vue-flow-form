@@ -6,7 +6,7 @@
         v-on:click="toggleAnswer(option)"
         v-bind:class="{'f-selected': option.selected}"
         v-bind:key="'m' + index"
-        v-bind:aria-label="language.ariaMultipleChoice|replace(':letter', getToggleKey(index))"
+        v-bind:aria-label="getLabel(index)"
         role="option"
       >
         <span class="f-key">{{ getToggleKey(index) }}</span>
@@ -114,6 +114,10 @@
             }
           }
         }
+      },
+
+      getLabel(index) {
+        return this.language.ariaMultipleChoice.replace(':letter', this.getToggleKey(index))
       },
 
       getToggleKey(index) {

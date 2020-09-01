@@ -26,8 +26,9 @@ if (GlobalVue) {
 }
 
 // To allow use as module (npm/webpack/etc.) export component
-export default {
-  FlowForm,
+export default FlowForm
+
+export {
   QuestionModel,
   QuestionType,
   ChoiceOption

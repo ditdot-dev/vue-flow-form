@@ -85,8 +85,7 @@ And then in your App.vue file:
 
 <script>
   // Import necessary components and classes
-  import FlowForm from 'vue-flow-form/src/components/FlowForm'
-  import QuestionModel, { QuestionType, ChoiceOption } from 'vue-flow-form/src/models/QuestionModel'
+  import FlowForm, { QuestionModel, QuestionType, ChoiceOption } from '@ditdot-dev/vue-flow-form'
 
   export default {
     name: 'example',
@@ -111,6 +110,12 @@ And then in your App.vue file:
     }
   }
 </script>
+<style>
+  /* Import Vue Flow Form base CSS */
+  @import '~@ditdot-dev/vue-flow-form/dist/vue-flow-form.css';
+  /* Import Vue Flow Form theme CSS (optional) */
+  @import '~@ditdot-dev/vue-flow-form/dist/vue-flow-form.theme.css';
+</style>
 ```
 
 ## JavaScript via CDN
@@ -144,11 +149,11 @@ var app = new Vue({
   data: function() {
     return {
       questions: [
-        new FlowForm.default.QuestionModel({
+        new FlowForm.QuestionModel({
           question: '...',
-          type: FlowForm.default.QuestionType.MultipleChoice,
+          type: FlowForm.QuestionType.MultipleChoice,
           options: [
-            new FlowForm.default.ChoiceOption({
+            new FlowForm.ChoiceOption({
               label: '...'
             })
           ]
