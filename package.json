@@ -2,7 +2,7 @@
   "name": "@ditdot-dev/vue-flow-form",
   "author": "DITDOT",
   "description": "Create conversational conditional-logic forms with Vue.js.",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "private": false,
   "repository": {
     "type": "git",
@@ -22,7 +22,10 @@
     "conversational-ui"
   ],
   "license": "MIT",
-  "homepage": "https://www.ditdot.hr/en",
+  "homepage": "https://www.ditdot.hr/en/docs/vue-flow-form-guide",
+  "bugs": {
+    "url": "https://github.com/ditdot-dev/vue-flow-form/issues"
+  },
   "main": "dist/vue-flow-form.umd.js",
   "module": "dist/vue-flow-form.esm.js",
   "browser": "dist/vue-flow-form.common.js",

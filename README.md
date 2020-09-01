@@ -4,6 +4,8 @@
   <img src="https://www.ditdot.hr/demo/vff/visuals/v-form-green-full-rotate-02.png" alt="v-form screenshots">
 </p>
 
+Create conversational conditional-logic forms with Vue.js.
+
 ## Demo
 
 * [Questionnaire example](https://www.ditdot.hr/demo/vff/questionnaire/)
@@ -78,7 +80,7 @@ npm install @ditdot-dev/vue-flow-form --save
 
 And then in your App.vue file:
 
-```vue
+```html
 <template>
   <flow-form v-bind:questions="questions" />
 </template>
@@ -110,6 +112,7 @@ And then in your App.vue file:
     }
   }
 </script>
+
 <style>
   /* Import Vue Flow Form base CSS */
   @import '~@ditdot-dev/vue-flow-form/dist/vue-flow-form.css';
