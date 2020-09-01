@@ -53,7 +53,7 @@
         ref="button"
         href="#"
         v-if="showOkButton()"
-        v-on:click="onEnter"
+        v-on:click.prevent="onEnter"
         role ="button"
         v-bind:aria-label="language.ariaOk"
       >

@@ -3,7 +3,7 @@
     <ul class="f-radios" v-bind:class="{'f-multiple': question.multiple}" role="listbox">
       <li
         v-for="(option, index) in question.options"
-        v-on:click="toggleAnswer(option)"
+        v-on:click.prevent="toggleAnswer(option)"
         v-bind:class="{'f-selected': option.selected}"
         v-bind:key="'m' + index"
         v-bind:aria-label="getLabel(index)"
@@ -15,7 +15,7 @@
       <li
         class="f-other"
         v-if="question.allowOther"
-        v-on:click="startEditOther"
+        v-on:click.prevent="startEditOther"
         v-bind:class="{'f-selected': question.other, 'f-focus': editingOther}"
         v-bind:aria-label="language.ariaTypeAnswer"
         role="option"

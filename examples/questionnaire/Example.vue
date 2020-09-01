@@ -40,7 +40,7 @@
         <a
           ref="button"
           href="#"
-          v-on:click="onSendData()"
+          v-on:click.prevent="onSendData()"
           v-if="!submitted"
           role="button"
           aria-label="Press to submit"

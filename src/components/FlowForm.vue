@@ -29,7 +29,7 @@
 
           <slot name="completeButton">
             <!-- Default content for the "completeButton" slot -->
-            <a ref="button" href="#" v-on:click="submit()" v-if="!submitted" role="button" v-bind:aria-label="language.ariaSubmitText">
+            <a ref="button" href="#" v-on:click.prevent="submit()" v-if="!submitted" role="button" v-bind:aria-label="language.ariaSubmitText">
               <div class="o-btn-action">
                 <span>{{ language.submitText }}</span>
               </div>
@@ -114,7 +114,6 @@
 
   import FlowFormQuestion from './Question.vue'
   import LanguageModel from '../models/LanguageModel'
-  
 
   export default {
     name: 'FlowForm',

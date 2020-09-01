@@ -38,7 +38,7 @@
         <a
           ref="button"
           href="#"
-          v-on:click="onQuizSubmit()"
+          v-on:click.prevent="onQuizSubmit()"
           v-if="!submitted"
         >
           <div class="o-btn-action">
