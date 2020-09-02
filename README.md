@@ -65,7 +65,7 @@ $ npm install -g @vue/cli
 $ yarn global add @vue/cli
 ```
 
-And then create a project:
+And then create a project  (refer to [Vue CLI documentation](https://cli.vuejs.org/guide/) and [issue tracker](https://github.com/vuejs/vue-cli/issues) for potential problems on Windows):
 
 ```shell
 $ vue create my-project
@@ -75,7 +75,7 @@ $ cd my-project
 To add Vue Flow Form as a dependency to your Vue project, use the following:
 
 ```shell
-npm install @ditdot-dev/vue-flow-form --save
+$ npm install @ditdot-dev/vue-flow-form --save
 ```
 
 And then in your App.vue file:
@@ -99,11 +99,11 @@ And then in your App.vue file:
         questions: [
           // QuestioModel array
           new QuestionModel({
-            question: '...',
+            question: 'Question',
             type: QuestionType.MultipleChoice,
             options: [
               new ChoiceOption({
-                label: '...'
+                label: 'Answer'
               })
             ]
           })
@@ -121,7 +121,7 @@ And then in your App.vue file:
 </style>
 ```
 
-## JavaScript via CDN
+## Usage with plain JavaScript via CDN
 
 HTML:
 
@@ -140,11 +140,12 @@ HTML:
     <div id="app">
       <flow-form v-bind:questions="questions" />
     </div>
+    <script src="app.js"></script>
   </body>
 </html>
 ```
 
-JavaScript:
+JavaScript (content of app.js):
 
 ```js
 var app = new Vue({
@@ -153,11 +154,11 @@ var app = new Vue({
     return {
       questions: [
         new FlowForm.QuestionModel({
-          question: '...',
+          question: 'Question',
           type: FlowForm.QuestionType.MultipleChoice,
           options: [
             new FlowForm.ChoiceOption({
-              label: '...'
+              label: 'Answer'
             })
           ]
         })
