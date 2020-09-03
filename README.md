@@ -82,12 +82,12 @@ And then in your App.vue file:
 
 ```html
 <template>
-  <flow-form v-bind:questions="questions" />
+  <flow-form v-bind:questions="questions" v-bind:language="language" />
 </template>
 
 <script>
   // Import necessary components and classes
-  import FlowForm, { QuestionModel, QuestionType, ChoiceOption } from '@ditdot-dev/vue-flow-form'
+  import FlowForm, { QuestionModel, QuestionType, ChoiceOption, LanguageModel } from '@ditdot-dev/vue-flow-form'
 
   export default {
     name: 'example',
@@ -96,6 +96,10 @@ And then in your App.vue file:
     },
     data() {
       return {
+        language: new LanguageModel({
+          // Your language definitions here (optional).
+          // You can leave out this prop if you want to use the default definitions.
+        }),
         questions: [
           // QuestioModel array
           new QuestionModel({
@@ -138,7 +142,7 @@ HTML:
   </head>
   <body>
     <div id="app">
-      <flow-form v-bind:questions="questions" />
+      <flow-form v-bind:questions="questions" v-bind:language="language" />
     </div>
     <script src="app.js"></script>
   </body>
@@ -152,6 +156,10 @@ var app = new Vue({
   el: '#app',
   data: function() {
     return {
+      language: new FlowForm.LanguageModel({
+        // Your language definitions here (optional).
+        // You can leave out this prop if you want to use the default definitions.
+      }),
       questions: [
         new FlowForm.QuestionModel({
           question: 'Question',

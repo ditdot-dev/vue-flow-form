@@ -1,6 +1,7 @@
 // Import vue component
 import FlowForm from './components/FlowForm.vue'
 import QuestionModel, { QuestionType, ChoiceOption } from './models/QuestionModel'
+import LanguageModel from './models/LanguageModel'
 
 // Declare install function executed by Vue.use()
 export function install(Vue) {
@@ -31,5 +32,6 @@ export default FlowForm
 export {
   QuestionModel,
   QuestionType,
-  ChoiceOption
+  ChoiceOption,
+  LanguageModel
 }
