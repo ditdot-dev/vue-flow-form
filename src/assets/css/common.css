@@ -606,6 +606,7 @@ a.f-disabled {
   .v-form input[type=tel],
   .v-form input[type=email],
   .v-form input[type=url],
+  .v-form input[type=password],
   .v-form textarea {
     font-size: 1.2rem;
     line-height: 1.3;
