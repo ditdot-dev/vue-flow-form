@@ -225,6 +225,7 @@ span.faux-form {
 .v-form input[type=tel],
 .v-form input[type=email],
 .v-form input[type=url],
+.v-form input[type=password],
 .v-form textarea {
   -webkit-appearance: none;
   -moz-appearance: none;
@@ -257,6 +258,7 @@ span.faux-form {
 .v-form .full-width input[type=tel],
 .v-form .full-width input[type=email],
 .v-form .full-width input[type=url],
+.v-form .full-width input[type=password],
 .v-form .full-width textarea,
 .v-form .full-width span.faux-form{
   width: 100%;

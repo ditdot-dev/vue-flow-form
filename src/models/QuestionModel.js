@@ -7,14 +7,15 @@
 
 export const QuestionType = {
   Dropdown: 'FlowFormDropdownType',
-  MultipleChoice: 'FlowFormMultipleChoiceType',
-  Text: 'FlowFormTextType',
-  LongText: 'FlowFormLongTextType',
   Email: 'FlowFormEmailType',
-  Phone: 'FlowFormPhoneType',
-  Url: 'FlowFormUrlType',
+  LongText: 'FlowFormLongTextType',
+  MultipleChoice: 'FlowFormMultipleChoiceType',
   Number: 'FlowFormNumberType',
-  SectionBreak: 'FlowFormSectionBreakType'
+  Password: 'FlowFormPasswordType',
+  Phone: 'FlowFormPhoneType',
+  SectionBreak: 'FlowFormSectionBreakType',
+  Text: 'FlowFormTextType',
+  Url: 'FlowFormUrlType'
 }
 
 export const DropdownOptionBlank = {

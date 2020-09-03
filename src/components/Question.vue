@@ -83,6 +83,7 @@
   import FlowFormLongTextType from './QuestionTypes/LongTextType.vue'
   import FlowFormMultipleChoiceType from './QuestionTypes/MultipleChoiceType.vue'
   import FlowFormNumberType from './QuestionTypes/NumberType.vue'
+  import FlowFormPasswordType from './QuestionTypes/PasswordType.vue'
   import FlowFormPhoneType from './QuestionTypes/PhoneType.vue'
   import FlowFormSectionBreakType from './QuestionTypes/SectionBreakType.vue'
   import FlowFormTextType from './QuestionTypes/TextType.vue'
@@ -96,6 +97,7 @@
       FlowFormLongTextType,
       FlowFormMultipleChoiceType,
       FlowFormNumberType,
+      FlowFormPasswordType,
       FlowFormPhoneType,
       FlowFormSectionBreakType,
       FlowFormTextType,
