@@ -1,13 +1,18 @@
 /*
-  basic theme color and font styles
+    Copyright (c) 2020 - present, DITDOT Ltd. - MIT Licence
+    https://www.ditdot.hr/en
+*/
+
+/*
+  simple vue.js like theme with green background
 */
 
 :root {
-  --bg-color: #fff;
-  --main-text-color: #181818;
-  --secondary-text-color: #999;
-  --tertiary-text-color: #f1f1f1;
-  --main-accent-color: #0DBC79;
+  --bg-color: #41B883;
+  --main-text-color: #fff;
+  --secondary-text-color: #B2E2CD;
+  --tertiary-text-color: #67C69C;
+  --main-accent-color: #111;
   --secondary-accent-color: #BBEBD5;
 }
 
@@ -24,12 +29,24 @@ body {
   color: var(--main-text-color);
 }
 
-header{
-  background-color: var(--secondary-accent-color);
+/*header*/
+header {
+  background-color: transparent;
 }
 
-header svg.logo{
-  fill: rgba(0,0,0,0.9);
+header svg.logo {
+  fill: var(--main-accent-color);
+}
+
+/* footer */
+.f-footer .footer-inner-wrap {
+  background-color: transparent;
+}
+
+.v-form textarea,
+.v-form input,
+.v-form select option {
+  color: var(--main-accent-color);
 }
 
 .v-form input[type=text],
@@ -40,12 +57,6 @@ header svg.logo{
 .v-form textarea,
 .v-form span.faux-form {
   border-bottom-color: var(--secondary-text-color);
-}
-
-.v-form textarea,
-.v-form input,
-.v-form select option {
-  color: var(--main-text-color);
 }
 
 a,
@@ -83,14 +94,13 @@ ul.f-radios li {
   border: 1px solid var(--secondary-text-color);
 }
 
-ul.f-radios li.f-selected,
-ul.f-radios li:active {
-  border-color: var(--main-text-color);
-  background-color: var(--tertiary-text-color);
-}
-
 ul.f-radios li.f-other.f-selected input {
   color: inherit;
+}
+
+ul.f-radios li.f-selected, ul.f-radios li:active {
+  border-color: var(--main-text-color);
+  background-color: var(--tertiary-text-color);
 }
 
 .f-key{
@@ -122,18 +132,7 @@ span.f-answered{
   opacity: .9;
 }
 
-/*footer*/
-.f-footer .footer-inner-wrap{
-  background-color: rgba(255,255,255,0.75);
-}
-
-@media screen and (max-width:479px) {
-  .f-footer .footer-inner-wrap{
-    background-color: rgba(0,0,0,0.05);
-  }
-
-}
-
+/* progress bar */
 .f-footer .f-prev svg,
 .f-footer .f-next svg {
   fill: var(--main-text-color);
@@ -145,7 +144,6 @@ span.f-answered{
 
 .f-progress-bar {
   background-color: var(--secondary-text-color);
-  filter: brightness(1.2);
 }
 
 .f-progress-bar-inner {
@@ -157,22 +155,21 @@ span.f-answered{
   background-color: rgba(0,0,0,0.07);
 }
 
-/*alerts*/
-.text-alert,
-.f-invalid{
-  color: #F5554A;
-}
-
-.text-success{
-  color: #4CAF50;
-}
-
 /*text-muted*/
 span.f-title,
 span.f-sub,
 p.description,
 .text-muted {
   color: var(--secondary-text-color);
+}
+
+.text-alert,
+.f-invalid {
+  color: red
+}
+
+p.text-success {
+  color: yellow;
 }
 
 /*
