@@ -68,6 +68,8 @@
   import FlowForm from '../../src/components/FlowForm.vue'
   import QuestionModel, { QuestionType, ChoiceOption } from '../../src/models/QuestionModel'
   import LanguageModel from '../../src/models/LanguageModel'
+  // If using the npm package, use the following line instead of the ones above.
+  // import FlowForm, { QuestionModel, QuestionType, ChoiceOption, LanguageModel } from '@ditdot-dev/vue-flow-form'
 
   export default {
     name: 'example',
@@ -155,6 +157,7 @@
           }),
           new QuestionModel({
             id: 'break_1',
+            /* eslint-disable-next-line no-unused-vars */
             content(h) {
               return <span>
                 <span class="fh2">Awesome, thank you. 🙏</span>
@@ -188,6 +191,7 @@
           }),
            new QuestionModel({
             id: 'path_a',
+            /* eslint-disable-next-line no-unused-vars */
             content(h) {
               return <span>
                 <span class="fh2">Excellent choice! 🥳</span>
@@ -242,11 +246,13 @@
         }
       },
 
+      /* eslint-disable-next-line no-unused-vars */
       onComplete(completed, questionList) {
         // This method is called whenever the "completed" status is changed.
         this.completed = completed
       },
 
+      /* eslint-disable-next-line no-unused-vars */
       onSubmit(questionList) {
         // This method will only be called if you don't override the
         // completeButton slot.
@@ -256,6 +262,7 @@
       onSendData() {
         this.submitted = true
 
+        /* eslint-disable-next-line no-unused-vars */
         const data = this.getData()
         /*
           You can use Fetch API to send the data to your server, eg.:
@@ -296,4 +303,7 @@
 
 <style lang="css">
   @import './branding.css';
+  /* If using the npm package, use the following lines instead of the one above */
+  /* @import '~@ditdot-dev/vue-flow-form/dist/vue-flow-form.css'; */
+  /* @import '~@ditdot-dev/vue-flow-form/dist/vue-flow-form.theme.css'; */
 </style>
