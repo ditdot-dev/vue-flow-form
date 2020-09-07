@@ -3,27 +3,30 @@
 <template>
   <div class="animate q-form" v-bind:class="mainClasses">
     <div class="q-inner" ref="qinner">
-      <div v-bind:class="{'section-wrap':question.type === QuestionType.SectionBreak}">
+      <div v-bind:class="{'section-wrap': question.type === QuestionType.SectionBreak}">
         <div v-bind:class="{'fh2': question.type !== QuestionType.SectionBreak}">
-          <span class="f-title" v-if="question.title">{{ question.title }}</span>
+          <span class="f-title" v-if="question.tagline">{{ question.tagline }}</span>
 
-          <span class="f-text" v-if="question.question">
-            {{ question.question }}&nbsp;
-            <!-- Required questions are marked by an asterisk (*) -->
-            <span class="f-required" v-if="question.required" v-bind:aria-label="language.ariaRequired" role="note"><span aria-hidden="true">*</span></span>
+          <template v-if="question.title">
+            <span class="fh2" v-if="question.type === QuestionType.SectionBreak">{{ question.title }}</span>
+            <span class="f-text" v-else>
+              {{ question.title }}&nbsp;
+              <!-- Required questions are marked by an asterisk (*) -->
+              <span class="f-required" v-if="question.required" v-bind:aria-label="language.ariaRequired" role="note"><span aria-hidden="true">*</span></span>
 
-            <span v-if="question.inline" class="f-answer">
-              <component
-                ref="questionComponent"
-                v-bind:is="question.type"
-                v-bind:question="question"
-                v-bind:language="language"
-                v-model="dataValue"
-                v-bind:active="active"
-                v-on:next="onEnter"
-              />
+              <span v-if="question.inline" class="f-answer">
+                <component
+                  ref="questionComponent"
+                  v-bind:is="question.type"
+                  v-bind:question="question"
+                  v-bind:language="language"
+                  v-model="dataValue"
+                  v-bind:active="active"
+                  v-on:next="onEnter"
+                />
+              </span>
             </span>
-          </span>
+          </template>
 
           <span class="f-sub" v-if="question.subtitle || question.type === QuestionType.LongText || question.multiple">
             <span v-if="question.subtitle">{{ question.subtitle }}</span>
@@ -196,7 +199,7 @@
           'fade-in-up': !this.reverse
         }
 
-        classes['field-' + this.question.type.toLowerCase()] = true
+        classes['field-' + this.question.type.toLowerCase().substring(8)] = true
 
         return classes
       }

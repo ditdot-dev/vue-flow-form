@@ -49,7 +49,6 @@ export class ChoiceOption {
 export default class QuestionModel {
   constructor(options) {
     this.id = null
-    this.question = ''
     this.answer = ''
     this.answered = false
     this.index = 0
@@ -66,6 +65,7 @@ export default class QuestionModel {
     this.allowOther = false
     this.other = null
     this.language = null
+    this.tagline = null
     this.title = null
     this.subtitle = null
     this.content = null

@@ -274,7 +274,7 @@ span.faux-form {
   margin-top: 28px;
 }
 
-span.f-sub + .f-answer.full-width{
+span.f-sub + .f-answer.full-width, div.field-sectionbreaktype .f-answer {
   margin-top: 14px
 }
 

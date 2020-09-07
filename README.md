@@ -65,7 +65,7 @@ $ npm install -g @vue/cli
 $ yarn global add @vue/cli
 ```
 
-And then create a project  (refer to [Vue CLI documentation](https://cli.vuejs.org/guide/) and [issue tracker](https://github.com/vuejs/vue-cli/issues) for potential problems on Windows):
+And then create a project (refer to [Vue CLI documentation](https://cli.vuejs.org/guide/) and [issue tracker](https://github.com/vuejs/vue-cli/issues) for potential problems on Windows):
 
 ```shell
 $ vue create my-project
@@ -103,7 +103,7 @@ And then in your App.vue file:
         questions: [
           // QuestioModel array
           new QuestionModel({
-            question: 'Question',
+            title: 'Question',
             type: QuestionType.MultipleChoice,
             options: [
               new ChoiceOption({
@@ -162,7 +162,7 @@ var app = new Vue({
       }),
       questions: [
         new FlowForm.QuestionModel({
-          question: 'Question',
+          title: 'Question',
           type: FlowForm.QuestionType.MultipleChoice,
           options: [
             new FlowForm.ChoiceOption({

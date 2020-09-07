@@ -95,20 +95,15 @@
         questions: [      
           new QuestionModel({
             id: 'start',
-            subtitle: '8 questions',
-            /* eslint-disable-next-line no-unused-vars */
-            content(h) {
-              return <span>
-                <span class="fh2">How much do you know about forms?</span>
-                <span class="section-text">Test how well you know HTML forms in the first quiz section.</span>
-              </span>
-            },
+            tagline: '8 questions',
+            title: 'How much do you know about forms?',
+            content: 'Test how well you know HTML forms in the first quiz section.',
             type: QuestionType.SectionBreak,
             required: true,
           }),
           new QuestionModel({
             id: 'html_1',
-            question: "Which of the following are valid input field types? ",
+            title: "Which of the following are valid input field types? ",
             helpText: 'Choose all answers that apply.',
             type: QuestionType.MultipleChoice,
             required: true,
@@ -134,7 +129,7 @@
           }),
           new QuestionModel({
             id: 'html_2',
-            question: '<label> is associated with <input> using the "name" attribute.',
+            title: '<label> is associated with <input> using the "name" attribute.',
             type: QuestionType.MultipleChoice,
             required: true,
             multiple: false, 
@@ -151,7 +146,7 @@
           }),
           new QuestionModel({
             id: 'html_3',
-            question: 'Which HTML element is used to define a dropdown list?',
+            title: 'Which HTML element is used to define a dropdown list?',
             subtitle: "Which one sounds right? There's only one right answer.",
             type: QuestionType.MultipleChoice,
             required: true,
@@ -164,7 +159,7 @@
               new ChoiceOption({
                 label: '<select>', 
                 value: '2'
-               }),
+              }),
               new ChoiceOption({
                 label: '<fieldset>', 
                 value: '3'
@@ -177,7 +172,7 @@
           }),
           new QuestionModel({
             id: 'html_4',
-            question: 'To which elements can :invalid pseudo class be applied?',
+            title: 'To which elements can :invalid pseudo class be applied?',
             type: QuestionType.MultipleChoice,
             multiple: true,
             helpText: 'Select one or more correct answers.',
@@ -202,18 +197,13 @@
             ]
           }),
           new QuestionModel({
-            /* eslint-disable-next-line no-unused-vars */
-            content(h) {
-              return <span>
-                <span class="fh2">Excellent! You are halfway through.</span>
-                <span class="section-text">Form UX is important too. Test your form usability knowledge in the following section. </span>
-              </span>
-            },
+            title: 'Excellent! You are halfway through.',
+            content: 'Form UX is important too. Test your form usability knowledge in the following section.',
             type: QuestionType.SectionBreak
           }),
           new QuestionModel({
             id: 'ux_1',
-            question: 'How to reduce the perceived complexity of the long form?',
+            title: 'How to reduce the perceived complexity of the long form?',
             type: QuestionType.MultipleChoice,
             multiple: true,
             helpText: 'Select all that apply.',
@@ -239,7 +229,7 @@
           }),
           new QuestionModel({
             id: 'ux_2',
-            question: 'Error messages are bad because they confuse users.',
+            title: 'Error messages are bad because they confuse users.',
             type: QuestionType.MultipleChoice,
             multiple: false,
             required: true,
@@ -256,7 +246,7 @@
           }),
           new QuestionModel({
             id: 'ux_3',
-            question: 'How to make the input format clear?',
+            title: 'How to make the input format clear?',
             type: QuestionType.MultipleChoice,
             multiple: false,
             subtitle: 'Select one correct answer.',
@@ -282,7 +272,7 @@
           }),
           new QuestionModel({
             id: 'ux_4',
-            question: 'Inline validation should have a real time feedback.',
+            title: 'Inline validation should have a real time feedback.',
             type: QuestionType.MultipleChoice,
             multiple: false,
             required: true,
@@ -314,7 +304,7 @@
 
       calculateScore() {
         this.questions.forEach(question => {
-          if (question.question) {
+          if (question.type !== QuestionType.SectionBreak) {
             let answer = question.answer
             if (typeof answer === 'object') {
               answer.sort((a, b) => a - b)

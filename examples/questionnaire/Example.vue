@@ -85,38 +85,38 @@
         questions: [
           new QuestionModel({
             id: 'first_name',
-            title: "Hi! Welcome to our demo survey 😊",
-            question: 'What is your first name?',
+            tagline: "Hi! Welcome to our demo survey 😊",
+            title: 'What is your first name?',
             type: QuestionType.Text,
             required: true,
             placeholder: 'Start typing here...'
           }),
           new QuestionModel({
             id: 'email',
-            title: "Nice to meet you 👀, let's continue",
-            question: "Provide an example email.",
+            tagline: "Nice to meet you 👀, let's continue",
+            title: "Provide an example email.",
             type: QuestionType.Email,
             required: true,
             placeholder: 'Start typing here...'
           }),
           new QuestionModel({
             id: 'phone',
-            question: 'Doing great! 👍 Go ahead and try with a phone number.',
+            title: 'Doing great! 👍 Go ahead and try with a phone number.',
             type: QuestionType.Phone,
             required: true,
             mask: '(###) ###-####'
           }),
           new QuestionModel({
             id: 'movies',
-            question: 'List your favorite movies. 🍿',
+            title: 'List your favorite movies. 🍿',
             type: QuestionType.LongText,
             required: true,
             placeholder: 'Start typing here...'
           }),
           new QuestionModel({
             id: 'multiple_choice',
-            title: "FYI, You can always go back 👈, use the up arrow on the bottom.",
-            question: 'Multiple choice question:',
+            tagline: "FYI, You can always go back 👈, use the up arrow on the bottom.",
+            title: 'Multiple choice question:',
             type: QuestionType.MultipleChoice,
             multiple: false,
             allowOther: true,
@@ -135,7 +135,7 @@
           }),
           new QuestionModel({
             id: 'multiple_choices',
-            question: 'Multiple choices question:',
+            title: 'Multiple choices question:',
             type: QuestionType.MultipleChoice,
             multiple: true,
             helpText: 'Select all that apply. 👇',
@@ -157,20 +157,15 @@
           }),
           new QuestionModel({
             id: 'break_1',
-            /* eslint-disable-next-line no-unused-vars */
-            content(h) {
-              return <span>
-                <span class="fh2">Awesome, thank you. 🙏</span>
-                <span class="section-text">You arrived at the section break of our little demo survey. To continue exploring, just press enter or use the continue button.</span>
-              </span>
-            },
+            title: 'Awesome, thank you. 🙏',
+            content: 'You arrived at the section break of our little demo survey. To continue exploring, just press enter or use the continue button.',
             description: 'Note: We will take a look at our multiple path feature next.',
             type: QuestionType.SectionBreak
           }),
           new QuestionModel({
             id: 'choose_path',
-            title: "Where would you like to go? 🤔",
-            question: 'Choose your path:',
+            tagline: "Where would you like to go? 🤔",
+            title: 'Choose your path:',
             type: QuestionType.Dropdown,
             multiple: false,
             placeholder: 'Select',
@@ -191,13 +186,8 @@
           }),
            new QuestionModel({
             id: 'path_a',
-            /* eslint-disable-next-line no-unused-vars */
-            content(h) {
-              return <span>
-                <span class="fh2">Excellent choice! 🥳</span>
-                <span class="section-text">Press enter or use the continue button for the final submit screen.</span>
-              </span>
-            },
+            title: 'Excellent choice! 🥳',
+            content: 'Press enter or use the continue button for the final submit screen.',
             type: QuestionType.SectionBreak,
             jump: {
               _other: '_submit'
@@ -205,8 +195,8 @@
           }),
           new QuestionModel({
             id: 'path_b',
-            title: "Path B",
-            question: 'Hmm, are you sure?',
+            tagline: "Path B",
+            title: 'Hmm, are you sure?',
             subtitle: 'Path A sounds like a winner! 😉',
             type: QuestionType.MultipleChoice,
             multiple: false,
@@ -284,13 +274,13 @@
         }
 
         this.questions.forEach(question => {
-          if (question.question) {
+          if (question.title) {
             let answer = question.answer
             if (typeof answer === 'object') {
               answer = answer.join(', ')
             }
 
-            data.questions.push(question.question)
+            data.questions.push(question.title)
             data.answers.push(answer)
           }
         })
