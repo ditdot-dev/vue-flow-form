@@ -4,13 +4,13 @@
 */
 
 /*
-  vue.js like theme with green background
+  simple vue.js like theme with green background
 */
 
 :root {
   --bg-color: #41B883;
   --main-text-color: #fff;
-  --secondary-text-color: #CFEDE0;
+  --secondary-text-color: #B2E2CD;
   --tertiary-text-color: #67C69C;
   --main-accent-color: #111;
   --secondary-accent-color: #BBEBD5;
@@ -28,6 +28,7 @@ body {
   background-color: var(--bg-color);
   color: var(--main-text-color);
 }
+
 /*header*/
 header {
   background-color: transparent;
@@ -36,6 +37,7 @@ header {
 header svg.logo {
   fill: var(--main-accent-color);
 }
+
 /* footer */
 .f-footer .footer-inner-wrap {
   background-color: transparent;
@@ -142,15 +144,10 @@ span.f-answered{
 
 .f-progress-bar {
   background-color: var(--secondary-text-color);
-  filter: brightness(1.2);
 }
 
 .f-progress-bar-inner {
-  background-color: var(--main-accent-color);
-}
-
-.f-progress {
-  opacity: 0.7;
+  background-color: var(--main-text-color);
 }
 
 .f-prev:hover,
@@ -174,7 +171,6 @@ p.description,
 p.text-success {
   color: yellow;
 }
-
 
 /*
   dark mode styles
