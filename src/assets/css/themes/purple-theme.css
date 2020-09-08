@@ -57,6 +57,7 @@ header svg.logo{
 .v-form input[type=tel],
 .v-form input[type=email],
 .v-form input[type=url],
+.v-form input[type=password],
 .v-form textarea,
 .v-form span.faux-form {
   border-bottom-color: var(--secondary-text-color);
@@ -189,7 +190,7 @@ span.f-answered{
 }
 
 /*text-muted*/
-span.f-title,
+span.f-tagline,
 span.f-sub,
 p.description,
 .text-muted {
