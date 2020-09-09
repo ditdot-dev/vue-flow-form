@@ -18,6 +18,12 @@
     extends: BaseType,
     name: QuestionType.SectionBreak,
     methods: {
+      onEnter() {
+        this.dirty = true
+
+        this._onEnter()
+      },
+
       isValid() {
         return true
       }
