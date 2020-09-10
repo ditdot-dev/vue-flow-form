@@ -144,16 +144,17 @@ svg.logo {
   outline: 0;
   cursor: pointer;
   padding: 0 1.4rem 0;
-  margin-bottom: 20px;
   text-align: center;
   display: inline-block;
   min-height: 44px;
+  white-space: pre-wrap;
+  max-width: 100%;
+  margin-bottom: 20px;
 } 
 
 .o-btn-action {
   z-index: 1;
   line-height: 45px;
-  height: 44px;
   font-weight: 900;
   text-transform: lowercase;
 }
@@ -166,7 +167,12 @@ svg.logo {
 }
 
 .f-enter-desc {
+  display: inline-block;
   margin-left: 0.6rem;
+}
+
+.f-enter {
+  margin-bottom: 20px;
 }
 
 /*v-form*/
@@ -542,6 +548,10 @@ a.f-disabled {
 .field-sectionbreaktype,
 .field-submittype {
   max-width: 760px;
+}
+
+f.submit {
+  margin-bottom: 20px;
 }
 
 /*

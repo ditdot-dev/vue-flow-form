@@ -37,7 +37,7 @@
 
       <!-- We've overriden the default "completeButton" slot content -->
       <template v-slot:completeButton>
-        <div v-if="!submitted">
+        <div class="f-submit" v-if="!submitted">
           <button 
             class="o-btn-action"
             ref="button"
@@ -48,7 +48,10 @@
           >
               <span>{{ language.submitText }}</span>
           </button>
-          <span class="f-enter-desc">{{ language.pressEnter }}</span>
+          <a class="f-enter-desc"
+            href="#"
+            v-on:click.prevent="onSendData()">
+           {{ language.pressEnter }}</a>
         </div>
 
         <p class="text-success" v-if="submitted">Submitted succesfully.</p>

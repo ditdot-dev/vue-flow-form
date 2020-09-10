@@ -39,7 +39,12 @@
             v-bind:aria-label="language.ariaSubmitText">
                 <span>{{ language.submitText }}</span>
             </button>
-             <span class="f-enter-desc">{{ language.pressEnter }}</span>
+             <a 
+              class="f-enter-desc"
+              href="#"
+              v-on:click.prevent="submit()"
+              v-if="!submitted">
+             {{ language.pressEnter }}</a>
           </slot>
         </div>
       </div>

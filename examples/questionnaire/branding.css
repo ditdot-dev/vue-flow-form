@@ -123,11 +123,6 @@ span.f-answered{
   opacity: .9;
 } 
 
-.o-btn-action:focus {
-  border: 1px double white;
-  outline: 1px solid black;
-} 
-
 /*footer*/
 .f-footer .footer-inner-wrap{
   background-color: rgba(255,255,255,0.75);
@@ -135,7 +130,7 @@ span.f-answered{
 
 @media screen and (max-width:479px) {
   .f-footer .footer-inner-wrap{
-    background-color: rgba(0,0,0,0.05);
+    background-color: rgba(180,180,180,0.15);
   }
 
 }
