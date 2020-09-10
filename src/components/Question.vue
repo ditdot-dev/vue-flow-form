@@ -65,7 +65,7 @@
           <span v-else>{{ language.ok }}</span>
         </div>
 
-        <span class="f-enter-desc">{{ language.pressEnter }}</span>
+        <span class="f-enter-desc" v-if="question.type !== QuestionType.LongText || !isMobile">{{ language.pressEnter }}</span>
       </a>
 
       <div v-if="showInvalid()" class="f-invalid" role="alert" aria-live="assertive">{{ language.invalidPrompt }}</div>
