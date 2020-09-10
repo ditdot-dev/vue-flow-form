@@ -144,6 +144,11 @@ span.f-answered{
   opacity: .9;
 }
 
+.o-btn-action:focus {
+  border: 1px double var(--bg-color);
+  outline: 1px solid var(--button-color);
+} 
+
 /*footer*/
 .f-footer .footer-inner-wrap{
   background-color: var(--footer-color);

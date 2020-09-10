@@ -121,10 +121,12 @@ span.f-answered{
 .o-btn-action:focus {
   background-color: var(--main-text-color);
   opacity: .9;
-}
+} 
+
 .o-btn-action:focus {
-  outline: 3px solid #BBEBD5;
-}
+  border: 1px double white;
+  outline: 1px solid black;
+} 
 
 /*footer*/
 .f-footer .footer-inner-wrap{
