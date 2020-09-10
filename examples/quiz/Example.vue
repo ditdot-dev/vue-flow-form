@@ -35,19 +35,18 @@
 
       <!-- We've overriden the default "completeButton" slot content -->
       <template v-slot:completeButton>
-        <a
-          ref="button"
-          href="#"
-          v-on:click.prevent="onQuizSubmit()"
-          v-if="!submitted"
-        >
-          <div class="o-btn-action">
+        <div v-if="!submitted">
+          <button
+            class="o-btn-action"
+            ref="button"
+            type="submit"
+            href="#"
+            v-on:click.prevent="onQuizSubmit()"
+            aria-label="Press to submit">
             <span>Calculate score</span>
-          </div>
-
+          </button>
           <span class="f-enter-desc">{{ language.pressEnter }}</span>
-        </a>
-
+        </div>
         <p class="text-success" v-if="submitted && score < 4">"You scored {{ score }} out of {{ total }}. There's a lot of room for improvement."</p>
         <p class="text-success" v-else-if="submitted && score < 7">"You scored {{ score }} out of {{ total }}. Not bad at all!"</p>
         <p class="text-success" v-else-if="submitted && score <= total">"You scored {{ score }} out of {{ total }}. Wow, that's impressive!"</p>

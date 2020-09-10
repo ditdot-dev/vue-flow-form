@@ -29,13 +29,17 @@
 
           <slot name="completeButton">
             <!-- Default content for the "completeButton" slot -->
-            <a ref="button" href="#" v-on:click.prevent="submit()" v-if="!submitted" role="button" v-bind:aria-label="language.ariaSubmitText">
-              <div class="o-btn-action">
+            <button 
+            class="o-btn-action"
+            ref="button" 
+            type="button" 
+            href="#" 
+            v-on:click.prevent="submit()" 
+            v-if="!submitted"
+            v-bind:aria-label="language.ariaSubmitText">
                 <span>{{ language.submitText }}</span>
-              </div>
-
-              <span class="f-enter-desc">{{ language.pressEnter }}</span>
-            </a>
+            </button>
+             <span class="f-enter-desc">{{ language.pressEnter }}</span>
           </slot>
         </div>
       </div>

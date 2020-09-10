@@ -111,6 +111,7 @@ span.f-answered{
 }
 
 /*buttons*/
+
 .o-btn-action {
   color: var(--bg-color);
   background-color: var(--main-text-color);
@@ -120,6 +121,9 @@ span.f-answered{
 .o-btn-action:focus {
   background-color: var(--main-text-color);
   opacity: .9;
+}
+.o-btn-action:focus {
+  outline: 3px solid #BBEBD5;
 }
 
 /*footer*/
@@ -153,7 +157,9 @@ span.f-answered{
 }
 
 .f-prev:hover,
-.f-next:hover{
+.f-next:hover,
+.f-prev:focus,
+.f-next:focus{
   background-color: rgba(0,0,0,0.07);
 }
 

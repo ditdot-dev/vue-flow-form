@@ -50,23 +50,20 @@
         </div>
         <p v-if="question.description" class="description">{{ question.description }}</p>
       </div>
-
-      <a
-        class="animate fade-in-up f-enter"
-        ref="button"
-        href="#"
-        v-if="showOkButton()"
-        v-on:click.prevent="onEnter"
-        role ="button"
-        v-bind:aria-label="language.ariaOk"
-      >
-        <div class="o-btn-action">
-          <span v-if="question.type === QuestionType.SectionBreak">{{ language.continue }}</span>
-          <span v-else>{{ language.ok }}</span>
-        </div>
-
+      <div class="animate fade-in-up f-enter" v-if="showOkButton()">
+        <button 
+          class="o-btn-action"
+          type="button"
+          ref="button"
+          href="#"
+          v-on:click.prevent="onEnter"
+          v-bind:aria-label="language.ariaOk"
+        >
+            <span v-if="question.type === QuestionType.SectionBreak">{{ language.continue }}</span>
+            <span v-else>{{ language.ok }}</span>
+        </button>
         <span class="f-enter-desc">{{ language.pressEnter }}</span>
-      </a>
+      </div>
 
       <div v-if="showInvalid()" class="f-invalid" role="alert" aria-live="assertive">{{ language.invalidPrompt }}</div>
     </div>

@@ -37,20 +37,19 @@
 
       <!-- We've overriden the default "completeButton" slot content -->
       <template v-slot:completeButton>
-        <a
-          ref="button"
-          href="#"
-          v-on:click.prevent="onSendData()"
-          v-if="!submitted"
-          role="button"
-          aria-label="Press to submit"
-        >
-          <div class="o-btn-action">
-            <span>{{ language.submitText }}</span>
-          </div>
-
+        <div v-if="!submitted">
+          <button 
+            class="o-btn-action"
+            ref="button"
+            type="submit"
+            href="#"
+            v-on:click.prevent="onSendData()"
+            aria-label="Press to submit"
+          >
+              <span>{{ language.submitText }}</span>
+          </button>
           <span class="f-enter-desc">{{ language.pressEnter }}</span>
-        </a>
+        </div>
 
         <p class="text-success" v-if="submitted">Submitted succesfully.</p>
       </template>

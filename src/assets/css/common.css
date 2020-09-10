@@ -130,14 +130,28 @@ svg.logo {
   opacity: 1;
 }
 
+.v-form button,
+.v-form input {
+  -webkit-appearance: none;
+  overflow: visible;
+}
+
 /*buttons*/
-.o-btn-action {
-  z-index: 1;
+
+/*default button*/
+.v-form button {
+  border: none;
+  outline: 0;
   cursor: pointer;
   padding: 0 1.4rem 0;
   margin-bottom: 20px;
   text-align: center;
   display: inline-block;
+  min-height: 44px;
+} 
+
+.o-btn-action {
+  z-index: 1;
   line-height: 45px;
   height: 44px;
   font-weight: 900;
@@ -245,12 +259,6 @@ span.faux-form {
 .v-form textarea {
   outline: none;
   resize: vertical;
-}
-
-.v-form button,
-.v-form input {
-  -webkit-appearance: none;
-  overflow: visible;
 }
 
 .v-form .full-width input[type=text],
