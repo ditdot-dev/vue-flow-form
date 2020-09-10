@@ -5,7 +5,7 @@
     <div class="q-inner">
       <div v-bind:class="{'section-wrap': question.type === QuestionType.SectionBreak}">
         <div v-bind:class="{'fh2': question.type !== QuestionType.SectionBreak}">
-          <span class="f-title" v-if="question.tagline">{{ question.tagline }}</span>
+          <span class="f-tagline" v-if="question.tagline">{{ question.tagline }}</span>
 
           <template v-if="question.title">
             <span class="fh2" v-if="question.type === QuestionType.SectionBreak">{{ question.title }}</span>

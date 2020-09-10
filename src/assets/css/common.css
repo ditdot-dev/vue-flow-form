@@ -367,14 +367,14 @@ h3,
 }
 
 /*misc-typography*/
-span.f-title,
+span.f-tagline,
 span.f-sub {
   font-weight: 400;
   display: block;
   font-size: 1.222rem;
 }
 
-span.f-title,
+span.f-tagline,
 span.f-text {
   margin-bottom: 8px;
 }
@@ -623,12 +623,12 @@ a.f-disabled {
     width: 12px;
   }
 
-  span.f-title,
+  span.f-tagline,
   span.f-sub {
     font-size: 1.1rem;
   }
 
-  span.f-title {
+  span.f-tagline {
     line-height: 1.6;
   }
 
