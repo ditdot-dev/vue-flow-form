@@ -178,10 +178,20 @@ export default [
       }),
       copy({
         targets: [
-          { 
+          {
             src: 'examples/questionnaire/branding.css',
             dest: 'dist',
-            rename: 'vue-flow-form.theme.css'
+            rename: 'vue-flow-form.theme-minimal.css'
+          },
+          {
+            src: 'src/assets/css/themes/green-theme.css',
+            dest: 'dist',
+            rename: 'vue-flow-form.theme-green.css'
+          },
+          {
+            src: 'src/assets/css/themes/purple-theme.css',
+            dest: 'dist',
+            rename: 'vue-flow-form.theme-purple.css'
           }
         ]
       })
