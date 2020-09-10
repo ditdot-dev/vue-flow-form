@@ -8,6 +8,8 @@
     v-bind:placeholder="placeholder"
     v-on:keydown.native="onKeyDown"
     v-on:keyup.native="onChange"
+    v-on:focus.native="setFocus"
+    v-on:blur.native="unsetFocus"
     v-on:keyup.native.enter.prevent="onEnter"
     v-on:keyup.native.tab.prevent="onEnter"
   />

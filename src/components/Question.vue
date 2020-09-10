@@ -1,8 +1,8 @@
 // Single question template and logic
 
 <template>
-  <div class="animate q-form" v-bind:class="mainClasses">
-    <div class="q-inner" ref="qinner">
+  <div class="animate q-form" v-bind:class="mainClasses" ref="qanimate">
+    <div class="q-inner">
       <div v-bind:class="{'section-wrap': question.type === QuestionType.SectionBreak}">
         <div v-bind:class="{'fh2': question.type !== QuestionType.SectionBreak}">
           <span class="f-title" v-if="question.tagline">{{ question.tagline }}</span>
@@ -31,7 +31,7 @@
           <span class="f-sub" v-if="question.subtitle || question.type === QuestionType.LongText || question.multiple">
             <span v-if="question.subtitle">{{ question.subtitle }}</span>
 
-            <span class="f-help" v-if="question.type === QuestionType.LongText">{{ question.helpText || language.longTextHelpText }}</span>
+            <span class="f-help" v-if="question.type === QuestionType.LongText && !isMobile">{{ question.helpText || language.longTextHelpText }}</span>
 
             <span class="f-help" v-if="question.multiple">{{ question.helpText || language.multipleChoiceHelpText }}</span>
           </span>
@@ -65,7 +65,7 @@
           <span v-else>{{ language.ok }}</span>
         </div>
 
-        <span class="f-enter-desc">{{ language.pressEnter }}</span>
+        <span class="f-enter-desc" v-if="question.type !== QuestionType.LongText || !isMobile">{{ language.pressEnter }}</span>
       </a>
 
       <div v-if="showInvalid()" class="f-invalid" role="alert" aria-live="assertive">{{ language.invalidPrompt }}</div>
@@ -91,6 +91,7 @@
   import FlowFormSectionBreakType from './QuestionTypes/SectionBreakType.vue'
   import FlowFormTextType from './QuestionTypes/TextType.vue'
   import FlowFormUrlType from './QuestionTypes/UrlType.vue'
+  import { IsMobile } from '../mixins/IsMobile'
 
   export default {
     name: 'FlowFormQuestion',
@@ -119,6 +120,9 @@
         default: false
       }
     },
+    mixins: [
+      IsMobile
+    ],
     data() {
       return {
         QuestionType: QuestionType,
@@ -129,33 +133,35 @@
       this.focusField()
       this.dataValue = this.question.answer
 
-      this.$refs.qinner.addEventListener('transitionend', this.onTransitionEnd)
+      this.$refs.qanimate.addEventListener('animationend', this.onAnimationEnd)
     },
     beforeDestroy() {
-      this.$refs.qinner.removeEventListener('transitionend', this.onTransitionEnd)
+      this.$refs.qanimate.removeEventListener('animationend', this.onAnimationEnd)
     },
     methods: {
       /**
        * Autofocus the input box of the current question
        */
       focusField() {
-        let el = this.$refs.questionComponent
+        const el = this.$refs.questionComponent
         
         el && el.focus()
       },
 
-      onTransitionEnd() {
-        this.enterPressed = false
+      onAnimationEnd() {
+        this.focusField()
       },
 
       /**
        * Emits "answer" event and calls "onEnter" method on Enter press
        */ 
-      onEnter() {
+      onEnter($event) {
         const q = this.$refs.questionComponent
 
         if (q) {
-          this.$emit('answer', q)
+          if (!q.focused) {
+            this.$emit('answer', q)
+          }
           q.onEnter()
         }
       },
