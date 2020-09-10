@@ -11,6 +11,10 @@ Create conversational conditional-logic forms with Vue.js.
 * [Questionnaire example](https://www.ditdot.hr/demo/vff/questionnaire/)
 * [Quiz example](https://www.ditdot.hr/demo/vff/quiz/)
 
+## Project Documentation
+
+[Guide](https://www.ditdot.hr/en/docs/vue-flow-form-guide)
+
 ## Example Project
 
 Requirements:
@@ -101,7 +105,7 @@ And then in your App.vue file:
           // You can leave out this prop if you want to use the default definitions.
         }),
         questions: [
-          // QuestioModel array
+          // QuestionModel array
           new QuestionModel({
             title: 'Question',
             type: QuestionType.MultipleChoice,
@@ -120,7 +124,7 @@ And then in your App.vue file:
 <style>
   /* Import Vue Flow Form base CSS */
   @import '~@ditdot-dev/vue-flow-form/dist/vue-flow-form.css';
-  /* Import Vue Flow Form theme CSS (optional) */
+  /* Import one of the Vue Flow Form CSS themes (optional) */
   @import '~@ditdot-dev/vue-flow-form/dist/vue-flow-form.theme.css';
 </style>
 ```
@@ -178,10 +182,6 @@ var app = new Vue({
 ## Browser Support
 
 Modern browsers and IE11.
-
-## Project Documentation
-
-[Guide](https://www.ditdot.hr/en/docs/vue-flow-form-guide)
 
 ## License
 
