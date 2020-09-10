@@ -2,7 +2,7 @@
   "name": "@ditdot-dev/vue-flow-form",
   "author": "DITDOT",
   "description": "Create conversational conditional-logic forms with Vue.js.",
-  "version": "1.0.9",
+  "version": "1.1.0",
   "private": false,
   "repository": {
     "type": "git",
@@ -36,8 +36,9 @@
   ],
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
-    "build:npm": "rollup --config build/rollup.config.js"
+    "build": "vue-cli-service build && npm run cssmin",
+    "build:npm": "rollup --config build/rollup.config.js",
+    "cssmin": "postcss dist/vue-flow-form.theme-minimal.css > dist/vue-flow-form.theme-minimal.min.css && postcss dist/vue-flow-form.theme-green.css > dist/vue-flow-form.theme-green.min.css && dist/vue-flow-form.theme-purple.css > dist/vue-flow-form.theme-purple.min.css"
   },
   "eslintConfig": {
     "root": true,
