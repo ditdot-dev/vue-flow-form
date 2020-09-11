@@ -153,6 +153,20 @@
         this.focusField()
       },
 
+      shouldFocus() {
+        const q = this.$refs.questionComponent
+
+        return q && q.canReceiveFocus && !q.focused
+      },
+
+      returnFocus() {
+        const q = this.$refs.questionComponent
+
+        if (this.shouldFocus()) {
+          this.focusField()
+        }
+      },
+
       /**
        * Emits "answer" event and calls "onEnter" method on Enter press
        */ 
@@ -163,10 +177,22 @@
           if (!q.focused) {
             this.$emit('answer', q)
           }
+
           q.onEnter()
         }
       },
 
+      onTab($event) {
+        const q = this.$refs.questionComponent
+
+        if (q) {
+          this.returnFocus()
+          this.$emit('answer', q)
+          
+          q.onEnter()
+        }
+      },
+      
       /**
        * Check if the "OK" button should be shown.
        */

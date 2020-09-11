@@ -35,7 +35,8 @@
     name: QuestionType.Phone,
     data() {
       return {
-        inputType: 'tel'
+        inputType: 'tel', 
+        canReceiveFocus: true
       }
     }
   }

@@ -30,7 +30,8 @@
         enterPressed: false,
         allowedChars: null,
         alwaysAllowedKeys: ['ArrowLeft', 'ArrowRight', 'Delete', 'Backspace'],
-        focused: false
+        focused: false,
+        canReceiveFocus: false,
       }
     },
     mounted() {
@@ -86,7 +87,7 @@
         clearTimeout(this.timeoutId)
 
         if ($event) {
-          if ($event.key === 'Enter') {
+          if ($event.key === 'Enter' && !$event.shiftKey) {
             this.unsetFocus()
           }
 
@@ -156,10 +157,6 @@
       }
     },
     computed: {
-      editingFinished() {
-        return true
-      },
-
       placeholder() {
         return this.question.placeholder || this.language.placeholder
       },

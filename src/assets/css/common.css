@@ -275,8 +275,9 @@ span.faux-form {
   margin-top: 28px;
 }
 
-span.f-sub + .f-answer.full-width, div.field-sectionbreaktype .f-answer {
-  margin-top: 14px
+span.f-sub + .f-answer.full-width,
+div.field-sectionbreaktype .f-answer {
+  margin-top: 16px
 }
 
 span.f-empty {
@@ -349,7 +350,6 @@ h3,
 }
 
 @media screen and (max-width:767px) {
-
   h2,
   .fh2 {
     font-size: 2.2rem;
@@ -359,7 +359,6 @@ h3,
 }
 
 @media screen and (max-width:479px), (max-height:400px) {
-
   h2,
   .fh2 {
     font-size: 1.4rem;
