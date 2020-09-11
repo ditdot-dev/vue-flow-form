@@ -37,7 +37,7 @@
     },
     data () {
       return {
-        canReceiveFocus: true,
+        canReceiveFocus: true
       }
     },
     mounted() {
@@ -67,11 +67,6 @@
         if (!this.isMobile) {
           this._onEnter()
         }
-      }
-    },
-    computed: {
-      editingFinished() {
-        return !this.isMobile
       }
     }
   }

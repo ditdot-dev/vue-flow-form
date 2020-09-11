@@ -31,7 +31,7 @@
     data() {
       return {
         inputType: 'text', 
-        canReceiveFocus: true,
+        canReceiveFocus: true
       }
     }
   }

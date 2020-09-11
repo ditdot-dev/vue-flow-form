@@ -153,11 +153,17 @@
         this.focusField()
       },
 
-      returnFocus(){
+      shouldFocus() {
         const q = this.$refs.questionComponent
-        if(!q.focused && q.canReceiveFocus){
+
+        return q && q.canReceiveFocus && !q.focused
+      },
+
+      returnFocus() {
+        const q = this.$refs.questionComponent
+
+        if (this.shouldFocus()) {
           this.focusField()
-          return
         }
       },
 
@@ -166,32 +172,27 @@
        */ 
       onEnter($event) {
         const q = this.$refs.questionComponent
-        if (this.question.type === QuestionType.LongText){
-          if(!q.focused){
+
+        if (q) {
+          if (!q.focused) {
             this.$emit('answer', q)
           }
-           q.onEnter()
-        } 
-      
-        this.returnFocus()
-        this.$emit('answer', q)
-        q.onEnter()
+
+          q.onEnter()
+        }
       },
 
       onTab($event) {
         const q = this.$refs.questionComponent
-        this.returnFocus()
-        this.$emit('answer', q)
-        q.onEnter()
-      },
 
-      getFocus(){
-        return this.$refs.questionComponent.focused
+        if (q) {
+          this.returnFocus()
+          this.$emit('answer', q)
+          
+          q.onEnter()
+        }
       },
-
-      getCanReceiveFocus(){
-        return this.$refs.questionComponent.canReceiveFocus
-      },
+      
       /**
        * Check if the "OK" button should be shown.
        */

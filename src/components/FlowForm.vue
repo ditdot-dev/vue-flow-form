@@ -144,15 +144,15 @@
       }
     },
     mounted() {
-      document.addEventListener('keyup', this.onKeyListener, true)
-      document.addEventListener('keydown', this.onBackKeyListener)
+      document.addEventListener('keydown', this.onKeyDownListener)
+      document.addEventListener('keyup', this.onKeyUpListener, true)
       window.addEventListener('beforeunload', this.onBeforeUnload)
 
       this.setQuestions()
     },
     beforeDestroy() {
-      document.removeEventListener('keyup', this.onKeyListener, true)
-      document.removeEventListener('keydown', this.onBackKeyListener)
+      document.removeEventListener('keydown', this.onKeyDownListener)
+      document.removeEventListener('keyup', this.onKeyUpListener, true)
       window.removeEventListener('beforeunload', this.onBeforeUnload)
     },
     computed: {
@@ -290,50 +290,53 @@
       },
 
       /**
-       * Global key listener, listens for Enter or Tab key events.
+       * Global key listeners, listen for Enter or Tab key events.
        */
-       onKeyListener(e) {
-        if (e.shiftKey) {
+      onKeyDownListener(e) {
+        if (e.key !== 'Tab' || this.submitted) {
           return
         }
-        if (e.key === 'Enter'|| e.key === 'Tab') {
+
+
+        if (e.shiftKey) {
+          e.stopPropagation()
+          e.preventDefault()
+
+          this.goToPreviousQuestion()
+        } else {
+          e.preventDefault()
+          
           const q = this.activeQuestionComponent()
 
-          if(!q.getFocus() && q.getCanReceiveFocus()){
+          if (q.shouldFocus()) {
             q.focusField()
-            return
-          }
+          } else {
+            e.stopPropagation()
 
-          if(e.key === 'Enter') {
-           this.emitEnter()
+            this.emitTab()
+            this.reverse = false
+          }
+        }
+      }, 
+
+      onKeyUpListener(e) {
+        if (e.shiftKey || ['Tab', 'Enter'].indexOf(e.key) === -1 || this.submitted) {
+          return
+        }
+
+        const q = this.activeQuestionComponent()
+
+        if (e.key === 'Tab' && q.shouldFocus()) {
+          q.focusField()
+        } else {
+          if (e.key === 'Enter') {
+            this.emitEnter()
           } 
 
           e.stopPropagation()
           this.reverse = false
         }
       },
-
-      onBackKeyListener(e) {
-        if (e.shiftKey && e.key === 'Tab' ) {
-          e.stopPropagation()
-          e.preventDefault()
-          this.goToPreviousQuestion()
-        }
-
-        if (e.key === 'Tab') {
-          e.preventDefault()
-          const q = this.activeQuestionComponent()
-
-          if(!q.getFocus() && q.getCanReceiveFocus()){
-            q.focusField()
-            return
-          }
-
-          this.emitTab()
-          e.stopPropagation()
-          this.reverse = false
-        }
-      }, 
 
       emitEnter() {
         const q = this.activeQuestionComponent()
@@ -353,9 +356,8 @@
         if (q) {
           // Send tab event to the current question component
           q.onTab()
-        } else if (this.completed && this.isOnLastStep) {
-          // We're finished - submit form
-          this.submit()
+        } else {
+          this.emitEnter()
         }
       },
 
@@ -377,6 +379,10 @@
        * can jump to it.
        */
       isNextQuestionAvailable() {
+        if (this.submitted) {
+          return false
+        }
+
         const q = this.activeQuestion
   
         if (q && !q.required) {

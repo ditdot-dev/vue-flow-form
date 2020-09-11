@@ -321,7 +321,11 @@
       }, 
 
       onQuizSubmit() {
-        this.submitted = true 
+        // Set `submitted` to true so the form knows not to allow back/forward
+        // navigation anymore.
+        this.$refs.flowform.submitted = true
+        
+        this.submitted = true
         this.calculateScore()
       }
     }

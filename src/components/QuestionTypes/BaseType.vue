@@ -86,10 +86,10 @@
         this.enterPressed = false
         clearTimeout(this.timeoutId)
 
-         if ($event) {
-         /* if ($event.key === 'Enter') {
-              this.unsetFocus()
-            } */
+        if ($event) {
+          if ($event.key === 'Enter' && !$event.shiftKey) {
+            this.unsetFocus()
+          }
 
           if (this.allowedChars !== null) {
             // Check if the entered character is allowed.
@@ -157,10 +157,6 @@
       }
     },
     computed: {
-      editingFinished() {
-        return true
-      },
-
       placeholder() {
         return this.question.placeholder || this.language.placeholder
       },

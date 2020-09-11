@@ -36,7 +36,7 @@
     data() {
       return {
         inputType: 'tel', 
-        canReceiveFocus: true,
+        canReceiveFocus: true
       }
     }
   }
