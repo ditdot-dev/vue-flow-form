@@ -6,7 +6,7 @@
 
 // Global data store
 
-export const QuestionType = {
+export const QuestionType = Object.freeze({
   Dropdown: 'FlowFormDropdownType',
   Email: 'FlowFormEmailType',
   LongText: 'FlowFormLongTextType',
@@ -17,13 +17,13 @@ export const QuestionType = {
   SectionBreak: 'FlowFormSectionBreakType',
   Text: 'FlowFormTextType',
   Url: 'FlowFormUrlType'
-}
+})
 
-export const DropdownOptionBlank = {
+export const DropdownOptionBlank = Object.freeze({
   label: '',
   value: '',
   disabled: true
-}
+})
 
 export class ChoiceOption {
   constructor(options) {
