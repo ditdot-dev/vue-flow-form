@@ -131,16 +131,30 @@ svg.logo {
   opacity: 1;
 }
 
+.v-form button,
+.v-form input {
+  -webkit-appearance: none;
+  overflow: visible;
+}
+
 /*buttons*/
-.o-btn-action {
-  z-index: 1;
+
+/*default button*/
+.v-form button {
+  border: none;
+  outline: 0;
   cursor: pointer;
-  padding: 0 1.4rem 0;
-  margin-bottom: 20px;
+  padding: 0.6rem 1.4rem;
   text-align: center;
   display: inline-block;
-  line-height: 45px;
-  height: 44px;
+  min-height: 44px;
+  white-space: pre-wrap;
+  max-width: 100%;
+} 
+
+.o-btn-action {
+  z-index: 1;
+  line-height: 1.2;
   font-weight: 900;
   text-transform: lowercase;
 }
@@ -153,7 +167,13 @@ svg.logo {
 }
 
 .f-enter-desc {
+  display: inline-block;
   margin-left: 0.6rem;
+  margin-top: 0.6rem;
+}
+
+.f-enter {
+  margin-bottom: 20px;
 }
 
 /*v-form*/
@@ -246,12 +266,6 @@ span.faux-form {
 .v-form textarea {
   outline: none;
   resize: vertical;
-}
-
-.v-form button,
-.v-form input {
-  -webkit-appearance: none;
-  overflow: visible;
 }
 
 .v-form .full-width input[type=text],
@@ -536,6 +550,10 @@ a.f-disabled {
   max-width: 760px;
 }
 
+f.submit {
+  margin-bottom: 20px;
+}
+
 /*
   media-start
 */
@@ -635,11 +653,6 @@ a.f-disabled {
   ul.f-radios li,
   ul.f-radios li input[type=text] {
     font-size: .9rem;
-  }
-
-  .o-btn-action {
-    line-height: 40px;
-    height: 40px;
   }
 
   .field-sectionbreaktype p {

@@ -118,6 +118,7 @@ span.f-answered{
 }
 
 /*buttons*/
+
 .o-btn-action {
   color: var(--bg-color);
   background-color: var(--main-text-color);
@@ -127,7 +128,7 @@ span.f-answered{
 .o-btn-action:focus {
   background-color: var(--main-text-color);
   opacity: .9;
-}
+} 
 
 /*footer*/
 .f-footer .footer-inner-wrap{
@@ -136,7 +137,7 @@ span.f-answered{
 
 @media screen and (max-width:479px) {
   .f-footer .footer-inner-wrap{
-    background-color: rgba(0,0,0,0.05);
+    background-color: rgba(180,180,180,0.15);
   }
 
 }
@@ -160,7 +161,9 @@ span.f-answered{
 }
 
 .f-prev:hover,
-.f-next:hover{
+.f-next:hover,
+.f-prev:focus,
+.f-next:focus{
   background-color: rgba(0,0,0,0.07);
 }
 
