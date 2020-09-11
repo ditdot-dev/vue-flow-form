@@ -34,7 +34,9 @@
       }
     },
     mounted() {
-      if (this.question.multiple) {
+      if (this.question.answer) {
+        this.dataValue = this.question.answer
+      } else if (this.question.multiple) {
         this.dataValue = []
       }
     },
