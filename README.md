@@ -5,6 +5,7 @@ Create conversational conditional-logic forms with Vue.js.
 <p>
   <a href="https://github.com/ditdot-dev/vue-flow-form/blob/master/LICENSE"><img src="https://img.shields.io/npm/l/@ditdot-dev/vue-flow-form.svg?sanitize=true&amp;color=41B883" alt="License" /></a>
   <a href="https://www.npmjs.com/package/@ditdot-dev/vue-flow-form"><img src="https://img.shields.io/npm/v/@ditdot-dev/vue-flow-form.svg?sanitize=true&amp;color=41B883" alt="Version" /></a>
+  <a href="https://cdnjs.com/libraries/vue-flow-form"><img src="https://img.shields.io/cdnjs/v/vue-flow-form?color=yellow" alt="cdnjs" /></a>
 </p>
 
 <p align="center">
