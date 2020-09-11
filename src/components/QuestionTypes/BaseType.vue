@@ -30,7 +30,8 @@
         enterPressed: false,
         allowedChars: null,
         alwaysAllowedKeys: ['ArrowLeft', 'ArrowRight', 'Delete', 'Backspace'],
-        focused: false
+        focused: false,
+        canReceiveFocus: false,
       }
     },
     mounted() {
@@ -85,10 +86,10 @@
         this.enterPressed = false
         clearTimeout(this.timeoutId)
 
-        if ($event) {
-          if ($event.key === 'Enter') {
-            this.unsetFocus()
-          }
+         if ($event) {
+         /* if ($event.key === 'Enter') {
+              this.unsetFocus()
+            } */
 
           if (this.allowedChars !== null) {
             // Check if the entered character is allowed.

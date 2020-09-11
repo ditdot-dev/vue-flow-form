@@ -153,20 +153,45 @@
         this.focusField()
       },
 
+      returnFocus(){
+        const q = this.$refs.questionComponent
+        if(!q.focused && q.canReceiveFocus){
+          this.focusField()
+          return
+        }
+      },
+
       /**
        * Emits "answer" event and calls "onEnter" method on Enter press
        */ 
       onEnter($event) {
         const q = this.$refs.questionComponent
-
-        if (q) {
-          if (!q.focused) {
+        if (this.question.type === QuestionType.LongText){
+          if(!q.focused){
             this.$emit('answer', q)
           }
-          q.onEnter()
-        }
+           q.onEnter()
+        } 
+      
+        this.returnFocus()
+        this.$emit('answer', q)
+        q.onEnter()
       },
 
+      onTab($event) {
+        const q = this.$refs.questionComponent
+        this.returnFocus()
+        this.$emit('answer', q)
+        q.onEnter()
+      },
+
+      getFocus(){
+        return this.$refs.questionComponent.focused
+      },
+
+      getCanReceiveFocus(){
+        return this.$refs.questionComponent.canReceiveFocus
+      },
       /**
        * Check if the "OK" button should be shown.
        */

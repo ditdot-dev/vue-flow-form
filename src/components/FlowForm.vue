@@ -292,15 +292,23 @@
       /**
        * Global key listener, listens for Enter or Tab key events.
        */
-      onKeyListener(e) {
+       onKeyListener(e) {
         if (e.shiftKey) {
           return
         }
+        if (e.key === 'Enter'|| e.key === 'Tab') {
+          const q = this.activeQuestionComponent()
 
-        if (e.key === 'Enter' || e.key === 'Tab') {
+          if(!q.getFocus() && q.getCanReceiveFocus()){
+            q.focusField()
+            return
+          }
+
+          if(e.key === 'Enter') {
+           this.emitEnter()
+          } 
+
           e.stopPropagation()
-
-          this.emitEnter()
           this.reverse = false
         }
       },
@@ -311,6 +319,20 @@
           e.preventDefault()
           this.goToPreviousQuestion()
         }
+
+        if (e.key === 'Tab') {
+          e.preventDefault()
+          const q = this.activeQuestionComponent()
+
+          if(!q.getFocus() && q.getCanReceiveFocus()){
+            q.focusField()
+            return
+          }
+
+          this.emitTab()
+          e.stopPropagation()
+          this.reverse = false
+        }
       }, 
 
       emitEnter() {
@@ -319,6 +341,18 @@
         if (q) {
           // Send enter event to the current question component
           q.onEnter()
+        } else if (this.completed && this.isOnLastStep) {
+          // We're finished - submit form
+          this.submit()
+        }
+      },
+
+      emitTab() {
+        const q = this.activeQuestionComponent()
+
+        if (q) {
+          // Send tab event to the current question component
+          q.onTab()
         } else if (this.completed && this.isOnLastStep) {
           // We're finished - submit form
           this.submit()

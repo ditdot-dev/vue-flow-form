@@ -35,6 +35,11 @@
     components: {
       TextareaAutosize
     },
+    data () {
+      return {
+        canReceiveFocus: true,
+      }
+    },
     mounted() {
       window.addEventListener('resize', this.onResizeListener)
     },

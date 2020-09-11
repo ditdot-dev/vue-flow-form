@@ -30,7 +30,8 @@
     name: QuestionType.Text,
     data() {
       return {
-        inputType: 'text'
+        inputType: 'text', 
+        canReceiveFocus: true,
       }
     }
   }
