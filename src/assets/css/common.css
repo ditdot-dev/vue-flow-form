@@ -143,18 +143,17 @@ svg.logo {
   border: none;
   outline: 0;
   cursor: pointer;
-  padding: 0 1.4rem 0;
+  padding: 0.6rem 1.4rem;
   text-align: center;
   display: inline-block;
   min-height: 44px;
   white-space: pre-wrap;
   max-width: 100%;
-  margin-bottom: 20px;
 } 
 
 .o-btn-action {
   z-index: 1;
-  line-height: 45px;
+  line-height: 1.2;
   font-weight: 900;
   text-transform: lowercase;
 }
@@ -169,6 +168,7 @@ svg.logo {
 .f-enter-desc {
   display: inline-block;
   margin-left: 0.6rem;
+  margin-top: 0.6rem;
 }
 
 .f-enter {
