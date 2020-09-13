@@ -43,8 +43,9 @@
               class="f-enter-desc"
               href="#"
               v-on:click.prevent="submit()"
-              v-if="!submitted">
-             {{ language.pressEnter }}</a>
+              v-if="!submitted"
+              v-html="insertClass(language.pressEnter)">
+             </a>
           </slot>
         </div>
       </div>
@@ -466,7 +467,20 @@
        */
       blurFocus() {
         document.activeElement && document.activeElement.blur && document.activeElement.blur()
-      }
+      },
+      /**
+       * Inserts new class into the language model string 
+       */
+      insertClass(value) {
+        if (!value) return ''
+        let stringArr  = value.toString().split(" ")
+        for (let i=0; i < stringArr.length; i++){
+          if (stringArr[i][0] === ":" && stringArr[i].length > 1){
+            stringArr[i] = '<span class="f-language-key">' + stringArr[i].substring(1) + '</span>'
+          }
+        }
+        return stringArr.join(" ")
+      },
     }
   }
 </script>
