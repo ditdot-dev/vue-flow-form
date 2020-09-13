@@ -10,12 +10,12 @@ export default class LanguageModel {
   constructor(options) {
     this.ok = 'OK'
     this.continue = 'Continue'
-    this.pressEnter = 'Press :enter'
+    this.pressEnter = 'Press :key(Enter)';
     this.multipleChoiceHelpText = 'Choose as many as you like'
     this.otherPrompt = 'Other'
     this.placeholder = 'Type your answer here...'
     this.submitText = 'Submit'
-    this.longTextHelpText = 'SHIFT + ENTER to make a line break.'
+    this.longTextHelpText = ':key(Shift) + :key(Enter) to make a line break.'
     this.prev = 'Prev'
     this.next = 'Next'
     this.percentCompleted = ':percent% completed'

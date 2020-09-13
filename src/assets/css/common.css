@@ -402,7 +402,7 @@ span.f-sub {
   margin-top: 6px;
 }
 
-span.f-sub span{
+span.f-sub span:not(.f-language-key) {
   margin-right: .4rem;
 }
 

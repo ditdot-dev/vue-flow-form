@@ -70,6 +70,7 @@
   import FlowForm from '../../src/components/FlowForm.vue'
   import QuestionModel, { QuestionType, ChoiceOption} from '../../src/models/QuestionModel'
   import LanguageModel from '../../src/models/LanguageModel'
+  import { InsertClass } from '../../src/mixins/InsertClass'
   // If using the npm package, use the following line instead of the ones above.
   // import FlowForm, { QuestionModel, QuestionType, ChoiceOption, LanguageModel } from '@ditdot-dev/vue-flow-form'
 
@@ -78,6 +79,9 @@
     components: {
       FlowForm
     },
+    mixins: [
+      InsertClass
+    ],
     data() {
       return {
         submitted: false,
@@ -331,20 +335,6 @@
         
         this.submitted = true
         this.calculateScore()
-      },
-
-      /**
-       * Inserts new class into the language model string 
-       */
-      insertClass(value) {
-        if (!value) return ''
-        let stringArr  = value.toString().split(" ")
-        for (let i=0; i < stringArr.length; i++){
-          if (stringArr[i][0]=== ":" && stringArr[i].length > 1){
-            stringArr[i] = '<span class="f-language-key">' + stringArr[i].substring(1) + '</span>'
-          }
-        }
-        return stringArr.join(" ")
       }
     },
   }

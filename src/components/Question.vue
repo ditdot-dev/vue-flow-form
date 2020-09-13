@@ -31,7 +31,7 @@
           <span class="f-sub" v-if="question.subtitle || question.type === QuestionType.LongText || question.multiple">
             <span v-if="question.subtitle">{{ question.subtitle }}</span>
 
-            <span class="f-help" v-if="question.type === QuestionType.LongText && !isMobile">{{ question.helpText || language.longTextHelpText }}</span>
+            <span class="f-help" v-if="question.type === QuestionType.LongText && !isMobile" v-html="question.helpText || insertClass(language.longTextHelpText)"></span>
 
             <span class="f-help" v-if="question.multiple">{{ question.helpText || language.multipleChoiceHelpText }}</span>
           </span>
@@ -96,6 +96,7 @@
   import FlowFormTextType from './QuestionTypes/TextType.vue'
   import FlowFormUrlType from './QuestionTypes/UrlType.vue'
   import { IsMobile } from '../mixins/IsMobile'
+  import { InsertClass } from '../mixins/InsertClass'
 
   export default {
     name: 'FlowFormQuestion',
@@ -125,7 +126,8 @@
       }
     },
     mixins: [
-      IsMobile
+      IsMobile,
+      InsertClass
     ],
     data() {
       return {
@@ -224,19 +226,6 @@
         }
 
         return q.showInvalid()
-      },
-      /**
-       * Inserts new class into the language model string 
-       */
-      insertClass(value) {
-        if (!value) return ''
-        let stringArr  = value.toString().split(" ")
-        for (let i=0; i < stringArr.length; i++){
-          if (stringArr[i][0] === ":" && stringArr[i].length > 1){
-            stringArr[i] = '<span class="f-language-key">' + stringArr[i].substring(1) + '</span>'
-          }
-        }
-        return stringArr.join(" ")
       }
     },
     computed: {

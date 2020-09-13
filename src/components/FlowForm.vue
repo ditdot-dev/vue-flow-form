@@ -125,6 +125,7 @@
 
   import FlowFormQuestion from './Question.vue'
   import LanguageModel from '../models/LanguageModel'
+  import { InsertClass } from '../mixins/InsertClass'
 
   export default {
     name: 'FlowForm',
@@ -138,6 +139,9 @@
         default: () => new LanguageModel()
       }
     },
+    mixins: [
+      InsertClass
+    ],
     data() {
       return {
         completed: false,
@@ -467,19 +471,6 @@
        */
       blurFocus() {
         document.activeElement && document.activeElement.blur && document.activeElement.blur()
-      },
-      /**
-       * Inserts new class into the language model string 
-       */
-      insertClass(value) {
-        if (!value) return ''
-        let stringArr  = value.toString().split(" ")
-        for (let i=0; i < stringArr.length; i++){
-          if (stringArr[i][0] === ":" && stringArr[i].length > 1){
-            stringArr[i] = '<span class="f-language-key">' + stringArr[i].substring(1) + '</span>'
-          }
-        }
-        return stringArr.join(" ")
       },
     }
   }
