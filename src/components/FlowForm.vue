@@ -44,7 +44,7 @@
               href="#"
               v-on:click.prevent="submit()"
               v-if="!submitted"
-              v-html="insertClass(language.pressEnter)">
+              v-html="language.formatKey(language.pressEnter)">
              </a>
           </slot>
         </div>
@@ -125,7 +125,6 @@
 
   import FlowFormQuestion from './Question.vue'
   import LanguageModel from '../models/LanguageModel'
-  import { InsertClass } from '../mixins/InsertClass'
 
   export default {
     name: 'FlowForm',
@@ -139,9 +138,6 @@
         default: () => new LanguageModel()
       }
     },
-    mixins: [
-      InsertClass
-    ],
     data() {
       return {
         completed: false,

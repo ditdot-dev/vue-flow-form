@@ -31,7 +31,7 @@
           <span class="f-sub" v-if="question.subtitle || question.type === QuestionType.LongText || question.multiple">
             <span v-if="question.subtitle">{{ question.subtitle }}</span>
 
-            <span class="f-help" v-if="question.type === QuestionType.LongText && !isMobile" v-html="question.helpText || insertClass(language.longTextHelpText)"></span>
+            <span class="f-help" v-if="question.type === QuestionType.LongText && !isMobile" v-html="question.helpText || language.formatKey(language.longTextHelpText)"></span>
 
             <span class="f-help" v-if="question.multiple">{{ question.helpText || language.multipleChoiceHelpText }}</span>
           </span>
@@ -67,7 +67,7 @@
           href="#"
           v-if="question.type !== QuestionType.LongText || !isMobile"
           v-on:click.prevent="onEnter"
-          v-html="insertClass(language.pressEnter)">
+          v-html="language.formatKey(language.pressEnter)">
         </a>
       </div>
 
@@ -96,7 +96,7 @@
   import FlowFormTextType from './QuestionTypes/TextType.vue'
   import FlowFormUrlType from './QuestionTypes/UrlType.vue'
   import { IsMobile } from '../mixins/IsMobile'
-  import { InsertClass } from '../mixins/InsertClass'
+  
 
   export default {
     name: 'FlowFormQuestion',
@@ -126,8 +126,7 @@
       }
     },
     mixins: [
-      IsMobile,
-      InsertClass
+      IsMobile
     ],
     data() {
       return {

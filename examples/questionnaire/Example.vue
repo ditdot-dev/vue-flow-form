@@ -51,7 +51,7 @@
           <a class="f-enter-desc"
             href="#"
             v-on:click.prevent="onSendData()"
-            v-html="insertClass(language.pressEnter)">
+            v-html="language.formatKey(language.pressEnter)">
           </a>
         </div>
 
@@ -71,7 +71,6 @@
   import FlowForm from '../../src/components/FlowForm.vue'
   import QuestionModel, { QuestionType, ChoiceOption } from '../../src/models/QuestionModel'
   import LanguageModel from '../../src/models/LanguageModel'
-  import { InsertClass } from '../../src/mixins/InsertClass'
   // If using the npm package, use the following line instead of the ones above.
   // import FlowForm, { QuestionModel, QuestionType, ChoiceOption, LanguageModel } from '@ditdot-dev/vue-flow-form'
 
@@ -80,9 +79,6 @@
     components: {
       FlowForm
     },
-    mixins: [
-      InsertClass
-    ],
     data() {
       return {
         submitted: false,

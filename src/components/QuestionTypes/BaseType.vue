@@ -10,7 +10,6 @@
   import QuestionModel, { QuestionType } from '../../models/QuestionModel'
   import LanguageModel from '../../models/LanguageModel'
   import { IsMobile } from '../../mixins/IsMobile'
-  import { InsertClass } from '../../mixins/InsertClass'
 
   export default {
     name: 'FlowFormBaseType',
@@ -22,7 +21,6 @@
     },
     mixins: [
       IsMobile,
-      InsertClass
     ],
     data() {
       return {
