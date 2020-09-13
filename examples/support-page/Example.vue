@@ -26,12 +26,12 @@
      <template v-slot:complete>
         <div class="section-wrap">
           <p>
-            <span class="fh2">Thank you. 🙏</span>
+            <span class="fh2">Thank you for contacting our Customer Support Team.</span>
             <span class="section-text">
-              Great work, the survey is completed, and our demo is done. You can review your answers or press submit.
+              Our support team members will contact you as soon as possible.
             </span>
           </p>
-          <p class="description">Note: No data will be saved and/or sent in this demo.</p>
+          <!--<p class="description">Note: No data will be saved and/or sent in this demo.</p>-->
         </div>  
       </template>
 
@@ -54,7 +54,7 @@
            {{ language.pressEnter }}</a>
         </div>
 
-        <p class="text-success" v-if="submitted">Submitted succesfully.</p>
+        <p class="text-success" v-if="submitted">Your request has been submitted successfully.</p>
       </template>
     </flow-form>
   </div>
@@ -109,8 +109,8 @@
           }),
           new QuestionModel({
             id: 'technical',
-            tagline: "Hi, welcome to our support page",
-            title: 'Have you read our technical FAQ',
+            tagline: "This is our technical support page",
+            title: 'Have you read our technical FAQ?',
             type: QuestionType.MultipleChoice,
             multiple: false,
             required: true,
@@ -125,13 +125,34 @@
                }),
             ],
             jump: {
+              yes: 'read_yes', 
+              no: 'read_no'
+            }
+          }),
+           new QuestionModel({
+            id: 'sales',
+            tagline: "This is our sales support page",
+            title: 'Have you read our sales FAQ?',
+            type: QuestionType.MultipleChoice,
+            multiple: false,
+            required: true,
+            options: [
+              new ChoiceOption({
+                label: 'Yes',
+                value: 'read_yes'
+              }),
+              new ChoiceOption({
+                label: 'No',
+                value: 'read_no'
+               }),
+            ],
+            jump: {
               yes: 'yes', 
               no: 'no'
             }
           }),
            new QuestionModel({
-            id: 'yes',
-            tagline: "Hi, welcome to our support page",
+            id: 'read_yes',
             title: 'Have you found the answer to your question?',
             type: QuestionType.MultipleChoice,
             multiple: false,
@@ -147,142 +168,57 @@
                }),
             ],
             jump: {
-              yes: 'yes', 
-              no: 'no'
+              yes: 'faq_yes', 
+              no: 'faq_no'
             }
           }),
-          /*
           new QuestionModel({
-            id: 'first_name',
-            tagline: "Hi! Welcome to our demo survey 😊",
-            title: 'What is your first name?',
-            type: QuestionType.Text,
-            required: true,
-            placeholder: 'Start typing here...'
-          }),
-          new QuestionModel({
-            id: 'email',
-            tagline: "Nice to meet you 👀, let's continue",
-            title: "Provide an example email.",
-            type: QuestionType.Email,
-            required: true,
-            placeholder: 'Start typing here...'
-          }),
-          new QuestionModel({
-            id: 'phone',
-            title: 'Doing great! 👍 Go ahead and try with a phone number.',
-            type: QuestionType.Phone,
-            required: true,
-            mask: '(###) ###-####'
-          }),
-          new QuestionModel({
-            id: 'movies',
-            title: 'List your favorite movies. 🍿',
-            type: QuestionType.LongText,
-            required: true,
-            placeholder: 'Start typing here...'
-          }),
-          new QuestionModel({
-            id: 'multiple_choice',
-            tagline: "FYI, You can always go back 👈, use the up arrow on the bottom.",
-            title: 'Multiple choice question:',
+            id: 'read_no',
+            title: 'Please visit our FAQ page www.faq.com',
+            helpText: 'Was this information helpful?',
             type: QuestionType.MultipleChoice,
             multiple: false,
-            allowOther: true,
             required: true,
             options: [
               new ChoiceOption({
-                label: 'Answer 1'
+                label: 'Yes',
+                value: 'yes'
               }),
               new ChoiceOption({
-                label: 'Answer 2'
+                label: 'No',
+                value: 'no'
                }),
-              new ChoiceOption({
-                label: 'Answer 3'
-              })
-            ]
-          }),
-          new QuestionModel({
-            id: 'multiple_choices',
-            title: 'Multiple choices question:',
-            type: QuestionType.MultipleChoice,
-            multiple: true,
-            helpText: 'Select all that apply. 👇',
-            required: true,
-            options: [
-              new ChoiceOption({
-                label: 'Answer 1'
-              }),
-              new ChoiceOption({
-                label: 'Answer 2'
-              }),
-              new ChoiceOption({
-                label: 'Answer 3'
-              }),
-              new ChoiceOption({
-                label: 'Answer 4'
-              })
-            ]
-          }),
-          new QuestionModel({
-            id: 'break_1',
-            title: 'Awesome, thank you. 🙏',
-            content: 'You arrived at the section break of our little demo survey. To continue exploring, just press enter or use the continue button.',
-            description: 'Note: We will take a look at our multiple path feature next.',
-            type: QuestionType.SectionBreak
-          }),
-          new QuestionModel({
-            id: 'choose_path',
-            tagline: "Where would you like to go? 🤔",
-            title: 'Choose your path:',
-            type: QuestionType.Dropdown,
-            multiple: false,
-            placeholder: 'Select',
-            inline: true,
-            required: true,
-            options: [
-              new ChoiceOption({
-                label: 'Path A'
-              }),
-              new ChoiceOption({
-                label: 'Path B',
-                value: 'path_b'
-              })
             ],
             jump: {
-              path_b: 'path_b'
+              yes: 'faq_yes', 
+              no: 'faq_no'
             }
           }),
            new QuestionModel({
-            id: 'path_a',
-            title: 'Excellent choice! 🥳',
-            content: 'Press enter or use the continue button for the final submit screen.',
+            id: 'faq_yes',
+            title: 'We are glad our FAQ page was helpful',
+            content: 'Press continue to exit the support form.',
             type: QuestionType.SectionBreak,
             jump: {
               _other: '_submit'
             }
           }),
           new QuestionModel({
-            id: 'path_b',
-            tagline: "Path B",
-            title: 'Hmm, are you sure?',
-            subtitle: 'Path A sounds like a winner! 😉',
-            type: QuestionType.MultipleChoice,
-            multiple: false,
+            id: 'faq_no',
+            title: 'Enter your question to receive a ticket',
+            type: QuestionType.LongText,
             required: true,
-            options: [
-              new ChoiceOption({
-                label: 'Ok, let\'s go with A',
-                value: 'path_a'
-              }),
-              new ChoiceOption({
-                label: 'Yes, finish the survey'
-              })
-            ],
+            placeholder: 'Start typing here...',
+          }),
+           new QuestionModel({
+            id: 'ticket',
+            title: 'This is your ticket number: ' + this.getTicket(),
+            content: 'Press continue to exit the support form.',
+            type: QuestionType.SectionBreak,
             jump: {
-              path_a: 'path_a'
+              _other: '_submit'
             }
-          })*/
+          }),
         ]
       }
     },
@@ -356,6 +292,11 @@
         })
 
         return data
+      },
+
+      getTicket() {
+        const ticket = Math.floor(Math.random() * (9999 - 1000) + 1000).toString();
+        return ticket
       }
     }
   }
