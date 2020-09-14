@@ -121,6 +121,7 @@
             title: 'Multiple choice question:',
             type: QuestionType.MultipleChoice,
             multiple: false,
+            helpText: ' ',
             allowOther: true,
             required: true,
             options: [
