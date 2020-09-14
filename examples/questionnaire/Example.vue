@@ -201,7 +201,7 @@
             id: 'path_b',
             tagline: "Path B",
             title: 'Hmm, are you sure?',
-            subtitle: 'Path A sounds like a winner! 😉',
+            helpText: 'Path A sounds like a winner! 😉',
             type: QuestionType.MultipleChoice,
             multiple: false,
             required: true,
