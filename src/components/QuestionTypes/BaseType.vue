@@ -20,7 +20,7 @@
       value: [String, Array]
     },
     mixins: [
-      IsMobile
+      IsMobile,
     ],
     data() {
       return {

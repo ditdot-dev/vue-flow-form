@@ -43,8 +43,9 @@
               class="f-enter-desc"
               href="#"
               v-on:click.prevent="submit()"
-              v-if="!submitted">
-             {{ language.pressEnter }}</a>
+              v-if="!submitted"
+              v-html="language.formatString(language.pressEnter)">
+             </a>
           </slot>
         </div>
       </div>
@@ -466,7 +467,7 @@
        */
       blurFocus() {
         document.activeElement && document.activeElement.blur && document.activeElement.blur()
-      }
+      },
     }
   }
 </script>

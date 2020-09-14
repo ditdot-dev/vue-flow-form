@@ -46,12 +46,13 @@
             v-on:click.prevent="onSendData()"
             aria-label="Press to submit"
           >
-              <span>{{ language.submitText }}</span>
+            <span>{{ language.submitText }}</span>
           </button>
           <a class="f-enter-desc"
             href="#"
-            v-on:click.prevent="onSendData()">
-           {{ language.pressEnter }}</a>
+            v-on:click.prevent="onSendData()"
+            v-html="language.formatString(language.pressEnter)">
+          </a>
         </div>
 
         <p class="text-success" v-if="submitted">Submitted succesfully.</p>
@@ -291,7 +292,7 @@
 
         return data
       }
-    }
+    },
   }
 </script>
 
