@@ -151,7 +151,7 @@
           new QuestionModel({
             id: 'html_3',
             title: 'Which HTML element is used to define a dropdown list?',
-            subtitle: "Which one sounds right? There's only one right answer.",
+            helpText: "Which one sounds right? There's only one right answer.",
             type: QuestionType.MultipleChoice,
             required: true,
             multiple: false, 
@@ -234,6 +234,7 @@
           new QuestionModel({
             id: 'ux_2',
             title: 'Error messages are bad because they confuse users.',
+            helpText: ' ',
             type: QuestionType.MultipleChoice,
             multiple: false,
             required: true,
@@ -253,7 +254,7 @@
             title: 'How to make the input format clear?',
             type: QuestionType.MultipleChoice,
             multiple: false,
-            subtitle: 'Select one correct answer.',
+            helpText: 'Select one correct answer.',
             required: true,
             options: [
               new ChoiceOption({
@@ -277,6 +278,7 @@
           new QuestionModel({
             id: 'ux_4',
             title: 'Inline validation should have a real time feedback.',
+            helpText: ' ',
             type: QuestionType.MultipleChoice,
             multiple: false,
             required: true,
