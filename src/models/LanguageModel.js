@@ -12,6 +12,7 @@ export default class LanguageModel {
     this.continue = 'Continue'
     this.pressEnter = 'Press ENTER'
     this.multipleChoiceHelpText = 'Choose as many as you like'
+    this.multipleChoiceHelpTextSingle = 'Choose only one answer'
     this.otherPrompt = 'Other'
     this.placeholder = 'Type your answer here...'
     this.submitText = 'Submit'
