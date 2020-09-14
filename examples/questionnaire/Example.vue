@@ -51,7 +51,7 @@
           <a class="f-enter-desc"
             href="#"
             v-on:click.prevent="onSendData()"
-            v-html="language.pressEnter">
+            v-html="language.formatString(language.pressEnter)">
           </a>
         </div>
 

@@ -49,7 +49,7 @@
             class="f-enter-desc"
             href="#"
             v-on:click.prevent="onQuizSubmit()"
-            v-html="language.pressEnter">
+            v-html="language.formatString(language.pressEnter)">
           </a>
         </div>
         <p class="text-success" v-if="submitted && score < 4">"You scored {{ score }} out of {{ total }}. There's a lot of room for improvement."</p>

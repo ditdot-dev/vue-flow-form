@@ -176,7 +176,7 @@ svg.logo {
   margin-bottom: 20px;
 }
 
-.f-language-key {
+.f-uppercase {
   text-transform: uppercase;
 }
 
@@ -402,7 +402,7 @@ span.f-sub {
   margin-top: 6px;
 }
 
-span.f-sub span:not(.f-language-key) {
+span.f-sub span:not(.f-uppercase) {
   margin-right: .4rem;
 }
 
