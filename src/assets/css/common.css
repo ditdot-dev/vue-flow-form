@@ -264,6 +264,7 @@ span.faux-form {
 }
 
 .v-form textarea {
+  display: block;
   outline: none;
   resize: vertical;
 }
