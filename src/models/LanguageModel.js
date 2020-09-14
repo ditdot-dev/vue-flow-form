@@ -12,7 +12,7 @@ export default class LanguageModel {
     this.shiftKey = 'Shift'
     this.ok = 'OK'
     this.continue = 'Continue'
-    this.pressEnter = 'Press :enterKey';
+    this.pressEnter = 'Press :enterKey'
     this.multipleChoiceHelpText = 'Choose as many as you like'
     this.otherPrompt = 'Other'
     this.placeholder = 'Type your answer here...'
@@ -31,10 +31,9 @@ export default class LanguageModel {
     this.ariaMultipleChoice = 'Press :letter to select'
     this.ariaTypeAnswer = 'Type your answer here'
 
-
-
     Object.assign(this, options || {})
-  } 
+  }
+
   /**
    * Inserts a new CSS class into the language model string to format the :string
    * Use it in a component's v-html directive: v-html="language.formatString(language.languageString)"
@@ -44,6 +43,7 @@ export default class LanguageModel {
       if (this[word]) {
         return '<span class="f-uppercase">' + this[word] + '</span>'
       }
+      
       return match
     })
   }
