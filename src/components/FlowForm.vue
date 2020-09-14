@@ -44,7 +44,7 @@
               href="#"
               v-on:click.prevent="submit()"
               v-if="!submitted"
-              v-html="language.formatKey(language.pressEnter)">
+              v-html="language.pressEnter">
              </a>
           </slot>
         </div>

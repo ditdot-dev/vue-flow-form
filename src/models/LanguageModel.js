@@ -29,18 +29,21 @@ export default class LanguageModel {
     this.ariaMultipleChoice = 'Press :letter to select'
     this.ariaTypeAnswer = 'Type your answer here'
 
+
+
     Object.assign(this, options || {})
-  }
-   // Inserts a new CSS class into the language model string to format the :key  
-    formatKey(value) {
-      if (!value) return ''
-      let stringArr = value.toString().split(" ")
-      for (let i = 0; i < stringArr.length; i++) {
-        if (stringArr[i].slice(0,4) === ":key") {
-          stringArr[i] = '<span class="f-language-key">' + stringArr[i].substring(5, stringArr[i].length - 1) + '</span>'
-        }
+
+     // Inserts a new CSS class into the language model string to format the :key 
+    Object.keys(this).forEach(property => {
+        if (!this[property]) return ''
+        let stringArr = this[property].toString().split(" ")
+        for (let i = 0; i < stringArr.length; i++) {
+          if (stringArr[i].slice(0, 4) === ":key") {
+            stringArr[i] = '<span class="f-language-key">' + stringArr[i].substring(5, stringArr[i].length - 1) + '</span>'
+          }
       }
-      return stringArr.join(" ")
-    } 
+        this[property] = stringArr.join(" ")
+    });
+  } 
 }
 
