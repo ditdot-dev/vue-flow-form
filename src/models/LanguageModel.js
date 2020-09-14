@@ -8,8 +8,8 @@
 
 export default class LanguageModel {
   constructor(options) {
-    this.enterKey = 'Enter', 
-    this.shiftKey = 'Shift',
+    this.enterKey = 'Enter'
+    this.shiftKey = 'Shift'
     this.ok = 'OK'
     this.continue = 'Continue'
     this.pressEnter = 'Press :enterKey';
@@ -37,7 +37,7 @@ export default class LanguageModel {
   } 
   /**
    * Inserts a new CSS class into the language model string to format the :string
-   * Use it in the component v-html directive: v-html="language.formatString(language.languageString)"
+   * Use it in a component's v-html directive: v-html="language.formatString(language.languageString)"
    */
   formatString(string) {
     return string.replace(/:(\w+)/g, (match, word) => {
