@@ -3,7 +3,7 @@
 ## Before creating an issue
 
 * Check the [GUIDE](https://www.ditdot.hr/en/docs/vue-flow-form-guide) to see if you can find the solution to your problem by yourself.
-* Check the version of Vue Flow Form you are using - use the last version according to CHANGELOG.
+* Check the version of Vue Flow Form you are using - use the last version according to [CHANGELOG](https://github.com/ditdot-dev/vue-flow-form/blob/contributing/CHANGELOG.md).
 * Perform the [Issues](https://github.com/ditdot-dev/vue-flow-form/issues) search to see if the problem has already been reported.
 * If the issue has been reported and is still open, add a comment to it instead of opening a new issue.
 * If the issue has been reported and is closed, open a new issue with a link to the closed issue.
