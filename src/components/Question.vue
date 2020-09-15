@@ -60,7 +60,7 @@
           v-on:click.prevent="onEnter"
           v-bind:aria-label="language.ariaOk"
         >
-            <span v-if="question.type === QuestionType.SectionBreak">{{ language.continue }}</span>
+            <span v-if="question.type === QuestionType.SectionBreak || question.type === QuestionType.Component">{{ language.continue }}</span>
             <span v-else>{{ language.ok }}</span>
         </button>
         <a 
@@ -96,6 +96,7 @@
   import FlowFormSectionBreakType from './QuestionTypes/SectionBreakType.vue'
   import FlowFormTextType from './QuestionTypes/TextType.vue'
   import FlowFormUrlType from './QuestionTypes/UrlType.vue'
+  import FlowFormComponentType from './QuestionTypes/ComponentType.vue'
   import { IsMobile } from '../mixins/IsMobile'
   
 
@@ -111,7 +112,8 @@
       FlowFormPhoneType,
       FlowFormSectionBreakType,
       FlowFormTextType,
-      FlowFormUrlType
+      FlowFormUrlType,
+      FlowFormComponentType
     },
     props: {
       question: QuestionModel,
@@ -204,7 +206,7 @@
       showOkButton() {
         const q = this.$refs.questionComponent
 
-        if (this.question.type === QuestionType.SectionBreak) {
+        if (this.question.type === QuestionType.SectionBreak || this.question.type === QuestionType.Component) {
           return this.active
         }
 
