@@ -90,6 +90,7 @@
             id: 'first_name',
             tagline: "Hi! Welcome to our demo survey 😊",
             title: 'What is your first name?',
+            html: '<p style="text-size:13px;font-weight:300;color:gray"><b>Psst...</b> You can also provide <i>html</i> directly!</p>',
             type: QuestionType.Text,
             required: true,
             placeholder: 'Start typing here...'

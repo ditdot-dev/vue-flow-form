@@ -24,3 +24,6 @@ yarn-error.log*
 # Misc files
 dev.cmd
 dist.cmd
+
+# Yarn
+yarn.lock
