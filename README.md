@@ -191,10 +191,10 @@ var app = new Vue({
 
 Modern browsers and IE11.
 
-## License
-
-[MIT](https://github.com/ditdot-dev/vue-flow-form/blob/master/LICENSE) license.
-
 ## Changelog
 
 Changes for each release are documented in the [release notes](https://github.com/ditdot-dev/vue-flow-form/releases).
+
+## License
+
+[MIT](https://github.com/ditdot-dev/vue-flow-form/blob/master/LICENSE) license.
