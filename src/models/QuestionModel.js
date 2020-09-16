@@ -72,6 +72,7 @@ export default class QuestionModel {
     this.content = null
     this.inline = false
     this.helpText = null
+    this.helpTextShow = true;
 
     Object.assign(this, options)
 

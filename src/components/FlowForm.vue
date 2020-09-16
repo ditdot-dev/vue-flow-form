@@ -53,7 +53,7 @@
 
     <div class="f-footer">
       <div class="footer-inner-wrap">
-        <div class="f-progress" v-bind:class="{'not-started': percentCompleted === 0, 'completed': percentCompleted === 100}">
+        <div v-if="progressbar" class="f-progress" v-bind:class="{'not-started': percentCompleted === 0, 'completed': percentCompleted === 100}">
           <div class="f-progress-bar">
             <div class="f-progress-bar-inner" v-bind:style="'width: ' + percentCompleted + '%;'"></div>
           </div>
@@ -136,6 +136,10 @@
       language: {
         type: LanguageModel,
         default: () => new LanguageModel()
+      },
+      progressbar: {
+        type: Boolean, 
+        default: true
       }
     },
     data() {

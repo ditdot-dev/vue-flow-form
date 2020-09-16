@@ -28,7 +28,7 @@
             </span>
           </template>
 
-          <span class="f-sub" v-if="question.subtitle || question.type === QuestionType.LongText || question.type === QuestionType.MultipleChoice">
+          <span class="f-sub" v-if="showHelperText">
             <span v-if="question.subtitle">{{ question.subtitle }}</span>
 
             <span class="f-help" v-if="question.type === QuestionType.LongText && !isMobile" v-html="question.helpText || language.formatString(language.longTextHelpText)"></span>
@@ -240,6 +240,16 @@
         classes['field-' + this.question.type.toLowerCase().substring(8)] = true
 
         return classes
+      },
+
+      showHelperText() {
+        if (this.question.subtitle) {
+          return true
+        }
+        if (this.question.type === QuestionType.LongText || this.question.type === QuestionType.MultipleChoice) {
+          return this.question.helpTextShow
+        }
+        return false
       }
     }
   }
