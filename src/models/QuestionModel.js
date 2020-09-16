@@ -73,6 +73,7 @@ export default class QuestionModel {
     this.content = null
     this.inline = false
     this.helpText = null
+    this.helpTextShow = true
     this.component = null
     this.validateComponent = false
 
