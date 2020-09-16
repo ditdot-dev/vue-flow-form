@@ -120,9 +120,9 @@
             id: 'multiple_choice',
             tagline: "FYI, You can always go back 👈, use the up arrow on the bottom.",
             title: 'Multiple choice question:',
+            helpTextShow: false,
             type: QuestionType.MultipleChoice,
             multiple: false,
-            helpText: ' ',
             allowOther: true,
             required: true,
             options: [
