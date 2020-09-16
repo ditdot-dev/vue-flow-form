@@ -134,6 +134,7 @@
           new QuestionModel({
             id: 'html_2',
             title: '<label> is associated with <input> using the "name" attribute.',
+            helpTextShow: false,
             type: QuestionType.MultipleChoice,
             required: true,
             multiple: false, 
@@ -234,7 +235,7 @@
           new QuestionModel({
             id: 'ux_2',
             title: 'Error messages are bad because they confuse users.',
-            helpText: ' ',
+            helpTextShow: false,
             type: QuestionType.MultipleChoice,
             multiple: false,
             required: true,
@@ -278,7 +279,7 @@
           new QuestionModel({
             id: 'ux_4',
             title: 'Inline validation should have a real time feedback.',
-            helpText: ' ',
+            helpTextShow: false,
             type: QuestionType.MultipleChoice,
             multiple: false,
             required: true,
