@@ -69,7 +69,7 @@
 
   // Import necessary components and classes
   import FlowForm from '../../src/components/FlowForm.vue'
-  import QuestionModel, { QuestionType, ChoiceOption } from '../../src/models/QuestionModel'
+  import QuestionModel, { QuestionType, ChoiceOption, LinkOption } from '../../src/models/QuestionModel'
   import LanguageModel from '../../src/models/LanguageModel'
   // If using the npm package, use the following line instead of the ones above.
   // import FlowForm, { QuestionModel, QuestionType, ChoiceOption, LanguageModel } from '@ditdot-dev/vue-flow-form'
@@ -90,6 +90,15 @@
             id: 'first_name',
             tagline: "Hi! Welcome to our demo survey 😊",
             title: 'What is your first name?',
+            link: [
+              new LinkOption({
+                url: "https://www.ditdot.hr/",
+                anchor: 'I am a DITDOT official page link', 
+              }), 
+              new LinkOption({
+                url: "https://github.com/ditdot-dev/vue-flow-form", 
+              })
+            ],
             type: QuestionType.Text,
             required: true,
             placeholder: 'Start typing here...'

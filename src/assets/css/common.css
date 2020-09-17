@@ -326,6 +326,22 @@ span.f-answered{
   height: auto;
 }
 
+/*links*/
+
+.link a {
+  display: inline-block;
+  height: 1.5rem;
+  margin-right: 10px;
+  color: inherit;
+  border-bottom: 1px solid;
+  
+}
+
+.link a:hover {
+ border-bottom: none;
+}
+
+
 /*typography*/
 li,
 p,

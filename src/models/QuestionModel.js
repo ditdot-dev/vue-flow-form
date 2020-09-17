@@ -47,6 +47,19 @@ export class ChoiceOption {
   }
 }
 
+export class LinkOption {
+  constructor(options) {
+    this.url = ''
+    this.anchor = 'Link'
+    this.target = '_blank'
+
+    Object.assign(this, options)
+  }
+  formatLink() {
+    return `<a href=${this.url} target=${this.target}>${this.anchor}</a>`
+  }
+}
+
 export default class QuestionModel {
   constructor(options) {
     this.id = null
@@ -72,6 +85,7 @@ export default class QuestionModel {
     this.content = null
     this.inline = false
     this.helpText = null
+    this.link = []
 
     Object.assign(this, options)
 
