@@ -66,8 +66,15 @@ a:focus {
 }
 
 ol,
-ul {
+ul,
+table {
   margin-top: 0;
+  margin-bottom: 22px;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
   margin-bottom: 22px;
 }
 
