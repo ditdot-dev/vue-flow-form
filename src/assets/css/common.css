@@ -334,13 +334,11 @@ span.f-answered{
 }
 
 /*links*/
-
 a.f-link, 
 .field-submittype .section-wrap a {
-  margin-right: 10px;
   color: inherit;
-  border-bottom: 1px solid;
-  white-space: pre-wrap;
+  border-bottom: 1px dotted;
+  word-break: break-word;
 }
 
 a.f-link:hover, 
@@ -442,10 +440,18 @@ span.f-text {
   margin-right: .6rem;
 }
 
+/*description*/
 p.description {
   margin-top: 0;
   padding-right: 4rem;
 }
+
+p.description span,
+p.description a.f-link {
+  margin-right: 8px;
+}
+
+
 
 /*f-radios (multiple-choice)*/
 ul.f-radios {

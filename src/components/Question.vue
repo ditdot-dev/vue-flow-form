@@ -50,16 +50,14 @@
           </div>
         </div>
         <p v-if="question.description || question.descriptionLink" class="description">
-          {{ question.description }}
+          <span v-if="question.description">{{ question.description }}</span>
           <a
             v-for="(link, index) in question.descriptionLink" 
             class="f-link" 
             v-bind:key="'m' + index"
             v-bind:href="link.url"
             v-bind:target="link.target"
-          >
-            {{ link.text || link.url }}
-          </a>
+          >{{ link.text || link.url }}</a>
         </p>
 
       </div>
