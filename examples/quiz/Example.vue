@@ -68,7 +68,7 @@
 
   // Import necessary components and classes
   import FlowForm from '../../src/components/FlowForm.vue'
-  import QuestionModel, { QuestionType, ChoiceOption} from '../../src/models/QuestionModel'
+  import QuestionModel, { QuestionType, ChoiceOption, LinkOption } from '../../src/models/QuestionModel'
   import LanguageModel from '../../src/models/LanguageModel'
   // If using the npm package, use the following line instead of the ones above.
   // import FlowForm, { QuestionModel, QuestionType, ChoiceOption, LanguageModel } from '@ditdot-dev/vue-flow-form'
