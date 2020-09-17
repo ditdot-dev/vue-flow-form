@@ -50,7 +50,7 @@
           </div>
         </div>
         <p v-if="question.description || question.descriptionLink" class="description">
-          {{ question.description }}
+          <span>{{ question.description }}</span>
           <a
             v-for="(link, index) in question.descriptionLink" 
             class="f-link" 
