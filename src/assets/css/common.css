@@ -328,18 +328,18 @@ span.f-answered{
 
 /*links*/
 
-a.f-link {
+a.f-link, 
+.description a {
   margin-right: 10px;
   color: inherit;
   border-bottom: 1px solid;
-}
-
-a.f-link:first-of-type {
-  margin-left: 7px;
+  white-space: pre-wrap;
 }
 
 a.f-link:hover, 
-a.f-link:active {
+a.f-link:active, 
+.description a:hover,
+.description a:active {
  color: inherit; 
  border-bottom: none;
 }
