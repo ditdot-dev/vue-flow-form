@@ -90,6 +90,7 @@
             id: 'first_name',
             tagline: "Hi! Welcome to our demo survey 😊",
             title: 'What is your first name?',
+            description: 'Some description',
             link: [
               new LinkOption({
                 url: "https://www.ditdot.hr/",
@@ -107,6 +108,15 @@
             id: 'email',
             tagline: "Nice to meet you 👀, let's continue",
             title: "Provide an example email.",
+             link: [
+              new LinkOption({
+                url: "https://www.ditdot.hr/",
+                anchor: 'I am a DITDOT official page link', 
+              }), 
+              new LinkOption({
+                url: "https://github.com/ditdot-dev/vue-flow-form", 
+              })
+            ],
             type: QuestionType.Email,
             required: true,
             placeholder: 'Start typing here...'
@@ -114,6 +124,7 @@
           new QuestionModel({
             id: 'phone',
             title: 'Doing great! 👍 Go ahead and try with a phone number.',
+            description: 'Some description',
             type: QuestionType.Phone,
             required: true,
             mask: '(###) ###-####'
