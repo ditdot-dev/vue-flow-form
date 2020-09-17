@@ -90,12 +90,6 @@
             id: 'first_name',
             tagline: 'Hi! Welcome to our demo survey 😊',
             title: 'What is your first name?',
-            description: 'description', 
-            descriptionLink: [
-              new LinkOption({
-                url: 'example.com'
-              })
-            ],
             type: QuestionType.Text,
             required: true,
             placeholder: 'Start typing here...'
