@@ -328,19 +328,21 @@ span.f-answered{
 
 /*links*/
 
-.link a {
-  display: inline-block;
-  height: 1.5rem;
+a.f-link {
   margin-right: 10px;
   color: inherit;
   border-bottom: 1px solid;
-  
 }
 
-.link a:hover {
+a.f-link:first-of-type {
+  margin-left: 7px;
+}
+
+a.f-link:hover, 
+a.f-link:active {
+ color: inherit; 
  border-bottom: none;
 }
-
 
 /*typography*/
 li,

@@ -88,18 +88,8 @@
         questions: [
           new QuestionModel({
             id: 'first_name',
-            tagline: "Hi! Welcome to our demo survey 😊",
+            tagline: 'Hi! Welcome to our demo survey 😊',
             title: 'What is your first name?',
-            description: 'Some description',
-            link: [
-              new LinkOption({
-                url: "https://www.ditdot.hr/",
-                anchor: 'I am a DITDOT official page link', 
-              }), 
-              new LinkOption({
-                url: "https://github.com/ditdot-dev/vue-flow-form", 
-              })
-            ],
             type: QuestionType.Text,
             required: true,
             placeholder: 'Start typing here...'
@@ -107,16 +97,7 @@
           new QuestionModel({
             id: 'email',
             tagline: "Nice to meet you 👀, let's continue",
-            title: "Provide an example email.",
-             link: [
-              new LinkOption({
-                url: "https://www.ditdot.hr/",
-                anchor: 'I am a DITDOT official page link', 
-              }), 
-              new LinkOption({
-                url: "https://github.com/ditdot-dev/vue-flow-form", 
-              })
-            ],
+            title: 'Provide an example email.',
             type: QuestionType.Email,
             required: true,
             placeholder: 'Start typing here...'
@@ -124,7 +105,6 @@
           new QuestionModel({
             id: 'phone',
             title: 'Doing great! 👍 Go ahead and try with a phone number.',
-            description: 'Some description',
             type: QuestionType.Phone,
             required: true,
             mask: '(###) ###-####'
@@ -138,7 +118,7 @@
           }),
           new QuestionModel({
             id: 'multiple_choice',
-            tagline: "FYI, You can always go back 👈, use the up arrow on the bottom.",
+            tagline: 'FYI, You can always go back 👈, use the up arrow on the bottom.',
             title: 'Multiple choice question:',
             type: QuestionType.MultipleChoice,
             multiple: false,
@@ -188,7 +168,7 @@
           }),
           new QuestionModel({
             id: 'choose_path',
-            tagline: "Where would you like to go? 🤔",
+            tagline: 'Where would you like to go? 🤔',
             title: 'Choose your path:',
             type: QuestionType.Dropdown,
             multiple: false,
@@ -219,7 +199,7 @@
           }),
           new QuestionModel({
             id: 'path_b',
-            tagline: "Path B",
+            tagline: 'Path B',
             title: 'Hmm, are you sure?',
             helpText: 'Path A sounds like a winner! 😉',
             type: QuestionType.MultipleChoice,

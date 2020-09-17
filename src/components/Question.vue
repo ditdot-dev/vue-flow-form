@@ -49,14 +49,17 @@
             />
           </div>
         </div>
-        <p v-if="question.description ||question.link" class="description">
+        <p v-if="question.description || question.descriptionLink" class="description">
           {{ question.description }}
-          <span v-if="question.link">
-            <span class="link"
-            v-for="(link, index) in question.link" 
-            v-bind:key="'m' + index" v-html="link.formatLink()">
-            </span>
-          </span>
+          <a
+            v-for="(link, index) in question.descriptionLink" 
+            class="f-link" 
+            v-bind:key="'m' + index"
+            v-bind:href="link.url"
+            v-bind:target="link.target"
+          >
+            {{ link.text || link.url }}
+          </a>
         </p>
 
       </div>

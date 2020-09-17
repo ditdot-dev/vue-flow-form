@@ -107,7 +107,7 @@
           }),
           new QuestionModel({
             id: 'html_1',
-            title: "Which of the following are valid input field types? ",
+            title: 'Which of the following are valid input field types?',
             helpText: 'Choose all answers that apply.',
             type: QuestionType.MultipleChoice,
             required: true,
