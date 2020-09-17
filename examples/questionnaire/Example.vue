@@ -69,7 +69,7 @@
 
   // Import necessary components and classes
   import FlowForm from '../../src/components/FlowForm.vue'
-  import QuestionModel, { QuestionType, ChoiceOption } from '../../src/models/QuestionModel'
+  import QuestionModel, { QuestionType, ChoiceOption, LinkOption } from '../../src/models/QuestionModel'
   import LanguageModel from '../../src/models/LanguageModel'
   // If using the npm package, use the following line instead of the ones above.
   // import FlowForm, { QuestionModel, QuestionType, ChoiceOption, LanguageModel } from '@ditdot-dev/vue-flow-form'
@@ -88,7 +88,7 @@
         questions: [
           new QuestionModel({
             id: 'first_name',
-            tagline: "Hi! Welcome to our demo survey 😊",
+            tagline: 'Hi! Welcome to our demo survey 😊',
             title: 'What is your first name?',
             type: QuestionType.Text,
             required: true,
@@ -97,7 +97,7 @@
           new QuestionModel({
             id: 'email',
             tagline: "Nice to meet you 👀, let's continue",
-            title: "Provide an example email.",
+            title: 'Provide an example email.',
             type: QuestionType.Email,
             required: true,
             placeholder: 'Start typing here...'
@@ -118,7 +118,7 @@
           }),
           new QuestionModel({
             id: 'multiple_choice',
-            tagline: "FYI, You can always go back 👈, use the up arrow on the bottom.",
+            tagline: 'FYI, You can always go back 👈, use the up arrow on the bottom.',
             title: 'Multiple choice question:',
             helpTextShow: false,
             type: QuestionType.MultipleChoice,
@@ -168,7 +168,7 @@
           }),
           new QuestionModel({
             id: 'choose_path',
-            tagline: "Where would you like to go? 🤔",
+            tagline: 'Where would you like to go? 🤔',
             title: 'Choose your path:',
             type: QuestionType.Dropdown,
             multiple: false,
@@ -199,7 +199,7 @@
           }),
           new QuestionModel({
             id: 'path_b',
-            tagline: "Path B",
+            tagline: 'Path B',
             title: 'Hmm, are you sure?',
             helpText: 'Path A sounds like a winner! 😉',
             type: QuestionType.MultipleChoice,

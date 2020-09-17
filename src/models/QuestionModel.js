@@ -47,6 +47,16 @@ export class ChoiceOption {
   }
 }
 
+export class LinkOption {
+  constructor(options) {
+    this.url = ''
+    this.text = ''
+    this.target = '_blank'
+
+    Object.assign(this, options)
+  }
+}
+
 export default class QuestionModel {
   constructor(options) {
     this.id = null
@@ -73,6 +83,7 @@ export default class QuestionModel {
     this.inline = false
     this.helpText = null
     this.helpTextShow = true
+    this.descriptionLink = []
 
     Object.assign(this, options)
 

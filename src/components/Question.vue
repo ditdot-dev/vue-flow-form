@@ -49,7 +49,19 @@
             />
           </div>
         </div>
-        <p v-if="question.description" class="description">{{ question.description }}</p>
+        <p v-if="question.description || question.descriptionLink" class="description">
+          {{ question.description }}
+          <a
+            v-for="(link, index) in question.descriptionLink" 
+            class="f-link" 
+            v-bind:key="'m' + index"
+            v-bind:href="link.url"
+            v-bind:target="link.target"
+          >
+            {{ link.text || link.url }}
+          </a>
+        </p>
+
       </div>
       <div class="animate fade-in f-enter" v-if="showOkButton()">
         <button 
@@ -85,7 +97,7 @@
   */
 
   import LanguageModel from '../models/LanguageModel'
-  import QuestionModel, { QuestionType } from '../models/QuestionModel'
+  import QuestionModel, { QuestionType, LinkOption } from '../models/QuestionModel'
   import FlowFormDropdownType from './QuestionTypes/DropdownType.vue'
   import FlowFormEmailType from './QuestionTypes/EmailType.vue'
   import FlowFormLongTextType from './QuestionTypes/LongTextType.vue'
