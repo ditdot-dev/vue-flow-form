@@ -47,8 +47,6 @@ body {
 
 a {
   cursor: pointer;
-  color: inherit;
-  border: 1px solid;
 }
 
 a,
@@ -57,11 +55,6 @@ a:active,
 a:focus {
   outline: 0;
   text-decoration: none;
-}
-
-a:hover, 
-a:active {
-  border: none;
 }
 
 *,
@@ -73,7 +66,8 @@ a:active {
 }
 
 ol,
-ul {
+ul,
+table {
   margin-top: 0;
   margin-bottom: 22px;
 }
@@ -81,10 +75,6 @@ ul {
 img {
   max-width: 100%;
   height: auto;
-  margin-bottom: 22px;
-}
-
-table {
   margin-bottom: 22px;
 }
 
