@@ -329,7 +329,6 @@ span.f-answered{
 /*links*/
 
 a.f-link, 
-.description a,
 .field-submittype .section-wrap a {
   margin-right: 10px;
   color: inherit;
@@ -338,9 +337,7 @@ a.f-link,
 }
 
 a.f-link:hover, 
-a.f-link:active, 
-.description a:hover,
-.description a:active, 
+a.f-link:active,  
 .field-submittype .section-wrap a:hover, 
 .field-submittype .section-wrap a:active {
  color: inherit; 
