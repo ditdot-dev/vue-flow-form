@@ -28,6 +28,10 @@
       },
 
       validate() {
+        if (this.question.mask) {
+          this.question.mask = ''
+        }
+        
         if (this.hasValue) {
           try {
             var url = new URL(this.fixAnswer(this.dataValue))
