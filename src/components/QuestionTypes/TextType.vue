@@ -58,10 +58,11 @@
       }
     }, 
     methods: {
-      validate(){
+      validate() {
         if (this.question.mask && this.dataValue.length !== this.question.mask.length) {
           return false
         }
+
         return !this.question.required || this.hasValue
       }
     }
