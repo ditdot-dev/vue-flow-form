@@ -1,6 +1,6 @@
 // Import vue component
 import FlowForm from './components/FlowForm.vue'
-import QuestionModel, { QuestionType, ChoiceOption } from './models/QuestionModel'
+import QuestionModel, { QuestionType, ChoiceOption, LinkOption } from './models/QuestionModel'
 import LanguageModel from './models/LanguageModel'
 
 // IE11 Object.assign polyfill
@@ -36,5 +36,6 @@ export {
   QuestionModel,
   QuestionType,
   ChoiceOption,
+  LinkOption,
   LanguageModel
 }

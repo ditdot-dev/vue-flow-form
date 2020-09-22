@@ -15,7 +15,7 @@
   --tertiary-text-color: #f1f1f1;
   --main-accent-color: #27ae60;
   --secondary-accent-color: #2ecc71;
-  --tertiary-accent-color:  #8e44ad;
+  --tertiary-accent-color: #8e44ad;
   --header-color: var(--tertiary-accent-color);
   --header-border-color: transparent;
   --button-color: var(--main-accent-color);
@@ -153,8 +153,9 @@ span.f-answered{
 
 @media screen and (max-width:479px) {
   .f-footer .footer-inner-wrap{
-    background-color: rgba(0,0,0,0.05);
+    background-color: rgba(230,230,230,0.75);
   }
+
 }
 
 .f-footer .f-prev svg,
@@ -225,7 +226,6 @@ p.description,
   }
 
   /*footer*/
-
   .f-footer .f-prev.f-disabled svg,
   .f-footer .f-next.f-disabled svg {
     fill: var(--main-text-color);
@@ -235,8 +235,11 @@ p.description,
     filter: brightness(1);
   }
 
-  /*field-multiplechoicetype*/
+  .f-footer .footer-inner-wrap{
+    background-color: rgba(44,62,80,0.75);
+  }
 
+  /*field-multiplechoicetype*/
   .f-key {
     font-weight: 400;
   }

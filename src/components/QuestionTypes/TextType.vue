@@ -1,17 +1,36 @@
 <template>
-  <input
-    ref="input"
-    v-bind:type="inputType"
-    v-bind:value="value"
-    v-bind:required="question.required"
-    v-on:keydown="onKeyDown"
-    v-on:keyup="onChange"
-    v-on:keyup.enter.prevent="onEnter"
-    v-on:keyup.tab.prevent="onEnter"
-    v-on:focus="setFocus"
-    v-on:blur="unsetFocus"
-    v-bind:placeholder="placeholder"
-  />
+  <span>
+    <the-mask
+      v-if="question.mask"
+      ref="input"
+      v-bind:mask="question.mask"
+      v-bind:masked="false"
+      v-bind:type="inputType"
+      v-bind:value="value"
+      v-bind:required="question.required"
+      v-on:keydown.native="onKeyDown"
+      v-on:keyup.native="onChange"
+      v-on:focus.native="setFocus"
+      v-on:blur.native="unsetFocus"
+      v-on:keyup.native.enter.prevent="onEnter"
+      v-on:keyup.native.tab.prevent="onEnter"
+      v-bind:placeholder="placeholder"
+    />
+    <input
+      v-else
+      ref="input"
+      v-bind:type="inputType"
+      v-bind:value="value"
+      v-bind:required="question.required"
+      v-on:keydown="onKeyDown"
+      v-on:keyup="onChange"
+      v-on:keyup.enter.prevent="onEnter"
+      v-on:keyup.tab.prevent="onEnter"
+      v-on:focus="setFocus"
+      v-on:blur="unsetFocus"
+      v-bind:placeholder="placeholder"
+    />
+  </span>
 </template>
 
 <script>
@@ -24,10 +43,14 @@
   import BaseType from './BaseType.vue'
   import { QuestionType } from '../../models/QuestionModel'
   import LanguageModel from '../../models/LanguageModel'
+  import TheMask from 'vue-the-mask/src/component'
 
   export default {
     extends: BaseType,
     name: QuestionType.Text,
+    components: {
+      TheMask
+    },
     data() {
       return {
         inputType: 'text', 
