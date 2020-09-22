@@ -131,7 +131,7 @@
                 value: 'read_yes'
               }),
               new ChoiceOption({
-                label: "No, I'm going to check the link below",
+                label: "No, I'm going to visit the FAQ link below",
                 value: 'read_no'
                }),
             ],
@@ -156,8 +156,7 @@
             id: 'ticket_status',
             tagline: 'Help Center > Check Ticket Status > Ticket Status',
             title: 'Good news - the wheels are turning, your ticket is being processed!😉',
-            content: 'Thank you for your patience. Our support team members will contact you as soon as possible.',
-            description: 'Press continue to exit the support form',
+            content: 'Press continue to exit the support form',
             type: QuestionType.SectionBreak,
             jump: {
               _other: '_submit'
@@ -213,7 +212,7 @@
             id: 'faq_yes',
             tagline: 'Help Center > FAQ',
             title: "We're glad we could help 🤗",
-            description: 'Press continue to exit the support form.',
+            content: 'Press continue to exit the support form.',
             type: QuestionType.SectionBreak,
             jump: {
               _other: '_submit'
