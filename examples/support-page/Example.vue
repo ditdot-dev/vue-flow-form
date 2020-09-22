@@ -20,18 +20,18 @@
       v-on:submit="onSubmit"
       v-bind:questions="questions"
       v-bind:language="language"
+      v-bind:progressbar="false"
     >
     <!-- Custom content for the Complete/Submit screen slots in the FlowForm component -->
       <!-- We've overriden the default "complete" slot content -->
      <template v-slot:complete>
         <div class="section-wrap">
           <p>
-            <span class="fh2">Thank you for contacting our Customer Support Team.</span>
+            <span class="fh2">Thank you for contacting our Customer Support Team. 🙏</span>
             <span class="section-text">
-              Our support team members will contact you as soon as possible.
+              Have a great day!
             </span>
           </p>
-          <!--<p class="description">Note: No data will be saved and/or sent in this demo.</p>-->
         </div>  
       </template>
 
@@ -46,15 +46,16 @@
             v-on:click.prevent="onSendData()"
             aria-label="Press to submit"
           >
-              <span>{{ language.submitText }}</span>
+              <span>Exit</span>
           </button>
           <a class="f-enter-desc"
             href="#"
-            v-on:click.prevent="onSendData()">
-           {{ language.pressEnter }}</a>
+            v-on:click.prevent="onSendData()"
+            v-html="language.formatString(language.pressEnter)">
+          </a>
         </div>
 
-        <p class="text-success" v-if="submitted">Your request has been submitted successfully.</p>
+       <!-- <p class="text-success" v-if="submitted">Your request has been submitted successfully.</p> -->
       </template>
     </flow-form>
   </div>
@@ -68,7 +69,7 @@
 
   // Import necessary components and classes
   import FlowForm from '../../src/components/FlowForm.vue'
-  import QuestionModel, { QuestionType, ChoiceOption } from '../../src/models/QuestionModel'
+  import QuestionModel, { QuestionType, ChoiceOption, LinkOption } from '../../src/models/QuestionModel'
   import LanguageModel from '../../src/models/LanguageModel'
   // If using the npm package, use the following line instead of the ones above.
   // import FlowForm, { QuestionModel, QuestionType, ChoiceOption, LanguageModel } from '@ditdot-dev/vue-flow-form'
@@ -87,105 +88,119 @@
         questions: [
            new QuestionModel({
             id: 'multiple_choice',
-            tagline: "Hi, welcome to our support page",
-            title: 'Please choose the support team',
+            tagline: "Help Center",
+            title: 'Hi 👋, how can we help you today?',
             type: QuestionType.MultipleChoice,
             multiple: false,
             required: true,
+            helpTextShow: false,
             options: [
               new ChoiceOption({
-                label: 'Technical support',
-                value: 'technical'
+                label: 'I have a technical issue',
+                value: 'technical_issue'
               }),
               new ChoiceOption({
-                label: 'Sales support',
-                value: 'sales'
+                label: 'I wish to check my ticket status',
+                value: 'enter_ticket'
                }),
             ],
             jump: {
-              technical: 'technical', 
-              sales: 'sales'
+              technical_issue: 'technical_issue', 
+              enter_ticket: 'enter_ticket'
             }
           }),
           new QuestionModel({
-            id: 'technical',
-            tagline: "This is our technical support page",
+            id: 'technical_issue',
+            tagline: 'Help Center > FAQ',
             title: 'Have you read our technical FAQ?',
             type: QuestionType.MultipleChoice,
             multiple: false,
             required: true,
-            options: [
-              new ChoiceOption({
-                label: 'Yes',
-                value: 'yes'
-              }),
-              new ChoiceOption({
-                label: 'No',
-                value: 'no'
-               }),
+            helpTextShow: false,
+            description: "Here you'll find answers to the most",
+            descriptionLink: [
+              new LinkOption({
+                url: '#',
+                text: 'frequently asked questions',
+                target: '_self'
+              })
             ],
-            jump: {
-              yes: 'read_yes', 
-              no: 'read_no'
-            }
-          }),
-           new QuestionModel({
-            id: 'sales',
-            tagline: "This is our sales support page",
-            title: 'Have you read our sales FAQ?',
-            type: QuestionType.MultipleChoice,
-            multiple: false,
-            required: true,
             options: [
               new ChoiceOption({
                 label: 'Yes',
                 value: 'read_yes'
               }),
               new ChoiceOption({
-                label: 'No',
+                label: "No, I'm going to check the link below",
                 value: 'read_no'
                }),
             ],
             jump: {
-              yes: 'yes', 
-              no: 'no'
+              read_yes: 'read_yes', 
+              read_no: 'read_no'
+            }
+          }),
+           new QuestionModel({
+            id: 'enter_ticket',
+            tagline: 'Help Center > Check Ticket Status',
+            title: 'Please enter your 6-digit ticket code',
+            subtitle: 'You received this when you reported your problem',
+            type: QuestionType.Number,
+            multiple: false,
+            required: true,
+            mask: '#-#-#-#-#-#',
+            placeholder: '#-#-#-#-#-#',
+            description: 'Only numbers are allowed'
+          }),
+            new QuestionModel({
+            id: 'ticket_status',
+            tagline: 'Help Center > Check Ticket Status > Ticket Status',
+            title: 'Good news - the wheels are turning, your ticket is being processed!😉',
+            content: 'Thank you for your patience. Our support team members will contact you as soon as possible.',
+            description: 'Press continue to exit the support form',
+            type: QuestionType.SectionBreak,
+            jump: {
+              _other: '_submit'
             }
           }),
            new QuestionModel({
             id: 'read_yes',
+            tagline: 'Help Center > FAQ',
             title: 'Have you found the answer to your question?',
             type: QuestionType.MultipleChoice,
             multiple: false,
             required: true,
+            helpTextShow: false,
             options: [
               new ChoiceOption({
-                label: 'Yes',
-                value: 'yes'
+                label: 'Yes, my question has been answered 🤗. Get me out of here.',
+                value: 'faq_yes'
               }),
               new ChoiceOption({
-                label: 'No',
-                value: 'no'
+                label: 'No, still couldn’t find the answer. What now? 🤔',
+                value: 'faq_no'
                }),
             ],
             jump: {
-              yes: 'faq_yes', 
-              no: 'faq_no'
+              faq_yes: 'faq_yes', 
+              faq_no: 'faq_no'
             }
           }),
           new QuestionModel({
             id: 'read_no',
-            title: 'Please visit our FAQ page www.faq.com',
-            helpText: 'Was this information helpful?',
+            tagline: 'Help Center > FAQ ',
+            title: 'Was our FAQ page helpful?',
+            helpTextShow: false,
             type: QuestionType.MultipleChoice,
             multiple: false,
             required: true,
             options: [
               new ChoiceOption({
-                label: 'Yes',
+                label: 'Yes, my question has been answered 🤗. Get me out of here.',
                 value: 'yes'
               }),
               new ChoiceOption({
-                label: 'No',
+                label: 'No, still couldn’t find the answer. Let me ask you a question.',
                 value: 'no'
                }),
             ],
@@ -196,8 +211,9 @@
           }),
            new QuestionModel({
             id: 'faq_yes',
-            title: 'We are glad our FAQ page was helpful',
-            content: 'Press continue to exit the support form.',
+            tagline: 'Help Center > FAQ',
+            title: "We're glad we could help 🤗",
+            description: 'Press continue to exit the support form.',
             type: QuestionType.SectionBreak,
             jump: {
               _other: '_submit'
@@ -205,6 +221,7 @@
           }),
           new QuestionModel({
             id: 'faq_no',
+            tagline: 'Help Center > Submit Question',
             title: 'Enter your question to receive a ticket',
             type: QuestionType.LongText,
             required: true,
@@ -212,8 +229,22 @@
           }),
            new QuestionModel({
             id: 'ticket',
-            title: 'This is your ticket number: ' + this.getTicket(),
-            content: 'Press continue to exit the support form.',
+            tagline: 'Help Center > Receive Ticket',
+            title: 'Your ticket number is: ' + this.getTicket(),
+            content: 'Our support team members will contact you as soon as possible.',
+            description: 'In the meantime, you can check out the following resources:',
+            descriptionLink: [
+              new LinkOption({
+                url: '#',
+                text: 'Latest News',
+                target: '_self'
+              }),
+               new LinkOption({
+                url: '#',
+                text: 'Tutorials',
+                target: '_self'
+              })
+            ],
             type: QuestionType.SectionBreak,
             jump: {
               _other: '_submit'
