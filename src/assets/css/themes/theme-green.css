@@ -9,12 +9,12 @@
 */
 
 :root {
-  --bg-color: #41B883;
+  --bg-color: #3EAF7C;
   --main-text-color: #fff;
-  --secondary-text-color: #B2E2CD;
-  --tertiary-text-color: #67C69C;
+  --secondary-text-color: #B5EBD3;
+  --tertiary-text-color: #52B789;
   --main-accent-color: #111;
-  --secondary-accent-color: #BBEBD5;
+  --secondary-accent-color: #ECF80D;
 }
 
 body,
@@ -94,19 +94,24 @@ a:active {
 /*field-multiplechoicetype*/
 ul.f-radios li {
   border: 1px solid var(--secondary-text-color);
+  font-weight: 900;
+  color: var(--secondary-text-color);
 }
 
 ul.f-radios li.f-other.f-selected input {
   color: inherit;
 }
 
-ul.f-radios li.f-selected, ul.f-radios li:active {
+ul.f-radios li.f-selected, 
+ul.f-radios li:active {
   border-color: var(--main-text-color);
+  color: var(--main-text-color);
   background-color: var(--tertiary-text-color);
 }
 
 .f-key{
-  color: var(--secondary-text-color);
+  color: var(--secondary-accent-color);
+  font-weight: 300;
 }
 
 /*field-dropdowntype*/
@@ -171,7 +176,13 @@ p.description,
 }
 
 p.text-success {
-  color: yellow;
+  color: #ECF80D;
+}
+
+@media screen and (max-width:479px) {
+  .f-footer .footer-inner-wrap {
+    background-color: rgba(55,158,112,0.6);
+  }
 }
 
 /*
@@ -248,18 +259,14 @@ p.text-success {
   }
 
   /*field-multiplechoicetype*/
-  ul.f-radios li.f-selected{
-    color: var(--main-accent-color);
-  }
 
   ul.f-radios li{
-    font-weight: 900;
     color: var(--secondary-text-color);
   }
 
   .f-key{
-    font-weight: 400;
     color: var(--main-accent-color);
+    font-weight: 300;
   }
 
 }
