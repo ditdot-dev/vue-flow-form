@@ -118,7 +118,6 @@ span.f-answered{
 }
 
 /*buttons*/
-
 .o-btn-action {
   color: var(--bg-color);
   background-color: var(--main-text-color);
@@ -137,7 +136,7 @@ span.f-answered{
 
 @media screen and (max-width:479px) {
   .f-footer .footer-inner-wrap{
-    background-color: rgba(180,180,180,0.15);
+    background-color: rgba(240,240,240,0.75);
   }
 
 }
@@ -227,7 +226,7 @@ p.description,
 
   /*footer*/
   .f-footer .footer-inner-wrap{
-    background-color: var(--bg-color);
+    background-color: rgba(49,54,64,0.75);
   }
 
   .f-footer .f-prev svg,
@@ -238,10 +237,6 @@ p.description,
   .f-footer .f-prev.f-disabled svg,
   .f-footer .f-next.f-disabled svg {
     fill: var(--main-text-color);
-  }
-
-  .f-footer .footer-inner-wrap{
-    background-color: var(--bg-color);
   }
 
   .f-prev:hover,

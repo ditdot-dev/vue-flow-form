@@ -28,12 +28,13 @@
             </span>
           </template>
 
-          <span class="f-sub" v-if="question.subtitle || question.type === QuestionType.LongText || question.multiple">
+          <span class="f-sub" v-if="showHelperText">
             <span v-if="question.subtitle">{{ question.subtitle }}</span>
 
-            <span class="f-help" v-if="question.type === QuestionType.LongText && !isMobile">{{ question.helpText || language.longTextHelpText }}</span>
+            <span class="f-help" v-if="question.type === QuestionType.LongText && !isMobile" v-html="question.helpText || language.formatString(language.longTextHelpText)"></span>
 
-            <span class="f-help" v-if="question.multiple">{{ question.helpText || language.multipleChoiceHelpText }}</span>
+            <span class="f-help" v-if="question.type === QuestionType.MultipleChoice && question.multiple">{{ question.helpText || language.multipleChoiceHelpText }}</span>
+            <span class="f-help" v-else-if="question.type === QuestionType.MultipleChoice">{{ question.helpText || language.multipleChoiceHelpTextSingle }}</span>
           </span>
 
           <div v-if="!question.inline" class="f-answer full-width">
@@ -48,7 +49,17 @@
             />
           </div>
         </div>
-        <p v-if="question.description" class="description">{{ question.description }}</p>
+        <p v-if="question.description || question.descriptionLink" class="description">
+          <span v-if="question.description">{{ question.description }}</span>
+          <a
+            v-for="(link, index) in question.descriptionLink" 
+            class="f-link" 
+            v-bind:key="'m' + index"
+            v-bind:href="link.url"
+            v-bind:target="link.target"
+          >{{ link.text || link.url }}</a>
+        </p>
+
       </div>
       <div class="animate fade-in f-enter" v-if="showOkButton()">
         <button 
@@ -66,8 +77,9 @@
           class="f-enter-desc"
           href="#"
           v-if="question.type !== QuestionType.LongText || !isMobile"
-          v-on:click.prevent="onEnter">
-          {{ language.pressEnter }}</a>
+          v-on:click.prevent="onEnter"
+          v-html="language.formatString(language.pressEnter)">
+        </a>
       </div>
 
       <div v-if="showInvalid()" class="f-invalid" role="alert" aria-live="assertive">{{ language.invalidPrompt }}</div>
@@ -83,7 +95,7 @@
   */
 
   import LanguageModel from '../models/LanguageModel'
-  import QuestionModel, { QuestionType } from '../models/QuestionModel'
+  import QuestionModel, { QuestionType, LinkOption } from '../models/QuestionModel'
   import FlowFormDropdownType from './QuestionTypes/DropdownType.vue'
   import FlowFormEmailType from './QuestionTypes/EmailType.vue'
   import FlowFormLongTextType from './QuestionTypes/LongTextType.vue'
@@ -95,6 +107,7 @@
   import FlowFormTextType from './QuestionTypes/TextType.vue'
   import FlowFormUrlType from './QuestionTypes/UrlType.vue'
   import { IsMobile } from '../mixins/IsMobile'
+  
 
   export default {
     name: 'FlowFormQuestion',
@@ -237,6 +250,16 @@
         classes['field-' + this.question.type.toLowerCase().substring(8)] = true
 
         return classes
+      },
+
+      showHelperText() {
+        if (this.question.subtitle) {
+          return true
+        }
+        if (this.question.type === QuestionType.LongText || this.question.type === QuestionType.MultipleChoice) {
+          return this.question.helpTextShow
+        }
+        return false
       }
     }
   }

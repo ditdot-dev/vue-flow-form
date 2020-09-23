@@ -66,8 +66,15 @@ a:focus {
 }
 
 ol,
-ul {
+ul,
+table {
   margin-top: 0;
+  margin-bottom: 22px;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
   margin-bottom: 22px;
 }
 
@@ -131,6 +138,7 @@ svg.logo {
   opacity: 1;
 }
 
+/**/
 .v-form button,
 .v-form input {
   -webkit-appearance: none;
@@ -144,7 +152,7 @@ svg.logo {
   border: none;
   outline: 0;
   cursor: pointer;
-  padding: 0.6rem 1.4rem;
+  padding: .6rem 1.4rem;
   text-align: center;
   display: inline-block;
   min-height: 44px;
@@ -176,12 +184,13 @@ svg.logo {
   margin-bottom: 20px;
 }
 
+.f-uppercase {
+  text-transform: uppercase;
+}
+
 /*v-form*/
 .v-form {
-  margin-top: 26vh;
-  margin-left: 10vw;
-  margin-right: 10vw;
-  margin-bottom: 90px;
+  margin: 26vh 10vw 80px;
   position: relative;
   text-align: left;
 }
@@ -264,6 +273,7 @@ span.faux-form {
 }
 
 .v-form textarea {
+  display: block;
   outline: none;
   resize: vertical;
 }
@@ -321,6 +331,22 @@ span.f-answered{
 .f-arrow-down svg {
   width: 100%;
   height: auto;
+}
+
+/*links*/
+a.f-link, 
+.field-submittype .section-wrap a {
+  color: inherit;
+  border-bottom: 1px dotted;
+  word-break: break-word;
+}
+
+a.f-link:hover, 
+a.f-link:active,  
+.field-submittype .section-wrap a:hover, 
+.field-submittype .section-wrap a:active {
+ color: inherit; 
+ border-bottom: none;
 }
 
 /*typography*/
@@ -398,7 +424,7 @@ span.f-sub {
   margin-top: 6px;
 }
 
-span.f-sub span{
+span.f-sub span:not(.f-uppercase) {
   margin-right: .4rem;
 }
 
@@ -407,17 +433,25 @@ span.f-sub span.f-help{
 }
 
 span.f-sub span + span.f-help {
-  margin-top: 8px;
+  margin-top: 0;
 }
 
 span.f-text {
   margin-right: .6rem;
 }
 
+/*description*/
 p.description {
   margin-top: 0;
   padding-right: 4rem;
 }
+
+p.description span,
+p.description a.f-link {
+  margin-right: 8px;
+}
+
+
 
 /*f-radios (multiple-choice)*/
 ul.f-radios {
@@ -538,7 +572,7 @@ a.f-disabled {
 
 /**/
 .section-wrap {
-  margin-bottom: 32px;
+  margin-bottom: 30px;
 }
 
 .section-wrap > div {
@@ -550,7 +584,7 @@ a.f-disabled {
   max-width: 760px;
 }
 
-f.submit {
+.f-submit {
   margin-bottom: 20px;
 }
 
@@ -635,6 +669,10 @@ f.submit {
     font-size: 1rem;
     padding-top: .4rem;
     padding-bottom: .4rem;
+  }
+
+  .v-form button {
+    min-height: 42px;
   }
 
   .f-arrow-down {
