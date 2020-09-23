@@ -11,9 +11,9 @@
       v-bind:language="language"
       v-bind:progressbar="false"
     >
-    <!-- Custom content for the Complete/Submit screen slots in the FlowForm component -->
+      <!-- Custom content for the Complete/Submit screen slots in the FlowForm component -->
       <!-- We've overriden the default "complete" slot content -->
-     <template v-slot:complete>
+      <template v-slot:complete>
         <div class="section-wrap">
           <p>
             <span class="fh2">Thank you for visiting our technical support page. 🙏</span>
@@ -27,24 +27,8 @@
       <!-- We've overriden the default "completeButton" slot content -->
       <template v-slot:completeButton>
         <div class="f-submit" v-if="!submitted">
-          <button 
-            class="o-btn-action"
-            ref="button"
-            type="submit"
-            href="#"
-            v-on:click.prevent="onSendData()"
-            aria-label="Press to submit"
-          >
-              <span>Exit</span>
-          </button>
-          <a class="f-enter-desc"
-            href="#"
-            v-on:click.prevent="onSendData()"
-            v-html="language.formatString(language.pressEnter)">
-          </a>
+          <!-- Leave empty to hide default submit button -->
         </div>
-
-       <!-- <p class="text-success" v-if="submitted">Your request has been submitted successfully.</p> -->
       </template>
     </flow-form>
   </div>
@@ -75,7 +59,7 @@
         language: new LanguageModel(),
         // Create question list with QuestionModel instances
         questions: [
-           new QuestionModel({
+          new QuestionModel({
             id: 'multiple_choice',
             tagline: "Welcome to our support page!",
             title: 'Hi 👋, how can we help you today?',
@@ -91,7 +75,7 @@
               new ChoiceOption({
                 label: 'I wish to check my ticket status',
                 value: 'enter_ticket'
-               }),
+              }),
             ],
             jump: {
               technical_issue: 'technical_issue', 
@@ -110,21 +94,21 @@
             descriptionLink: [
               new LinkOption({
                 url: '#',
-                text: 'frequently asked questions',
+                text: 'FAQs',
                 target: '_self'
               })
             ],
             options: [          
-               new ChoiceOption({
+              new ChoiceOption({
                 label: 'Yes, but still couldn’t find the answer.',
                 value: 'faq_no'
-               }),
+              }),
             ],
             jump: {
               faq_no: 'faq_no'
             }
           }),
-           new QuestionModel({
+          new QuestionModel({
             id: 'enter_ticket',
             tagline: 'Support page > Ticket status',
             title: 'Please enter your 6-digit code',
@@ -135,11 +119,10 @@
             mask: '#-#-#-#-#-#',
             placeholder: '#-#-#-#-#-#'
           }),
-            new QuestionModel({
+          new QuestionModel({
             id: 'ticket_status',
             tagline: 'Support page > Ticket status',
             title: 'Good news - the wheels are turning, your ticket is being processed!😉',
-            content: 'Press continue to exit the support form',
             type: QuestionType.SectionBreak,
             jump: {
               _other: '_submit'
@@ -148,12 +131,12 @@
           new QuestionModel({
             id: 'faq_no',
             tagline: 'Submit issue > Step 2/3',
-            title: 'Enter your question to receive a ticket',
+            title: 'Please describe your problem',
             type: QuestionType.LongText,
             required: true,
             placeholder: 'Start typing here...',
           }),
-           new QuestionModel({
+          new QuestionModel({
             id: 'ticket',
             tagline: 'Submit issue > Step 3/3',
             title: 'Your ticket number is: ' + this.getTicket(),
@@ -162,7 +145,7 @@
             jump: {
               _other: '_submit'
             }
-          }),
+          })
         ]
       }
     },
@@ -247,7 +230,7 @@
 </script>
 
 <style lang="css">
-  @import '../../src/assets/css/themes/theme-minimal.css';
+  @import '../../src/assets/css/themes/theme-green.css';
   /* If using the npm package, use the following lines instead of the one above */
   /* @import '~@ditdot-dev/vue-flow-form/dist/vue-flow-form.css'; */
   /* @import '~@ditdot-dev/vue-flow-form/dist/vue-flow-form.theme-green.css'; */

@@ -421,7 +421,7 @@ span.f-text {
 
 span.f-sub {
   margin-bottom: 8px;
-  margin-top: 6px;
+  margin-top: 5px;
 }
 
 span.f-sub span:not(.f-uppercase) {
@@ -716,7 +716,7 @@ a.f-disabled {
   }
 
   .v-form {
-      margin-top: 10vh;
+      margin-top: 12vh;
   }
 
 }
