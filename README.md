@@ -16,6 +16,7 @@ Create conversational conditional-logic forms with Vue.js.
 
 * [Questionnaire example](https://www.ditdot.hr/demo/vff/questionnaire/)
 * [Quiz example](https://www.ditdot.hr/demo/vff/quiz/)
+* [Support page example](https://www.ditdot.hr/demo/vff/support-page/)
 
 ## Project Documentation
 
