@@ -5,7 +5,7 @@
       class
       v-bind:value="dataValue"
       v-on:change="onChange"
-      v-on:keydown="onKeyDown"
+      v-on:keydown="onKeyDownListener"
       v-bind:required="question.required"
     >
       <option v-if="question.required" label=" " value="" disabled selected hidden>&nbsp;</option>
@@ -47,6 +47,12 @@
   export default {
     extends: BaseType,
     name: QuestionType.Dropdown,
+    mounted() {
+      document.addEventListener('select', this.onKeyDownListener)
+    },
+    beforeDestroy() {
+      document.removeEventListener('select', this.onKeyDownListener)
+    },
     computed: {
       answerLabel() {
         for (let i = 0; i < this.question.options.length; i++) {
@@ -60,12 +66,17 @@
         return this.question.placeholder
       }
     },
-    watch: {
-       dataValue(value) {
-         if (this.isValid()) {
-          this.onEnter()
-          
+    methods: {
+      onKeyDownListener($event) {
+     
+        if ($event.key === 'ArrowDown' || $event.key === 'ArrowUp') {
+          this.setAnswer(this.dataValue)
+        } 
+        if ($event.key === 'Enter' && this.isValid()) {
+          $event.stopPropagation()
+          this._onEnter()
           this.$emit('next')
+          return
         }
       }
     }
