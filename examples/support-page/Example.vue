@@ -2,14 +2,6 @@
  
 <template>
   <div>
-<<<<<<< HEAD
-=======
-    <header>
-      <div class="f-container">
-       <!-- Add custom logo here -->
-      </div>
-    </header>
->>>>>>> c6b08bed6982840d05acc902798700baab5943f8
 
     <flow-form
       ref="flowform"
@@ -24,7 +16,7 @@
      <template v-slot:complete>
         <div class="section-wrap">
           <p>
-            <span class="fh2">Thank you for contacting our Customer Support Team. 🙏</span>
+            <span class="fh2">Thank you for visiting our technical support page. 🙏</span>
             <span class="section-text">
               Have a great day!
             </span>
@@ -85,13 +77,8 @@
         questions: [
            new QuestionModel({
             id: 'multiple_choice',
-<<<<<<< HEAD
-            tagline: "Hi 👋, welcome to our support page!",
-            title: 'How can we help you today?',
-=======
-            tagline: "Welcome to our Help Center",
-            title: 'Hi 👋, how can we help you today?',
->>>>>>> c6b08bed6982840d05acc902798700baab5943f8
+            tagline: "Welcome to our support page!",
+            title: 'Hi 👋, how can we help you?',
             type: QuestionType.MultipleChoice,
             multiple: false,
             required: true,
@@ -99,23 +86,6 @@
             options: [
               new ChoiceOption({
                 label: 'I have a technical issue',
-<<<<<<< HEAD
-                value: 'technical'
-              }),
-              new ChoiceOption({
-                label: 'I wish to check my ticket status',
-                value: 'checkticket'
-               }),
-            ],
-            jump: {
-              technical: 'technical', 
-              checkticket: 'checkticket'
-            }
-          }),
-          new QuestionModel({
-            id: 'technical',
-            tagline: "Support page > Technical team",
-=======
                 value: 'technical_issue'
               }),
               new ChoiceOption({
@@ -130,14 +100,13 @@
           }),
           new QuestionModel({
             id: 'technical_issue',
-            tagline: 'Submit Request > Step 1/3',
->>>>>>> c6b08bed6982840d05acc902798700baab5943f8
+            tagline: 'Submit issue > Step 1/3',
             title: 'Have you read our technical FAQ?',
             type: QuestionType.MultipleChoice,
             multiple: false,
             required: true,
             helpTextShow: false,
-            description: "Here you'll find answers to the most",
+            description: "Here you'll find answers to",
             descriptionLink: [
               new LinkOption({
                 url: '#',
@@ -145,51 +114,30 @@
                 target: '_self'
               })
             ],
-<<<<<<< HEAD
-            jump: {
-              yes: 'read_yes', 
-              no: 'read_no'
-            }
-          }),
-           new QuestionModel({
-            id: 'checkticket',
-            tagline: "Support page > Ticket status",
-            title: 'Please enter your 6 digit ticket code',
-            type: QuestionType.Number,
-            placeholder: "Type here...",
-            required: true,
-=======
-            options: [
-              new ChoiceOption({
-                label: 'Yes, my question has been answered 🤗. Get me out of here.',
-                value: 'faq_yes'
-              }),             
+            options: [          
                new ChoiceOption({
-                label: 'Yes, but still couldn’t find the answer. Let me ask you a question.',
+                label: 'Yes, but still couldn’t find the answer.',
                 value: 'faq_no'
                }),
             ],
             jump: {
-              faq_yes: 'faq_yes', 
               faq_no: 'faq_no'
             }
->>>>>>> c6b08bed6982840d05acc902798700baab5943f8
           }),
            new QuestionModel({
             id: 'enter_ticket',
-            tagline: 'Ticket Status > Step 1/2',
-            title: 'Please enter your 6-digit ticket code',
+            tagline: 'Support page > Ticket status',
+            title: 'Please enter your 6-digit code',
             subtitle: 'You received this when you reported your problem',
             type: QuestionType.Number,
             multiple: false,
             required: true,
             mask: '#-#-#-#-#-#',
-            placeholder: '#-#-#-#-#-#',
-            description: 'Only numbers are allowed'
+            placeholder: '#-#-#-#-#-#'
           }),
             new QuestionModel({
             id: 'ticket_status',
-            tagline: 'Ticket Status > Step 2/2',
+            tagline: 'Support page > Ticket status',
             title: 'Good news - the wheels are turning, your ticket is being processed!😉',
             content: 'Press continue to exit the support form',
             type: QuestionType.SectionBreak,
@@ -197,18 +145,9 @@
               _other: '_submit'
             }
           }),
-           new QuestionModel({
-            id: 'faq_yes',
-            title: "We're glad we could help 🤗",
-            content: 'Press continue to exit the support form.',
-            type: QuestionType.SectionBreak,
-            jump: {
-              _other: '_submit'
-            }
-          }),
           new QuestionModel({
             id: 'faq_no',
-            tagline: 'Submit Request > Step 2/3',
+            tagline: 'Submit issue > Step 2/3',
             title: 'Enter your question to receive a ticket',
             type: QuestionType.LongText,
             required: true,
@@ -216,22 +155,9 @@
           }),
            new QuestionModel({
             id: 'ticket',
-            tagline: 'Submit Request > Step 3/3',
+            tagline: 'Submit issue > Step 3/3',
             title: 'Your ticket number is: ' + this.getTicket(),
-            content: 'Our support team members will contact you as soon as possible.',
-            description: 'In the meantime, you can check out the following resources:',
-            descriptionLink: [
-              new LinkOption({
-                url: '#',
-                text: 'Latest News',
-                target: '_self'
-              }),
-               new LinkOption({
-                url: '#',
-                text: 'Tutorials',
-                target: '_self'
-              })
-            ],
+            description: 'Thank You. Our support team will contact you as soon as possible.',
             type: QuestionType.SectionBreak,
             jump: {
               _other: '_submit'
@@ -313,7 +239,7 @@
       },
 
       getTicket() {
-        const ticket = Math.floor(Math.random() * (9999 - 1000) + 1000).toString();
+        const ticket = Math.floor(Math.random() * (999999 - 100000) + 100000).toString();
         return ticket
       }
     }
@@ -321,7 +247,7 @@
 </script>
 
 <style lang="css">
-  @import '../../src/assets/css/themes/theme-green.css';
+  @import '../../src/assets/css/themes/theme-minimal.css';
   /* If using the npm package, use the following lines instead of the one above */
   /* @import '~@ditdot-dev/vue-flow-form/dist/vue-flow-form.css'; */
   /* @import '~@ditdot-dev/vue-flow-form/dist/vue-flow-form.theme-green.css'; */
