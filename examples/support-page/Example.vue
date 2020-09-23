@@ -78,7 +78,7 @@
            new QuestionModel({
             id: 'multiple_choice',
             tagline: "Welcome to our support page!",
-            title: 'Hi 👋, how can we help you?',
+            title: 'Hi 👋, how can we help you today?',
             type: QuestionType.MultipleChoice,
             multiple: false,
             required: true,
