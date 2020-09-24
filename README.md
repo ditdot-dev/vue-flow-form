@@ -12,7 +12,7 @@ Create conversational conditional-logic forms with Vue.js.
   <img src="https://www.ditdot.hr/demo/vff/visuals/v-form-green-full-rotate-02.png" alt="v-form screenshots">
 </p>
 
-## Demo
+## Live Demos
 
 * [Questionnaire example](https://www.ditdot.hr/demo/vff/questionnaire/)
 * [Support page example](https://www.ditdot.hr/demo/vff/support-page/)
