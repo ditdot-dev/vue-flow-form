@@ -64,7 +64,6 @@
      methods: {
       onKeyDownListener($event) {
         if ($event.key === 'ArrowDown' || $event.key === 'ArrowUp') {
-          this.focused = true
           this.setAnswer(this.dataValue)
         } else if ($event.key === 'Enter' && this.hasValue) {
           this.focused = false
