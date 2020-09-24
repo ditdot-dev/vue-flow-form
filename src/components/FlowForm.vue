@@ -30,22 +30,22 @@
           <slot name="completeButton">
             <!-- Default content for the "completeButton" slot -->
             <button 
-            class="o-btn-action"
-            ref="button" 
-            type="button" 
-            href="#" 
-            v-on:click.prevent="submit()" 
-            v-if="!submitted"
-            v-bind:aria-label="language.ariaSubmitText">
+              class="o-btn-action"
+              ref="button" 
+              type="button" 
+              href="#" 
+              v-on:click.prevent="submit()" 
+              v-if="!submitted"
+              v-bind:aria-label="language.ariaSubmitText">
                 <span>{{ language.submitText }}</span>
             </button>
-             <a 
+            <a 
               class="f-enter-desc"
               href="#"
               v-on:click.prevent="submit()"
               v-if="!submitted"
               v-html="language.formatString(language.pressEnter)">
-             </a>
+            </a>
           </slot>
         </div>
       </div>
@@ -446,11 +446,11 @@
       goToPreviousQuestion() {
         this.blurFocus()
 
-        if (this.activeQuestionIndex > 0) {
+        if (this.activeQuestionIndex > 0 && !this.submitted) {
           --this.activeQuestionIndex
-        }
 
-        this.reverse = true
+          this.reverse = true
+        }
       },
 
       /**
