@@ -41,7 +41,7 @@ header svg.logo {
 
 /* footer */
 .f-footer .footer-inner-wrap {
-  background-color: transparent;
+    background-color: rgba(62,175,124,0.75);
 }
 
 .v-form textarea,
@@ -179,9 +179,9 @@ p.text-success {
   color: #ECF80D;
 }
 
-@media screen and (max-width:479px) {
+@media screen and (max-width:479px), (max-height:420px) {
   .f-footer .footer-inner-wrap {
-    background-color: rgba(55,158,112,0.6);
+    background-color: rgba(55,158,112,0.7);
   }
 }
 
@@ -241,7 +241,7 @@ p.text-success {
   }
 
   .f-footer .footer-inner-wrap{
-    background-color: var(--bg-color);
+    background-color: rgba(49,54,64,0.75);
   }
 
   .f-prev:hover,
