@@ -5,7 +5,7 @@
     <div class="f-container">
       <div class="form-wrap">
         <flow-form-question
-          ref="questions"
+          :ref="setQuestionRef"
           v-for="(q, index) in questionList"
           v-bind:question="q"
           v-bind:language="language"
@@ -144,6 +144,7 @@
     },
     data() {
       return {
+        questionRefs: [],
         completed: false,
         submitted: false,
         activeQuestionIndex: 0,
@@ -168,6 +169,9 @@
       document.removeEventListener('keydown', this.onKeyDownListener)
       document.removeEventListener('keyup', this.onKeyUpListener, true)
       window.removeEventListener('beforeunload', this.onBeforeUnload)
+    },
+    beforeUpdate() {
+      this.questionRefs = []
     },
     computed: {
       numActiveQuestions() {
@@ -203,15 +207,15 @@
       }
     },
     methods: {
+      setQuestionRef(el) {
+        this.questionRefs.push(el)
+      },
+
       /**
        * Returns currently active question component (if any).
        */
       activeQuestionComponent() {
-        if (this.$refs.questions) {
-          return this.$refs.questions[this.activeQuestionIndex]
-        }
-
-        return null
+        return this.questionRefs[this.activeQuestionIndex]
       },
 
       setQuestions() {
@@ -310,7 +314,6 @@
         if (e.key !== 'Tab' || this.submitted) {
           return
         }
-
 
         if (e.shiftKey) {
           e.stopPropagation()

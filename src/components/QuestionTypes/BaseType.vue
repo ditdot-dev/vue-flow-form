@@ -17,7 +17,7 @@
       language: LanguageModel,
       question: QuestionModel,
       active: Boolean,
-      value: [String, Array]
+      modelValue: [String, Array]
     },
     mixins: [
       IsMobile,
@@ -125,7 +125,7 @@
         this.question.answered = this.isValid()
         this.answer = this.question.answer = answer
 
-        this.$emit('input', this.answer)
+        this.$emit('update:modelValue', this.answer)
       },
 
       showInvalid() {
