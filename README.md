@@ -145,7 +145,7 @@ HTML:
 ```html
 <html>
   <head>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.2.6/vue.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.min.js"></script>
     <!-- Flow Form -->
     <script src="https://unpkg.com/@ditdot-dev/vue-flow-form@1.1.1"></script>
     <!-- Flow Form base CSS -->
