@@ -5,7 +5,8 @@
       class
       v-bind:value="dataValue"
       v-on:change="onChange"
-      v-on:keydown="onKeyDown"
+      v-on:keydown="onKeyDownListener"
+      v-on:keyup="onKeyUpListener"
       v-bind:required="question.required"
     >
       <option v-if="question.required" label=" " value="" disabled selected hidden>&nbsp;</option>
@@ -60,11 +61,19 @@
         return this.question.placeholder
       }
     },
-    watch: {
-       dataValue(value) {
-         if (this.isValid()) {
-          this.onEnter()
-          
+     methods: {
+      onKeyDownListener($event) {
+        if ($event.key === 'ArrowDown' || $event.key === 'ArrowUp') {
+          this.setAnswer(this.dataValue)
+        } else if ($event.key === 'Enter' && this.hasValue) {
+          this.focused = false
+          this.blur()
+        }
+      },
+      onKeyUpListener($event) {
+        if ($event.key === 'Enter' && this.isValid()) {
+          $event.stopPropagation()
+          this._onEnter()
           this.$emit('next')
         }
       }
