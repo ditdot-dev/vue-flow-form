@@ -96,6 +96,11 @@ export default class QuestionModel {
         this.placeholder = this.mask
       }
     }
+
+    if (this.type === QuestionType.Url) {
+      this.mask = null
+    }
+
     if (this.multiple) {
       this.answer = []
     }

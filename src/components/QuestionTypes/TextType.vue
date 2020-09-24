@@ -56,6 +56,15 @@
         inputType: 'text', 
         canReceiveFocus: true
       }
+    }, 
+    methods: {
+      validate() {
+        if (this.question.mask && this.dataValue.length !== this.question.mask.length) {
+          return false
+        }
+
+        return !this.question.required || this.hasValue
+      }
     }
   }
 </script>
