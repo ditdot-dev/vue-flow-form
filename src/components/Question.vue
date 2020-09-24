@@ -189,6 +189,11 @@
         const q = this.$refs.questionComponent
 
         if (q) {
+          if (this.question.type === QuestionType.Dropdown) {
+            this.$emit('answer', q)
+            return
+          } 
+
           if (!q.focused) {
             this.$emit('answer', q)
           }
