@@ -21,7 +21,7 @@
             </div>
             <div v-else>
               <span class="fh2">Your ticket number is: {{ getTicket() }}</span>
-              <p class="description"><span>Thank You. Our support team will contact you as soon as possible.</span></p>
+              <p class="description"><span>Thank You 😊. Our support team will contact you as soon as possible.</span></p>
             </div>
           </div>
           <div v-else>
