@@ -6,7 +6,6 @@
     <flow-form
       ref="flowform"
       v-on:complete="onComplete"
-      v-on:submit="onSubmit"
       v-bind:questions="questions"
       v-bind:language="language"
       v-bind:progressbar="false"
@@ -15,18 +14,26 @@
       <!-- We've overriden the default "complete" slot content -->
       <template v-slot:complete>
         <div class="section-wrap">
-          <p>
-            <span class="fh2">Thank you for visiting our technical support page. 🙏</span>
-            <span class="section-text">
-              Have a great day!
-            </span>
-          </p>
+          <div v-if="questions[0].answer === 'technical_issue'">
+            <span class="f-tagline">Submit issue &gt; Step 3/3</span>
+            <div v-if="loading">
+              <span class="fh2">Please wait, submitting your ticket.</span>
+            </div>
+            <div v-else>
+              <span class="fh2">Your ticket number is: {{ getTicket() }}</span>
+              <p class="description"><span>Thank You. Our support team will contact you as soon as possible.</span></p>
+            </div>
+          </div>
+          <div v-else>
+            <span class="f-tagline">Support page &gt; Ticket status</span>
+            <span class="fh2">Good news - the wheels are turning, your ticket is being processed!😉</span>
+          </div>
         </div>  
       </template>
 
       <!-- We've overriden the default "completeButton" slot content -->
       <template v-slot:completeButton>
-        <div class="f-submit" v-if="!submitted">
+        <div class="f-submit">
           <!-- Leave empty to hide default submit button -->
         </div>
       </template>
@@ -54,14 +61,14 @@
     },
     data() {
       return {
-        submitted: false,
+        loading: false,
         completed: false,
         language: new LanguageModel(),
         // Create question list with QuestionModel instances
         questions: [
           new QuestionModel({
             id: 'multiple_choice',
-            tagline: "Welcome to our support page!",
+            tagline: "Welcome to our demo support page!",
             title: 'Hi 👋, how can we help you today?',
             type: QuestionType.MultipleChoice,
             multiple: false,
@@ -117,13 +124,7 @@
             multiple: false,
             required: true,
             mask: '#-#-#-#-#-#',
-            placeholder: '#-#-#-#-#-#'
-          }),
-          new QuestionModel({
-            id: 'ticket_status',
-            tagline: 'Support page > Ticket status',
-            title: 'Good news - the wheels are turning, your ticket is being processed!😉',
-            type: QuestionType.SectionBreak,
+            placeholder: '#-#-#-#-#-#',
             jump: {
               _other: '_submit'
             }
@@ -135,58 +136,31 @@
             type: QuestionType.LongText,
             required: true,
             placeholder: 'Start typing here...',
-          }),
-          new QuestionModel({
-            id: 'ticket',
-            tagline: 'Submit issue > Step 3/3',
-            title: 'Your ticket number is: ' + this.getTicket(),
-            description: 'Thank You. Our support team will contact you as soon as possible.',
-            type: QuestionType.SectionBreak,
-            jump: {
-              _other: '_submit'
-            }
           })
         ]
       }
     },
-    mounted() {
-      document.addEventListener('keyup', this.onKeyListener)
-    },
-    beforeDestroy() {
-      document.removeEventListener('keyup', this.onKeyListener)
-    },
     methods: {
-      onKeyListener($event) {
-        // We've overriden the default "complete" slot so
-        // we need to implement the "keyup" listener manually.
-
-        if ($event.key === 'Enter' && this.completed && !this.submitted) {
-          this.onSendData()
-        }
-      },
-
       /* eslint-disable-next-line no-unused-vars */
       onComplete(completed, questionList) {
         // This method is called whenever the "completed" status is changed.
         this.completed = completed
-      },
 
-      /* eslint-disable-next-line no-unused-vars */
-      onSubmit(questionList) {
-        // This method will only be called if you don't override the
-        // completeButton slot.
-        this.onSendData()
-      },
-      
-      onSendData() {
         // Set `submitted` to true so the form knows not to allow back/forward
         // navigation anymore.
         this.$refs.flowform.submitted = true
 
-        this.submitted = true
+        this.onSendData()
+      },
+      
+      onSendData() {
+        const self = this
+        const data = this.getData()
+
+        this.loading = true
 
         /* eslint-disable-next-line no-unused-vars */
-        const data = this.getData()
+        
         /*
           You can use Fetch API to send the data to your server, eg.:
 
@@ -198,6 +172,10 @@
             body: JSON.stringify(data)
           })
         */
+
+        setTimeout(() => {
+          self.loading = false
+        }, 1500)
       },
 
       getData() {
@@ -222,8 +200,7 @@
       },
 
       getTicket() {
-        const ticket = Math.floor(Math.random() * (999999 - 100000) + 100000).toString();
-        return ticket
+        return Math.floor(Math.random() * (999999 - 100000) + 100000).toString()
       }
     }
   }
