@@ -26,8 +26,8 @@ Create conversational conditional-logic forms with Vue.js.
 
 Requirements:
 
-* [Node.js](https://nodejs.org/en/) version 8.9 or above (8.11.0+ recommended)
-* [npm](https://www.npmjs.com/get-npm) version 3+ (or [yarn](https://yarnpkg.com/lang/en/docs/install/) version 1.16+)
+* [Node.js](https://nodejs.org/en/) version 10.0.0 or above (12.0.0+ recommended)
+* [npm](https://www.npmjs.com/get-npm) version 5+ (or [yarn](https://yarnpkg.com/lang/en/docs/install/) version 1.16+)
 * [Git](https://git-scm.com/)
 
 After checking the prerequisites, follow these simple steps to install and use Vue Form:
@@ -145,13 +145,14 @@ HTML:
 ```html
 <html>
   <head>
+    <!-- Requires Vue version 2.6.x -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.min.js"></script>
     <!-- Flow Form -->
-    <script src="https://unpkg.com/@ditdot-dev/vue-flow-form@1.1.1"></script>
+    <script src="https://unpkg.com/@ditdot-dev/vue-flow-form@1.1.2"></script>
     <!-- Flow Form base CSS -->
-    <link rel="stylesheet" href="https://unpkg.com/@ditdot-dev/vue-flow-form@1.1.1/dist/vue-flow-form.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/@ditdot-dev/vue-flow-form@1.1.2/dist/vue-flow-form.min.css">
     <!-- Optional theme.css -->
-    <link rel="stylesheet" href="https://unpkg.com/@ditdot-dev/vue-flow-form@1.1.1/dist/vue-flow-form.theme-minimal.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/@ditdot-dev/vue-flow-form@1.1.2/dist/vue-flow-form.theme-minimal.min.css">
   </head>
   <body>
     <div id="app">
