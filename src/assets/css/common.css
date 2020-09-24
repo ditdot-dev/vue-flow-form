@@ -190,7 +190,7 @@ svg.logo {
 
 /*v-form*/
 .v-form {
-  margin: 26vh 10vw 80px;
+  margin: 26vh 10vw 60px;
   position: relative;
   text-align: left;
 }
@@ -394,14 +394,6 @@ h3,
   .fh2 {
     font-size: 2.2rem;
     padding-right: 0;
-  }
-
-}
-
-@media screen and (max-width:479px), (max-height:400px) {
-  h2,
-  .fh2 {
-    font-size: 1.4rem;
   }
 
 }
@@ -711,12 +703,34 @@ a.f-disabled {
   }
 
   .f-footer .footer-inner-wrap {
-    padding-top: 10px;
-    padding-bottom: 10px;
+    padding-top: 8px;
+    padding-bottom: 8px;
   }
 
   .v-form {
       margin-top: 12vh;
+  }
+
+  .f-radios-desc, ul.f-radios li,
+  ul.f-radios li input[type=text] {
+    font-size: .86rem
+  }
+
+}
+
+@media screen and (max-width:479px), (max-height:400px) {
+  h2,
+  .fh2 {
+    font-size: 1.6rem;
+  }
+
+  span.f-sub, 
+  span.f-tagline{
+    font-size: 1rem;
+  }
+
+  .section-text, li, p, ul {
+    font-size: 1rem;
   }
 
 }
