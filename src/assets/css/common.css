@@ -176,8 +176,8 @@ svg.logo {
 
 .f-enter-desc {
   display: inline-block;
-  margin-left: 0.6rem;
-  margin-top: 0.6rem;
+  margin-left: .6rem;
+  margin-top: .6rem;
 }
 
 .f-enter {
@@ -267,7 +267,7 @@ span.faux-form {
   line-height: 1.5;
   margin: 0 .6rem 0 0;
   outline: 0;
-  padding: 0.32rem 0.4rem;
+  padding: .32rem .4rem;
   font-size: 1.7rem;
   font-weight: 900;
 }
@@ -479,7 +479,7 @@ ul.f-radios li.f-other input[type=text] {
 .f-radios-desc,
 ul.f-radios li,
 ul.f-radios li input[type=text] {
-  font-size: 0.94rem;
+  font-size: .94rem;
 }
 
 ul.f-radios li span.f-label {
@@ -565,17 +565,14 @@ a.f-disabled {
   margin-bottom: 30px;
 }
 
-.section-wrap > div {
+.section-wrap > div,
+.f-submit {
   margin-bottom: 20px;
 }
 
 .field-sectionbreaktype,
 .field-submittype {
   max-width: 780px;
-}
-
-.f-submit {
-  margin-bottom: 20px;
 }
 
 /*
@@ -652,7 +649,7 @@ a.f-disabled {
   .v-form textarea {
     font-size: 1.3rem;
     line-height: 1.4;
-    padding: 0.22rem 0.4rem;
+    padding: .22rem .4rem;
   }
 
   .v-form select {
