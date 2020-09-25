@@ -49,7 +49,7 @@
             />
           </div>
         </div>
-        <p v-if="question.description || question.descriptionLink" class="description">
+        <p v-if="question.description || question.descriptionLink.length !== 0" class="description">
           <span v-if="question.description">{{ question.description }}</span>
           <a
             v-for="(link, index) in question.descriptionLink" 
