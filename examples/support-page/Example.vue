@@ -17,7 +17,7 @@
           <div v-if="questions[0].answer === 'technical_issue'">
             <span class="f-tagline">Submit issue &gt; Step 3/3</span>
             <div v-if="loading">
-              <span class="fh2">Please wait, submitting your ticket.</span>
+              <span class="fh2">Please wait, submitting...</span>
             </div>
             <div v-else>
               <span class="fh2">Your ticket number is: {{ getTicket() }}</span>
@@ -27,6 +27,7 @@
           <div v-else>
             <span class="f-tagline">Support page &gt; Ticket status</span>
             <span class="fh2">Good news - the wheels are turning, your ticket is being processed!😉</span>
+            <p class="description"><span>Have a great day!</span></p>
           </div>
         </div>  
       </template>
@@ -107,7 +108,7 @@
             ],
             options: [          
               new ChoiceOption({
-                label: 'Yes, but still couldn’t find the answer.',
+                label: 'Yes, but I couldn’t find the answer',
                 value: 'faq_no'
               }),
             ],
@@ -118,8 +119,8 @@
           new QuestionModel({
             id: 'enter_ticket',
             tagline: 'Support page > Ticket status',
-            title: 'Please enter your 6-digit code',
-            subtitle: 'You received this when you reported your problem',
+            title: 'Please enter your 6-digit code.',
+            subtitle: 'You received this when you reported your problem.',
             type: QuestionType.Number,
             multiple: false,
             required: true,
@@ -132,7 +133,7 @@
           new QuestionModel({
             id: 'faq_no',
             tagline: 'Submit issue > Step 2/3',
-            title: 'Please describe your problem',
+            title: 'Please describe your problem.',
             type: QuestionType.LongText,
             required: true,
             placeholder: 'Start typing here...',
