@@ -176,8 +176,8 @@ svg.logo {
 
 .f-enter-desc {
   display: inline-block;
-  margin-left: 0.6rem;
-  margin-top: 0.6rem;
+  margin-left: .6rem;
+  margin-top: .6rem;
 }
 
 .f-enter {
@@ -267,7 +267,7 @@ span.faux-form {
   line-height: 1.5;
   margin: 0 .6rem 0 0;
   outline: 0;
-  padding: 0.32rem 0.4rem;
+  padding: .32rem .4rem;
   font-size: 1.7rem;
   font-weight: 900;
 }
@@ -371,7 +371,7 @@ h2,
   font-weight: 900;
   font-size: 2.4rem;
   line-height: 1.34;
-  padding-right: 4rem;
+  padding-right: 3.8rem;
   margin-bottom: 20px;
 }
 
@@ -443,8 +443,6 @@ p.description a.f-link {
   margin-right: 8px;
 }
 
-
-
 /*f-radios (multiple-choice)*/
 ul.f-radios {
   margin: 0;
@@ -481,7 +479,7 @@ ul.f-radios li.f-other input[type=text] {
 .f-radios-desc,
 ul.f-radios li,
 ul.f-radios li input[type=text] {
-  font-size: 0.94rem;
+  font-size: .94rem;
 }
 
 ul.f-radios li span.f-label {
@@ -567,17 +565,14 @@ a.f-disabled {
   margin-bottom: 30px;
 }
 
-.section-wrap > div {
+.section-wrap > div,
+.f-submit {
   margin-bottom: 20px;
 }
 
 .field-sectionbreaktype,
 .field-submittype {
-  max-width: 760px;
-}
-
-.f-submit {
-  margin-bottom: 20px;
+  max-width: 780px;
 }
 
 /*
@@ -652,9 +647,9 @@ a.f-disabled {
   .v-form input[type=url],
   .v-form input[type=password],
   .v-form textarea {
-    font-size: 1.2rem;
-    line-height: 1.3;
-    padding: 0.22rem 0.4rem;
+    font-size: 1.3rem;
+    line-height: 1.4;
+    padding: .22rem .4rem;
   }
 
   .v-form select {
@@ -671,13 +666,26 @@ a.f-disabled {
     width: 12px;
   }
 
+  span.f-sub, 
   span.f-tagline,
-  span.f-sub {
+  .section-text,
+  li,
+  p,
+  ul{
     font-size: 1.1rem;
   }
 
   span.f-tagline {
     line-height: 1.6;
+  }
+
+  span.f-text{
+    margin-right: 0;
+  }
+
+  h2,
+  .fh2 {
+    font-size: 1.5rem;
   }
 
   ul.f-radios li,
@@ -691,7 +699,7 @@ a.f-disabled {
 
 }
 
-@media screen and (max-height:420px) {
+@media screen and (max-height:400px) {
   header {
     position: static;
     top: auto;
@@ -716,20 +724,17 @@ a.f-disabled {
     font-size: .86rem
   }
 
-}
-
-@media screen and (max-width:479px), (max-height:400px) {
   h2,
   .fh2 {
     font-size: 1.6rem;
   }
 
   span.f-sub, 
-  span.f-tagline{
-    font-size: 1rem;
-  }
-
-  .section-text, li, p, ul {
+  span.f-tagline,
+  .section-text,
+  li,
+  p,
+  ul{
     font-size: 1rem;
   }
 
