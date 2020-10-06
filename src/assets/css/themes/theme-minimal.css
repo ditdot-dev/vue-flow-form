@@ -56,8 +56,8 @@ header.vff-header svg.logo{
   color: var(--main-text-color);
 }
 
-a,
-a:active {
+.vff a,
+.vff a:active {
   color: var(--main-text-color);
 }
 
@@ -106,15 +106,15 @@ ul.f-radios li.f-other.f-selected input {
 }
 
 /*field-dropdowntype*/
-span.f-empty {
+.vff span.f-empty {
   color: var(--secondary-text-color);
 }
 
-span.f-answered{
+.vff span.f-answered{
   color: var(--main-text-color);
 }
 
-.f-arrow-down svg {
+.vff .f-arrow-down svg {
   fill: var(--main-text-color);
 }
 
@@ -168,20 +168,20 @@ span.f-answered{
 }
 
 /*alerts*/
-.text-alert,
-.f-invalid{
+.vff .text-alert,
+.vff .f-invalid{
   color: #F5554A;
 }
 
-.text-success{
+.vff .text-success{
   color: #4CAF50;
 }
 
 /*text-muted*/
-span.f-tagline,
-span.f-sub,
-p.description,
-.text-muted {
+.vff span.f-tagline,
+.vff span.f-sub,
+.vff p.f-description,
+.vff .text-muted {
   color: var(--secondary-text-color);
 }
 
@@ -213,15 +213,15 @@ p.description,
     color: var(--main-accent-color);
   }
 
-  span.f-answered{
+  .vff span.f-answered{
     color: var(--main-accent-color);
   }
 
-  .f-arrow-down svg {
+  .vff .f-arrow-down svg {
     fill: var(--main-accent-color);
   }
   
-  .text-success{
+  .vff .text-success{
     color: var(--main-accent-color);
   }
 

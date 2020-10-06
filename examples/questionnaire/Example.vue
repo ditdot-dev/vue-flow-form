@@ -31,7 +31,7 @@
               Great work, the survey is completed, and our demo is done. You can review your answers or press submit.
             </span>
           </p>
-          <p class="description">Note: No data will be saved and/or sent in this demo.</p>
+          <p class="f-description">Note: No data will be saved and/or sent in this demo.</p>
         </div>  
       </template>
 

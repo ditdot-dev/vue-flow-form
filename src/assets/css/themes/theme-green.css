@@ -62,8 +62,8 @@ header.vff-header svg.logo {
   border-bottom-color: var(--secondary-text-color);
 }
 
-a,
-a:active {
+.vff a,
+.vff a:active {
   color: var(--main-text-color);
 }
 
@@ -110,21 +110,21 @@ ul.f-radios li:active {
   background-color: var(--tertiary-text-color);
 }
 
-.f-key{
+.vff .f-key{
   color: var(--secondary-accent-color);
   font-weight: 300;
 }
 
 /*field-dropdowntype*/
-span.f-empty {
+.vff span.f-empty {
   color: var(--secondary-text-color);
 }
 
-span.f-answered{
+.vff span.f-answered{
   color: var(--main-text-color);
 }
 
-.f-arrow-down svg {
+.vff .f-arrow-down svg {
   fill: var(--main-text-color);
 }
 
@@ -164,19 +164,19 @@ span.f-answered{
 }
 
 /*text-muted*/
-span.f-tagline,
-span.f-sub,
-p.description,
-.text-muted {
+.vff span.f-tagline,
+.vff span.f-sub,
+.vff p.f-description,
+.vff .text-muted {
   color: var(--secondary-text-color);
 }
 
-.text-alert,
-.f-invalid {
+.vff .text-alert,
+.vff .f-invalid {
   color: red
 }
 
-p.text-success {
+.vff p.text-success {
   color: #ECF80D;
 }
 
@@ -214,15 +214,15 @@ p.text-success {
     color: var(--main-accent-color);
   }
 
-  span.f-answered{
+  .vff span.f-answered{
     color: var(--main-accent-color);
   }
 
-  .f-arrow-down svg {
+  .vff .f-arrow-down svg {
     fill: var(--main-accent-color);
   }
   
-  .text-success{
+  .vff .text-success{
     color: var(--main-accent-color);
   }
 
@@ -245,17 +245,17 @@ p.text-success {
     background-color: rgba(49,54,64,0.75);
   }
 
-  .f-prev:hover,
-  .f-next:hover{
+  .vff-footer .f-prev:hover,
+  .vff-footer .f-next:hover{
     background-color: rgba(0,0,0,0.2);
   }
 
-  .f-progress-bar {
+  .vff-footer .f-progress-bar {
     background-color: var(--secondary-text-color);
     filter: brightness(1);
   }
 
-  .f-progress-bar-inner {
+  .vff-footer .f-progress-bar-inner {
     background-color: var(--main-accent-color);
   }
 
@@ -265,7 +265,7 @@ p.text-success {
     color: var(--secondary-text-color);
   }
 
-  .f-key{
+  .vff .f-key{
     color: var(--main-accent-color);
     font-weight: 300;
   }

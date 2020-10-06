@@ -71,8 +71,8 @@ header.vff-header svg.logo{
   color: var(--form-input-color);
 }
 
-a,
-a:active {
+.vff a,
+.vff a:active {
   color: var(--main-text-color);
 }
 
@@ -123,15 +123,15 @@ ul.f-radios li.f-other.f-selected input {
 }
 
 /*field-dropdowntype*/
-span.f-empty {
+.vff span.f-empty {
   color: var(--secondary-text-color);
 }
 
-span.f-answered{
+.vff span.f-answered{
   color: var(--main-text-color);
 }
 
-.f-arrow-down svg {
+.vff .f-arrow-down svg {
   fill: var(--arrow-color);
 }
 
@@ -183,20 +183,20 @@ span.f-answered{
 }
 
 /*alerts*/
-.text-alert,
-.f-invalid{
+.vff .text-alert,
+.vff .f-invalid{
   color: #F5554A;
 }
 
-.text-success{
+.vff .text-success{
   color: var(--main-accent-color);
 }
 
 /*text-muted*/
-span.f-tagline,
-span.f-sub,
-p.description,
-.text-muted {
+.vff span.f-tagline,
+.vff span.f-sub,
+.vff p.f-description,
+.vff .text-muted {
   color: var(--secondary-text-color);
 }
 
@@ -222,7 +222,7 @@ p.description,
     --progress-bar-color: var(--main-accent-color);
   }
 
-  span.f-answered{
+  .vff span.f-answered{
     color: var(--main-accent-color);
   }
 
@@ -241,7 +241,7 @@ p.description,
   }
 
   /*field-multiplechoicetype*/
-  .f-key {
+  .vff .f-key {
     font-weight: 400;
   }
 
