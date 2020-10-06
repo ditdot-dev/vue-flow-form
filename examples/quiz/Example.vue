@@ -2,7 +2,7 @@
  
 <template>
   <div>
-    <header>
+    <header class="vff-header">
       <div class="f-container">
         <!-- Add custom logo here -->
         <svg xmlns="http://www.w3.org/2000/svg" width='150' height='30' fill='white' viewBox="0 0 361.3 69.57">

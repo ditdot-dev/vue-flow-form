@@ -26,32 +26,33 @@ select option {
 }
 
 body {
+  margin: 0;
   background-color: var(--bg-color);
   color: var(--main-text-color);
 }
 
-header{
+header.vff-header{
   background-color: var(--secondary-accent-color);
 }
 
-header svg.logo{
+header.vff-header svg.logo{
   fill: rgba(0,0,0,0.9);
 }
 
-.v-form input[type=text],
-.v-form input[type=number],
-.v-form input[type=tel],
-.v-form input[type=email],
-.v-form input[type=url],
-.v-form input[type=password],
-.v-form textarea,
-.v-form span.faux-form {
+.vff input[type=text],
+.vff input[type=number],
+.vff input[type=tel],
+.vff input[type=email],
+.vff input[type=url],
+.vff input[type=password],
+.vff textarea,
+.vff span.faux-form {
   border-bottom-color: var(--secondary-text-color);
 }
 
-.v-form textarea,
-.v-form input,
-.v-form select option {
+.vff textarea,
+.vff input,
+.vff select option {
   color: var(--main-text-color);
 }
 
@@ -130,39 +131,39 @@ span.f-answered{
 } 
 
 /*footer*/
-.f-footer .footer-inner-wrap{
+.vff-footer .footer-inner-wrap{
   background-color: rgba(255,255,255,0.75);
 }
 
 @media screen and (max-width:479px) {
-  .f-footer .footer-inner-wrap{
+  .vff-footer .footer-inner-wrap{
     background-color: rgba(240,240,240,0.75);
   }
 
 }
 
-.f-footer .f-prev svg,
-.f-footer .f-next svg {
+.vff-footer .f-prev svg,
+.vff-footer .f-next svg {
   fill: var(--main-text-color);
 }
 
-.f-progress {
+.vff-footer .f-progress {
   color: var(--secondary-text-color);
 }
 
-.f-progress-bar {
+.vff-footer .f-progress-bar {
   background-color: var(--secondary-text-color);
   filter: brightness(1.2);
 }
 
-.f-progress-bar-inner {
+.vff-footer .f-progress-bar-inner {
   background-color: var(--main-text-color);
 }
 
-.f-prev:hover,
-.f-next:hover,
-.f-prev:focus,
-.f-next:focus{
+.vff-footer .f-prev:hover,
+.vff-footer .f-next:hover,
+.vff-footer .f-prev:focus,
+.vff-footer .f-next:focus{
   background-color: rgba(0,0,0,0.07);
 }
 
@@ -198,17 +199,17 @@ p.description,
     --secondary-accent-color: #A0DBC1;
   }
 
-  header{
+  header.vff-header{
     background-color: transparent;
   }
 
-  header svg.logo{
+  header.vff-header svg.logo{
     fill: var(--main-accent-color);
   }
 
-  .v-form textarea,
-  .v-form input,
-  .v-form select option {
+  .vff textarea,
+  .vff input,
+  .vff select option {
     color: var(--main-accent-color);
   }
 
@@ -225,31 +226,31 @@ p.description,
   }
 
   /*footer*/
-  .f-footer .footer-inner-wrap{
+  .vff-footer .footer-inner-wrap{
     background-color: rgba(49,54,64,0.75);
   }
 
-  .f-footer .f-prev svg,
-  .f-footer .f-next svg {
+  .vff-footer .f-prev svg,
+  .vff-footer .f-next svg {
     fill: var(--main-accent-color);
   }
 
-  .f-footer .f-prev.f-disabled svg,
-  .f-footer .f-next.f-disabled svg {
+  .vff-footer .f-prev.f-disabled svg,
+  .vff-footer .f-next.f-disabled svg {
     fill: var(--main-text-color);
   }
 
-  .f-prev:hover,
-  .f-next:hover{
+  .vff-footer .f-prev:hover,
+  .vff-footer .f-next:hover{
     background-color: rgba(0,0,0,0.2);
   }
 
-  .f-progress-bar {
+  .vff-footer .f-progress-bar {
     background-color: var(--secondary-text-color);
     filter: brightness(1);
   }
 
-  .f-progress-bar-inner {
+  .vff-footer .f-progress-bar-inner {
     background-color: var(--main-accent-color);
   }
 

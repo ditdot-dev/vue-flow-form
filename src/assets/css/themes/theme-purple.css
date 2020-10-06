@@ -40,33 +40,34 @@ select option {
 }
 
 body {
+  margin: 0;
   background-color: var(--bg-color);
   color: var(--main-text-color);
 }
 
-header{
+header.vff-header{
   background-color: var(--header-color);
   border-bottom: 2px solid var(--header-border-color);
 }
 
-header svg.logo{
+header.vff-header svg.logo{
   fill: var(--main-text-color);
 }
 
-.v-form input[type=text],
-.v-form input[type=number],
-.v-form input[type=tel],
-.v-form input[type=email],
-.v-form input[type=url],
-.v-form input[type=password],
-.v-form textarea,
-.v-form span.faux-form {
+.vff input[type=text],
+.vff input[type=number],
+.vff input[type=tel],
+.vff input[type=email],
+.vff input[type=url],
+.vff input[type=password],
+.vff textarea,
+.vff span.faux-form {
   border-bottom-color: var(--secondary-text-color);
 }
 
-.v-form textarea,
-.v-form input,
-.v-form select option {
+.vff textarea,
+.vff input,
+.vff select option {
   color: var(--form-input-color);
 }
 
@@ -147,37 +148,37 @@ span.f-answered{
 }
 
 /*footer*/
-.f-footer .footer-inner-wrap{
+.vff-footer .footer-inner-wrap{
   background-color: var(--footer-color);
 }
 
 @media screen and (max-width:479px) {
-  .f-footer .footer-inner-wrap{
+  .vff-footer .footer-inner-wrap{
     background-color: rgba(230,230,230,0.75);
   }
 
 }
 
-.f-footer .f-prev svg,
-.f-footer .f-next svg {
+.vff-footer .f-prev svg,
+.vff-footer .f-next svg {
   fill: var(--arrow-color);
 }
 
-.f-progress {
+.vff-footer .f-progress {
   color: var(--secondary-text-color);
 }
 
-.f-progress-bar {
+.vff-footer .f-progress-bar {
   background-color: var(--secondary-text-color);
   filter: brightness(1.2);
 }
 
-.f-progress-bar-inner {
+.vff-footer .f-progress-bar-inner {
   background-color: var(--progress-bar-color);
 }
 
-.f-prev:hover,
-.f-next:hover{
+.vff-footer .f-prev:hover,
+.vff-footer .f-next:hover{
   background-color: var(--arrow-hover-color);
 }
 
@@ -226,16 +227,16 @@ p.description,
   }
 
   /*footer*/
-  .f-footer .f-prev.f-disabled svg,
-  .f-footer .f-next.f-disabled svg {
+  .vff-footer .f-prev.f-disabled svg,
+  .vff-footer .f-next.f-disabled svg {
     fill: var(--main-text-color);
   }
 
-  .f-progress-bar {
+  .vff-footer .f-progress-bar {
     filter: brightness(1);
   }
 
-  .f-footer .footer-inner-wrap{
+  .vff-footer .footer-inner-wrap{
     background-color: rgba(44,62,80,0.75);
   }
 

@@ -1,7 +1,7 @@
 // Form template and logic
 
 <template>
-  <div class="v-form">
+  <div class="vff">
     <div class="f-container">
       <div class="form-wrap">
         <flow-form-question
@@ -51,7 +51,7 @@
       </div>
     </div>
 
-    <div class="f-footer">
+    <div class="vff-footer">
       <div class="footer-inner-wrap">
         <div v-if="progressbar" class="f-progress" v-bind:class="{'not-started': percentCompleted === 0, 'completed': percentCompleted === 100}">
           <div class="f-progress-bar">
