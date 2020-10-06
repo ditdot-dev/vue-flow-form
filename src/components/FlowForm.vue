@@ -477,7 +477,6 @@
 </script>
 
 <style lang="css">
-  @import '../assets/css/normalize.css';
   @import '../assets/css/common.css';
   @import '../assets/css/animations.css';
 </style>

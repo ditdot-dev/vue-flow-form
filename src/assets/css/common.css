@@ -98,16 +98,22 @@
 
 .vff,
 .vff-header,
-.vff-footer{
+.vff-footer {
   box-sizing: border-box;
 }
 
 .vff *,
 .vff *:before,
-.vff *:after,
+.vff *:after {
+  box-sizing: inherit;
+}
+
 .vff-header *,
 .vff-header *:before,
-.vff-header *:after,
+.vff-header *:after {
+  box-sizing: inherit;
+}
+
 .vff-footer *,
 .vff-footer *:before,
 .vff-footer *:after {
@@ -202,6 +208,7 @@ header.vff-header svg.logo {
   opacity: 1;
 }
 
+/**/
 .vff .q-is-active {
   opacity: 1;
 }
@@ -286,7 +293,7 @@ header.vff-header svg.logo {
   border: none;
   outline: 0;
   cursor: pointer;
-  padding: .6rem 1.4rem;
+  padding: .6em 1.4em;
   text-align: center;
   display: inline-block;
   min-height: 44px;
@@ -302,16 +309,17 @@ header.vff-header svg.logo {
 }
 
 .vff .o-btn-action span {
-  font-size: 1rem;
+  font-size: 1em;
   user-select: none;
   text-decoration: none;
   transition: all 0.4s ease 0s;
 }
 
 .vff .f-enter-desc {
+  font-size: .9em;
   display: inline-block;
-  margin-left: .6rem;
-  margin-top: .6rem;
+  margin-left: .6em;
+  margin-top: .7em;
 }
 
 /*form-elements*/
@@ -333,7 +341,7 @@ header.vff-header svg.logo {
   border-radius: 0;
   border: 0;
   cursor: pointer;
-  font-size: 1rem;
+  font-size: 1em;
   line-height: 1.32;
   margin: 0;
   opacity: 0;
@@ -364,7 +372,7 @@ header.vff-header svg.logo {
   margin: 0 .6rem 0 0;
   outline: 0;
   padding: .32rem .4rem;
-  font-size: 1.7rem;
+  font-size: .72em;
   font-weight: 900;
 }
 
@@ -413,6 +421,7 @@ div.field-sectionbreaktype .f-answer {
   font-weight: 900;
 }
 
+/*faux select arrow*/
 .vff .f-arrow-down {
   display: inline-block;
   margin-left: .2em;
@@ -565,11 +574,11 @@ ul.f-radios li.f-other input[type=text] {
 .f-radios-desc,
 ul.f-radios li,
 ul.f-radios li input[type=text] {
-  font-size: .94rem;
+  font-size: .94em;
 }
 
 ul.f-radios li span.f-label {
-  margin-left: 1rem;
+  margin-left: 1em;
   display: block;
 }
 
@@ -708,6 +717,16 @@ ul.f-radios li span.f-key {
     font-size: 2.2em;
     padding-right: 0;
   }
+
+  .vff input[type=text],
+  .vff input[type=number],
+  .vff input[type=tel],
+  .vff input[type=email],
+  .vff input[type=url],
+  .vff input[type=password],
+  .vff textarea{
+    font-size: .78em;
+}
   
   .vff span.f-sub, 
   .vff span.f-tagline,
@@ -745,13 +764,12 @@ ul.f-radios li span.f-key {
   .vff input[type=url],
   .vff input[type=password],
   .vff textarea {
-    font-size: 1.3rem;
     line-height: 1.4;
     padding: .22rem .4rem;
   }
 
   .vff select {
-    font-size: 1rem;
+    font-size: 1em;
     padding-top: .4rem;
     padding-bottom: .4rem;
   }
@@ -787,11 +805,11 @@ ul.f-radios li span.f-key {
 
   ul.f-radios li,
   ul.f-radios li input[type=text] {
-    font-size: .9rem;
+    font-size: .9em;
   }
 
   .field-sectionbreaktype p {
-    font-size: 1rem;
+    font-size: 1em;
   }
 
 }
@@ -822,7 +840,7 @@ ul.f-radios li span.f-key {
 
   .f-radios-desc, ul.f-radios li,
   ul.f-radios li input[type=text] {
-    font-size: .86rem
+    font-size: .86em
   }
 
   .vff h2,
