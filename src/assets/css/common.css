@@ -12,7 +12,6 @@
   -webkit-font-smoothing: antialiased;
   -moz-font-smoothing: antialiased;
   -o-font-smoothing: antialiased;
-  
 }
 
 @media screen and (max-width:1023px){
@@ -47,8 +46,8 @@
 /*global*/
 .vff hr{
   box-sizing: content-box;
-  height: 0;
   overflow: visible;
+  height: 0;
 }
 
 .vff pre,
@@ -162,7 +161,6 @@
   padding: 0;
 }
 
-
 /*
   vff-form
 */
@@ -188,7 +186,7 @@ header.vff-header .f-container{
 /*header*/
 header.vff-header {
   line-height: 1;
-  padding: 1rem 10vw .9rem;
+  padding: 1em 10vw .9em;
   z-index: 1400;
   top: 0;
   left: 0;
@@ -222,7 +220,7 @@ header.vff-header svg.logo {
   width: 100%;
 }
 
-.f-uppercase {
+.vff .f-uppercase {
   text-transform: uppercase;
 }
 
@@ -326,7 +324,7 @@ header.vff-header svg.logo {
 .vff span.faux-form {
   border-bottom: 1px solid;
   display: inline-block;
-  margin-right: .6rem;
+  margin-right: .6em;
   margin-left: 0;
   position: relative;
   white-space: nowrap;
@@ -341,17 +339,15 @@ header.vff-header svg.logo {
   border-radius: 0;
   border: 0;
   cursor: pointer;
-  font-size: 1em;
+  font-size: .5em;
   line-height: 1.32;
   margin: 0;
   opacity: 0;
   outline: 0;
-  padding: 1.03rem 0;
+  padding: .6em 8px;
   width: 100%;
   position: absolute;
   z-index: 1;
-  padding-left: 8px;
-  padding-right: 8px;
 }
 
 .vff input[type=text],
@@ -368,10 +364,10 @@ header.vff-header svg.logo {
   border: 0;
   border-bottom: 1px solid;
   border-radius: 0;
-  line-height: 1.5;
-  margin: 0 .6rem 0 0;
+  line-height: 1.48;
+  margin: 0 .6em 0 0;
   outline: 0;
-  padding: .32rem .4rem;
+  padding: .16em .2em;
   font-size: .72em;
   font-weight: 900;
 }
@@ -392,8 +388,8 @@ header.vff-header svg.logo {
 .vff .full-width textarea,
 .vff .full-width span.faux-form{
   width: 100%;
-  padding-left: .2rem;
-  padding-right: .2rem;
+  padding-left: .16em;
+  padding-right: .16em;
 }
 
 .vff .f-required {
@@ -401,17 +397,20 @@ header.vff-header svg.logo {
 }
 
 .vff .f-answer.full-width {
-  margin-top: 28px;
+  margin-top: 26px;
 }
 
-.vff span.f-sub + .f-answer.full-width,
-div.field-sectionbreaktype .f-answer {
-  margin-top: 18px
+.vff span.f-sub + .f-answer.full-width{
+  margin-top: 18px;
+}
+
+.vff div.field-sectionbreaktype .f-answer {
+  margin-top: 20px;
 }
 
 .vff span.f-empty {
   display: inline-block;
-  min-width: 6rem;
+  min-width: 3em;
   padding-right: 28px;
   font-weight: 300;
   padding-bottom: 4px;
@@ -440,17 +439,17 @@ div.field-sectionbreaktype .f-answer {
 }
 
 /*links*/
-a.f-link, 
-.field-submittype .section-wrap a {
+.vff a.f-link, 
+.vff .field-submittype .section-wrap a {
   color: inherit;
   border-bottom: 1px dotted;
   word-break: break-word;
 }
 
-a.f-link:hover, 
-a.f-link:active,  
-.field-submittype .section-wrap a:hover, 
-.field-submittype .section-wrap a:active {
+.vff a.f-link:hover, 
+.vff a.f-link:active,  
+.vff .field-submittype .section-wrap a:hover, 
+.vff .field-submittype .section-wrap a:active {
  color: inherit; 
  border-bottom: none;
 }
@@ -475,7 +474,7 @@ a.f-link:active,
   font-weight: 900;
   font-size: 2.4em;
   line-height: 1.34;
-  padding-right: 3.8rem;
+  padding-right: 1.8em;
   margin-bottom: 20px;
 }
 
@@ -512,7 +511,7 @@ a.f-link:active,
 }
 
 .vff span.f-sub span:not(.f-uppercase) {
-  margin-right: .4rem;
+  margin-right: .4em;
 }
 
 .vff span.f-sub span.f-help{
@@ -524,13 +523,13 @@ a.f-link:active,
 }
 
 .vff span.f-text {
-  margin-right: .6rem;
+  margin-right: .6em;
 }
 
 /*description*/
 .vff p.f-description {
   margin-top: 0;
-  padding-right: 4rem;
+  padding-right: 4em;
 }
 
 .vff p.f-description span,
@@ -539,7 +538,7 @@ a.f-link:active,
 }
 
 /*f-radios (multiple-choice)*/
-ul.f-radios {
+.vff ul.f-radios {
   margin: 0;
   padding: 0;
   list-style-type: none;
@@ -547,43 +546,48 @@ ul.f-radios {
   min-width: 160px;
 }
 
-ul.f-radios li {
-  padding: .6rem .6rem .6rem;
-  margin: .5rem 0 .6rem;
+.vff ul.f-radios li {
+  padding: 0 .7em;
+  margin: .5em 0 .6em;
   font-weight: 300;
-  line-height: 1.2;
+  line-height: 1.24;
   cursor: default;
   -webkit-touch-callout: none;
   -webkit-user-select: none;
   -ms-user-select: none;
   user-select: none;
   position: relative;
+  overflow: hidden;
 }
 
-ul.f-radios li.f-other input[type=text] {
+.vff ul.f-radios li.f-other input[type=text] {
+  margin: .44em 0 .54em;
   border-bottom: none;
   width: 100%;
   padding: 0;
-  line-height: 1.2;
+  line-height: inherit;
+  font-size: inherit;
+  border: 0;
 }
 
-.f-radios-desc {
+.vff .f-radios-desc {
   display: block;
 }
 
-.f-radios-desc,
-ul.f-radios li,
-ul.f-radios li input[type=text] {
-  font-size: .94em;
+.vff .f-radios-desc,
+.vff ul.f-radios li,
+.vff ul.f-radios li input[type=text] {
+  font-size: .4em;
 }
 
-ul.f-radios li span.f-label {
-  margin-left: 1em;
+.vff ul.f-radios li span.f-label {
+  margin: .62em 0 .62em 1.1em;
   display: block;
 }
 
-ul.f-radios li span.f-key {
+.vff ul.f-radios li span.f-key {
   position: absolute;
+  margin: .62em 0 .62em 0;
 }
 
 /*footer*/
@@ -593,7 +597,6 @@ ul.f-radios li span.f-key {
   right: 0;
   width: 100%;
   font-weight: 300;
-  font-size: 1em;
   line-height: 1.2;
 }
 
@@ -653,18 +656,18 @@ ul.f-radios li span.f-key {
 }
 
 /**/
-.section-wrap {
+.vff .section-wrap {
   margin-bottom: 30px;
 }
 
-.section-wrap > div,
-.f-submit {
+.vff .section-wrap > div,
+.vff .f-submit {
   margin-bottom: 20px;
 }
 
-.field-sectionbreaktype,
-.field-submittype {
-  max-width: 780px;
+.vff .field-sectionbreaktype,
+.vff .field-submittype {
+  max-width: 800px;
 }
 
 /*
@@ -672,17 +675,22 @@ ul.f-radios li span.f-key {
 */
 
 @media only screen and (min-width: 1440px) {
-  .field-sectionbreaktype,
-  .field-submittype {
-    max-width: 920px;
+  .vff .field-sectionbreaktype,
+  .vff .field-submittype {
+    max-width: 940px;
+  }
+
+  .vff h2,
+  .vff .fh2 {
+    padding-right: 2em;
   }
 
 }
 
 @media only screen and (min-width: 1920px) {
-  .field-sectionbreaktype,
-  .field-submittype {
-    max-width: 1140px;
+  .vff .field-sectionbreaktype,
+  .vff .field-submittype {
+    max-width: 1160px;
   }
 
 }
@@ -705,8 +713,8 @@ ul.f-radios li span.f-key {
   }
 
   .vff select {
-    padding-top: 1rem;
-    padding-bottom: 1rem;
+    padding-top: .4em;
+    padding-bottom: .4em;
   }
 
 }
@@ -729,10 +737,7 @@ ul.f-radios li span.f-key {
 }
   
   .vff span.f-sub, 
-  .vff span.f-tagline,
-  .vff .section-text,
-  .vff li,
-  .vff p{
+  .vff span.f-tagline{
     font-size: .58em;
   }
   
@@ -742,7 +747,7 @@ ul.f-radios li span.f-key {
   }
 
   .vff span.f-empty {
-    min-width: 5rem;
+    min-width: 2.4em;
     padding-right: 24px;
   }
   
@@ -765,28 +770,25 @@ ul.f-radios li span.f-key {
   .vff input[type=password],
   .vff textarea {
     line-height: 1.4;
-    padding: .22rem .4rem;
+    padding: .12em .2em;
   }
 
   .vff select {
     font-size: 1em;
-    padding-top: .4rem;
-    padding-bottom: .4rem;
+    padding-top: .2em;
+    padding-bottom: .2em;
   }
 
   .vff button {
     min-height: 42px;
   }
 
-  .f-arrow-down {
+  .vff .f-arrow-down {
     width: 12px;
   }
 
   .vff span.f-sub, 
-  .vff span.f-tagline,
-  .vff .section-text,
-  .vff li,
-  .vff p{
+  .vff span.f-tagline {
     font-size: .64em;
   }
 
@@ -803,12 +805,15 @@ ul.f-radios li span.f-key {
     font-size: 1.6em;
   }
 
-  ul.f-radios li,
-  ul.f-radios li input[type=text] {
-    font-size: .9em;
+  .vff ul.f-radios li,
+  .vff ul.f-radios li input[type=text] {
+    font-size: .56em;
+  }
+  .vff ul.f-radios li.f-other input[type=text] {
+    margin-bottom: .52em;
   }
 
-  .field-sectionbreaktype p {
+  .vff .field-sectionbreaktype p {
     font-size: 1em;
   }
 
@@ -825,8 +830,8 @@ ul.f-radios li span.f-key {
     left: auto;
     width: 100%;
     height: auto;
-    padding-top: .8rem;
-    padding-bottom: .8rem;
+    padding-top: .8em;
+    padding-bottom: .8em;
   }
 
   .vff-footer{
@@ -838,9 +843,10 @@ ul.f-radios li span.f-key {
     padding-bottom: 8px;
   }
 
-  .f-radios-desc, ul.f-radios li,
-  ul.f-radios li input[type=text] {
-    font-size: .86em
+  .vff .f-radios-desc,
+  .vff ul.f-radios li,
+  .vff ul.f-radios li input[type=text] {
+    font-size: 14px;
   }
 
   .vff h2,
@@ -849,10 +855,7 @@ ul.f-radios li span.f-key {
   }
 
   .vff span.f-sub, 
-  .vff span.f-tagline,
-  .vff .section-text,
-  .vff li,
-  .vff p{
+  .vff span.f-tagline {
     font-size: .6em;
   }
 
