@@ -1,9 +1,9 @@
 // Single question template and logic
 
 <template>
-  <div class="animate q-form" v-bind:class="mainClasses" ref="qanimate">
+  <div class="vff-animate q-form" v-bind:class="mainClasses" ref="qanimate">
     <div class="q-inner">
-      <div v-bind:class="{'section-wrap': question.type === QuestionType.SectionBreak}">
+      <div v-bind:class="{'f-section-wrap': question.type === QuestionType.SectionBreak}">
         <div v-bind:class="{'fh2': question.type !== QuestionType.SectionBreak}">
           <span class="f-tagline" v-if="question.tagline">{{ question.tagline }}</span>
 
@@ -37,7 +37,7 @@
             <span class="f-help" v-else-if="question.type === QuestionType.MultipleChoice">{{ question.helpText || language.multipleChoiceHelpTextSingle }}</span>
           </span>
 
-          <div v-if="!question.inline" class="f-answer full-width">
+          <div v-if="!question.inline" class="f-answer f-full-width">
             <component
               ref="questionComponent"
               v-bind:is="question.type"
@@ -61,7 +61,7 @@
         </p>
 
       </div>
-      <div class="animate fade-in f-enter" v-if="showOkButton()">
+      <div class="vff-animate f-fade-in f-enter" v-if="showOkButton()">
         <button 
           class="o-btn-action"
           type="button"
@@ -243,8 +243,8 @@
         const classes = {
           'q-is-active': this.active,
           'q-is-inactive': !this.active,
-          'fade-in-down': this.reverse,
-          'fade-in-up': !this.reverse
+          'f-fade-in-down': this.reverse,
+          'f-fade-in-up': !this.reverse
         }
 
         classes['field-' + this.question.type.toLowerCase().substring(8)] = true

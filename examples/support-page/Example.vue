@@ -13,7 +13,7 @@
       <!-- Custom content for the Complete/Submit screen slots in the FlowForm component -->
       <!-- We've overriden the default "complete" slot content -->
       <template v-slot:complete>
-        <div class="section-wrap">
+        <div class="f-section-wrap">
           <div v-if="questions[0].answer === 'technical_issue'">
             <span class="f-tagline">Submit issue &gt; Step 3/3</span>
             <div v-if="loading">

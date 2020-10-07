@@ -19,6 +19,7 @@
   .vff-footer {
     font-size: 15px;
   }
+
 }
 
 @media screen and (min-width:1366px) {
@@ -43,7 +44,10 @@
 
 }
 
-/*global*/
+/*
+  global
+*/
+
 .vff hr{
   box-sizing: content-box;
   overflow: visible;
@@ -199,8 +203,8 @@ header.vff-header .f-container {
   margin: 0;
 }
 
-header.vff-header img.logo,
-header.vff-header svg.logo {
+header.vff-header img.f-logo,
+header.vff-header svg.f-logo {
   height: 18px;
   max-width: 240px;
   opacity: 1;
@@ -215,13 +219,15 @@ header.vff-header svg.logo {
   display: none;
 }
 
-.vff .full-width {
+.vff .f-full-width {
   display: block;
   width: 100%;
 }
 
-.vff .f-uppercase {
+.vff .f-kbd {
   text-transform: uppercase;
+  border: 0;
+  background: transparent;
 }
 
 .vff .f-enter {
@@ -320,7 +326,7 @@ header.vff-header svg.logo {
   margin-top: .7em;
 }
 
-/*form-elements*/
+/**/
 .vff span.faux-form {
   border-bottom: 1px solid;
   display: inline-block;
@@ -379,14 +385,14 @@ header.vff-header svg.logo {
   resize: vertical;
 }
 
-.vff .full-width input[type=text],
-.vff .full-width input[type=number],
-.vff .full-width input[type=tel],
-.vff .full-width input[type=email],
-.vff .full-width input[type=url],
-.vff .full-width input[type=password],
-.vff .full-width textarea,
-.vff .full-width span.faux-form{
+.vff .f-full-width input[type=text],
+.vff .f-full-width input[type=number],
+.vff .f-full-width input[type=tel],
+.vff .f-full-width input[type=email],
+.vff .f-full-width input[type=url],
+.vff .f-full-width input[type=password],
+.vff .f-full-width textarea,
+.vff .f-full-width span.faux-form{
   width: 100%;
   padding-left: .16em;
   padding-right: .16em;
@@ -396,11 +402,11 @@ header.vff-header svg.logo {
   display: none; /*hides required asterisks*/
 }
 
-.vff .f-answer.full-width {
+.vff .f-answer.f-full-width {
   margin-top: 26px;
 }
 
-.vff span.f-sub + .f-answer.full-width{
+.vff span.f-sub + .f-answer.f-full-width{
   margin-top: 18px;
 }
 
@@ -438,9 +444,12 @@ header.vff-header svg.logo {
   height: auto;
 }
 
-/*links*/
+/*
+  links
+*/
+
 .vff a.f-link, 
-.vff .field-submittype .section-wrap a {
+.vff .field-submittype .f-section-wrap a {
   color: inherit;
   border-bottom: 1px dotted;
   word-break: break-word;
@@ -448,16 +457,19 @@ header.vff-header svg.logo {
 
 .vff a.f-link:hover, 
 .vff a.f-link:active,  
-.vff .field-submittype .section-wrap a:hover, 
-.vff .field-submittype .section-wrap a:active {
+.vff .field-submittype .f-section-wrap a:hover, 
+.vff .field-submittype .f-section-wrap a:active {
  color: inherit; 
  border-bottom: none;
 }
 
-/*typography*/
+/*
+  typography
+*/
+
 .vff li,
 .vff p,
-.vff .section-text {
+.vff .f-section-text {
   font-size: 1.1em;
   line-height: 1.34;
 }
@@ -510,7 +522,7 @@ header.vff-header svg.logo {
   margin-top: 5px;
 }
 
-.vff span.f-sub span:not(.f-uppercase) {
+.vff span.f-sub kbd:not(.f-kbd) {
   margin-right: .4em;
 }
 
@@ -537,7 +549,10 @@ header.vff-header svg.logo {
   margin-right: 8px;
 }
 
-/*f-radios (multiple-choice)*/
+/*
+  f-radios (multiple-choice)
+*/
+
 .vff ul.f-radios {
   margin: 0;
   padding: 0;
@@ -590,7 +605,10 @@ header.vff-header svg.logo {
   margin: .62em 0 .62em 0;
 }
 
-/*footer*/
+/*
+  footer
+*/
+
 .vff-footer {
   position: fixed;
   bottom: 0;
@@ -655,12 +673,12 @@ header.vff-header svg.logo {
   transition: width .3s ease;
 }
 
-/**/
-.vff .section-wrap {
+/*section breaks*/
+.vff .f-section-wrap {
   margin-bottom: 30px;
 }
 
-.vff .section-wrap > div,
+.vff .f-section-wrap > div,
 .vff .f-submit {
   margin-bottom: 20px;
 }
@@ -668,6 +686,63 @@ header.vff-header svg.logo {
 .vff .field-sectionbreaktype,
 .vff .field-submittype {
   max-width: 800px;
+}
+
+/*
+  animations
+*/
+
+.vff-animate {
+  -webkit-animation-duration: .4s;
+  animation-duration: .4s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+
+@keyframes ffadeIn {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+.vff .f-fade-in {
+  animation-name: ffadeIn;
+}
+
+@keyframes ffadeInDown {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, -12px, 0);
+  }
+
+  100% {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.vff .f-fade-in-down {
+  animation-name: ffadeInDown;
+}
+
+@keyframes ffadeInUp {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 12px, 0);
+  }
+
+  100% {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.vff .f-fade-in-up {
+  animation-name: ffadeInUp;
 }
 
 /*

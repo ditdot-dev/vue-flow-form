@@ -36,6 +36,7 @@
 .vff input,
 .vff select,
 .vff select option,
+.vff kbd.f-kbd,
 .vff-header,
 .vff-footer{
   font-family: 'Poppins', sans-serif;
@@ -52,7 +53,7 @@ header.vff-header{
   border-bottom: 2px solid var(--vff-header-border-color);
 }
 
-header.vff-header svg.logo{
+header.vff-header svg.f-logo{
   fill: var(--vff-main-text-color);
 }
 

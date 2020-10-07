@@ -17,10 +17,10 @@
         />
 
         <!-- Complete/Submit screen slots -->   
-        <div v-if="isOnLastStep" class="animate fade-in-up field-submittype">
+        <div v-if="isOnLastStep" class="vff-animate f-fade-in-up field-submittype">
           <slot name="complete">
             <!-- Default content for the "complete" slot -->
-            <div class="section-wrap">
+            <div class="f-section-wrap">
               <p>
                 <span class="fh2">{{ language.thankYouText }}</span>
               </p>
@@ -478,5 +478,4 @@
 
 <style lang="css">
   @import '../assets/css/common.css';
-  @import '../assets/css/animations.css';
 </style>

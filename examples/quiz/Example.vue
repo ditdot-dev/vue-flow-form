@@ -27,7 +27,7 @@
       <template v-slot:complete>
         <p>
           <span class="fh2">You did it!</span>
-          <span v-if="!submitted" class="section-text">
+          <span v-if="!submitted" class="f-section-text">
             Review your answers or press Calculate score to see your result.
           </span>
         </p>

@@ -22,6 +22,7 @@
 .vff input,
 .vff select,
 .vff select option,
+.vff kbd.f-kbd,
 .vff-header,
 .vff-footer{
   font-family: 'Poppins', sans-serif;
@@ -39,7 +40,7 @@ header.vff-header {
   background-color: transparent;
 }
 
-header.vff-header svg.logo {
+header.vff-header svg.f-logo {
   fill: var(--vff-main-accent-color);
 }
 
@@ -207,7 +208,7 @@ header.vff-header svg.logo {
     background-color: transparent;
   }
 
-  header.vff-header svg.logo{
+  header.vff-header svg.f-logo{
     fill: var(--vff-main-accent-color);
   }
 
