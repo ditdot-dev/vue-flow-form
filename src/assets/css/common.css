@@ -99,30 +99,6 @@
   text-decoration: none;
 }
 
-.vff,
-.vff-header,
-.vff-footer {
-  box-sizing: border-box;
-}
-
-.vff *,
-.vff *:before,
-.vff *:after {
-  box-sizing: inherit;
-}
-
-.vff-header *,
-.vff-header *:before,
-.vff-header *:after {
-  box-sizing: inherit;
-}
-
-.vff-footer *,
-.vff-footer *:before,
-.vff-footer *:after {
-  box-sizing: inherit;
-}
-
 .vff ol,
 .vff ul,
 .vff table {
@@ -173,6 +149,13 @@
   margin: 26vh 10vw 60px;
   position: relative;
   text-align: left;
+  box-sizing: border-box;
+}
+
+.vff *,
+.vff *:before,
+.vff *:after {
+  box-sizing: inherit;
 }
 
 /*container*/
@@ -197,7 +180,15 @@ header.vff-header {
   right: 0;
   position: fixed;
   width: 100%;
+  box-sizing: border-box;
 }
+
+.vff-header *,
+.vff-header *:before,
+.vff-header *:after {
+  box-sizing: inherit;
+}
+
 
 header.vff-header .f-container {
   margin: 0;
@@ -224,10 +215,8 @@ header.vff-header svg.f-logo {
   width: 100%;
 }
 
-.vff .f-kbd {
+.vff .f-string-em {
   text-transform: uppercase;
-  border: 0;
-  background: transparent;
 }
 
 .vff .f-enter {
@@ -522,7 +511,7 @@ header.vff-header svg.f-logo {
   margin-top: 5px;
 }
 
-.vff span.f-sub kbd:not(.f-kbd) {
+.vff span.f-sub span:not(.f-string-em) {
   margin-right: .4em;
 }
 
@@ -616,6 +605,13 @@ header.vff-header svg.f-logo {
   width: 100%;
   font-weight: 300;
   line-height: 1.2;
+  box-sizing: border-box;
+}
+
+.vff-footer *,
+.vff-footer *:before,
+.vff-footer *:after {
+  box-sizing: inherit;
 }
 
 .vff-footer .footer-inner-wrap {

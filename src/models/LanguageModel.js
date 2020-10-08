@@ -42,7 +42,7 @@ export default class LanguageModel {
   formatString(string) {
     return string.replace(/:(\w+)/g, (match, word) => {
       if (this[word]) {
-        return '<kbd class="f-kbd">' + this[word] + '</kbd>'
+        return '<span class="f-string-em">' + this[word] + '</span>'
       }
       
       return match
