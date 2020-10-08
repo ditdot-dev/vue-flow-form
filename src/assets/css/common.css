@@ -189,7 +189,6 @@ header.vff-header {
   box-sizing: inherit;
 }
 
-
 header.vff-header .f-container {
   margin: 0;
 }
@@ -396,11 +395,11 @@ header.vff-header svg.f-logo {
 }
 
 .vff span.f-sub + .f-answer.f-full-width{
-  margin-top: 18px;
+  margin-top: 22px;
 }
 
 .vff div.field-sectionbreaktype .f-answer {
-  margin-top: 20px;
+  margin-top: 18px;
 }
 
 .vff span.f-empty {
@@ -458,7 +457,9 @@ header.vff-header svg.f-logo {
 
 .vff li,
 .vff p,
-.vff .f-section-text {
+.vff .f-section-text,
+.vff span.f-tagline,
+.vff span.f-sub {
   font-size: 1.1em;
   line-height: 1.34;
 }
@@ -498,6 +499,10 @@ header.vff-header svg.f-logo {
 .vff span.f-sub {
   font-weight: 400;
   display: block;
+}
+
+.vff .fh2 span.f-tagline,
+.vff .fh2 span.f-sub{
   font-size: .51em;
 }
 
@@ -551,7 +556,7 @@ header.vff-header svg.f-logo {
 }
 
 .vff ul.f-radios li {
-  padding: 0 .7em;
+  padding: .6em .7em;
   margin: .5em 0 .6em;
   font-weight: 300;
   line-height: 1.24;
@@ -565,13 +570,13 @@ header.vff-header svg.f-logo {
 }
 
 .vff ul.f-radios li.f-other input[type=text] {
-  margin: .44em 0 .54em;
   border-bottom: none;
   width: 100%;
   padding: 0;
+  margin: 0;
+  border: 0;
   line-height: inherit;
   font-size: inherit;
-  border: 0;
 }
 
 .vff .f-radios-desc {
@@ -585,13 +590,12 @@ header.vff-header svg.f-logo {
 }
 
 .vff ul.f-radios li span.f-label {
-  margin: .62em 0 .62em 1.1em;
   display: block;
+  margin-left: 1.1em;
 }
 
 .vff ul.f-radios li span.f-key {
   position: absolute;
-  margin: .62em 0 .62em 0;
 }
 
 /*
@@ -807,8 +811,8 @@ header.vff-header svg.f-logo {
     font-size: .78em;
 }
   
-  .vff span.f-sub, 
-  .vff span.f-tagline{
+  .vff .fh2 span.f-sub, 
+  .vff .fh2 span.f-tagline{
     font-size: .58em;
   }
   
@@ -858,8 +862,8 @@ header.vff-header svg.f-logo {
     width: 12px;
   }
 
-  .vff span.f-sub, 
-  .vff span.f-tagline {
+  .vff .fh2 span.f-sub, 
+  .vff .fh2 span.f-tagline {
     font-size: .64em;
   }
 
@@ -879,9 +883,6 @@ header.vff-header svg.f-logo {
   .vff ul.f-radios li,
   .vff ul.f-radios li input[type=text] {
     font-size: .56em;
-  }
-  .vff ul.f-radios li.f-other input[type=text] {
-    margin-bottom: .52em;
   }
 
   .vff .field-sectionbreaktype p {
@@ -925,8 +926,8 @@ header.vff-header svg.f-logo {
     font-size: 1.6em;
   }
 
-  .vff span.f-sub, 
-  .vff span.f-tagline {
+  .vff .fh2 span.f-sub, 
+  .vff .fh2 span.f-tagline {
     font-size: .6em;
   }
 

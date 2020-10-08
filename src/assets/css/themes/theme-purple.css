@@ -51,6 +51,7 @@ body {
 header.vff-header{
   background-color: var(--vff-header-color);
   border-bottom: 2px solid var(--vff-header-border-color);
+  padding-bottom: .7em;
 }
 
 header.vff-header svg.f-logo{
