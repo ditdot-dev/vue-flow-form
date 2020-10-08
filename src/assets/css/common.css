@@ -146,7 +146,9 @@
 */
 
 .vff {
-  margin: 26vh 10vw 60px;
+  width: 100%;
+  padding: 0 10%;
+  margin: 25vh 0 60px;
   position: relative;
   text-align: left;
   box-sizing: border-box;
@@ -161,19 +163,19 @@
 /*container*/
 .vff .f-container,
 header.vff-header .f-container{
-  padding: 0 8vw;
+  padding: 0 8%;
   width: 100%;
 }
 
 .vff .f-container {
-  margin-top: 2vh;
-  margin-bottom: 4vh;
+  margin-top: 1em;
+  margin-bottom: 1em;
 }
 
 /*header*/
 header.vff-header {
   line-height: 1;
-  padding: 1em 10vw .9em;
+  padding: 1em 10% .9em;
   z-index: 1400;
   top: 0;
   left: 0;
@@ -782,9 +784,9 @@ header.vff-header svg.f-logo {
   }
 
   .vff {
-    margin-top: 16vh;
-    margin-left: 0;
-    margin-right: 0;
+    margin-top: 15vh;
+    padding-left: 0;
+    padding-right: 0;
   }
 
   .vff select {
@@ -818,7 +820,7 @@ header.vff-header svg.f-logo {
   
   .vff .f-container,
   header.vff-header .f-container{
-    padding: 0 6vw;
+    padding: 0 6%;
   }
 
   .vff span.f-empty {
