@@ -14,6 +14,47 @@
   -o-font-smoothing: antialiased;
 }
 
+/*for testing*/
+/*
+.vff-bg{
+  background-color: beige;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+}
+*/
+
+/*modular-test*/
+/*
+html .vff-bg{
+  background-color: beige;
+  bottom: auto;
+}
+html .vff{
+  margin-top: 0;
+  margin-bottom: 0;
+  padding-top: 50px;
+  padding-bottom: 100px;
+}
+
+html .vff .f-container{
+  margin: 0;
+}
+
+html header.vff-header{
+  position: static;
+}
+
+html .vff .vff-footer{
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+*/
+
+
 @media screen and (max-width:1023px){
   .vff,
   .vff-footer {
@@ -840,7 +881,7 @@ header.vff-header svg.f-logo {
   .vff input[type=password],
   .vff textarea {
     line-height: 1.4;
-    padding: .12em .2em;
+    padding: .16em .2em;
   }
 
   .vff select {
@@ -893,12 +934,8 @@ header.vff-header svg.f-logo {
 
   header.vff-header {
     position: static;
-    top: auto;
-    left: auto;
     width: 100%;
     height: auto;
-    padding-top: .8em;
-    padding-bottom: .8em;
   }
 
   .vff-footer{

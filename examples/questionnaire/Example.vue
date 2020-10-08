@@ -1,7 +1,7 @@
 // Create and setup your form here
  
 <template>
-  <div>
+  <div class="vff-bg">
     <header class="vff-header">
       <div class="f-container">
        <!-- Add custom logo here -->
