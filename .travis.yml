@@ -1,6 +1,12 @@
 language: node_js
 node_js:
-  - 12.14.0
+  - 9
+  - 10
+  - 11
+  - 12
+  - 13
+  - 14
+  - node
 os:
   - windows
   - linux
