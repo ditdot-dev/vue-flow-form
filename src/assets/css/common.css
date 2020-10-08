@@ -15,12 +15,15 @@
 }
 
 /*for testing*/
+
+/*new test bg wrapper for full screen*/
 /*
 .vff-bg{
   background-color: beige;
   position: absolute;
   top: 0;
   left: 0;
+  right: 0;
   bottom: 0;
   width: 100%;
 }
