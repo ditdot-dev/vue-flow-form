@@ -611,13 +611,6 @@ header.vff-header svg.f-logo {
   width: 100%;
   font-weight: 300;
   line-height: 1.2;
-  box-sizing: border-box;
-}
-
-.vff-footer *,
-.vff-footer *:before,
-.vff-footer *:after {
-  box-sizing: inherit;
 }
 
 .vff-footer .footer-inner-wrap {

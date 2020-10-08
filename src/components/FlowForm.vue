@@ -3,7 +3,7 @@
 <template>
   <div class="vff">
     <div class="f-container">
-      <div class="form-wrap">
+      <div class="f-form-wrap">
         <flow-form-question
           ref="questions"
           v-for="(q, index) in questionList"
