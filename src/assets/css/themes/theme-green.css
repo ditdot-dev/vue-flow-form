@@ -28,11 +28,13 @@
   font-family: 'Poppins', sans-serif;
 }
 
-
 body {
   /*override if needed when using not-standalone option*/
   margin: 0;
   background-color: var(--vff-bg-color);
+}
+
+.vff{
   color: var(--vff-main-text-color);
 }
 
@@ -40,7 +42,6 @@ body {
   background-color: var(--vff-bg-color);
   color: var(--vff-main-text-color);
 }
-
 
 /*header*/
 header.vff-header {
@@ -209,14 +210,6 @@ header.vff-header svg.f-logo {
     --vff-tertiary-text-color: #41464F;
     --vff-main-accent-color: #41B883;
     --vff-secondary-accent-color: #A0DBC1;
-  }
-
-  header.vff-header{
-    background-color: transparent;
-  }
-
-  header.vff-header svg.f-logo{
-    fill: var(--vff-main-accent-color);
   }
 
   .vff textarea,
