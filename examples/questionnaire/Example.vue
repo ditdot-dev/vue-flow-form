@@ -162,7 +162,7 @@
           new QuestionModel({
             id: 'break_1',
             title: 'Awesome, thank you. 🙏',
-            //content: 'You arrived at the section break of our little demo survey. To continue exploring, just press enter or use the continue button.',
+            content: 'You arrived at the section break of our little demo survey. To continue exploring, just press enter or use the continue button.',
             description: 'Note: We will take a look at our multiple path feature next.',
             type: QuestionType.SectionBreak
           }),
