@@ -38,7 +38,8 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "build:npm": "rollup --config build/rollup.config.js && npm run cssmin",
-    "cssmin": "postcss dist/vue-flow-form.theme-minimal.css -o dist/vue-flow-form.theme-minimal.min.css && postcss dist/vue-flow-form.theme-green.css -o dist/vue-flow-form.theme-green.min.css && postcss dist/vue-flow-form.theme-purple.css -o dist/vue-flow-form.theme-purple.min.css"
+    "cssmin": "postcss dist/vue-flow-form.theme-minimal.css -o dist/vue-flow-form.theme-minimal.min.css && postcss dist/vue-flow-form.theme-green.css -o dist/vue-flow-form.theme-green.min.css && postcss dist/vue-flow-form.theme-purple.css -o dist/vue-flow-form.theme-purple.min.css",
+    "build:examples": "vue-cli-service build --dest dist/questionnaire examples/questionnaire/main.js && vue-cli-service build --dest dist/quiz examples/quiz/main.js && vue-cli-service build --dest dist/support-page examples/support-page/main.js"
   },
   "eslintConfig": {
     "root": true,
