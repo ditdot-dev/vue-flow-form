@@ -191,9 +191,6 @@ var app = new Vue({
   }
 });
 ```
-## Browser Support
-
-Modern browsers and IE11.
 
 ## Changelog
 
