@@ -323,7 +323,7 @@ header.vff-header svg.f-logo {
 .vff span.faux-form {
   border-bottom: 1px solid;
   display: inline-block;
-  margin-right: .3em;
+  margin-right: .2em;
   margin-left: 0;
   position: relative;
   white-space: nowrap;
@@ -481,7 +481,7 @@ header.vff-header svg.f-logo {
   font-weight: 900;
   font-size: 2.4em;
   line-height: 1.34;
-  padding-right: 1.6em;
+  padding-right: 1.8em;
   margin-bottom: 20px;
 }
 
@@ -777,7 +777,7 @@ header.vff-header svg.f-logo {
 
   .vff h2,
   .vff .fh2 {
-    padding-right: 2em;
+    padding-right: 2.2em;
   }
 
 }
@@ -808,11 +808,6 @@ header.vff-header svg.f-logo {
   .vff {
     padding-left: 0;
     padding-right: 0;
-  }
-
-  .vff select {
-    padding-top: .4em;
-    padding-bottom: .4em;
   }
 
 }
@@ -881,7 +876,7 @@ header.vff-header svg.f-logo {
   }
 
   .vff select {
-    font-size: 1em;
+    font-size: .72em;
     padding-top: .2em;
     padding-bottom: .2em;
   }
