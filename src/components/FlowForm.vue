@@ -1,9 +1,9 @@
 // Form template and logic
 
 <template>
-  <div class="v-form">
+  <div class="vff" :class="{'vff-not-standalone': !standalone}">
     <div class="f-container">
-      <div class="form-wrap">
+      <div class="f-form-wrap">
         <flow-form-question
           ref="questions"
           v-for="(q, index) in questionList"
@@ -17,10 +17,10 @@
         />
 
         <!-- Complete/Submit screen slots -->   
-        <div v-if="isOnLastStep" class="animate fade-in-up field-submittype">
+        <div v-if="isOnLastStep" class="vff-animate f-fade-in-up field-submittype">
           <slot name="complete">
             <!-- Default content for the "complete" slot -->
-            <div class="section-wrap">
+            <div class="f-section-wrap">
               <p>
                 <span class="fh2">{{ language.thankYouText }}</span>
               </p>
@@ -51,7 +51,7 @@
       </div>
     </div>
 
-    <div class="f-footer">
+    <div class="vff-footer">
       <div class="footer-inner-wrap">
         <div v-if="progressbar" class="f-progress" v-bind:class="{'not-started': percentCompleted === 0, 'completed': percentCompleted === 100}">
           <div class="f-progress-bar">
@@ -138,6 +138,10 @@
         default: () => new LanguageModel()
       },
       progressbar: {
+        type: Boolean, 
+        default: true
+      },
+      standalone: {
         type: Boolean, 
         default: true
       }
@@ -477,7 +481,5 @@
 </script>
 
 <style lang="css">
-  @import '../assets/css/normalize.css';
   @import '../assets/css/common.css';
-  @import '../assets/css/animations.css';
 </style>
