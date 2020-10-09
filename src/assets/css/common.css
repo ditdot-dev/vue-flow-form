@@ -158,6 +158,10 @@ header.vff-header + .vff{
   margin-top: 16vh;
 }
 
+header.vff-header + .vff.vff-not-standalone{
+  margin-top: 0;
+}
+
 .vff *,
 .vff *:before,
 .vff *:after {
@@ -859,6 +863,10 @@ header.vff-header svg.f-logo {
 
   header.vff-header + .vff{
     margin-top: 8vh;
+  }
+
+  header.vff-header + .vff.vff-not-standalone{
+    margin-top: 0;
   }
   
   .vff input[type=text],
