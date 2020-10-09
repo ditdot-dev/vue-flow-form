@@ -683,7 +683,7 @@ header.vff-header svg.f-logo {
 
 .vff .field-sectionbreaktype,
 .vff .field-submittype {
-  max-width: 940px;
+  max-width: 920px;
 }
 
 /*
@@ -772,7 +772,7 @@ header.vff-header svg.f-logo {
 @media only screen and (min-width: 1440px) {
   .vff .field-sectionbreaktype,
   .vff .field-submittype {
-    max-width: 980px;
+    max-width: 960px;
   }
 
   .vff h2,
