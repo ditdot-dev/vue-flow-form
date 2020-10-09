@@ -1,7 +1,7 @@
 // Create and setup your form here
  
 <template>
-  <div class="vff-bg">
+  <div>
     <header class="vff-header">
       <div class="f-container">
        <!-- Add custom logo here -->
@@ -20,6 +20,7 @@
       v-on:submit="onSubmit"
       v-bind:questions="questions"
       v-bind:language="language"
+      v-bind:standalone="true"
     >
     <!-- Custom content for the Complete/Submit screen slots in the FlowForm component -->
       <!-- We've overriden the default "complete" slot content -->

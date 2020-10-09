@@ -7,56 +7,12 @@
 .vff {
   font-weight: 400;
   line-height: 1.34;
-  min-height: 200px;
+  min-height: 220px;
   -webkit-text-size-adjust: 100%;
   -webkit-font-smoothing: antialiased;
   -moz-font-smoothing: antialiased;
   -o-font-smoothing: antialiased;
 }
-
-/*for testing*/
-
-/*new test bg wrapper for full screen*/
-/*
-.vff-bg{
-  background-color: beige;
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  width: 100%;
-}
-*/
-
-/*modular-test*/
-/*
-html .vff-bg{
-  background-color: beige;
-  bottom: auto;
-}
-html .vff{
-  margin-top: 0;
-  margin-bottom: 0;
-  padding-top: 50px;
-  padding-bottom: 100px;
-}
-
-html .vff .f-container{
-  margin: 0;
-}
-
-html header.vff-header{
-  position: static;
-}
-
-html .vff .vff-footer{
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-}
-*/
-
 
 @media screen and (max-width:1023px){
   .vff,
@@ -192,10 +148,14 @@ html .vff .vff-footer{
 .vff {
   width: 100%;
   padding: 0 10%;
-  margin: 26vh 0 60px;
+  margin: 18vh 0 60px;
   position: relative;
   text-align: left;
   box-sizing: border-box;
+}
+
+header.vff-header + .vff{
+  margin-top: 16vh;
 }
 
 .vff *,
@@ -219,14 +179,10 @@ header.vff-header .f-container{
 /*header*/
 header.vff-header {
   line-height: 1;
-  padding: 1em 10% .9em;
-  z-index: 1400;
-  top: 0;
-  left: 0;
-  right: 0;
-  position: fixed;
-  width: 100%;
+  padding: .9em 10% .8em;
   box-sizing: border-box;
+  position: static;
+  width: 100%;
 }
 
 .vff-header *,
@@ -360,11 +316,10 @@ header.vff-header svg.f-logo {
   margin-top: .7em;
 }
 
-/**/
 .vff span.faux-form {
   border-bottom: 1px solid;
   display: inline-block;
-  margin-right: .6em;
+  margin-right: .3em;
   margin-left: 0;
   position: relative;
   white-space: nowrap;
@@ -522,7 +477,7 @@ header.vff-header svg.f-logo {
   font-weight: 900;
   font-size: 2.4em;
   line-height: 1.34;
-  padding-right: 1.8em;
+  padding-right: 1.6em;
   margin-bottom: 20px;
 }
 
@@ -602,7 +557,7 @@ header.vff-header svg.f-logo {
 }
 
 .vff ul.f-radios li {
-  padding: .6em .7em;
+  padding: .58em .68em;
   margin: .5em 0 .6em;
   font-weight: 300;
   line-height: 1.24;
@@ -659,7 +614,7 @@ header.vff-header svg.f-logo {
 
 .vff-footer .footer-inner-wrap {
   text-align: right;
-  padding: 12px 20px 12px;
+  padding: 11px 20px 12px;
 }
 
 .vff-footer .f-progress,
@@ -724,7 +679,29 @@ header.vff-header svg.f-logo {
 
 .vff .field-sectionbreaktype,
 .vff .field-submittype {
-  max-width: 800px;
+  max-width: 940px;
+}
+
+/*
+  not-standalone option
+*/
+
+.vff.vff-not-standalone{
+  height: 100%;
+  margin-top: 0;
+  margin-bottom: 0;
+  padding-top: 50px;
+  padding-bottom: 100px;
+}
+
+.vff.vff-not-standalone .f-container{
+  margin: 0;
+}
+
+.vff.vff-not-standalone .vff-footer{
+  position: absolute;
+  bottom: 0;
+  width: 100%;
 }
 
 /*
@@ -791,7 +768,7 @@ header.vff-header svg.f-logo {
 @media only screen and (min-width: 1440px) {
   .vff .field-sectionbreaktype,
   .vff .field-submittype {
-    max-width: 940px;
+    max-width: 980px;
   }
 
   .vff h2,
@@ -809,19 +786,22 @@ header.vff-header svg.f-logo {
 
 }
 
+@media screen and (max-width: 1366px) {
+  header.vff-header,
+  .vff {
+    padding-right: 5%;
+    padding-left: 5%;
+  }
+
+}
+
 @media only screen and (max-width: 1023px) {
   header.vff-header {
-    position: static;
-    top: auto;
-    left: auto;
-    width: 100%;
-    height: auto;
     padding-left: 0;
     padding-right: 0;
   }
 
   .vff {
-    margin-top: 15vh;
     padding-left: 0;
     padding-right: 0;
   }
@@ -857,12 +837,12 @@ header.vff-header svg.f-logo {
   
   .vff .f-container,
   header.vff-header .f-container{
-    padding: 0 6%;
+    padding: 0 5.5%;
   }
 
   .vff span.f-empty {
-    min-width: 2.4em;
-    padding-right: 24px;
+    min-width: 2.2em;
+    padding-right: 20px;
   }
   
   .vff p.f-description{
@@ -874,8 +854,13 @@ header.vff-header svg.f-logo {
 @media screen and (max-width:479px) {
   .vff {
     margin-top: 10vh;
+    min-height: 180px;
   }
 
+  header.vff-header + .vff{
+    margin-top: 8vh;
+  }
+  
   .vff input[type=text],
   .vff input[type=number],
   .vff input[type=tel],
@@ -916,12 +901,12 @@ header.vff-header svg.f-logo {
 
   .vff h2,
   .vff .fh2 {
-    font-size: 1.6em;
+    font-size: 1.56em;
   }
 
   .vff ul.f-radios li,
   .vff ul.f-radios li input[type=text] {
-    font-size: .56em;
+    font-size: .62em;
   }
 
   .vff .field-sectionbreaktype p {
@@ -933,12 +918,11 @@ header.vff-header svg.f-logo {
 @media screen and (max-height:400px) {
   .vff {
     margin-top: 12vh;
+    min-height: 180px;
   }
 
   header.vff-header {
     position: static;
-    width: 100%;
-    height: auto;
   }
 
   .vff-footer{
@@ -958,7 +942,7 @@ header.vff-header svg.f-logo {
 
   .vff h2,
   .vff .fh2 {
-    font-size: 1.6em;
+    font-size: 1.56em;
   }
 
   .vff .fh2 span.f-sub, 

@@ -30,10 +30,17 @@
 
 
 body {
+  /*override if needed when using not-standalone option*/
   margin: 0;
   background-color: var(--vff-bg-color);
   color: var(--vff-main-text-color);
 }
+
+.vff.vff-not-standalone{
+  background-color: var(--vff-bg-color);
+  color: var(--vff-main-text-color);
+}
+
 
 /*header*/
 header.vff-header {

@@ -1,7 +1,7 @@
 // Form template and logic
 
 <template>
-  <div class="vff">
+  <div class="vff" :class="{'vff-not-standalone': !standalone}">
     <div class="f-container">
       <div class="f-form-wrap">
         <flow-form-question
@@ -138,6 +138,10 @@
         default: () => new LanguageModel()
       },
       progressbar: {
+        type: Boolean, 
+        default: true
+      },
+      standalone: {
         type: Boolean, 
         default: true
       }
