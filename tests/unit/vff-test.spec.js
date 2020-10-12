@@ -5,7 +5,10 @@ import FlowForm from '@/src/components/FlowForm.vue'
 import FlowFormQuestion from '@/src/components/Question.vue'
 import FlowFormMultipleChoiceType from '@/src/components/QuestionTypes/MultipleChoiceType.vue'
 
-const factory = (values = {}) => {
+
+describe('Example', () => {
+
+  const factory = (values = {}) => {
   return shallowMount(Example, {
     data () {
       return {
@@ -39,8 +42,6 @@ const wrapper = deepFactory({
                     ]
                 })
 
-describe('Example', () => {
-
     let form 
     let question
     let multipleChoice
@@ -53,14 +54,14 @@ describe('Example', () => {
     })()
 
 
-    it('Example is a component', () => {
+    it("is a component", () => {
 
         const wrapper = factory()
 
         expect(wrapper.findComponent(Example).vm)
     })
 
-    it('contains a FlowForm component', () => {
+    it("contains a FlowForm component", () => {
          
         const wrapper = factory()
 
@@ -68,11 +69,12 @@ describe('Example', () => {
      })
     
     
-    it('renders a submit button on the final screen', () => {
+    it("renders a submit button on the final screen", () => {
 
         const wrapper = deepFactory()
-    
-        expect(wrapper.find(".o-btn-action").text()).toBe("Submit")
+      
+        expect(wrapper.find('.f-submit button').exists()).toBe(true)
+        expect(wrapper.find('.f-submit button').text()).toBe("Submit")
     })
 
 
@@ -86,27 +88,45 @@ describe('Example', () => {
         setTimeout(() => {
             expect(form.find('.text-success').exists()).toBe(true)
             expect(form.classes('.f-submit')).toBe(false)
-        }, 100)
+        }, 10)
     })
 
 
-    it("renders a MultipleChoice question type with one option", () => {
+    it("renders one MultipleChoice type question", () => {
          
         wrapper.vm.$nextTick(() => {
             expect(question.exists()).toBe(true)
             expect(form.findAllComponents(FlowFormQuestion)).toHaveLength(1)
-            expect(question.find('.f-text').text()).toEqual("Question")
-            expect(question.find('.f-enter').exists()).toBe(false)
             expect(multipleChoice.exists()).toBe(true)
+            expect(multipleChoice.classes('.f-multiple')).toBe(false)
+        })   
+    })
+  
+    it("renders one option", () => {
+         
+        wrapper.vm.$nextTick(() => {
             expect(multipleChoice.find('.f-radios').findAll('li')).toHaveLength(1)
+        })
+    })
+  
+    it("renders question strings correctly", () => {
+         
+        wrapper.vm.$nextTick(() => {
+            expect(question.find('.f-text').text()).toEqual("Question")
             expect(multipleChoice.find('.f-key').exists()).toBe(true)
             expect(multipleChoice.find('.f-key').text()).toEqual("A")
             expect(multipleChoice.find('.f-label').exists()).toBe(true)
             expect(multipleChoice.find('.f-label').text()).toEqual("Answer")
-            expect(multipleChoice.classes('.f-multiple')).toBe(false)
-            expect(multipleChoice.classes('.f-selected')).toBe(false)
         })
+    })
+  
+  
+    it("doesn't render Enter button if not selected", () => {
          
+          wrapper.vm.$nextTick(() => {
+          expect(multipleChoice.classes('.f-selected')).toBe(false)
+          expect(question.find('.f-enter').exists()).toBe(false)
+        })  
     })
 
      it("allows to select an answer and click OK", () => {
@@ -123,7 +143,6 @@ describe('Example', () => {
             
             expect(question.emitted().answer).toBeTruthy()
         })
-         
      })
      
 })
