@@ -46,6 +46,7 @@
               v-if="!submitted"
               v-html="language.formatString(language.pressEnter)">
             </a>
+            <p class="text-success" v-if="submitted">{{ language.successText }}</p>
           </slot>
         </div>
       </div>
