@@ -1,5 +1,5 @@
 // Create and setup your form here
- 
+
 <template>
   <div>
     <header class="vff-header">
@@ -11,7 +11,7 @@
               <path d="M35.05 12.34h-22v9.88h20.24v10H13.08V54.7H0V2.36h35.05zM79 35q0 9.74-5.32 15.35t-15.07 5.6q-9.68 0-15-5.6T38.25 35q0-9.84 5.36-15.42t15-5.57q9.7 0 15 5.61T79 35zm-12.62.07a24.64 24.64 0 00-.58-5.85 10.88 10.88 0 00-1.6-3.75 6 6 0 00-2.46-2.05 7.91 7.91 0 00-3.13-.58 8.34 8.34 0 00-3 .51 5.82 5.82 0 00-2.46 2A10.8 10.8 0 0051.5 29a24.06 24.06 0 00-.63 6 23.19 23.19 0 00.6 5.85A11 11 0 0053 44.47a5.77 5.77 0 002.46 2 8.22 8.22 0 003.27.63 7.84 7.84 0 003-.63 5.68 5.68 0 002.45-1.9 11.19 11.19 0 001.65-3.64 24.4 24.4 0 00.58-5.88zM112.08 26.86h-1a9.16 9.16 0 00-2-.37c-.89-.08-1.88-.12-3-.12a16 16 0 00-4.06.56 36.9 36.9 0 00-4.13 1.34V54.7H85.57V15.22h12.31v5.66c.56-.51 1.34-1.16 2.33-1.95a23.8 23.8 0 012.73-1.88 15.17 15.17 0 013.11-1.39 11 11 0 013.36-.58h1.33c.49 0 .94.06 1.34.1zM164 54.7V35c0-1.94 0-3.59-.11-4.92a10 10 0 00-.63-3.27 3.59 3.59 0 00-1.63-1.85 6.93 6.93 0 00-3.12-.58 6.71 6.71 0 00-2.77.62 18.65 18.65 0 00-3 1.74v28h-12.4V35c0-1.92 0-3.56-.12-4.9a10.27 10.27 0 00-.65-3.29 3.59 3.59 0 00-1.63-1.85 6.84 6.84 0 00-3.08-.58 6.63 6.63 0 00-3 .71 21.81 21.81 0 00-2.82 1.65v28h-12.3V15.22h12.3v4.36a34.59 34.59 0 015.7-4 12.45 12.45 0 016-1.44 11.68 11.68 0 016.36 1.73 10.78 10.78 0 014.25 5.13 36.16 36.16 0 016.65-5.09 12.93 12.93 0 016.39-1.78 13.23 13.23 0 014.92.88 9.57 9.57 0 013.69 2.64 12.47 12.47 0 012.48 4.52 23.27 23.27 0 01.82 6.83v25.7zM254.85 68.55a32.87 32.87 0 01-4.24.78 65.92 65.92 0 01-6.66.24 21.07 21.07 0 01-7-1 12.93 12.93 0 01-4.83-2.94 11.81 11.81 0 01-2.9-4.43 17.71 17.71 0 01-1.11-5.52q-11.12-.49-17.49-7.7t-6.38-19.4q0-12.63 6.75-20t18.6-7.33q11.81 0 18.59 7.29t6.79 20a31.14 31.14 0 01-3.85 15.87 21.31 21.31 0 01-10.88 9.4c0 2.56.61 4.32 1.7 5.3s3 1.45 5.75 1.45a12.87 12.87 0 003.31-.46 13 13 0 002.55-.9h1.3zm-17-26.75a17.08 17.08 0 002.6-5.33 28.31 28.31 0 00.92-8 28.3 28.3 0 00-1-8 16.55 16.55 0 00-2.58-5.4 10 10 0 00-3.79-2.99 10.92 10.92 0 00-4.41-.94 10.72 10.72 0 00-4.39.87 10.51 10.51 0 00-3.8 3.07 16 16 0 00-2.62 5.42 28.41 28.41 0 00-1 8.05 28.14 28.14 0 001 8 16.17 16.17 0 002.6 5.33 9.8 9.8 0 003.76 3.12 11 11 0 004.43.93 10.61 10.61 0 004.5-1 9.77 9.77 0 003.76-3.13zM298.65 54.7h-12.3v-4.36a33.11 33.11 0 01-5.87 4.06 13.61 13.61 0 01-6.37 1.39q-5.87 0-9.15-3.71t-3.29-11.16v-25.7H274V34.8c0 2 .06 3.71.16 5a10.09 10.09 0 00.76 3.27 3.84 3.84 0 001.74 1.86 7 7 0 003.28.63 9.42 9.42 0 003.08-.63 13.4 13.4 0 003.29-1.72v-28h12.3zM320.73 9.6h-13V0h13zm-.35 45.1h-12.31V15.22h12.31zM361.3 54.7h-34.52v-8.12l18.84-22.11h-18v-9.25h33.29v8L342 45.28h19.3z"/>
             </g>
           </g>
-        </svg>
+        </svg> Gig Finance
       </div>
     </header>
 
@@ -46,7 +46,7 @@
             aria-label="Press to submit">
             <span>Calculate score</span>
           </button>
-          <a 
+          <a
             class="f-enter-desc"
             href="#"
             v-on:click.prevent="onQuizSubmit()"
@@ -83,21 +83,21 @@
       return {
         submitted: false,
         completed: false,
-        score: 0, 
-        total: 8, 
+        score: 0,
+        total: 8,
         answers: {
-          html_1: ['2', '3'], 
-          html_2: 'false', 
-          html_3: '2', 
-          html_4: ['3', '4'],  
-          ux_1: ['1', '2', '4'], 
-          ux_2: 'false', 
-          ux_3: '4', 
-          ux_4: 'true', 
+          html_1: ['2', '3'],
+          html_2: 'false',
+          html_3: '2',
+          html_4: ['3', '4'],
+          ux_1: ['1', '2', '4'],
+          ux_2: 'false',
+          ux_3: '4',
+          ux_4: 'true',
         },
         language: new LanguageModel(),
         // Create question list with QuestionModel instances
-        questions: [      
+        questions: [
           new QuestionModel({
             id: 'start',
             tagline: '8 questions',
@@ -115,19 +115,19 @@
             multiple: true,
             options: [
               new ChoiceOption({
-                label: 'check', 
+                label: 'check',
                 value: '1'
               }),
               new ChoiceOption({
-                label: 'date', 
+                label: 'date',
                 value: '2'
                }),
               new ChoiceOption({
-                label: 'image', 
+                label: 'image',
                 value: '3'
-              }), 
+              }),
               new ChoiceOption({
-                label: 'telephone', 
+                label: 'telephone',
                 value: '4'
               })
             ]
@@ -138,14 +138,14 @@
             helpTextShow: false,
             type: QuestionType.MultipleChoice,
             required: true,
-            multiple: false, 
+            multiple: false,
              options: [
               new ChoiceOption({
-                label: 'True', 
+                label: 'True',
                 value: 'true'
               }),
               new ChoiceOption({
-                label: 'False', 
+                label: 'False',
                 value: 'false'
               })
             ]
@@ -156,25 +156,25 @@
             helpText: "Which one sounds right? There's only one right answer.",
             type: QuestionType.MultipleChoice,
             required: true,
-            multiple: false, 
+            multiple: false,
             options: [
               new ChoiceOption({
-                label: '<form>', 
+                label: '<form>',
                 value: '1'
               }),
               new ChoiceOption({
-                label: '<select>', 
+                label: '<select>',
                 value: '2'
               }),
               new ChoiceOption({
-                label: '<fieldset>', 
+                label: '<fieldset>',
                 value: '3'
-              }), 
+              }),
               new ChoiceOption({
-                label: '<legend>', 
+                label: '<legend>',
                 value: '4'
               })
-            ] 
+            ]
           }),
           new QuestionModel({
             id: 'html_4',
@@ -194,10 +194,10 @@
               }),
               new ChoiceOption({
                 label: '<form>',
-                value: '3' 
+                value: '3'
               }),
               new ChoiceOption({
-                label: '<input>', 
+                label: '<input>',
                 value: '4'
               })
             ]
@@ -216,19 +216,19 @@
             required: true,
             options: [
               new ChoiceOption({
-                label: 'Divide the form into multiple steps', 
+                label: 'Divide the form into multiple steps',
                 value: '1'
               }),
               new ChoiceOption({
-                label: 'Add progress tracking', 
+                label: 'Add progress tracking',
                 value: '2'
               }),
               new ChoiceOption({
-                label: 'Use as many emojis as possible', 
+                label: 'Use as many emojis as possible',
                 value: '3'
               }),
               new ChoiceOption({
-                label: 'Group questions into sections', 
+                label: 'Group questions into sections',
                 value: '4'
               })
             ]
@@ -242,11 +242,11 @@
             required: true,
             options: [
               new ChoiceOption({
-                label: 'True', 
+                label: 'True',
                 value: 'true'
               }),
               new ChoiceOption({
-                label: 'False', 
+                label: 'False',
                 value: 'false'
               })
             ]
@@ -260,19 +260,19 @@
             required: true,
             options: [
               new ChoiceOption({
-                label: 'Add progress bar to the form', 
+                label: 'Add progress bar to the form',
                 value: '1'
               }),
               new ChoiceOption({
-                label: 'Mark required vs. optional fields', 
+                label: 'Mark required vs. optional fields',
                 value: '2'
               }),
               new ChoiceOption({
-                label: 'Use bold color palette', 
+                label: 'Use bold color palette',
                 value: '3'
               }),
               new ChoiceOption({
-                label: 'Use placeholder and masked input', 
+                label: 'Use placeholder and masked input',
                 value: '4'
               })
             ]
@@ -286,11 +286,11 @@
             required: true,
             options: [
               new ChoiceOption({
-                label: 'True', 
+                label: 'True',
                 value: 'true'
               }),
               new ChoiceOption({
-                label: 'False', 
+                label: 'False',
                 value: 'false'
               })
             ]
@@ -326,13 +326,13 @@
             }
           }
         })
-      }, 
+      },
 
       onQuizSubmit() {
         // Set `submitted` to true so the form knows not to allow back/forward
         // navigation anymore.
         this.$refs.flowform.submitted = true
-        
+
         this.submitted = true
         this.calculateScore()
       }
