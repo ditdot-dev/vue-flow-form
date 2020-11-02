@@ -297,7 +297,7 @@ header.vff-header svg.f-logo {
   min-height: 44px;
   white-space: pre-wrap;
   max-width: 100%;
-} 
+}
 
 .vff .o-btn-action {
   z-index: 1;
@@ -441,18 +441,18 @@ header.vff-header svg.f-logo {
   links
 */
 
-.vff a.f-link, 
+.vff a.f-link,
 .vff .field-submittype .f-section-wrap a {
   color: inherit;
   border-bottom: 1px dotted;
   word-break: break-word;
 }
 
-.vff a.f-link:hover, 
-.vff a.f-link:active,  
-.vff .field-submittype .f-section-wrap a:hover, 
+.vff a.f-link:hover,
+.vff a.f-link:active,
+.vff .field-submittype .f-section-wrap a:hover,
 .vff .field-submittype .f-section-wrap a:active {
- color: inherit; 
+ color: inherit;
  border-bottom: none;
 }
 
@@ -620,6 +620,12 @@ header.vff-header svg.f-logo {
   text-align: right;
   padding: 11px 20px 12px;
 }
+
+.footer-center {
+  text-align: center;
+  padding: 11px 20px 12px;
+}
+
 
 .vff-footer .f-progress,
 .vff-footer .f-nav {
@@ -828,12 +834,12 @@ header.vff-header svg.f-logo {
   .vff textarea{
     font-size: .78em;
 }
-  
-  .vff .fh2 span.f-sub, 
+
+  .vff .fh2 span.f-sub,
   .vff .fh2 span.f-tagline{
     font-size: .58em;
   }
-  
+
   .vff .f-container,
   header.vff-header .f-container{
     padding: 0 5.5%;
@@ -843,7 +849,7 @@ header.vff-header svg.f-logo {
     min-width: 2.2em;
     padding-right: 20px;
   }
-  
+
   .vff p.f-description{
     padding-right: 0;
   }
@@ -863,7 +869,7 @@ header.vff-header svg.f-logo {
   header.vff-header + .vff.vff-not-standalone{
     margin-top: 0;
   }
-  
+
   .vff input[type=text],
   .vff input[type=number],
   .vff input[type=tel],
@@ -889,7 +895,7 @@ header.vff-header svg.f-logo {
     width: 12px;
   }
 
-  .vff .fh2 span.f-sub, 
+  .vff .fh2 span.f-sub,
   .vff .fh2 span.f-tagline {
     font-size: .64em;
   }
@@ -948,7 +954,7 @@ header.vff-header svg.f-logo {
     font-size: 1.56em;
   }
 
-  .vff .fh2 span.f-sub, 
+  .vff .fh2 span.f-sub,
   .vff .fh2 span.f-tagline {
     font-size: .6em;
   }

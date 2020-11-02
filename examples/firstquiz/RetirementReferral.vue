@@ -24,10 +24,10 @@
           <p>
             <span class="fh2">Thank you. 🙏</span>
             <span class="f-section-text">
-              Great work, the survey is completed, and our demo is done. You can review your answers or press submit.
+              Great work, please wait while we calculate your results. You can review your answers or press submit.
             </span>
           </p>
-          <p class="f-description">Note: No data will be saved and/or sent in this demo.</p>
+          <p class="f-description">Note: No data will be saved and/or sent in this calculator.</p>
         </div>
       </template>
 
@@ -58,11 +58,6 @@
 </template>
 
 <script>
-  /*
-    Copyright (c) 2020 - present, DITDOT Ltd. - MIT Licence
-    https://www.ditdot.hr/en
-  */
-
   // Import necessary components and classes
   import FlowForm from '../../src/components/FlowForm.vue'
   import QuestionModel, { QuestionType, ChoiceOption, LinkOption } from '../../src/models/QuestionModel'
@@ -83,20 +78,17 @@
         // Create question list with QuestionModel instances
         questions: [
           new QuestionModel({
-            id: 'first_name',
-            tagline: 'Hi! Welcome to our demo survey 😊',
+            id: 'age',
             title: 'What is your age?',
-            type: QuestionType.Text,
+            type: QuestionType.Number,
             required: true,
-            placeholder: 'Start typing here...'
+            placeholder: 'My age on December 31, 2020 is...'
           }),
           new QuestionModel({
-            id: 'email',
-            tagline: "Nice to meet you 👀, let's continue",
-            title: 'Provide an example email.',
-            type: QuestionType.Email,
+            id: 'dependents',
+            title: 'How many dependents do you have?',
+            type: QuestionType.Number,
             required: true,
-            placeholder: 'Start typing here...'
           }),
           new QuestionModel({
             id: 'phone',
