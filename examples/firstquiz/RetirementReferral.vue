@@ -101,14 +101,14 @@
             id: 'movies',
             title: 'List your favorite movies. 🍿',
             type: QuestionType.LongText,
-            required: true,
+            required: false,
             placeholder: 'Start typing here...'
           }),
           new QuestionModel({
             id: 'multiple_choice',
             tagline: 'FYI, You can always go back 👈, use the up arrow on the bottom.',
             title: 'Multiple choice question:',
-            helpTextShow: false,
+            helpTextShow: true,
             type: QuestionType.MultipleChoice,
             multiple: false,
             allowOther: true,
@@ -131,7 +131,7 @@
             type: QuestionType.MultipleChoice,
             multiple: true,
             helpText: 'Select all that apply. 👇',
-            required: true,
+            required: false,
             options: [
               new ChoiceOption({
                 label: 'Answer 1'
