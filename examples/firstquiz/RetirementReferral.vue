@@ -5,7 +5,7 @@
     <header class="vff-header">
       <div class="f-container">
        <!-- Add custom logo here -->
-        <h3> Retirement Calculator</h3>
+        <h3> Gig Retirement Calculator</h3>
       </div>
     </header>
 
@@ -58,12 +58,10 @@
 </template>
 
 <script>
-  // Import necessary components and classes
+
   import FlowForm from '../../src/components/FlowForm.vue'
   import QuestionModel, { QuestionType, ChoiceOption, LinkOption } from '../../src/models/QuestionModel'
   import LanguageModel from '../../src/models/LanguageModel'
-  // If using the npm package, use the following line instead of the ones above.
-  // import FlowForm, { QuestionModel, QuestionType, ChoiceOption, LanguageModel } from '@ditdot-dev/vue-flow-form'
 
   export default {
     name: 'example',
@@ -282,11 +280,10 @@
       }
     },
   }
+
+
 </script>
 
 <style lang="css">
   @import '../../src/assets/css/themes/theme-green.css';
-  /* If using the npm package, use the following lines instead of the one above */
-  /* @import '~@ditdot-dev/vue-flow-form/dist/vue-flow-form.css'; */
-  /* @import '~@ditdot-dev/vue-flow-form/dist/vue-flow-form.theme-minimal.css'; */
 </style>
