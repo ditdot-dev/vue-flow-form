@@ -3,10 +3,14 @@
   https://github.com/ditdot-dev/vue-flow-form
   https://www.ditdot.hr/en
 */
-
 import Vue from 'vue'
-import Example from './RetirementReferral.vue'
+import VueRouter from 'vue-router'
+import VTooltip from "v-tooltip";
+import Calculator from './RetirementReferral.vue'
+
+Vue.use(VTooltip)
+Vue.use(VueRouter)
 
 new Vue({
-  render: h => h(Example)
+  render: h => h(Calculator),
 }).$mount('#app')

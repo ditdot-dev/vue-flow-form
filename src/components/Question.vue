@@ -24,7 +24,14 @@
                   v-bind:active="active"
                   v-on:next="onEnter"
                 />
-              </span>
+                </span>
+
+              <v-popover offset="2">
+                <spam class="info-icon-1">i</spam>
+                <template slot="popover">
+                  <input class="tooltip-content" placeholder="clarifying content on question">
+                </template>
+              </v-popover>
             </span>
           </template>
 
@@ -52,8 +59,8 @@
         <p v-if="question.description || question.descriptionLink.length !== 0" class="f-description">
           <span v-if="question.description">{{ question.description }}</span>
           <a
-            v-for="(link, index) in question.descriptionLink" 
-            class="f-link" 
+            v-for="(link, index) in question.descriptionLink"
+            class="f-link"
             v-bind:key="'m' + index"
             v-bind:href="link.url"
             v-bind:target="link.target"
@@ -62,7 +69,7 @@
 
       </div>
       <div class="vff-animate f-fade-in f-enter" v-if="showOkButton()">
-        <button 
+        <button
           class="o-btn-action"
           type="button"
           ref="button"
@@ -73,7 +80,7 @@
             <span v-if="question.type === QuestionType.SectionBreak">{{ language.continue }}</span>
             <span v-else>{{ language.ok }}</span>
         </button>
-        <a 
+        <a
           class="f-enter-desc"
           href="#"
           v-if="question.type !== QuestionType.LongText || !isMobile"
@@ -88,12 +95,6 @@
 </template>
 
 <script>
-  /*
-    Copyright (c) 2020 - present, DITDOT Ltd. - MIT Licence
-    https://github.com/ditdot-dev/vue-flow-form
-    https://www.ditdot.hr/en
-  */
-
   import LanguageModel from '../models/LanguageModel'
   import QuestionModel, { QuestionType, LinkOption } from '../models/QuestionModel'
   import FlowFormDropdownType from './QuestionTypes/DropdownType.vue'
@@ -107,7 +108,8 @@
   import FlowFormTextType from './QuestionTypes/TextType.vue'
   import FlowFormUrlType from './QuestionTypes/UrlType.vue'
   import { IsMobile } from '../mixins/IsMobile'
-  
+  import { VTooltip, VPopover, VClosePopover } from 'v-tooltip'
+
 
   export default {
     name: 'FlowFormQuestion',
@@ -160,7 +162,7 @@
        */
       focusField() {
         const el = this.$refs.questionComponent
-        
+
         el && el.focus()
       },
 
@@ -184,7 +186,7 @@
 
       /**
        * Emits "answer" event and calls "onEnter" method on Enter press
-       */ 
+       */
       onEnter($event) {
         const q = this.$refs.questionComponent
 
@@ -203,11 +205,11 @@
         if (q) {
           this.returnFocus()
           this.$emit('answer', q)
-          
+
           q.onEnter()
         }
       },
-      
+
       /**
        * Check if the "OK" button should be shown.
        */
