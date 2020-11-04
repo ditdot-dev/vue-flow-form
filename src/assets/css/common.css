@@ -961,7 +961,7 @@ header.vff-header svg.f-logo {
 
 }
 /*! new css added by Kyle for info popover icons */
-spam.info-icon-1 {
+span.info-icon-1 {
   background-color: #000000;
   color: #fff;
   border-color: #000000;
@@ -975,11 +975,11 @@ spam.info-icon-1 {
   cursor: pointer;
 }
 
-spam.info-icon-1:focus{
+span.info-icon-1:focus{
   outline: 0
 }
 
-spam.info-icon-1:hover {
+span.info-icon-1:hover {
   opacity: 0.9;
 }
 .tooltip {

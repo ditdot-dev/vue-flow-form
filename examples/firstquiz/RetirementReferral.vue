@@ -62,7 +62,7 @@
   import FlowForm from '../../src/components/FlowForm.vue'
   import QuestionModel, { QuestionType, ChoiceOption, LinkOption } from '../../src/models/QuestionModel'
   import LanguageModel from '../../src/models/LanguageModel'
-
+  
   export default {
     name: 'example',
     components: {
@@ -73,7 +73,6 @@
         submitted: false,
         completed: false,
         language: new LanguageModel(),
-        // Create question list with QuestionModel instances
         questions: [
           new QuestionModel({
             id: 'age',

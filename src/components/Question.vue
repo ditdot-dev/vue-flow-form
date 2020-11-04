@@ -25,9 +25,11 @@
                   v-on:next="onEnter"
                 />
                 </span>
-
+                <button style="background-color:transparent; padding:4px; color:transparent" v-tooltip="helptext">
+                  <span class="info-icon-1">i</span>
+                  </button>
               <v-popover offset="2">
-                <spam class="info-icon-1">i</spam>
+                <span class="info-icon-1">i</span>
                 <template slot="popover">
                   <input class="tooltip-content" placeholder="clarifying content on question">
                 </template>
