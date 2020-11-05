@@ -4,15 +4,20 @@
   https://www.ditdot.hr/en
 */
 import Vue from 'vue'
+import '@babel/polyfill'
+import 'mutationobserver-shim'
+import '../../src/plugins/bootstrap-vue'
+import Calculator from './RetirementReferral.vue'
 import VueRouter from 'vue-router'
 import VTooltip from "v-tooltip";
-import Calculator from './RetirementReferral.vue'
+
 
 Vue.use(VTooltip, {
-//    defaultTrigger: window.innerWidth > 768 ? 'hover focus click' : 'click'
+  defaultTrigger: window.innerWidth > 768 ? 'hover focus click' : 'click'
   })
 
 Vue.use(VueRouter)
+
 
 var assist = new Vue({
   render: h => h(Calculator),

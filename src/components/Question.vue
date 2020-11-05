@@ -25,16 +25,13 @@
                   v-on:next="onEnter"
                 />
                 </span>
-                <button style="background-color:transparent; padding:4px; color:transparent" v-tooltip="helptext">
+                <button style="background-color:transparent; padding:4px; color:transparent"
+                v-tooltip="{
+                content: 'helptext',
+                }">
                   <span class="info-icon-1">i</span>
                   </button>
-              <v-popover offset="2">
-                <span class="info-icon-1">i</span>
-                <template slot="popover">
-                  <input class="tooltip-content" placeholder="clarifying content on question">
-                </template>
-              </v-popover>
-            </span>
+                </span>
           </template>
 
           <span class="f-sub" v-if="showHelperText">
@@ -111,7 +108,6 @@
   import FlowFormUrlType from './QuestionTypes/UrlType.vue'
   import { IsMobile } from '../mixins/IsMobile'
   import { VTooltip, VPopover, VClosePopover } from 'v-tooltip'
-
 
   export default {
     name: 'FlowFormQuestion',

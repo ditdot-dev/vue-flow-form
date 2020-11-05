@@ -1,8 +1,15 @@
+
 // Import vue component
 import FlowForm from './components/FlowForm.vue'
 import QuestionModel, { QuestionType, ChoiceOption, LinkOption } from './models/QuestionModel'
 import LanguageModel from './models/LanguageModel'
+import VTooltip from "v-tooltip";
 
+
+Vue.use(VTooltip, {
+//    defaultTrigger: window.innerWidth > 768 ? 'hover focus click' : 'click'
+  })
+  
 // IE11 Object.assign polyfill
 import 'es6-object-assign/auto'
 
