@@ -45,10 +45,8 @@ export default class LanguageModel {
       if (this[word]) {
         return '<span class="f-string-em">' + this[word] + '</span>'
       }
-      
+
       return match
     })
   }
 }
-
-
