@@ -21,7 +21,6 @@
     methods: {
       onEnter() {
         this.dirty = true
-
         this._onEnter()
       },
 
