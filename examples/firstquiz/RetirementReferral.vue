@@ -2,13 +2,10 @@
 
 <template>
   <div>
-    <header class="vff-header">
-      <div class="f-container">
-       <!-- Add custom logo here -->
-        <h3> Gig Retirement Calculator</h3>
-      </div>
-    </header>
-
+    <div id="nav" style="text-align: center;">
+    <button><router-link to="/results">Results</router-link></button>
+    <router-view/>
+    </div>
     <flow-form
       ref="flowform"
       v-on:complete="onComplete"
@@ -54,6 +51,7 @@
         <p class="text-success" v-if="submitted">Submitted succesfully.</p>
       </template>
     </flow-form>
+
   </div>
 </template>
 
@@ -62,7 +60,7 @@
   import FlowForm from '../../src/components/FlowForm.vue'
   import QuestionModel, { QuestionType, ChoiceOption, LinkOption } from '../../src/models/QuestionModel'
   import LanguageModel from '../../src/models/LanguageModel'
-  
+
   export default {
     name: 'example',
     components: {
@@ -74,134 +72,182 @@
         completed: false,
         language: new LanguageModel(),
         questions: [
-          new QuestionModel({
+        new QuestionModel({
             id: 'age',
+            tagline: 'About You',
             title: 'What is your age?',
             type: QuestionType.Number,
             required: true,
-            placeholder: 'My age on December 31, 2020 is...'
-          }),
+            mask: '##',
+            tooltip: 'This information is used to calculate your potential retirement earnings at age 67. Please put your current age, or the age you will be after December 31, 2020.'
+            }),
           new QuestionModel({
             id: 'dependents',
+            tagline: 'About You',
             title: 'How many dependents do you have?',
             type: QuestionType.Number,
             required: true,
+            mask: '#',
+            tooltip: 'This information is used to add up the tax deductions available to you. Put the number of individuals who are dependent on your income.'
           }),
           new QuestionModel({
-            id: 'phone',
-            title: 'Doing great! 👍 Go ahead and try with a phone number.',
-            type: QuestionType.Phone,
+            id: 'tax_filing_state',
+            tagline: 'About You',
+            title: 'What is your tax filing state?',
+            type: QuestionType.Dropdown,
             required: true,
-            mask: '(###) ###-####'
-          }),
-          new QuestionModel({
-            id: 'movies',
-            title: 'List your favorite movies. 🍿',
-            type: QuestionType.LongText,
-            required: false,
-            placeholder: 'Start typing here...'
-          }),
-          new QuestionModel({
-            id: 'multiple_choice',
-            tagline: 'FYI, You can always go back 👈, use the up arrow on the bottom.',
-            title: 'Multiple choice question:',
-            helpTextShow: true,
-            type: QuestionType.MultipleChoice,
             multiple: false,
-            allowOther: true,
+            placeholder: 'Select state',
+            inline: false,
             required: true,
+            tooltip: 'This information is used to identify the state tax liability. Please put the state you will be filing with this year. If you have been moving due to COVID-19, put the state of your primary residence and where you’ve been conducting business from.',
             options: [
               new ChoiceOption({
-                label: 'Answer 1'
+                label: 'Alabama',
+                value: 'AL'
               }),
               new ChoiceOption({
-                label: 'Answer 2'
-               }),
-              new ChoiceOption({
-                label: 'Answer 3'
+                label: 'Alaska',
+                value: 'AS'
               })
-            ]
+            ],
           }),
           new QuestionModel({
-            id: 'multiple_choices',
-            title: 'Multiple choices question:',
-            type: QuestionType.MultipleChoice,
-            multiple: true,
-            helpText: 'Select all that apply. 👇',
-            required: false,
+            id: 'tax_filing_status',
+            tagline: 'About You',
+            title: 'What is your tax filing status?',
+            type: QuestionType.Dropdown,
+            required: true,
+            multiple: false,
+            placeholder: 'Select status',
+            inline: false,
+            required: true,
+            tooltip:'This information is used to identify your household tax deductions. Please put your marital status as recognized by the IRS.',
             options: [
               new ChoiceOption({
-                label: 'Answer 1'
+                label: 'Single',
+                value: 'single'
               }),
               new ChoiceOption({
-                label: 'Answer 2'
+                label: 'Head of Household',
+                value: 'headOfHousehold'
               }),
               new ChoiceOption({
-                label: 'Answer 3'
+                label: 'Married Filing Jointly',
+                value: 'married'
               }),
               new ChoiceOption({
-                label: 'Answer 4'
+                label: 'Married Filing Separately',
+                value: 'marriedFilingSeparately'
               })
-            ]
+            ],
           }),
           new QuestionModel({
             id: 'break_1',
-            title: 'Awesome, thank you. 🙏',
-            content: 'You arrived at the section break of our little demo survey. To continue exploring, just press enter or use the continue button.',
-            description: 'Note: We will take a look at our multiple path feature next.',
+            title: 'Awesome, thank you for sharing. 🙏',
+            content: 'Next we will learn more about your freelance business so we can calculate your potential tax savings.',
+            description: 'Note: Actual $ information from your bookkeeping will be best. But if you need help estimating, please use our FAQ',
             type: QuestionType.SectionBreak
           }),
           new QuestionModel({
-            id: 'choose_path',
-            tagline: 'Where would you like to go? 🤔',
-            title: 'Choose your path:',
-            type: QuestionType.Dropdown,
-            multiple: false,
-            placeholder: 'Select',
-            inline: true,
+            id: 'business_name',
+            tagline: 'About Your Business',
+            title: 'What is your business name?',
+            type: QuestionType.Text,
             required: true,
+            placeholder: 'The name of my business is...',
+            tooltip: 'This information is used so we can identify your work by the name you refer to it by. This can be your Doing Business As (DBA) or your full name if you have not incorporated the business in any form.'
+          }),
+          new QuestionModel({
+            id: 'entity',
+            tagline: 'About Your Business',
+            title: 'What is your business legal entity?',
+            type: QuestionType.Dropdown,
+            required: true,
+            multiple: false,
+            placeholder: 'Select legal entity',
+            inline: false,
+            required: true,
+            tooltip: 'This information is used to determine your tax legal status and treatment by the IRS. If you have not incorporated your business yet, you are operating as a sole-proprietor.',
             options: [
               new ChoiceOption({
-                label: 'Path A'
+                label: 'Sole Proprietorship',
+                value: 'soleProprietor'
               }),
               new ChoiceOption({
-                label: 'Path B',
-                value: 'path_b'
+                label: 'Partnership',
+                value: 'partnership'
+              }),
+              new ChoiceOption({
+                label: 'S-Corporation',
+                value: 'sCorporation'
+              }),
+              new ChoiceOption({
+                label: 'LLC (Limited Liability Company)',
+                value: 'llc'
               })
             ],
             jump: {
-              path_b: 'path_b'
-            }
-          }),
-           new QuestionModel({
-            id: 'path_a',
-            title: 'Excellent choice! 🥳',
-            content: 'Press enter or use the continue button for the final submit screen.',
-            type: QuestionType.SectionBreak,
-            jump: {
-              _other: '_submit'
+              llc: 'salary',
+              sCorporation: 'salary'
             }
           }),
           new QuestionModel({
-            id: 'path_b',
-            tagline: 'Path B',
-            title: 'Hmm, are you sure?',
-            helpText: 'Path A sounds like a winner! 😉',
-            type: QuestionType.MultipleChoice,
-            multiple: false,
+            id: 'salary',
+            tagline: 'About Your Business',
+            title: 'What is the annual income you set for yourself?',
+            type: QuestionType.Number,
             required: true,
+            mask: '$###,###',
+            placeholder: '$',
+            tooltip: 'This is the amount that you have set as a “reasonable salary” when you put yourself on payroll as a full-time owner-employee. This will depend on your industry and work performed. We can help you calculate this if you want.'
+          }),
+          new QuestionModel({
+            id: 'employee_count',
+            tagline: 'About Your Business',
+            title: 'How many full-time employees do you have?',
+            type: QuestionType.Dropdown,
+            required: true,
+            multiple: false,
+            subtitle: 'Do not count yourself or your spouse',
+            placeholder: '0',
+            inline: false,
+            required: true,
+            tooltip: 'This information is used to determine the type of retirement accounts you are eligible for. Don’t count yourself or your spouse as a full-time employee, or any employees who have ownership stake in the business. If you are not sure, refer to the FAQ for what qualifies as a full-time employee in your state.',
             options: [
               new ChoiceOption({
-                label: 'Ok, let\'s go with A',
-                value: 'path_a'
+                label: '0',
+                value: 'noEmployees'
               }),
               new ChoiceOption({
-                label: 'Yes, finish the survey'
+                label: '1-99',
+                value: 'lessthan100'
+              }),
+              new ChoiceOption({
+                label: '100+',
+                value: '100plus'
               })
             ],
-            jump: {
-              path_a: 'path_a'
-            }
+          }),
+          new QuestionModel({
+            id: 'expenses',
+            tagline: 'About Your Business',
+            title: 'How much are your business expenses this year?',
+            type: QuestionType.Number,
+            required: true,
+            mask: '$###,###',
+            placeholder: '$',
+            tooltip: 'This is expenses that your business has every year. Please put the amount you forecast the business will spend. This can include office supplies, software subscriptions, work travel and more.',
+          }),
+          new QuestionModel({
+            id: 'income',
+            tagline: 'About Your Business',
+            title: 'How much does your business make in a year?',
+            type: QuestionType.Number,
+            required: true,
+            mask: '$###,###',
+            placeholder: '$',
+            tooltip: 'This is the income generated by your business every year. Please put the amount you forecast the business will generate by end of the year. This includes all the invoices and cash payments you’ve received under your business entity.'
           })
         ]
       }
