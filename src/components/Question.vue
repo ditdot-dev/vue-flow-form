@@ -27,7 +27,8 @@
                 </span>
                 <button style="background-color:transparent; padding:4px; color:transparent"
                 v-tooltip="{
-                content: 'helptext',
+                content: question.tooltip,
+                placement: 'bottom',
                 }">
                   <span class="info-icon-1">i</span>
                   </button>
@@ -106,6 +107,7 @@
   import FlowFormSectionBreakType from './QuestionTypes/SectionBreakType.vue'
   import FlowFormTextType from './QuestionTypes/TextType.vue'
   import FlowFormUrlType from './QuestionTypes/UrlType.vue'
+
   import { IsMobile } from '../mixins/IsMobile'
   import { VTooltip, VPopover, VClosePopover } from 'v-tooltip'
 
@@ -121,7 +123,8 @@
       FlowFormPhoneType,
       FlowFormSectionBreakType,
       FlowFormTextType,
-      FlowFormUrlType
+      FlowFormUrlType,
+
     },
     props: {
       question: QuestionModel,
@@ -226,7 +229,7 @@
       },
 
       /**
-       * Determins if the invalid message should be shown.
+       * Determines if the invalid message should be shown.
        */
       showInvalid() {
         const q = this.$refs.questionComponent
@@ -251,7 +254,6 @@
 
         return classes
       },
-
       showHelperText() {
         if (this.question.subtitle) {
           return true
