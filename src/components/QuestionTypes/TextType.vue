@@ -34,37 +34,40 @@
 </template>
 
 <script>
-  /*
+/*
     Copyright (c) 2020 - present, DITDOT Ltd. - MIT Licence
     https://github.com/ditdot-dev/vue-flow-form
     https://www.ditdot.hr/en
   */
 
-  import BaseType from './BaseType.vue'
-  import { QuestionType } from '../../models/QuestionModel'
-  import LanguageModel from '../../models/LanguageModel'
-  import TheMask from 'vue-the-mask/src/component'
+import BaseType from "./BaseType.vue";
+import { QuestionType } from "../../models/QuestionModel";
+import LanguageModel from "../../models/LanguageModel";
+import TheMask from "vue-the-mask/src/component";
 
-  export default {
-    extends: BaseType,
-    name: QuestionType.Text,
-    components: {
-      TheMask
+export default {
+  extends: BaseType,
+  name: QuestionType.Text,
+  components: {
+    TheMask,
+  },
+  data() {
+    return {
+      inputType: "text",
+      canReceiveFocus: true,
+    };
+  },
+  methods: {
+    validate() {
+      if (
+        this.question.mask &&
+        this.dataValue.length !== this.question.mask.length
+      ) {
+        return false;
+      }
+
+      return !this.question.required || this.hasValue;
     },
-    data() {
-      return {
-        inputType: 'text', 
-        canReceiveFocus: true
-      }
-    }, 
-    methods: {
-      validate() {
-        if (this.question.mask && this.dataValue.length !== this.question.mask.length) {
-          return false
-        }
-
-        return !this.question.required || this.hasValue
-      }
-    }
-  }
+  },
+};
 </script>

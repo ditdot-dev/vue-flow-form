@@ -1,0 +1,53 @@
+<template>
+  <span class="d-flex justify-content-between w-100">
+    <span style="position: absolute; color: grey">$</span>
+    <input
+      ref="input"
+      v-bind:type="inputType"
+      style="padding-left: 30px"
+      :value="dollar"
+      v-bind:required="question.required"
+      v-on:keydown="onKeyDown"
+      v-on:keyup="onChange"
+      v-on:keyup.enter.prevent="onEnter"
+      v-on:keyup.tab.prevent="onEnter"
+      v-on:focus="setFocus"
+      v-on:blur="unsetFocus"
+      data-type="currency"
+      v-bind:placeholder="placeholder"
+    />
+  </span>
+</template>
+<script>
+/*
+    Copyright (c) 2020 - present, DITDOT Ltd. - MIT Licence
+    https://github.com/ditdot-dev/vue-flow-form
+    https://www.ditdot.hr/en
+  */
+
+import TextType from "./TextType";
+import LanguageModel from "../../models/LanguageModel";
+import { QuestionType } from "../../models/QuestionModel";
+import TheMask from "vue-the-mask/src/component";
+
+export default {
+  extends: TextType,
+  name: QuestionType.Dollar,
+  components: {
+    TheMask,
+  },
+  data() {
+    return {
+      dollar: "",
+    };
+  },
+  watch: {
+    value(newVal, oldVal) {
+      if (typeof newVal !== "number") this.dollar = oldVal;
+      this.dollar = newVal
+        .replace(/\D/g, "")
+        .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    },
+  },
+};
+</script>
