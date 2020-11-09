@@ -1,15 +1,15 @@
-# Vue Flow Form
+# Retirement Calculator
 
-Create conversational conditional-logic forms with Vue.js.
+Extending on the open source package vue-flow-form from Dit-dot-hr, this is a calculator that uses a conversational approach to empower users to select the retirement account suitable for their small business / gig / freelance work.
+
+<p align="center">
+  <img src="https://www.ditdot.hr/demo/vff/visuals/v-form-green-full-rotate-02.png" alt="v-form screenshots">
+</p>
 
 <p>
   <a href="https://github.com/ditdot-dev/vue-flow-form/blob/master/LICENSE"><img src="https://img.shields.io/npm/l/@ditdot-dev/vue-flow-form.svg?sanitize=true&amp;color=41B883" alt="License" /></a>
   <a href="https://www.npmjs.com/package/@ditdot-dev/vue-flow-form"><img src="https://img.shields.io/npm/v/@ditdot-dev/vue-flow-form.svg?sanitize=true&amp;color=41B883" alt="Version" /></a>
   <a href="https://cdnjs.com/libraries/vue-flow-form"><img src="https://img.shields.io/cdnjs/v/vue-flow-form?color=yellow" alt="cdnjs" /></a>
-</p>
-
-<p align="center">
-  <img src="https://www.ditdot.hr/demo/vff/visuals/v-form-green-full-rotate-02.png" alt="v-form screenshots">
 </p>
 
 ## Live Demos
