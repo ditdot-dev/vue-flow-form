@@ -1,13 +1,12 @@
 /*Theme to reflect use for Gig Finance*/
 
-
 :root {
-  --vff-bg-color: #3EAF7C;
-  --vff-main-text-color: #fff;
-  --vff-secondary-text-color: #B5EBD3;
-  --vff-tertiary-text-color: #52B789;
+  --vff-bg-color: #fbe6da;
+  --vff-main-text-color: rgb(56, 55, 55);
+  --vff-secondary-text-color: rgb(56, 55, 55);
+  --vff-tertiary-text-color: #52b789;
   --vff-main-accent-color: #111;
-  --vff-secondary-accent-color: #ECF80D;
+  --vff-secondary-accent-color: #ecf80d;
 }
 
 .vff,
@@ -17,8 +16,8 @@
 .vff select option,
 .vff kbd,
 .vff-header,
-.vff-footer{
-  font-family: 'Poppins', sans-serif;
+.vff-footer {
+  font-family: "Poppins", sans-serif;
 }
 
 body {
@@ -27,11 +26,26 @@ body {
   background-color: var(--vff-bg-color);
 }
 
-.vff{
+.vff {
   color: var(--vff-main-text-color);
 }
 
-.vff.vff-not-standalone{
+.vff-checkbox .custom-control-label:after {
+  /* padding: 10px; */
+  background: no-repeat 50%/50% 50% var(--vff-bg-color);
+  border: 1px solid black;
+}
+
+.custom-checkbox .custom-control-input:checked ~ .custom-control-label::after {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3E%3Cpath fill='black' d='M6.564.75l-3.59 3.612-1.538-1.55L0 4.26 2.974 7.25 8 2.193z'/%3E%3C/svg%3E");
+}
+
+.custom-control-input:focus {
+    -webkit-box-shadow: 0 0 0 1px #fff, 0 0 0 3px black;
+    box-shadow: 0 0 0 1px #fff, 0 0 0 3px black !important;
+}
+
+.vff.vff-not-standalone {
   background-color: var(--vff-bg-color);
   color: var(--vff-main-text-color);
 }
@@ -48,7 +62,7 @@ header.vff-header svg.f-logo {
 
 /* footer */
 .vff-footer .footer-inner-wrap {
-    background-color: rgba(62,175,124,0.75);
+  background-color: rgba(62, 175, 124, 0.75);
 }
 
 .vff textarea,
@@ -57,12 +71,12 @@ header.vff-header svg.f-logo {
   color: var(--vff-main-accent-color);
 }
 
-.vff input[type=text],
-.vff input[type=number],
-.vff input[type=tel],
-.vff input[type=email],
-.vff input[type=url],
-.vff input[type=password],
+.vff input[type="text"],
+.vff input[type="number"],
+.vff input[type="tel"],
+.vff input[type="email"],
+.vff input[type="url"],
+.vff input[type="password"],
 .vff textarea,
 .vff span.faux-form {
   border-bottom-color: var(--vff-secondary-text-color);
@@ -74,25 +88,29 @@ header.vff-header svg.f-logo {
 }
 
 /*placeholder*/
-.vff ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+.vff ::-webkit-input-placeholder {
+  /* Chrome/Opera/Safari */
   color: var(--vff-secondary-text-color);
   opacity: 1;
   font-weight: 300;
 }
 
-.vff ::-moz-placeholder { /* Firefox 19+ */
+.vff ::-moz-placeholder {
+  /* Firefox 19+ */
   color: var(--vff-secondary-text-color);
   opacity: 1;
   font-weight: 300;
 }
 
-.vff :-ms-input-placeholder { /* IE 10+ */
-  color: var(--vff-secondary-text-color)!important;
-  opacity: 1!important;
-  font-weight: 300!important;
+.vff :-ms-input-placeholder {
+  /* IE 10+ */
+  color: var(--vff-secondary-text-color) !important;
+  opacity: 1 !important;
+  font-weight: 300 !important;
 }
 
-.vff :-moz-placeholder { /* Firefox 18- */
+.vff :-moz-placeholder {
+  /* Firefox 18- */
   color: #999;
   opacity: 1;
   font-weight: 300;
@@ -116,7 +134,7 @@ header.vff-header svg.f-logo {
   background-color: var(--vff-tertiary-text-color);
 }
 
-.vff .f-key{
+.vff .f-key {
   color: var(--vff-secondary-accent-color);
   font-weight: 300;
 }
@@ -126,7 +144,7 @@ header.vff-header svg.f-logo {
   color: var(--vff-secondary-text-color);
 }
 
-.vff span.f-answered{
+.vff span.f-answered {
   color: var(--vff-main-text-color);
 }
 
@@ -143,7 +161,7 @@ header.vff-header svg.f-logo {
 .vff .o-btn-action:hover,
 .vff .o-btn-action:focus {
   background-color: var(--vff-main-text-color);
-  opacity: .9;
+  opacity: 0.9;
 }
 
 /* progress bar */
@@ -165,8 +183,8 @@ header.vff-header svg.f-logo {
 }
 
 .vff-footer .f-prev:hover,
-.vff-footer .f-next:hover{
-  background-color: rgba(0,0,0,0.07);
+.vff-footer .f-next:hover {
+  background-color: rgba(0, 0, 0, 0.07);
 }
 
 /*text-muted*/
@@ -179,16 +197,16 @@ header.vff-header svg.f-logo {
 
 .vff .text-alert,
 .vff .f-invalid {
-  color: red
+  color: red;
 }
 
 .vff p.text-success {
-  color: #ECF80D;
+  color: #ecf80d;
 }
 
-@media screen and (max-width:479px), (max-height:420px) {
+@media screen and (max-width: 479px), (max-height: 420px) {
   .vff-footer .footer-inner-wrap {
-    background-color: rgba(55,158,112,0.7);
+    background-color: rgba(55, 158, 112, 0.7);
   }
 }
 
@@ -200,10 +218,10 @@ header.vff-header svg.f-logo {
   :root {
     --vff-bg-color: #313640;
     --vff-main-text-color: #fff;
-    --vff-secondary-text-color: #AEB6BF;
-    --vff-tertiary-text-color: #41464F;
-    --vff-main-accent-color: #41B883;
-    --vff-secondary-accent-color: #A0DBC1;
+    --vff-secondary-text-color: #aeb6bf;
+    --vff-tertiary-text-color: #41464f;
+    --vff-main-accent-color: #41b883;
+    --vff-secondary-accent-color: #a0dbc1;
   }
 
   .vff textarea,
@@ -212,7 +230,7 @@ header.vff-header svg.f-logo {
     color: var(--vff-main-accent-color);
   }
 
-  .vff span.f-answered{
+  .vff span.f-answered {
     color: var(--vff-main-accent-color);
   }
 
@@ -220,12 +238,12 @@ header.vff-header svg.f-logo {
     fill: var(--vff-main-accent-color);
   }
 
-  .vff .text-success{
+  .vff .text-success {
     color: var(--vff-main-accent-color);
   }
 
   /*footer*/
-  .vff-footer .footer-inner-wrap{
+  .vff-footer .footer-inner-wrap {
     background-color: var(--vff-bg-color);
   }
 
@@ -239,13 +257,13 @@ header.vff-header svg.f-logo {
     fill: var(--vff-main-text-color);
   }
 
-  .vff-footer .footer-inner-wrap{
-    background-color: rgba(49,54,64,0.75);
+  .vff-footer .footer-inner-wrap {
+    background-color: rgba(49, 54, 64, 0.75);
   }
 
   .vff-footer .f-prev:hover,
-  .vff-footer .f-next:hover{
-    background-color: rgba(0,0,0,0.2);
+  .vff-footer .f-next:hover {
+    background-color: rgba(0, 0, 0, 0.2);
   }
 
   .vff-footer .f-progress-bar {
@@ -259,13 +277,12 @@ header.vff-header svg.f-logo {
 
   /*field-multiplechoicetype*/
 
-  .vff ul.f-radios li{
+  .vff ul.f-radios li {
     color: var(--vff-secondary-text-color);
   }
 
-  .vff .f-key{
+  .vff .f-key {
     color: var(--vff-main-accent-color);
     font-weight: 300;
   }
-
 }

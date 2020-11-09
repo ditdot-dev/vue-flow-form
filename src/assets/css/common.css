@@ -478,7 +478,8 @@ header.vff-header svg.f-logo {
 
 .vff h2,
 .vff .fh2 {
-  font-weight: 900;
+  /* font-weight: 900; */
+  color: #000000;
   font-size: 2.4em;
   line-height: 1.34;
   padding-right: 1.8em;
