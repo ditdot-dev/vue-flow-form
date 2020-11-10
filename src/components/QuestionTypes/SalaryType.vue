@@ -1,17 +1,19 @@
 <template>
   <span class="d-flex justify-content-between w-100">
-    <span style="position: absolute; color: grey">$</span>
+    <span :style="{ position: 'absolute', color: Dollarcolor }">$</span>
     <input
       ref="input"
       v-bind:type="inputType"
       style="padding-left: 30px"
-      v-bind:value="value"
+      v-bind:value="dollar"
+      :disabled="question.checkbox"
       v-bind:required="question.required"
       v-on:keydown="onKeyDown"
       v-on:keyup="onChange"
       v-on:keyup.enter.prevent="onEnter"
       v-on:keyup.tab.prevent="onEnter"
       v-on:focus="setFocus"
+      @input="handleInput"
       v-on:blur="unsetFocus"
       v-bind:placeholder="placeholder"
     />
@@ -33,13 +35,13 @@ export default {};
 </script>
 
 <script>
-import NumberType from "./NumberType.vue";
+import DollarType from ".//DollarType";
 import LanguageModel from "../../models/LanguageModel";
 import { QuestionType } from "../../models/QuestionModel";
 import TheMask from "vue-the-mask/src/component";
 
 export default {
-  extends: NumberType,
+  extends: DollarType,
   name: QuestionType.Salary,
   components: {
     TheMask,
@@ -49,10 +51,7 @@ export default {
   },
   methods: {
     isValid() {
-      return (
-        this.question.checkbox ||
-        (Number(this.value) > 9 && Number(this.value) < 100)
-      );
+      return this.question.checkbox || this.dataValue;
     },
   },
 };
