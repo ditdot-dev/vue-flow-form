@@ -339,8 +339,6 @@ export default {
       if (this.question.checkbox) {
         this.responseAnswer = this.question.answerMessage;
         return true;
-      } else {
-        this.responseAnswer = "";
       }
 
       if (!q || !this.dataValue) {
@@ -391,13 +389,7 @@ export default {
   },
   watch: {
     dataValue(newVal) {
-      if (newVal || this.question.checkbox) {
-        if (this.question.id === "age") {
-          if (Number(newVal) > 9) {
-            return (this.responseAnswer = this.question.answerMessage);
-          }
-          return (this.responseAnswer = "");
-        }
+      if (this.showOkButton()) {
         this.responseAnswer = this.question.answerMessage;
       } else {
         this.responseAnswer = "";
