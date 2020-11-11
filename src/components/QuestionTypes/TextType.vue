@@ -65,6 +65,7 @@ export default {
       ) {
         return false;
       }
+
       return !this.question.required || this.hasValue;
     },
   },
