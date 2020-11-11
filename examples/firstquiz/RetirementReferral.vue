@@ -254,6 +254,8 @@ export default {
             }),
           ],
           jump: {
+            soleProprietor: "employee_count",
+            partnership: "employee_count",
             llc: "salary",
             sCorporation: "salary",
           },
@@ -268,7 +270,6 @@ export default {
           checkboxText: "I don't pay myself an income",
           checkbox: false,
           required: true,
-          mask: "#######",
           tooltip:
             "This is the amount that you have set as a “reasonable salary” when you put yourself on payroll as a full-time owner-employee. This will depend on your industry and work performed. We can help you calculate this if you want.",
         }),
