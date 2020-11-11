@@ -39,12 +39,10 @@
     https://github.com/ditdot-dev/vue-flow-form
     https://www.ditdot.hr/en
   */
-
 import BaseType from "./BaseType.vue";
 import { QuestionType } from "../../models/QuestionModel";
 import LanguageModel from "../../models/LanguageModel";
 import TheMask from "vue-the-mask/src/component";
-
 export default {
   extends: BaseType,
   name: QuestionType.Text,
@@ -65,7 +63,6 @@ export default {
       ) {
         return false;
       }
-
       return !this.question.required || this.hasValue;
     },
   },

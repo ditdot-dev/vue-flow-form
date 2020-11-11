@@ -43,19 +43,7 @@
                     v-bind:active="active"
                     v-on:next="onEnter"
                   />
-                  <span
-                    style="
-                  font-size: 25px;
-                  font-weight: 300;
-                  color: green;
-                  display: flex;
-                  justify-content: center;
-                  align-items: flex-end;
-                  width:70%
-                  margin-left: 40px;
-                "
-                    >{{ responseAnswer }}</span
-                  >
+                  <span class="answerMessage">{{ responseAnswer }}</span>
                 </div>
                 <component
                   v-else
@@ -78,6 +66,7 @@
                   content: question.tooltip,
                   placement: 'bottom',
                 }"
+                class="d-flex align-items-center"
               >
                 <span class="info-icon-1">i</span>
               </button>
@@ -124,19 +113,7 @@
                 v-bind:active="active"
                 v-on:next="onEnter"
               />
-              <span
-                style="
-                  font-size: 25px;
-                  font-weight: 300;
-                  color: green;
-                  display: flex;
-                  justify-content: center;
-                  align-items: flex-end;
-                  width:70%
-                  margin-left: 40px;
-                "
-                >{{ responseAnswer }}</span
-              >
+              <span class="answerMessage">{{ responseAnswer }}</span>
             </div>
             <component
               v-else
@@ -165,7 +142,10 @@
           >
         </p>
       </div>
-      <div class="vff-animate f-fade-in f-enter" v-if="showOkButton()">
+      <div
+        class="vff-animate f-fade-in f-enter"
+        v-if="showOkButton() && !noButton"
+      >
         <button
           class="o-btn-action"
           type="button"
@@ -221,7 +201,6 @@ import FlowFormSalaryType from "./QuestionTypes/SalaryType";
 import FlowFormDollarType from "./QuestionTypes/DollarType";
 import { IsMobile } from "../mixins/IsMobile";
 import { VTooltip, VPopover, VClosePopover } from "v-tooltip";
-
 export default {
   name: "FlowFormQuestion",
   components: {
@@ -239,6 +218,7 @@ export default {
     FlowFormDollarType,
   },
   props: {
+    noButton: Boolean,
     question: QuestionModel,
     language: LanguageModel,
     value: [String, Array],
@@ -262,7 +242,6 @@ export default {
   mounted() {
     this.focusField();
     this.dataValue = this.question.answer;
-
     this.$refs.qanimate.addEventListener("animationend", this.onAnimationEnd);
   },
   beforeDestroy() {
@@ -277,62 +256,49 @@ export default {
      */
     focusField() {
       const el = this.$refs.questionComponent;
-
       el && el.focus();
     },
-
     onAnimationEnd() {
       this.focusField();
     },
-
     shouldFocus() {
       const q = this.$refs.questionComponent;
-
       return q && q.canReceiveFocus && !q.focused;
     },
-
     returnFocus() {
       const q = this.$refs.questionComponent;
-
       if (this.shouldFocus()) {
         this.focusField();
       }
     },
-
     /**
      * Emits "answer" event and calls "onEnter" method on Enter press
      */
     onEnter($event) {
       const q = this.$refs.questionComponent;
       if (this.question.checkbox) {
-        this.$emit("answer", true);
+        this.$emit("answer", this.question.checkboxText);
       }
       if (q) {
         if (!q.focused) {
           this.$emit("answer", q);
         }
-
         q.onEnter();
       }
     },
-
     onTab($event) {
       const q = this.$refs.questionComponent;
-
       if (q) {
         this.returnFocus();
         this.$emit("answer", q);
-
         q.onEnter();
       }
     },
-
     /**
      * Check if the "OK" button should be shown.
      */
     showOkButton() {
       const q = this.$refs.questionComponent;
-
       if (this.question.type === QuestionType.SectionBreak) {
         return this.active;
       }
@@ -340,24 +306,27 @@ export default {
         this.responseAnswer = this.question.answerMessage;
         return true;
       }
-
       if (!q || !this.dataValue) {
+        this.responseAnswer = "";
+        return false;
+      }
+      if (q.hasValue && q.isValid()) {
+        return q.hasValue && q.isValid();
+      }
+      if (!this.question.checkbox) {
         this.responseAnswer = "";
         return false;
       }
       return q.hasValue && q.isValid();
     },
-
     /**
      * Determines if the invalid message should be shown.
      */
     showInvalid() {
       const q = this.$refs.questionComponent;
-
       if (!q || !this.dataValue) {
         return false;
       }
-
       return q.showInvalid();
     },
   },
@@ -369,9 +338,7 @@ export default {
         "f-fade-in-down": this.reverse,
         "f-fade-in-up": !this.reverse,
       };
-
       classes["field-" + this.question.type.toLowerCase().substring(8)] = true;
-
       return classes;
     },
     showHelperText() {

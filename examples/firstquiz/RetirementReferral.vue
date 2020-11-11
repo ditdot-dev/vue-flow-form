@@ -1,5 +1,3 @@
-// Create and setup your form here
-
 <template>
   <div>
     <div id="nav" style="text-align: center">
@@ -67,7 +65,6 @@ import QuestionModel, {
   LinkOption,
 } from "../../src/models/QuestionModel";
 import LanguageModel from "../../src/models/LanguageModel";
-
 export default {
   name: "example",
   components: {
@@ -84,6 +81,7 @@ export default {
           tagline: "Dollar",
           title: "Your Income?",
           type: QuestionType.Dollar,
+          mask: "#######",
           required: true,
           tooltip:
             "This information is used to calculate your potential retirement earnings at age 67. Please put your current age, or the age you will be after December 31, 2020.",
@@ -226,7 +224,10 @@ export default {
         new QuestionModel({
           id: "break_1",
           title: "Awesome, thank you for sharing. 🙏",
-          content: "Next we will learn more about your freelance business so we can calculate your potential tax savings. Note: Actual $ information from your bookkeeping will be best. But if you need help estimating, please use our FAQ.",
+          content:
+            "Next we will learn more about your freelance business so we can calculate your potential tax savings.",
+          description:
+            "Note: Actual $ information from your bookkeeping will be best. But if you need help estimating, please use our FAQ",
           type: QuestionType.SectionBreak,
         }),
         new QuestionModel({
@@ -271,6 +272,8 @@ export default {
             }),
           ],
           jump: {
+            soleProprietor: "employee_count",
+            partnership: "employee_count",
             llc: "salary",
             sCorporation: "salary",
           },
@@ -285,7 +288,6 @@ export default {
           checkboxText: "I don't pay myself an income",
           checkbox: false,
           required: true,
-          mask: "#######",
           tooltip:
             "This is the amount that you have set as a “reasonable salary” when you put yourself on payroll as a full-time owner-employee. This will depend on your industry and work performed. We can help you calculate this if you want.",
         }),
@@ -351,31 +353,25 @@ export default {
     onKeyListener($event) {
       // We've overriden the default "complete" slot so
       // we need to implement the "keyup" listener manually.
-
       if ($event.key === "Enter" && this.completed && !this.submitted) {
         this.onSendData();
       }
     },
-
     /* eslint-disable-next-line no-unused-vars */
     onComplete(completed, questionList) {
       // This method is called whenever the "completed" status is changed.
       this.completed = completed;
     },
-
     onSendData() {
       // Set `submitted` to true so the form knows not to allow back/forward
       // navigation anymore.
       this.$refs.flowform.submitted = true;
-
       this.submitted = true;
-
       /* eslint-disable-next-line no-unused-vars */
       const data = this.getData();
       console.log(data)
       /*
           You can use Fetch API to send the data to your server, eg.:
-
           fetch(url, {
             method: 'POST',
             headers: {
@@ -385,25 +381,23 @@ export default {
           })
         */
     },
-
     getData() {
       const data = {
         questions: [],
         answers: [],
+        id:[]
       }
-
       this.questions.forEach((question) => {
         if (question.title) {
           let answer = question.answer;
           if (typeof answer === "object") {
             answer = answer.join(", ");
           }
-
           data.questions.push(question.title);
           data.answers.push(answer);
+          data.id.push(question.id);
         }
       })
-
       return data;
     }
   },
