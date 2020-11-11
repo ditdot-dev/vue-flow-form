@@ -84,7 +84,6 @@ export default {
           tagline: "Dollar",
           title: "Your Income?",
           type: QuestionType.Dollar,
-          mask: "#######",
           required: true,
           tooltip:
             "This information is used to calculate your potential retirement earnings at age 67. Please put your current age, or the age you will be after December 31, 2020.",
@@ -275,8 +274,6 @@ export default {
             }),
           ],
           jump: {
-            soleProprietor: "employee_count",
-            partnership: "employee_count",
             llc: "salary",
             sCorporation: "salary",
           },
@@ -291,6 +288,7 @@ export default {
           checkboxText: "I don't pay myself an income",
           checkbox: false,
           required: true,
+          mask: "#######",
           tooltip:
             "This is the amount that you have set as a “reasonable salary” when you put yourself on payroll as a full-time owner-employee. This will depend on your industry and work performed. We can help you calculate this if you want.",
         }),
@@ -395,7 +393,6 @@ export default {
       const data = {
         questions: [],
         answers: [],
-        id:[]
       }
 
       this.questions.forEach((question) => {
@@ -407,7 +404,6 @@ export default {
 
           data.questions.push(question.title);
           data.answers.push(answer);
-          data.id.push(question.id);
         }
       })
 

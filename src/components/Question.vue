@@ -43,7 +43,19 @@
                     v-bind:active="active"
                     v-on:next="onEnter"
                   />
-                  <span class="answerMessage">{{ responseAnswer }}</span>
+                  <span
+                    style="
+                  font-size: 25px;
+                  font-weight: 300;
+                  color: green;
+                  display: flex;
+                  justify-content: center;
+                  align-items: flex-end;
+                  width:70%
+                  margin-left: 40px;
+                "
+                    >{{ responseAnswer }}</span
+                  >
                 </div>
                 <component
                   v-else
@@ -66,7 +78,6 @@
                   content: question.tooltip,
                   placement: 'bottom',
                 }"
-                class="d-flex align-items-center"
               >
                 <span class="info-icon-1">i</span>
               </button>
@@ -113,7 +124,19 @@
                 v-bind:active="active"
                 v-on:next="onEnter"
               />
-              <span class="answerMessage">{{ responseAnswer }}</span>
+              <span
+                style="
+                  font-size: 25px;
+                  font-weight: 300;
+                  color: green;
+                  display: flex;
+                  justify-content: center;
+                  align-items: flex-end;
+                  width:70%
+                  margin-left: 40px;
+                "
+                >{{ responseAnswer }}</span
+              >
             </div>
             <component
               v-else
@@ -142,10 +165,7 @@
           >
         </p>
       </div>
-      <div
-        class="vff-animate f-fade-in f-enter"
-        v-if="showOkButton() && !noButton"
-      >
+      <div class="vff-animate f-fade-in f-enter" v-if="showOkButton()">
         <button
           class="o-btn-action"
           type="button"
@@ -219,7 +239,6 @@ export default {
     FlowFormDollarType,
   },
   props: {
-    noButton: Boolean,
     question: QuestionModel,
     language: LanguageModel,
     value: [String, Array],
@@ -286,7 +305,7 @@ export default {
     onEnter($event) {
       const q = this.$refs.questionComponent;
       if (this.question.checkbox) {
-        this.$emit("answer", this.question.checkboxText);
+        this.$emit("answer", true);
       }
       if (q) {
         if (!q.focused) {
@@ -313,6 +332,7 @@ export default {
      */
     showOkButton() {
       const q = this.$refs.questionComponent;
+
       if (this.question.type === QuestionType.SectionBreak) {
         return this.active;
       }
@@ -320,14 +340,8 @@ export default {
         this.responseAnswer = this.question.answerMessage;
         return true;
       }
+
       if (!q || !this.dataValue) {
-        this.responseAnswer = "";
-        return false;
-      }
-      if (q.hasValue && q.isValid()) {
-        return q.hasValue && q.isValid();
-      }
-      if (!this.question.checkbox) {
         this.responseAnswer = "";
         return false;
       }
