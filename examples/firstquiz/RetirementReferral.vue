@@ -355,6 +355,7 @@ export default {
 
       /* eslint-disable-next-line no-unused-vars */
       const data = this.getData();
+      console.log(data)
       /*
           You can use Fetch API to send the data to your server, eg.:
 
@@ -372,7 +373,8 @@ export default {
       const data = {
         questions: [],
         answers: [],
-      };
+        id:[]
+      }
 
       this.questions.forEach((question) => {
         if (question.title) {
@@ -383,13 +385,14 @@ export default {
 
           data.questions.push(question.title);
           data.answers.push(answer);
+          data.id.push(question.id);
         }
-      });
+      })
 
       return data;
-    },
+    }
   },
-};
+}
 </script>
 
 <style lang="css">
