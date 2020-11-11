@@ -15,7 +15,7 @@
           v-on:answer="onQuestionAnswered"
           v-bind:reverse="reverse"
           :noButton="
-            questionListActivePath.length === activeQuestionIndex + 1 &&
+            questions.length === activeQuestionIndex + 1 &&
             activeQuestionComponent() &&
             activeQuestionComponent().showOkButton()
           "
@@ -68,8 +68,9 @@
         :class="`d-flex justify-content-center progress-circle ${
           activeQuestionIndex === index && 'active'
         }`"
-        v-for="(question, index) in questionListActivePath"
+        v-for="(question, index) in questions"
         :key="index"
+        @click="handleProgressBar(index)"
       >
         {{ index + 1 }}
       </div>
@@ -78,7 +79,7 @@
       <div class="footer-center">
         <div
           v-if="
-            questionListActivePath.length === activeQuestionIndex + 1 &&
+            questions.length === activeQuestionIndex + 1 &&
             activeQuestionComponent() &&
             activeQuestionComponent().showOkButton()
           "
@@ -217,6 +218,11 @@ export default {
     },
   },
   methods: {
+    handleProgressBar(index) {
+      if (index < this.numCompletedQuestions) {
+        this.activeQuestionIndex = index;
+      }
+    },
     /**
      * Returns currently active question component (if any).
      */
@@ -379,6 +385,13 @@ export default {
         return false;
       }
       const q = this.activeQuestion;
+      if (
+        (this.activeQuestionComponent() &&
+          this.activeQuestionComponent().showOkButton()) ||
+        this.activeQuestion?.checkbox
+      ) {
+        return true;
+      }
       if (q && !q.required) {
         return true;
       }
@@ -441,6 +454,9 @@ export default {
         document.activeElement.blur &&
         document.activeElement.blur();
     },
+  },
+  created() {
+    console.log(this.questions.length);
   },
 };
 </script>
