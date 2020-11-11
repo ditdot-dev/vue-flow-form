@@ -1,5 +1,3 @@
-
-
 .vff {
   font-weight: 400;
   line-height: 1.34;
@@ -16,12 +14,12 @@
 .answerMessage {
   font-size: 20px;
   font-family: "Karla", sans-serif;
-  font-weight:400;
+  font-weight: 400;
   color: green;
   display: flex;
-  justify-content: center;
+  justify-content: left;
   align-items: center;
-  width: 30%;
+  width: 40%;
   margin-left: 20px;
 }
 
@@ -39,6 +37,7 @@
 
 .progress-cicles .progress-circle {
   border: 1px solid #fca68c;
+  cursor: pointer;
   border-radius: 35px;
   padding-top: 3px;
   padding-right: 2px;
@@ -57,7 +56,8 @@
   background-color: #a1ebc0;
 }
 
-.f-tagline {
+.f-tagline,
+.fh2 {
   font-size: 26px;
   font-family: "Karla", sans-serif;
   font-weight: bold;
@@ -511,9 +511,7 @@ header.vff-header svg.f-logo {
 
 .vff li,
 .vff p,
-.vff .f-section-text,
-.vff span.f-tagline,
-.vff span.f-sub {
+.vff span.f-tagline {
   font-size: 26px;
   line-height: 1.34;
 }
@@ -525,8 +523,7 @@ header.vff-header svg.f-logo {
   margin: 0.67em 0;
 }
 
-.vff h2,
-.vff .fh2 {
+.vff h2 {
   /* font-weight: 900; */
   color: #000000;
   font-size: 2.4em;
@@ -552,7 +549,6 @@ header.vff-header svg.f-logo {
 /*misc-typography*/
 .vff span.f-tagline,
 .vff span.f-sub {
-
   display: block;
 }
 
@@ -578,16 +574,20 @@ header.vff-header svg.f-logo {
   margin-top: 0;
 }
 
-.vff span.f-text {
+.vff span.f-text ,.f-section-text {
   font-family: "Manrope", sans-serif;
   font-size: 29px;
   margin-right: 0.6em;
   display: flex;
+  font-weight: 400;
   align-items: center;
 }
 
 /*description*/
-.vff p.f-description {
+.vff p.f-description, .f-help,.f-sub {
+  font-family: "Manrope", sans-serif;
+  font-size: 16px;
+  font-weight: 700;
   margin-top: 0;
   padding-right: 4em;
 }
@@ -879,9 +879,7 @@ header.vff-header svg.f-logo {
     font-size: 0.78em;
   }
 
-  .vff .fh2 span.f-sub,
   .vff .fh2 span.f-tagline {
-
     font-size: 26px;
   }
 
@@ -939,10 +937,8 @@ header.vff-header svg.f-logo {
     width: 12px;
   }
 
-  .vff .fh2 span.f-sub,
   .vff .fh2 span.f-tagline {
     font-size: 26px;
-
   }
 
   .vff span.f-tagline {
@@ -999,7 +995,6 @@ header.vff-header svg.f-logo {
     font-size: 1.56em;
   }
 
-  .vff .fh2 span.f-sub,
   .vff .fh2 span.f-tagline {
     font-size: 26px;
   }

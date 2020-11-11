@@ -1,12 +1,20 @@
 <template>
-  <div v-if="question.mask" class="d-flex justify-content-between w-100">
+  <!-- mask is fixed for dollar component -->
+  <div class="d-flex justify-content-between w-100">
     <span :style="{ position: 'absolute', color: Dollarcolor }">$</span>
     <the-mask
-      v-if="question.mask"
       ref="input"
+      v-bind:mask="[
+        '#',
+        '##',
+        '###',
+        '#,###',
+        '##,###',
+        '###,###',
+        '#,###,###',
+      ]"
+      v-bind:masked="true"
       style="padding-left: 20px"
-      v-bind:mask="question.mask"
-      v-bind:masked="false"
       v-bind:type="inputType"
       v-bind:value="value"
       v-bind:required="question.required"
@@ -16,24 +24,6 @@
       v-on:blur.native="unsetFocus"
       v-on:keyup.native.enter.prevent="onEnter"
       v-on:keyup.native.tab.prevent="onEnter"
-      v-bind:placeholder="placeholder"
-    />
-  </div>
-  <div class="d-flex justify-content-between w-100" v-else>
-    <span :style="{ position: 'absolute', color: Dollarcolor }">$</span>
-    <input
-      ref="input"
-      v-bind:type="inputType"
-      :value="dollar"
-      v-bind:required="question.required"
-      v-on:keydown="onKeyDown"
-      style="padding-left: 20px"
-      v-on:keyup="onChange"
-      v-on:keyup.enter.prevent="onEnter"
-      v-on:keyup.tab.prevent="onEnter"
-      v-on:focus="setFocus"
-      @input="handleInput"
-      v-on:blur="unsetFocus"
       v-bind:placeholder="placeholder"
     />
   </div>
