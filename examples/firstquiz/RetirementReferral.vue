@@ -226,10 +226,7 @@ export default {
         new QuestionModel({
           id: "break_1",
           title: "Awesome, thank you for sharing. 🙏",
-          content:
-            "Next we will learn more about your freelance business so we can calculate your potential tax savings.",
-          description:
-            "Note: Actual $ information from your bookkeeping will be best. But if you need help estimating, please use our FAQ",
+          content: "Next we will learn more about your freelance business so we can calculate your potential tax savings. Note: Actual $ information from your bookkeeping will be best. But if you need help estimating, please use our FAQ.",
           type: QuestionType.SectionBreak,
         }),
         new QuestionModel({
