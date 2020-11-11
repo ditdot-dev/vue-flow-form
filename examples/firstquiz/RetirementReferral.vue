@@ -80,6 +80,27 @@ export default {
       language: new LanguageModel(),
       questions: [
         new QuestionModel({
+          answerMessage: "That's great!",
+          tagline: "Dollar",
+          title: "Your Income?",
+          type: QuestionType.Dollar,
+          mask: "#######",
+          required: true,
+          tooltip:
+            "This information is used to calculate your potential retirement earnings at age 67. Please put your current age, or the age you will be after December 31, 2020.",
+        }),
+        new QuestionModel({
+          answerMessage: "That's great!",
+          tagline: "Salary",
+          title: "What is the annual income you set for yourself?",
+          type: QuestionType.Salary,
+          required: true,
+          checkboxText: "I don't pay myself an income",
+          checkbox: false,
+          tooltip:
+            "This information is used to calculate your potential retirement earnings at age 67. Please put your current age, or the age you will be after December 31, 2020.",
+        }),
+        new QuestionModel({
           answerMessage: "That's great age to be!",
           tagline: "About You",
           id: "age",
