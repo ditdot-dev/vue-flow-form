@@ -1,4 +1,5 @@
 // Read the form input to declare tax balances for each Calculator
+export default taxApi
 
 // api keys need to be moved to environment variables serviced by Netlify build....to be done
 const sandbox_api_user = "https://sandbox-api.track.tax/v2/users/";
@@ -14,25 +15,13 @@ var handleError = function (err) {
   return err
 };
 
-export function setTaxInput(){
-  var a = document.getElementById("userTaxInput");
-  var b = document.getElementById("retirementSelection")
-
-  window.contribution = b.value;
-  window.incomeData = {
-    taxes: {
-      "1099Income": parseInt(a.income.value),
-      expenseDeduction: parseInt(a.business_expense.value),
-      w2Income: parseInt(a.w2Income.value),
-      filingState: a.filing_state.value,
-      filingStatus: a.filing_status.value,
-      dependents: a.dependents.value,
-      }
-  };}
+var taxApi = {
+  myFoo(a, b) {
+    return a + b;},
 
 // PUT method to Track.tax api to calculate tax balance
-async function postTaxData(incomeData){
-  let baseTax = await (fetch (tax_calculation, {
+postTaxData(incomeData){
+  let baseTax = (fetch (tax_calculation, {
     headers: {
         "Content-Type": "application/json",
         "X-Api-Key": app_key,
@@ -40,7 +29,7 @@ async function postTaxData(incomeData){
     method: "PUT",
     body: JSON.stringify(incomeData)
   }).catch(handleError));
-  window.taxUpdate = await baseTax.json();
+  window.taxUpdate = baseTax.json();
   console.log("base tax calculation complete!");
 // due to Track.tax only calculating taxes on the 1099 income portion, we are missing the w2 income taxes in the balance. This is a temporary work around until they release totalTaxBalance in Q1 2021.
   window.preContributionTaxBalance = parseInt(taxUpdate.data.taxBalance) + parseInt(taxUpdate.data.smartTaxRate * taxUpdate.data.w2Income)
@@ -73,7 +62,8 @@ async function postTaxData(incomeData){
     document.getElementById("socialSecurityTax").innerHTML = taxUpdate.data.socialSecurityTax.toLocaleString('en-US');
     document.getElementById("qbiDeduction").innerHTML = taxUpdate.data.qbiDeduction.toLocaleString('en-US');
 
-    };
+    }
+  };
 
 async function postIraTaxData(iraContribution){
   let iraTax = await (fetch (tax_calculation, {
@@ -141,4 +131,4 @@ async function postIndividual401kTaxData(individual401kContribution){
   window.individual401k_taxBalance = parseInt(taxUpdate3.data.taxBalance) + parseInt(taxUpdate3.data.smartTaxRate * taxUpdate3.data.w2Income);
   window.individual401k_socialSecurityTax = parseInt(taxUpdate3.data.socialSecurityTax);
   window.individual401k_medicareTax = parseInt(taxUpdate3.data.medicareTax);
-  };
+  }

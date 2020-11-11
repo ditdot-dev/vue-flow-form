@@ -23,6 +23,7 @@
             >
             <span class="f-text" v-else>
               {{ question.title }}&nbsp;
+
               <!-- Required questions are marked by an asterisk (*) -->
               <span
                 class="f-required"
