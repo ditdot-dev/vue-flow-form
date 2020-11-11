@@ -86,7 +86,8 @@
             title: 'What is your age?',
             type: QuestionType.Text,
             required: true,
-            placeholder: 'Start typing here...'
+            placeholder: 'Start typing here...',
+            tooltip: 'test'
           }),
           new QuestionModel({
             id: 'multiple_choice',
@@ -97,6 +98,7 @@
             multiple: false,
             allowOther: true,
             required: true,
+            tooltip: 'test',
             options: [
               new ChoiceOption({
                 label: '10',
@@ -116,6 +118,7 @@
             type: QuestionType.MultipleChoice,
             multiple: false,
             required: true,
+            tooltip: 'test',
             options: [
               new ChoiceOption({
                 label: 'Ok, let\'s go with A',
