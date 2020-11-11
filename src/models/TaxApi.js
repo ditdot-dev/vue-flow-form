@@ -1,5 +1,4 @@
 // Read the form input to declare tax balances for each Calculator
-export default taxApi
 
 // api keys need to be moved to environment variables serviced by Netlify build....to be done
 const sandbox_api_user = "https://sandbox-api.track.tax/v2/users/";
@@ -15,13 +14,9 @@ var handleError = function (err) {
   return err
 };
 
-var taxApi = {
-  myFoo(a, b) {
-    return a + b;},
-
 // PUT method to Track.tax api to calculate tax balance
-postTaxData(incomeData){
-  let baseTax = (fetch (tax_calculation, {
+export async function postTaxData(incomeData){
+  let baseTax = await (fetch (tax_calculation, {
     headers: {
         "Content-Type": "application/json",
         "X-Api-Key": app_key,
@@ -29,8 +24,13 @@ postTaxData(incomeData){
     method: "PUT",
     body: JSON.stringify(incomeData)
   }).catch(handleError));
-  window.taxUpdate = baseTax.json();
-  console.log("base tax calculation complete!");
+  window.taxUpdate = await baseTax.json();
+  console.log(taxUpdate)
+  console.log("base tax calculation complete!")
+  }
+
+
+/*
 // due to Track.tax only calculating taxes on the 1099 income portion, we are missing the w2 income taxes in the balance. This is a temporary work around until they release totalTaxBalance in Q1 2021.
   window.preContributionTaxBalance = parseInt(taxUpdate.data.taxBalance) + parseInt(taxUpdate.data.smartTaxRate * taxUpdate.data.w2Income)
   window.socialSecurityTax = parseInt(taxUpdate.data.socialSecurityTax);
@@ -61,9 +61,7 @@ postTaxData(incomeData){
     document.getElementById("medicareTax").innerHTML = taxUpdate.data.medicareTax.toLocaleString('en-US');
     document.getElementById("socialSecurityTax").innerHTML = taxUpdate.data.socialSecurityTax.toLocaleString('en-US');
     document.getElementById("qbiDeduction").innerHTML = taxUpdate.data.qbiDeduction.toLocaleString('en-US');
-
-    }
-  };
+*/
 
 async function postIraTaxData(iraContribution){
   let iraTax = await (fetch (tax_calculation, {

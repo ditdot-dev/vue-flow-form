@@ -146,13 +146,6 @@ export default {
     },
 
     async onSendData() {
-      const sandbox_api_user = "https://sandbox-api.track.tax/v2/users/";
-      const app_key = "appId_d34638260c364a652c4673eb590af0fd";
-      const app_secret = "appSecret_f24d118ff90fa3252a6749dba1276e44";
-      const visitor = sandbox_api_user + "userId_15eaa4f418b381d9f3ddafd6d479cd746183f5ed";
-      const tax_calculation = visitor + "/taxes/2020";
-      var taxUpdate = []
-
       this.$refs.flowform.submitted = true
       this.submitted = true
 
@@ -162,9 +155,7 @@ export default {
       window.incomeData = await this.formatData()
       console.log(incomeData)
 
-      let answer = taxApi.myFoo(1, 2)
-
-      console.log(answer)
+      await taxApi.postTaxData(incomeData)
       console.log(taxUpdate)
 
       async function postData() {
