@@ -1,7 +1,4 @@
-/*!
-    Copyright (c) 2020 - present, DITDOT Ltd. - MIT Licence
-    https://github.com/ditdot-dev/vue-flow-form
-    https://www.ditdot.hr/en
+/*
 */
 
 .vff {
@@ -14,7 +11,55 @@
   -o-font-smoothing: antialiased;
 }
 
-@media screen and (max-width:1023px){
+
+/* New positive validation messages added to the open source package to create gamification elements
+*/
+
+.answerMessage {
+  font-size: 20px;
+  font-family: "Karla", sans-serif;
+  font-weight:400;
+  color: green;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30%;
+  margin-left: 20px;
+}
+
+/* New progress circles to replace the progress % bars used */
+.progress-cicles {
+  position: absolute;
+  color: #f79d7d;
+  right: 0;
+  top: -10vh;
+  margin: 30px;
+  height: 55vh;
+  overflow: auto;
+}
+
+.progress-cicles .progress-circle {
+  border: 1px solid #fca68c;
+  border-radius: 35px;
+  padding-top: 3px;
+  padding-right: 2px;
+  font-size: 0.8em;
+  width: 25px;
+  height: 25px;
+  margin-bottom: 12px;
+}
+.progress-cicles .progress-circle.active {
+  background-color: #f9f9f9bb;
+}
+
+/* The calculate button at the end of the last question in the form*/
+
+.complete-button {
+  background-color: #a1ebc0;
+}
+
+@media screen and (max-width: 1023px) {
+
   .vff,
   .vff-footer {
     font-size: 15px;
@@ -44,9 +89,7 @@
 
 }
 
-/*
-  global
-*/
+/*global*/
 
 .vff hr{
   box-sizing: content-box;
@@ -503,7 +546,6 @@ header.vff-header svg.f-logo {
 /*misc-typography*/
 .vff span.f-tagline,
 .vff span.f-sub {
-  font-weight: 400;
   display: block;
 }
 
@@ -837,8 +879,8 @@ header.vff-header svg.f-logo {
 }
 
   .vff .fh2 span.f-sub,
-  .vff .fh2 span.f-tagline{
-    font-size: .58em;
+  .vff .fh2 span.f-tagline {
+    font-size: 26px;
   }
 
   .vff .f-container,
@@ -898,7 +940,7 @@ header.vff-header svg.f-logo {
 
   .vff .fh2 span.f-sub,
   .vff .fh2 span.f-tagline {
-    font-size: .64em;
+    font-size: 26px;
   }
 
   .vff span.f-tagline {
