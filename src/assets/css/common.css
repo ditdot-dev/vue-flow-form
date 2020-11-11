@@ -17,9 +17,9 @@
   font-weight: 400;
   color: green;
   display: flex;
-  justify-content: center;
+  justify-content: left;
   align-items: center;
-  width: 30%;
+  width: 40%;
   margin-left: 20px;
 }
 
