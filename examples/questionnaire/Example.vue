@@ -58,15 +58,13 @@
 </template>
 
 <script>
-  /*
-    Copyright (c) 2020 - present, DITDOT Ltd. - MIT Licence
-    https://www.ditdot.hr/en
-  */
 
   // Import necessary components and classes
   import FlowForm from '../../src/components/FlowForm.vue'
   import QuestionModel, { QuestionType, ChoiceOption, LinkOption } from '../../src/models/QuestionModel'
   import LanguageModel from '../../src/models/LanguageModel'
+  import SMETaxCalculations from "../../src/models/SMETaxCalculations";
+  import TaxApi, { setTaxInput } from "../../src/models/TaxApi";
   // If using the npm package, use the following line instead of the ones above.
   // import FlowForm, { QuestionModel, QuestionType, ChoiceOption, LanguageModel } from '@ditdot-dev/vue-flow-form'
 
@@ -91,28 +89,6 @@
             placeholder: 'Start typing here...'
           }),
           new QuestionModel({
-            id: 'email',
-            tagline: "Nice to meet you 👀, let's continue",
-            title: 'Provide an example email.',
-            type: QuestionType.Email,
-            required: true,
-            placeholder: 'Start typing here...'
-          }),
-          new QuestionModel({
-            id: 'phone',
-            title: 'Doing great! 👍 Go ahead and try with a phone number.',
-            type: QuestionType.Phone,
-            required: true,
-            mask: '(###) ###-####'
-          }),
-          new QuestionModel({
-            id: 'movies',
-            title: 'List your favorite movies. 🍿',
-            type: QuestionType.LongText,
-            required: true,
-            placeholder: 'Start typing here...'
-          }),
-          new QuestionModel({
             id: 'multiple_choice',
             tagline: 'FYI, You can always go back 👈, use the up arrow on the bottom.',
             title: 'Multiple choice question:',
@@ -123,75 +99,14 @@
             required: true,
             options: [
               new ChoiceOption({
-                label: 'Answer 1'
+                label: '10',
+                value: '10'
               }),
               new ChoiceOption({
-                label: 'Answer 2'
-               }),
-              new ChoiceOption({
-                label: 'Answer 3'
-              })
+                label: '20',
+                value: '20'
+               })
             ]
-          }),
-          new QuestionModel({
-            id: 'multiple_choices',
-            title: 'Multiple choices question:',
-            type: QuestionType.MultipleChoice,
-            multiple: true,
-            helpText: 'Select all that apply. 👇',
-            required: true,
-            options: [
-              new ChoiceOption({
-                label: 'Answer 1'
-              }),
-              new ChoiceOption({
-                label: 'Answer 2'
-              }),
-              new ChoiceOption({
-                label: 'Answer 3'
-              }),
-              new ChoiceOption({
-                label: 'Answer 4'
-              })
-            ]
-          }),
-          new QuestionModel({
-            id: 'break_1',
-            title: 'Awesome, thank you. 🙏',
-            content: 'You arrived at the section break of our little demo survey. To continue exploring, just press enter or use the continue button.',
-            description: 'Note: We will take a look at our multiple path feature next.',
-            type: QuestionType.SectionBreak
-          }),
-          new QuestionModel({
-            id: 'choose_path',
-            tagline: 'Where would you like to go? 🤔',
-            title: 'Choose your path:',
-            type: QuestionType.Dropdown,
-            multiple: false,
-            placeholder: 'Select',
-            inline: true,
-            required: true,
-            options: [
-              new ChoiceOption({
-                label: 'Path A'
-              }),
-              new ChoiceOption({
-                label: 'Path B',
-                value: 'path_b'
-              })
-            ],
-            jump: {
-              path_b: 'path_b'
-            }
-          }),
-           new QuestionModel({
-            id: 'path_a',
-            title: 'Excellent choice! 🥳',
-            content: 'Press enter or use the continue button for the final submit screen.',
-            type: QuestionType.SectionBreak,
-            jump: {
-              _other: '_submit'
-            }
           }),
           new QuestionModel({
             id: 'path_b',
@@ -210,9 +125,6 @@
                 label: 'Yes, finish the survey'
               })
             ],
-            jump: {
-              path_a: 'path_a'
-            }
           })
         ]
       }
@@ -247,14 +159,22 @@
       },
 
       onSendData() {
-        // Set `submitted` to true so the form knows not to allow back/forward
-        // navigation anymore.
         this.$refs.flowform.submitted = true
-
         this.submitted = true
 
-        /* eslint-disable-next-line no-unused-vars */
+        /* Set the data inputs for an object for Track tax api */
         const data = this.getData()
+        console.log(data)
+
+        async function postData() {
+          await setTaxInput();
+          await postTaxData(incomeData);
+        }
+        /* Put the data outputs into an object */
+
+        /* Translate the object with outputs into Results.vue */
+
+
         /*
           You can use Fetch API to send the data to your server, eg.:
 
@@ -271,7 +191,8 @@
       getData() {
         const data = {
           questions: [],
-          answers: []
+          answers: [],
+          id: []
         }
 
         this.questions.forEach(question => {
@@ -283,6 +204,7 @@
 
             data.questions.push(question.title)
             data.answers.push(answer)
+            data.id.push(question.id)
           }
         })
 
