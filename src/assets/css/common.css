@@ -440,17 +440,25 @@ header.vff-header svg.f-logo {
 }
 
 /* ios datepicker */
-.vff.vff-is-ios .field-datetype:not(.f-has-value) .f-answer > span {
+.vff.vff-is-ios  .field-datetype:not(.f-has-value) .f-answer > span {
   position: relative;
-}
-.vff.vff-is-ios .field-datetype:not(.f-has-value) .f-answer > span::before {
-  position: absolute;
   top: 0;
   left: 0;
+}
+
+.vff.vff-is-ios  .field-datetype:not(.f-has-value) .f-answer > span::before {
+  position: absolute;
   content: attr(data-placeholder);
   display: block;
   pointer-events: none;
+  padding: 0.12em .2em;
 }
+
+.vff.vff-is-ios input[type=date] {
+  height: 32px;
+  display: block;
+}
+
 
 /*
   links

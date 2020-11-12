@@ -115,6 +115,13 @@ header.vff-header svg.f-logo{
   font-weight: 300;
 }
 
+/*faux input type date placeholder for iOS*/
+.vff.vff-is-ios .field-datetype:not(.f-has-value) .f-answer > span::before{
+  color: var(--vff-secondary-text-color);
+  font-weight: 300;
+  font-size: .72em;
+}
+
 /*field-multiplechoicetype*/
 .vff ul.f-radios li {
   border: 1px solid var(--vff-secondary-form-bg-color);
