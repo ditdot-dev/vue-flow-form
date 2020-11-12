@@ -69,6 +69,7 @@ header.vff-header svg.f-logo {
 .vff input[type=email],
 .vff input[type=url],
 .vff input[type=password],
+.vff input[type=date],
 .vff textarea,
 .vff span.faux-form {
   border-bottom-color: var(--vff-secondary-text-color);
@@ -102,6 +103,14 @@ header.vff-header svg.f-logo {
   color: #999;
   opacity: 1;
   font-weight: 300;
+}
+
+
+/*faux input type date placeholder for iOS*/
+.vff.vff-is-ios .field-datetype:not(.f-has-value) .f-answer > span::before{
+  color: var(--vff-secondary-text-color);
+  font-weight: 300;
+  font-size: .72em;
 }
 
 /*field-multiplechoicetype*/

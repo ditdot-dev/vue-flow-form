@@ -355,6 +355,7 @@ header.vff-header svg.f-logo {
 .vff input[type=email],
 .vff input[type=url],
 .vff input[type=password],
+.vff input[type=date],
 .vff textarea {
   -webkit-appearance: none;
   -moz-appearance: none;
@@ -384,6 +385,7 @@ header.vff-header svg.f-logo {
 .vff .f-full-width input[type=email],
 .vff .f-full-width input[type=url],
 .vff .f-full-width input[type=password],
+.vff .f-full-width input[type=date],
 .vff .f-full-width textarea,
 .vff .f-full-width span.faux-form{
   width: 100%;
@@ -436,6 +438,27 @@ header.vff-header svg.f-logo {
   width: 100%;
   height: auto;
 }
+
+/* ios datepicker */
+.vff.vff-is-ios  .field-datetype:not(.f-has-value) .f-answer > span {
+  position: relative;
+  top: 0;
+  left: 0;
+}
+
+.vff.vff-is-ios  .field-datetype:not(.f-has-value) .f-answer > span::before {
+  position: absolute;
+  content: attr(data-placeholder);
+  display: block;
+  pointer-events: none;
+  padding: 0.12em .2em;
+}
+
+.vff.vff-is-ios input[type=date] {
+  height: 32px;
+  display: block;
+}
+
 
 /*
   links
@@ -825,6 +848,7 @@ header.vff-header svg.f-logo {
   .vff input[type=email],
   .vff input[type=url],
   .vff input[type=password],
+  .vff input[type=date],
   .vff textarea{
     font-size: .78em;
 }
@@ -870,6 +894,7 @@ header.vff-header svg.f-logo {
   .vff input[type=email],
   .vff input[type=url],
   .vff input[type=password],
+  .vff input[type=date],
   .vff textarea {
     line-height: 1.4;
     padding: .16em .2em;

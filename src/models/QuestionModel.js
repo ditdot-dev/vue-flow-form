@@ -7,6 +7,7 @@
 // Global data store
 
 export const QuestionType = Object.freeze({
+  Date: 'FlowFormDateType',
   Dropdown: 'FlowFormDropdownType',
   Email: 'FlowFormEmailType',
   LongText: 'FlowFormLongTextType',
@@ -23,6 +24,12 @@ export const DropdownOptionBlank = Object.freeze({
   label: '',
   value: '',
   disabled: true
+})
+
+export const MaskPresets = Object.freeze({
+  Date: '##/##/####',
+  DateIso: '####-##-##',
+  PhoneUs: '(###) ###-####'
 })
 
 export class ChoiceOption {
@@ -84,21 +91,27 @@ export default class QuestionModel {
     this.helpText = null
     this.helpTextShow = true
     this.descriptionLink = []
+    this.min = null
+    this.max = null
 
     Object.assign(this, options)
 
     // Sets default mask and placeholder value on PhoneType question
     if (this.type === QuestionType.Phone) {
       if (!this.mask) {
-        this.mask = '(###) ###-####'
+        this.mask = MaskPresets.Phone
       }
       if (!this.placeholder) {
         this.placeholder = this.mask
       }
-    }
+    } 
 
     if (this.type === QuestionType.Url) {
       this.mask = null
+    }
+
+    if (this.type === QuestionType.Date && !this.placeholder) {
+      this.placeholder = 'yyyy-mm-dd'
     }
 
     if (this.multiple) {

@@ -106,6 +106,7 @@
   import FlowFormSectionBreakType from './QuestionTypes/SectionBreakType.vue'
   import FlowFormTextType from './QuestionTypes/TextType.vue'
   import FlowFormUrlType from './QuestionTypes/UrlType.vue'
+  import FlowFormDateType from './QuestionTypes/DateType.vue'
   import { IsMobile } from '../mixins/IsMobile'
   
 
@@ -121,7 +122,8 @@
       FlowFormPhoneType,
       FlowFormSectionBreakType,
       FlowFormTextType,
-      FlowFormUrlType
+      FlowFormUrlType,
+      FlowFormDateType
     },
     props: {
       question: QuestionModel,
@@ -239,17 +241,22 @@
       }
     },
     computed: {
-      mainClasses() {
-        const classes = {
-          'q-is-active': this.active,
-          'q-is-inactive': !this.active,
-          'f-fade-in-down': this.reverse,
-          'f-fade-in-up': !this.reverse
+      mainClasses: {
+        cache: false,
+        get() {
+          const classes = {
+            'q-is-active': this.active,
+            'q-is-inactive': !this.active,
+            'f-fade-in-down': this.reverse,
+            'f-fade-in-up': !this.reverse,
+            'f-focused': this.$refs.questionComponent && this.$refs.questionComponent.focused,
+            'f-has-value': this.$refs.questionComponent && this.$refs.questionComponent.hasValue
+          }
+
+          classes['field-' + this.question.type.toLowerCase().substring(8)] = true
+
+          return classes
         }
-
-        classes['field-' + this.question.type.toLowerCase().substring(8)] = true
-
-        return classes
       },
 
       showHelperText() {
