@@ -15,6 +15,10 @@
       v-on:keyup.native.enter.prevent="onEnter"
       v-on:keyup.native.tab.prevent="onEnter"
       v-bind:placeholder="placeholder"
+      v-bind:min ="question.min"
+      v-bind:max="question.max"
+      v-on:change="onChange"
+      v-bind:tokens="tokens" 
     />
     <input
       v-else
@@ -28,6 +32,9 @@
       v-on:keyup.tab.prevent="onEnter"
       v-on:focus="setFocus"
       v-on:blur="unsetFocus"
+      v-bind:min ="question.min"
+      v-bind:max="question.max"
+      v-on:change="onChange"
       v-bind:placeholder="placeholder"
     />
   </span>
@@ -44,6 +51,7 @@
   import { QuestionType } from '../../models/QuestionModel'
   import LanguageModel from '../../models/LanguageModel'
   import TheMask from 'vue-the-mask/src/component'
+  import tokens from 'vue-the-mask/src/tokens'
 
   export default {
     extends: BaseType,
@@ -54,7 +62,25 @@
     data() {
       return {
         inputType: 'text', 
-        canReceiveFocus: true
+        canReceiveFocus: true,
+        tokens: {
+          ...tokens,
+          D : {
+            pattern: /[0-3]/
+          },
+          d: {
+            pattern: /[0-9]/
+          },
+          M: {
+            pattern: /[0-1]/
+          },
+          m: {
+            pattern: /[0-9]/
+          },
+          y: {
+            pattern: /[0-9]/ }
+    
+        }
       }
     }, 
     methods: {

@@ -87,6 +87,14 @@
         language: new LanguageModel(),
         // Create question list with QuestionModel instances
         questions: [
+          new QuestionModel({
+            id: 'phone',
+            title: 'Doing great! 👍 Go ahead and try with a masked date input.',
+            type: QuestionType.Phone,
+            required: true,
+            mask:'Dd.Mm.yyyy.',
+            placeholder: 'dd.mm.yyyy.'
+          }),
             new QuestionModel({
               id: 'date',
               tagline: 'Hi! Welcome to our demo survey 😊',
