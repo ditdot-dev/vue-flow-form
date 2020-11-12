@@ -40,7 +40,6 @@
     }, 
     methods: {
       validate() {
-          console.log(this.dataValue)
         if (this.dataValue < this.question.min || this.dataValue > this.question.max) {
           return false
         }
