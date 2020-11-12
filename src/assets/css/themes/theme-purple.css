@@ -73,6 +73,7 @@ header.vff-header svg.f-logo{
 .vff input[type=email],
 .vff input[type=url],
 .vff input[type=password],
+.vff input[type=date],
 .vff textarea,
 .vff span.faux-form {
   border-bottom-color: var(--vff-secondary-text-color);

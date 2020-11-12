@@ -87,6 +87,15 @@
         language: new LanguageModel(),
         // Create question list with QuestionModel instances
         questions: [
+            new QuestionModel({
+              id: 'date',
+              tagline: 'Hi! Welcome to our demo survey 😊',
+              title: 'Enter your birthday',
+              type: QuestionType.Date,
+              required: true,
+              min: '2019-10-01',
+              max: '2020-11-20'
+          }),
           new QuestionModel({
             id: 'first_name',
             tagline: 'Hi! Welcome to our demo survey 😊',
