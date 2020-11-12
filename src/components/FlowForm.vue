@@ -1,7 +1,7 @@
 // Form template and logic
 
 <template>
-  <div class="vff" :class="{'vff-not-standalone': !standalone}">
+  <div class="vff" :class="{'vff-not-standalone': !standalone, 'vff-is-mobile': isMobile, 'vff-is-ios': isIos}">
     <div class="f-container">
       <div class="f-form-wrap">
         <flow-form-question
@@ -126,6 +126,7 @@
 
   import FlowFormQuestion from './Question.vue'
   import LanguageModel from '../models/LanguageModel'
+  import { IsMobile } from '../mixins/IsMobile'
 
   export default {
     name: 'FlowForm',
@@ -147,6 +148,9 @@
         default: true
       }
     },
+    mixins: [
+      IsMobile,
+    ],
     data() {
       return {
         completed: false,

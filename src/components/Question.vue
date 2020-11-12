@@ -241,17 +241,22 @@
       }
     },
     computed: {
-      mainClasses() {
-        const classes = {
-          'q-is-active': this.active,
-          'q-is-inactive': !this.active,
-          'f-fade-in-down': this.reverse,
-          'f-fade-in-up': !this.reverse
+      mainClasses: {
+        cache: false,
+        get() {
+          const classes = {
+            'q-is-active': this.active,
+            'q-is-inactive': !this.active,
+            'f-fade-in-down': this.reverse,
+            'f-fade-in-up': !this.reverse,
+            'f-focused': this.$refs.questionComponent && this.$refs.questionComponent.focused,
+            'f-has-value': this.$refs.questionComponent && this.$refs.questionComponent.hasValue
+          }
+
+          classes['field-' + this.question.type.toLowerCase().substring(8)] = true
+
+          return classes
         }
-
-        classes['field-' + this.question.type.toLowerCase().substring(8)] = true
-
-        return classes
       },
 
       showHelperText() {

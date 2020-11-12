@@ -5,12 +5,14 @@
 */
 
 // Simple mobile device/tablet detection
-const isMobile = !!(typeof navigator !== 'undefined' && navigator.userAgent.match(/android|iphone|ipad|ipod/i))
+const isIos = navigator.userAgent.match(/iphone|ipad|ipod/i) || (navigator.userAgent.indexOf("Mac") !== -1 && "ontouchend" in document)
+const isMobile = !!(typeof navigator !== 'undefined' && (isIos || navigator.userAgent.match(/android/i)))
 
 // Mixin that adds an `isMobile` data variable
 export const IsMobile = {
   data() {
     return {
+      isIos,
       isMobile
     }
   }

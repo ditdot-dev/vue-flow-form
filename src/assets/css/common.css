@@ -439,6 +439,19 @@ header.vff-header svg.f-logo {
   height: auto;
 }
 
+/* ios datepicker */
+.vff.vff-is-ios .field-datetype:not(.f-has-value) .f-answer > span {
+  position: relative;
+}
+.vff.vff-is-ios .field-datetype:not(.f-has-value) .f-answer > span::before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  content: attr(data-placeholder);
+  display: block;
+  pointer-events: none;
+}
+
 /*
   links
 */

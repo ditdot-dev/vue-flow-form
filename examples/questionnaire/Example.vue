@@ -70,7 +70,7 @@
 
   // Import necessary components and classes
   import FlowForm from '../../src/components/FlowForm.vue'
-  import QuestionModel, { QuestionType, ChoiceOption, LinkOption } from '../../src/models/QuestionModel'
+  import QuestionModel, { QuestionType, ChoiceOption, LinkOption, MaskPresets } from '../../src/models/QuestionModel'
   import LanguageModel from '../../src/models/LanguageModel'
   // If using the npm package, use the following line instead of the ones above.
   // import FlowForm, { QuestionModel, QuestionType, ChoiceOption, LanguageModel } from '@ditdot-dev/vue-flow-form'
@@ -88,21 +88,22 @@
         // Create question list with QuestionModel instances
         questions: [
           new QuestionModel({
-            id: 'phone',
+            id: 'date',
+            tagline: 'Hi! Welcome to our demo survey 😊',
+            title: 'Enter your birthday',
+            type: QuestionType.Date,
+            placeholder: 'Enter birthday...',
+            required: true,
+            min: '2019-10-01',
+            max: '2020-11-20'
+          }),
+          new QuestionModel({
+            id: 'date_mask',
             title: 'Doing great! 👍 Go ahead and try with a masked date input.',
             type: QuestionType.Phone,
             required: true,
-            mask:'Dd.Mm.yyyy.',
-            placeholder: 'dd.mm.yyyy.'
-          }),
-            new QuestionModel({
-              id: 'date',
-              tagline: 'Hi! Welcome to our demo survey 😊',
-              title: 'Enter your birthday',
-              type: QuestionType.Date,
-              required: true,
-              min: '2019-10-01',
-              max: '2020-11-20'
+            mask: MaskPresets.Date,
+            placeholder: 'dd/mm/yyyy'
           }),
           new QuestionModel({
             id: 'first_name',
