@@ -1,8 +1,10 @@
-import { createStore } from "vuex";
+import Vue from 'vue'
+import Vuex from "vuex";
 
-export default createStore({
-  state () {
-    return {
+Vue.use(Vuex)
+
+const store = new Vuex.Store({
+  state: {
       userInput: {}, // data captured in RetirementReferral.vue input form
       incomeData: {}, // data formatted from the input for tax API
       taxUpdate: {
@@ -29,9 +31,14 @@ export default createStore({
         personalContribution: null,
         businessContribution: null
       }, // calculations to be displayed in RetirementOptions.vue
-    }
   },
   mutations: {
     increment (state){
+  },
+  actions: {
+
   }
+}
 });
+
+export default store

@@ -11,18 +11,11 @@ import Results from './views/Results.vue';
 import RetirementOptions from './views/RetirementOptions.vue';
 import VTooltip from "v-tooltip";
 import Vuex from 'vuex'
+import * as store from '../../src/store/store.js'
+
 
 Vue.use(Vuex)
 Vue.use(VueRouter)
-
-const store = new Vuex.Store({
-  state: {
-      incomeData: []
-  },
-  mutations: {
-
-  }
-})
 
 const routes = [
 {
