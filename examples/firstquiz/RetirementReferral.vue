@@ -523,7 +523,8 @@ export default {
       };
       return userData
     }
-  }
+  },
+}
 </script>
 
 <style lang="css">
