@@ -15,6 +15,20 @@ var handleError = function (err) {
 };
 
 // PUT method to Track.tax api to calculate tax balance
+export function taxData(){
+  window.incomeData = {
+    taxes: {
+      "1099Income": parseInt(userInput.income),
+      expenseDeduction: parseInt(userInput.expenses),
+      w2Income: parseInt(userInput.salary),
+      filingState: userInput.tax_filing_state,
+      filingStatus: userInput.tax_filing_status,
+      dependents: parseInt(userInput.dependents),
+    }
+  };
+  return incomeData
+}
+
 export async function postTaxData(incomeData){
   let baseTax = await (fetch (tax_calculation, {
     headers: {

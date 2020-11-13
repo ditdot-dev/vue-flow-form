@@ -470,48 +470,23 @@ export default {
       this.submitted = true
 
       /* Set the data inputs for an object for Track tax api */
-
       window.data = await this.getData()
-      window.incomeData = await this.formatData()
-      window.userData = await this.formatUserData()
-      console.log(data)
-      console.log(incomeData)
-      console.log(userData)
+      await this.formatData()
+      console.log(userInput)
 
-
+      window.incomeData = taxApi.taxData()
       await taxApi.postTaxData(incomeData)
       console.log(taxUpdate)
-      await MoveObjects.postResults()
 
-      async function postData() {
-        // await setTaxInput();
-        // await postTaxData(incomeData);
-      }
+      window.userData = await this.formatUserData()
+      console.log(userData)
+
       /* Put the data outputs into an object */
+      await MoveObjects.postResults()
+      console.log()
 
       /* Translate the object with outputs into Results.vue */
-      /*
-                  async function postTaxData(incomeData){
-                  let baseTax = await (fetch (tax_calculation, {
-                    headers: {
-                        "Content-Type": "application/json",
-                        "X-Api-Key": app_key,
-                        "X-Api-Secret": app_secret,},
-                    method: "PUT",
-                    body: JSON.stringify(incomeData)
-                  }).catch(handleError));
-                  window.taxUpdate = await baseTax.json();
-                  console.log("base tax calculation complete!");}
 
-                fetch(url, {
-                  method: 'POST',
-                  headers: {
-                    'Content-Type': 'application/json'
-                  },
-                  body: JSON.stringify(incomeData)
-                })
-
-      */
     },
 
     getData() {
@@ -528,34 +503,27 @@ export default {
           data.id.push(question.id)
         }
       });
-      return data;
+      return data
     },
 
     formatData() {
-      const incomeData = {
-        taxes: {
-          "1099Income": parseInt(data.answers[10]),
-          expenseDeduction: parseInt(data.answers[9]),
-          w2Income: parseInt(data.answers[7]),
-          filingState: data.answers[3],
-          filingStatus: data.answers[4],
-          dependents: parseInt(data.answers[2]),
-        }
-      };
-      return incomeData
+      window.userInput = {}
+      data.id.forEach((key, i) =>
+        userInput[key] = data.answers[i]);
+      return userInput
     },
+
     formatUserData() {
       const userData = {
-        first_name: data.answers[0],
-        age: data.answers[1],
-        business_name: data.answers[5],
-        entity: data.answers[6],
-        employee_count: data.answers[8]
+        first_name: userInput.first_name,
+        age: userInput.age,
+        business_name: userInput.business_name,
+        entity: userInput.entity,
+        employee_count: userInput.employee_count
       };
       return userData
-    },
+    }
   }
-}
 </script>
 
 <style lang="css">

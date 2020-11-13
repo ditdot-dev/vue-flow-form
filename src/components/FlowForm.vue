@@ -53,6 +53,9 @@
         <button class="complete-button">
           <router-link to="/results">Calculate</router-link>
         </button>
+
+
+
       </div>
       <div v-else>
         <div v-if="progressbar" class="f-progress" v-bind:class="{
