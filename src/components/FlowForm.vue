@@ -112,6 +112,9 @@
             <span class="f-nav-text" aria-hidden="true">{{ language.next }}</span>
           </a>
         </div>
+        <div v-if="timer" class="f-timer">
+            {{formatTime(time)}}
+        </div>
       </div>
     </div>
   </div>
@@ -146,6 +149,10 @@
       standalone: {
         type: Boolean, 
         default: true
+      },
+      timer: {
+        type: Boolean,
+        default: false
       }
     },
     mixins: [
@@ -158,7 +165,9 @@
         activeQuestionIndex: 0,
         questionList: [],
         questionListActivePath: [],
-        reverse: false
+        reverse: false,
+        timerOn: false,
+        time: 0
       }
     },
     watch: {
@@ -171,12 +180,14 @@
       document.addEventListener('keyup', this.onKeyUpListener, true)
       window.addEventListener('beforeunload', this.onBeforeUnload)
 
+      this.toggleTimer()
       this.setQuestions()
     },
     beforeDestroy() {
       document.removeEventListener('keydown', this.onKeyDownListener)
       document.removeEventListener('keyup', this.onKeyUpListener, true)
       window.removeEventListener('beforeunload', this.onBeforeUnload)
+      this.toggleTimer()
     },
     computed: {
       numActiveQuestions() {
@@ -481,6 +492,27 @@
       blurFocus() {
         document.activeElement && document.activeElement.blur && document.activeElement.blur()
       },
+
+      toggleTimer(){
+        let interval;
+        if (!this.timerOn) {
+          interval = setInterval(this.incrementTime, 1000);
+          this.timerOn = true;
+        } else {
+          if(interval){
+          clearInterval(interval);
+          }
+          this.timerOn = false;
+        }
+      },
+
+      incrementTime() {
+        this.time = (parseInt(this.time) + 1);
+      },
+
+      formatTime(seconds) {
+        return new Date(1000 * seconds).toISOString().substr(11, 8);
+      }
     }
   }
 </script>
