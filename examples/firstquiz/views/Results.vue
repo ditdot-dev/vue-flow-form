@@ -2,17 +2,19 @@
 /* will need to write the Profit After Expenses function */
 <template>
 <div>
-<h4> Your Results </h4>
-<div class="subtitle"> What’s yours after taxes </div>
-<span id="profitAfterTaxes" class="positiveNumber"></span>
-<div class="subtitle"> Amount of business deductions you qualify for </div>
-<span id="qbiDeduction" class="positiveNumber"></span>
-<div class="subtitle"> How much taxes you owe in 2020 </div>
-<span id="taxBalance" class="negativeNumber"></span> <button><router-link to="/retirement-options">Let’s lower this with an retirement account!</router-link></button><br>
+  <h4> Your Results </h4>
+  <div class="subtitle"> What’s yours after taxes </div>
+  <span id="profitAfterTaxes" class="positiveNumber"></span>
+  <div class="subtitle"> Amount of business deductions you qualify for </div>
+  <span id="qbiDeduction" class="positiveNumber"></span>
+  <div class="subtitle"> How much taxes you owe in 2020 </div>
+  <span id="taxBalance" class="negativeNumber"></span> <button>
+    <router-link to="/retirement-options">Let’s lower this with an retirement account!</router-link>
+  </button><br>
 
 
-<br>
-<div class="subtitle"> Tax Breakdown for Year 2020 (in USD) </div>
+  <br>
+  <div class="subtitle"> Tax Breakdown for Year 2020 (in USD) </div>
 
   <div class="row">
     <div class="col-lg-6 pr-5 mb-5 mb-lg-0">

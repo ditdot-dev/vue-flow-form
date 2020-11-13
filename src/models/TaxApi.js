@@ -26,7 +26,6 @@ export async function postTaxData(incomeData){
   }).catch(handleError));
   window.taxUpdate = await baseTax.json();
   console.log("base tax calculation complete!")
-
   }
 
 
