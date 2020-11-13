@@ -22,8 +22,8 @@
               >{{ question.title }}</span
             >
             <span class="f-text" v-else>
-              <div class="d-flex">
-                <span class="w-100">{{ question.title }}&nbsp;</span>
+              <div class="d-flex justify-content-start">
+                <div>{{ question.title }}&nbsp;</div>
                 <button
                   style="
                     background-color: transparent;
@@ -34,12 +34,9 @@
                     content: question.tooltip,
                     placement: 'bottom',
                   }"
-                  class="d-flex align-items-center justify-content-center"
+                  class=""
                 >
-                  <b-icon
-                    icon="exclamation-circle-fill"
-                    variant="dark"
-                  ></b-icon>
+                  <b-icon icon="info-circle-fill" variant="dark"></b-icon>
                 </button>
               </div>
               <!-- Required questions are marked by an asterisk (*) -->
@@ -306,7 +303,7 @@ export default {
       const q = this.$refs.questionComponent;
       const { type } = this.question;
       if (
-        (type === "FlowFormSalaryType" || type === "FlowFormDollarType") &&
+        (type === QuestionType.Salary || type === QuestionType.Dollar) &&
         this.dataValue?.includes(",")
       ) {
         this.question.answer = this.dataValue.toString().split(",").join("");
@@ -315,6 +312,8 @@ export default {
         return this.active;
       }
       if (this.question.checkbox) {
+        this.dataValue = "";
+        this.question.answer = "";
         this.responseAnswer = this.question.answerMessage;
         return true;
       }

@@ -14,6 +14,7 @@
         v-on:keyup="onChange"
         v-on:keyup.enter.prevent="onEnter"
         v-on:keyup.tab.prevent="onEnter"
+        :disabled="question.checkbox"
         v-on:focus="setFocus"
         @input="handleInput"
         v-on:blur="unsetFocus"
@@ -24,6 +25,7 @@
       style="font-size: 16px"
       class="d-flex justify-content-center align-items-center vff-checkbox"
       v-model="question.checkbox"
+      @change="handleCheckbox"
     >
       <span>{{ question.checkboxText }}</span>
     </b-form-checkbox>
@@ -49,6 +51,11 @@ export default {
     return {};
   },
   methods: {
+    handleCheckbox() {
+      if (!this.question.checkbox) {
+        this.dollar = "";
+      }
+    },
     isValid() {
       if (!this.question.required) {
         return true;
