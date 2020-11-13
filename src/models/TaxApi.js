@@ -42,7 +42,6 @@ export async function postTaxData(incomeData){
   console.log("base tax calculation complete!")
   }
 
-
 /*
 // due to Track.tax only calculating taxes on the 1099 income portion, we are missing the w2 income taxes in the balance. This is a temporary work around until they release totalTaxBalance in Q1 2021.
   window.preContributionTaxBalance = parseInt(taxUpdate.data.taxBalance) + parseInt(taxUpdate.data.smartTaxRate * taxUpdate.data.w2Income)

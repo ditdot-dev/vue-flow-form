@@ -17,7 +17,7 @@ Vue.use(VueRouter)
 
 const store = new Vuex.Store({
   state: {
-      count: 1
+      incomeData: []
   },
   mutations: {
 

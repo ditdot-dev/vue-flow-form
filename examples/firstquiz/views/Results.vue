@@ -18,7 +18,7 @@
 
   <div class="row">
     <div class="col-lg-6 pr-5 mb-5 mb-lg-0">
-      Total Income: <span id="income"></span><br>
+      Total Income: <span id="totalIncome"></span><br>
       <div class="assistText">(Business + Personal Income)</div>
       - Expenses: <span id="expenses"></span><br>
       <strong> Profit after Expenses: <span class="positiveNumber" id="profitAfterExpenses"></span></strong>
@@ -41,6 +41,7 @@
       + <span id="filing_state" style="text-transform: uppercase;"></span> State Tax: <span id="stateIncomeTax"></span><br>
       + Federal Income Tax: <span id="federalIncomeTax"></span><br>
       <strong> Total Tax Balance: <span id="taxBalance" class="negativeNumber"></span></strong>
+      (Effective Tax Rate: <span class="assistText" id="effectiveTaxRate"></span>%)
     </div>
   </div>
 
@@ -48,6 +49,18 @@
 </template>
 
 <script>
+import * as MoveObjects from "../../../src/models/MoveObjects";
+
+export default {
+  name: "example",
+  components: {},
+  data() {
+    postResults();
+
+  },
+  mounted() {},
+  methods: {},
+}
 </script>
 
 <style>

@@ -482,8 +482,7 @@ export default {
       console.log(userData)
 
       /* Put the data outputs into an object */
-      await MoveObjects.postResults()
-      console.log()
+      await MoveObjects.storeResults()
 
       /* Translate the object with outputs into Results.vue */
 
