@@ -398,7 +398,6 @@ export default {
           title: "How many full-time employees do you have?",
           answerMessage: "Nice!",
           type: QuestionType.Dropdown,
-          required: true,
           multiple: false,
           subtitle: "Do not count yourself or your spouse",
           placeholder: "0",
