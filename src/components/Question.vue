@@ -22,8 +22,26 @@
               >{{ question.title }}</span
             >
             <span class="f-text" v-else>
-              {{ question.title }}&nbsp;
-
+              <div class="d-flex">
+                <span class="w-100">{{ question.title }}&nbsp;</span>
+                <button
+                  style="
+                    background-color: transparent;
+                    padding: 4px;
+                    color: transparent;
+                  "
+                  v-tooltip="{
+                    content: question.tooltip,
+                    placement: 'bottom',
+                  }"
+                  class="d-flex align-items-center justify-content-center"
+                >
+                  <b-icon
+                    icon="exclamation-circle-fill"
+                    variant="dark"
+                  ></b-icon>
+                </button>
+              </div>
               <!-- Required questions are marked by an asterisk (*) -->
               <span
                 class="f-required"
@@ -57,20 +75,6 @@
                   v-on:next="onEnter"
                 />
               </span>
-              <button
-                style="
-                  background-color: transparent;
-                  padding: 4px;
-                  color: transparent;
-                "
-                v-tooltip="{
-                  content: question.tooltip,
-                  placement: 'bottom',
-                }"
-                class="d-flex align-items-center"
-              >
-                <span class="info-icon-1">i</span>
-              </button>
             </span>
           </template>
 
