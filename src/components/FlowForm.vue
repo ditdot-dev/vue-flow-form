@@ -113,7 +113,7 @@
           </a>
         </div>
         <div v-if="timer" class="f-timer">
-            {{formatTime(time)}}
+            <span>{{formatTime(time)}}</span>
         </div>
       </div>
     </div>
@@ -167,7 +167,10 @@
         questionListActivePath: [],
         reverse: false,
         timerOn: false,
-        time: 0
+        interval: null,
+        time: 0,
+        timerStartOnStep: 1,
+        timerStopOnStep: 5
       }
     },
     watch: {
@@ -180,14 +183,20 @@
       document.addEventListener('keyup', this.onKeyUpListener, true)
       window.addEventListener('beforeunload', this.onBeforeUnload)
 
-      this.toggleTimer()
       this.setQuestions()
+
+      if(!this.timerStartOnStep){
+        this.toggleTimer()
+      }
     },
     beforeDestroy() {
       document.removeEventListener('keydown', this.onKeyDownListener)
       document.removeEventListener('keyup', this.onKeyUpListener, true)
       window.removeEventListener('beforeunload', this.onBeforeUnload)
-      this.toggleTimer()
+      
+      if(!this.timerStopOnStep){
+        this.toggleTimer()
+      }
     },
     computed: {
       numActiveQuestions() {
@@ -220,7 +229,16 @@
 
       isOnLastStep() {
         return this.activeQuestionIndex === this.questionListActivePath.length
+      }, 
+
+      isOnStartStep() {
+        return this.activeQuestionIndex == this.timerStartOnStep
+      },
+
+      isOnStopStep() {
+         return this.activeQuestionIndex == this.timerStopOnStep
       }
+
     },
     methods: {
       /**
@@ -435,6 +453,9 @@
             ++this.activeQuestionIndex
           }
 
+         this.toggleTimerOnStep()
+
+
           this.$nextTick(() => {
             this.setQuestions()
 
@@ -478,7 +499,6 @@
        */
       goToNextQuestion() {
         this.blurFocus()
-
         if (this.isNextQuestionAvailable()) {
           this.emitEnter()
         }
@@ -494,13 +514,12 @@
       },
 
       toggleTimer(){
-        let interval;
         if (!this.timerOn) {
-          interval = setInterval(this.incrementTime, 1000);
+          this.interval = setInterval(this.incrementTime, 1000);
           this.timerOn = true;
         } else {
-          if(interval){
-          clearInterval(interval);
+            if(this.interval){
+            clearInterval(this.interval);
           }
           this.timerOn = false;
         }
@@ -511,8 +530,15 @@
       },
 
       formatTime(seconds) {
-        return new Date(1000 * seconds).toISOString().substr(11, 8);
+        return seconds > 3600? new Date(1000 * seconds).toISOString().substr(11, 8): new Date(1000 * seconds).toISOString().substr(14, 5);
+      },
+      
+      toggleTimerOnStep(){
+        if(this.isOnStartStep || this.isOnStopStep){
+            this.toggleTimer()
+          }
       }
+     
     }
   }
 </script>
