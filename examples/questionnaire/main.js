@@ -8,6 +8,18 @@ import Vue from 'vue'
 import Example from './Example.vue'
 import Vuex from 'vuex'
 
-new Vue({
-  render: h => h(Example)
+Vue.use(Vuex)
+
+const store = new Vuex.Store({
+  state: {
+      count: 1
+  },
+  mutations: {
+
+  }
+})
+
+var app = new Vue({
+  render: h => h(Example),
+  store
 }).$mount('#app')

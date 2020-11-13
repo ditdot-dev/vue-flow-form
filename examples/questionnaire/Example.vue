@@ -51,6 +51,7 @@ import QuestionModel, {
 import LanguageModel from '../../src/models/LanguageModel'
 import SMETaxCalculations from "../../src/models/SMETaxCalculations";
 import * as taxApi from "../../src/models/TaxApi";
+import * as MoveObjects from "../../src/models/MoveObjects";
 // If using the npm package, use the following line instead of the ones above.
 // import FlowForm, { QuestionModel, QuestionType, ChoiceOption, LanguageModel } from '@ditdot-dev/vue-flow-form'
 
@@ -157,6 +158,7 @@ export default {
 
       await taxApi.postTaxData(incomeData)
       console.log(taxUpdate)
+      await MoveObjects.postResults()
 
       async function postData() {
         // await setTaxInput();
