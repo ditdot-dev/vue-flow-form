@@ -380,6 +380,12 @@ export default {
               value: "llc",
             }),
           ],
+          jump: {
+            llc: "salary",
+            sCorporation: "salary",
+            soleProprietor: "employee_count",
+            partnership: "employee_count"
+          },
         }),
         new QuestionModel({
           id: "salary",
