@@ -3,29 +3,20 @@
   <div class="d-flex justify-content-between w-100">
     <template>
       <span :style="{ position: 'absolute', color: Dollarcolor }">$</span>
-      <the-mask
+      <input
         ref="input"
-        v-bind:mask="[
-          '#',
-          '##',
-          '###',
-          '#,###',
-          '##,###',
-          '###,###',
-          '#,###,###',
-        ]"
-        v-bind:masked="true"
-        :disabled="question.checkbox"
-        style="padding-left: 20px"
         v-bind:type="inputType"
-        v-bind:value="value"
+        :value="dollar"
         v-bind:required="question.required"
-        v-on:keydown.native="onKeyDown"
-        v-on:keyup.native="onChange"
-        v-on:focus.native="setFocus"
-        v-on:blur.native="unsetFocus"
-        v-on:keyup.native.enter.prevent="onEnter"
-        v-on:keyup.native.tab.prevent="onEnter"
+        v-on:keydown="onKeyDown"
+        style="padding-left: 20px"
+        :maxlength="9"
+        v-on:keyup="onChange"
+        v-on:keyup.enter.prevent="onEnter"
+        v-on:keyup.tab.prevent="onEnter"
+        v-on:focus="setFocus"
+        @input="handleInput"
+        v-on:blur="unsetFocus"
         v-bind:placeholder="placeholder"
       />
     </template>
