@@ -69,7 +69,7 @@ export default {
           title: "What's your first name?",
           type: QuestionType.Text,
           required: true,
-          tooltip: "This tooltip is available on every question to explain why the question is asked. In this case, your name is used to help personalize the results later.",
+          tooltip: "This tooltip is available on every question to explain why the question is asked. In this case, your name is used to help personalize the results later. 😊",
         }),
         new QuestionModel({
           answerMessage: "That's great age to be!",

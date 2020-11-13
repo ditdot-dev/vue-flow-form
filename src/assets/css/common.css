@@ -1027,10 +1027,12 @@ span.info-icon-1:hover {
 }
 
 .tooltip .tooltip-inner {
-  background: black;
-  color: white;
+  background: white;
+  color: black;
   border-radius: 16px;
   padding: 5px 10px 4px;
+  width: auto;
+  min-width: 350px;
 }
 
 .tooltip .tooltip-arrow {
@@ -1039,7 +1041,7 @@ span.info-icon-1:hover {
   border-style: solid;
   position: absolute;
   margin: 5px;
-  border-color: black;
+  border-color: white;
   z-index: 1;
 }
 
