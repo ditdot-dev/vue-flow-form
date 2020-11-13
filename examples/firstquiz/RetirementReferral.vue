@@ -464,7 +464,6 @@ export default {
       // This method is called whenever the "completed" status is changed.
       this.completed = completed;
     },
-
     onSubmit(questionList) {
       // This method will only be called if you don't override the
       // completeButton slot.
@@ -496,7 +495,6 @@ export default {
       /* Put the data outputs into an object */
 
       /* Translate the object with outputs into Results.vue */
-
       /*
                   async function postTaxData(incomeData){
                   let baseTax = await (fetch (tax_calculation, {

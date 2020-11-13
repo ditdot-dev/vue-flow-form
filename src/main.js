@@ -9,7 +9,7 @@ import VTooltip from "v-tooltip";
 Vue.use(VTooltip, {
 //    defaultTrigger: window.innerWidth > 768 ? 'hover focus click' : 'click'
   })
-  
+
 // IE11 Object.assign polyfill
 import 'es6-object-assign/auto'
 
