@@ -113,7 +113,7 @@
           </a>
         </div>
         <div v-if="timer" class="f-timer">
-            <span>{{formatTime(time)}}</span>
+            <span>{{ formatTime(time) }}</span>
         </div>
       </div>
     </div>
@@ -153,6 +153,14 @@
       timer: {
         type: Boolean,
         default: false
+      },
+      timerStartOnStep: {
+        type: [String, Number],
+        default: 1
+      },
+      timerStopOnStep: {
+        type: [String, Number],
+        default: 'phone'
       }
     },
     mixins: [
@@ -163,19 +171,21 @@
         completed: false,
         submitted: false,
         activeQuestionIndex: 0,
+        activeQuestionId:'',
         questionList: [],
         questionListActivePath: [],
         reverse: false,
         timerOn: false,
         interval: null,
-        time: 0,
-        timerStartOnStep: 1,
-        timerStopOnStep: 5
+        time: 0
       }
     },
     watch: {
       completed() {
         this.emitComplete()
+      },
+      activeQuestionId() {
+        this.setQuestionListActivePath()
       }
     },
     mounted() {
@@ -184,7 +194,6 @@
       window.addEventListener('beforeunload', this.onBeforeUnload)
 
       this.setQuestions()
-
       if(!this.timerStartOnStep){
         this.toggleTimer()
       }
@@ -232,11 +241,11 @@
       }, 
 
       isOnStartStep() {
-        return this.activeQuestionIndex == this.timerStartOnStep
+        return (this.activeQuestionIndex || this.activeQuestionId) == this.timerStartOnStep
       },
 
       isOnStopStep() {
-         return this.activeQuestionIndex == this.timerStopOnStep
+         return (this.activeQuestionIndex || this.activeQuestionId) == this.timerStopOnStep
       }
 
     },
@@ -280,8 +289,8 @@
             ++index
           } else if (question.answered) {
             nextId = question.getJumpId()
-
             if (nextId) {
+            
               if (nextId === '_submit') {
                 index = this.questions.length
               } else {
@@ -513,28 +522,31 @@
         document.activeElement && document.activeElement.blur && document.activeElement.blur()
       },
 
-      toggleTimer(){
+      toggleTimer() {
         if (!this.timerOn) {
-          this.interval = setInterval(this.incrementTime, 1000);
-          this.timerOn = true;
+          this.interval = setInterval(this.incrementTime, 1000)
+          this.timerOn = true
         } else {
-            if(this.interval){
-            clearInterval(this.interval);
+            if (this.interval) {
+            clearInterval(this.interval)
           }
-          this.timerOn = false;
+          this.timerOn = false
         }
       },
 
       incrementTime() {
-        this.time = (parseInt(this.time) + 1);
+        this.time = (parseInt(this.time) + 1)
       },
 
       formatTime(seconds) {
-        return seconds > 3600? new Date(1000 * seconds).toISOString().substr(11, 8): new Date(1000 * seconds).toISOString().substr(14, 5);
+        return seconds > 3600? 
+          new Date(1000 * seconds).toISOString().substr(11, 8): 
+          new Date(1000 * seconds).toISOString().substr(14, 5)
       },
       
-      toggleTimerOnStep(){
-        if(this.isOnStartStep || this.isOnStopStep){
+      toggleTimerOnStep() {
+        console.log(this.activeQuestionId)
+        if (this.isOnStartStep || this.isOnStopStep) {
             this.toggleTimer()
           }
       }
