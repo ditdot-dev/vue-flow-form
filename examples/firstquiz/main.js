@@ -10,8 +10,19 @@ import Main from './views/Main.vue';
 import Results from './views/Results.vue';
 import RetirementOptions from './views/RetirementOptions.vue';
 import VTooltip from "v-tooltip";
+import Vuex from 'vuex'
 
+Vue.use(Vuex)
 Vue.use(VueRouter)
+
+const store = new Vuex.Store({
+  state: {
+      count: 1
+  },
+  mutations: {
+
+  }
+})
 
 const routes = [
 {
@@ -47,6 +58,7 @@ Vue.use(VTooltip, {
 
 var app = new Vue({
   router,
+  store,
   render: h => h(Main),
   })
   .$mount('#app')

@@ -48,6 +48,9 @@ import QuestionModel, {
   LinkOption,
 } from "../../src/models/QuestionModel";
 import LanguageModel from "../../src/models/LanguageModel";
+import * as SMETaxCalculations from "../../src/models/SMETaxCalculations";
+import * as taxApi from "../../src/models/TaxApi";
+import * as MoveObjects from "../../src/models/MoveObjects";
 export default {
   name: "example",
   components: {
@@ -461,46 +464,103 @@ export default {
       // This method is called whenever the "completed" status is changed.
       this.completed = completed;
     },
-    onSendData() {
-      // Set `submitted` to true so the form knows not to allow back/forward
-      // navigation anymore.
-      this.$refs.flowform.submitted = true;
-      this.submitted = true;
-      /* eslint-disable-next-line no-unused-vars */
-      const data = this.getData();
-      console.log(data);
-      /*
-          You can use Fetch API to send the data to your server, eg.:
-          fetch(url, {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(data)
-          })
-        */
+    onSubmit(questionList) {
+      // This method will only be called if you don't override the
+      // completeButton slot.
+      this.onSendData()
     },
+
+    async onSendData() {
+      this.$refs.flowform.submitted = true
+      this.submitted = true
+
+      /* Set the data inputs for an object for Track tax api */
+
+      window.data = await this.getData()
+      window.incomeData = await this.formatData()
+      window.userData = await this.formatUserData()
+      console.log(data)
+      console.log(incomeData)
+      console.log(userData)
+
+
+      await taxApi.postTaxData(incomeData)
+      console.log(taxUpdate)
+      await MoveObjects.postResults()
+
+      async function postData() {
+        // await setTaxInput();
+        // await postTaxData(incomeData);
+      }
+      /* Put the data outputs into an object */
+
+      /* Translate the object with outputs into Results.vue */
+      /*
+                  async function postTaxData(incomeData){
+                  let baseTax = await (fetch (tax_calculation, {
+                    headers: {
+                        "Content-Type": "application/json",
+                        "X-Api-Key": app_key,
+                        "X-Api-Secret": app_secret,},
+                    method: "PUT",
+                    body: JSON.stringify(incomeData)
+                  }).catch(handleError));
+                  window.taxUpdate = await baseTax.json();
+                  console.log("base tax calculation complete!");}
+
+                fetch(url, {
+                  method: 'POST',
+                  headers: {
+                    'Content-Type': 'application/json'
+                  },
+                  body: JSON.stringify(incomeData)
+                })
+
+      */
+    },
+
     getData() {
-      const data = {
+      window.data = {
         questions: [],
         answers: [],
-        id: [],
+        id: []
       };
-      this.questions.forEach((question) => {
+
+      this.questions.forEach(question => {
         if (question.title) {
-          let answer = question.answer;
-          if (typeof answer === "object") {
-            answer = answer.join(", ");
-          }
-          data.questions.push(question.title);
-          data.answers.push(answer);
-          data.id.push(question.id);
+          data.questions.push(question.title)
+          data.answers.push(question.answer)
+          data.id.push(question.id)
         }
       });
       return data;
     },
-  },
-};
+
+    formatData() {
+      const incomeData = {
+        taxes: {
+          "1099Income": parseInt(data.answers[10]),
+          expenseDeduction: parseInt(data.answers[9]),
+          w2Income: parseInt(data.answers[7]),
+          filingState: data.answers[3],
+          filingStatus: data.answers[4],
+          dependents: parseInt(data.answers[2]),
+        }
+      };
+      return incomeData
+    },
+    formatUserData() {
+      const userData = {
+        first_name: data.answers[0],
+        age: data.answers[1],
+        business_name: data.answers[5],
+        entity: data.answers[6],
+        employee_count: data.answers[8]
+      };
+      return userData
+    },
+  }
+}
 </script>
 
 <style lang="css">
