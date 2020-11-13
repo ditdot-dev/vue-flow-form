@@ -61,11 +61,14 @@
                 style="
                   background-color: transparent;
                   padding: 4px;
-                  color: transparent;"
+                  color: transparent;
+                "
                 v-tooltip="{
                   content: question.tooltip,
-                  placement: 'bottom',}"
-                class="d-flex align-items-center">
+                  placement: 'bottom',
+                }"
+                class="d-flex align-items-center"
+              >
                 <span class="info-icon-1">i</span>
               </button>
             </span>
@@ -297,6 +300,13 @@ export default {
      */
     showOkButton() {
       const q = this.$refs.questionComponent;
+      const { type } = this.question;
+      if (
+        (type === "FlowFormSalaryType" || type === "FlowFormDollarType") &&
+        this.dataValue?.includes(",")
+      ) {
+        this.question.answer = this.dataValue.toString().split(",").join("");
+      }
       if (this.question.type === QuestionType.SectionBreak) {
         return this.active;
       }
