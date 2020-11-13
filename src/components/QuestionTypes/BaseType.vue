@@ -17,7 +17,7 @@
       language: LanguageModel,
       question: QuestionModel,
       active: Boolean,
-      value: [String, Array]
+      value: [String, Array, Boolean, Number]
     },
     mixins: [
       IsMobile,
@@ -162,10 +162,12 @@
           let v = this.dataValue
 
           if (v.trim) {
-            v = v.trim()
+            // Don't allow empty strings
+            return v.trim().length > 0
           }
 
-          return v.length > 0
+          // All other non-null values are allowed to pass through
+          return true
         }
 
         return false
