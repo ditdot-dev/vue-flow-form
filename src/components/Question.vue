@@ -128,7 +128,7 @@
     props: {
       question: QuestionModel,
       language: LanguageModel,
-      value: [String, Array],
+      value: [String, Array, Boolean, Number],
       active: {
         type: Boolean,
         default: false
