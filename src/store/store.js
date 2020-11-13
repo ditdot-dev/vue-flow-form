@@ -32,13 +32,6 @@ const store = new Vuex.Store({
         businessContribution: null
       }, // calculations to be displayed in RetirementOptions.vue
   },
-  mutations: {
-    increment (state){
-  },
-  actions: {
-
-  }
-}
 });
 
 export default store

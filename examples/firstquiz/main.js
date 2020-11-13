@@ -13,8 +13,6 @@ import VTooltip from "v-tooltip";
 import Vuex from 'vuex'
 import * as store from '../../src/store/store.js'
 
-
-Vue.use(Vuex)
 Vue.use(VueRouter)
 
 const routes = [
