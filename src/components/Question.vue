@@ -22,8 +22,23 @@
               >{{ question.title }}</span
             >
             <span class="f-text" v-else>
-              {{ question.title }}&nbsp;
-
+              <div class="d-flex justify-content-start">
+                <div>{{ question.title }}&nbsp;</div>
+                <button
+                  style="
+                    background-color: transparent;
+                    padding: 4px;
+                    color: transparent;
+                  "
+                  v-tooltip="{
+                    content: question.tooltip,
+                    placement: 'bottom',
+                  }"
+                  class=""
+                >
+                  <b-icon icon="info-circle-fill" variant="dark"></b-icon>
+                </button>
+              </div>
               <!-- Required questions are marked by an asterisk (*) -->
               <span
                 class="f-required"
@@ -57,17 +72,6 @@
                   v-on:next="onEnter"
                 />
               </span>
-              <button
-                style="
-                  background-color: transparent;
-                  padding: 4px;
-                  color: transparent;"
-                v-tooltip="{
-                  content: question.tooltip,
-                  placement: 'bottom',}"
-                class="d-flex align-items-center">
-                <span class="info-icon-1">i</span>
-              </button>
             </span>
           </template>
 
@@ -297,10 +301,19 @@ export default {
      */
     showOkButton() {
       const q = this.$refs.questionComponent;
+      const { type } = this.question;
+      if (
+        (type === QuestionType.Salary || type === QuestionType.Dollar) &&
+        this.dataValue?.includes(",")
+      ) {
+        this.question.answer = this.dataValue.toString().split(",").join("");
+      }
       if (this.question.type === QuestionType.SectionBreak) {
         return this.active;
       }
       if (this.question.checkbox) {
+        this.dataValue = "";
+        this.question.answer = "";
         this.responseAnswer = this.question.answerMessage;
         return true;
       }

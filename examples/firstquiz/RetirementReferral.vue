@@ -1,43 +1,62 @@
 <template>
-<div>
-  <div id="nav" style="text-align: center">
-    <button>
-      <router-link to="/results">Results</router-link>
-    </button>
-    <router-view />
+  <div>
+    <div id="nav" style="text-align: center">
+      <button>
+        <router-link to="/results">Results</router-link>
+      </button>
+      <router-view />
+    </div>
+    <flow-form
+      ref="flowform"
+      v-on:complete="onComplete"
+      v-on:submit="onSubmit"
+      v-bind:questions="questions"
+      v-bind:language="language"
+      v-bind:standalone="true"
+    >
+      <!-- Custom content for the Complete/Submit screen slots in the FlowForm component -->
+      <!-- We've overriden the default "complete" slot content -->
+      <template v-slot:complete>
+        <div class="f-section-wrap">
+          <p>
+            <span class="fh2">Thank you. 🙏</span>
+            <span class="f-section-text">
+              Great work, please wait while we calculate your results. You can
+              review your answers or press submit.
+            </span>
+          </p>
+          <p class="f-description">
+            Note: No data will be saved and/or sent in this calculator.
+          </p>
+        </div>
+      </template>
+
+      <!-- We've overriden the default "completeButton" slot content -->
+      <template v-slot:completeButton>
+        <div class="f-submit" v-if="!submitted">
+          <button
+            class="o-btn-action"
+            ref="button"
+            type="submit"
+            href="#"
+            v-on:click.prevent="onSendData()"
+            aria-label="Press to submit"
+          >
+            <span>{{ language.submitText }}</span>
+          </button>
+          <a
+            class="f-enter-desc"
+            href="#"
+            v-on:click.prevent="onSendData()"
+            v-html="language.formatString(language.pressEnter)"
+          >
+          </a>
+        </div>
+
+        <p class="text-success" v-if="submitted">Submitted succesfully.</p>
+      </template>
+    </flow-form>
   </div>
-  <flow-form ref="flowform" v-on:complete="onComplete" v-on:submit="onSubmit" v-bind:questions="questions" v-bind:language="language" v-bind:standalone="true">
-    <!-- Custom content for the Complete/Submit screen slots in the FlowForm component -->
-    <!-- We've overriden the default "complete" slot content -->
-    <template v-slot:complete>
-      <div class="f-section-wrap">
-        <p>
-          <span class="fh2">Thank you. 🙏</span>
-          <span class="f-section-text">
-            Great work, please wait while we calculate your results. You can
-            review your answers or press submit.
-          </span>
-        </p>
-        <p class="f-description">
-          Note: No data will be saved and/or sent in this calculator.
-        </p>
-      </div>
-    </template>
-
-    <!-- We've overriden the default "completeButton" slot content -->
-    <template v-slot:completeButton>
-      <div class="f-submit" v-if="!submitted">
-        <button class="o-btn-action" ref="button" type="submit" href="#" v-on:click.prevent="onSendData()" aria-label="Press to submit">
-          <span>{{ language.submitText }}</span>
-        </button>
-        <a class="f-enter-desc" href="#" v-on:click.prevent="onSendData()" v-html="language.formatString(language.pressEnter)">
-        </a>
-      </div>
-
-      <p class="text-success" v-if="submitted">Submitted succesfully.</p>
-    </template>
-  </flow-form>
-</div>
 </template>
 
 <script>
@@ -390,35 +409,36 @@ export default {
           required: true,
           checkboxText: "I don't pay myself an income",
           checkbox: false,
-          tooltip: "This is the amount that you have set as a “reasonable salary” when you put yourself on payroll as a full-time owner-employee. This will depend on your industry and work performed. We can help you calculate this if you want.",
+          tooltip:
+            "This is the amount that you have set as a “reasonable salary” when you put yourself on payroll as a full-time owner-employee. This will depend on your industry and work performed. We can help you calculate this if you want.",
         }),
         new QuestionModel({
-          id: "employee_count",
-          tagline: "About Your Business",
-          title: "How many full-time employees do you have?",
-          answerMessage: "Nice!",
-          type: QuestionType.Dropdown,
-          multiple: false,
-          subtitle: "Do not count yourself or your spouse",
-          placeholder: "0",
-          inline: false,
-          required: true,
-          tooltip: "This information is used to determine the type of retirement accounts you are eligible for. Don’t count yourself or your spouse as a full-time employee, or any employees who have ownership stake in the business. If you are not sure, refer to the FAQ for what qualifies as a full-time employee in your state.",
-          options: [
-            new ChoiceOption({
-              label: "0",
-              value: "noEmployees",
-            }),
-            new ChoiceOption({
-              label: "1-99",
-              value: "lessthan100",
-            }),
-            new ChoiceOption({
-              label: "100+",
-              value: "100plus",
-            }),
-          ],
-        }),
+           id: "employee_count",
+           tagline: "About Your Business",
+           title: "How many full-time employees do you have?",
+           answerMessage: "Nice!",
+           type: QuestionType.Dropdown,
+           multiple: false,
+           subtitle: "Do not count yourself or your spouse",
+           placeholder: "0",
+           inline: false,
+           required: true,
+           tooltip: "This information is used to determine the type of retirement accounts you are eligible for. Don’t count yourself or your spouse as a full-time employee, or any employees who have ownership stake in the business. If you are not sure, refer to the FAQ for what qualifies as a full-time employee in your state.",
+           options: [
+             new ChoiceOption({
+               label: "0",
+               value: "noEmployees",
+             }),
+             new ChoiceOption({
+               label: "1-99",
+               value: "lessthan100",
+             }),
+             new ChoiceOption({
+               label: "100+",
+               value: "100plus",
+             }),
+           ],
+         }),
         new QuestionModel({
           id: "expenses",
           tagline: "About Your Business",
@@ -426,7 +446,8 @@ export default {
           answerMessage: "That's great!",
           type: QuestionType.Dollar,
           required: true,
-          tooltip: "This is expenses that your business has every year. Please put the amount you forecast the business will spend. This can include office supplies, software subscriptions, work travel and more.",
+          tooltip:
+            "This is expenses that your business has every year. Please put the amount you forecast the business will spend. This can include office supplies, software subscriptions, work travel and more.",
         }),
         new QuestionModel({
           id: "income",
@@ -435,7 +456,8 @@ export default {
           answerMessage: "That's great!",
           type: QuestionType.Dollar,
           required: true,
-          tooltip: "This is the income generated by your business every year. Please put the amount you forecast the business will generate by end of the year. This includes all the invoices and cash payments you’ve received under your business entity.",
+          tooltip:
+            "This is the income generated by your business every year. Please put the amount you forecast the business will generate by end of the year. This includes all the invoices and cash payments you’ve received under your business entity.",
         }),
       ],
     };
@@ -458,30 +480,30 @@ export default {
     onComplete(completed, questionList) {
       // This method is called whenever the "completed" status is changed.
       this.completed = completed;
+      console.log(completed, questionList);
     },
     onSubmit(questionList) {
       // This method will only be called if you don't override the
       // completeButton slot.
-      this.onSendData()
+      this.onSendData();
     },
 
     async onSendData() {
-      this.$refs.flowform.submitted = true
-      this.submitted = true
+      this.$refs.flowform.submitted = true;
+      this.submitted = true;
 
       /* Set the data inputs for an object for Track tax api */
 
-      window.data = await this.getData()
-      window.incomeData = await this.formatData()
-      window.userData = await this.formatUserData()
-      console.log(data)
-      console.log(incomeData)
-      console.log(userData)
+      window.data = await this.getData();
+      window.incomeData = await this.formatData();
+      window.userData = await this.formatUserData();
+      console.log(data);
+      console.log(incomeData);
+      console.log(userData);
 
-
-      await taxApi.postTaxData(incomeData)
-      console.log(taxUpdate)
-      await MoveObjects.postResults()
+      await taxApi.postTaxData(incomeData);
+      console.log(taxUpdate);
+      await MoveObjects.postResults();
 
       async function postData() {
         // await setTaxInput();
@@ -518,14 +540,14 @@ export default {
       window.data = {
         questions: [],
         answers: [],
-        id: []
+        id: [],
       };
 
-      this.questions.forEach(question => {
+      this.questions.forEach((question) => {
         if (question.title) {
-          data.questions.push(question.title)
-          data.answers.push(question.answer)
-          data.id.push(question.id)
+          data.questions.push(question.title);
+          data.answers.push(question.answer);
+          data.id.push(question.id);
         }
       });
       return data;
@@ -540,9 +562,9 @@ export default {
           filingState: data.answers[3],
           filingStatus: data.answers[4],
           dependents: parseInt(data.answers[2]),
-        }
+        },
       };
-      return incomeData
+      return incomeData;
     },
     formatUserData() {
       const userData = {
@@ -550,12 +572,12 @@ export default {
         age: data.answers[1],
         business_name: data.answers[5],
         entity: data.answers[6],
-        employee_count: data.answers[8]
+        employee_count: data.answers[8],
       };
-      return userData
+      return userData;
     },
-  }
-}
+  },
+};
 </script>
 
 <style lang="css">
