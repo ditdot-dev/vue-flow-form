@@ -1,5 +1,5 @@
 /* will need to define css information for positiveNumber, negativeNumber, assistText, subtitle */
-/* will need to write the Profit After Expenses function */
+/* next step is to define all the mapState, then do all the mapGetters for the simple calc such as totalIncome */
 <template>
 <div>
   <h4> Your Results </h4>
@@ -20,13 +20,13 @@
     <div class="col-lg-6 pr-5 mb-5 mb-lg-0">
       Total Income: <span id="totalIncome"></span><br>
       <div class="assistText">(Business + Personal Income)</div>
-      - Expenses: {{ test }}<span id="expenses"></span><br>
+      - Expenses: {{ expenses }}<span id="expenses"></span><br>
       <strong> Profit after Expenses: <span class="positiveNumber" id="profitAfterExpenses"></span></strong>
     </div>
     <div class="col-lg-6 pr-5 mb-5 mb-lg-0">
-      Medicare: <span id="medicareTax"></span><br>
-      + Social Security: <span id="socialSecurityTax"></span><br>
-      <strong> Self Employment Tax: <span class="negativeNumber" id="selfEmploymentTax"></span></strong>
+      Medicare: {{ medicareTax }}<br>
+      + Social Security: {{ socialSecurityTax }}<br>
+      <strong> Self Employment Tax: <span class="negativeNumber"> {{ selfEmploymentTax }}</span></strong>
     </div>
   </div>
 
@@ -56,8 +56,14 @@ import * as MoveObjects from "../../../src/models/MoveObjects";
 export default {
   name: "Results",
   computed: {
-    ...Vuex.mapState('userInformation', ['test']),
+    ...Vuex.mapState('userInformation', {
+      expenses: state => state.userInput.expenses,
+      income: state => state.userInput.income,
+      medicareTax: state => state.taxUpdate.medicareTax,
+      socialSecurityTax: state => state.taxUpdate.socialSecurityTax,
+      selfEmploymentTax: state => state.taxUpdate.selfEmploymentTax,
 
+    }),
   }
 } // using computed since the data is reactive and will not change even if refreshed
 </script>
