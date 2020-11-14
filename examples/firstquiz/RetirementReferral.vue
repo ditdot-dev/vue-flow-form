@@ -52,7 +52,7 @@ import * as SMETaxCalculations from "../../src/models/SMETaxCalculations";
 import * as taxApi from "../../src/models/TaxApi";
 import * as MoveObjects from "../../src/models/MoveObjects";
 export default {
-  name: "example",
+  name: "RetirementReferral",
   components: {
     FlowForm,
   },

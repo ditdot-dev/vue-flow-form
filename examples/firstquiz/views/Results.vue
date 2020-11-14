@@ -52,7 +52,7 @@
 import * as MoveObjects from "../../../src/models/MoveObjects";
 
 export default {
-  name: "example",
+  name: "Results",
   components: {},
   data() {
     postResults();
