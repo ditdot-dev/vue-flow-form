@@ -20,7 +20,7 @@
     <div class="col-lg-6 pr-5 mb-5 mb-lg-0">
       Total Income: <span id="totalIncome"></span><br>
       <div class="assistText">(Business + Personal Income)</div>
-      - Expenses: {{ userInput }}<span id="expenses"></span><br>
+      - Expenses: {{ test }}<span id="expenses"></span><br>
       <strong> Profit after Expenses: <span class="positiveNumber" id="profitAfterExpenses"></span></strong>
     </div>
     <div class="col-lg-6 pr-5 mb-5 mb-lg-0">
@@ -56,7 +56,7 @@ import * as MoveObjects from "../../../src/models/MoveObjects";
 export default {
   name: "Results",
   computed: {
-    ...Vuex.mapState(['userInput']),
+    ...Vuex.mapState('userInformation', ['test']),
 
   }
 } // using computed since the data is reactive and will not change even if refreshed

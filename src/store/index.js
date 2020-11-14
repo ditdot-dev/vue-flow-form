@@ -5,15 +5,20 @@ import * as TaxApi from "../models/TaxApi.js"
 Vue.use(Vuex);
 
 const userInformation = {
+  namespaced: true,
   state: {
-    userInput: "hi", // data captured in RetirementReferral.vue input form
+    test: "hi",
+    userInput: {}, // data captured in RetirementReferral.vue input form
     incomeData: {}, // data formatted from the input for tax API
     taxUpdate: {},
     taxSummary: {} // tax API's output data to be displayed in Results.vue
   },
   mutations: {
-    userInput (state, data) {
-      state.userInput = data
+    entry (state, data) {
+      state.userInput = data;
+    },
+    results (state, data) {
+      state.taxUpdate = data;
     }
   },
   getters: {}
