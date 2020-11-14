@@ -3,13 +3,25 @@ import Vuex from "vuex";
 
 Vue.use(Vuex)
 
-const store = new Vuex.Store({
+const userInformation = {
   state: {
-      userInput: {}, // data captured in RetirementReferral.vue input form
-      incomeData: {}, // data formatted from the input for tax API
-      taxUpdate: {
-      }, // tax API's output data to be displayed in Results.vue
-      postIraTaxData: {
+    userInput: {
+
+    }, // data captured in RetirementReferral.vue input form
+    incomeData: {}, // data formatted from the input for tax API
+    taxUpdate: {
+    },
+    taxSummary: {
+
+    }, // tax API's output data to be displayed in Results.vue
+  },
+  mutations: {},
+  getters: {},
+}
+
+const calculatorDrag = {
+  state: {
+       postIraTaxData: {
         taxAvoided: null,
         taxAdvantageRatio: null,
         personalContribution: null,
@@ -32,6 +44,15 @@ const store = new Vuex.Store({
         businessContribution: null
       }, // calculations to be displayed in RetirementOptions.vue
   },
+  mutations: {},
+  getters: {},
+}
+
+const store = new Vuex.Store({
+  modules: {
+    a: userInformation,
+    b: calculatorDrag
+  }
 });
 
 export default store

@@ -21,7 +21,7 @@
       Total Income: <span id="totalIncome"></span><br>
       <div class="assistText">(Business + Personal Income)</div>
       - Expenses: <span id="expenses"></span><br>
-      <strong> Profit after Expenses: <span class="positiveNumber" id="profitAfterExpenses"></span></strong>
+      <strong> Profit after Expenses: <span class="positiveNumber" id="profitAfterExpenses">{{profitAfterExpenses}}</span></strong>
     </div>
     <div class="col-lg-6 pr-5 mb-5 mb-lg-0">
       Medicare: <span id="medicareTax"></span><br>
@@ -54,13 +54,15 @@ import * as MoveObjects from "../../../src/models/MoveObjects";
 export default {
   name: "Results",
   components: {},
-  data() {
-    postResults();
+  data() {},
+  mounted() {},
+  computed: {
+    profitAfterExpenses() {
+      return this.$store.state.taxSummary.profitAfterExpenses
+    },
 
   },
-  mounted() {},
-  methods: {},
-}
+} // using computed since the data is reactive and will not change even if refreshed
 </script>
 
 <style>
