@@ -56,12 +56,7 @@ export default {
   components: {},
   data() {},
   mounted() {},
-  computed: {
-    profitAfterExpenses() {
-      return this.$store.state.taxSummary.profitAfterExpenses
-    },
-
-  },
+  computed: {}
 } // using computed since the data is reactive and will not change even if refreshed
 </script>
 

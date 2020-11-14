@@ -478,9 +478,6 @@ export default {
       await taxApi.postTaxData(incomeData)
       console.log(taxUpdate)
 
-      window.userData = await this.formatUserData()
-      console.log(userData)
-
       /* Put the data outputs into an object */
       await MoveObjects.storeResults()
 
@@ -510,18 +507,8 @@ export default {
       data.id.forEach((key, i) =>
         userInput[key] = data.answers[i]);
       return userInput
-    },
-
-    formatUserData() {
-      const userData = {
-        first_name: userInput.first_name,
-        age: userInput.age,
-        business_name: userInput.business_name,
-        entity: userInput.entity,
-        employee_count: userInput.employee_count
-      };
-      return userData
     }
+
   },
 }
 </script>
