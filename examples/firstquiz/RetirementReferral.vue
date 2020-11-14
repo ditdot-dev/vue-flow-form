@@ -48,6 +48,7 @@ import QuestionModel, {
   LinkOption,
 } from "../../src/models/QuestionModel";
 import LanguageModel from "../../src/models/LanguageModel";
+import Vuex from "vuex";
 import * as SMETaxCalculations from "../../src/models/SMETaxCalculations";
 import * as taxApi from "../../src/models/TaxApi";
 import * as MoveObjects from "../../src/models/MoveObjects";
@@ -473,6 +474,7 @@ export default {
       window.data = await this.getData()
       await this.formatData()
       console.log(userInput)
+      await this.$store.commit('userInput', userInput)
 
       window.incomeData = taxApi.taxData()
       await taxApi.postTaxData(incomeData)

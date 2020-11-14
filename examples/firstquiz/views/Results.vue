@@ -16,11 +16,11 @@
   <br>
   <div class="subtitle"> Tax Breakdown for Year 2020 (in USD) </div>
 
-  <div class="row">
+  <div class="row" id="app">
     <div class="col-lg-6 pr-5 mb-5 mb-lg-0">
       Total Income: <span id="totalIncome"></span><br>
       <div class="assistText">(Business + Personal Income)</div>
-      - Expenses: <span id="expenses"></span><br>
+      - Expenses: {{ userInput }}<span id="expenses"></span><br>
       <strong> Profit after Expenses: <span class="positiveNumber" id="profitAfterExpenses"></span></strong>
     </div>
     <div class="col-lg-6 pr-5 mb-5 mb-lg-0">
@@ -49,14 +49,16 @@
 </template>
 
 <script>
+import Vue from "vue";
+import Vuex from "vuex";
 import * as MoveObjects from "../../../src/models/MoveObjects";
 
 export default {
   name: "Results",
-  components: {},
-  data() {},
-  mounted() {},
-  computed: {}
+  computed: {
+    ...Vuex.mapState(['userInput']),
+
+  }
 } // using computed since the data is reactive and will not change even if refreshed
 </script>
 
