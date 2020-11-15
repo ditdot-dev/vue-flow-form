@@ -4,11 +4,12 @@
 <div>
   <h4> Your Results </h4>
   <div class="subtitle"> What’s yours after taxes </div>
-  <span id="profitAfterTaxes" class="positiveNumber"></span>
+  <span id="profitAfterTaxes" class="positiveNumber"></span> // mapGetters
   <div class="subtitle"> Amount of business deductions you qualify for </div>
-  <span id="qbiDeduction" class="positiveNumber"></span>
+  <span id="qbiDeduction" class="positiveNumber">{{ qbiDeduction }}</span>
+  <span class="info-icon-1">i</span>
   <div class="subtitle"> How much taxes you owe in 2020 </div>
-  <span id="taxBalance" class="negativeNumber"></span> <button>
+  <span id="taxBalance" class="negativeNumber"> </span> <button> //mapGetters
     <router-link to="/retirement-options">Let’s lower this with an retirement account!</router-link>
   </button><br>
 
@@ -18,10 +19,10 @@
 
   <div class="row" id="app">
     <div class="col-lg-6 pr-5 mb-5 mb-lg-0">
-      Total Income: <span id="totalIncome"></span><br>
+      Total Income: <span id="totalIncome"></span><br> // mapGetters
       <div class="assistText">(Business + Personal Income)</div>
       - Expenses: {{ expenses }}<span id="expenses"></span><br>
-      <strong> Profit after Expenses: <span class="positiveNumber" id="profitAfterExpenses"></span></strong>
+      <strong> Profit after Expenses: <span class="positiveNumber" id="profitAfterExpenses"></span></strong> // mapGetters
     </div>
     <div class="col-lg-6 pr-5 mb-5 mb-lg-0">
       Medicare: {{ medicareTax }}<br>
@@ -32,16 +33,16 @@
 
   <div class="row">
     <div class="col-lg-6 pr-5 mb-5 mb-lg-0">
-      Profit after Expenses: <span id="profitAfterExpenses"></span><br>
-      - Total Tax Balance: <span id="taxBalance"></span><br>
-      <strong> Profit After Taxes: <span class="positiveNumber" id="profitAfterTaxes"></span></strong>
+      Profit after Expenses: <span id="profitAfterExpenses"></span><br> // mapGetters
+      - Total Tax Balance: <span id="taxBalance"></span><br> // mapGetters
+      <strong> Profit After Taxes: <span class="positiveNumber" id="profitAfterTaxes"></span></strong> // mapGetters
     </div>
     <div class="col-lg-6 pr-5 mb-5 mb-lg-0">
-      Self Employment Tax: <span class="negativeNumber" id="selfEmploymentTax"></span><br>
-      + <span id="filing_state" style="text-transform: uppercase;"></span> State Tax: <span id="stateIncomeTax"></span><br>
-      + Federal Income Tax: <span id="federalIncomeTax"></span><br>
+      Self Employment Tax: {{ selfEmploymentTax }} <br>
+      + <span id="filing_state" style="text-transform: uppercase;"></span> State Tax: {{ stateIncomeTax }} <span id="stateIncomeTax"></span><br> //mapGetters
+      + Federal Income Tax: <span id="federalIncomeTax">{{ federalIncomeTax }} </span><br>
       <strong> Total Tax Balance: <span id="taxBalance" class="negativeNumber"></span></strong>
-      (Effective Tax Rate: <span class="assistText" id="effectiveTaxRate"></span>%)
+      (Effective Tax Rate: <span class="assistText" id="effectiveTaxRate"> {{ effectiveTaxRate }} </span>%)
     </div>
   </div>
 
@@ -57,12 +58,15 @@ export default {
   name: "Results",
   computed: {
     ...Vuex.mapState('userInformation', {
+      qbiDeduction: state => state.taxUpdate.qbiDeduction,
       expenses: state => state.userInput.expenses,
       income: state => state.userInput.income,
       medicareTax: state => state.taxUpdate.medicareTax,
       socialSecurityTax: state => state.taxUpdate.socialSecurityTax,
       selfEmploymentTax: state => state.taxUpdate.selfEmploymentTax,
-
+      stateIncomeTax: state => state.taxUpdate.stateIncomeTax,
+      federalIncomeTax: state => state.taxUpdate.federalIncomeTax,
+      effectiveTaxRate: state => state.taxUpdate.effectiveTaxRate,
     }),
   }
 } // using computed since the data is reactive and will not change even if refreshed
