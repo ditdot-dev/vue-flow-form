@@ -7,7 +7,6 @@ Vue.use(Vuex);
 const userInformation = {
   namespaced: true,
   state: {
-    test: "hi",
     userInput: {}, // data captured in RetirementReferral.vue input form
     incomeData: {}, // data formatted from the input for tax API
     taxUpdate: {},
