@@ -22,7 +22,13 @@ const userInformation = {
   },
   getters: {
     totalIncome: state => {
-      return parseInt(state.userInput.income) + parseInt(state.userInput.salary)
+      if (state.userInput.salary === 'undefined') {
+        let totalIncome = parseInt(state.userInput.income)
+        return totalIncome
+      } else {
+        let totalIncome = parseInt(state.userInput.income) + parseInt(state.userInput.salary)
+        return totalIncome
+       }
     },
     profitAfterExpenses: (state, getters) => {
       let profitAfterExpenses = parseInt(getters.totalIncome) - parseInt(state.userInput.Expenses)
