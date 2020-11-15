@@ -19,10 +19,10 @@
 
   <div class="row" id="app">
     <div class="col-lg-6 pr-5 mb-5 mb-lg-0">
-      Total Income: <span id="totalIncome"></span><br> // mapGetters
+      Total Income: {{ totalIncome }} <br>
       <div class="assistText">(Business + Personal Income)</div>
-      - Expenses: {{ expenses }}<span id="expenses"></span><br>
-      <strong> Profit after Expenses: <span class="positiveNumber" id="profitAfterExpenses"></span></strong> // mapGetters
+      - Expenses: {{ expenses }}<br>
+      <strong> Profit after Expenses: <span class="positiveNumber">{{ profitAfterExpenses }}</span></strong>
     </div>
     <div class="col-lg-6 pr-5 mb-5 mb-lg-0">
       Medicare: {{ medicareTax }}<br>
@@ -68,6 +68,11 @@ export default {
       federalIncomeTax: state => state.taxUpdate.federalIncomeTax,
       effectiveTaxRate: state => state.taxUpdate.effectiveTaxRate,
     }),
+    ...Vuex.mapGetters('userInformation', [
+      'totalIncome', 'profitAfterExpenses'
+    ]),
+
+
   }
 } // using computed since the data is reactive and will not change even if refreshed
 </script>

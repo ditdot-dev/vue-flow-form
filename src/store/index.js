@@ -20,7 +20,15 @@ const userInformation = {
       state.taxUpdate = data;
     }
   },
-  getters: {}
+  getters: {
+    totalIncome: state => {
+      return parseInt(state.userInput.income) + parseInt(state.userInput.salary)
+    },
+    profitAfterExpenses: (state, getters) => {
+      let profitAfterExpenses = parseInt(getters.totalIncome) - parseInt(state.userInput.Expenses)
+      return profitAfterExpenses
+    }
+  }
 };
 
 const calculatorDrag = {
