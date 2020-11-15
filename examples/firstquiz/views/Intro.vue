@@ -1,32 +1,48 @@
 <template>
+    <div class="main">
+      <div class="content flex2">
+        <p class="heading">
+          Welcome to the Gig <br />
+          Retirement Calculator
+        </p>
+        <p class="para">
+          Fill out the 9 step questionnaire to calculate <br />
+          your 2020 profit after taxes. <br />
+          <br />
 
-<div>
-<h4> Welcome to the Gig Retirement Calculator </h4>
-<h6> Fill out the 9 step questionnaire to calculate your 2020 profit after taxes. </h6>
-<h6> Then, the calculator will identify a personalized retirement account suggestion to maximize your tax savings! </h6>
-<h6> Note: Your information is safe with us 😊. We will never sell your data. </h6>
+          Then, the calculator will identify a<br />
+          personalized retirement account suggestion <br />
+          to maximize your tax savings! <br />
+          <br />
 
-<button type="button" class="btn btn-primary btn-lg" style="background-color: #F07F62">
-<router-link to="/input">GET STARTED!</router-link></button>
-
-</div>
+          Note: Your information is safe with us 😊. We <br />
+          will never sell your data.
+        </p>
+        <router-link to="/input"
+          ><button><p>GET STARTED!</p></button></router-link
+        >
+      </div>
+      <div class="image">
+        <div class="img"></div>
+      </div>
+    </div>
 </template>
 
 <script>
+import "../../../src/assets/css/intro.css";
 export default {
   computed: {
     username() {
       // We will see what `params` is shortly
-      return this.$route.params.username
+      return this.$route.params.username;
     }
   },
   methods: {
     goBack() {
-      window.history.length > 1 ? this.$router.go(-1) : this.$router.push('/')
+      window.history.length > 1 ? this.$router.go(-1) : this.$router.push("/");
     }
   }
-}
+};
 </script>
 
-<style>
-</style>
+<style></style>

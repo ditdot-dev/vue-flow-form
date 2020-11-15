@@ -10,4 +10,4 @@ export default createStore({
     increment (state){
       state.incomeData++
   }
-});
+}});
