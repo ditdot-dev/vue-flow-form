@@ -156,11 +156,11 @@
       },
       timerStartOnStep: {
         type: [String, Number],
-        default: 1
+        default: 0
       },
       timerStopOnStep: {
         type: [String, Number],
-        default: 'phone'
+        default: '_submit'
       }
     },
     mixins: [
@@ -183,9 +183,6 @@
     watch: {
       completed() {
         this.emitComplete()
-      },
-      activeQuestionId() {
-        this.setQuestionListActivePath()
       }
     },
     mounted() {
@@ -194,6 +191,7 @@
       window.addEventListener('beforeunload', this.onBeforeUnload)
 
       this.setQuestions()
+
       if(!this.timerStartOnStep){
         this.toggleTimer()
       }
@@ -241,13 +239,24 @@
       }, 
 
       isOnStartStep() {
-        return (this.activeQuestionIndex || this.activeQuestionId) == this.timerStartOnStep
+        if (this.activeQuestionIndex == this.timerStartOnStep) {
+          return true 
+        }
+
+        if (this.activeQuestionId == this.timerStartOnStep) {
+          return true 
+        }
       },
 
       isOnStopStep() {
-         return (this.activeQuestionIndex || this.activeQuestionId) == this.timerStopOnStep
-      }
+        if (this.activeQuestionIndex == this.timerStopOnStep) {
+          return true 
+        }
 
+        if (this.activeQuestionId == this.timerStopOnStep) {
+          return true 
+        }
+      }
     },
     methods: {
       /**
@@ -290,7 +299,6 @@
           } else if (question.answered) {
             nextId = question.getJumpId()
             if (nextId) {
-            
               if (nextId === '_submit') {
                 index = this.questions.length
               } else {
@@ -445,7 +453,6 @@
         }
 
         const q = this.activeQuestion
-  
         if (q && !q.required) {
           return true
         }
@@ -461,13 +468,11 @@
           if (this.activeQuestionIndex < this.questionListActivePath.length) {
             ++this.activeQuestionIndex
           }
-
-         this.toggleTimerOnStep()
-
-
+         
           this.$nextTick(() => {
             this.setQuestions()
-
+            this.setActiveId()
+            this.toggleTimerOnStep()
             // Nested $nextTick so we're 100% sure that setQuestions
             // actually updated the question array
             this.$nextTick(() => {
@@ -545,11 +550,23 @@
       },
       
       toggleTimerOnStep() {
-        console.log(this.activeQuestionId)
         if (this.isOnStartStep || this.isOnStopStep) {
             this.toggleTimer()
           }
-      }
+      },
+
+      setActiveId() {
+          let question = this.questions[this.activeQuestionIndex]
+
+          if (this.isOnLastStep) {
+            this.activeQuestionId = '_submit'
+            return
+          }
+
+          if (question && question.id) {
+            this.activeQuestionId = question.id
+          }
+      },
      
     }
   }

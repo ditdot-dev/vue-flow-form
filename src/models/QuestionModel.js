@@ -123,10 +123,6 @@ export default class QuestionModel {
     return this.answer
   }
 
-  getId() {
-    return this.id
-  }
-
   getJumpId() {
     let nextId = null
 
