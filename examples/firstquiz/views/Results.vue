@@ -8,7 +8,7 @@
   <div class="subtitle"> Amount of business deductions you qualify for </div>
   <span class="positiveNumber">{{ qbiDeduction }}</span>
   <span class="info-icon-1">i</span>
-  <div class="subtitle"> How much taxes you owe in 2020 </div>
+  <div class="subtitle"> How much est. taxes you owe in 2020 </div>
   <span class="negativeNumber">{{ taxBalance }}</span> <button>
     <router-link to="/retirement-options">Click here to see how much you can lower taxes with different retirement accounts</router-link>
   </button><br>
