@@ -93,7 +93,7 @@ export default {
           mask: "#",
           placeholder: 'Type a number here...',
           tooltip: "This information is used to add up the tax deductions available to you. Put the number of individuals who are dependent on your income.",
-        }),
+        }), */
         new QuestionModel({
           id: "tax_filing_state",
           tagline: "About You",
@@ -312,7 +312,7 @@ export default {
             }),
           ],
         }),
-        new QuestionModel({
+        /* new QuestionModel({
           id: "tax_filing_status",
           tagline: "About You",
           title: "What is your tax filing status?",
@@ -352,7 +352,7 @@ export default {
           helpTextShow: false,
           placeholder: "The name of my business is...",
           tooltip: "This information is used so we can identify your work by the name you refer to it by. This can be your Doing Business As (DBA) or your full name if you have not incorporated the business in any form.",
-        }),
+        }), */
         new QuestionModel({
           id: "entity",
           tagline: "About Your Business",
@@ -393,7 +393,7 @@ export default {
           checkbox: false,
           tooltip: "This is the amount that you have set as a “reasonable salary” when you put yourself on payroll as a full-time owner-employee. This will depend on your industry and work performed. We can help you calculate this if you want.",
         }),
-        new QuestionModel({
+        /* new QuestionModel({
           id: "employee_count",
           tagline: "About Your Business",
           title: "How many full-time employees do you have?",

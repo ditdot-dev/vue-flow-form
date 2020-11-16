@@ -2,14 +2,14 @@
 /* next step is to define all the mapState, then do all the mapGetters for the simple calc such as totalIncome */
 <template>
 <div>
-  <h4> Your Results </h4>
+  <h4> {{ name }} {{ businessName }} Tax Results </h4>
   <div class="subtitle"> What’s yours after taxes </div>
-  <span id="profitAfterTaxes" class="positiveNumber"></span> // mapGetters
+  <span class="positiveNumber"> {{ profitAfterTaxes }}</span> // mapGetters
   <div class="subtitle"> Amount of business deductions you qualify for </div>
-  <span id="qbiDeduction" class="positiveNumber">{{ qbiDeduction }}</span>
+  <span class="positiveNumber">{{ qbiDeduction }}</span>
   <span class="info-icon-1">i</span>
   <div class="subtitle"> How much taxes you owe in 2020 </div>
-  <span id="taxBalance" class="negativeNumber"> </span> <button> //mapGetters
+  <span class="negativeNumber">{{ taxBalance }}</span> <button> //mapGetters
     <router-link to="/retirement-options">Let’s lower this with an retirement account!</router-link>
   </button><br>
 
@@ -33,16 +33,17 @@
 
   <div class="row">
     <div class="col-lg-6 pr-5 mb-5 mb-lg-0">
-      Profit after Expenses: <span id="profitAfterExpenses"></span><br> // mapGetters
-      - Total Tax Balance: <span id="taxBalance"></span><br> // mapGetters
-      <strong> Profit After Taxes: <span class="positiveNumber" id="profitAfterTaxes"></span></strong> // mapGetters
+      Profit after Expenses: {{ profitAfterExpenses }} <br>
+      - Total Tax Balance: {{ taxBalance }} <br>
+      <strong> Profit After Taxes: <span class="positiveNumber">{{ profitAfterTaxes }}</span></strong>
     </div>
     <div class="col-lg-6 pr-5 mb-5 mb-lg-0">
       Self Employment Tax: {{ selfEmploymentTax }} <br>
-      + <span id="filing_state" style="text-transform: uppercase;"></span> State Tax: {{ stateIncomeTax }} <span id="stateIncomeTax"></span><br> //mapGetters
-      + Federal Income Tax: <span id="federalIncomeTax">{{ federalIncomeTax }} </span><br>
-      <strong> Total Tax Balance: <span id="taxBalance" class="negativeNumber"></span></strong>
-      (Effective Tax Rate: <span class="assistText" id="effectiveTaxRate"> {{ effectiveTaxRate }} </span>%)
+      + Business <span style="text-transform: uppercase;">{{ filing_state }}</span> Income Tax: {{ stateIncomeTax }} <br>
+      + Business Federal Income Tax: {{ federalIncomeTax }}<br>
+      + Personal Federal Income Tax: {{ w2Tax }} <br>
+      <strong> Total Tax Balance: <span class="negativeNumber">{{ taxBalance }}</span></strong>
+      (Effective Tax Rate: <span class="assistText" id="effectiveTaxRate"> {{ effectiveTaxRate }}</span>%)
     </div>
   </div>
 
@@ -58,21 +59,22 @@ export default {
   name: "Results",
   computed: {
     ...Vuex.mapState('userInformation', {
+      businessName: state => state.userInput.business_name,
+      name: state => state.userInput.first_name + "'s",
       qbiDeduction: state => state.taxUpdate.qbiDeduction,
       expenses: state => state.userInput.expenses,
       income: state => state.userInput.income,
+      filing_state: state => state.userInput.tax_filing_state,
       medicareTax: state => state.taxUpdate.medicareTax,
       socialSecurityTax: state => state.taxUpdate.socialSecurityTax,
       selfEmploymentTax: state => state.taxUpdate.selfEmploymentTax,
       stateIncomeTax: state => state.taxUpdate.stateIncomeTax,
       federalIncomeTax: state => state.taxUpdate.federalIncomeTax,
-      effectiveTaxRate: state => state.taxUpdate.effectiveTaxRate,
+      effectiveTaxRate: state => state.taxUpdate.effectiveTaxRate * 100,
     }),
     ...Vuex.mapGetters('userInformation', [
-      'totalIncome', 'profitAfterExpenses'
+      'totalIncome', 'profitAfterExpenses', 'w2Tax', 'taxBalance', 'profitAfterTaxes',
     ]),
-
-
   }
 } // using computed since the data is reactive and will not change even if refreshed
 </script>
