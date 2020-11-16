@@ -107,6 +107,7 @@
     html {
       font-size: 50%;
     }
+    
   }
   
   @media only screen and (max-width: 1130px) {
@@ -116,7 +117,8 @@
     .content button {
         padding: 0.5rem 2rem;
         font-size: 2.4rem;
-      }
+    }
+    
   }
   
   @media only screen and (max-width: 1080px) {
@@ -140,13 +142,13 @@
   
   @media only screen and (max-width: 880px) {
     html {
-      font-size: 40%;
+      font-size: 42%;
     }
   }
   
-  @media only screen and (max-width: 780px) {
+  @media only screen and (max-width: 805px) {
     .content .heading {
-      font-size: 5.4rem;
+      font-size: 5rem;
     }
   }
   
@@ -168,7 +170,8 @@
     .content {
       display: flex;
       justify-content: flex-start;
-      padding-top: 0;
+      align-items: center;
+      padding-top: 2.5rem;
     }
     .content .heading {
       line-height: 45px;
@@ -192,7 +195,15 @@
         padding: 0rem 2rem;
         font-size: 2rem;
     }
+    .content{
+      align-items: unset;
+    }
    
+  }
+  @media only screen and (max-width: 500px) {
+    .content{
+      padding-top: 0rem;
+    }
   }
   
   @media only screen and (max-width: 430px) {
@@ -235,11 +246,11 @@
        align-items: flex-start;
     }
     .content .para{
-        padding-top: 3rem !important;
+        padding-top: 8rem !important;
     }
   
   }
-  @media only screen and (max-width: 320px) {
+  @media only screen and (max-width: 330px) {
 
     .content .heading {
       font-size: 3rem;
@@ -247,7 +258,13 @@
     .content {
        display: flex;
        align-items: flex-start;
+       
     }
+    .content .para{
+      padding: 0rem !important;
+      font-size: 12.5px;
+  }
+
   }
   
   
