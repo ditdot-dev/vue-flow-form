@@ -22,8 +22,9 @@ const userInformation = {
   },
   getters: {
     totalIncome: state => {
-      if (state.userInput.salary === 'undefined') {
+      let totalIncome;
         let totalIncome = parseInt(state.userInput.income)
+        if (state.userInput.salary === 'undefined') {
         return totalIncome
       } else {
         let totalIncome = parseInt(state.userInput.income) + parseInt(state.userInput.salary)
