@@ -136,6 +136,7 @@
     components: {
       FlowFormQuestion
     },
+    
     props: {
       questions: Array,
       language: {
@@ -154,61 +155,45 @@
         type: Boolean,
         default: false
       },
-      timerStartOnStep: {
-        type: [String, Number],
-        default: '1'
-      },
-      timerStopOnStep: {
-        type: [String, Number],
-        default: '3'
-      }
+      timerStartStep: [String, Number],
+      timerStopStep: [String, Number]
     },
+
     mixins: [
       IsMobile,
     ],
+
     data() {
       return {
         completed: false,
         submitted: false,
         activeQuestionIndex: 0,
-        activeQuestionId:'',
         questionList: [],
         questionListActivePath: [],
         reverse: false,
         timerOn: false,
-        interval: null,
-        time: 0,
+        timerInterval: null,
+        time: 0
+      }
+    },
 
-      }
-    },
-    watch: {
-      completed() {
-        this.emitComplete()
-      },
-      submitted() {
-        this.stopTimer()
-      }
-    },
     mounted() {
       document.addEventListener('keydown', this.onKeyDownListener)
       document.addEventListener('keyup', this.onKeyUpListener, true)
       window.addEventListener('beforeunload', this.onBeforeUnload)
 
       this.setQuestions()
-
-      if(!this.timerStartOnStep){
-        this.toggleTimer()
-      }
+      this.checkTimer()
     },
+
     beforeDestroy() {
       document.removeEventListener('keydown', this.onKeyDownListener)
       document.removeEventListener('keyup', this.onKeyUpListener, true)
       window.removeEventListener('beforeunload', this.onBeforeUnload)
       
-      if(!this.timerStopOnStep){
-        this.toggleTimer()
-      }
+      this.stopTimer()
     },
+
     computed: {
       numActiveQuestions() {
         return this.questionListActivePath.length
@@ -216,6 +201,20 @@
 
       activeQuestion() {
         return this.questionListActivePath[this.activeQuestionIndex]
+      },
+
+      activeQuestionId() {
+        const question = this.questions[this.activeQuestionIndex]
+
+        if (this.isOnLastStep) {
+          return '_submit'
+        }
+
+        if (question && question.id) {
+          return question.id
+        }
+
+        return null
       },
 
       numCompletedQuestions() {
@@ -242,35 +241,31 @@
         return this.activeQuestionIndex === this.questionListActivePath.length
       }, 
 
-      isOnStartStep() {
-        if (this.activeQuestionIndex == this.timerStartOnStep) {
-          return true 
+      isOnTimerStartStep() {
+        if (this.activeQuestionId === this.timerStartStep) {
+          return true
         }
 
-        if (this.activeQuestionId == this.timerStartOnStep) {
-          return true 
+        if (!this.timerOn && !this.timerStartStep && this.activeQuestionIndex === 0) {
+          return true
         }
+
+        return false
       },
 
-      isOnStopStep() {
-    
-        if (this.isOnLastStep || this.activeQuestionId == '_submit'){
-          if(this.submitted){
-            return true
-          return true 
-            return true
-          }
-        } 
-
-        else if (this.activeQuestionIndex == this.timerStopOnStep) {
+      isOnTimerStopStep() {
+        if (this.submitted) {
+          return true
+        }
+        
+        if (this.activeQuestionId === this.timerStopStep) {
           return true 
         }
 
-        else if (this.activeQuestionId == this.timerStopOnStep) {
-          return true 
-        }
+        return false
       }
     },
+
     methods: {
       /**
        * Returns currently active question component (if any).
@@ -379,7 +374,6 @@
           return
         }
 
-
         if (e.shiftKey) {
           e.stopPropagation()
           e.preventDefault()
@@ -484,8 +478,7 @@
          
           this.$nextTick(() => {
             this.setQuestions()
-            this.getActiveId()
-            this.toggleTimerOnStep()
+            this.checkTimer()
             // Nested $nextTick so we're 100% sure that setQuestions
             // actually updated the question array
             this.$nextTick(() => {
@@ -515,13 +508,15 @@
         this.blurFocus()
     
         if (this.activeQuestionIndex > 0 && !this.submitted) {
+          if (this.isOnTimerStopStep) {
+            this.startTimer()
+          }
+
           --this.activeQuestionIndex
 
           this.reverse = true
 
-        if(this.reverse && !this.timerOn) {
-          this.startTimer()
-          }
+          this.checkTimer()
         }
       },
 
@@ -544,29 +539,39 @@
         document.activeElement && document.activeElement.blur && document.activeElement.blur()
       },
 
-      toggleTimer() {
-      this.timerOn? this.stopTimer() : this.startTimer()   
+      checkTimer() {
+        if (this.timer) {
+          if (this.isOnTimerStartStep) {
+            this.startTimer()
+          } else if (this.isOnTimerStopStep) {
+            this.stopTimer()
+          }
+        }
       },
 
       startTimer() {
-        this.interval = setInterval(this.incrementTime, 1000)
-        this.timerOn = true
+        if (this.timer && !this.timerOn) {
+          this.timerInterval = setInterval(this.incrementTime, 1000)
+          this.timerOn = true
+        }
       },
 
       stopTimer() {
-        if (this.interval) {
-          clearInterval(this.interval)
+        if (this.timerOn) {
+          clearInterval(this.timerInterval)
         }
+
         this.timerOn = false
       },
 
       incrementTime() {
-        this.time = (parseInt(this.time) + 1)
+        ++this.time
       },
 
       formatTime(seconds) {
-        let startIndex = 14,
-            length = 5
+        let
+          startIndex = 14,
+          length = 5
             
         if (seconds >= 60 * 60) {
           startIndex = 11
@@ -574,40 +579,19 @@
         }
 
         return new Date(1000 * seconds).toISOString().substr(startIndex, length)
+      }
+    },
+
+    watch: {
+      completed() {
+        this.emitComplete()
       },
       
-      toggleTimerOnStep() {
-        if (this.isOnStartStep || this.isOnStopStep) {
-            this.toggleTimer()
-          }
-      },
-
-      getActiveId() {
-          let question = this.questions[this.activeQuestionIndex]
-
-          if (this.isOnLastStep) {
-            this.activeQuestionId = '_submit'
-            return
-          }
-
-          if (question && question.id) {
-            this.activeQuestionId = question.id
-          }
-      },
-
-      validateTimer() {
-        if (typeof this.timerStartOnStep == 'number' && typeof this.timerStopOnStep == 'number') {
-     
-          if (this.activeQuestionIndex > this.timerStartOnStep && this.activeQuestionIndex < this.timerStopOnStep) {
-            return true
-          }
-
-        return false
+      submitted() {
+        this.stopTimer()
       }
-     
     }
   }
-}
 </script>
 
 <style lang="css">
