@@ -315,13 +315,13 @@ export default {
           id: "tax_filing_status",
           tagline: "About You",
           title: "What is your tax filing status?",
-          answerMessage: "Great!",
+          answerMessage: "Next let's move onto your business!",
           type: QuestionType.Dropdown,
           multiple: false,
           placeholder: "Select status",
           inline: false,
           required: true,
-          tooltip: "This information is used to identify your household tax deductions. Please put your marital status as recognized by the IRS.",
+          tooltip: "This information is used to identify your household tax deductions (standard, not itemized). Please put your marital status as recognized by the IRS.",
           options: [
             new ChoiceOption({
               label: "Single",
@@ -338,6 +338,10 @@ export default {
             new ChoiceOption({
               label: "Married Filing Separately",
               value: "marriedFilingSeparately",
+            }),
+            new ChoiceOption({
+              label: "Qualifying Widow(er) with a Dependent Child",
+              value: "married",
             }),
           ],
         }),
