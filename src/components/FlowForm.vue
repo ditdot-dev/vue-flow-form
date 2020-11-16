@@ -596,17 +596,18 @@
       },
 
       validateTimer() {
-        if(typeof this.timerStartOnStep == 'number' && typeof this.timerStopOnStep == 'number')
+        if (typeof this.timerStartOnStep == 'number' && typeof this.timerStopOnStep == 'number') {
      
-        if (this.activeQuestionIndex > this.timerStartOnStep && this.activeQuestionIndex < this.timerStopOnStep) {
-          return true
-        }
+          if (this.activeQuestionIndex > this.timerStartOnStep && this.activeQuestionIndex < this.timerStopOnStep) {
+            return true
+          }
 
         return false
       }
      
     }
   }
+}
 </script>
 
 <style lang="css">
