@@ -156,11 +156,11 @@
       },
       timerStartOnStep: {
         type: [String, Number],
-        default: 0
+        default: 'email'
       },
       timerStopOnStep: {
         type: [String, Number],
-        default: '_submit'
+        default: 'movies'
       }
     },
     mixins: [
@@ -185,6 +185,9 @@
       completed() {
         this.emitComplete()
       },
+      submitted() {
+        this.stopTimer()
+      }
     },
     mounted() {
       document.addEventListener('keydown', this.onKeyDownListener)
@@ -250,18 +253,22 @@
       },
 
       isOnStopStep() {
-        if (this.isOnLastStep || (this.activeQuestionId == '_submit')) {
+    
+        if (this.isOnLastStep || this.activeQuestionId == '_submit'){
+          if(this.submitted){
+            return true
           return true 
-        }
-        
-        if (this.activeQuestionIndex == this.timerStopOnStep) {
+            return true
+          }
+        } 
+
+        else if (this.activeQuestionIndex == this.timerStopOnStep) {
           return true 
         }
 
-        if (this.activeQuestionId == this.timerStopOnStep) {
+        else if (this.activeQuestionId == this.timerStopOnStep) {
           return true 
         }
-
       }
     },
     methods: {
