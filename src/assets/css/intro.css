@@ -46,6 +46,7 @@
     grid-area: main;
     background: linear-gradient(180deg, #d6ffec 50%, white 50%);
     display: grid;
+    height: 100vh;
     grid-template-columns: 10fr 45fr 30fr 5fr;
     grid-template-rows: 100%;
     grid-template-areas: ". content image .";
@@ -61,7 +62,7 @@
   .content .heading {
     font-size: 6rem;
     font-family: var(--para-font);
-    padding-bottom: 30px;
+    padding-bottom: 25px;
     line-height: 66px;
     font-weight: var(--semi-bold-font);
   }
@@ -69,19 +70,19 @@
   .content .para {
     font-size: 2.8rem;
     font-family: var(--para-font);
-    padding-bottom: 5px;
+    padding-bottom: 1px;
     line-height: 35.07px;
     font-weight: 600;
   }
   
   .content button {
     background-color: #f07f62;
-    padding: 1rem 2rem;
+    padding: 0.5rem 2rem;
     border-radius: 35px;
     color: white;
     font-size: 3rem;
     letter-spacing: 0.3px;
-    line-height: 38px;
+    line-height: 35px;
     margin: 0 0 1rem 0;
     font-family: var(--para-font);
     font-weight: var(--semi-bold-font);
