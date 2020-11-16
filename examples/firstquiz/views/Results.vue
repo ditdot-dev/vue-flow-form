@@ -53,7 +53,6 @@
 <script>
 import Vue from "vue";
 import Vuex from "vuex";
-import * as MoveObjects from "../../../src/models/MoveObjects";
 
 export default {
   name: "Results",

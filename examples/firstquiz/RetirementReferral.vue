@@ -51,7 +51,6 @@ import LanguageModel from "../../src/models/LanguageModel";
 import Vuex from "vuex";
 import * as SMETaxCalculations from "../../src/models/SMETaxCalculations";
 import * as taxApi from "../../src/models/TaxApi";
-import * as MoveObjects from "../../src/models/MoveObjects";
 export default {
   name: "RetirementReferral",
   components: {
@@ -63,7 +62,7 @@ export default {
       completed: false,
       language: new LanguageModel(),
       questions: [
-        new QuestionModel({
+        /* new QuestionModel({
           answerMessage: "Hello!",
           tagline: "About You",
           id: "first_name",
@@ -71,8 +70,8 @@ export default {
           type: QuestionType.Text,
           required: true,
           tooltip: "This tooltip is available on every question to explain why the question is asked. In this case, your name is used to help personalize the results later.",
-        }),
-        /* new QuestionModel({
+        }), */
+        new QuestionModel({
           answerMessage: "That's great age to be!",
           tagline: "About You",
           id: "age",
@@ -83,7 +82,7 @@ export default {
           placeholder: 'Type a number here...',
           tooltip: "This information is used to calculate your potential retirement earnings at age 67. Please put your current age, or the age you will be after December 31, 2020.",
         }),
-        new QuestionModel({
+        /* new QuestionModel({
           id: "dependents",
           answerMessage: "Great!",
           tagline: "About You",
@@ -93,7 +92,7 @@ export default {
           mask: "#",
           placeholder: 'Type a number here...',
           tooltip: "This information is used to add up the tax deductions available to you. Put the number of individuals who are dependent on your income.",
-        }), */
+        }),
         new QuestionModel({
           id: "tax_filing_state",
           tagline: "About You",
@@ -311,8 +310,8 @@ export default {
               value: "wy"
             }),
           ],
-        }),
-        /* new QuestionModel({
+        }),*/
+        new QuestionModel({
           id: "tax_filing_status",
           tagline: "About You",
           title: "What is your tax filing status?",
@@ -342,7 +341,7 @@ export default {
             }),
           ],
         }),
-        new QuestionModel({
+        /*new QuestionModel({
           id: "business_name",
           tagline: "About Your Business",
           title: "What is your business name?",
@@ -352,7 +351,7 @@ export default {
           helpTextShow: false,
           placeholder: "The name of my business is...",
           tooltip: "This information is used so we can identify your work by the name you refer to it by. This can be your Doing Business As (DBA) or your full name if you have not incorporated the business in any form.",
-        }), */
+        }),
         new QuestionModel({
           id: "entity",
           tagline: "About Your Business",
@@ -381,7 +380,7 @@ export default {
               value: "llc",
             }),
           ],
-        }),
+        }), */
         new QuestionModel({
           id: "salary",
           tagline: "About Your Business",
@@ -475,17 +474,12 @@ export default {
       await this.formatData()
       console.log(userInput)
       await this.$store.commit('userInformation/entry', userInput)
-
       window.incomeData = taxApi.taxData()
+
+      /* Run taxApi and put the outputs into an object in Vuex store */
       await taxApi.postTaxData(incomeData)
       console.log(taxUpdate)
       await this.$store.commit('userInformation/results', taxUpdate.data)
-
-      /* Put the data outputs into an object */
-      await MoveObjects.storeResults()
-
-      /* Translate the object with outputs into Results.vue */
-
     },
 
     getData() {
