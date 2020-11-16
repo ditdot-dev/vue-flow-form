@@ -164,8 +164,12 @@
         } else {
           this.dataValue = option.selected ? option.choiceValue() : null
         }
-
+      
         this.setAnswer(this.dataValue)
+        
+        if (this.isValid() && this.question.nextStepOnAnswer && !this.question.multiple) {
+          setTimeout(() => this.$emit('next'), 500)
+        }
       },
 
       _removeAnswer(value) {
