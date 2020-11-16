@@ -156,11 +156,11 @@
       },
       timerStartOnStep: {
         type: [String, Number],
-        default: 'email'
+        default: '1'
       },
       timerStopOnStep: {
         type: [String, Number],
-        default: 'movies'
+        default: '3'
       }
     },
     mixins: [
@@ -544,8 +544,8 @@
         document.activeElement && document.activeElement.blur && document.activeElement.blur()
       },
 
-      toggleTimer(timer) {
-      timer? this.stopTimer() : this.startTimer()   
+      toggleTimer() {
+      this.timerOn? this.stopTimer() : this.startTimer()   
       },
 
       startTimer() {
@@ -578,7 +578,7 @@
       
       toggleTimerOnStep() {
         if (this.isOnStartStep || this.isOnStopStep) {
-            this.toggleTimer(this.timerOn)
+            this.toggleTimer()
           }
       },
 
@@ -594,6 +594,16 @@
             this.activeQuestionId = question.id
           }
       },
+
+      validateTimer() {
+        if(typeof this.timerStartOnStep == 'number' && typeof this.timerStopOnStep == 'number')
+     
+        if (this.activeQuestionIndex > this.timerStartOnStep && this.activeQuestionIndex < this.timerStopOnStep) {
+          return true
+        }
+
+        return false
+      }
      
     }
   }
