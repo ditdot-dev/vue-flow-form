@@ -177,13 +177,14 @@
         reverse: false,
         timerOn: false,
         interval: null,
-        time: 0
+        time: 0,
+
       }
     },
     watch: {
       completed() {
         this.emitComplete()
-      }
+      },
     },
     mounted() {
       document.addEventListener('keydown', this.onKeyDownListener)
@@ -249,6 +250,10 @@
       },
 
       isOnStopStep() {
+        if (this.isOnLastStep || (this.activeQuestionId == '_submit')) {
+          return true 
+        }
+        
         if (this.activeQuestionIndex == this.timerStopOnStep) {
           return true 
         }
@@ -256,6 +261,7 @@
         if (this.activeQuestionId == this.timerStopOnStep) {
           return true 
         }
+
       }
     },
     methods: {
@@ -471,7 +477,7 @@
          
           this.$nextTick(() => {
             this.setQuestions()
-            this.setActiveId()
+            this.getActiveId()
             this.toggleTimerOnStep()
             // Nested $nextTick so we're 100% sure that setQuestions
             // actually updated the question array
@@ -500,11 +506,15 @@
        */
       goToPreviousQuestion() {
         this.blurFocus()
-
+    
         if (this.activeQuestionIndex > 0 && !this.submitted) {
           --this.activeQuestionIndex
 
           this.reverse = true
+
+        if(this.reverse && !this.timerOn) {
+          this.startTimer()
+          }
         }
       },
 
@@ -527,16 +537,20 @@
         document.activeElement && document.activeElement.blur && document.activeElement.blur()
       },
 
-      toggleTimer() {
-        if (!this.timerOn) {
-          this.interval = setInterval(this.incrementTime, 1000)
-          this.timerOn = true
-        } else {
-            if (this.interval) {
-            clearInterval(this.interval)
-          }
-          this.timerOn = false
+      toggleTimer(timer) {
+      timer? this.stopTimer() : this.startTimer()   
+      },
+
+      startTimer() {
+        this.interval = setInterval(this.incrementTime, 1000)
+        this.timerOn = true
+      },
+
+      stopTimer() {
+        if (this.interval) {
+          clearInterval(this.interval)
         }
+        this.timerOn = false
       },
 
       incrementTime() {
@@ -544,18 +558,24 @@
       },
 
       formatTime(seconds) {
-        return seconds > 3600? 
-          new Date(1000 * seconds).toISOString().substr(11, 8): 
-          new Date(1000 * seconds).toISOString().substr(14, 5)
+        let startIndex = 14,
+            length = 5
+            
+        if (seconds >= 60 * 60) {
+          startIndex = 11
+          length = 8
+        }
+
+        return new Date(1000 * seconds).toISOString().substr(startIndex, length)
       },
       
       toggleTimerOnStep() {
         if (this.isOnStartStep || this.isOnStopStep) {
-            this.toggleTimer()
+            this.toggleTimer(this.timerOn)
           }
       },
 
-      setActiveId() {
+      getActiveId() {
           let question = this.questions[this.activeQuestionIndex]
 
           if (this.isOnLastStep) {
