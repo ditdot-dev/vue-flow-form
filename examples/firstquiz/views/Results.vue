@@ -9,8 +9,8 @@
   <span class="positiveNumber">{{ qbiDeduction }}</span>
   <span class="info-icon-1">i</span>
   <div class="subtitle"> How much taxes you owe in 2020 </div>
-  <span class="negativeNumber">{{ taxBalance }}</span> <button> //mapGetters
-    <router-link to="/retirement-options">Let’s lower this with an retirement account!</router-link>
+  <span class="negativeNumber">{{ taxBalance }}</span> <button>
+    <router-link to="/retirement-options">Click here to see how much you can lower taxes with different retirement accounts</router-link>
   </button><br>
 
 
@@ -42,7 +42,7 @@
       + Business <span style="text-transform: uppercase;">{{ filing_state }}</span> Income Tax: {{ stateIncomeTax }} <br>
       + Business Federal Income Tax: {{ federalIncomeTax }}<br>
       + Personal Federal Income Tax: {{ w2Tax }} <br>
-      <strong> Total Tax Balance: <span class="negativeNumber">{{ taxBalance }}</span></strong>
+      <strong> Total Tax Balance: <span class="negativeNumber">{{ taxBalance }}</span></strong><br>
       (Effective Tax Rate: <span class="assistText" id="effectiveTaxRate"> {{ effectiveTaxRate }}</span>%)
     </div>
   </div>
