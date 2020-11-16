@@ -74,10 +74,8 @@
         if (value) {
           this.addKeyListener()
 
-          if (this.question.multiple) {
-            if (this.question.answered) {
-              this.enterPressed = false
-            }
+          if (this.question.multiple && this.question.answered) {
+            this.enterPressed = false
           }
         } else {
           this.removeKeyListener()
