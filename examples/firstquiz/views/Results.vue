@@ -5,8 +5,8 @@
   <h4> {{ name }} {{ businessName }} Tax Results </h4>
   <div class="subtitle"> What’s yours after taxes </div>
   <span class="positiveNumber"> {{ profitAfterTaxes }}</span> // mapGetters
-  <div class="subtitle"> Amount of business deductions you qualify for </div>
-  <span class="positiveNumber">{{ qbiDeduction }}</span>
+  <div class="subtitle"> Amount of deductions you qualify for </div>
+  <span class="positiveNumber">{{ totalDeduction }}</span>
   <span class="info-icon-1">i</span>
   <div class="subtitle"> How much est. taxes you owe in 2020 </div>
   <span class="negativeNumber">{{ taxBalance }}</span> <button>
@@ -70,10 +70,10 @@ export default {
       selfEmploymentTax: state => state.taxUpdate.selfEmploymentTax,
       stateIncomeTax: state => state.taxUpdate.stateIncomeTax,
       federalIncomeTax: state => state.taxUpdate.federalIncomeTax,
-      effectiveTaxRate: state => state.taxUpdate.effectiveTaxRate * 100,
+      effectiveTaxRate: state => state.taxUpdate.smartTaxRate * 100,
     }),
     ...Vuex.mapGetters('userInformation', [
-      'totalIncome', 'profitAfterExpenses', 'w2Tax', 'taxBalance', 'profitAfterTaxes',
+      'totalDeduction', 'totalIncome', 'profitAfterExpenses', 'w2Tax', 'taxBalance', 'profitAfterTaxes',
     ]),
   }
 } // using computed since the data is reactive and will not change even if refreshed
