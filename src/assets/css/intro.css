@@ -200,11 +200,7 @@
     }
    
   }
-  @media only screen and (max-width: 500px) {
-    .content{
-      padding-top: 0rem;
-    }
-  }
+
   
   @media only screen and (max-width: 430px) {
 
@@ -222,6 +218,9 @@
     }
     .content button {
       font-size: 2rem;
+    }
+    .content{
+      padding-top: 0rem;
     }
   }
   

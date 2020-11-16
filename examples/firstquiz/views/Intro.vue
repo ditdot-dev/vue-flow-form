@@ -19,7 +19,7 @@
           will never sell your data.
         </p>
         <router-link to="/input"
-          ><button><p>GET STARTED!</p></button></router-link
+          ><button>GET STARTED!</button></router-link
         >
       </div>
       <div class="image">
