@@ -1,64 +1,53 @@
-
-import Vue from 'vue'
+import Vue from "vue";
 import VueRouter from "vue-router";
-import '@babel/polyfill'
-import 'mutationobserver-shim'
-import '../../src/plugins/bootstrap-vue'
-import RetirementReferral from './RetirementReferral.vue'
-import Intro from './views/Intro.vue';
-import Main from './views/Main.vue';
-import Results from './views/Results.vue';
-import RetirementOptions from './views/RetirementOptions.vue';
+import "@babel/polyfill";
+import "mutationobserver-shim";
+import "../../src/plugins/bootstrap-vue";
+import RetirementReferral from "./RetirementReferral.vue";
+import Intro from "./views/Intro.vue";
+import Main from "./views/Main.vue";
+import Results from "./views/Results.vue";
+import RetirementOptions from "./views/RetirementOptions.vue";
 import VTooltip from "v-tooltip";
-import Vuex from 'vuex'
+import Vuex from "vuex";
+import store from "../../src/store";
 
-Vue.use(Vuex)
-Vue.use(VueRouter)
-
-const store = new Vuex.Store({
-  state: {
-      count: 1
-  },
-  mutations: {
-
-  }
-})
+Vue.use(VueRouter);
 
 const routes = [
-{
-  path: "/",
-  name: "Intro",
-  component: Intro
-},
-{
-  path: "/input",
-  name: "input",
-  component: RetirementReferral
-},
-{
-  path: "/results",
-  name: "results",
-  component: Results
-},
-{
-  path: "/retirement-options",
-  name: "retirement options",
-  component: RetirementOptions
-}
-]
+  {
+    path: "/",
+    name: "Intro",
+    component: Intro
+  },
+  {
+    path: "/input",
+    name: "input",
+    component: RetirementReferral
+  },
+  {
+    path: "/results",
+    name: "results",
+    component: Results
+  },
+  {
+    path: "/retirement-options",
+    name: "retirement options",
+    component: RetirementOptions
+  }
+];
 
 const router = new VueRouter({
-    base: '/',
-    routes
-    })
+  base: "/",
+  routes
+});
 
 Vue.use(VTooltip, {
-  defaultTrigger: window.innerWidth > 768 ? 'hover focus click' : 'click'
-  })
+  defaultTrigger: window.innerWidth > 768 ? "hover focus click" : "click"
+});
 
 var app = new Vue({
   router,
   store,
-  render: h => h(Main),
-  })
-  .$mount('#app')
+  render: h => h(Main)
+}).$mount("#app");

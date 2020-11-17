@@ -1,46 +1,49 @@
 /* will need to define css information for positiveNumber, negativeNumber, assistText, subtitle */
-/* will need to write the Profit After Expenses function */
+/* next step is to define all the mapState, then do all the mapGetters for the simple calc such as totalIncome */
 <template>
 <div>
-  <h4> Your Results </h4>
+  <h4> {{ name }} {{ businessName }} Tax Results </h4>
   <div class="subtitle"> What’s yours after taxes </div>
-  <span id="profitAfterTaxes" class="positiveNumber"></span>
-  <div class="subtitle"> Amount of business deductions you qualify for </div>
-  <span id="qbiDeduction" class="positiveNumber"></span>
-  <div class="subtitle"> How much taxes you owe in 2020 </div>
-  <span id="taxBalance" class="negativeNumber"></span> <button>
-    <router-link to="/retirement-options">Let’s lower this with an retirement account!</router-link>
+  <span class="positiveNumber"> {{ profitAfterTaxes }}</span> // mapGetters
+  <div class="subtitle"> Amount of deductions you qualify for </div>
+  <span class="positiveNumber">{{ totalDeduction }}</span>
+  <span class="info-icon-1">i</span>
+  <div class="subtitle"> How much est. taxes you owe in 2020 </div>
+  <span class="negativeNumber">{{ taxBalance }}</span> <button>
+    <router-link to="/retirement-options">Click here to see how much you can lower taxes with different retirement accounts</router-link>
   </button><br>
 
 
   <br>
   <div class="subtitle"> Tax Breakdown for Year 2020 (in USD) </div>
 
-  <div class="row">
+  <div class="row" id="app">
     <div class="col-lg-6 pr-5 mb-5 mb-lg-0">
-      Total Income: <span id="income"></span><br>
+      Total Income: {{ totalIncome }} <br>
       <div class="assistText">(Business + Personal Income)</div>
-      - Expenses: <span id="expenses"></span><br>
-      <strong> Profit after Expenses: <span class="positiveNumber" id="profitAfterExpenses"></span></strong>
+      - Expenses: {{ expenses }}<br>
+      <strong> Profit after Expenses: <span class="positiveNumber">{{ profitAfterExpenses }}</span></strong>
     </div>
     <div class="col-lg-6 pr-5 mb-5 mb-lg-0">
-      Medicare: <span id="medicareTax"></span><br>
-      + Social Security: <span id="socialSecurityTax"></span><br>
-      <strong> Self Employment Tax: <span class="negativeNumber" id="selfEmploymentTax"></span></strong>
+      Medicare: {{ medicareTax }}<br>
+      + Social Security: {{ socialSecurityTax }}<br>
+      <strong> Self Employment Tax: <span class="negativeNumber"> {{ selfEmploymentTax }}</span></strong>
     </div>
   </div>
 
   <div class="row">
     <div class="col-lg-6 pr-5 mb-5 mb-lg-0">
-      Profit after Expenses: <span id="profitAfterExpenses"></span><br>
-      - Total Tax Balance: <span id="taxBalance"></span><br>
-      <strong> Profit After Taxes: <span class="positiveNumber" id="profitAfterTaxes"></span></strong>
+      Profit after Expenses: {{ profitAfterExpenses }} <br>
+      - Total Tax Balance: {{ taxBalance }} <br>
+      <strong> Profit After Taxes: <span class="positiveNumber">{{ profitAfterTaxes }}</span></strong>
     </div>
     <div class="col-lg-6 pr-5 mb-5 mb-lg-0">
-      Self Employment Tax: <span class="negativeNumber" id="selfEmploymentTax"></span><br>
-      + <span id="filing_state" style="text-transform: uppercase;"></span> State Tax: <span id="stateIncomeTax"></span><br>
-      + Federal Income Tax: <span id="federalIncomeTax"></span><br>
-      <strong> Total Tax Balance: <span id="taxBalance" class="negativeNumber"></span></strong>
+      Self Employment Tax: {{ selfEmploymentTax }} <br>
+      + Business <span style="text-transform: uppercase;">{{ filing_state }}</span> Income Tax: {{ stateIncomeTax }} <br>
+      + Business Federal Income Tax: {{ federalIncomeTax }}<br>
+      + Personal Federal Income Tax: {{ w2Tax }} <br>
+      <strong> Total Tax Balance: <span class="negativeNumber">{{ taxBalance }}</span></strong><br>
+      (Effective Tax Rate: <span class="assistText" id="effectiveTaxRate"> {{ effectiveTaxRate }}</span>%)
     </div>
   </div>
 
@@ -48,6 +51,31 @@
 </template>
 
 <script>
+import Vue from "vue";
+import Vuex from "vuex";
+
+export default {
+  name: "Results",
+  computed: {
+    ...Vuex.mapState('userInformation', {
+      businessName: state => state.userInput.business_name,
+      name: state => state.userInput.first_name + "'s",
+      qbiDeduction: state => state.taxUpdate.qbiDeduction,
+      expenses: state => state.userInput.expenses,
+      income: state => state.userInput.income,
+      filing_state: state => state.userInput.tax_filing_state,
+      medicareTax: state => state.taxUpdate.medicareTax,
+      socialSecurityTax: state => state.taxUpdate.socialSecurityTax,
+      selfEmploymentTax: state => state.taxUpdate.selfEmploymentTax,
+      stateIncomeTax: state => state.taxUpdate.stateIncomeTax,
+      federalIncomeTax: state => state.taxUpdate.federalIncomeTax,
+      effectiveTaxRate: state => state.taxUpdate.smartTaxRate * 100,
+    }),
+    ...Vuex.mapGetters('userInformation', [
+      'totalDeduction', 'totalIncome', 'profitAfterExpenses', 'w2Tax', 'taxBalance', 'profitAfterTaxes',
+    ]),
+  }
+} // using computed since the data is reactive and will not change even if refreshed
 </script>
 
 <style>

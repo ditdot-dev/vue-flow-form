@@ -82,6 +82,7 @@
             questions.length === activeQuestionIndex + 1 &&
             activeQuestionComponent() &&
             activeQuestionComponent().showOkButton()
+
           "
         >
           <router-link to="/results">
