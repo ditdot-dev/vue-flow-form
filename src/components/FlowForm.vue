@@ -60,7 +60,7 @@
           </div>
           {{ language.percentCompleted.replace(':percent', percentCompleted) }}
         </div>
-        <div class="f-nav">
+        <div v-if="navigation" class="f-nav">
           <a
             class="f-prev"
             href="#"
@@ -148,6 +148,10 @@
         default: true
       },
       standalone: {
+        type: Boolean, 
+        default: true
+      },
+      navigation: {
         type: Boolean, 
         default: true
       },
@@ -378,7 +382,9 @@
           e.stopPropagation()
           e.preventDefault()
 
-          this.goToPreviousQuestion()
+          if (this.navigation) {
+            this.goToPreviousQuestion()
+          }
         } else {
           e.preventDefault()
           
