@@ -463,7 +463,6 @@ header.vff-header svg.f-logo {
   display: block;
 }
 
-
 /*
   links
 */
@@ -775,6 +774,7 @@ header.vff-header svg.f-logo {
     opacity: 1;
     transform: none;
   }
+
 }
 
 .vff .f-fade-in-down {
@@ -791,6 +791,7 @@ header.vff-header svg.f-logo {
     opacity: 1;
     transform: none;
   }
+
 }
 
 .vff .f-fade-in-up {
@@ -860,7 +861,7 @@ header.vff-header svg.f-logo {
   .vff input[type=date],
   .vff textarea{
     font-size: .78em;
-}
+  }
   
   .vff .fh2 span.f-sub, 
   .vff .fh2 span.f-tagline{

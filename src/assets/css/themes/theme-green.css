@@ -105,7 +105,6 @@ header.vff-header svg.f-logo {
   font-weight: 300;
 }
 
-
 /*faux input type date placeholder for iOS*/
 .vff.vff-is-ios .field-datetype:not(.f-has-value) .f-answer > span::before{
   color: var(--vff-secondary-text-color);
@@ -273,7 +272,6 @@ header.vff-header svg.f-logo {
   }
 
   /*field-multiplechoicetype*/
-
   .vff ul.f-radios li{
     color: var(--vff-secondary-text-color);
   }
