@@ -90,13 +90,11 @@ const userInformation = {
     }
     },
     taxBalance: (state, getters) => {
-      let taxBalance = parseInt(getters.w2Tax) + parseInt(state.taxUpdate.taxBalance)
-      return taxBalance
+      return taxBalance = parseInt(getters.w2Tax) + parseInt(state.taxUpdate.taxBalance)
     },
     profitAfterTaxes: (state, getters) => {
-      let profitAfterTaxes = parseInt(getters.totalIncome)+parseInt(state.userInput.salary)
+      return profitAfterTaxes = parseInt(getters.totalIncome)+parseInt(state.userInput.salary)
       - parseInt(state.userInput.expenses) - parseInt(getters.taxBalance);
-      return profitAfterTaxes
     },
   }
 };
