@@ -54,11 +54,13 @@
   export default {
     extends: BaseType,
     name: QuestionType.MultipleChoice,
+
     data() {
       return {
         editingOther: false
       }
     },
+
     mounted() {
       if (this.question.multiple) {
         this.dataValue = []
@@ -66,9 +68,11 @@
 
       this.addKeyListener()
     },
+
     beforeDestroy() {
       this.removeKeyListener()
     },
+
     watch: {
       active(value) {
         if (value) {
@@ -82,6 +86,7 @@
         }
       }
     },
+    
     methods: {
       addKeyListener() {
         this.removeKeyListener()
@@ -162,8 +167,12 @@
         } else {
           this.dataValue = option.selected ? option.choiceValue() : null
         }
-
+      
         this.setAnswer(this.dataValue)
+        
+        if (this.isValid() && this.question.nextStepOnAnswer && !this.question.multiple) {
+          setTimeout(() => this.$emit('next'), 350)
+        }
       },
 
       _removeAnswer(value) {

@@ -372,6 +372,10 @@ header.vff-header svg.f-logo {
   font-weight: 900;
 }
 
+.vff .f-other.f-selected .f-label {
+  font-weight: 900;
+}
+
 .vff textarea {
   overflow: auto;
   display: block;
@@ -584,7 +588,7 @@ header.vff-header svg.f-logo {
 }
 
 .vff ul.f-radios li {
-  padding: .58em .68em;
+  padding: .6em .68em;
   margin: .5em 0 .6em;
   font-weight: 300;
   line-height: 1.24;
@@ -645,8 +649,13 @@ header.vff-header svg.f-logo {
 }
 
 .vff-footer .f-progress,
-.vff-footer .f-nav {
+.vff-footer .f-nav,
+.vff-footer .f-timer {
   display: inline-block;
+}
+
+.vff-footer .f-timer {
+  font-family: monospace;
 }
 
 .vff-footer .f-prev,
