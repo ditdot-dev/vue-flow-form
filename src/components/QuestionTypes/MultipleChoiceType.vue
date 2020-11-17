@@ -54,11 +54,13 @@
   export default {
     extends: BaseType,
     name: QuestionType.MultipleChoice,
+
     data() {
       return {
         editingOther: false
       }
     },
+
     mounted() {
       if (this.question.multiple) {
         this.dataValue = []
@@ -66,24 +68,25 @@
 
       this.addKeyListener()
     },
+
     beforeDestroy() {
       this.removeKeyListener()
     },
+
     watch: {
       active(value) {
         if (value) {
           this.addKeyListener()
 
-          if (this.question.multiple) {
-            if (this.question.answered) {
-              this.enterPressed = false
-            }
+          if (this.question.multiple && this.question.answered) {
+            this.enterPressed = false
           }
         } else {
           this.removeKeyListener()
         }
       }
     },
+    
     methods: {
       addKeyListener() {
         this.removeKeyListener()
