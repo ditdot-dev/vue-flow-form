@@ -3,7 +3,7 @@
 <div>
   <h4> {{ name }} {{ businessName }} Tax Results </h4>
   <div class="subtitle"> What’s yours after taxes </div>
-  <span class="positiveNumber"> {{ profitAfterTaxes }}</span> // mapGetters
+  <span class="positiveNumber"> {{ profitAfterTaxes }}</span>
   <div class="subtitle"> Amount of deductions you qualify for </div>
   <span class="positiveNumber">{{ totalDeduction }}</span>
   <span class="info-icon-1">i</span>
