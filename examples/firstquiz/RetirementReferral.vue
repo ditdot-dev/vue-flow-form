@@ -62,7 +62,7 @@ export default {
       completed: false,
       language: new LanguageModel(),
       questions: [
-        /* new QuestionModel({
+        new QuestionModel({
           answerMessage: "Hello!",
           tagline: "About You",
           id: "first_name",
@@ -70,7 +70,7 @@ export default {
           type: QuestionType.Text,
           required: true,
           tooltip: "This tooltip is available on every question to explain why the question is asked. In this case, your name is used to help personalize the results later.",
-        }), */
+        }),
         new QuestionModel({
           answerMessage: "That's great age to be!",
           tagline: "About You",
@@ -82,7 +82,7 @@ export default {
           placeholder: 'Type a number here...',
           tooltip: "This information is used to calculate your potential retirement earnings at age 67. Please put your current age, or the age you will be after December 31, 2020.",
         }),
-        /* new QuestionModel({
+        new QuestionModel({
           id: "dependents",
           answerMessage: "Great!",
           tagline: "About You",
@@ -310,7 +310,7 @@ export default {
               value: "wy"
             }),
           ],
-        }),*/
+        }),
         new QuestionModel({
           id: "tax_filing_status",
           tagline: "About You",
@@ -341,7 +341,7 @@ export default {
             }),
           ],
         }),
-        /*new QuestionModel({
+        new QuestionModel({
           id: "business_name",
           tagline: "About Your Business",
           title: "What is your business name?",
@@ -380,7 +380,7 @@ export default {
               value: "llc",
             }),
           ],
-        }), */
+        }),
         new QuestionModel({
           id: "salary",
           tagline: "About Your Business",
@@ -392,7 +392,7 @@ export default {
           checkbox: false,
           tooltip: "This is the amount that you have set as a “reasonable salary” when you put yourself on payroll as a full-time owner-employee. This will depend on your industry and work performed. We can help you calculate this if you want.",
         }),
-        /* new QuestionModel({
+        new QuestionModel({
           id: "employee_count",
           tagline: "About Your Business",
           title: "How many full-time employees do you have?",
@@ -418,7 +418,7 @@ export default {
               value: "100plus",
             }),
           ],
-        }), */
+        }),
         new QuestionModel({
           id: "expenses",
           tagline: "About Your Business",
