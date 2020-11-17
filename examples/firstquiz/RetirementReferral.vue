@@ -69,7 +69,7 @@ export default {
           title: "What's your first name?",
           type: QuestionType.Text,
           required: true,
-          tooltip: "This tooltip is available on every question to explain why the question is asked. In this case, your name is used to help personalize the results later.",
+          tooltip: "This tooltip is available on every question to explain why the question is asked. In this case, your name is used to help personalize the results later. 😊",
         }),
         new QuestionModel({
           answerMessage: "That's great age to be!",
@@ -315,13 +315,13 @@ export default {
           id: "tax_filing_status",
           tagline: "About You",
           title: "What is your tax filing status?",
-          answerMessage: "Great!",
+          answerMessage: "Next let's move onto your business!",
           type: QuestionType.Dropdown,
           multiple: false,
           placeholder: "Select status",
           inline: false,
           required: true,
-          tooltip: "This information is used to identify your household tax deductions. Please put your marital status as recognized by the IRS.",
+          tooltip: "This information is used to identify your household tax deductions (standard, not itemized). Please put your marital status as recognized by the IRS.",
           options: [
             new ChoiceOption({
               label: "Single",
@@ -338,6 +338,10 @@ export default {
             new ChoiceOption({
               label: "Married Filing Separately",
               value: "marriedFilingSeparately",
+            }),
+            new ChoiceOption({
+              label: "Qualifying Widow(er) with a Dependent Child",
+              value: "married",
             }),
           ],
         }),
@@ -380,6 +384,12 @@ export default {
               value: "llc",
             }),
           ],
+          jump: {
+            llc: "salary",
+            sCorporation: "salary",
+            soleProprietor: "employee_count",
+            partnership: "employee_count"
+          },
         }),
         new QuestionModel({
           id: "salary",
@@ -462,12 +472,12 @@ export default {
     onSubmit(questionList) {
       // This method will only be called if you don't override the
       // completeButton slot.
-      this.onSendData()
+      this.onSendData();
     },
 
     async onSendData() {
-      this.$refs.flowform.submitted = true
-      this.submitted = true
+      this.$refs.flowform.submitted = true;
+      this.submitted = true;
 
       /* Set the data inputs for an object for Track tax api */
       window.data = await this.getData()
@@ -486,14 +496,14 @@ export default {
       window.data = {
         questions: [],
         answers: [],
-        id: []
+        id: [],
       };
 
-      this.questions.forEach(question => {
+      this.questions.forEach((question) => {
         if (question.title) {
-          data.questions.push(question.title)
-          data.answers.push(question.answer)
-          data.id.push(question.id)
+          data.questions.push(question.title);
+          data.answers.push(question.answer);
+          data.id.push(question.id);
         }
       });
       return data
