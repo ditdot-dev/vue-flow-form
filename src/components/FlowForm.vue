@@ -155,7 +155,10 @@
         type: Boolean,
         default: false
       },
-      timerStartStep: [String, Number],
+      timerStartStep: { 
+        type: [String, Number],
+        default: 'html_1'
+      },
       timerStopStep: [String, Number]
     },
 

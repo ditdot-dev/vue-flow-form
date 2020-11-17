@@ -22,6 +22,7 @@
       v-bind:questions="questions"
       v-bind:language="language"
       v-bind:standalone="true"
+      v-bind:timer="true"
     >
     <!-- Custom content for the Complete/Submit screen slots in the FlowForm component -->
       <!-- We've overriden the default "complete" slot content -->
@@ -53,6 +54,7 @@
             v-html="language.formatString(language.pressEnter)">
           </a>
         </div>
+        <p class="text-success" v-if="submitted && timerOn()">Your time: {{ formatTime(getTime()) }}</p>
         <p class="text-success" v-if="submitted && score < 4">"You scored {{ score }} out of {{ total }}. There's a lot of room for improvement."</p>
         <p class="text-success" v-else-if="submitted && score < 7">"You scored {{ score }} out of {{ total }}. Not bad at all!"</p>
         <p class="text-success" v-else-if="submitted && score <= total">"You scored {{ score }} out of {{ total }}. Wow, that's impressive!"</p>
@@ -335,6 +337,18 @@
         
         this.submitted = true
         this.calculateScore()
+      },
+
+      getTime() {
+        return this.$refs.flowform.time
+      },
+
+      timerOn() {
+        return this.$refs.flowform.timer
+      },
+
+      formatTime(seconds) {
+        return this.$refs.flowform.formatTime(seconds)
       }
     },
   }
