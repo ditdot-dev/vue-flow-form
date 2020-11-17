@@ -41,40 +41,7 @@ export async function postTaxData(incomeData){
   window.taxUpdate = await baseTax.json();
   console.log("base tax calculation complete!")
   }
-
 /*
-// due to Track.tax only calculating taxes on the 1099 income portion, we are missing the w2 income taxes in the balance. This is a temporary work around until they release totalTaxBalance in Q1 2021.
-  window.preContributionTaxBalance = parseInt(taxUpdate.data.taxBalance) + parseInt(taxUpdate.data.smartTaxRate * taxUpdate.data.w2Income)
-  window.socialSecurityTax = parseInt(taxUpdate.data.socialSecurityTax);
-  window.medicareTax = parseInt(taxUpdate.data.medicareTax);
-
-// Fill in the amount available for contribution
-  var profitAfterTaxes = parseInt(taxUpdate.data["1099Income"])+parseInt(taxUpdate.data.w2Income)-parseInt(taxUpdate.data.expenseDeduction)-parseInt(taxUpdate.data.taxBalance);
-  document.getElementById("contributionAvailable").innerHTML = "$"+profitAfterTaxes.toLocaleString('en-US')
-  var retirementInput = document.getElementById("retirementSelection").retirement_deduction
-  retirementInput.value = parseInt(profitAfterTaxes*0.1)
-
-  // Fill in the Tax Liability section and fill in with base tax scenario output (taxUpdate)
-  var totalIncome = parseInt(taxUpdate.data["1099Income"])+parseInt(taxUpdate.data.w2Income);
-  var profit = parseInt(taxUpdate.data["1099Income"])+parseInt(taxUpdate.data.w2Income)-parseInt(taxUpdate.data.expenseDeduction);
-    document.getElementById("year").innerHTML = taxUpdate.data.year.toLocaleString('en-US');
-    document.getElementById("income").innerHTML = totalIncome.toLocaleString('en-US');
-    document.getElementById("profit").innerHTML = profit.toLocaleString('en-US');
-    document.getElementById("profitAfterTaxes").innerHTML = profitAfterTaxes.toLocaleString('en-US');
-    retirementSlider.options.max = profitAfterTaxes;
-    retirementSlider.setValue(profitAfterTaxes*0.1);
-    document.getElementById("effectiveTaxRate").innerHTML = (parseFloat(taxUpdate.data.smartTaxRate) * 100).toFixed(2);
-    document.getElementById("selfEmploymentTax").innerHTML = taxUpdate.data.selfEmploymentTax.toLocaleString('en-US');
-    document.getElementById("federalIncomeTax").innerHTML = taxUpdate.data.federalIncomeTax.toLocaleString('en-US');
-    document.getElementById("filing_state").innerHTML = "(" + taxUpdate.data.filingState + ")";
-    document.getElementById("stateIncomeTax").innerHTML = taxUpdate.data.stateIncomeTax.toLocaleString('en-US');
-    // due to Track.tax only calculating taxes on the 1099 income portion, we are missing the w2 income taxes in the balance. This is a temporary work around until they release totalTaxBalance in Q1 2021.
-    document.getElementById("taxBalance").innerHTML = preContributionTaxBalance.toLocaleString('en-US');
-    document.getElementById("medicareTax").innerHTML = taxUpdate.data.medicareTax.toLocaleString('en-US');
-    document.getElementById("socialSecurityTax").innerHTML = taxUpdate.data.socialSecurityTax.toLocaleString('en-US');
-    document.getElementById("qbiDeduction").innerHTML = taxUpdate.data.qbiDeduction.toLocaleString('en-US');
-*/
-
 async function postIraTaxData(iraContribution){
   let iraTax = await (fetch (tax_calculation, {
     headers: {
@@ -142,3 +109,4 @@ async function postIndividual401kTaxData(individual401kContribution){
   window.individual401k_socialSecurityTax = parseInt(taxUpdate3.data.socialSecurityTax);
   window.individual401k_medicareTax = parseInt(taxUpdate3.data.medicareTax);
   }
+*/
