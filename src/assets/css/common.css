@@ -372,6 +372,10 @@ header.vff-header svg.f-logo {
   font-weight: 900;
 }
 
+.vff .f-other.f-selected .f-label {
+  font-weight: 900;
+}
+
 .vff textarea {
   overflow: auto;
   display: block;
