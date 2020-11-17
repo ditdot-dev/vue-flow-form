@@ -220,6 +220,14 @@
           return this.active
         }
 
+        if (this.question.allowOther && this.question.other) {
+          return true
+        }
+
+        if (QuestionType.MultipleChoice && !this.question.multiple && this.question.nextStepOnAnswer) {
+          return false
+        }
+      
         if (!q || !this.dataValue) {
           return false
         }

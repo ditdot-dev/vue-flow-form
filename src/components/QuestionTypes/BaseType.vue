@@ -31,7 +31,7 @@
         allowedChars: null,
         alwaysAllowedKeys: ['ArrowLeft', 'ArrowRight', 'Delete', 'Backspace'],
         focused: false,
-        canReceiveFocus: false,
+        canReceiveFocus: false
       }
     },
     mounted() {
@@ -164,6 +164,11 @@
           if (v.trim) {
             // Don't allow empty strings
             return v.trim().length > 0
+          }
+
+          if (Array.isArray(v)) {
+            // Don't allow empty arrays
+            return v.length > 0
           }
 
           // All other non-null values are allowed to pass through

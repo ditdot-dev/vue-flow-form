@@ -93,6 +93,7 @@ export default class QuestionModel {
     this.descriptionLink = []
     this.min = null
     this.max = null
+    this.nextStepOnAnswer = false
 
     Object.assign(this, options)
 
