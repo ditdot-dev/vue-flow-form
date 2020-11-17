@@ -168,7 +168,7 @@
         this.setAnswer(this.dataValue)
         
         if (this.isValid() && this.question.nextStepOnAnswer && !this.question.multiple) {
-          setTimeout(() => this.$emit('next'), 500)
+          setTimeout(() => this.$emit('next'), 250)
         }
       },
 
