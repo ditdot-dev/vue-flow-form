@@ -410,7 +410,7 @@ export default {
           type: QuestionType.Dropdown,
           multiple: false,
           subtitle: "Do not count yourself or your spouse",
-          placeholder: "0",
+          placeholder: "The number of full-time employees besides me is...",
           inline: false,
           required: true,
           tooltip: "This information is used to determine the type of retirement accounts you are eligible for. Don’t count yourself or your spouse as a full-time employee, or any employees who have ownership stake in the business. If you are not sure, refer to the FAQ for what qualifies as a full-time employee in your state.",
@@ -433,10 +433,11 @@ export default {
           id: "expenses",
           tagline: "About Your Business",
           title: "How much are your business expenses this year?",
+          subtitle: "If you pay yourself a salary, do not count that expense here",
           answerMessage: "That's great!",
           type: QuestionType.Dollar,
           required: true,
-          tooltip: "This is expenses that your business has every year. Please put the amount you forecast the business will spend. This can include office supplies, software subscriptions, work travel and more.",
+          tooltip: "This is the annual expenses for your business to operate. Please put the amount you forecast the business will spend this year. This can include office supplies, rent, software subscriptions, work travel, and more.",
         }),
         new QuestionModel({
           id: "income",
@@ -488,7 +489,7 @@ export default {
 
       /* Run taxApi and put the outputs into an object in Vuex store */
       await taxApi.postTaxData(incomeData)
-      console.log(taxUpdate)
+      console.log(taxUpdate.data)
       await this.$store.commit('userInformation/results', taxUpdate.data)
     },
 

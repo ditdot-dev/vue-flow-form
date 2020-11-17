@@ -72,8 +72,8 @@ export default {
       effectiveTaxRate: state => state.taxUpdate.smartTaxRate * 100,
     }),
     ...Vuex.mapGetters('userInformation', [
-      'totalDeduction', 'totalIncome', 'profitAfterExpenses', 'w2Tax', 'taxBalance', 'profitAfterTaxes',
-    ]),
+      'totalDeduction', 'totalIncome', 'profitAfterExpenses', 'w2Tax',
+    ]), //'taxBalance', 'profitAfterTaxes' <- not working at this time.
   }
 } // using computed since the data is reactive and will not change even if refreshed
 </script>

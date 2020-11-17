@@ -83,17 +83,16 @@ const userInformation = {
       if ( salary === undefined ) {
         w2Tax = 0;
         return w2Tax
-      } else if ( salary > 1 & salary < 40000) {
+      } else if ( salary > 1 || salary < 40000) {
       return w2Tax
-    } else if (salary > 40001 & salary < 80000){
-      return w2Tax
-    }
+    } else if (salary > 40001 || salary < 80000){
+      return w2Tax }
     },
-    taxBalance: (state, getters) => {
-      return taxBalance = parseInt(getters.w2Tax) + parseInt(state.taxUpdate.taxBalance)
+    taxBalance: state => {
+      return taxBalance = parseInt(state.taxUpdate.taxBalance) + 1000;
     },
     profitAfterTaxes: (state, getters) => {
-      return profitAfterTaxes = parseInt(getters.totalIncome)+parseInt(state.userInput.salary)
+      return profitAfterTaxes = parseInt(getters.totalIncome) + parseInt(state.userInput.salary)
       - parseInt(state.userInput.expenses) - parseInt(getters.taxBalance);
     },
   }
