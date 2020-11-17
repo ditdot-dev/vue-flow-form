@@ -90,7 +90,7 @@
         score: 0, 
         total: 8, 
         time: 0,
-        formattedTime: 0,
+        formattedTime: '',
         answers: {
           html_1: ['2', '3'], 
           html_2: 'false', 

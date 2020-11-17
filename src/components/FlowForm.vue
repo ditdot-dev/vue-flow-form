@@ -566,6 +566,7 @@
 
       incrementTime() {
         ++this.time
+        
         this.$emit('timer', this.time, this.formatTime(this.time))
       },
 
