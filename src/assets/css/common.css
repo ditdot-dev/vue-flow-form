@@ -655,6 +655,8 @@ header.vff-header svg.f-logo {
 
 .vff-footer .f-timer {
   font-family: monospace;
+  font-size: 17px;
+  margin-left: .18em;
 }
 
 .vff-footer .f-prev,
@@ -949,6 +951,10 @@ header.vff-header svg.f-logo {
 
   .vff .field-sectionbreaktype p {
     font-size: 1em;
+  }
+
+  .vff-footer .f-timer {
+    font-size: 16px;
   }
 
 }
