@@ -1,5 +1,4 @@
 /* will need to define css information for positiveNumber, negativeNumber, assistText, subtitle */
-/* next step is to define all the mapState, then do all the mapGetters for the simple calc such as totalIncome */
 <template>
 <div>
   <h4> {{ name }} {{ businessName }} Tax Results </h4>
@@ -9,7 +8,7 @@
   <span class="positiveNumber">{{ totalDeduction }}</span>
   <span class="info-icon-1">i</span>
   <div class="subtitle"> How much est. taxes you owe in 2020 </div>
-  <span class="negativeNumber">{{ taxBalance }}</span> <button>
+  <span class="negativeNumber">{{ taxBalance }}</span> <button v-on:click="getTaxSummary">
     <router-link to="/retirement-options">Click here to see how much you can lower taxes with different retirement accounts</router-link>
   </button><br>
 
@@ -56,10 +55,18 @@ import Vuex from "vuex";
 
 export default {
   name: "Results",
+  data() {
+    return {
+      function() {
+        console.log(this.$store)
+      }
+    }
+  },
+  // using computed since the data is reactive and will not change even if refreshed
   computed: {
     ...Vuex.mapState('userInformation', {
-      businessName: state => state.userInput.business_name,
       name: state => state.userInput.first_name + "'s",
+      businessName: state => state.userInput.business_name,
       qbiDeduction: state => state.taxUpdate.qbiDeduction,
       expenses: state => state.userInput.expenses,
       income: state => state.userInput.income,
@@ -69,13 +76,18 @@ export default {
       selfEmploymentTax: state => state.taxUpdate.selfEmploymentTax,
       stateIncomeTax: state => state.taxUpdate.stateIncomeTax,
       federalIncomeTax: state => state.taxUpdate.federalIncomeTax,
-      effectiveTaxRate: state => state.taxUpdate.smartTaxRate * 100,
+      effectiveTaxRate: state => (state.taxUpdate.smartTaxRate * 100).toFixed(2),
     }),
     ...Vuex.mapGetters('userInformation', [
       'totalDeduction', 'totalIncome', 'profitAfterExpenses', 'w2Tax',
-    ]), //'taxBalance', 'profitAfterTaxes' <- not working at this time.
-  }
-} // using computed since the data is reactive and will not change even if refreshed
+    ]), //, 'taxBalance', 'profitAfterTaxes' <- not working at this time.
+  },
+  methods: {
+    ...Vuex.mapActions('calculatorDrag', [
+      'getTaxSummary',
+    ])
+  },
+}
 </script>
 
 <style>

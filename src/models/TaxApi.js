@@ -1,4 +1,4 @@
-// Read the form input to declare tax balances for each Calculator
+import * as store from '../store/index.js'
 
 // api keys need to be moved to environment variables serviced by Netlify build....to be done
 const sandbox_api_user = "https://sandbox-api.track.tax/v2/users/";
@@ -41,6 +41,22 @@ export async function postTaxData(incomeData){
   window.taxUpdate = await baseTax.json();
   console.log("base tax calculation complete!")
   }
+
+export function getTaxSummary() {
+  let getTaxSummary = {
+    expenses: parseInt(userInput.expenses),
+    income: parseInt(userInput.income),
+    medicareTax: parseInt(taxUpdate.medicareTax),
+    socialSecurityTax: parseInt(taxUpdate.socialSecurityTax),
+    selfEmploymentTax: parseInt(taxUpdate.selfEmploymentTax),
+    stateIncomeTax: parseInt(taxUpdate.stateIncomeTax),
+    federalIncomeTax: parseInt(taxUpdate.federalIncomeTax),
+    taxBalance: this.$store.getters['userInformation/taxBalance'],
+    profitAfterTaxes: this.$store.getters['userInformation/profitAfterTaxes']
+  }
+  return getTaxSummary
+}
+
 /*
 async function postIraTaxData(iraContribution){
   let iraTax = await (fetch (tax_calculation, {

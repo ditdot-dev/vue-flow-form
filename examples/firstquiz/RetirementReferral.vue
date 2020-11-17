@@ -481,8 +481,8 @@ export default {
       this.submitted = true;
 
       /* Set the data inputs for an object for Track tax api */
-      window.data = await this.getData()
-      await this.formatData()
+      await this.getData()
+      window.userInput = await this.formatData()
       console.log(userInput)
       await this.$store.commit('userInformation/entry', userInput)
       window.incomeData = taxApi.taxData()

@@ -2,9 +2,11 @@ import Vue from "vue";
 import Vuex from "vuex";
 import * as TaxApi from "../models/TaxApi.js"
 import * as SMETaxCalculations from "../models/SMETaxCalculations.js"
+import * as TaxTable from "../models/TaxTable.js"
 
 Vue.use(Vuex);
 
+// Module for containing the data to Results.vue for the initial tax calculations based on user's input
 const userInformation = {
   namespaced: true,
   state: {
@@ -32,7 +34,6 @@ const userInformation = {
     userInput: {}, // data captured in RetirementReferral.vue input form
     incomeData: {}, // data formatted from the input for tax API
     taxUpdate: {}, // tax API's output data to be displayed in Results.vue
-    taxSummary: {} // additional objects used for Results.vue & RetirementOptions.vue
   },
   mutations: {
     entry (state, data) {
@@ -40,9 +41,6 @@ const userInformation = {
     },
     results (state, data) {
       state.taxUpdate = data;
-    },
-    newTax (state, data) {
-      state.taxSummary = data;
     },
   },
   getters: {
@@ -81,25 +79,29 @@ const userInformation = {
       let w2Tax;
       let salary = parseInt(state.userInput.salary)
       if ( salary === undefined ) {
-        w2Tax = 0;
-        return w2Tax
+        return w2Tax = 0
       } else if ( salary > 1 || salary < 40000) {
-      return w2Tax
+      return w2Tax = 0
     } else if (salary > 40001 || salary < 80000){
-      return w2Tax }
+      return w2Tax = 0 }
+      // need to write a progressive tax system function
     },
     taxBalance: state => {
-      return taxBalance = parseInt(state.taxUpdate.taxBalance) + 1000;
+      let taxBalance;
+      return taxBalance = parseInt(state.taxUpdate.taxBalance) + parseInt(getters.W2Tax);
     },
     profitAfterTaxes: (state, getters) => {
+      let profitAfterTaxes;
       return profitAfterTaxes = parseInt(getters.totalIncome) + parseInt(state.userInput.salary)
       - parseInt(state.userInput.expenses) - parseInt(getters.taxBalance);
     },
   }
 };
-
+// Module for containing the data to RetirementOptions.vue for the calculations to define Tax Avoided
 const calculatorDrag = {
+  namespaced: true,
   state: {
+    taxSummary: {}, // additional objects from Results.vue to be used in RetirementOptions.vue
     postIraTaxData: {
       taxAvoided: null,
       taxAdvantageRatio: null,
@@ -123,8 +125,17 @@ const calculatorDrag = {
       businessContribution: null
     } // calculations to be displayed in RetirementOptions.vue
   },
-  mutations: {},
-  getters: {}
+  mutations: {
+    baseTax (state, data) {
+      state.taxSummary = data;
+    },
+  },
+  getters: {},
+  actions: {
+    async getTaxSummary ({ commit }) {
+      commit ('baseTax', await TaxApi.getTaxSummary())
+    },
+  }
 };
 
 const store = new Vuex.Store({
