@@ -343,10 +343,10 @@
         this.calculateScore()
       },
 
-     onTimer(time, formattedTime) {
-       this.time = formattedTime
-       this.formattedTime = formattedTime
-    }
+      onTimer(time, formattedTime) {
+        this.time = formattedTime
+        this.formattedTime = formattedTime
+      }
     },
   }
 </script>
