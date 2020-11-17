@@ -126,7 +126,6 @@
             multiple: false,
             allowOther: true,
             required: true,
-            nextStepOnAnswer: true,
             options: [
               new ChoiceOption({
                 label: 'Answer 1'
