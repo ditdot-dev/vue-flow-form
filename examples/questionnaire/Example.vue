@@ -21,6 +21,7 @@
       v-bind:questions="questions"
       v-bind:language="language"
       v-bind:standalone="true"
+      v-bind:footer-nav="false"
     >
     <!-- Custom content for the Complete/Submit screen slots in the FlowForm component -->
       <!-- We've overriden the default "complete" slot content -->
