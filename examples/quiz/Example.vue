@@ -144,8 +144,7 @@
             helpTextShow: false,
             type: QuestionType.MultipleChoice,
             required: true,
-            multiple: false, 
-            nextStepOnAnswer: true,
+            multiple: false,
              options: [
               new ChoiceOption({
                 label: 'True', 
@@ -164,7 +163,6 @@
             type: QuestionType.MultipleChoice,
             required: true,
             multiple: false, 
-            nextStepOnAnswer: true,
             options: [
               new ChoiceOption({
                 label: '<form>', 
@@ -248,7 +246,6 @@
             type: QuestionType.MultipleChoice,
             multiple: false,
             required: true,
-            nextStepOnAnswer: true,
             options: [
               new ChoiceOption({
                 label: 'True', 
@@ -267,7 +264,6 @@
             multiple: false,
             helpText: 'Select one correct answer.',
             required: true,
-            nextStepOnAnswer: true,
             options: [
               new ChoiceOption({
                 label: 'Add progress bar to the form', 
@@ -294,7 +290,6 @@
             type: QuestionType.MultipleChoice,
             multiple: false,
             required: true,
-            nextStepOnAnswer: true,
             options: [
               new ChoiceOption({
                 label: 'True', 
