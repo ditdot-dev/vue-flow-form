@@ -60,7 +60,7 @@
           </div>
           {{ language.percentCompleted.replace(':percent', percentCompleted) }}
         </div>
-        <div v-if="footerNav" class="f-nav">
+        <div v-if="navigation" class="f-nav">
           <a
             class="f-prev"
             href="#"
@@ -147,7 +147,7 @@
         type: Boolean, 
         default: true
       },
-      footerNav: {
+      navigation: {
         type: Boolean, 
         default: true
       }
@@ -325,14 +325,12 @@
         }
 
         if (e.shiftKey) {
-          if (!this.footerNav) {
-            return
-          }
-
           e.stopPropagation()
           e.preventDefault()
 
-          this.goToPreviousQuestion()
+          if (this.navigation) {
+            this.goToPreviousQuestion()
+          }
         } else {
           e.preventDefault()
           
