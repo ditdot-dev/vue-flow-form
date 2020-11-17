@@ -472,6 +472,8 @@
        */
       onQuestionAnswered(question) {
         if (question.isValid()) {
+          this.$emit('answer', question)
+
           if (this.activeQuestionIndex < this.questionListActivePath.length) {
             ++this.activeQuestionIndex
           }
@@ -494,6 +496,8 @@
                 
                 this.$refs.button && this.$refs.button.focus()
               }
+
+              this.$emit('step', this.activeQuestionId, this.activeQuestion)
             })
           })
         } else if (this.completed) {
