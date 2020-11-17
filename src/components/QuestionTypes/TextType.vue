@@ -18,7 +18,6 @@
       v-bind:min="question.min"
       v-bind:max="question.max"
       v-on:change="onChange"
-      v-bind:tokens="tokens" 
     />
     <input
       v-else

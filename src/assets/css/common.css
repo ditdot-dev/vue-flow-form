@@ -645,8 +645,13 @@ header.vff-header svg.f-logo {
 }
 
 .vff-footer .f-progress,
-.vff-footer .f-nav {
+.vff-footer .f-nav,
+.vff-footer .f-timer {
   display: inline-block;
+}
+
+.vff-footer .f-timer {
+  font-family: monospace;
 }
 
 .vff-footer .f-prev,

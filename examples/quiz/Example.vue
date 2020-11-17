@@ -19,9 +19,12 @@
       ref="flowform"
       v-on:complete="onComplete"
       v-on:submit="onQuizSubmit"
+      v-on:timer="onTimer"
       v-bind:questions="questions"
       v-bind:language="language"
       v-bind:standalone="true"
+      v-bind:timer="true"
+      timer-start-step="html_1"
     >
     <!-- Custom content for the Complete/Submit screen slots in the FlowForm component -->
       <!-- We've overriden the default "complete" slot content -->
@@ -53,6 +56,7 @@
             v-html="language.formatString(language.pressEnter)">
           </a>
         </div>
+        <p class="text-success" v-if="submitted && time">Your time: {{ formattedTime }}</p>
         <p class="text-success" v-if="submitted && score < 4">"You scored {{ score }} out of {{ total }}. There's a lot of room for improvement."</p>
         <p class="text-success" v-else-if="submitted && score < 7">"You scored {{ score }} out of {{ total }}. Not bad at all!"</p>
         <p class="text-success" v-else-if="submitted && score <= total">"You scored {{ score }} out of {{ total }}. Wow, that's impressive!"</p>
@@ -85,6 +89,8 @@
         completed: false,
         score: 0, 
         total: 8, 
+        time: 0,
+        formattedTime: '',
         answers: {
           html_1: ['2', '3'], 
           html_2: 'false', 
@@ -335,6 +341,11 @@
         
         this.submitted = true
         this.calculateScore()
+      },
+
+      onTimer(time, formattedTime) {
+        this.time = formattedTime
+        this.formattedTime = formattedTime
       }
     },
   }
