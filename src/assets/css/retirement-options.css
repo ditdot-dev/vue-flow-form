@@ -392,7 +392,7 @@ p.percent {
   position: absolute;
   left: -20px;
   background-color: #00d49f;
-  box-shadow: -1px 2px 3px rgba(0, 0, 0, 0.3);
+  box-shadow: -2px 3px 4px rgba(0, 0, 0, 0.3);
 }
 .bestOptionLabel:before,
 .bestOptionLabel:after {
@@ -649,10 +649,11 @@ p.percent {
   font-size: 20px;
   font-family: var(--heading2-font);
   position: absolute;
+  border-radius: 5px 0px 0px 0px;
   top: -16px;
   /* padding: 8px 10px; */
   background-color: #00d49f;
-  box-shadow: -1px 2px 3px rgba(0, 0, 0, 0.3);
+ box-shadow: -2px 3px 4px rgba(0, 0, 0, 0.3);
 }
 .ribbon-premium:before,
 .ribbon-premium:after {
@@ -662,7 +663,7 @@ p.percent {
 .ribbon-premium:before {
   width: 7px;
   height: 100%;
-  top: 0;
+  top: 0px;
   left: -6.5px;
   /* padding: 0 0 7px; */
   background: inherit;
@@ -671,7 +672,7 @@ p.percent {
 .ribbon-premium:after {
   width: 5px;
   height: 5px;
-  bottom: -5px;
+  bottom: 3px;
   left: -4.5px;
   background: lightblue;
   border-radius: 5px 0 0 5px;

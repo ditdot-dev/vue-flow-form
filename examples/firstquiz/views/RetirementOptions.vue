@@ -74,8 +74,9 @@
             <h4>At a Glance</h4>
           </div>
           <div class="three flex d-flex-right" style="padding-left: 15%">
-            <h4>Contributions</h4>
-            <b-icon icon="info-circle" scale="1" class="ml-2 mt-1"></b-icon>
+            <info-icon tooltip="business">
+              <h4>Contributions</h4>
+            </info-icon>
           </div>
           <div class="four flex d-flex-right" style="padding-left: 15%">
             <h4>Impact on your taxes</h4>
@@ -100,7 +101,7 @@
                 Individual 401(K)
               </p>
             </div>
-            <div class="col2 col flex2">
+            <div class="col2 col flex2 justify-content-start mt-3">
               <p>
                 Individual 401(K) allows for <br />
                 more retirement contribution <br />
@@ -116,17 +117,16 @@
                 paperwork.
               </p>
             </div>
-            <div class="col3 col flex2">
+            <div class="col3 col flex2 justify-content-start">
               <h4>Your Contribution</h4>
               <h2>$1,552 (2.1%)</h2>
               <div class="colBox">
                 <vue-custom-slider v-model="sliders.one" />
               </div>
               <h4>Your Business Contribution</h4>
-              <span class="d-flex">
+              <info-icon tooltip="business">
                 <h2>$6,000 (8.9%)</h2>
-                <b-icon icon="info-circle" scale="1" class="ml-2 mt-1"></b-icon>
-              </span>
+              </info-icon>
               <div class="colBox2 colBox">
                 <vue-custom-slider v-model="sliders.two" />
               </div>
@@ -137,22 +137,21 @@
               </p>
             </div>
 
-            <div class="col4 col flex2">
+            <div class="col4 col flex2 justify-content-start">
               <h4>Tax Avoided</h4>
-              <span class="d-flex">
+              <info-icon tooltip="business">
                 <h2>$1,325</h2>
-                <b-icon icon="info-circle" scale="1" class="ml-2 mt-1"></b-icon>
-              </span>
+              </info-icon>
+
               <p>
                 At age 67, the amount <br />
                 you are losing could be <br />
                 worth $49,140
               </p>
               <h4>Text Advantage Ratio</h4>
-              <span class="d-flex">
+              <info-icon tooltip="business">
                 <h2>26%</h2>
-                <b-icon icon="info-circle" scale="1" class="ml-2 mt-1"></b-icon>
-              </span>
+              </info-icon>
             </div>
             <div class="col5 col">
               <div class="labelbox flex">
@@ -169,7 +168,7 @@
                 has this account
               </p>
             </div>
-            <div class="col2 col flex2">
+            <div class="col2 col flex2 justify-content-start mt-3">
               <p>
                 A SEP-IRA is an ideal plan if <br />
                 you are earning over <br />
@@ -185,12 +184,11 @@
                 full-time employee.
               </p>
             </div>
-            <div class="col3 col flex2 mb-5">
+            <div class="col3 col flex2 mb-5 justify-content-start">
               <h4>Your Business Contribution</h4>
-              <span class="d-flex">
+              <info-icon tooltip="business">
                 <h2 class="mb-0 pb-0">$7,500 (10.9%)</h2>
-                <b-icon icon="info-circle" scale="1" class="ml-2 mt-1"></b-icon>
-              </span>
+              </info-icon>
               <div class="colBox">
                 <vue-custom-slider v-model="sliders.three" />
               </div>
@@ -202,22 +200,21 @@
               </p>
             </div>
 
-            <div class="col4 col flex2">
+            <div class="col4 col flex2 justify-content-start">
               <h4>Tax Avoided</h4>
-              <span class="d-flex">
+              <info-icon tooltip="business">
                 <h2>$1,325</h2>
-                <b-icon icon="info-circle" scale="1" class="ml-2 mt-1"></b-icon>
-              </span>
+              </info-icon>
+
               <p>
                 At age 67, the amount <br />
                 you are losing could be <br />
                 worth $49,140
               </p>
               <h4>Text Advantage Ratio</h4>
-              <span class="d-flex">
+              <info-icon tooltip="business">
                 <h2>26%</h2>
-                <b-icon icon="info-circle" scale="1" class="ml-2 mt-1"></b-icon>
-              </span>
+              </info-icon>
             </div>
             <div class="col5 col">
               <div class="labelbox flex">
@@ -242,7 +239,7 @@
                 retirement account
               </p>
             </div>
-            <div class="col2 col flex2">
+            <div class="col2 col flex2 justify-content-start mt-3">
               <p>
                 The SIMPLE-IRA allows for <br />
                 retirement contribution as a <br />
@@ -259,17 +256,17 @@
                 administration & fees
               </p>
             </div>
-            <div class="col3 col flex2">
+            <div class="col3 col flex2 justify-content-start">
               <h4>Your Contribution</h4>
               <h2>$7,652 (10.6%)</h2>
               <div class="colBox">
                 <vue-custom-slider v-model="sliders.four" />
               </div>
               <h4>Your Business Contribution</h4>
-              <span class="d-flex">
+              <info-icon tooltip="business">
                 <h2>$900 (1.4%)</h2>
-                <b-icon icon="info-circle" scale="1" class="ml-2 mt-1"></b-icon>
-              </span>
+              </info-icon>
+
               <div class="colBox">
                 <vue-custom-slider v-model="sliders.five" />
               </div>
@@ -280,12 +277,11 @@
               </p>
             </div>
 
-            <div class="col4 col flex2">
+            <div class="col4 col flex2 justify-content-start">
               <h4>Tax Avoided</h4>
-              <span class="d-flex">
+              <info-icon tooltip="business">
                 <h2>$1,025</h2>
-                <b-icon icon="info-circle" scale="1" class="ml-2 mt-1"></b-icon>
-              </span>
+              </info-icon>
 
               <p>
                 At age 67, the amount <br />
@@ -293,10 +289,9 @@
                 worth $xxxxx
               </p>
               <h4>Text Advantage Ratio</h4>
-              <span class="d-flex">
+              <info-icon tooltip="business">
                 <h2>19%</h2>
-                <b-icon icon="info-circle" scale="1" class="ml-2 mt-1"></b-icon>
-              </span>
+              </info-icon>
             </div>
             <div class="col5 col">
               <div class="labelbox flex">
@@ -312,7 +307,7 @@
                 IRA
               </h1>
             </div>
-            <div class="col2 col flex2">
+            <div class="col2 col flex2 justify-content-start mt-3">
               <p>
                 This is the most common <br />
                 type of retirement account <br />
@@ -328,7 +323,7 @@
                 retirement.
               </p>
             </div>
-            <div class="col3 col flex2 mb-5">
+            <div class="col3 col flex2 mb-5 justify-content-start">
               <h4>Your Contribution</h4>
               <h2>$6,000 (8%)</h2>
               <div class="colBox">
@@ -343,22 +338,21 @@
               </p>
             </div>
 
-            <div class="col4 col flex2">
+            <div class="col4 col flex2 justify-content-start">
               <h4>Tax Avoided</h4>
-              <span class="d-flex">
+              <info-icon tooltip="business">
                 <h2>$902</h2>
-                <b-icon icon="info-circle" scale="1" class="ml-2 mt-1"></b-icon>
-              </span>
+              </info-icon>
+
               <p>
                 At age 67, the amount <br />
                 you are losing could be <br />
                 worth $xxxxx
               </p>
               <h4>Text Advantage Ratio</h4>
-              <span class="d-flex">
+              <info-icon tooltip="business">
                 <h2>14%</h2>
-                <b-icon icon="info-circle" scale="1" class="ml-2 mt-1"></b-icon>
-              </span>
+              </info-icon>
             </div>
             <div class="col5 col">
               <div class="labelbox flex">
@@ -426,10 +420,12 @@
 
 <script>
 import vueCustomSlider from "../components/vue-slider";
+import infoIcon from "../components/info-icon";
 export default {
   name: "RetirementOptions",
   components: {
     vueCustomSlider,
+    infoIcon,
   },
   data() {
     return {
