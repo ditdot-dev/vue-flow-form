@@ -8,6 +8,8 @@
     :max="100"
     width="300"
     height="30px"
+  >
+    <template v-slot:dot> <span class="custom-inner-dot" /> </template
   ></vue-slider>
 </template>
 

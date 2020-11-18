@@ -39,18 +39,27 @@
         </div>
         <div class="slider">
           <div class="box">
-            <h2>$7,552</h2>
+            <h2></h2>
             <vue-slider
-              v-model="value"
-              :interval="1000"
+              v-model="projectedValue"
+              :interval="10"
               :marks="true"
-              :min="7552"
-              :max="65552"
-              width="300"
+              :min="0"
+              :max="(ProfitAfterTaxes * 10) / 100"
               height="60px"
+              tooltipPlacement="left"
+            >
+              <template v-slot:step="{ active, value }">
+                <div
+                  :class="['vue-slider-mark-label', 'custom-label', { active }]"
+                >
+                  {{ projectedValue === value ? `$${value}` : "" }}
+                </div>
+              </template>
+              <template v-slot:dot> <span class="custom-dot" /> </template
             ></vue-slider>
           </div>
-          <div class="max"><h2>$68,661</h2></div>
+          <div class="max"><h2></h2></div>
           <div class="cursor"></div>
         </div>
       </div>
@@ -75,10 +84,8 @@
         </div>
         <div class="boxes">
           <div class="box1 boxwrapper">
-            <div class="col1 col flex2">
-              <div class="bestOptionLabel flex">
-                <h2 class="p-0">BEST OPTION</h2>
-              </div>
+            <div class="col1 col flex2 best-option-container">
+              <h2 class="p-0 bestOptionLabel p-1">BEST OPTION</h2>
 
               <h1>
                 Individual <br />
@@ -335,11 +342,8 @@
           <div class="premiumBox">
             <div class="column1">
               <div class="premiumHeading">
-                <div
-                  class="premiumLabel"
-                  style="border-radius: 10px 23px 23px 0px"
-                >
-                  <p class="m-0 p-0">PREMIUM</p>
+                <div class="premiumLabel">
+                  <p class="m-0 p-0 ribbon-premium p-1">PREMIUM</p>
                 </div>
               </div>
               <div class="image flex">
@@ -360,8 +364,6 @@
               <button>Learn More</button>
             </div>
           </div>
-
-          <button class="btn">FAQ ?</button>
         </div>
 
         <div class="roww2 flex">
@@ -397,6 +399,7 @@ export default {
   },
   data() {
     return {
+      ProfitAfterTaxes: 19000,
       percent: 11,
       sliders: {
         one: 90,
@@ -406,7 +409,7 @@ export default {
         five: 40,
         six: 60,
       },
-      value: 14552,
+      projectedValue: 1,
     };
   },
   mounted() {},
