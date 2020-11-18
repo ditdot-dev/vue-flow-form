@@ -18,6 +18,12 @@
   justify-content: center;
   align-items: center;
 }
+
+.d-flex-right {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
 .flex2 {
   display: flex;
   justify-content: center;
@@ -39,8 +45,8 @@
 .r-container h6 {
   font-weight: 700;
 }
-.r-container .vue-slider-marks{
-  background: #F3FCF7;
+.r-container .vue-slider-marks {
+  background: #f3fcf7;
   border-radius: 10px;
 }
 .r-container .vue-slider-mark-step {
@@ -49,7 +55,7 @@
 .r-container .vue-slider-process {
   background-color: #00d49f;
 }
-.r-container .vue-slider-mark-label{
+.r-container .vue-slider-mark-label {
   opacity: 0;
 }
 .r-container {
@@ -205,7 +211,7 @@ p.percent {
 }
 
 .slider {
-  grid-area: slider;
+  /* grid-area: slider; */
   /* background-color: hotpink; */
   height: 100%;
   display: flex;
@@ -218,14 +224,12 @@ p.percent {
   width: 40%;
   /* background-color: white; */
   display: grid;
-  grid-template-columns: 15% 85%;
-  
+  grid-template-columns: 0% 85%;
 }
-
 
 .box h2 {
   position: relative;
-  top: 70%;
+  top: 90%;
   font-size: 20px;
   font-family: var(--heading2-font);
   line-height: 36px;
@@ -240,14 +244,15 @@ p.percent {
 .max {
   position: relative;
   top: 33px;
- 
   display: flex;
   justify-content: flex-end;
   /* align-items: flex-end; */
 }
 .max h2 {
-  position: relative;
-  top: 115%;
+  position: absolute;
+  top: 100%;
+  right: 50px;
+  margin: 0px;
   font-size: 20px;
   font-family: var(--heading2-font);
   line-height: 36px;
@@ -423,6 +428,7 @@ p.percent {
 
 .colBox {
   height: 30px;
+  margin-bottom: 15px;
   width: 180px;
   /* margin-bottom: 10px; */
 }
@@ -478,14 +484,18 @@ p.percent {
 } */
 
 .labelbox {
-  width: 75%;
+  width: 90%;
+  padding:0px 7px;
   background: linear-gradient(rgb(0, 212, 159), rgb(0, 156, 116));
   height: 26%;
   margin-top: 25px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  
 }
 
 .labelbox h4 {
-  padding-top: 7px;
+  padding: 0px;
+  margin: 0px;
   text-align: center;
   font-family: var(--heading4-font);
   font-size: 20px;
@@ -618,14 +628,14 @@ p.percent {
 .irsBox {
   background: #f5f5f5;
   width: 80%;
-  height: 70%;
+  height: 100%;
   display: grid;
   grid-template-columns: 80fr 20fr;
   grid-template-areas: "irsContent irsImage";
 }
 
 .irsContent {
-  grid-area: irsContent;
+  
   height: 100%;
   /* background-color: lightblue; */
   padding-left: 4rem;
@@ -638,6 +648,7 @@ p.percent {
 }
 .irsContent p {
   font-size: 16px;
+  margin: 0px;
   font-family: var(--para-font);
 }
 .irsImage {
@@ -652,6 +663,9 @@ p.percent {
   width: 193.5px;
   height: 78.62px;
 }
+ .boxwrapper .col4 {
+    padding-bottom: 7rem;
+  }
 
 @media only screen and (max-width: 1330px) {
   .boxwrapper p {
@@ -776,16 +790,16 @@ p.percent {
   .adder-subtractor .box {
     width: 35%;
   }
-  .slider .box {
+  /* .slider .box {
     width: 50%;
-  }
+  } */
   .cursor {
     display: none;
   }
-  .slider .box {
+  /* .slider .box {
     display: grid;
     grid-template-columns: 25% 75%;
-  }
+  } */
   .menu {
     display: grid;
     grid-template-columns: 0.2fr 6fr 5fr 2fr 0.2fr;

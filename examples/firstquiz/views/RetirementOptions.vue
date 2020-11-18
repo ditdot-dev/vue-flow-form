@@ -1,10 +1,11 @@
 <template>
   <div class="r-container">
     <div class="main">
-      <div class="row1 flex">
-        <p>^</p>
+      <div class="row1 flex" style="cursor: pointer">
+        <router-link to="/">
+          <p>^</p>
+        </router-link>
       </div>
-
       <div class="row2 flex">
         <div class="heading">
           <h2>
@@ -15,16 +16,26 @@
 
         <div class="adder-subtractor">
           <div class="box">
-            <div class="sub flex"><h1>-</h1></div>
-            <div class="flex"><p class="percent">11%</p></div>
-            <div class="add flex"><h1>+</h1></div>
+            <div
+              class="sub flex"
+              @click="percent ? percent-- : null"
+              style="cursor: pointer"
+            >
+              <h1>-</h1>
+            </div>
+            <div class="flex">
+              <p class="percent">{{ percent }}%</p>
+            </div>
+            <div class="add flex" @click="percent++" style="cursor: pointer">
+              <h1>+</h1>
+            </div>
           </div>
         </div>
       </div>
 
       <div class="row3 flex">
         <div class="heading2">
-          <h2>Projected 2020 <br />Contributions</h2>
+          <h2 class="mt-5">Projected 2020 <br />Contributions</h2>
         </div>
         <div class="slider">
           <div class="box">
@@ -35,8 +46,8 @@
               :marks="true"
               :min="7552"
               :max="65552"
-              width="300px"
-              height="50"
+              width="300"
+              height="60px"
             ></vue-slider>
           </div>
           <div class="max"><h2>$68,661</h2></div>
@@ -50,16 +61,23 @@
         <div class="head"><h1>Retirement Account Options</h1></div>
         <div class="item flex">
           <div class="one flex"><h4>Account Types</h4></div>
-          <div class="two flex"><h4>At a Glance</h4></div>
-          <div class="three flex"><h4>Contributions</h4></div>
-          <div class="four flex"><h4>Impact on your taxes</h4></div>
+          <div class="two flex d-flex-right" style="padding-left: 15%">
+            <h4>At a Glance</h4>
+          </div>
+          <div class="three flex d-flex-right" style="padding-left: 15%">
+            <h4>Contributions</h4>
+            <b-icon icon="info-circle" scale="1" class="ml-2 mt-1"></b-icon>
+          </div>
+          <div class="four flex d-flex-right" style="padding-left: 15%">
+            <h4>Impact on your taxes</h4>
+          </div>
           <div class="five"></div>
         </div>
         <div class="boxes">
           <div class="box1 boxwrapper">
             <div class="col1 col flex2">
               <div class="bestOptionLabel flex">
-                <h2>BEST OPTION</h2>
+                <h2 class="p-0">BEST OPTION</h2>
               </div>
 
               <h1>
@@ -94,15 +112,13 @@
             <div class="col3 col flex2">
               <h4>Your Contribution</h4>
               <h2>$1,552 (2.1%)</h2>
-              <div class="colBox1 colBox">
-                <div class="greeen"></div>
-                <div class="whitee"></div>
+              <div class="colBox">
+                <vue-custom-slider v-model="sliders.one" />
               </div>
               <h4>Your Business Contribution</h4>
               <h2>$6,000 (8.9%)</h2>
               <div class="colBox2 colBox">
-                <div class="greeen"></div>
-                <div class="whitee"></div>
+                <vue-custom-slider v-model="sliders.two" />
               </div>
               <p>
                 At age 67, your <br />
@@ -153,12 +169,11 @@
                 full-time employee.
               </p>
             </div>
-            <div class="col3 col flex2">
+            <div class="col3 col flex2 mb-5">
               <h4>Your Business Contribution</h4>
-              <h2>$7,500 (10.9%)</h2>
+              <h2 class="mb-0 pb-0">$7,500 (10.9%)</h2>
               <div class="colBox">
-                <div class="greeen"></div>
-                <div class="whitee"></div>
+                <vue-custom-slider v-model="sliders.three" />
               </div>
 
               <p>
@@ -222,15 +237,13 @@
             <div class="col3 col flex2">
               <h4>Your Contribution</h4>
               <h2>$7,652 (10.6%)</h2>
-              <div class="colBox colBox1">
-                <div class="greeen"></div>
-                <div class="whitee"></div>
+              <div class="colBox">
+                <vue-custom-slider v-model="sliders.four" />
               </div>
               <h4>Your Business Contribution</h4>
               <h2>$900 (1.4%)</h2>
-              <div class="colBox colBox2">
-                <div class="greeen"></div>
-                <div class="whitee"></div>
+              <div class="colBox">
+                <vue-custom-slider v-model="sliders.five" />
               </div>
               <p>
                 At age 67, your <br />
@@ -280,12 +293,11 @@
                 retirement.
               </p>
             </div>
-            <div class="col3 col flex2">
+            <div class="col3 col flex2 mb-5">
               <h4>Your Contribution</h4>
               <h2>$6,000 (8%)</h2>
               <div class="colBox">
-                <div class="greeen"></div>
-                <div class="whitee"></div>
+                <vue-custom-slider v-model="sliders.six" />
               </div>
               <h4>Your Business Contribution</h4>
 
@@ -323,8 +335,11 @@
           <div class="premiumBox">
             <div class="column1">
               <div class="premiumHeading">
-                <div class="premiumLabel">
-                  <p>PREMIUM</p>
+                <div
+                  class="premiumLabel"
+                  style="border-radius: 10px 23px 23px 0px"
+                >
+                  <p class="m-0 p-0">PREMIUM</p>
                 </div>
               </div>
               <div class="image flex">
@@ -355,12 +370,12 @@
               <h4>How This Calculator Works</h4>
               <p>
                 Based on your inputs, we followed the retirement contribution
-                rules for your business type and retirement account <br />
-                to determine the total allowable deductions that can be made
-                from your business. These deductions have <br />
-                different impact on your taxes. The retirement account option
-                recommneded is based on your information, and <br />
-                the highest potential for tax avoided available to you.
+                rules for your business type and retirement account to determine
+                the total allowable deductions that can be made from your
+                business. These deductions have different impact on your taxes.
+                The retirement account option recommneded is based on your
+                information, and the highest potential for tax avoided available
+                to you.
               </p>
             </div>
             <div class="irsImage flex">
@@ -374,16 +389,33 @@
 </template>
 
 <script>
+import vueCustomSlider from "../components/vue-slider";
 export default {
   name: "RetirementOptions",
-  components: {},
+  components: {
+    vueCustomSlider,
+  },
   data() {
     return {
+      percent: 11,
+      sliders: {
+        one: 90,
+        two: 9,
+        three: 8,
+        four: 10,
+        five: 40,
+        six: 60,
+      },
       value: 14552,
     };
   },
   mounted() {},
   methods: {},
+  watch: {
+    sliders(val) {
+      console.log(val);
+    },
+  },
 };
 </script>
 
