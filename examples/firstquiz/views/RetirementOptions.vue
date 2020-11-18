@@ -123,7 +123,10 @@
                 <vue-custom-slider v-model="sliders.one" />
               </div>
               <h4>Your Business Contribution</h4>
-              <h2>$6,000 (8.9%)</h2>
+              <span class="d-flex">
+                <h2>$6,000 (8.9%)</h2>
+                <b-icon icon="info-circle" scale="1" class="ml-2 mt-1"></b-icon>
+              </span>
               <div class="colBox2 colBox">
                 <vue-custom-slider v-model="sliders.two" />
               </div>
@@ -136,14 +139,20 @@
 
             <div class="col4 col flex2">
               <h4>Tax Avoided</h4>
-              <h2>$1,325</h2>
+              <span class="d-flex">
+                <h2>$1,325</h2>
+                <b-icon icon="info-circle" scale="1" class="ml-2 mt-1"></b-icon>
+              </span>
               <p>
                 At age 67, the amount <br />
                 you are losing could be <br />
                 worth $49,140
               </p>
               <h4>Text Advantage Ratio</h4>
-              <h2>26%</h2>
+              <span class="d-flex">
+                <h2>26%</h2>
+                <b-icon icon="info-circle" scale="1" class="ml-2 mt-1"></b-icon>
+              </span>
             </div>
             <div class="col5 col">
               <div class="labelbox flex">
@@ -178,7 +187,10 @@
             </div>
             <div class="col3 col flex2 mb-5">
               <h4>Your Business Contribution</h4>
-              <h2 class="mb-0 pb-0">$7,500 (10.9%)</h2>
+              <span class="d-flex">
+                <h2 class="mb-0 pb-0">$7,500 (10.9%)</h2>
+                <b-icon icon="info-circle" scale="1" class="ml-2 mt-1"></b-icon>
+              </span>
               <div class="colBox">
                 <vue-custom-slider v-model="sliders.three" />
               </div>
@@ -192,14 +204,20 @@
 
             <div class="col4 col flex2">
               <h4>Tax Avoided</h4>
-              <h2>$1,325</h2>
+              <span class="d-flex">
+                <h2>$1,325</h2>
+                <b-icon icon="info-circle" scale="1" class="ml-2 mt-1"></b-icon>
+              </span>
               <p>
                 At age 67, the amount <br />
                 you are losing could be <br />
                 worth $49,140
               </p>
               <h4>Text Advantage Ratio</h4>
-              <h2>26%</h2>
+              <span class="d-flex">
+                <h2>26%</h2>
+                <b-icon icon="info-circle" scale="1" class="ml-2 mt-1"></b-icon>
+              </span>
             </div>
             <div class="col5 col">
               <div class="labelbox flex">
@@ -248,7 +266,10 @@
                 <vue-custom-slider v-model="sliders.four" />
               </div>
               <h4>Your Business Contribution</h4>
-              <h2>$900 (1.4%)</h2>
+              <span class="d-flex">
+                <h2>$900 (1.4%)</h2>
+                <b-icon icon="info-circle" scale="1" class="ml-2 mt-1"></b-icon>
+              </span>
               <div class="colBox">
                 <vue-custom-slider v-model="sliders.five" />
               </div>
@@ -261,14 +282,21 @@
 
             <div class="col4 col flex2">
               <h4>Tax Avoided</h4>
-              <h2>$1,025</h2>
+              <span class="d-flex">
+                <h2>$1,025</h2>
+                <b-icon icon="info-circle" scale="1" class="ml-2 mt-1"></b-icon>
+              </span>
+
               <p>
                 At age 67, the amount <br />
                 you are losing could be <br />
                 worth $xxxxx
               </p>
               <h4>Text Advantage Ratio</h4>
-              <h2>19%</h2>
+              <span class="d-flex">
+                <h2>19%</h2>
+                <b-icon icon="info-circle" scale="1" class="ml-2 mt-1"></b-icon>
+              </span>
             </div>
             <div class="col5 col">
               <div class="labelbox flex">
@@ -317,14 +345,20 @@
 
             <div class="col4 col flex2">
               <h4>Tax Avoided</h4>
-              <h2>$902</h2>
+              <span class="d-flex">
+                <h2>$902</h2>
+                <b-icon icon="info-circle" scale="1" class="ml-2 mt-1"></b-icon>
+              </span>
               <p>
                 At age 67, the amount <br />
                 you are losing could be <br />
                 worth $xxxxx
               </p>
               <h4>Text Advantage Ratio</h4>
-              <h2>14%</h2>
+              <span class="d-flex">
+                <h2>14%</h2>
+                <b-icon icon="info-circle" scale="1" class="ml-2 mt-1"></b-icon>
+              </span>
             </div>
             <div class="col5 col">
               <div class="labelbox flex">
