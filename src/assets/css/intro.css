@@ -63,7 +63,7 @@
 
 .content .para {
   font-size: 29px;
-  font-weight: var(--semi-bold-font);
+  font-weight: var(--regular-font);
   font-family: Karla;
   /* padding-bottom: 20px; */
   /* line-height: 35.07px; */
@@ -86,11 +86,11 @@
 .image {
   grid-area: image;
   display: flex;
-  /* align-items: center; */
+  align-items: center;
 }
 
 .img {
-  background-image: url(../images/image.png);
+  background-image: url(../images/taking-money-from-bank.png);
   background-size: cover;
   height: 540px;
   width: 540px;

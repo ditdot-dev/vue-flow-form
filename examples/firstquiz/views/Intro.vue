@@ -1,29 +1,29 @@
 <template>
-  <div class="main">
-    <div class="content flex2">
-      <p class="heading">
-        Welcome to the Gig <br />
-        Retirement Calculator
-      </p>
-      <p class="para">
-        Fill out the 9 step questionnaire to calculate <br />
-        your 2020 profit after taxes. <br />
-        <br />
+<div class="main">
+  <div class="content flex2">
+    <p class="heading">
+      Welcome to the Gig <br />
+      Retirement Calculator
+    </p>
+    <p class="para">
+      Fill out the 10 step questionnaire to calculate <br />
+      your 2020 profit after taxes. <br />
+      <br />
 
-        Then, the calculator will identify a<br />
-        personalized retirement account suggestion <br />
-        to maximize your tax savings! <br />
-        <br />
-
-        Note: Your information is safe with us 😊. We <br />
-        will never sell your data.
-      </p>
-      <router-link to="/input"><button>GET STARTED!</button></router-link>
-    </div>
-    <div class="image">
-      <div class="img"></div>
-    </div>
+      Then, we will make a personalized<br />
+      retirement account suggestion <br />
+      to maximize your tax savings💰! <br />
+      <br>
+      <strong>Note:</strong> Your information is safe with us 😊. We <br />
+      will never sell your data.
+    </p>
+    <br /><br />
+    <router-link to="/input"><button>GET STARTED!</button></router-link>
   </div>
+  <div class="image">
+    <div class="img"></div>
+  </div>
+</div>
 </template>
 
 <script>
