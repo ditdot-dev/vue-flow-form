@@ -2,7 +2,7 @@
 assistText, subtitle */ /* will need to write the Profit After Expenses function
 */
 <template>
-<!-- <div>
+  <!-- <div>
   <h4> Your Results </h4>
   <div class="subtitle"> What’s yours after taxes </div>
   <span id="profitAfterTaxes" class="positiveNumber"></span>
@@ -46,123 +46,165 @@ assistText, subtitle */ /* will need to write the Profit After Expenses function
   </div>
 
 </div> -->
-<div class="containerR">
-  <div class="mainR">
-    <div class="arrowR">
-      <router-link to="/input">
-        <svg width="32px" height="20px" viewBox="0 0 27 17" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M1.54169 16L13.5 1.41666L25.4583 16" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-        </svg>
-      </router-link>
+  <div class="containerR">
+    <div class="mainR">
+      <div class="arrowR">
+        <router-link to="/input">
+          <svg
+            width="32px"
+            height="20px"
+            viewBox="0 0 27 17"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M1.54169 16L13.5 1.41666L25.4583 16"
+              stroke="black"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+        </router-link>
+      </div>
+      <div class="paraR">
+        <p>Tax Results For ABC Agency</p>
+      </div>
     </div>
-    <div class="paraR">
-      <h5>Tax Results For ABC Agency</h5>
+    <div class="contentR">
+      <div class="mainContent">
+        <div class="row1 flex">
+          <div class="row1Box">
+            <div class="row1Col1">
+              <p>What`s yours after taxes</p>
+              <h2>$68,661</h2>
+            </div>
+            <div class="row1Col2 flex1">
+              <p>
+                Amount of business deduction you quality for
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 20 20"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M9 7H11V5H9V7ZM10 18C5.59 18 2 14.41 2 10C2 5.59 5.59 2 10 2C14.41 2 18 5.59 18 10C18 14.41 14.41 18 10 18ZM10 0C8.68678 0 7.38642 0.258658 6.17317 0.761205C4.95991 1.26375 3.85752 2.00035 2.92893 2.92893C1.05357 4.8043 0 7.34784 0 10C0 12.6522 1.05357 15.1957 2.92893 17.0711C3.85752 17.9997 4.95991 18.7362 6.17317 19.2388C7.38642 19.7413 8.68678 20 10 20C12.6522 20 15.1957 18.9464 17.0711 17.0711C18.9464 15.1957 20 12.6522 20 10C20 8.68678 19.7413 7.38642 19.2388 6.17317C18.7362 4.95991 17.9997 3.85752 17.0711 2.92893C16.1425 2.00035 15.0401 1.26375 13.8268 0.761205C12.6136 0.258658 11.3132 0 10 0ZM9 15H11V9H9V15Z"
+                    fill="#686B6F"
+                  />
+                </svg>
+              </p>
+
+              <h2>$5,578</h2>
+            </div>
+          </div>
+        </div>
+        <div class="row2 flex">
+          <div class="row2box2">
+            <div class="row2Col1 ">
+              <p>How much taxes you owe in 2020</p>
+              <h2>$11,339.75</h2>
+            </div>
+            <div class="row2Col2">
+              <div class="row2Col2Box flex1">
+                <p>
+                  Click here to see how much you can lower taxes with different
+                  retirement accounts
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <h4 class="taxbreakdowntext">Tax Breakdown For Year 2020 (In USD)</h4>
+        </div>
+
+        <div class="row4 flex">
+          <div class="row4Box">
+            <div class="row4Col1">
+              <div class="line1">
+                <p>Total Income: $110,000</p>
+                <p class="subtitleinfo">(Business + Personal Income)</p>
+              </div>
+              <div class="line2">
+                <p>- Expenses: $30,000</p>
+              </div>
+              <div class="line"></div>
+              <div class="line3">
+                <p>Profit after Expenses: <span>$80,000</span></p>
+              </div>
+            </div>
+            <div class="row4Col2">
+              <div class="line1">
+                <p>Medicare: $803.45</p>
+              </div>
+              <div class="line2">
+                <p>+ Social Security: $3,435.42</p>
+              </div>
+              <div class="line"></div>
+              <div class="line3">
+                <p>Self Employement Tax: <span>$4,238.87</span></p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row5 flex">
+          <div class="row5Box">
+            <div class="row5Col1">
+              <div class="line1">
+                <p>Profit After Expenses: $80,000</p>
+              </div>
+              <div class="line2">
+                <p>- Total Tax Balance: $11,339.75</p>
+              </div>
+              <div class="line"></div>
+              <div class="line3">
+                <p>Profit after Taxes: <span>$68,661</span></p>
+              </div>
+            </div>
+            <div class="row5Col2">
+              <div class="line1">
+                <p>Self Employement Tax: $4,238.87</p>
+              </div>
+              <div class="line2">
+                <p>+ CA State Tax: $2,426.40</p>
+              </div>
+              <div class="line4">
+                <p>+ Federal Income Tax: $4,674.48</p>
+              </div>
+              <div class="line"></div>
+              <div class="line3">
+                <p>Total Tax Balance: <span>$11,339.75</span></p>
+                <p class="subtitleinfo2">(Effective TaxRate: 18.90%)</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row6">
+          <div class="flex">
+            <router-link to="/retirement-options">
+              <svg
+                version="1.1"
+                xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
+                x="0px"
+                y="0px"
+                width="32px"
+                height="20px"
+                viewBox="78.833 5.5 42.333 28.334"
+                aria-hidden="true"
+              >
+                <path
+                  d="M117.963,8.031l-17.961,20.529L82.042,8.031l-2.041,1.784l18.98,21.695c0.258,0.295,0.629,0.463,1.02,0.463c0.39,0,0.764-0.168,1.02-0.463l18.98-21.695L117.963,8.031z"
+                /></svg
+            ></router-link>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
-  <div class="contentR">
-    <div class="mainContent">
-      <div class="row1 flex">
-        <div class="row1Box">
-          <div class="row1Col1 flex1">
-            <p>What`s yours after taxes</p>
-            <h2>$68,661</h2>
-          </div>
-          <div class="row1Col2 flex1">
-            <p>Amount of business deduction you quality for</p>
-            <h2>$5,578</h2>
-          </div>
-        </div>
-      </div>
-      <div class="row2 flex">
-        <div class="row2box2">
-          <div class="row2Col1 flex1">
-            <p>How much taxes you owe in 2020</p>
-            <h2>$11,339.75</h2>
-          </div>
-          <div class="row2Col2 flex1">
-            <div class="row2Col2Box flex1">
-              <h4>
-                Click here to see how much you can lower taxes with different
-                retirement accounts
-              </h4>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div>
-        <h4>Tax Breakdown For Year 2020 (In USD)</h4>
-      </div>
-
-      <div class="row4 flex">
-        <div class="row4Box">
-          <div class="row4Col1">
-            <div class="line1">
-              <p>Total Income: $110,000</p>
-            </div>
-            <div class="line2">
-              <p>- Expenses: $30,000</p>
-            </div>
-            <div class="line"></div>
-            <div class="line3">
-              <p>Profit after Expenses: <span>$80,000</span></p>
-            </div>
-          </div>
-          <div class="row4Col2">
-            <div class="line1">
-              <p>Medicare: $803.45</p>
-            </div>
-            <div class="line2">
-              <p>+ Social Security: $3,435.42</p>
-            </div>
-            <div class="line"></div>
-            <div class="line3">
-              <p>Self Employement Tax: <span>$4,238.87</span></p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="row5 flex">
-        <div class="row5Box">
-          <div class="row5Col1">
-            <div class="line1">
-              <p>Profit After Expenses: $80,000</p>
-            </div>
-            <div class="line2">
-              <p>- Total Tax Balance: $11,339.75</p>
-            </div>
-            <div class="line"></div>
-            <div class="line3">
-              <p>Profit after Taxes: <span>$68,661</span></p>
-            </div>
-          </div>
-          <div class="row5Col2">
-            <div class="line1">
-              <p>Self Employement Tax: $4,238.87</p>
-            </div>
-            <div class="line2">
-              <p>+ CA State Tax: $2,426.40</p>
-            </div>
-            <div class="line4">
-              <p>+ Federal Income Tax: $4,674.48</p>
-            </div>
-            <div class="line"></div>
-            <div class="line3">
-              <p>Total Tax Balance: <span>$11,339.75</span></p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="row6">
-        <div class="flex">
-          <router-link to="/retirement-options">
-            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="32px" height="20px" viewBox="78.833 5.5 42.333 28.334" aria-hidden="true">
-              <path d="M117.963,8.031l-17.961,20.529L82.042,8.031l-2.041,1.784l18.98,21.695c0.258,0.295,0.629,0.463,1.02,0.463c0.39,0,0.764-0.168,1.02-0.463l18.98-21.695L117.963,8.031z" /></svg></router-link>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
 </template>
 
 <script>
@@ -225,14 +267,19 @@ export default {};
 .arrowR {
   grid-area: arrow;
   text-align: center;
-  margin: 1rem 0;
+  margin: 0.4rem 0;
   /* background-color: khaki; */
 }
 
 .paraR {
   grid-area: para;
   padding-left: 60px;
-  margin: 0.5rem 0;
+  /* margin: 0.5rem 0; */
+}
+.paraR p {
+  font-size: 29px;
+  font-weight: bold;
+  font-family: Karla;
 }
 
 .contentR {
@@ -249,8 +296,11 @@ export default {};
   background-color: #fbe6da;
   display: grid;
   grid-template-rows:
-    minmax(40vh, min-content) minmax(40vh, min-content) 10vh minmax(50vh,
-      min-content) minmax(50vh, min-content) minmax(10vh, min-content);
+    minmax(40vh, min-content) minmax(40vh, min-content) 10vh minmax(
+      50vh,
+      min-content
+    )
+    minmax(50vh, min-content) minmax(10vh, min-content);
   grid-template-areas:
     "row1"
     "row2"
@@ -262,9 +312,6 @@ export default {};
 
 .row1 {
   grid-area: row1;
-  /* display: grid;
-    grid-template-rows: minmax(30vh, min-content); */
-  /* background-color: coral; */
 }
 
 .row1Box {
@@ -272,16 +319,18 @@ export default {};
   height: 80%;
   background-color: #ffffff;
   display: grid;
+  padding-left: 2rem;
   grid-template-columns: repeat(auto-fit, minmax(28rem, 1fr));
   border-radius: 28px;
   grid-row-gap: 1rem;
 }
 
 .row1Col1 p {
-  font-size: 24px;
+  font-size: 26px;
   margin-bottom: 0;
   padding-top: 0.5rem;
-  /* font-family: var(--para-font); */
+  padding-left: 0.8rem;
+  font-family: Manrope;
 }
 
 .row1Col1 h2 {
@@ -290,20 +339,35 @@ export default {};
   /* font-family: var(--heading2-font); */
 }
 
-/* .row1Col2 {
-    background-color: greenyellow;
-  } */
 .row1Col2 p {
-  font-size: 24px;
+  font-size: 26px;
+  font-family: Manrope;
   margin-bottom: 0;
   padding-top: 0.5rem;
+  margin-left: -2.2rem;
 }
 
 .row1Col2 h2 {
   font-size: 110px;
+  font-family: Karla;
+  margin-left: -17rem;
+  font-weight: bold;
   color: #00b488;
 }
-
+.subtitleinfo {
+  font-size: 12px !important;
+  font-family: Manrope !important;
+  padding: 0 !important;
+  margin: -0.5rem 0;
+}
+.subtitleinfo2 {
+  font-size: 12px !important;
+  font-family: Manrope !important;
+  padding: 0 !important;
+  margin: -0.5rem 0;
+  text-align: center;
+  font-weight: unset !important;
+}
 .row2 {
   grid-area: row2;
   /* background-color: blueviolet; */
@@ -314,35 +378,35 @@ export default {};
   height: 80%;
   background-color: #ffffff;
   display: grid;
+  padding-left: 2rem;
   grid-template-columns: repeat(auto-fit, minmax(28rem, 1fr));
   border-radius: 28px;
   grid-row-gap: 1rem;
 }
 
-.row2Col1 {
-  /* background-color: hotpink; */
-  padding-left: 40px;
-}
-
 .row2Col1 p {
-  font-size: 24px;
+  font-size: 26px;
+  font-family: Manrope;
   margin-bottom: 0;
+  padding-left: 0.8rem;
   padding-top: 0.5rem;
 }
 
 .row2Col1 h2 {
   font-size: 110px;
+  font-weight: bold;
+  font-family: Karla;
   color: #cc3939;
 }
 
-.row1Col2 {
-  text-align: center !important;
+.row2Col2 {
+  justify-content: center;
 }
 
 .row2Col2Box {
   height: 112px;
   width: 285px !important;
-  background-color: #00d49f;
+  background: linear-gradient(180deg, #00d49f 0%, #009c74 100%);
   color: #fff;
   border-radius: 20px;
   padding: 15px;
@@ -352,9 +416,10 @@ export default {};
   cursor: pointer;
 }
 
-.row2Col2Box h4 {
+.row2Col2Box p {
   text-align: center;
   font-size: 20px;
+  font-family: Karla;
   line-height: 24px;
   /* color: white; */
 }
@@ -402,7 +467,12 @@ export default {};
   font-weight: var(--normal-font);
   padding-bottom: 10px;
 }
-
+.taxbreakdowntext {
+  font-size: 29px;
+  font-family: Karla;
+  font-weight: bold;
+  margin: 1rem 0;
+}
 .line2 p {
   font-size: 26px;
   line-height: 36px;
@@ -470,7 +540,7 @@ export default {};
   background-color: #ffffff;
   display: flex;
   justify-content: center;
-  align-items: flex-end;
+  align-items: flex-start;
   flex-flow: column;
   padding-right: 5rem;
   border-radius: 28px;
@@ -534,7 +604,9 @@ export default {};
 
 @media only screen and (max-width: 1050px) {
   .row1Col1 h2 {
-    font-size: 70px;
+    font-size: 110px;
+    font-family: Karla;
+    font-weight: bold;
   }
 
   .row1Box {
@@ -551,6 +623,7 @@ export default {};
 
   .row1Col2 p {
     font-size: 24px;
+    margin-left: 0rem;
   }
 
   .row2Col1 p {
@@ -559,6 +632,7 @@ export default {};
 
   .row1Col2 h2 {
     font-size: 70px;
+    margin-left: 1rem;
   }
 
   .row2Col1 h2 {
@@ -652,6 +726,9 @@ export default {};
   .row5Box {
     width: 100%;
     height: 70%;
+  }
+  .row1Col1 h2 {
+    font-size: 70px;
   }
 }
 
@@ -783,7 +860,10 @@ export default {};
     display: flex;
     align-items: flex-end;
   }
-
+.taxbreakdowntext {
+  font-size: 24px;
+  margin: 0;
+}
   .row4Col2 {
     width: 350px;
     height: 200px;
@@ -943,6 +1023,9 @@ export default {};
 
   .row3 h1 {
     font-size: 17px;
+  }
+  .taxbreakdowntext {
+    font-size: 24px;
   }
 }
 
