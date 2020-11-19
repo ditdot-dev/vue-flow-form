@@ -565,9 +565,11 @@ p.percent {
   width: 90%;
   padding: 0px 7px;
   background: linear-gradient(rgb(0, 212, 159), rgb(0, 156, 116));
+  color: white;
   height: 26%;
   margin-top: 25px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  border-radius: 30px;
 }
 
 .labelbox h4 {
@@ -729,7 +731,9 @@ p.percent {
   color: white;
   text-align: center;
   cursor: pointer;
-  font-size: 14px;
+  font-size: 16px;
+  font-weight: var(--bold-font);
+  font-family: var(--heading4-font)
 }
 
 .roww2 {
@@ -747,6 +751,7 @@ p.percent {
   display: grid;
   grid-template-columns: 80fr 20fr;
   grid-template-areas: "irsContent irsImage";
+  border-radius: 46px;
 }
 
 .irsContent {
