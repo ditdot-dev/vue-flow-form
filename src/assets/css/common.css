@@ -1024,6 +1024,7 @@ span.info-icon-1:hover {
 .tooltip {
   display: block !important;
   z-index: 10000;
+  font-family: Manrope;
 }
 
 .tooltip .tooltip-inner {

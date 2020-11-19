@@ -475,11 +475,9 @@ export default {
       // completeButton slot.
       this.onSendData();
     },
-
     async onSendData() {
       this.$refs.flowform.submitted = true;
       this.submitted = true;
-
       /* Set the data inputs for an object for Track tax api */
       await this.getData()
       window.userInput = await this.formatData()
@@ -492,14 +490,12 @@ export default {
       console.log(taxUpdate.data)
       await this.$store.commit('userInformation/results', taxUpdate.data)
     },
-
     getData() {
       window.data = {
         questions: [],
         answers: [],
         id: [],
       };
-
       this.questions.forEach((question) => {
         if (question.title) {
           data.questions.push(question.title);
@@ -509,7 +505,6 @@ export default {
       });
       return data
     },
-
     formatData() {
       window.userInput = {}
       data.id.forEach((key, i) =>
