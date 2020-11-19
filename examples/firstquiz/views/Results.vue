@@ -1,3 +1,4 @@
+
 /* will need to write the Profit After Expenses function */
 <template>
 <div class="containerR">
@@ -52,6 +53,7 @@
       <div>
         <h4 class="taxbreakdowntext">Tax Breakdown For Year 2020 (In USD)</h4>
       </div>
+
 
       <div class="row4 flex">
         <div class="row4Box">
@@ -163,6 +165,7 @@ export default {
     ...Vuex.mapGetters('userInformation', [
       'totalDeduction', 'totalIncome', 'profitAfterExpenses',
     ]), //, 'w2Tax', 'taxBalance', 'profitAfterTaxes' <- not working at this time.
+
   },
   methods: {
     ...Vuex.mapActions('calculatorDrag', [

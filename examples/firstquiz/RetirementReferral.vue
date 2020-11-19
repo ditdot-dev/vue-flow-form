@@ -48,11 +48,11 @@ import QuestionModel, {
   LinkOption,
 } from "../../src/models/QuestionModel";
 import LanguageModel from "../../src/models/LanguageModel";
+import Vuex from "vuex";
 import * as SMETaxCalculations from "../../src/models/SMETaxCalculations";
 import * as taxApi from "../../src/models/TaxApi";
-import * as MoveObjects from "../../src/models/MoveObjects";
 export default {
-  name: "example",
+  name: "RetirementReferral",
   components: {
     FlowForm,
   },
@@ -315,13 +315,13 @@ export default {
           id: "tax_filing_status",
           tagline: "About You",
           title: "What is your tax filing status?",
-          answerMessage: "Great!",
+          answerMessage: "Next let's move onto your business!",
           type: QuestionType.Dropdown,
           multiple: false,
           placeholder: "Select status",
           inline: false,
           required: true,
-          tooltip: "This information is used to identify your household tax deductions. Please put your marital status as recognized by the IRS.",
+          tooltip: "This information is used to identify your household tax deductions (standard, not itemized). Please put your marital status as recognized by the IRS.",
           options: [
             new ChoiceOption({
               label: "Single",
@@ -338,6 +338,10 @@ export default {
             new ChoiceOption({
               label: "Married Filing Separately",
               value: "marriedFilingSeparately",
+            }),
+            new ChoiceOption({
+              label: "Qualifying Widow(er) with a Dependent Child",
+              value: "married",
             }),
           ],
         }),
@@ -406,7 +410,7 @@ export default {
           type: QuestionType.Dropdown,
           multiple: false,
           subtitle: "Do not count yourself or your spouse",
-          placeholder: "0",
+          placeholder: "The number of full-time employees besides me is...",
           inline: false,
           required: true,
           tooltip: "This information is used to determine the type of retirement accounts you are eligible for. Don’t count yourself or your spouse as a full-time employee, or any employees who have ownership stake in the business. If you are not sure, refer to the FAQ for what qualifies as a full-time employee in your state.",
@@ -429,10 +433,11 @@ export default {
           id: "expenses",
           tagline: "About Your Business",
           title: "How much are your business expenses this year?",
+          subtitle: "If you pay yourself a salary, do not count that expense here",
           answerMessage: "That's great!",
           type: QuestionType.Dollar,
           required: true,
-          tooltip: "This is expenses that your business has every year. Please put the amount you forecast the business will spend. This can include office supplies, software subscriptions, work travel and more.",
+          tooltip: "This is the annual expenses for your business to operate. Please put the amount you forecast the business will spend this year. This can include office supplies, rent, software subscriptions, work travel, and more.",
         }),
         new QuestionModel({
           id: "income",
@@ -479,6 +484,7 @@ export default {
       console.log(userInput)
       await this.$store.commit('userInformation/entry', userInput)
       window.incomeData = taxApi.taxData()
+
       /* Run taxApi and put the outputs into an object in Vuex store */
       await taxApi.postTaxData(incomeData)
       console.log(taxUpdate.data)
