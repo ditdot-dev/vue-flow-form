@@ -38,7 +38,7 @@
           <h2 class="mt-5">Projected 2020 <br />Contributions</h2>
         </div>
         <div class="slider">
-          <div class="box">
+          <div class="box" style="position: relative">
             <h2></h2>
             <vue-slider
               v-model="projectedValue"
@@ -53,11 +53,27 @@
                 <div
                   :class="['vue-slider-mark-label', 'custom-label', { active }]"
                 >
-                  {{ projectedValue === value ? `${value}` : "" }}
+                  {{
+                    projectedValue === value &&
+                    !((ProfitAfterTaxes * 10) / 100 === projectedValue)
+                      ? `${value}`
+                      : ""
+                  }}
                 </div>
               </template>
               <template v-slot:dot> <span class="custom-dot" /> </template
             ></vue-slider>
+            <span
+              class="custom-label"
+              style="
+                font-size: 14px;
+                position: absolute;
+                right: 0px;
+                bottom: -40px;
+              "
+            >
+              {{ (ProfitAfterTaxes * 10) / 100 }}
+            </span>
           </div>
           <div class="max">
             <h2></h2>
@@ -69,45 +85,32 @@
 
     <div class="content">
       <div class="wrapper">
-        <div class="head">
+        <div class="head ml-5 mb-5">
           <h1>Retirement Account Options</h1>
         </div>
-        <div class="item flex">
-          <div class="one flex">
-            <h4>Account Types</h4>
-          </div>
-          <div class="two flex d-flex-right" style="padding-left: 15%">
-            <h4>At a Glance</h4>
-          </div>
-          <div class="three flex d-flex-right" style="padding-left: 15%">
-            <info-icon tooltip="business">
-              <h4>Contributions</h4>
-            </info-icon>
-          </div>
-          <div class="four flex d-flex-right" style="padding-left: 15%">
-            <h4>Impact on your taxes</h4>
-          </div>
-          <div class="five"></div>
-        </div>
-        <div class="boxes">
-          <div class="box1 boxwrapper">
-            <div class="col1 col flex2 best-option-container">
-              <h2 class="p-0 bestOptionLabel p-1">BEST OPTION</h2>
 
-              <h1>
-                Individual <br />
-                401K
-              </h1>
-              <p>
-                Over 80% of incorporated <br />
-                freelancers use this option. <br />
-                <br />
-                Based on your information, <br />
-                we suggest you open an <br />
-                Individual 401(K)
-              </p>
+        <div class="boxes relative">
+          <h2 class="p-0 bestOptionLabel p-1">BEST OPTION</h2>
+          <div class="box1 boxwrapper">
+            <div class="col1 best-option-container relative">
+              <h4 class="absolute top-60">Account Types</h4>
+              <div class="mt-5 mb-4">
+                <h1>
+                  Individual <br />
+                  401K
+                </h1>
+                <p>
+                  Over 80% of incorporated <br />
+                  freelancers use this option. <br />
+                  <br />
+                  Based on your information, <br />
+                  we suggest you open an <br />
+                  Individual 401(K)
+                </p>
+              </div>
             </div>
-            <div class="col2 col flex2 justify-content-start mt-3">
+            <div class="col2 col flex2 justify-content-start mt-3 relative">
+              <h4 class="absolute top-75">At a Glance</h4>
               <p>
                 Individual 401(K) allows for <br />
                 more retirement contribution <br />
@@ -123,7 +126,14 @@
                 paperwork.
               </p>
             </div>
-            <div class="col3 col flex2 justify-content-start">
+            <div class="col3 col flex2 justify-content-start relative">
+              <info-icon
+                tooltip="business"
+                class="absolute top-60"
+                classes="d-flex align-items-end"
+              >
+                <h4 class="d-flex align-items-end">Contributions</h4>
+              </info-icon>
               <h4>Your Contribution</h4>
               <h2>$1,552 (2.1%)</h2>
               <div class="colBox">
@@ -143,7 +153,8 @@
               </p>
             </div>
 
-            <div class="col4 col flex2 justify-content-start">
+            <div class="col4 col flex2 justify-content-start relative">
+              <h4 class="absolute top-60">Impact on your taxes</h4>
               <h4>Tax Avoided</h4>
               <info-icon tooltip="business">
                 <h2>$1,325</h2>
@@ -380,7 +391,7 @@
                   <p class="m-0 p-0 ribbon-premium p-1">PREMIUM</p>
                 </div>
               </div>
-              <div class="image flex">
+              <div class="image flex w-100">
                 <div class="img"></div>
               </div>
             </div>
@@ -461,6 +472,18 @@ export default {
 
 
 <style >
+.absolute {
+  position: absolute;
+}
+.relative {
+  position: relative;
+}
+.top-60 {
+  top: -60px;
+}
+.top-75 {
+  top: -75px;
+}
 :root {
   --heading-font: "Manrope", sans-serif;
   --heading2-font: "Karla", sans-serif;
@@ -560,6 +583,7 @@ export default {
   font-weight: 700;
 }
 </style>
+
 <style scoped>
 * {
   padding: 0;
@@ -695,7 +719,9 @@ export default {
   display: grid;
   grid-template-columns: 25% 50% 25%;
   grid-template-areas: "sub percent add";
-  border: 1px solid lightgray;
+  box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.25);
+
+  /* border: 1px solid rgba(211, 211, 211, 0.212); */
 }
 .adder-subtractor .box h1 {
   font-size: 30px;
@@ -822,7 +848,7 @@ p.percent {
 .head h1 {
   font-family: var(--heading-font);
   font-size: 26px;
-  padding-left: 5rem;
+  /* padding-left: 5rem; */
 }
 .item {
   grid-area: item;
@@ -851,6 +877,7 @@ p.percent {
   border-radius: 30px;
   margin-bottom: 1%;
   grid-column-gap: 1rem;
+  justify-content: center;
   grid-row-gap: 1rem;
   padding: 1rem;
 }
@@ -877,9 +904,9 @@ p.percent {
   font-family: var(--heading2-font);
   position: relative;
   font-weight: var(--bold-font);
-  top: 0px;
+  top: 15px;
   position: absolute;
-  left: -20px;
+  left: -5px;
   background-color: #00d49f;
   box-shadow: -2px 3px 4px rgba(0, 0, 0, 0.3);
 }
@@ -891,21 +918,21 @@ p.percent {
 .bestOptionLabel:before {
   width: 7px;
   height: 100%;
-  top: 1px;
+  top: 0;
   /* bottom: 1px; */
   left: -6.5px;
   padding: 0 0 7px;
   background: inherit;
   border-radius: 5px 0 0 5px;
 }
-.bestOptionLabel:after {
+/* .bestOptionLabel:after {
   width: 5px;
   height: 5px;
-  bottom: -1px;
+  bottom: 0px;
   left: -4.5px;
   background: #0cf0b791;
   border-radius: 5px 0 0 5px;
-}
+} */
 /* .bestOptionLabel h2 {
   font-size: 26px;
   font-family: var(--heading2-font);
@@ -1140,7 +1167,8 @@ p.percent {
   font-size: 20px;
   font-family: var(--heading2-font);
   position: absolute;
-  border-radius: 5px 0px 0px 0px;
+  left: -2px;
+  /* border-radius: 5px 0px 0px 0px; */
   top: -16px;
   /* padding: 8px 10px; */
   background-color: #00d49f;
@@ -1154,20 +1182,20 @@ p.percent {
 .ribbon-premium:before {
   width: 7px;
   height: 100%;
-  top: 0px;
+  top: 0;
   left: -6.5px;
   /* padding: 0 0 7px; */
   background: inherit;
   border-radius: 5px 0 0 5px;
 }
-.ribbon-premium:after {
+/* .ribbon-premium:after {
   width: 5px;
   height: 5px;
   bottom: 3px;
   left: -4.5px;
   background: lightblue;
   border-radius: 5px 0 0 5px;
-}
+} */
 /* .premiumLabel {
   background-color: #00d49f;
   width: 100%;
@@ -1186,8 +1214,8 @@ p.percent {
 .img {
   background-image: url(../../../src/assets/images/assest1.png);
   background-size: cover;
-  width: 238px;
-  height: 241px;
+  width: 12em;
+  height: 12em;
   border-radius: 100%;
 }
 .column2 {
@@ -1302,8 +1330,8 @@ p.percent {
     font-size: 14px;
   }
   .img {
-    width: 200px;
-    height: 200px;
+    width: 12em;
+    height: 12em;
   }
   .premiumBox {
     width: 70%;
@@ -1314,7 +1342,7 @@ p.percent {
     height: 70%;
   }
   .head h1 {
-    padding-left: 5rem;
+    /* padding-left: 5rem; */
   }
   .column2 button {
     width: 30%;
@@ -1324,7 +1352,7 @@ p.percent {
 }
 
 @media only screen and (max-width: 1105px) {
-  .boxwrapper .col5 {
+  /* .boxwrapper .col5 {
     padding: 20px;
   }
   .boxwrapper .col5 .labelbox {
@@ -1333,7 +1361,7 @@ p.percent {
   }
   .boxwrapper .col2 {
     padding-bottom: 0;
-  }
+  } */
   .wrapper {
     display: grid;
     grid-template-rows: 10vh minmax(170vh, min-content);
@@ -1371,9 +1399,6 @@ p.percent {
   }
   .percent p {
     font-size: 30px;
-  }
-  .head h1 {
-    padding-left: 4rem;
   }
 }
 
@@ -1436,8 +1461,8 @@ p.percent {
     font-size: 10px;
   }
   .img {
-    height: 180px;
-    width: 180px;
+    width: 9em;
+    height: 9em;
   }
 
   .btn {
@@ -1452,9 +1477,6 @@ p.percent {
   }
   .percent p {
     font-size: 25px;
-  }
-  .head h1 {
-    padding-left: 3rem;
   }
 }
 
@@ -1554,8 +1576,8 @@ p.percent {
     height: 70%;
   }
   .img {
-    height: 160px;
-    width: 160px;
+    width: 7em;
+    height: 7em;
   }
   .column2 h1 {
     font-size: 20px;
@@ -1619,11 +1641,11 @@ p.percent {
   .box4 .col {
     padding-bottom: 0;
   }
-  .head {
+  /* .head {
     display: flex;
     align-items: center;
     justify-content: center;
-  }
+  } */
   .head h1 {
     font-size: 20px;
   }
@@ -1642,9 +1664,7 @@ p.percent {
   .irsContent p {
     font-size: 8px;
   }
-  .head h1 {
-    padding-left: 0;
-  }
+
   .irsBox {
     height: 60%;
   }
@@ -1726,8 +1746,8 @@ p.percent {
   }
 
   .img {
-    height: 130px;
-    width: 130px;
+    width: 12em;
+    height: 12em;
   }
   .irsBox {
     width: 100%;
