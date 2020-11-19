@@ -695,7 +695,7 @@ p.percent {
   background-color: white;
 } */
 .img {
-  background-image: url(./assest1.png);
+  background-image: url(../images/assest1.png);
   background-size: cover;
   width: 238px;
   height: 241px;
@@ -777,7 +777,7 @@ p.percent {
 }
 
 .img2 {
-  background-image: url(./assest2.png);
+  background-image: url(../images/assest2.png);
   background-size: cover;
   width: 193.5px;
   height: 78.62px;
