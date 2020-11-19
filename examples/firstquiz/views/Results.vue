@@ -66,13 +66,10 @@
             <h2>$68,661</h2>
           </div>
           <div class="row1Col2 flex1">
-            <p>
-              Amount of business deduction you quality for
-              <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path
-                  d="M9 7H11V5H9V7ZM10 18C5.59 18 2 14.41 2 10C2 5.59 5.59 2 10 2C14.41 2 18 5.59 18 10C18 14.41 14.41 18 10 18ZM10 0C8.68678 0 7.38642 0.258658 6.17317 0.761205C4.95991 1.26375 3.85752 2.00035 2.92893 2.92893C1.05357 4.8043 0 7.34784 0 10C0 12.6522 1.05357 15.1957 2.92893 17.0711C3.85752 17.9997 4.95991 18.7362 6.17317 19.2388C7.38642 19.7413 8.68678 20 10 20C12.6522 20 15.1957 18.9464 17.0711 17.0711C18.9464 15.1957 20 12.6522 20 10C20 8.68678 19.7413 7.38642 19.2388 6.17317C18.7362 4.95991 17.9997 3.85752 17.0711 2.92893C16.1425 2.00035 15.0401 1.26375 13.8268 0.761205C12.6136 0.258658 11.3132 0 10 0ZM9 15H11V9H9V15Z"
-                  fill="#686B6F" />
-              </svg>
+            <p>Amount of business deduction you quality for
+              <info-icon
+                tooltip="The Tax Cuts and Job Act passed in 2017 allows eligible self-employed and small-business owners to deduct up to 20% of their qualified business income on their taxes. Your accountant and/or tax software will calculate this for you in your annual tax returns">
+              </info-icon>
             </p>
             <h2>$5,578</h2>
           </div>
@@ -86,10 +83,12 @@
           </div>
           <div class="row2Col2">
             <div class="row2Col2Box flex1">
-              <p>
-                Click here to see how much you can lower taxes with different
-                retirement accounts
-              </p>
+              <router-link to="/retirement-options">
+                <p>
+                  Click here to see how much you can lower taxes with different
+                  retirement accounts
+                </p>
+              </router-link>
             </div>
           </div>
         </div>
@@ -173,7 +172,14 @@
 </template>
 
 <script>
-export default {};
+import infoIcon from "../components/info-icon";
+
+export default {
+  name: "Results",
+  components: {
+    infoIcon,
+  },
+};
 </script>
 
 <style scoped>
@@ -373,7 +379,7 @@ export default {};
   height: 112px;
   width: 285px !important;
   background: linear-gradient(180deg, #00d49f 0%, #009c74 100%);
-  color: #fff;
+  color: white;
   border-radius: 20px;
   padding: 15px;
 }
