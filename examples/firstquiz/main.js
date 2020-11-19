@@ -11,7 +11,10 @@ import RetirementOptions from "./views/RetirementOptions.vue";
 import VTooltip from "v-tooltip";
 import Vuex from "vuex";
 import store from "../../src/store";
+import VueSlider from 'vue-slider-component'
+import 'vue-slider-component/theme/default.css'
 
+Vue.component('VueSlider', VueSlider)
 Vue.use(VueRouter);
 
 const routes = [
