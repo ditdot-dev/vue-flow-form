@@ -1,5 +1,5 @@
 <template>
-  <span :class="`${classes} d-flex`">
+  <span :class="onlyClass || `${classes} d-flex`">
     <slot></slot>
     <b-icon
       icon="info-circle"
@@ -15,7 +15,7 @@
 
 <script>
 export default {
-  props: ["tooltip", "tooltipPlacement", "classes"],
+  props: ["tooltip", "tooltipPlacement", "classes", "onlyClass"],
 };
 </script>
 
