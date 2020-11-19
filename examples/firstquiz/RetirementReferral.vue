@@ -470,62 +470,26 @@ export default {
       // completeButton slot.
       this.onSendData();
     },
-
     async onSendData() {
       this.$refs.flowform.submitted = true;
       this.submitted = true;
-
       /* Set the data inputs for an object for Track tax api */
-
-      window.data = await this.getData();
-      window.incomeData = await this.formatData();
-      window.userData = await this.formatUserData();
-      console.log(data);
-      console.log(incomeData);
-      console.log(userData);
-
-      await taxApi.postTaxData(incomeData);
-      console.log(taxUpdate);
-      await MoveObjects.postResults();
-
-      async function postData() {
-        // await setTaxInput();
-        // await postTaxData(incomeData);
-      }
-      /* Put the data outputs into an object */
-
-      /* Translate the object with outputs into Results.vue */
-      /*
-                  async function postTaxData(incomeData){
-                  let baseTax = await (fetch (tax_calculation, {
-                    headers: {
-                        "Content-Type": "application/json",
-                        "X-Api-Key": app_key,
-                        "X-Api-Secret": app_secret,},
-                    method: "PUT",
-                    body: JSON.stringify(incomeData)
-                  }).catch(handleError));
-                  window.taxUpdate = await baseTax.json();
-                  console.log("base tax calculation complete!");}
-
-                fetch(url, {
-                  method: 'POST',
-                  headers: {
-                    'Content-Type': 'application/json'
-                  },
-                  body: JSON.stringify(incomeData)
-                })
-
-      */
+      await this.getData()
+      window.userInput = await this.formatData()
+      console.log(userInput)
+      await this.$store.commit('userInformation/entry', userInput)
+      window.incomeData = taxApi.taxData()
+      /* Run taxApi and put the outputs into an object in Vuex store */
+      await taxApi.postTaxData(incomeData)
+      console.log(taxUpdate.data)
+      await this.$store.commit('userInformation/results', taxUpdate.data)
     },
-
     getData() {
       window.data = {
         questions: [],
         answers: [],
         id: [],
       };
-
       this.questions.forEach((question) => {
         if (question.title) {
           data.questions.push(question.title);
@@ -533,34 +497,16 @@ export default {
           data.id.push(question.id);
         }
       });
-      return data;
+      return data
     },
-
     formatData() {
-      const incomeData = {
-        taxes: {
-          "1099Income": parseInt(data.answers[10]),
-          expenseDeduction: parseInt(data.answers[9]),
-          w2Income: parseInt(data.answers[7]),
-          filingState: data.answers[3],
-          filingStatus: data.answers[4],
-          dependents: parseInt(data.answers[2]),
-        },
-      };
-      return incomeData;
-    },
-    formatUserData() {
-      const userData = {
-        first_name: data.answers[0],
-        age: data.answers[1],
-        business_name: data.answers[5],
-        entity: data.answers[6],
-        employee_count: data.answers[8],
-      };
-      return userData;
-    },
-  },
-};
+      window.userInput = {}
+      data.id.forEach((key, i) =>
+        userInput[key] = data.answers[i]);
+      return userInput
+    }
+  }
+}
 </script>
 
 <style lang="css">
