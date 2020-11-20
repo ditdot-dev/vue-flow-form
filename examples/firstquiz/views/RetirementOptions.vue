@@ -1,438 +1,416 @@
 <template>
-  <div class="r-container">
-    <div class="main">
-      <div class="row1 flex" style="cursor: pointer">
-        <router-link to="/">
-          <p>^</p>
-        </router-link>
+<div class="r-container">
+  <div class="main">
+    <div class="row1 flex" style="cursor: pointer">
+      <router-link to="/results">
+        <svg width="32px" height="20px" viewBox="0 0 27 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M1.54169 16L13.5 1.41666L25.4583 16" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+      </router-link>
+    </div>
+    <div class="row2 flex">
+      <div class="heading">
+        <h2>
+          Your Contribution <br />
+          With Profit After Taxes
+        </h2>
       </div>
-      <div class="row2 flex">
-        <div class="heading">
-          <h2>
-            Your Contribution <br />
-            With Profit After Taxes
-          </h2>
-        </div>
 
-        <div class="adder-subtractor">
-          <div class="box">
-            <div
-              class="sub flex"
-              @click="percent ? percent-- : null"
-              style="cursor: pointer"
-            >
-              <h1>-</h1>
-            </div>
-            <div class="flex">
-              <p class="percent">{{ percent }}%</p>
-            </div>
-            <div class="add flex" @click="percent++" style="cursor: pointer">
-              <h1>+</h1>
-            </div>
+      <div class="adder-subtractor">
+        <div class="box">
+          <div class="sub flex" @click="percent ? percent-- : null" style="cursor: pointer">
+            <h1>-</h1>
+          </div>
+          <div class="flex">
+            <p class="percent">{{ percent }}%</p>
+          </div>
+          <div class="add flex" @click="percent++" style="cursor: pointer">
+            <h1>+</h1>
           </div>
         </div>
       </div>
+    </div>
 
-      <div class="row3 flex">
-        <div class="heading2">
-          <h2 class="mt-5">Projected 2020 <br />Contributions</h2>
-        </div>
-        <div class="slider">
-          <div class="box" style="position: relative">
-            <h2></h2>
-            <vue-slider
-              v-model="projectedValue"
-              :interval="10"
-              :marks="true"
-              :min="0"
-              :max="(ProfitAfterTaxes * 10) / 100"
-              height="60px"
-              tooltipPlacement="left"
-            >
-              <template v-slot:step="{ active, value }">
-                <div
-                  :class="['vue-slider-mark-label', 'custom-label', { active }]"
-                >
-                  {{
+    <div class="row3 flex">
+      <div class="heading2">
+        <h2 class="mt-5">Projected 2020 <br />Contributions</h2>
+      </div>
+      <div class="slider">
+        <div class="box" style="position: relative">
+          <h2></h2>
+          <vue-slider v-model="projectedValue" :interval="10" :marks="true" :min="0" :max="(ProfitAfterTaxes * 10) / 100" height="60px" tooltipPlacement="left">
+            <template v-slot:step="{ active, value }">
+              <div :class="['vue-slider-mark-label', 'custom-label', { active }]">
+                {{
                     projectedValue === value &&
                     !((ProfitAfterTaxes * 10) / 100 === projectedValue)
                       ? `${value}`
                       : ""
                   }}
-                </div>
-              </template>
-              <template v-slot:dot> <span class="custom-dot" /> </template
-            ></vue-slider>
-            <span
-              class="custom-label"
-              style="
+              </div>
+            </template>
+            <template v-slot:dot> <span class="custom-dot" /> </template></vue-slider>
+          <span class="custom-label" style="
                 font-size: 14px;
                 position: absolute;
                 right: 0px;
                 bottom: -40px;
-              "
-            >
-              {{ (ProfitAfterTaxes * 10) / 100 }}
-            </span>
-          </div>
-          <div class="max">
-            <h2></h2>
-          </div>
-          <div class="cursor"></div>
+              ">
+            {{ (ProfitAfterTaxes * 10) / 100 }}
+          </span>
         </div>
+        <div class="max">
+          <h2></h2>
+        </div>
+        <div class="cursor"></div>
       </div>
     </div>
+  </div>
 
-    <div class="content">
-      <div class="wrapper">
-        <div class="head ml-5 mb-5">
-          <h1>Retirement Account Options</h1>
-        </div>
+  <div class="content">
+    <div class="wrapper">
+      <div class="head ml-5 mb-5">
+        <h1>Retirement Account Options</h1>
+      </div>
 
-        <div class="boxes relative">
-          <h2 class="p-0 bestOptionLabel p-1">BEST OPTION</h2>
-          <div class="box1 boxwrapper">
-            <div class="col1 best-option-container relative">
-              <h4 class="absolute top-60">Account Types</h4>
-              <div class="mt-5 mb-4">
-                <h1>
-                  Individual <br />
-                  401K
-                </h1>
-                <p>
-                  Over 80% of incorporated <br />
-                  freelancers use this option. <br />
-                  <br />
-                  Based on your information, <br />
-                  we suggest you open an <br />
-                  Individual 401(K)
-                </p>
-              </div>
-            </div>
-            <div class="col2 col flex2 justify-content-start mt-3 relative">
-              <h4 class="absolute top-75">At a Glance</h4>
-              <p>
-                Individual 401(K) allows for <br />
-                more retirement contribution <br />
-                as a employee and employer. <br />
-                You can save up to $57,000/yr, <br />
-                and wth your spouse, this can <br />
-                be even as high as $114,000/yr. <br />
-                <br />
-                Best for those looking to <br />
-                maximize retirement <br />
-                contribution and are <br />
-                comfortable with some <br />
-                paperwork.
-              </p>
-            </div>
-            <div class="col3 col flex2 justify-content-start relative">
-              <info-icon
-                tooltip="business"
-                class="absolute top-60"
-                classes="d-flex align-items-end"
-              >
-                <h4 class="d-flex align-items-end">Contributions</h4>
-              </info-icon>
-              <h4>Your Contribution</h4>
-              <h2>$1,552 (2.1%)</h2>
-              <div class="colBox">
-                <vue-custom-slider v-model="sliders.one" />
-              </div>
-              <h4>Your Business Contribution</h4>
-              <info-icon tooltip="business">
-                <h2>$6,000 (8.9%)</h2>
-              </info-icon>
-              <div class="colBox2 colBox">
-                <vue-custom-slider v-model="sliders.two" />
-              </div>
-              <p>
-                At age 67, your <br />
-                contributions could be <br />
-                worth $101,516
-              </p>
-            </div>
-
-            <div class="col4 col flex2 justify-content-start relative">
-              <h4 class="absolute top-60">Impact on your taxes</h4>
-              <h4>Tax Avoided</h4>
-              <info-icon tooltip="business">
-                <h2>$1,325</h2>
-              </info-icon>
-
-              <p>
-                At age 67, the amount <br />
-                you are losing could be <br />
-                worth $49,140
-              </p>
-              <h4>Tax Advantage Ratio</h4>
-              <info-icon tooltip="business">
-                <h2>26%</h2>
-              </info-icon>
-            </div>
-            <div class="col5 col">
-              <div class="labelbox flex">
-                <h4>How to Open an <br />Individual 401k <br />Account</h4>
-              </div>
-            </div>
-          </div>
-
-          <div class="box2 boxwrapper">
-            <div class="col1 col flex2">
-              <h1>SEP-IRA</h1>
-              <p>
-                X% of people your age <br />
-                has this account
-              </p>
-            </div>
-            <div class="col2 col flex2 justify-content-start mt-3">
-              <p>
-                A SEP-IRA is an ideal plan if <br />
-                you are earning over <br />
-                $24,000/yr, and you intend to <br />
-                save more than $6,000/yr for <br />
-                retirement. You can <br />
-                contribute a maximum of <br />
-                $56,000/yr <br />
-                <br />
-                Best for simplicity in setup <br />
-                and if you have 2 jobs, one as <br />
-                a freelancer and another as a <br />
-                full-time employee.
-              </p>
-            </div>
-            <div class="col3 col flex2 mb-5 justify-content-start">
-              <h4>Your Business Contribution</h4>
-              <info-icon tooltip="business">
-                <h2 class="mb-0 pb-0">$7,500 (10.9%)</h2>
-              </info-icon>
-              <div class="colBox">
-                <vue-custom-slider v-model="sliders.three" />
-              </div>
-
-              <p>
-                At age 67, your <br />
-                contributions could be <br />
-                worth $xxxxx
-              </p>
-            </div>
-
-            <div class="col4 col flex2 justify-content-start">
-              <h4>Tax Avoided</h4>
-              <info-icon tooltip="business">
-                <h2>$1,325</h2>
-              </info-icon>
-
-              <p>
-                At age 67, the amount <br />
-                you are losing could be <br />
-                worth $49,140
-              </p>
-              <h4>Tax Advantage Ratio</h4>
-              <info-icon tooltip="business">
-                <h2>26%</h2>
-              </info-icon>
-            </div>
-            <div class="col5 col">
-              <div class="labelbox flex">
-                <h4>How to Open a <br />SEP-IRA<br />Account</h4>
-              </div>
-            </div>
-          </div>
-
-          <div class="box3 boxwrapper">
-            <div class="col1 col flex2">
-              <h1>SIMPLE-IRA</h1>
-              <p>
-                This is suitable for <br />
-                those who have <br />
-                employees and want to<br />
-                offer retirement <br />
-                benefits to their<br />
-                employees <br />
-                <br />
-                Over 65% of users have <br />
-                this as their first <br />
-                retirement account
-              </p>
-            </div>
-            <div class="col2 col flex2 justify-content-start mt-3">
-              <p>
-                The SIMPLE-IRA allows for <br />
-                retirement contribution as a <br />
-                employee and employer. <br />
-                Employers can contribute up to <br />
-                3% of employee’s <br />
-                compensation, and employees <br />
-                can defer up to $13,500/yr <br />
-                from their salary <br />
-                <br />
-                Best for those looking to offer <br />
-                retirement benefits for <br />
-                employees with minimal <br />
-                administration & fees
-              </p>
-            </div>
-            <div class="col3 col flex2 justify-content-start">
-              <h4>Your Contribution</h4>
-              <h2>$7,652 (10.6%)</h2>
-              <div class="colBox">
-                <vue-custom-slider v-model="sliders.four" />
-              </div>
-              <h4>Your Business Contribution</h4>
-              <info-icon tooltip="business">
-                <h2>$900 (1.4%)</h2>
-              </info-icon>
-
-              <div class="colBox">
-                <vue-custom-slider v-model="sliders.five" />
-              </div>
-              <p>
-                At age 67, your <br />
-                contributions could be <br />
-                worth $xxxxx
-              </p>
-            </div>
-
-            <div class="col4 col flex2 justify-content-start">
-              <h4>Tax Avoided</h4>
-              <info-icon tooltip="business">
-                <h2>$1,025</h2>
-              </info-icon>
-
-              <p>
-                At age 67, the amount <br />
-                you are losing could be <br />
-                worth $xxxxx
-              </p>
-              <h4>Tax Advantage Ratio</h4>
-              <info-icon tooltip="business">
-                <h2>19%</h2>
-              </info-icon>
-            </div>
-            <div class="col5 col">
-              <div class="labelbox flex">
-                <h4>How to Open a <br />SIMPLE-IRA<br />Account</h4>
-              </div>
-            </div>
-          </div>
-
-          <div class="box4 boxwrapper">
-            <div class="col1 col flex2">
+      <div class="boxes relative">
+        <h2 class="p-0 bestOptionLabel p-1">BEST OPTION</h2>
+        <div class="box1 boxwrapper">
+          <div class="col1 best-option-container relative">
+            <h4 class="absolute top-60">Account Types</h4>
+            <div class="mt-5 mb-4">
               <h1>
-                Traditional<br />
-                IRA
+                Individual <br />
+                401K
               </h1>
-            </div>
-            <div class="col2 col flex2 justify-content-start mt-3">
               <p>
-                This is the most common <br />
-                type of retirement account <br />
-                opened by individuals. You <br />
-                can contribute provided you <br />
-                have any type of earned <br />
-                income for the year You may <br />
-                contribute up to $6,000/yr <br />
+                Over 80% of incorporated <br />
+                freelancers use this option. <br />
                 <br />
-                Best for those who have <br />
-                outstanding debt, but want <br />
-                to start saving for <br />
-                retirement.
+                Based on your information, <br />
+                we suggest you open an <br />
+                Individual 401(K)
               </p>
-            </div>
-            <div class="col3 col flex2 mb-5 justify-content-start">
-              <h4>Your Contribution</h4>
-              <h2>$6,000 (8%)</h2>
-              <div class="colBox">
-                <vue-custom-slider v-model="sliders.six" />
-              </div>
-              <h4>Your Business Contribution</h4>
-
-              <p>
-                At age 67, your <br />
-                contributions could be <br />
-                worth $xxxxx
-              </p>
-            </div>
-
-            <div class="col4 col flex2 justify-content-start">
-              <h4>Tax Avoided</h4>
-              <info-icon tooltip="business">
-                <h2>$902</h2>
-              </info-icon>
-
-              <p>
-                At age 67, the amount <br />
-                you are losing could be <br />
-                worth $xxxxx
-              </p>
-              <h4>Tax Advantage Ratio</h4>
-              <info-icon tooltip="business">
-                <h2>14%</h2>
-              </info-icon>
-            </div>
-            <div class="col5 col">
-              <div class="labelbox flex">
-                <h4>How to Open an <br />Traditional IRA <br />Account</h4>
-              </div>
             </div>
           </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="footer">
-      <div class="footerContent">
-        <div class="roww1 flex">
-          <div class="premiumBox">
-            <div class="column1">
-              <div class="premiumHeading">
-                <div class="premiumLabel">
-                  <p class="m-0 p-0 ribbon-premium p-1">PREMIUM</p>
-                </div>
-              </div>
-              <div class="image flex w-100">
-                <div class="img"></div>
-              </div>
+          <div class="col2 col flex2 justify-content-start mt-3 relative">
+            <h4 class="absolute top-75">At a Glance</h4>
+            <p>
+              Individual 401(K) allows for <br />
+              more retirement contribution <br />
+              as a employee and employer. <br />
+              You can save up to $57,000/yr, <br />
+              and wth your spouse, this can <br />
+              be even as high as $114,000/yr. <br />
+              <br />
+              Best for those looking to <br />
+              maximize retirement <br />
+              contribution and are <br />
+              comfortable with some <br />
+              paperwork.
+            </p>
+          </div>
+          <div class="col3 col flex2 justify-content-start relative">
+            <info-icon tooltip="business" class="absolute top-60" classes="d-flex align-items-end">
+              <h4 class="d-flex align-items-end">Contributions</h4>
+            </info-icon>
+            <h4>Your Contribution</h4>
+            <h2>$1,552 (2.1%)</h2>
+            <div class="colBox">
+              <vue-custom-slider v-model="sliders.one" />
             </div>
+            <h4>Your Business Contribution</h4>
+            <info-icon tooltip="business">
+              <h2>$6,000 (8.9%)</h2>
+            </info-icon>
+            <div class="colBox2 colBox">
+              <vue-custom-slider v-model="sliders.two" />
+            </div>
+            <p>
+              At age 67, your <br />
+              contributions could be <br />
+              worth $101,516
+            </p>
+          </div>
 
-            <div class="column2 flex2">
-              <h1>MULTIPLE ACCOUNTS</h1>
-              <h2>
-                How do I balance my retirement contribution to multiple
-                accounts?
-              </h2>
-              <p>
-                We can help you calculate your overall tax avoided amount and
-                optimize contributions to different accounts.
-              </p>
-              <button style="align: flex; border-radius: 46px">Sign Up</button>
+          <div class="col4 col flex2 justify-content-start relative">
+            <h4 class="absolute top-60">Impact on your taxes</h4>
+            <h4>Tax Avoided</h4>
+            <info-icon tooltip="business">
+              <h2>$1,325</h2>
+            </info-icon>
+
+            <p>
+              At age 67, the amount <br />
+              you are losing could be <br />
+              worth $49,140
+            </p>
+            <h4>Tax Advantage Ratio</h4>
+            <info-icon tooltip="business">
+              <h2>26%</h2>
+            </info-icon>
+          </div>
+          <div class="col5 col">
+            <div class="labelbox flex">
+              <h4>How to Open an <br />Individual 401k <br />Account</h4>
             </div>
           </div>
         </div>
 
-        <div class="roww2 flex">
-          <div class="irsBox">
-            <div class="irsContent flex2">
-              <h4>How This Calculator Works</h4>
-              <p>
-                Based on your inputs, we followed the retirement contribution
-                rules for your business type and retirement account to determine
-                the total allowable deductions that can be made from your
-                business. These deductions have different impact on your taxes.
-                The retirement account option recommend is based on your
-                information, and the highest potential for tax avoided available
-                to you.
-              </p>
+        <div class="box2 boxwrapper">
+          <div class="col1 col flex2">
+            <h1>SEP-IRA</h1>
+            <p>
+              X% of people your age <br />
+              has this account
+            </p>
+          </div>
+          <div class="col2 col flex2 justify-content-start mt-3">
+            <p>
+              A SEP-IRA is an ideal plan if <br />
+              you are earning over <br />
+              $24,000/yr, and you intend to <br />
+              save more than $6,000/yr for <br />
+              retirement. You can <br />
+              contribute a maximum of <br />
+              $56,000/yr <br />
+              <br />
+              Best for simplicity in setup <br />
+              and if you have 2 jobs, one as <br />
+              a freelancer and another as a <br />
+              full-time employee.
+            </p>
+          </div>
+          <div class="col3 col flex2 mb-5 justify-content-start">
+            <h4>Your Business Contribution</h4>
+            <info-icon tooltip="business">
+              <h2 class="mb-0 pb-0">$7,500 (10.9%)</h2>
+            </info-icon>
+            <div class="colBox">
+              <vue-custom-slider v-model="sliders.three" />
             </div>
-            <div class="irsImage flex">
-              <div class="img2"></div>
+
+            <p>
+              At age 67, your <br />
+              contributions could be <br />
+              worth $xxxxx
+            </p>
+          </div>
+
+          <div class="col4 col flex2 justify-content-start">
+            <h4>Tax Avoided</h4>
+            <info-icon tooltip="business">
+              <h2>$1,325</h2>
+            </info-icon>
+
+            <p>
+              At age 67, the amount <br />
+              you are losing could be <br />
+              worth $49,140
+            </p>
+            <h4>Tax Advantage Ratio</h4>
+            <info-icon tooltip="business">
+              <h2>26%</h2>
+            </info-icon>
+          </div>
+          <div class="col5 col">
+            <div class="labelbox flex">
+              <h4>How to Open a <br />SEP-IRA<br />Account</h4>
+            </div>
+          </div>
+        </div>
+
+        <div class="box3 boxwrapper">
+          <div class="col1 col flex2">
+            <h1>SIMPLE-IRA</h1>
+            <p>
+              This is suitable for <br />
+              those who have <br />
+              employees and want to<br />
+              offer retirement <br />
+              benefits to their<br />
+              employees <br />
+              <br />
+              Over 65% of users have <br />
+              this as their first <br />
+              retirement account
+            </p>
+          </div>
+          <div class="col2 col flex2 justify-content-start mt-3">
+            <p>
+              The SIMPLE-IRA allows for <br />
+              retirement contribution as a <br />
+              employee and employer. <br />
+              Employers can contribute up to <br />
+              3% of employee’s <br />
+              compensation, and employees <br />
+              can defer up to $13,500/yr <br />
+              from their salary <br />
+              <br />
+              Best for those looking to offer <br />
+              retirement benefits for <br />
+              employees with minimal <br />
+              administration & fees
+            </p>
+          </div>
+          <div class="col3 col flex2 justify-content-start">
+            <h4>Your Contribution</h4>
+            <h2>$7,652 (10.6%)</h2>
+            <div class="colBox">
+              <vue-custom-slider v-model="sliders.four" />
+            </div>
+            <h4>Your Business Contribution</h4>
+            <info-icon tooltip="business">
+              <h2>$900 (1.4%)</h2>
+            </info-icon>
+
+            <div class="colBox">
+              <vue-custom-slider v-model="sliders.five" />
+            </div>
+            <p>
+              At age 67, your <br />
+              contributions could be <br />
+              worth $xxxxx
+            </p>
+          </div>
+
+          <div class="col4 col flex2 justify-content-start">
+            <h4>Tax Avoided</h4>
+            <info-icon tooltip="business">
+              <h2>$1,025</h2>
+            </info-icon>
+
+            <p>
+              At age 67, the amount <br />
+              you are losing could be <br />
+              worth $xxxxx
+            </p>
+            <h4>Tax Advantage Ratio</h4>
+            <info-icon tooltip="business">
+              <h2>19%</h2>
+            </info-icon>
+          </div>
+          <div class="col5 col">
+            <div class="labelbox flex">
+              <h4>How to Open a <br />SIMPLE-IRA<br />Account</h4>
+            </div>
+          </div>
+        </div>
+
+        <div class="box4 boxwrapper">
+          <div class="col1 col flex2">
+            <h1>
+              Traditional<br />
+              IRA
+            </h1>
+          </div>
+          <div class="col2 col flex2 justify-content-start mt-3">
+            <p>
+              This is the most common <br />
+              type of retirement account <br />
+              opened by individuals. You <br />
+              can contribute provided you <br />
+              have any type of earned <br />
+              income for the year You may <br />
+              contribute up to $6,000/yr <br />
+              <br />
+              Best for those who have <br />
+              outstanding debt, but want <br />
+              to start saving for <br />
+              retirement.
+            </p>
+          </div>
+          <div class="col3 col flex2 mb-5 justify-content-start">
+            <h4>Your Contribution</h4>
+            <h2>$6,000 (8%)</h2>
+            <div class="colBox">
+              <vue-custom-slider v-model="sliders.six" />
+            </div>
+            <p>
+              At age 67, your <br />
+              contributions could be <br />
+              worth $xxxxx
+            </p>
+          </div>
+
+          <div class="col4 col flex2 justify-content-start">
+            <h4>Tax Avoided</h4>
+            <info-icon tooltip="business">
+              <h2>$902</h2>
+            </info-icon>
+
+            <p>
+              At age 67, the amount <br />
+              you are losing could be <br />
+              worth $xxxxx
+            </p>
+            <h4>Tax Advantage Ratio</h4>
+            <info-icon tooltip="business">
+              <h2>14%</h2>
+            </info-icon>
+          </div>
+          <div class="col5 col">
+            <div class="labelbox flex">
+              <h4>How to Open an <br />Traditional IRA <br />Account</h4>
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
+
+  <div class="footer">
+    <div class="footerContent">
+      <div class="roww1 flex">
+        <div class="premiumBox">
+          <div class="column1">
+            <div class="premiumHeading">
+              <div class="premiumLabel">
+                <p class="m-0 p-0 ribbon-premium p-1">PREMIUM</p>
+              </div>
+            </div>
+            <div class="image flex w-100">
+              <div class="img"></div>
+            </div>
+          </div>
+
+          <div class="column2 flex2">
+            <h1>MULTIPLE ACCOUNTS</h1>
+            <h2>
+              How do I balance my retirement contribution to multiple
+              accounts?
+            </h2>
+            <p>
+              We can help you calculate your overall tax avoided amount and
+              optimize contributions to different accounts.
+            </p>
+            <button style="align: flex; border-radius: 46px">Sign Up</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="roww2 flex">
+        <div class="irsBox">
+          <div class="irsContent flex2">
+            <h4>How This Calculator Works</h4>
+            <p>
+              Based on your inputs, we followed the retirement contribution
+              rules for your business type and retirement account to determine
+              the total allowable deductions that can be made from your
+              business. These deductions have different impact on your taxes.
+              The retirement account option recommend is based on your
+              information, and the highest potential for tax avoided available
+              to you.
+            </p>
+          </div>
+          <div class="irsImage flex">
+            <div class="img2"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 </template>
 
 <script>
@@ -475,15 +453,19 @@ export default {
 .absolute {
   position: absolute;
 }
+
 .relative {
   position: relative;
 }
+
 .top-60 {
   top: -60px;
 }
+
 .top-75 {
   top: -75px;
 }
+
 :root {
   --heading-font: "Manrope", sans-serif;
   --heading2-font: "Karla", sans-serif;
@@ -492,23 +474,29 @@ export default {
   --normal-font: 400;
   --bold-font: 700;
 }
+
 .r-container .vue-slider-marks {
   background: #f3fcf7;
   /* border-radius: 10px; */
 }
+
 .r-container .vue-slider-mark-step {
   background-color: transparent;
 }
+
 .r-container .vue-slider-rail {
   border-radius: 0px;
 }
+
 .r-container .vue-slider-process {
   border-radius: 0px;
   background-color: #00d49f;
 }
+
 .r-container .vue-slider-mark-label {
   opacity: 0;
 }
+
 .custom-dot {
   position: absolute;
   left: 10.02%;
@@ -538,23 +526,29 @@ export default {
   height: 35px;
   /* left: 60px; */
 }
+
 .r-container .vue-slider-marks {
   background: #f3fcf7;
   /* border-radius: 10px; */
 }
+
 .r-container .vue-slider-mark-step {
   background-color: transparent;
 }
+
 .r-container .vue-slider-rail {
   border-radius: 0px;
 }
+
 .r-container .vue-slider-process {
   border-radius: 0px;
   background-color: #00d49f;
 }
+
 .r-container .vue-slider-mark-label {
   opacity: 0;
 }
+
 .custom-label {
   opacity: 1 !important;
   font-style: normal;
@@ -568,6 +562,7 @@ export default {
   margin: 0px;
   font-family: var(--heading2-font);
 }
+
 .r-container .h1,
 .h2,
 .h3,
@@ -611,6 +606,7 @@ export default {
   justify-content: flex-start;
   align-items: flex-start;
 }
+
 .flex2 {
   display: flex;
   justify-content: center;
@@ -621,10 +617,8 @@ export default {
 .r-container {
   display: grid;
   background-color: white;
-  grid-template-rows: 7vh 50vh minmax(170vh, min-content) minmax(
-      70vh,
-      min-content
-    );
+  grid-template-rows: 7vh 50vh minmax(170vh, min-content) minmax(70vh,
+      min-content);
   grid-template-columns: 100vw;
   overflow: hidden;
   grid-template-areas:
@@ -633,6 +627,7 @@ export default {
     "content"
     "footer";
 }
+
 .menu {
   grid-area: menu;
   background-color: black;
@@ -645,6 +640,7 @@ export default {
   grid-area: title;
   /* background-color: wheat; */
 }
+
 .title p {
   font-family: var(--para-font);
   font-size: 30px;
@@ -652,10 +648,12 @@ export default {
   color: white;
   line-height: 20px;
 }
+
 .logo {
   grid-area: logo;
   /* background-color: wheat; */
 }
+
 .logo p {
   font-family: var(--para-font);
   font-size: 18px;
@@ -679,6 +677,7 @@ export default {
   /* background-color: lightpink; */
   font-size: 40px;
 }
+
 .row2 {
   grid-area: row2;
   display: grid;
@@ -698,10 +697,12 @@ export default {
   word-spacing: 1px;
   padding-right: 10px;
 }
+
 .heading h2 {
   font-family: var(--heading2-font);
   font-size: 18px;
 }
+
 .adder-subtractor {
   height: 100%;
   grid-area: adder;
@@ -723,9 +724,11 @@ export default {
 
   /* border: 1px solid rgba(211, 211, 211, 0.212); */
 }
+
 .adder-subtractor .box h1 {
   font-size: 30px;
 }
+
 .sub {
   height: 100%;
   background-color: #00d49f;
@@ -796,6 +799,7 @@ p.percent {
   font-family: var(--heading2-font);
   line-height: 36px;
 }
+
 .cursor {
   height: 45%;
   width: 12px;
@@ -803,6 +807,7 @@ p.percent {
   position: relative;
   left: -34%;
 }
+
 .max {
   position: relative;
   top: 33px;
@@ -810,6 +815,7 @@ p.percent {
   justify-content: flex-end;
   /* align-items: flex-end; */
 }
+
 .max h2 {
   position: absolute;
   top: 100%;
@@ -850,6 +856,7 @@ p.percent {
   font-size: 26px;
   /* padding-left: 5rem; */
 }
+
 .item {
   grid-area: item;
   /* background-color: bisque; */
@@ -863,6 +870,7 @@ p.percent {
   font-size: 20px;
   font-family: var(--heading4-font);
 }
+
 .boxes {
   grid-area: boxes;
   /* background-color: red; */
@@ -881,15 +889,19 @@ p.percent {
   grid-row-gap: 1rem;
   padding: 1rem;
 }
+
 .box1 {
   background-color: #f0f0f0;
 }
+
 .box1 .col1 p {
   color: #00b488;
 }
+
 .box2 .col1 p {
   color: #bdbdbd;
 }
+
 .box3 .col1 p {
   color: #bdbdbd;
 }
@@ -898,6 +910,7 @@ p.percent {
   position: relative;
   float: left;
 }
+
 .bestOptionLabel {
   /* padding: 5px; */
   font-size: 26px;
@@ -910,11 +923,13 @@ p.percent {
   background-color: #00d49f;
   box-shadow: -2px 3px 4px rgba(0, 0, 0, 0.3);
 }
+
 .bestOptionLabel:before,
 .bestOptionLabel:after {
   content: "";
   position: absolute;
 }
+
 .bestOptionLabel:before {
   width: 7px;
   height: 100%;
@@ -925,6 +940,7 @@ p.percent {
   background: inherit;
   border-radius: 5px 0 0 5px;
 }
+
 /* .bestOptionLabel:after {
   width: 5px;
   height: 5px;
@@ -944,22 +960,27 @@ p.percent {
   padding-left: 30px;
   /* background-color: orchid; */
 }
+
 .boxwrapper .col2 {
   padding-left: 30px;
   /* background-color: lightblue; */
 }
+
 .boxwrapper .col3 {
   padding-left: 30px;
   /* background-color: lightgreen; */
 }
+
 .boxwrapper .col4 {
   padding-left: 30px;
   /* background-color: lightsalmon; */
 }
+
 .boxwrapper .col5 {
   padding-left: 30px;
   /* background-color: lightseagreen; */
 }
+
 .boxwrapper .col1 {
   /* grid-area: col1; */
   padding-left: 30px;
@@ -980,9 +1001,11 @@ p.percent {
 .box3 .col4 {
   padding-bottom: 25%;
 }
+
 .box4 .col1 {
   padding-bottom: 35%;
 }
+
 .box4 .col4 {
   padding-bottom: 25%;
 }
@@ -1026,40 +1049,48 @@ p.percent {
   width: 180px;
   /* margin-bottom: 10px; */
 }
+
 .box1 .colBox1 {
   display: grid;
   grid-template-columns: 10% 90%;
   grid-template-areas: "greeen whitee";
 }
+
 .box1 .colBox2 {
   display: grid;
   grid-template-columns: 95% 5%;
   grid-template-areas: "greeen whitee";
 }
+
 .box2 .colBox {
   display: grid;
   grid-template-columns: 85% 15%;
   grid-template-areas: "greeen whitee";
 }
+
 .box3 .colBox1 {
   display: grid;
   grid-template-columns: 50% 50%;
   grid-template-areas: "greeen whitee";
 }
+
 .box3 .colBox2 {
   display: grid;
   grid-template-columns: 95% 5%;
   grid-template-areas: "greeen whitee";
 }
+
 .box4 .colBox {
   display: grid;
   grid-template-columns: 95% 5%;
   grid-template-areas: "greeen whitee";
 }
+
 .greeen {
   grid-area: greeen;
   background-color: #00d49f;
 }
+
 .whitee {
   grid-area: whitee;
   background-color: #f3fcf7;
@@ -1157,6 +1188,7 @@ p.percent {
   display: flex;
   align-items: center;
 }
+
 .premiumLabel {
   position: relative;
   float: left;
@@ -1174,11 +1206,13 @@ p.percent {
   background-color: #00d49f;
   box-shadow: -2px 3px 4px rgba(0, 0, 0, 0.3);
 }
+
 .ribbon-premium:before,
 .ribbon-premium:after {
   content: "";
   position: absolute;
 }
+
 .ribbon-premium:before {
   width: 7px;
   height: 100%;
@@ -1188,6 +1222,7 @@ p.percent {
   background: inherit;
   border-radius: 5px 0 0 5px;
 }
+
 /* .ribbon-premium:after {
   width: 5px;
   height: 5px;
@@ -1218,6 +1253,7 @@ p.percent {
   height: 12em;
   border-radius: 100%;
 }
+
 .column2 {
   /* background-color: indianred; */
   padding-left: 20px;
@@ -1228,16 +1264,19 @@ p.percent {
   font-size: 30px;
   margin-bottom: 10px;
 }
+
 .column2 h2 {
   font-family: var(--heading2-font);
   font-size: 26px;
   margin-bottom: 10px;
 }
+
 .column2 p {
   font-family: var(--para-font);
   font-size: 16px;
   margin-bottom: 10px;
 }
+
 .column2 button {
   background-color: #f07f62;
   /* padding-top: 7px; */
@@ -1282,11 +1321,13 @@ p.percent {
   font-family: var(--heading4-font);
   margin-bottom: 2rem;
 }
+
 .irsContent p {
   font-size: 16px;
   margin: 0px;
   font-family: var(--para-font);
 }
+
 .irsImage {
   grid-area: irsImage;
   height: 100%;
@@ -1299,6 +1340,7 @@ p.percent {
   width: 193.5px;
   height: 78.62px;
 }
+
 .boxwrapper .col4 {
   padding-bottom: 7rem;
 }
@@ -1307,43 +1349,54 @@ p.percent {
   .boxwrapper p {
     font-size: 14px;
   }
+
   .boxwrapper .col5 h4 {
     font-size: 16px;
   }
+
   .boxwrapper .col2 {
     padding-left: 10px;
   }
+
   .boxwrapper .col4 {
     padding-bottom: 7rem;
   }
+
   .menu {
     display: grid;
     grid-template-columns: 0.2fr 3fr 3fr 2fr 0.2fr;
   }
+
   /* .bestOptionLabel h2 {
     font-size: 20px;
   } */
   .column2 h2 {
     font-size: 20px;
   }
+
   .column2 p {
     font-size: 14px;
   }
+
   .img {
     width: 12em;
     height: 12em;
   }
+
   .premiumBox {
     width: 70%;
     height: 80%;
   }
+
   .irsBox {
     width: 90%;
     height: 70%;
   }
+
   .head h1 {
     /* padding-left: 5rem; */
   }
+
   .column2 button {
     width: 30%;
     height: 12%;
@@ -1352,6 +1405,7 @@ p.percent {
 }
 
 @media only screen and (max-width: 1105px) {
+
   /* .boxwrapper .col5 {
     padding: 20px;
   }
@@ -1373,12 +1427,15 @@ p.percent {
   .item {
     display: none;
   }
+
   .column2 h1 {
     font-size: 26px;
   }
+
   .column2 h2 {
     font-size: 18px;
   }
+
   .column2 p {
     font-size: 13px;
   }
@@ -1388,15 +1445,19 @@ p.percent {
   .adder-subtractor .box h1 {
     font-size: 26px;
   }
+
   .box h2 {
     font-size: 18px;
   }
+
   .max h2 {
     font-size: 18px;
   }
+
   .title p {
     font-size: 22px;
   }
+
   .percent p {
     font-size: 30px;
   }
@@ -1406,6 +1467,7 @@ p.percent {
   .irsContent p {
     font-size: 14px;
   }
+
   .column2 button {
     width: 40%;
     height: 12%;
@@ -1417,18 +1479,22 @@ p.percent {
   .boxwrapper .col {
     padding-left: 10px;
   }
+
   .boxwrapper p {
     font-size: 13px;
   }
+
   .adder-subtractor .box {
     width: 35%;
   }
+
   /* .slider .box {
     width: 50%;
   } */
   .cursor {
     display: none;
   }
+
   /* .slider .box {
     display: grid;
     grid-template-columns: 25% 75%;
@@ -1437,13 +1503,16 @@ p.percent {
     display: grid;
     grid-template-columns: 0.2fr 6fr 5fr 2fr 0.2fr;
   }
+
   .head {
     display: flex;
     align-items: center;
   }
+
   .head h1 {
     font-size: 24px;
   }
+
   /* .bestOptionLabel {
     width: 70%;
   } */
@@ -1451,15 +1520,19 @@ p.percent {
     width: 90%;
     height: 70%;
   }
+
   .column2 h1 {
     font-size: 22px;
   }
+
   .column2 h2 {
     font-size: 15px;
   }
+
   .column2 p {
     font-size: 10px;
   }
+
   .img {
     width: 9em;
     height: 9em;
@@ -1468,13 +1541,16 @@ p.percent {
   .btn {
     display: none;
   }
+
   .irsBox {
     width: 95%;
     height: 70%;
   }
+
   .irsContent {
     padding-left: 2rem;
   }
+
   .percent p {
     font-size: 25px;
   }
@@ -1484,29 +1560,37 @@ p.percent {
   .adder-subtractor .box {
     width: 45%;
   }
+
   .slider .box {
     width: 60%;
   }
+
   .heading h2 {
     font-size: 16px;
   }
+
   .heading2 h2 {
     font-size: 16px;
   }
+
   .menu {
     display: grid;
     grid-template-columns: 0.2fr 6fr 5fr 3fr 0.2fr;
   }
+
   .title p {
     font-size: 18px;
   }
+
   .logo p {
     font-size: 15px;
   }
+
   .img2 {
     height: 75px;
     width: 180px;
   }
+
   .irsContent p {
     font-size: 12px;
   }
@@ -1518,25 +1602,32 @@ p.percent {
     justify-content: center;
     align-items: center;
   }
+
   .adder-subtractor .box {
     width: 50%;
   }
+
   .menu {
     display: grid;
     grid-template-columns: 0.2fr 7fr 4fr 3fr 0.2fr;
   }
+
   .box h2 {
     font-size: 16px;
   }
+
   .max h2 {
     font-size: 16px;
   }
+
   .heading {
     padding-right: 8px;
   }
+
   .heading2 {
     padding-right: 60px;
   }
+
   .heading {
     display: flex;
     align-items: center;
@@ -1550,41 +1641,51 @@ p.percent {
   .head h1 {
     font-size: 22px;
   }
+
   .irsBox {
     width: 98%;
     height: 50%;
   }
+
   .irsContent p {
     font-size: 10px;
   }
+
   .irsContent {
     padding-left: 1rem;
   }
+
   .img2 {
     height: 60px;
     width: 150px;
   }
+
   .column2 button {
     width: 50%;
     height: 12%;
     font-size: 14px;
   }
 }
+
 @media only screen and (max-width: 500px) {
   .premiumBox {
     width: 95%;
     height: 70%;
   }
+
   .img {
     width: 7em;
     height: 7em;
   }
+
   .column2 h1 {
     font-size: 20px;
   }
+
   .column2 h2 {
     font-size: 12px;
   }
+
   .column2 p {
     font-size: 8px;
   }
@@ -1593,6 +1694,7 @@ p.percent {
     display: flex;
     justify-content: flex-start;
   }
+
   .irsBox {
     width: 98%;
     height: 70%;
@@ -1600,6 +1702,7 @@ p.percent {
 }
 
 @media only screen and (max-width: 447px) {
+
   /* .bestOptionLabel {
     right: 130px;
     width: 50%;
@@ -1610,30 +1713,39 @@ p.percent {
   .title p {
     font-size: 15px;
   }
+
   .logo p {
     font-size: 12px;
   }
+
   .heading {
     padding-left: 5px;
   }
+
   .heading2 {
     padding-left: 5px;
   }
+
   .adder-subtractor .box {
     width: 55%;
   }
+
   .slider .box {
     width: 70%;
   }
+
   .box h2 {
     font-size: 14px;
   }
+
   .max h2 {
     font-size: 14px;
   }
+
   .heading h2 {
     font-size: 14px;
   }
+
   .heading2 h2 {
     font-size: 14px;
   }
@@ -1641,6 +1753,7 @@ p.percent {
   .box4 .col {
     padding-bottom: 0;
   }
+
   /* .head {
     display: flex;
     align-items: center;
@@ -1653,14 +1766,17 @@ p.percent {
   .column2 {
     padding-left: 10px;
   }
+
   .column2 button {
     width: 60%;
     height: 12%;
     font-size: 12px;
   }
+
   .irsContent h4 {
     font-size: 16px;
   }
+
   .irsContent p {
     font-size: 8px;
   }
@@ -1674,38 +1790,48 @@ p.percent {
   .adder-subtractor .box {
     width: 65%;
   }
+
   .slider .box {
     width: 75%;
   }
+
   .heading {
     padding-right: 2px;
   }
+
   .heading2 {
     padding-right: 35px;
   }
+
   .menu {
     display: grid;
     grid-template-columns: 0.2fr 8fr 3fr 3fr 0.2fr;
   }
+
   /* .bestOptionLabel h2 {
     font-size: 15px;
   } */
   .column2 h1 {
     font-size: 18px;
   }
+
   .column2 h2 {
     font-size: 10px;
   }
+
   .column2 p {
     font-size: 10px;
   }
+
   .irsContent h4 {
     font-size: 14px;
   }
+
   .img2 {
     height: 50px;
     width: 140px;
   }
+
   .column2 button {
     width: 65%;
     height: 12%;
@@ -1717,6 +1843,7 @@ p.percent {
   .adder-subtractor .box {
     width: 70%;
   }
+
   /* .bestOptionLabel {
     right: 100px;
   } */
@@ -1724,15 +1851,19 @@ p.percent {
   .title p {
     font-size: 12px;
   }
+
   .logo p {
     font-size: 1px;
   }
+
   .slider .box {
     width: 80%;
   }
+
   .heading {
     padding-right: 0;
   }
+
   .heading2 {
     padding-right: 20px;
   }
@@ -1740,6 +1871,7 @@ p.percent {
   .irsContent h4 {
     font-size: 12px;
   }
+
   .premiumBox {
     width: 100%;
     height: 70%;
@@ -1749,6 +1881,7 @@ p.percent {
     width: 12em;
     height: 12em;
   }
+
   .irsBox {
     width: 100%;
     height: 80%;

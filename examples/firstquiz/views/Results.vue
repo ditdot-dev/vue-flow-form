@@ -1,205 +1,178 @@
 /* will need to write the Profit After Expenses function */
 <template>
-  <div class="containerR">
-    <div class="mainR">
-      <div class="arrowR">
-        <router-link to="/input">
-          <svg
-            width="32px"
-            height="20px"
-            viewBox="0 0 27 17"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M1.54169 16L13.5 1.41666L25.4583 16"
-              stroke="black"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            />
-          </svg>
-        </router-link>
-      </div>
-      <div class="paraR">
-        <p>{{ name }} {{ businessName }} Tax Results</p>
-      </div>
+<div class="containerR">
+  <div class="mainR">
+    <div class="arrowR">
+      <router-link to="/input">
+        <svg width="32px" height="20px" viewBox="0 0 27 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M1.54169 16L13.5 1.41666L25.4583 16" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+      </router-link>
     </div>
-    <div class="contentR">
-      <div class="mainContent">
-        <div class="row1 flex">
-          <div class="row1Box">
-            <div class="row1Col1">
-              <p>What's yours after taxes</p>
-              <p class="numbers">{{ profitAfterTaxes }}5,000</p>
-            </div>
-            <div class="row1Col2 ">
-              <p>
-                Amount of business deduction you quality for
-                <info-icon
-                  onlyClass="none"
-                  tooltip="The Tax Cuts and Job Act passed in 2017 allows eligible self-employed and small-business owners to deduct up to 20% of their qualified business income on their taxes. Your accountant and/or tax software will calculate this for you in your annual tax returns"
-                >
-                </info-icon>
-              </p>
-              <p class="numbers">{{ totalDeduction }}50000</p>
+    <div class="paraR">
+      <p>{{ name }} {{ businessName }} Tax Results</p>
+    </div>
+  </div>
+  <div class="contentR">
+    <div class="mainContent">
+      <div class="row1 flex">
+        <div class="row1Box">
+          <div class="row1Col1">
+            <p>What's yours after taxes</p>
+            <p class="numbers">{{ profitAfterTaxes }}##</p>
+          </div>
+          <div class="row1Col2 ">
+            <p>
+              Amount of business deduction you quality for
+              <info-icon onlyClass="none"
+                tooltip="The Tax Cuts and Job Act passed in 2017 allows eligible self-employed and small-business owners to deduct up to 20% of their qualified business income on their taxes. Your accountant and/or tax software will calculate this for you in your annual tax returns">
+              </info-icon>
+            </p>
+            <p class="numbers">##{{ totalDeduction }}</p>
+          </div>
+        </div>
+      </div>
+      <div class="row2 flex">
+        <div class="row2box2">
+          <div class="row2Col1 ">
+            <p>How much taxes you owe in 2020</p>
+            <p style="color:#cc3939" class="numbers">
+              {{ taxBalance }} ##
+            </p>
+          </div>
+          <div class="row2Col2">
+            <div class="row2Col2Box flex1" v-on:click="getTaxSummary">
+              <router-link class="routemid" to="/retirement-options">
+                <p>
+                  Click here to see how much you can lower taxes with
+                  different retirement accounts
+                </p>
+              </router-link>
             </div>
           </div>
         </div>
-        <div class="row2 flex">
-          <div class="row2box2">
-            <div class="row2Col1 ">
-              <p>How much taxes you owe in 2020</p>
-              <p style="color:#cc3939" class="numbers">
-                {{ taxBalance }}500000
-              </p>
-            </div>
-            <div class="row2Col2">
-              <div class="row2Col2Box flex1" v-on:click="getTaxSummary">
-                <router-link class="routemid" to="/retirement-options">
-                  <p>
-                    Click here to see how much you can lower taxes with
-                    different retirement accounts
-                  </p>
-                </router-link>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div>
-          <h4 class="taxbreakdowntext">Tax Breakdown For Year 2020 (In USD)</h4>
-        </div>
+      </div>
+      <div>
+        <h4 class="taxbreakdowntext">Tax Breakdown For Year 2020 (In USD)</h4>
+      </div>
 
-        <div class="row4 flex">
-          <div class="row4Box">
-            <div class="row4Col1">
-              <div class="line1">
-                <p>
-                  Total Income:
-                  <span class="dollaramount"> {{ totalIncome }} </span>
-                </p>
-                <p class="subtitleinfo">(Business + Personal Income)</p>
-              </div>
-              <div class="line2">
-                <p>
-                  <span class="addminus">-</span> Expenses:
-                  <span class="dollaramount"> {{ expenses }} </span>
-                </p>
-              </div>
-              <div class="line"></div>
-              <div class="line3">
-                <p>
-                  Profit after Expenses:
-                  <span class="dollaramount">{{ profitAfterExpenses }}</span>
-                </p>
-              </div>
+      <div class="row4 flex">
+        <div class="row4Box">
+          <div class="row4Col1">
+            <div class="line1">
+              <p>
+                Total Income:
+                <span class="dollaramount"> {{ totalIncome }} </span>
+              </p>
+              <p class="subtitleinfo">(Business + Personal Income)</p>
             </div>
-            <div class="row4Col2">
-              <div class="line1">
-                <p>
-                  Medicare:
-                  <span class="dollaramount"> {{ medicareTax }} </span>
-                </p>
-              </div>
-              <div class="line2">
-                <p>
-                  <span class="addminus">+</span> Social Security:
-                  <span class="dollaramount">{{ socialSecurityTax }}</span>
-                </p>
-              </div>
-              <div class="line"></div>
-              <div class="line3">
-                <p>
-                  Self Employement Tax:
-                  <span class="dollaramount">{{ selfEmploymentTax }}</span>
-                </p>
-              </div>
+            <div class="line2">
+              <p>
+                <span class="addminus">-</span> Expenses:
+                <span class="dollaramount"> {{ expenses }} </span>
+              </p>
+            </div>
+            <div class="line"></div>
+            <div class="line3">
+              <p>
+                Profit after Expenses:
+                <span class="dollaramount">{{ profitAfterExpenses }}</span>
+              </p>
+            </div>
+          </div>
+          <div class="row4Col2">
+            <div class="line1">
+              <p>
+                Medicare:
+                <span class="dollaramount"> {{ medicareTax }} </span>
+              </p>
+            </div>
+            <div class="line2">
+              <p>
+                <span class="addminus">+</span> Social Security:
+                <span class="dollaramount">{{ socialSecurityTax }}</span>
+              </p>
+            </div>
+            <div class="line"></div>
+            <div class="line3">
+              <p>
+                Self Employement Tax:
+                <span class="dollaramount">{{ selfEmploymentTax }}</span>
+              </p>
             </div>
           </div>
         </div>
-        <div class="row5 flex">
-          <div class="row5Box">
-            <div class="row5Col1">
-              <div class="line1">
-                <p>
-                  Profit After Expenses:
-                  <span class="dollaramount"> {{ profitAfterExpenses }}</span>
-                </p>
-              </div>
-              <div class="line2">
-                <p>
-                  <span class="addminus">-</span> Total Tax Balance:
-                  <span class="dollaramount"> {{ taxBalance }} </span>
-                </p>
-              </div>
-              <div class="line"></div>
-              <div class="line3">
-                <p>
-                  Profit after Taxes:
-                  <span class="dollaramount">{{ profitAfterTaxes }}</span>
-                </p>
-              </div>
+      </div>
+      <div class="row5 flex">
+        <div class="row5Box">
+          <div class="row5Col1">
+            <div class="line1">
+              <p>
+                Profit After Expenses:
+                <span class="dollaramount"> {{ profitAfterExpenses }}</span>
+              </p>
             </div>
-            <div class="row5Col2">
-              <div class="line1">
-                <p>
-                  Self Employement Tax:
-                  <span class="dollaramount">{{ selfEmploymentTax }}</span>
-                </p>
-              </div>
-              <div class="line2">
-                <p>
-                  <span class="addminus">+</span>
-                  <span style="text-transform: uppercase;">{{
+            <div class="line2">
+              <p>
+                <span class="addminus">-</span> Total Tax Balance:
+                <span class="dollaramount"> {{ taxBalance }} </span>
+              </p>
+            </div>
+            <div class="line"></div>
+            <div class="line3">
+              <p>
+                Profit after Taxes:
+                <span class="dollaramount">{{ profitAfterTaxes }}</span>
+              </p>
+            </div>
+          </div>
+          <div class="row5Col2">
+            <div class="line1">
+              <p>
+                Self Employement Tax:
+                <span class="dollaramount">{{ selfEmploymentTax }}</span>
+              </p>
+            </div>
+            <div class="line2">
+              <p>
+                <span class="addminus">+</span>
+                <span style="text-transform: uppercase;">{{
                     filing_state
                   }}</span>
-                  CA State Tax:
-                  <span class="dollaramount">{{ stateIncomeTax }}</span>
-                </p>
-              </div>
-              <div class="line4">
-                <p>
-                  <span class="addminus">+</span> Federal Income Tax:
-                  <span class="dollaramount"> {{ federalIncomeTax }} </span>
-                </p>
-              </div>
-              <div class="line"></div>
-              <div class="line3">
-                <p>
-                  Total Tax Balance:
-                  <span class="dollaramount">{{ taxBalance }}</span>
-                </p>
-                <p class="subtitleinfo2">
-                  (Effective Tax Rate: {{ effectiveTaxRate }}%)
-                </p>
-              </div>
+                State Tax:
+                <span class="dollaramount">{{ stateIncomeTax }}</span>
+              </p>
+            </div>
+            <div class="line4">
+              <p>
+                <span class="addminus">+</span> Federal Income Tax:
+                <span class="dollaramount"> {{ federalIncomeTax }} </span>
+              </p>
+            </div>
+            <div class="line"></div>
+            <div class="line3">
+              <p>
+                Total Tax Balance:
+                <span class="dollaramount">{{ taxBalance }}</span>
+              </p>
+              <p class="subtitleinfo2">
+                (Effective Tax Rate: {{ effectiveTaxRate }}%)
+              </p>
             </div>
           </div>
         </div>
+      </div>
 
-        <div class="row6">
-          <div class="flex">
-            <router-link to="/retirement-options">
-              <svg
-                version="1.1"
-                xmlns="http://www.w3.org/2000/svg"
-                xmlns:xlink="http://www.w3.org/1999/xlink"
-                x="0px"
-                y="0px"
-                width="32px"
-                height="20px"
-                viewBox="78.833 5.5 42.333 28.334"
-                aria-hidden="true"
-              >
-                <path
-                  d="M117.963,8.031l-17.961,20.529L82.042,8.031l-2.041,1.784l18.98,21.695c0.258,0.295,0.629,0.463,1.02,0.463c0.39,0,0.764-0.168,1.02-0.463l18.98-21.695L117.963,8.031z"
-                /></svg
-            ></router-link>
-          </div>
+      <div class="row6">
+        <div class="flex">
+          <router-link to="/retirement-options">
+            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="32px" height="20px" viewBox="78.833 5.5 42.333 28.334" aria-hidden="true">
+              <path d="M117.963,8.031l-17.961,20.529L82.042,8.031l-2.041,1.784l18.98,21.695c0.258,0.295,0.629,0.463,1.02,0.463c0.39,0,0.764-0.168,1.02-0.463l18.98-21.695L117.963,8.031z" /></svg></router-link>
         </div>
       </div>
     </div>
   </div>
+</div>
 </template>
 
 <script>
@@ -275,6 +248,7 @@ export default {
   align-items: center;
   flex-flow: column;
 }
+
 .dollaramount {
   position: absolute;
   padding-left: 0.5rem;
@@ -303,13 +277,16 @@ export default {
     "arrow"
     "para";
 }
+
 .routemid {
   color: white;
 }
+
 .addminus {
   position: absolute;
   left: 3.5rem !important;
 }
+
 .arrowR {
   grid-area: arrow;
   text-align: center;
@@ -343,11 +320,8 @@ export default {
   background-color: #fbe6da;
   display: grid;
   grid-template-rows:
-    minmax(40vh, min-content) minmax(40vh, min-content) 10vh minmax(
-      50vh,
-      min-content
-    )
-    minmax(50vh, min-content) minmax(10vh, min-content);
+    minmax(40vh, min-content) minmax(40vh, min-content) 10vh minmax(50vh,
+      min-content) minmax(50vh, min-content) minmax(10vh, min-content);
   grid-template-areas:
     "row1"
     "row2"
@@ -479,9 +453,11 @@ export default {
   grid-area: row4;
   /* background-color: tan; */
 }
+
 .tooltiptext {
   width: 50%;
 }
+
 .row4Box {
   width: 80%;
   height: 80%;
@@ -627,17 +603,21 @@ export default {
   overflow-y: hidden;
   grid-template-rows: 10vh;
 }
+
 @media only screen and (max-width: 1400px) {
-  .row4Col2{
+  .row4Col2 {
     margin-top: 0.5rem;
   }
-  .rowCol2{
+
+  .rowCol2 {
     margin-top: 0.5rem;
   }
-    .row4Col1{
+
+  .row4Col1 {
     margin-top: 0.5rem;
   }
-  .rowCol1{
+
+  .rowCol1 {
     margin-top: 0.5rem;
   }
 }
@@ -649,6 +629,7 @@ export default {
     padding: 5px;
     margin-bottom: 1rem;
   }
+
   .addminus {
     left: 1.5rem !important;
   }
@@ -779,9 +760,11 @@ export default {
     text-align: center;
     font-size: 70px !important;
   }
+
   .subtitleinfo2 {
     font-size: 1rem;
   }
+
   .subtitleinfo {
     font-size: 1rem;
   }
@@ -797,6 +780,7 @@ export default {
     width: 80%;
     height: 85%;
   }
+
   .addminus {
     left: 3rem !important;
   }
@@ -848,9 +832,11 @@ export default {
   .row1Col1 p {
     font-size: 20px;
   }
+
   .row4Col1 {
     margin-top: 2rem;
   }
+
   .taxbreakdowntext {
     padding-left: 1.5rem;
     margin: 1.4rem 0;
@@ -859,6 +845,7 @@ export default {
   .row1Col2 p {
     font-size: 20px;
   }
+
   .row2Col1 p {
     font-size: 20px;
   }
@@ -952,9 +939,11 @@ export default {
   .numbers {
     font-size: 60px !important;
   }
+
   .subtitleinfo2 {
     padding-top: 0.5rem;
   }
+
   .subtitleinfo {
     padding-top: 0.5rem;
   }
@@ -963,7 +952,8 @@ export default {
     font-size: 18px;
     padding-top: 1rem;
   }
-  .taxbreakdowntext{
+
+  .taxbreakdowntext {
     padding-top: 1rem;
   }
 
@@ -1042,6 +1032,7 @@ export default {
   .taxbreakdowntext {
     font-size: 24px;
   }
+
   .line1 p {
     font-size: 14px;
     padding-bottom: 5px;
@@ -1064,10 +1055,12 @@ export default {
     font-size: 14px;
     padding-right: 8rem;
   }
+
   .subtitleinfo {
     padding-top: 1rem;
     font-size: 12px !important;
   }
+
   .subtitleinfo2 {
     padding-top: 1rem;
     font-size: 12px !important;
@@ -1079,6 +1072,7 @@ export default {
     width: 280px;
     height: 200px;
   }
+
   .paraR p {
     font-size: 25px;
     font-weight: bold;
@@ -1116,6 +1110,7 @@ export default {
   .row1 {
     margin-top: 1rem;
   }
+
   .line1 p {
     font-size: 14px;
     padding-bottom: 5px;
