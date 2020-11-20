@@ -2,7 +2,7 @@
 <div class="r-container">
   <div class="main">
     <div class="row1 flex" style="cursor: pointer">
-      <router-link to="/">
+      <router-link to="/results" aria-label="return to results">
         <p>^</p>
       </router-link>
     </div>

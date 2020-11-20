@@ -1,10 +1,8 @@
-
-/* will need to write the Profit After Expenses function */
 <template>
 <div class="containerR">
   <div class="mainR">
     <div class="arrowR">
-      <router-link to="/input">
+      <router-link to="/input" aria-label="restart the input page">
         <svg width="32px" height="20px" viewBox="0 0 27 17" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M1.54169 16L13.5 1.41666L25.4583 16" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
         </svg>
@@ -40,7 +38,7 @@
           </div>
           <div class="row2Col2">
             <div class="row2Col2Box flex1" v-on:click="getTaxSummary">
-              <router-link to="/retirement-options">
+              <router-link to="/retirement-options" aria-label="next page to retirement options">
                 <p>
                   Click here to see how much you can lower taxes with different
                   retirement accounts
@@ -119,7 +117,7 @@
 
       <div class="row6">
         <div class="flex">
-          <router-link to="/retirement-options">
+          <router-link to="/retirement-options" aria-label="next page to retirement options">
             <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="32px" height="20px" viewBox="78.833 5.5 42.333 28.334" aria-hidden="true">
               <path d="M117.963,8.031l-17.961,20.529L82.042,8.031l-2.041,1.784l18.98,21.695c0.258,0.295,0.629,0.463,1.02,0.463c0.39,0,0.764-0.168,1.02-0.463l18.98-21.695L117.963,8.031z" /></svg></router-link>
         </div>

@@ -18,7 +18,7 @@
       will never sell your data.
     </p>
     <br /><br />
-    <router-link to="/input"><button>GET STARTED!</button></router-link>
+    <router-link to="/input"><button aria-label="start input page">GET STARTED!</button></router-link>
   </div>
   <div class="image">
     <div class="img"></div>
