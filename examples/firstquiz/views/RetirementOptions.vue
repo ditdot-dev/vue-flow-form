@@ -2,7 +2,7 @@
 <div class="r-container">
   <div class="main">
     <div class="row1 flex" style="cursor: pointer">
-      <router-link to="/results">
+      <router-link to="/results" aria-label="return to results">
         <svg width="32px" height="20px" viewBox="0 0 27 17" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M1.54169 16L13.5 1.41666L25.4583 16" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
         </svg>
