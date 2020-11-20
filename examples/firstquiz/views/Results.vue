@@ -1,3 +1,4 @@
+
 <template>
 <div class="containerR">
   <div class="mainR">
@@ -18,15 +19,16 @@
         <div class="row1Box">
           <div class="row1Col1">
             <p>What's yours after taxes</p>
-            <h2>{{ profitAfterTaxes }}</h2>
+            <p class="numbers">{{ profitAfterTaxes }}##</p>
           </div>
-          <div class="row1Col2 flex1">
-            <p>Amount of business deduction you quality for
-              <info-icon
+          <div class="row1Col2 ">
+            <p>
+              Amount of business deduction you quality for
+              <info-icon onlyClass="none"
                 tooltip="The Tax Cuts and Job Act passed in 2017 allows eligible self-employed and small-business owners to deduct up to 20% of their qualified business income on their taxes. Your accountant and/or tax software will calculate this for you in your annual tax returns">
               </info-icon>
             </p>
-            <h2>{{ totalDeduction }}</h2>
+            <p class="numbers">##{{ totalDeduction }}</p>
           </div>
         </div>
       </div>
@@ -34,14 +36,16 @@
         <div class="row2box2">
           <div class="row2Col1 ">
             <p>How much taxes you owe in 2020</p>
-            <h2>{{ taxBalance }}</h2>
+            <p style="color:#cc3939" class="numbers">
+              {{ taxBalance }} ##
+            </p>
           </div>
           <div class="row2Col2">
             <div class="row2Col2Box flex1" v-on:click="getTaxSummary">
-              <router-link to="/retirement-options" aria-label="next page to retirement options">
+              <router-link class="routemid" to="/retirement-options" aria-label="next page to retirement options">
                 <p>
-                  Click here to see how much you can lower taxes with different
-                  retirement accounts
+                  Click here to see how much you can lower taxes with
+                  different retirement accounts
                 </p>
               </router-link>
             </div>
@@ -52,32 +56,49 @@
         <h4 class="taxbreakdowntext">Tax Breakdown For Year 2020 (In USD)</h4>
       </div>
 
-
       <div class="row4 flex">
         <div class="row4Box">
           <div class="row4Col1">
             <div class="line1">
-              <p>Total Income: {{ totalIncome }}</p>
+              <p>
+                Total Income:
+                <span class="dollaramount"> {{ totalIncome }} </span>
+              </p>
               <p class="subtitleinfo">(Business + Personal Income)</p>
             </div>
             <div class="line2">
-              <p>- Expenses: {{ expenses }}</p>
+              <p>
+                <span class="addminus">-</span> Expenses:
+                <span class="dollaramount"> {{ expenses }} </span>
+              </p>
             </div>
             <div class="line"></div>
             <div class="line3">
-              <p>Profit after Expenses: <span>{{ profitAfterExpenses }}</span></p>
+              <p>
+                Profit after Expenses:
+                <span class="dollaramount">{{ profitAfterExpenses }}</span>
+              </p>
             </div>
           </div>
           <div class="row4Col2">
             <div class="line1">
-              <p>Medicare: {{ medicareTax }}</p>
+              <p>
+                Medicare:
+                <span class="dollaramount"> {{ medicareTax }} </span>
+              </p>
             </div>
             <div class="line2">
-              <p>+ Social Security: {{ socialSecurityTax }}</p>
+              <p>
+                <span class="addminus">+</span> Social Security:
+                <span class="dollaramount">{{ socialSecurityTax }}</span>
+              </p>
             </div>
             <div class="line"></div>
             <div class="line3">
-              <p>Self Employement Tax: <span>{{ selfEmploymentTax }}</span></p>
+              <p>
+                Self Employement Tax:
+                <span class="dollaramount">{{ selfEmploymentTax }}</span>
+              </p>
             </div>
           </div>
         </div>
@@ -86,30 +107,57 @@
         <div class="row5Box">
           <div class="row5Col1">
             <div class="line1">
-              <p>Profit After Expenses: {{ profitAfterExpenses }}</p>
+              <p>
+                Profit After Expenses:
+                <span class="dollaramount"> {{ profitAfterExpenses }}</span>
+              </p>
             </div>
             <div class="line2">
-              <p>- Total Tax Balance: {{ taxBalance }}</p>
+              <p>
+                <span class="addminus">-</span> Total Tax Balance:
+                <span class="dollaramount"> {{ taxBalance }} </span>
+              </p>
             </div>
             <div class="line"></div>
             <div class="line3">
-              <p>Profit after Taxes: <span>{{ profitAfterTaxes }}</span></p>
+              <p>
+                Profit after Taxes:
+                <span class="dollaramount">{{ profitAfterTaxes }}</span>
+              </p>
             </div>
           </div>
           <div class="row5Col2">
             <div class="line1">
-              <p>Self Employement Tax: {{ selfEmploymentTax }}</p>
+              <p>
+                Self Employement Tax:
+                <span class="dollaramount">{{ selfEmploymentTax }}</span>
+              </p>
             </div>
             <div class="line2">
-              <p>+ <span style="text-transform: uppercase;">{{ filing_state }}</span> State Tax: {{ stateIncomeTax }}</p>
+              <p>
+                <span class="addminus">+</span>
+                <span style="text-transform: uppercase;">{{
+                    filing_state
+                  }}</span>
+                State Tax:
+                <span class="dollaramount">{{ stateIncomeTax }}</span>
+              </p>
             </div>
             <div class="line4">
-              <p>+ Federal Income Tax: {{ federalIncomeTax }}</p>
+              <p>
+                <span class="addminus">+</span> Federal Income Tax:
+                <span class="dollaramount"> {{ federalIncomeTax }} </span>
+              </p>
             </div>
             <div class="line"></div>
             <div class="line3">
-              <p>Total Tax Balance: <span>{{ taxBalance }}</span></p>
-              <p class="subtitleinfo2">(Effective Tax Rate: {{ effectiveTaxRate }}%)</p>
+              <p>
+                Total Tax Balance:
+                <span class="dollaramount">{{ taxBalance }}</span>
+              </p>
+              <p class="subtitleinfo2">
+                (Effective Tax Rate: {{ effectiveTaxRate }}%)
+              </p>
             </div>
           </div>
         </div>
@@ -135,18 +183,18 @@ import infoIcon from "../components/info-icon";
 export default {
   name: "Results",
   components: {
-    infoIcon,
+    infoIcon
   },
   data() {
     return {
       function() {
-        console.log(this.$store)
+        console.log(this.$store);
       }
-    }
+    };
   },
   // using computed since the data is reactive and will not change even if refreshed
   computed: {
-    ...Vuex.mapState('userInformation', {
+    ...Vuex.mapState("userInformation", {
       name: state => state.userInput.first_name + "'s",
       businessName: state => state.userInput.business_name,
       qbiDeduction: state => "$" + state.taxUpdate.qbiDeduction, //.toLocaleString('en-US'),
@@ -158,18 +206,17 @@ export default {
       selfEmploymentTax: state => "$" + state.taxUpdate.selfEmploymentTax,
       stateIncomeTax: state => "$" + state.taxUpdate.stateIncomeTax,
       federalIncomeTax: state => "$" + state.taxUpdate.federalIncomeTax,
-      effectiveTaxRate: state => (state.taxUpdate.smartTaxRate * 100).toFixed(2),
+      effectiveTaxRate: state => (state.taxUpdate.smartTaxRate * 100).toFixed(2)
     }),
-    ...Vuex.mapGetters('userInformation', [
-      'totalDeduction', 'totalIncome', 'profitAfterExpenses',
-    ]), //, 'w2Tax', 'taxBalance', 'profitAfterTaxes' <- not working at this time.
-
+    ...Vuex.mapGetters("userInformation", [
+      "totalDeduction",
+      "totalIncome",
+      "profitAfterExpenses"
+    ]) //, 'w2Tax', 'taxBalance', 'profitAfterTaxes' <- not working at this time.
   },
   methods: {
-    ...Vuex.mapActions('calculatorDrag', [
-      'getTaxSummary',
-    ])
-  },
+    ...Vuex.mapActions("calculatorDrag", ["getTaxSummary"])
+  }
 };
 </script>
 
@@ -202,6 +249,11 @@ export default {
   flex-flow: column;
 }
 
+.dollaramount {
+  position: absolute;
+  padding-left: 0.5rem;
+}
+
 .flex2 {
   display: flex;
   justify-content: flex-end;
@@ -224,6 +276,15 @@ export default {
   grid-template-areas:
     "arrow"
     "para";
+}
+
+.routemid {
+  color: white;
+}
+
+.addminus {
+  position: absolute;
+  left: 3.5rem !important;
 }
 
 .arrowR {
@@ -283,52 +344,44 @@ export default {
   grid-template-columns: repeat(auto-fit, minmax(28rem, 1fr));
   border-radius: 28px;
   grid-row-gap: 1rem;
+  justify-content: center;
+  align-items: center;
 }
 
 .row1Col1 p {
   font-size: 26px;
   margin-bottom: 0;
-  padding-top: 0.5rem;
   padding-left: 0.8rem;
   font-family: Manrope;
 }
 
-.row1Col1 h2 {
-  font-size: 110px;
+.numbers {
+  font-size: 110px !important;
   color: #00b488;
+  font-weight: bold;
   /* font-family: var(--heading2-font); */
 }
 
 .row1Col2 p {
   font-size: 26px;
   font-family: Manrope;
-  margin-bottom: 0;
-  padding-top: 0.5rem;
-  margin-left: -2.2rem;
-}
-
-.row1Col2 h2 {
-  font-size: 110px;
-  font-family: Karla;
-  margin-left: -17rem;
-  font-weight: bold;
-  color: #00b488;
 }
 
 .subtitleinfo {
   font-size: 12px !important;
   font-family: Manrope !important;
-  padding: 0 !important;
-  margin: -0.5rem 0;
+  padding: 0 10rem 0 0;
+  margin-top: -1rem;
+  /* margin: -0.5rem 0 0 -3rem; */
 }
 
 .subtitleinfo2 {
   font-size: 12px !important;
   font-family: Manrope !important;
-  padding: 0 !important;
-  margin: -0.5rem 0;
   text-align: center;
   font-weight: unset !important;
+  /* padding: 0 25rem 0 0; */
+  margin-top: -0.5rem;
 }
 
 .row2 {
@@ -345,6 +398,9 @@ export default {
   grid-template-columns: repeat(auto-fit, minmax(28rem, 1fr));
   border-radius: 28px;
   grid-row-gap: 1rem;
+  display: grid;
+  /* justify-content: center;
+  align-items: center; */
 }
 
 .row2Col1 p {
@@ -355,15 +411,10 @@ export default {
   padding-top: 0.5rem;
 }
 
-.row2Col1 h2 {
-  font-size: 110px;
-  font-weight: bold;
-  font-family: Karla;
-  color: #cc3939;
-}
-
 .row2Col2 {
+  display: grid;
   justify-content: center;
+  align-items: center;
 }
 
 .row2Col2Box {
@@ -403,6 +454,10 @@ export default {
   /* background-color: tan; */
 }
 
+.tooltiptext {
+  width: 50%;
+}
+
 .row4Box {
   width: 80%;
   height: 80%;
@@ -416,16 +471,18 @@ export default {
 .row4Col1 {
   background-color: #ffffff;
   display: flex;
+  position: relative;
   justify-content: center;
-  align-items: flex-end;
+  text-align: center;
   flex-flow: column;
-  padding-right: 5rem;
+  padding: 0 2rem;
   border-radius: 28px;
 }
 
 .line1 p {
   font-size: 26px;
-  line-height: 36px;
+  text-align: right;
+  padding-right: 10rem;
   font-family: var(--para-font);
   font-weight: var(--normal-font);
   padding-bottom: 10px;
@@ -440,7 +497,8 @@ export default {
 
 .line2 p {
   font-size: 26px;
-  line-height: 36px;
+  text-align: right;
+  padding-right: 10rem;
   font-family: var(--para-font);
   padding-bottom: 10px;
   font-weight: var(--normal-font);
@@ -448,7 +506,8 @@ export default {
 
 .line3 p {
   font-size: 26px;
-  line-height: 36px;
+  text-align: right;
+  padding-right: 10rem;
   font-family: var(--para-font);
   font-weight: var(--bold-font);
 }
@@ -456,6 +515,8 @@ export default {
 .line4 p {
   font-size: 26px;
   line-height: 36px;
+  text-align: right;
+  padding-right: 10rem;
   font-family: var(--para-font);
   padding-bottom: 10px;
   font-weight: var(--normal-font);
@@ -472,9 +533,11 @@ export default {
   background-color: #ffffff;
   display: flex;
   justify-content: center;
-  align-items: flex-end;
+  position: relative;
+
+  text-align: center;
   flex-flow: column;
-  padding-right: 5rem;
+  padding: 0 2rem;
   border-radius: 28px;
 }
 
@@ -505,9 +568,11 @@ export default {
   background-color: #ffffff;
   display: flex;
   justify-content: center;
-  align-items: flex-start;
+  text-align: center;
+  position: relative;
+
   flex-flow: column;
-  padding-right: 5rem;
+  padding: 0 2rem;
   border-radius: 28px;
 }
 
@@ -515,9 +580,11 @@ export default {
   background-color: #ffffff;
   display: flex;
   justify-content: center;
-  align-items: flex-end;
+  text-align: center;
   flex-flow: column;
-  padding-right: 5rem;
+  position: relative;
+
+  padding: 0 2rem;
   border-radius: 28px;
 }
 
@@ -537,15 +604,34 @@ export default {
   grid-template-rows: 10vh;
 }
 
+@media only screen and (max-width: 1400px) {
+  .row4Col2 {
+    margin-top: 0.5rem;
+  }
+
+  .rowCol2 {
+    margin-top: 0.5rem;
+  }
+
+  .row4Col1 {
+    margin-top: 0.5rem;
+  }
+
+  .rowCol1 {
+    margin-top: 0.5rem;
+  }
+}
+
 @media only screen and (max-width: 1320px) {
   .row2Col2Box {
     height: 100px;
     width: 240px;
     padding: 5px;
+    margin-bottom: 1rem;
   }
 
-  .row4Col1 {
-    padding-right: 2rem;
+  .addminus {
+    left: 1.5rem !important;
   }
 
   .row4Col2 {
@@ -568,12 +654,6 @@ export default {
 }
 
 @media only screen and (max-width: 1050px) {
-  .row1Col1 h2 {
-    font-size: 110px;
-    font-family: Karla;
-    font-weight: bold;
-  }
-
   .row1Box {
     margin-top: 1rem;
   }
@@ -588,20 +668,10 @@ export default {
 
   .row1Col2 p {
     font-size: 24px;
-    margin-left: 0rem;
   }
 
   .row2Col1 p {
     font-size: 24px;
-  }
-
-  .row1Col2 h2 {
-    font-size: 70px;
-    margin-left: 1rem;
-  }
-
-  .row2Col1 h2 {
-    font-size: 70px;
   }
 
   .row1Col1 {
@@ -653,8 +723,8 @@ export default {
     width: 60%;
     height: 85%;
     display: flex;
-    justify-content: center;
-    align-items: center;
+    /* justify-content: center;
+    align-items: center; */
     flex-flow: column;
   }
 
@@ -668,14 +738,7 @@ export default {
   }
 
   .row1Col2 {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
-  .paraR {
-    display: flex;
-    justify-content: center;
+    text-align: center;
   }
 
   .row3 {
@@ -693,17 +756,21 @@ export default {
     height: 70%;
   }
 
-  .row1Col1 h2 {
-    font-size: 70px;
+  .numbers {
+    text-align: center;
+    font-size: 70px !important;
+  }
+
+  .subtitleinfo2 {
+    font-size: 1rem;
+  }
+
+  .subtitleinfo {
+    font-size: 1rem;
   }
 }
 
 @media only screen and (max-width: 901px) {
-  .paraR {
-    display: flex;
-    justify-content: flex-start;
-  }
-
   .row3 {
     display: flex;
     align-items: flex-start;
@@ -714,6 +781,10 @@ export default {
     height: 85%;
   }
 
+  .addminus {
+    left: 3rem !important;
+  }
+
   .row2box2 {
     width: 80%;
     height: 85%;
@@ -722,19 +793,11 @@ export default {
   .row4Col1 {
     width: 500px;
     height: 350px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-flow: column;
   }
 
   .row4Col2 {
     width: 500px;
     height: 350px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-flow: column;
   }
 
   .row4Box {
@@ -749,19 +812,11 @@ export default {
   .row5Col1 {
     width: 500px;
     height: 350px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-flow: column;
   }
 
   .row5Col2 {
     width: 500px;
     height: 350px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-flow: column;
   }
 
   .row5Box {
@@ -774,12 +829,17 @@ export default {
 }
 
 @media only screen and (max-width: 765px) {
-  .row1Col1 h2 {
-    font-size: 70px;
-  }
-
   .row1Col1 p {
     font-size: 20px;
+  }
+
+  .row4Col1 {
+    margin-top: 2rem;
+  }
+
+  .taxbreakdowntext {
+    padding-left: 1.5rem;
+    margin: 1.4rem 0;
   }
 
   .row1Col2 p {
@@ -788,18 +848,6 @@ export default {
 
   .row2Col1 p {
     font-size: 20px;
-  }
-
-  .row1Col2 h2 {
-    font-size: 70px;
-  }
-
-  .row2Col1 h2 {
-    font-size: 70px;
-  }
-
-  .paraR h1 {
-    font-size: 24px;
   }
 
   .row3 h1 {
@@ -854,22 +902,22 @@ export default {
   }
 
   .line1 p {
-    font-size: 18px;
+    font-size: 16px;
     padding-bottom: 5px;
   }
 
   .line2 p {
-    font-size: 18px;
+    font-size: 16px;
     padding-bottom: 5px;
   }
 
   .line4 p {
-    font-size: 18px;
+    font-size: 16px;
     padding-bottom: 5px;
   }
 
   .line3 p {
-    font-size: 20px;
+    font-size: 16px;
   }
 
   .row3 h1 {
@@ -888,12 +936,25 @@ export default {
     height: 85%;
   }
 
-  .row1Col1 h2 {
-    font-size: 60px;
+  .numbers {
+    font-size: 60px !important;
+  }
+
+  .subtitleinfo2 {
+    padding-top: 0.5rem;
+  }
+
+  .subtitleinfo {
+    padding-top: 0.5rem;
   }
 
   .row1Col1 p {
     font-size: 18px;
+    padding-top: 1rem;
+  }
+
+  .taxbreakdowntext {
+    padding-top: 1rem;
   }
 
   .row1Col2 p {
@@ -904,21 +965,8 @@ export default {
     font-size: 18px;
   }
 
-  .row1Col2 h2 {
-    font-size: 60px;
-  }
-
-  .row2Col1 h2 {
-    font-size: 60px;
-  }
-
   .paraR {
     padding-left: 20px;
-    font-size: 20px;
-  }
-
-  .paraR h1 {
-    font-size: 22px;
   }
 
   .row3 h1 {
@@ -961,8 +1009,8 @@ export default {
     font-size: 18px;
   }
 
-  .row1Col1 h2 {
-    font-size: 50px;
+  .numbers {
+    font-size: 50px !important;
   }
 
   .row1Col1 p {
@@ -977,18 +1025,6 @@ export default {
     font-size: 18px;
   }
 
-  .row1Col2 h2 {
-    font-size: 50px;
-  }
-
-  .row2Col1 h2 {
-    font-size: 50px;
-  }
-
-  .paraR h1 {
-    font-size: 20px;
-  }
-
   .row3 h1 {
     font-size: 17px;
   }
@@ -996,12 +1032,50 @@ export default {
   .taxbreakdowntext {
     font-size: 24px;
   }
+
+  .line1 p {
+    font-size: 14px;
+    padding-bottom: 5px;
+    padding-right: 8rem;
+  }
+
+  .line2 p {
+    font-size: 14px;
+    padding-bottom: 5px;
+    padding-right: 8rem;
+  }
+
+  .line4 p {
+    font-size: 14px;
+    padding-bottom: 5px;
+    padding-right: 8rem;
+  }
+
+  .line3 p {
+    font-size: 14px;
+    padding-right: 8rem;
+  }
+
+  .subtitleinfo {
+    padding-top: 1rem;
+    font-size: 12px !important;
+  }
+
+  .subtitleinfo2 {
+    padding-top: 1rem;
+    font-size: 12px !important;
+  }
 }
 
 @media only screen and (max-width: 350px) {
   .row4Col1 {
     width: 280px;
     height: 200px;
+  }
+
+  .paraR p {
+    font-size: 25px;
+    font-weight: bold;
   }
 
   .row4Col2 {
@@ -1014,16 +1088,8 @@ export default {
     height: 200px;
   }
 
-  .row1Col1 h2 {
-    font-size: 55px;
-  }
-
-  .row2Col1 h2 {
-    font-size: 50px;
-  }
-
-  .row1Col2 h2 {
-    font-size: 55px;
+  .numbers {
+    font-size: 55px !important;
   }
 
   .row5Col2 {
@@ -1035,10 +1101,6 @@ export default {
     font-size: 16px;
   }
 
-  .line3 p {
-    font-size: 18px;
-  }
-
   .row3 h1 {
     font-size: 15px;
   }
@@ -1047,6 +1109,29 @@ export default {
 @media only screen and (max-width: 320px) {
   .row1 {
     margin-top: 1rem;
+  }
+
+  .line1 p {
+    font-size: 14px;
+    padding-bottom: 5px;
+    padding-right: 6rem;
+  }
+
+  .line2 p {
+    font-size: 14px;
+    padding-bottom: 5px;
+    padding-right: 6rem;
+  }
+
+  .line4 p {
+    font-size: 14px;
+    padding-bottom: 5px;
+    padding-right: 6rem;
+  }
+
+  .line3 p {
+    font-size: 14px;
+    padding-right: 6rem;
   }
 }
 </style>
