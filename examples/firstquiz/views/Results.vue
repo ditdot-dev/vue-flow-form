@@ -627,7 +627,7 @@ export default {
   overflow-y: hidden;
   grid-template-rows: 10vh;
 }
-/* @media only screen and (max-width: 1400px) {
+@media only screen and (max-width: 1400px) {
   .row4Col2{
     margin-top: 0.5rem;
   }
@@ -640,7 +640,7 @@ export default {
   .rowCol1{
     margin-top: 0.5rem;
   }
-} */
+}
 
 @media only screen and (max-width: 1320px) {
   .row2Col2Box {
