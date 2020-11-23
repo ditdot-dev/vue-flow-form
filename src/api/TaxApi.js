@@ -42,21 +42,6 @@ export async function postTaxData(incomeData){
   console.log("base tax calculation complete!")
   }
 
-export function getTaxSummary() {
-  let getTaxSummary = {
-    expenses: parseInt(userInput.expenses),
-    income: parseInt(userInput.income),
-    medicareTax: parseInt(taxUpdate.medicareTax),
-    socialSecurityTax: parseInt(taxUpdate.socialSecurityTax),
-    selfEmploymentTax: parseInt(taxUpdate.selfEmploymentTax),
-    stateIncomeTax: parseInt(taxUpdate.stateIncomeTax),
-    federalIncomeTax: parseInt(taxUpdate.federalIncomeTax),
-    taxBalance: this.$store.getters['userInformation/taxBalance'],
-    profitAfterTaxes: this.$store.getters['userInformation/profitAfterTaxes']
-  }
-  return getTaxSummary
-}
-
 /*
 async function postIraTaxData(iraContribution){
   let iraTax = await (fetch (tax_calculation, {
