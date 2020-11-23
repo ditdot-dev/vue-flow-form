@@ -1,4 +1,6 @@
 
+
+
 export const tax_table_2020 = {
     single_deduction: 12400,
     married_deduction: 24800,

@@ -1,4 +1,30 @@
+import * as TaxTable from './TaxTable.js'
+import store from '../store'
+
 // Set the deductions from retirement contribution from W2 Income and/or Business Expenses
+export function totalDeduction(){
+    let filingStatus = store.state.userInformation.userInput.tax_filing_status;
+    let standardDeduction;
+    let elderStandardDeduction;
+    if ( filingStatus === 'headOfHousehold') {
+      return standardDeduction = TaxTable.tax_table_2020.head_of_household_deduction;
+    } else if ( filingStatus === 'married') {
+      return standardDeduction = TaxTable.tax_table_2020.married_deduction
+    } else if ( filingStatus === 'single') {
+      return standardDeduction = TaxTable.tax_table_2020.single_deduction
+    } else if ( filingStatus === 'marriedFilingSeparately'){
+      standardDeduction = TaxTable.tax_table_2020.married_filing_separately_deduction
+    } else { standardDeduction = 0 };
+
+    //let elderStandardDeduction; **NOT WORKING YET......**
+    //if (age >= 65) {
+    //  return elderStandardDeduction = 1650 } else if ( age >= 65 && filingStatus === 'married') {
+    //  return elderStandardDeduction = 1300 } else { return elderStandardDeduction = 0 };
+
+    return parseFloat(store.userInformation.taxUpdate.qbiDeduction) + parseInt(standardDeduction) + parseInt(elderStandardDeduction);
+  }
+
+
 
 // Adjust deductions based on retirement account contribution modified
 async function iraDrag(){

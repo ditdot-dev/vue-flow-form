@@ -19,7 +19,7 @@
         <div class="row1Box">
           <div class="row1Col1">
             <p>What's yours after taxes</p>
-            <p class="numbers" v-if="profitAfterTaxes">${{ profitAfterTaxes | currency('',0) }}</p>
+            <p class="numbers" v-if="profitAfterTaxes">${{ profitAfterTaxes | currency('', 0) }}</p>
           </div>
           <div class="row1Col2 ">
             <p>
@@ -28,7 +28,7 @@
                 tooltip="The Tax Cuts and Job Act passed in 2017 allows eligible self-employed and small-business owners to deduct up to 20% of their qualified business income on their taxes. Your accountant and/or tax software will calculate this for you in your annual tax returns">
               </info-icon>
             </p>
-            <p class="numbers" v-if="totalDeduction">${{ totalDeduction | currency ('',0) }}</p>
+            <p class="numbers" v-if="totalDeduction">${{ totalDeduction | currency ('', 0) }}</p>
           </div>
         </div>
       </div>
@@ -181,6 +181,7 @@ import Vue from "vue";
 import Vuex from "vuex";
 import infoIcon from "../components/info-icon";
 import Vue2Filters from 'vue2-filters'
+import store from "../../../src/store"
 
 Vue.use(Vue2Filters)
 
@@ -192,7 +193,8 @@ export default {
   data() {
     return {
       function() {
-        console.log(this.$store);
+        console.log(this.$store)
+        console.log(store.userInformation.test);
       }
     };
   },
