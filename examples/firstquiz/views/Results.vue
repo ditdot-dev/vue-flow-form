@@ -41,7 +41,8 @@
             </p>
           </div>
           <div class="row2Col2">
-            <div class="row2Col2Box flex1" v-on:click="getTaxSummary">
+            <div class="row2Col2Box flex1">
+              // v-on:click="getTaxSummary" //
               <router-link class="routemid" to="/retirement-options" aria-label="next page to retirement options">
                 <p>
                   Click here to see how much you can lower taxes with
@@ -200,10 +201,9 @@ export default {
     ...Vuex.mapState("userInformation", {
       totalIncome: state => state.taxSummary.totalIncome,
       profitAfterExpenses: state => state.taxSummary.profitAfterExpenses,
-      taxBalance: state => state.taxSummary.taxBalance,
+      taxBalance: state => state.taxUpdate.taxBalance,
       profitAfterTaxes: state => state.taxSummary.profitAfterTaxes,
       totalDeduction: state => state.taxSummary.totalDeduction,
-      test: state => state.test,
       name: state => state.userInput.first_name + "'s",
       businessName: state => state.userInput.business_name,
       expenses: state => state.userInput.expenses,
@@ -216,12 +216,9 @@ export default {
       effectiveTaxRate: state => state.taxUpdate.smartTaxRate
     }),
   },
-  methods: {
-    ...Vuex.mapActions("calculatorDrag", ["getTaxSummary"])
-  },
+  methods: {},
   mounted() {
-    this.$store.dispatch('userInformation/getTotalIncome');
-    this.$store.dispatch('userInformation/getProfitAfterTaxes');
+    this.$store.dispatch('userInformation/getTaxSummary');
   }
 };
 </script>
