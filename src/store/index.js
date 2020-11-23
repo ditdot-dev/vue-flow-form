@@ -1,8 +1,8 @@
 import Vue from "vue";
 import Vuex from "vuex";
-import * as TaxApi from "../models/TaxApi.js"
-import * as SMETaxCalculations from "../models/SMETaxCalculations.js"
-import * as TaxTable from "../models/TaxTable.js"
+import * as TaxApi from "../api/TaxApi.js"
+import * as SMETaxCalculations from "../taxData/SMETaxCalculations.js"
+import * as TaxTable from "../taxData/TaxTable.js"
 
 Vue.use(Vuex);
 

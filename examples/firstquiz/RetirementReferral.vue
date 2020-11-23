@@ -49,8 +49,7 @@ import QuestionModel, {
 } from "../../src/models/QuestionModel";
 import LanguageModel from "../../src/models/LanguageModel";
 import Vuex from "vuex";
-import * as SMETaxCalculations from "../../src/models/SMETaxCalculations";
-import * as taxApi from "../../src/models/TaxApi";
+import * as taxApi from "../../src/api/TaxApi";
 export default {
   name: "RetirementReferral",
   components: {
