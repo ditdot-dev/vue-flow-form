@@ -10,12 +10,10 @@ async function iraDrag(){
        w2Income: parseInt(a.w2Income.value) + parseInt(employeeContribution*1000),}
    };
    await postIraTaxData(b);
-   await updateTaxChart();
    await defineTax();
-   await addTaxAvoided();
+
    var totalTaxAvoided0 = parseInt(iraTaxBalanceAvoid+ira_SSAvoid+ira_medicareAvoid);
    iraTaxRatio = (totalTaxAvoided0/(employeeContribution*-1000)*100).toFixed(2);
-   document.getElementById("ira_ratio").innerHTML = "<strong>IRA Tax Advantage: </strong>"+iraTaxRatio+"%";
 };
 
 async function sepIraDrag(){
@@ -27,33 +25,28 @@ async function sepIraDrag(){
       w2Income: parseInt(a.w2Income.value),}
   };
   await postSepIraTaxData(b);
-  await updateTaxChart();
   await defineTax();
-  await addTaxAvoided();
 
   var totalTaxAvoided1 = parseInt(sepIraTaxBalanceAvoid+sepIra_SSAvoid+sepIra_medicareAvoid);
   sepIraTaxRatio = (totalTaxAvoided1/(employerContribution*-1000)*100).toFixed(2);
-  document.getElementById("sepIra_ratio").innerHTML = "<strong>SEP-IRA Tax Advantage: </strong>"+sepIraTaxRatio+"%";
 };
+
 async function simpleIraDrag(){
   var employerContribution = chart2.data[0].options.dataPoints[0].y;
   var employeeContribution = chart2.data[1].options.dataPoints[0].y;
   var a = document.getElementById("userTaxInput")
   var b = {
     taxes: {
-      expenseDeduction: parseInt(a.business_expense.value) - parseInt(employerContribution*1000),
-      w2Income: parseInt(a.w2Income.value) + parseInt(employeeContribution*1000),}
+      expenseDeduction: parseInt(a.business_expense.value) - parseInt(employerContribution),
+      w2Income: parseInt(a.w2Income.value) + parseInt(employeeContribution),}
   };
   await postSimpleIraTaxData(b);
-  await updateTaxChart();
   await defineTax();
-  await addTaxAvoided();
 
   var totalTaxAvoided2 = parseInt(simpleIraTaxBalanceAvoid+simpleIra_SSAvoid+simpleIra_medicareAvoid);
   simpleIraTaxRatio = (totalTaxAvoided2/((employeeContribution+employerContribution)*-1000)*100).toFixed(2);
-  document.getElementById("simpleIra_ratio").innerHTML ="<strong>SIMPLE-IRA Tax Advantage: </strong>"+simpleIraTaxRatio+"%";
-
 };
+
 async function individual401kDrag(){
   var employerContribution = chart3.data[0].options.dataPoints[0].y;
   var employeeContribution = chart3.data[1].options.dataPoints[0].y;
@@ -64,12 +57,10 @@ async function individual401kDrag(){
       w2Income: parseInt(a.w2Income.value) + parseInt(employeeContribution*1000),}
   };
   await postIndividual401kTaxData(b);
-  await updateTaxChart();
   await defineTax();
-  await addTaxAvoided();
+
   var totalTaxAvoided3 = parseInt(individual401kTaxBalanceAvoid+individual401k_SSAvoid+individual401k_medicareAvoid);
   individual401kTaxRatio = (totalTaxAvoided3/((employeeContribution+employerContribution)*-1000)*100).toFixed(2);
-  document.getElementById("individual401k_ratio").innerHTML = "<strong>Individual 401k Tax Advantage: </strong>"+individual401kTaxRatio+"%";
 };
 
 // Total tax avoided broken down into balance, social security, and medicare tax
@@ -107,51 +98,6 @@ function catchupAgeContribution(){
   } else { null;}
 }
 
-// add the Taxes Avoided total based on the selected retirement account
-function addTaxAvoided() {
-  var checkBox0 = document.getElementById("ira");
-  var checkBox1 = document.getElementById("sep_ira");
-  var checkBox2 = document.getElementById("simple_ira");
-  var checkBox3 = document.getElementById("individual_401k");
-  var checkBox = [checkBox0.checked, checkBox1.checked, checkBox2.checked, checkBox3.checked]
-  var taxTotal = 0 ; var contributionTotal = 0;
-  var a = document.getElementById("contributionTotal")
-  var contribution0 = chart0.data[0].options.dataPoints[0].y;
-  var contribution1 = chart1.data[0].options.dataPoints[0].y;
-  var contribution2 = parseInt(chart2.data[0].options.dataPoints[0].y + chart2.data[1].options.dataPoints[0].y);
-  var contribution3 = parseInt(chart3.data[0].options.dataPoints[0].y + chart3.data[1].options.dataPoints[0].y);
-  var retirementContribution = [contribution0, contribution1, contribution2, contribution3]
-  var b = document.getElementById("totalTaxAvoided")
-  var totalTaxAvoided0 = parseInt(iraTaxBalanceAvoid+ira_SSAvoid+ira_medicareAvoid);
-  var totalTaxAvoided1 = parseInt(sepIraTaxBalanceAvoid+sepIra_SSAvoid+sepIra_medicareAvoid);
-  var totalTaxAvoided2 = parseInt(simpleIraTaxBalanceAvoid+simpleIra_SSAvoid+simpleIra_medicareAvoid);
-  var totalTaxAvoided3 = parseInt(individual401kTaxBalanceAvoid+individual401k_SSAvoid+individual401k_medicareAvoid);
-  var taxAvoid = [totalTaxAvoided0, totalTaxAvoided1, totalTaxAvoided2, totalTaxAvoided3]
-  // total contribution sum
-for (var i = 0; i<checkBox.length; i++){
-  var chkbx = checkBox[i]
-  var amt = retirementContribution[i] * -1000
-  if (chkbx === true) {
-    contributionTotal += amt;
-    } else {
-    a.innerHTML = "<strong>"+"no retirement account type selected; please reselect"+"</strong>"
-  };
-}
-a.innerHTML = "$" + contributionTotal.toLocaleString('en-US');
-
-// tax avoided sum
-  for (var i = 0; i<checkBox.length; i++){
-    var chkbx = checkBox[i]
-    var amt = taxAvoid[i]
-    if (chkbx === true) {
-      taxTotal += amt;
-      } else {
-      b.innerHTML = "<strong>"+"no retirement account type selected; please reselect"+"</strong>"
-    };
-  }
-  b.innerHTML = "$" + taxTotal.toLocaleString('en-US');
-}
-
 // Tax Advantaged Ratio: for every dollar in retirement, how much taxes avoided
 // Equation = Tax Avoided / Total retirement contribution (employer + employee)
 function taxCalc() {
@@ -160,41 +106,19 @@ function taxCalc() {
   var totalTaxAvoided2 = parseInt(simpleIraTaxBalanceAvoid+simpleIra_SSAvoid+simpleIra_medicareAvoid);
   var totalTaxAvoided3 = parseInt(individual401kTaxBalanceAvoid+individual401k_SSAvoid+individual401k_medicareAvoid);
 // calculate the ratio for IRA
-  var iraCheckBox = document.getElementById("ira");
   var iraTaxRatio;
-  if (iraCheckBox.checked == true) {
-    iraTaxRatio = (totalTaxAvoided0/contribution*100).toFixed(2);
-    document.getElementById("ira_ratio").innerHTML = "<strong>IRA Tax Advantage: </strong>"+iraTaxRatio+"%";
-  } else {
-    null;
-  }
+  return iraTaxRatio = (totalTaxAvoided0/contribution*100).toFixed(2);
+
   // calculate the ratio for SEP IRA
-  var sepIraCheckBox = document.getElementById("sep_ira");
   var sepIraTaxRatio;
-  if (sepIraCheckBox.checked == true) {
-    sepIraTaxRatio = (totalTaxAvoided1/contribution*100).toFixed(2);
-    document.getElementById("sepIra_ratio").innerHTML = "<strong>SEP-IRA Tax Advantage: </strong>"+sepIraTaxRatio+"%";
-  } else {
-    null;
-  };
+  return sepIraTaxRatio = (totalTaxAvoided1/contribution*100).toFixed(2);
+
   // calculate the ratio for SIMPLE IRA
-  var simpleIraCheckBox = document.getElementById("simple_ira");
   var simpleIraTaxRatio;
-  if (simpleIraCheckBox.checked == true) {
-    simpleIraTaxRatio = (totalTaxAvoided2/contribution*100).toFixed(2);
-    document.getElementById("simpleIra_ratio").innerHTML = "<strong>SIMPLE-IRA Tax Advantage: </strong>"+simpleIraTaxRatio+"%";
-  } else {
-    null;
-  }
+  return simpleIraTaxRatio = (totalTaxAvoided2/contribution*100).toFixed(2);
     // calculate the ratio for Individual 401k
-  var individual401kCheckBox = document.getElementById("individual_401k");
   var individual401kTaxRatio;
-  if (individual401kCheckBox.checked == true) {
-    individual401kTaxRatio = (totalTaxAvoided3/contribution*100).toFixed(2);
-    document.getElementById("individual401k_ratio").innerHTML = "<strong>Individual 401k Tax Advantage: </strong>"+individual401kTaxRatio+"%";
-  } else {
-    null;
-  }
+  return individual401kTaxRatio = (totalTaxAvoided3/contribution*100).toFixed(2);
 };
 
 // Out of pocket money: how much would've been added to your pocket without retirement contribution

@@ -19,7 +19,7 @@
         <div class="row1Box">
           <div class="row1Col1">
             <p>What's yours after taxes</p>
-            <p class="numbers">{{ profitAfterTaxes }}##</p>
+            <p class="numbers" v-if="profitAfterTaxes">${{ profitAfterTaxes | currency('',0) }}</p>
           </div>
           <div class="row1Col2 ">
             <p>
@@ -28,7 +28,7 @@
                 tooltip="The Tax Cuts and Job Act passed in 2017 allows eligible self-employed and small-business owners to deduct up to 20% of their qualified business income on their taxes. Your accountant and/or tax software will calculate this for you in your annual tax returns">
               </info-icon>
             </p>
-            <p class="numbers">##{{ totalDeduction }}</p>
+            <p class="numbers" v-if="totalDeduction">${{ totalDeduction | currency ('',0) }}</p>
           </div>
         </div>
       </div>
@@ -36,8 +36,8 @@
         <div class="row2box2">
           <div class="row2Col1 ">
             <p>How much taxes you owe in 2020</p>
-            <p style="color:#cc3939" class="numbers">
-              {{ taxBalance }} ##
+            <p style="color:#cc3939" class="numbers" v-if="taxBalance">
+              ${{ taxBalance | currency('', 0) }}
             </p>
           </div>
           <div class="row2Col2">
@@ -62,21 +62,21 @@
             <div class="line1">
               <p>
                 Total Income:
-                <span class="dollaramount"> {{ totalIncome }} </span>
+                <span class="dollaramount"> {{ totalIncome | currency }} </span>
               </p>
               <p class="subtitleinfo">(Business + Personal Income)</p>
             </div>
             <div class="line2">
               <p>
                 <span class="addminus">-</span> Expenses:
-                <span class="dollaramount"> {{ expenses }} </span>
+                <span class="dollaramount"> {{ expenses | currency }} </span>
               </p>
             </div>
             <div class="line"></div>
             <div class="line3">
               <p>
                 Profit after Expenses:
-                <span class="dollaramount">{{ profitAfterExpenses }}</span>
+                <span class="dollaramount">{{ profitAfterExpenses | currency }}</span>
               </p>
             </div>
           </div>
@@ -84,20 +84,20 @@
             <div class="line1">
               <p>
                 Medicare:
-                <span class="dollaramount"> {{ medicareTax }} </span>
+                <span class="dollaramount"> {{ medicareTax | currency }} </span>
               </p>
             </div>
             <div class="line2">
               <p>
                 <span class="addminus">+</span> Social Security:
-                <span class="dollaramount">{{ socialSecurityTax }}</span>
+                <span class="dollaramount">{{ socialSecurityTax | currency }}</span>
               </p>
             </div>
             <div class="line"></div>
             <div class="line3">
               <p>
                 Self Employement Tax:
-                <span class="dollaramount">{{ selfEmploymentTax }}</span>
+                <span class="dollaramount">{{ selfEmploymentTax | currency }}</span>
               </p>
             </div>
           </div>
@@ -109,20 +109,20 @@
             <div class="line1">
               <p>
                 Profit After Expenses:
-                <span class="dollaramount"> {{ profitAfterExpenses }}</span>
+                <span class="dollaramount"> {{ profitAfterExpenses | currency }}</span>
               </p>
             </div>
             <div class="line2">
               <p>
                 <span class="addminus">-</span> Total Tax Balance:
-                <span class="dollaramount"> {{ taxBalance }} </span>
+                <span class="dollaramount"> {{ taxBalance | currency }} </span>
               </p>
             </div>
             <div class="line"></div>
             <div class="line3">
               <p>
                 Profit after Taxes:
-                <span class="dollaramount">{{ profitAfterTaxes }}</span>
+                <span class="dollaramount" v-if="profitAfterTaxes">{{ profitAfterTaxes | currency }}</span>
               </p>
             </div>
           </div>
@@ -130,7 +130,7 @@
             <div class="line1">
               <p>
                 Self Employement Tax:
-                <span class="dollaramount">{{ selfEmploymentTax }}</span>
+                <span class="dollaramount">{{ selfEmploymentTax | currency }}</span>
               </p>
             </div>
             <div class="line2">
@@ -140,23 +140,23 @@
                     filing_state
                   }}</span>
                 State Tax:
-                <span class="dollaramount">{{ stateIncomeTax }}</span>
+                <span class="dollaramount">{{ stateIncomeTax | currency }}</span>
               </p>
             </div>
             <div class="line4">
               <p>
                 <span class="addminus">+</span> Federal Income Tax:
-                <span class="dollaramount"> {{ federalIncomeTax }} </span>
+                <span class="dollaramount"> {{ federalIncomeTax | currency }} </span>
               </p>
             </div>
             <div class="line"></div>
             <div class="line3">
               <p>
                 Total Tax Balance:
-                <span class="dollaramount">{{ taxBalance }}</span>
+                <span class="dollaramount" v-if="taxBalance">{{ taxBalance | currency }}</span>
               </p>
               <p class="subtitleinfo2">
-                (Effective Tax Rate: {{ effectiveTaxRate }}%)
+                (Effective Tax Rate: {{ (effectiveTaxRate * 100).toFixed(2) }}%)
               </p>
             </div>
           </div>
@@ -179,6 +179,9 @@
 import Vue from "vue";
 import Vuex from "vuex";
 import infoIcon from "../components/info-icon";
+import Vue2Filters from 'vue2-filters'
+
+Vue.use(Vue2Filters)
 
 export default {
   name: "Results",
@@ -195,27 +198,30 @@ export default {
   // using computed since the data is reactive and will not change even if refreshed
   computed: {
     ...Vuex.mapState("userInformation", {
+      totalIncome: state => state.taxSummary.totalIncome,
+      profitAfterExpenses: state => state.taxSummary.profitAfterExpenses,
+      taxBalance: state => state.taxSummary.taxBalance,
+      profitAfterTaxes: state => state.taxSummary.profitAfterTaxes,
+      totalDeduction: state => state.taxSummary.totalDeduction,
+      test: state => state.test,
       name: state => state.userInput.first_name + "'s",
       businessName: state => state.userInput.business_name,
-      qbiDeduction: state => "$" + state.taxUpdate.qbiDeduction, //.toLocaleString('en-US'),
-      expenses: state => "$" + state.userInput.expenses,
-      income: state => "$" + state.userInput.income,
+      expenses: state => state.userInput.expenses,
       filing_state: state => state.userInput.tax_filing_state,
-      medicareTax: state => "$" + state.taxUpdate.medicareTax,
-      socialSecurityTax: state => "$" + state.taxUpdate.socialSecurityTax,
-      selfEmploymentTax: state => "$" + state.taxUpdate.selfEmploymentTax,
-      stateIncomeTax: state => "$" + state.taxUpdate.stateIncomeTax,
-      federalIncomeTax: state => "$" + state.taxUpdate.federalIncomeTax,
-      effectiveTaxRate: state => (state.taxUpdate.smartTaxRate * 100).toFixed(2)
+      medicareTax: state => state.taxUpdate.medicareTax,
+      socialSecurityTax: state => state.taxUpdate.socialSecurityTax,
+      selfEmploymentTax: state => state.taxUpdate.selfEmploymentTax,
+      stateIncomeTax: state => state.taxUpdate.stateIncomeTax,
+      federalIncomeTax: state => state.taxUpdate.federalIncomeTax,
+      effectiveTaxRate: state => state.taxUpdate.smartTaxRate
     }),
-    ...Vuex.mapGetters("userInformation", [
-      "totalDeduction",
-      "totalIncome",
-      "profitAfterExpenses"
-    ]) //, 'w2Tax', 'taxBalance', 'profitAfterTaxes' <- not working at this time.
   },
   methods: {
     ...Vuex.mapActions("calculatorDrag", ["getTaxSummary"])
+  },
+  mounted() {
+    this.$store.dispatch('userInformation/getTotalIncome');
+    this.$store.dispatch('userInformation/getProfitAfterTaxes');
   }
 };
 </script>

@@ -1,6 +1,5 @@
 
-export function taxTable() {
-  window.tax_table_2020 = {
+export const tax_table_2020 = {
     single_deduction: 12400,
     married_deduction: 24800,
     married_filing_separately_deduction: 12400,
@@ -22,5 +21,3 @@ export function taxTable() {
     married_filing_separately_tax_bracket: {
     },
   }
-  return tax_table_2020
-}

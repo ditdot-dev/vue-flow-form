@@ -24,23 +24,42 @@ const userInformation = {
         "32%": [163301,207350,0.32, 33271.50],
         "35%": [207351,518400,0.35, 47367.50],
         "37%": [518401,Infinity,0.37, 156235]
-      },
-      head_of_household_tax_bracket: {
-      },
-      married_tax_bracket: {
-      },
-      married_filing_separately_tax_bracket: {
-      },},
-    userInput: {}, // data captured in RetirementReferral.vue input form
+      }},
+    test: 20,
+    userInput: {
+    }, // data captured in RetirementReferral.vue input form
     incomeData: {}, // data formatted from the input for tax API
     taxUpdate: {}, // tax API's output data to be displayed in Results.vue
+    taxSummary: {
+      taxBalance: 5000,
+      profitAfterTaxes: 0,
+      totalIncome: null,
+    },
   },
+  actions: {
+    getProfitAfterTaxes ({commit}) {
+      commit('setProfitAfterTaxes');
+    },
+    getTotalIncome ({commit}){
+      commit('setTotalIncome');
+    },
+   },
   mutations: {
     entry (state, data) {
       state.userInput = data;
     },
     results (state, data) {
       state.taxUpdate = data;
+    },
+    setTotalIncome (state) {
+        if (state.userInput.salary === undefined || state.userInput.salary === '') {
+        state.totalIncome = parseInt(state.userInput.income)
+      } else {
+        state.totalIncome = parseInt(state.userInput.income) + parseInt(state.userInput.salary)
+       }
+    },
+    setProfitAfterTaxes (state) {
+    state.profitAfterTaxes = parseInt(state.taxSummary.totalIncome) - parseInt(state.userInput.expenses) // add taxBalance here;
     },
   },
   getters: {
@@ -63,14 +82,6 @@ const userInformation = {
       //  return elderStandardDeduction = 1300 } else { return elderStandardDeduction = 0 };
       return totalDeduction = (parseInt(state.taxUpdate.qbiDeduction) + parseInt(standardDeduction) + parseInt(elderStandardDeduction));
     },
-    totalIncome: state => {
-        let totalIncome;
-        if (state.userInput.salary === undefined || state.userInput.salary === '') {
-        return totalIncome = parseInt(state.userInput.income)
-      } else {
-        return totalIncome = parseInt(state.userInput.income) + parseInt(state.userInput.salary)
-       }
-    },
     profitAfterExpenses: (state, getters) => {
       let profitAfterExpenses = parseInt(getters.totalIncome) - parseInt(state.userInput.expenses)
       return profitAfterExpenses
@@ -87,13 +98,7 @@ const userInformation = {
       // need to write a progressive tax system function
     },
     taxBalance: state => {
-      let taxBalance;
-      return taxBalance = parseInt(state.taxUpdate.taxBalance) + parseInt(getters.W2Tax);
-    },
-    profitAfterTaxes: (state, getters) => {
-      let profitAfterTaxes;
-      return profitAfterTaxes = parseInt(getters.totalIncome) + parseInt(state.userInput.salary)
-      - parseInt(state.userInput.expenses) - parseInt(getters.taxBalance);
+    return parseInt(state.taxUpdate.taxBalance) + parseInt(getters.W2Tax);
     },
   }
 };
@@ -101,7 +106,7 @@ const userInformation = {
 const calculatorDrag = {
   namespaced: true,
   state: {
-    taxSummary: {}, // additional objects from Results.vue to be used in RetirementOptions.vue
+    taxData0: {}, // additional objects from Results.vue to be used in RetirementOptions.vue
     postIraTaxData: {
       taxAvoided: null,
       taxAdvantageRatio: null,
@@ -127,13 +132,18 @@ const calculatorDrag = {
   },
   mutations: {
     baseTax (state, data) {
-      state.taxSummary = data;
+      state.taxData0 = data;
     },
   },
   getters: {},
   actions: {
     async getTaxSummary ({ commit }) {
-      commit ('baseTax', await TaxApi.getTaxSummary())
+      try {
+        const response = await TaxApi.getTaxSummary();
+        commit ('baseTax', response);
+    } catch (err) {
+        console.error(err);
+    }
     },
   }
 };

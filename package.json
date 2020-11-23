@@ -27,6 +27,7 @@
     "vue-slider-component": "^3.2.10",
     "vue-textarea-autosize": "^1.1.1",
     "vue-the-mask": "^0.11.1",
+    "vue2-filters": "^0.11.0",
     "vuex": "^3.5.1"
   },
   "devDependencies": {
