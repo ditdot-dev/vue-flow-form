@@ -23,12 +23,12 @@
           </div>
           <div class="row1Col2 ">
             <p>
-              Amount of business deduction you quality for
+              Amount of total deduction you quality for
               <info-icon onlyClass="none"
-                tooltip="The Tax Cuts and Job Act passed in 2017 allows eligible self-employed and small-business owners to deduct up to 20% of their qualified business income on their taxes. Your accountant and/or tax software will calculate this for you in your annual tax returns">
+                tooltip="This is all your deductions applied from your business to personal taxes. This includes your tax filing status deduction, and quarterly business income deductions. The Tax Cuts and Job Act passed in 2017 allows eligible self-employed and small-business owners to deduct up to 20% of their qualified business income on their taxes. Your accountant and/or tax software will calculate this value for you in your annual tax returns">
               </info-icon>
             </p>
-            <p class="numbers" v-if="totalDeduction">${{ totalDeduction | currency ('', 0) }}</p>
+            <p class="numbers" v-if="totalDeduction">${{ totalDeduction | currency('', 0) }}</p>
           </div>
         </div>
       </div>
@@ -42,7 +42,6 @@
           </div>
           <div class="row2Col2">
             <div class="row2Col2Box flex1">
-              // v-on:click="getTaxSummary" //
               <router-link class="routemid" to="/retirement-options" aria-label="next page to retirement options">
                 <p>
                   Click here to see how much you can lower taxes with
@@ -194,7 +193,6 @@ export default {
     return {
       function() {
         console.log(this.$store)
-        console.log(store.userInformation.test);
       }
     };
   },
@@ -206,6 +204,7 @@ export default {
       taxBalance: state => state.taxUpdate.taxBalance,
       profitAfterTaxes: state => state.taxSummary.profitAfterTaxes,
       totalDeduction: state => state.taxSummary.totalDeduction,
+      qbiDeduction: state => state.taxUpdate.qbiDeduction,
       name: state => state.userInput.first_name + "'s",
       businessName: state => state.userInput.business_name,
       expenses: state => state.userInput.expenses,
@@ -215,7 +214,7 @@ export default {
       selfEmploymentTax: state => state.taxUpdate.selfEmploymentTax,
       stateIncomeTax: state => state.taxUpdate.stateIncomeTax,
       federalIncomeTax: state => state.taxUpdate.federalIncomeTax,
-      effectiveTaxRate: state => state.taxUpdate.smartTaxRate
+      effectiveTaxRate: state => state.taxUpdate.smartTaxRate,
     }),
   },
   methods: {},

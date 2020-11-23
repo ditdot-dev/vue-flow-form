@@ -2,26 +2,26 @@ import * as TaxTable from './TaxTable.js'
 import store from '../store'
 
 // Set the deductions from retirement contribution from W2 Income and/or Business Expenses
-export function totalDeduction(){
+export function addTotalDeduction(){
     let filingStatus = store.state.userInformation.userInput.tax_filing_status;
+    let qbiDeduction = store.state.userInformation.taxUpdate.qbiDeduction
     let standardDeduction;
     let elderStandardDeduction;
+    let totalDeduction;
     if ( filingStatus === 'headOfHousehold') {
-      return standardDeduction = TaxTable.tax_table_2020.head_of_household_deduction;
+      return standardDeduction = parseFloat(TaxTable.tax_table_2020.head_of_household_deduction) + parseFloat(qbiDeduction);
     } else if ( filingStatus === 'married') {
-      return standardDeduction = TaxTable.tax_table_2020.married_deduction
+      return standardDeduction = parseFloat(TaxTable.tax_table_2020.married_deduction) + parseFloat(qbiDeduction)
     } else if ( filingStatus === 'single') {
-      return standardDeduction = TaxTable.tax_table_2020.single_deduction
+      return standardDeduction = parseFloat(TaxTable.tax_table_2020.single_deduction) + parseFloat(qbiDeduction)
     } else if ( filingStatus === 'marriedFilingSeparately'){
-      standardDeduction = TaxTable.tax_table_2020.married_filing_separately_deduction
+      return standardDeduction = parseFloat(TaxTable.tax_table_2020.married_filing_separately_deduction) + parseFloat(qbiDeduction)
     } else { standardDeduction = 0 };
 
     //let elderStandardDeduction; **NOT WORKING YET......**
     //if (age >= 65) {
     //  return elderStandardDeduction = 1650 } else if ( age >= 65 && filingStatus === 'married') {
     //  return elderStandardDeduction = 1300 } else { return elderStandardDeduction = 0 };
-
-    return parseFloat(store.userInformation.taxUpdate.qbiDeduction) + parseInt(standardDeduction) + parseInt(elderStandardDeduction);
   }
 
 

@@ -10,12 +10,6 @@ Vue.use(Vuex);
 const userInformation = {
   namespaced: true,
   state: {
-    "2020TaxTable": {
-      single_deduction: 12400,
-      married_deduction: 24800,
-      married_filing_separately_deduction: 12400,
-      head_of_household_deduction: 18650,
-      },
     userInput: {
       tax_filing_status: 'single',
       age: 20,
@@ -44,13 +38,13 @@ const userInformation = {
     },
     async getTotalDeduction ({ commit }) {
       try {
-        const response = await SMETaxCalculations.totalDeduction();
+        const response = await SMETaxCalculations.addTotalDeduction();
         commit ('setTotalDeduction', response);
     } catch (err) {
         console.error(err);
     }},
     async getTaxSummary ({dispatch}){
-      dispatch ('getTotalDeduction')
+      await dispatch ('getTotalDeduction')
       dispatch ('getTotalIncome')
       await dispatch ('getProfitAfterExpenses')
       await dispatch ('getProfitAfterTaxes')

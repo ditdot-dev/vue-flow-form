@@ -82,8 +82,42 @@ export default {
           tooltip: "This information is used to calculate your potential retirement earnings at age 67. Please put your current age, or the age you will be after December 31, 2020.",
         }),
         new QuestionModel({
-          id: "dependents",
+          id: "tax_filing_status",
+          tagline: "About You",
+          title: "What is your tax filing status?",
           answerMessage: "Great!",
+          type: QuestionType.Dropdown,
+          multiple: false,
+          placeholder: "Select status",
+          inline: false,
+          required: true,
+          tooltip: "This information is used to identify your household tax deductions (standard, not itemized). Please put your marital status as recognized by the IRS.",
+          options: [
+            new ChoiceOption({
+              label: "Single",
+              value: "single",
+            }),
+            new ChoiceOption({
+              label: "Head of Household",
+              value: "headOfHousehold",
+            }),
+            new ChoiceOption({
+              label: "Married Filing Jointly",
+              value: "married",
+            }),
+            new ChoiceOption({
+              label: "Married Filing Separately",
+              value: "marriedFilingSeparately",
+            }),
+            new ChoiceOption({
+              label: "Qualifying Widow(er) with a Dependent Child",
+              value: "married",
+            }),
+          ],
+        }),
+        new QuestionModel({
+          id: "dependents",
+          answerMessage: "😊",
           tagline: "About You",
           title: "How many dependents do you have?",
           type: QuestionType.Number,
@@ -96,7 +130,7 @@ export default {
           id: "tax_filing_state",
           tagline: "About You",
           title: "What is your tax filing state?",
-          answerMessage: "Great!",
+          answerMessage: "Next let's move onto your business!",
           type: QuestionType.Dropdown,
           multiple: false,
           placeholder: "Select state",
@@ -307,40 +341,6 @@ export default {
             new ChoiceOption({
               label: "Wyoming",
               value: "wy"
-            }),
-          ],
-        }),
-        new QuestionModel({
-          id: "tax_filing_status",
-          tagline: "About You",
-          title: "What is your tax filing status?",
-          answerMessage: "Next let's move onto your business!",
-          type: QuestionType.Dropdown,
-          multiple: false,
-          placeholder: "Select status",
-          inline: false,
-          required: true,
-          tooltip: "This information is used to identify your household tax deductions (standard, not itemized). Please put your marital status as recognized by the IRS.",
-          options: [
-            new ChoiceOption({
-              label: "Single",
-              value: "single",
-            }),
-            new ChoiceOption({
-              label: "Head of Household",
-              value: "headOfHousehold",
-            }),
-            new ChoiceOption({
-              label: "Married Filing Jointly",
-              value: "married",
-            }),
-            new ChoiceOption({
-              label: "Married Filing Separately",
-              value: "marriedFilingSeparately",
-            }),
-            new ChoiceOption({
-              label: "Qualifying Widow(er) with a Dependent Child",
-              value: "married",
             }),
           ],
         }),
