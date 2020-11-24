@@ -116,16 +116,16 @@
               <h4 class="d-flex align-items-end">Contributions</h4>
             </info-icon>
             <h4>Your Contribution</h4>
-            <h2>$1,552 (2.1%)</h2>
+            <h2>{{ sliders.individual401kPersonal | currency("$",0) }} (2.1%)</h2>
             <div class="colBox">
-              <vue-custom-slider v-model="sliders.one" />
+              <vue-custom-slider v-model="sliders.individual401kPersonal" />
             </div>
             <h4>Your Business Contribution</h4>
             <info-icon tooltip="business">
-              <h2>$6,000 (8.9%)</h2>
+              <h2>{{ sliders.individual401kBusiness | currency("$",0) }} (8.9%)</h2>
             </info-icon>
             <div class="colBox2 colBox">
-              <vue-custom-slider v-model="sliders.two" />
+              <vue-custom-slider v-model="sliders.individual401kBusiness" />
             </div>
             <p>
               At age 67, your <br />
@@ -185,10 +185,10 @@
           <div class="col3 col flex2 mb-5 justify-content-between m-0 py-0">
             <h4>Your Business Contribution</h4>
             <info-icon tooltip="business">
-              <h2 class="mb-0 pb-0">$7,500 (10.9%)</h2>
+              <h2 class="mb-0 pb-0">{{ sliders.sepIraBusiness | currency("$",0) }} (10.9%)</h2>
             </info-icon>
             <div class="colBox">
-              <vue-custom-slider v-model="sliders.three" />
+              <vue-custom-slider v-model="sliders.sepIraBusiness" />
             </div>
 
             <p>
@@ -256,17 +256,16 @@
           </div>
           <div class="col3 col flex2 justify-content-between">
             <h4>Your Contribution</h4>
-            <h2>$7,652 (10.6%)</h2>
+            <h2>{{ sliders.simpleIraPersonal | currency("$",0) }} (10.6%)</h2>
             <div class="colBox">
-              <vue-custom-slider v-model="sliders.four" />
+              <vue-custom-slider v-model="sliders.simpleIraPersonal" />
             </div>
             <h4>Your Business Contribution</h4>
             <info-icon tooltip="business">
-              <h2>$900 (1.4%)</h2>
+              <h2>{{ sliders.simpleIraBusiness | currency("$",0) }} (1.4%)</h2>
             </info-icon>
-
             <div class="colBox">
-              <vue-custom-slider v-model="sliders.five" />
+              <vue-custom-slider v-model="sliders.simpleIraBusiness" />
             </div>
             <p>
               At age 67, your <br />
@@ -323,9 +322,9 @@
           </div>
           <div class="col3 col flex2 mb-5 justify-content-between">
             <h4>Your Contribution</h4>
-            <h2>$6,000 (8%)</h2>
+            <h2>{{ sliders.traditionalIraPersonal | currency("$",0) }} (8%)</h2>
             <div class="colBox">
-              <vue-custom-slider v-model="sliders.six" />
+              <vue-custom-slider v-model="sliders.traditionalIraPersonal" />
             </div>
             <p>
               At age 67, your <br />
@@ -430,12 +429,12 @@ export default {
     return {
       percent: 10,
       sliders: {
-        one: 90,
-        two: 9,
-        three: 8,
-        four: 10,
-        five: 40,
-        six: 60,
+        individual401kPersonal: 90,
+        individual401kBusiness: 9,
+        sepIraBusiness: 8,
+        simpleIraPersonal: 10,
+        simpleIraBusiness: 40,
+        traditionalIraPersonal: 60,
       },
       projectedValue: 2000,
     };
