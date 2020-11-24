@@ -8,6 +8,7 @@
         </svg>
       </router-link>
     </div>
+
     <div class="row2 flex">
       <div class="heading">
         <h2>
@@ -38,15 +39,15 @@
       <div class="slider">
         <div style="position: relative" class="up-drag">
           <h2></h2>
-          <vue-slider v-model="projectedValue" :interval="10" :marks="true" :min="0" :max="(ProfitAfterTaxes * 10) / 100" height="60px" tooltipPlacement="left">
+          <vue-slider v-model="projectedValue" :interval="100" :marks="true" :min="0" :max="10000" height="60px" :tooltip="'none'">
             <template v-slot:step="{ active, value }">
               <div :class="['vue-slider-mark-label', 'custom-label', { active }]">
                 {{
                     projectedValue === value &&
-                    !((ProfitAfterTaxes * 10) / 100 === projectedValue)
-                      ? `${value}`
-                      : ""
-                  }}
+                    !( profitAfterTaxes === projectedValue)
+                ? `${value}`
+                : "" | currency("$",0)
+                }}
               </div>
             </template>
             <template v-slot:dot> <span class="custom-dot" /> </template></vue-slider>
@@ -56,7 +57,7 @@
                 right: -40px;
                 bottom: -22px;
               ">
-            {{ (ProfitAfterTaxes * 10) / 100 }}
+            ${{ profitAfterTaxes | currency('',0) }}
           </span>
         </div>
         <div class="max">
@@ -392,7 +393,7 @@
       <div class="roww2 flex">
         <div class="irsBox">
           <div class="irsContent flex2">
-            <h4>How This Calculator Works</h4>
+            <h1>How This Calculator Works</h1>
             <p>
               Based on your inputs, we followed the retirement contribution
               rules for your business type and retirement account to determine
@@ -414,6 +415,9 @@
 </template>
 
 <script>
+import Vue from "vue";
+import Vuex from "vuex";
+import Vue2Filters from 'vue2-filters'
 import vueCustomSlider from "../components/vue-slider";
 import infoIcon from "../components/info-icon";
 export default {
@@ -424,8 +428,7 @@ export default {
   },
   data() {
     return {
-      ProfitAfterTaxes: 19000,
-      percent: 11,
+      percent: 10,
       sliders: {
         one: 90,
         two: 9,
@@ -434,11 +437,16 @@ export default {
         five: 40,
         six: 60,
       },
-      projectedValue: 1,
+      projectedValue: 2000,
     };
   },
   mounted() {},
   methods: {},
+  computed: {
+    ...Vuex.mapState("userInformation", {
+      profitAfterTaxes: state => state.taxSummary.profitAfterTaxes,
+    }),
+  },
   watch: {
     sliders(val) {
       console.log(val);
@@ -705,7 +713,7 @@ export default {
 
 .heading h2 {
   font-family: var(--heading2-font);
-  font-size: 18px;
+  font-size: 26px;
 }
 
 .adder-subtractor {
@@ -777,7 +785,7 @@ p.percent {
 
 .heading2 h2 {
   font-family: var(--heading2-font);
-  font-size: 18px;
+  font-size: 26px;
 }
 
 .slider {
@@ -1283,7 +1291,7 @@ p.percent {
 
 .column2 h1 {
   font-family: var(--heading-font);
-  font-size: 30px;
+  font-size: 29px;
   margin-bottom: 10px;
 }
 
@@ -1338,8 +1346,8 @@ p.percent {
   padding-left: 4rem;
 }
 
-.irsContent h4 {
-  font-size: 20px;
+.irsContent h1 {
+  font-size: 29px;
   font-family: var(--heading4-font);
   margin-bottom: 2rem;
 }
@@ -1802,8 +1810,8 @@ p.percent {
     font-size: 12px;
   }
 
-  .irsContent h4 {
-    font-size: 16px;
+  .irsContent h1 {
+    font-size: 20px;
   }
 
   .irsContent p {
@@ -1852,8 +1860,8 @@ p.percent {
     font-size: 10px;
   }
 
-  .irsContent h4 {
-    font-size: 14px;
+  .irsContent h1 {
+    font-size: 18px;
   }
 
   .img2 {
@@ -1897,8 +1905,8 @@ p.percent {
     padding-right: 20px;
   }
 
-  .irsContent h4 {
-    font-size: 12px;
+  .irsContent h1 {
+    font-size: 14px;
   }
 
   /* .premiumBox {
