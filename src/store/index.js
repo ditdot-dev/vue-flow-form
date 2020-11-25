@@ -12,7 +12,7 @@ const userInformation = {
   state: {
     userInput: {
       tax_filing_status: 'single',
-      age: 20,
+      age: 37,
         }, // data captured in RetirementReferral.vue input form
     test: 20,
     incomeData: {}, // data formatted from the input for tax API
@@ -91,6 +91,12 @@ const calculatorDrag = {
   namespaced: true,
   state: {
     taxData0: {}, // additional objects from Results.vue to be used in RetirementOptions.vue
+    contributionCompounded:{
+    individual401kInterest: 0,
+    sepIraInterest: 0,
+    simpleIraInterest: 0,
+    traditionalIraInterest: 0,
+    },
     postIraTaxData: {
       taxAvoided: null,
       taxAdvantageRatio: null,
@@ -118,16 +124,22 @@ const calculatorDrag = {
     baseTax (state, data) {
       state.taxData0 = data;
     },
+    setCompoundInterest (state, data){
+      state.contributionCompounded.individual401kInterest = data[0],
+      state.contributionCompounded.sepIraInterest = data[1],
+      state.contributionCompounded.simpleIraInterest = data[2],
+      state.contributionCompounded.traditionalIraInterest = data[3]
+    }
   },
   actions: {
-    async getTaxSummary ({ commit }) {
+    async getCompoundInterest ({ commit }) {
       try {
-        const response = await TaxApi.postTaxData();
-        commit ('baseTax', response);
+        const response = await SMETaxCalculations.compoundInterest();
+        commit ('setCompoundInterest', response);
+        await console.log(response.individual401k)
     } catch (err) {
         console.error(err);
-    }
-    },
+    }},
   }
 };
 

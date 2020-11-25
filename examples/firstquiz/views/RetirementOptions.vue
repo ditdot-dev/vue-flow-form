@@ -118,7 +118,7 @@
             <h4>Your Contribution</h4>
             <h2>{{ sliders.individual401kPersonal | currency("$",0) }} (2.1%)</h2>
             <div class="colBox">
-              <vue-custom-slider v-model="sliders.individual401kPersonal" />
+              <vue-custom-slider v-model="sliders.individual401kPersonal" ref="sliders.individual401kPersonal" />
             </div>
             <h4>Your Business Contribution</h4>
             <info-icon tooltip="business">
@@ -130,7 +130,7 @@
             <p>
               At age 67, your <br />
               contributions could be <br />
-              worth $101,516
+              worth {{individual401kCompound | currency("$",0)}}
             </p>
           </div>
 
@@ -439,12 +439,17 @@ export default {
       projectedValue: 2000,
     };
   },
-  mounted() {},
+  mounted() {
+    this.$store.dispatch('calculatorDrag/getCompoundInterest')
+  },
   methods: {},
   computed: {
     ...Vuex.mapState("userInformation", {
       profitAfterTaxes: state => state.taxSummary.profitAfterTaxes,
     }),
+    ...Vuex.mapState('calculatorDrag', {
+      individual401kCompound: state => state.contributionCompounded.individual401kInterest,
+    })
   },
   watch: {
     sliders(val) {
