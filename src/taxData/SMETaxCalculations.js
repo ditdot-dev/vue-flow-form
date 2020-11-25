@@ -1,5 +1,7 @@
 import * as TaxTable from './TaxTable.js'
 import store from '../store'
+import vueCustomSlider from "../../examples/firstquiz/components/vue-slider";
+import RetirementOptions from "../../examples/firstquiz/views/RetirementOptions"
 
 // Set the deductions from retirement contribution from W2 Income and/or Business Expenses
 export function addTotalDeduction(){
@@ -16,12 +18,21 @@ export function addTotalDeduction(){
       return standardDeduction = parseFloat(TaxTable.tax_table_2020.single_deduction) + parseFloat(qbiDeduction)
     } else if ( filingStatus === 'marriedFilingSeparately'){
       return standardDeduction = parseFloat(TaxTable.tax_table_2020.married_filing_separately_deduction) + parseFloat(qbiDeduction)
-    } else { standardDeduction = 0 };
+    } else { standardDeduction = 0 }
 
     //let elderStandardDeduction; **NOT WORKING YET......**
     //if (age >= 65) {
     //  return elderStandardDeduction = 1650 } else if ( age >= 65 && filingStatus === 'married') {
     //  return elderStandardDeduction = 1300 } else { return elderStandardDeduction = 0 };
+  }
+
+export function compoundInterest(){
+  let ageUntilRetirement = 67 - parseInt(store.state.userInformation.userInput.age);
+  let interestRate = 1 + parseFloat(0.08)
+  let compoundInterest = Math.pow(interestRate, ageUntilRetirement);
+  return {
+    individual401k: parseInt(parseInt(200)*compoundInterest),
+  }
   }
 
 
