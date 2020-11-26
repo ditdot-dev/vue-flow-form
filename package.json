@@ -22,6 +22,7 @@
     "@popperjs/core": "^2.5.4",
     "bootstrap-vue": "^2.1.0",
     "es6-object-assign": "^1.1.0",
+    "tingle.js": "^0.15.3",
     "v-tooltip": "^2.0.3",
     "vue-router": "^3.4.8",
     "vue-slider-component": "^3.2.10",

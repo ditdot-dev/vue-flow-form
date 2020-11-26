@@ -44,10 +44,10 @@
               <div :class="['vue-slider-mark-label', 'custom-label', { active }]">
                 {{
                     projectedValue === value &&
-                    !( profitAfterTaxes === projectedValue)
-                ? `${value}`
-                : "" | currency("$",0)
-                }}
+                    !(profitAfterTaxes === projectedValue)
+                      ? `${value}`
+                      : "" | currency("$", 0)
+                  }}
               </div>
             </template>
             <template v-slot:dot> <span class="custom-dot" /> </template></vue-slider>
@@ -57,7 +57,7 @@
                 right: -40px;
                 bottom: -22px;
               ">
-            ${{ profitAfterTaxes | currency('',0) }}
+            ${{ profitAfterTaxes | currency("", 0) }}
           </span>
         </div>
         <div class="max">
@@ -116,13 +116,17 @@
               <h4 class="d-flex align-items-end">Contributions</h4>
             </info-icon>
             <h4>Your Contribution</h4>
-            <h2>{{ sliders.individual401kPersonal | currency("$",0) }} (2.1%)</h2>
+            <h2>
+              {{ sliders.individual401kPersonal | currency("$", 0) }} (2.1%)
+            </h2>
             <div class="colBox">
               <vue-custom-slider v-model="sliders.individual401kPersonal" ref="sliders.individual401kPersonal" />
             </div>
             <h4>Your Business Contribution</h4>
             <info-icon tooltip="business">
-              <h2>{{ sliders.individual401kBusiness | currency("$",0) }} (8.9%)</h2>
+              <h2>
+                {{ sliders.individual401kBusiness | currency("$", 0) }} (8.9%)
+              </h2>
             </info-icon>
             <div class="colBox2 colBox">
               <vue-custom-slider v-model="sliders.individual401kBusiness" />
@@ -130,7 +134,7 @@
             <p>
               At age 67, your <br />
               contributions could be <br />
-              worth {{individual401kCompound | currency("$",0)}}
+              worth {{ individual401kCompound | currency("$", 0) }}
             </p>
           </div>
 
@@ -187,7 +191,9 @@
           <div class="col3 col flex2 mb-5 justify-content-between m-0 py-0">
             <h4>Your Business Contribution</h4>
             <info-icon tooltip="business">
-              <h2 class="mb-0 pb-0">{{ sliders.sepIraBusiness | currency("$",0) }} (10.9%)</h2>
+              <h2 class="mb-0 pb-0">
+                {{ sliders.sepIraBusiness | currency("$", 0) }} (10.9%)
+              </h2>
             </info-icon>
             <div class="colBox">
               <vue-custom-slider v-model="sliders.sepIraBusiness" />
@@ -260,13 +266,17 @@
           </div>
           <div class="col3 col flex2 justify-content-between">
             <h4>Your Contribution</h4>
-            <h2>{{ sliders.simpleIraPersonal | currency("$",0) }} (10.6%)</h2>
+            <h2>
+              {{ sliders.simpleIraPersonal | currency("$", 0) }} (10.6%)
+            </h2>
             <div class="colBox">
               <vue-custom-slider v-model="sliders.simpleIraPersonal" />
             </div>
             <h4>Your Business Contribution</h4>
             <info-icon tooltip="business">
-              <h2>{{ sliders.simpleIraBusiness | currency("$",0) }} (1.4%)</h2>
+              <h2>
+                {{ sliders.simpleIraBusiness | currency("$", 0) }} (1.4%)
+              </h2>
             </info-icon>
             <div class="colBox">
               <vue-custom-slider v-model="sliders.simpleIraBusiness" />
@@ -328,7 +338,9 @@
           </div>
           <div class="col3 col flex2 mb-5 justify-content-between">
             <h4>Your Contribution</h4>
-            <h2>{{ sliders.traditionalIraPersonal | currency("$",0) }} (8%)</h2>
+            <h2>
+              {{ sliders.traditionalIraPersonal | currency("$", 0) }} (8%)
+            </h2>
             <div class="colBox">
               <vue-custom-slider v-model="sliders.traditionalIraPersonal" />
             </div>
@@ -392,7 +404,9 @@
               We can help you calculate your overall tax avoided amount and
               optimize contributions to different accounts.
             </p>
-            <button style="align: flex; border-radius: 46px">Sign Up</button>
+            <button style="align: flex; border-radius: 46px" @click="handleSignup">
+              Sign Up
+            </button>
           </div>
         </div>
       </div>
@@ -418,23 +432,31 @@
       </div>
     </div>
   </div>
+  <tingle-modal v-model="isModalOpen" heading="Get Early Access" :content="body" buttonText="Yes Signup" :submit="onFormSubmit" />
 </div>
 </template>
 
 <script>
 import Vue from "vue";
 import Vuex from "vuex";
-import Vue2Filters from 'vue2-filters'
+import Vue2Filters from "vue2-filters";
 import vueCustomSlider from "../components/vue-slider";
 import infoIcon from "../components/info-icon";
+import {
+  body
+} from "../data/mailchimp";
+import TingleModal from "../components/tingle-modal.vue";
 export default {
   name: "RetirementOptions",
   components: {
     vueCustomSlider,
     infoIcon,
+    TingleModal,
   },
   data() {
     return {
+      body,
+      isModalOpen: false,
       percent: 10,
       sliders: {
         individual401kPersonal: 90,
@@ -448,16 +470,24 @@ export default {
     };
   },
   mounted() {
-    this.$store.dispatch('calculatorDrag/getCompoundInterest')
+    this.$store.dispatch("calculatorDrag/getCompoundInterest");
   },
-  methods: {},
+  methods: {
+    handleSignup() {
+      this.isModalOpen = true;
+    },
+    onFormSubmit() {
+      document.getElementById("mc-embedded-subscribe").click();
+    },
+  },
   computed: {
     ...Vuex.mapState("userInformation", {
-      profitAfterTaxes: state => state.taxSummary.profitAfterTaxes,
+      profitAfterTaxes: (state) => state.taxSummary.profitAfterTaxes,
     }),
-    ...Vuex.mapState('calculatorDrag', {
-      individual401kCompound: state => state.contributionCompounded.individual401kInterest,
-    })
+    ...Vuex.mapState("calculatorDrag", {
+      individual401kCompound: (state) =>
+        state.contributionCompounded.individual401kInterest,
+    }),
   },
   watch: {
     sliders(val) {

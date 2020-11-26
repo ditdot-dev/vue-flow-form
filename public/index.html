@@ -2,37 +2,125 @@
 
 <html lang="en">
   <head>
-
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport"content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover"/>
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover"
+    />
     <meta name="robots" content="index, follow" />
     <meta name="author" content="Gig Finance" />
     <meta name="description" content="" />
     <link rel="icon" type="image/png" href="gigfinance_32px.png" size="32x32" />
-    <link rel="icon" type="image/png" href="gigfinance_icon_600px.png" size="16x16" />
+    <link
+      rel="icon"
+      type="image/png"
+      href="gigfinance_icon_600px.png"
+      size="16x16"
+    />
     <link rel="preconnect" href="https://fonts.gstatic.com" />
-    <link rel="apple-touch-icon" type="image/png" href="gigfinance_icon_600px.png" size="180x180" />
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;900&amp;display=swap" rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;700&display=swap" rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css2?family=Karla:wght@400;700&display=swap" rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,400;0,700;1,400;1,700&family=Manrope:wght@400;700&display=swap" rel="stylesheet" />
+    <link
+      rel="apple-touch-icon"
+      type="image/png"
+      href="gigfinance_icon_600px.png"
+      size="180x180"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;900&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Karla:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="//cdn-images.mailchimp.com/embedcode/classic-10_7.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,400;0,700;1,400;1,700&family=Manrope:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
     <title>Gig Retirement Calculator - Gig Finance</title>
   </head>
   <body>
-
     <noscript>
       <strong>
         We're sorry but this app doesn't work properly without JavaScript
-        enabled. Please enable it to continue.</strong>
+        enabled. Please enable it to continue.</strong
+      >
     </noscript>
-
+    <script
+      type="text/javascript"
+      src="//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js"
+    ></script>
+    <script type="text/javascript">
+      (function($) {
+        window.fnames = new Array();
+        window.ftypes = new Array();
+        fnames[0] = "EMAIL";
+        ftypes[0] = "email";
+        fnames[1] = "FNAME";
+        ftypes[1] = "text";
+        fnames[2] = "LNAME";
+        ftypes[2] = "text";
+        fnames[11] = "MMERGE11";
+        ftypes[11] = "number";
+        fnames[6] = "MMERGE6";
+        ftypes[6] = "dropdown";
+        fnames[9] = "MMERGE9";
+        ftypes[9] = "dropdown";
+        fnames[7] = "MMERGE7";
+        ftypes[7] = "zip";
+        fnames[3] = "ADDRESS";
+        ftypes[3] = "address";
+        fnames[4] = "PHONE";
+        ftypes[4] = "phone";
+      })(jQuery);
+      var $mcj = jQuery.noConflict(true);
+    </script>
     <div id="app"></div>
     <!-- IE11 CSS variables polyfill -->
-    <script>window.MSInputMethodContext && document.documentMode && document.write('<script src="https://cdn.jsdelivr.net/npm/css-vars-ponyfill@2.3.2/dist/css-vars-ponyfill.min.js"><\x2fscript>'); window.cssVars && window.cssVars();</script>
+    <script>
+      window.MSInputMethodContext &&
+        document.documentMode &&
+        document.write(
+          '<script src="https://cdn.jsdelivr.net/npm/css-vars-ponyfill@2.3.2/dist/css-vars-ponyfill.min.js"><\x2fscript>'
+        );
+      window.cssVars && window.cssVars();
+    </script>
 
     <!-- HelpScout's Beacon FAQ added -->
-    <script type="text/javascript">!function(e,t,n){function a(){var e=t.getElementsByTagName("script")[0],n=t.createElement("script");n.type="text/javascript",n.async=!0,n.src="https://beacon-v2.helpscout.net",e.parentNode.insertBefore(n,e)}if(e.Beacon=n=function(t,n,a){e.Beacon.readyQueue.push({method:t,options:n,data:a})},n.readyQueue=[],"complete"===t.readyState)return a();e.attachEvent?e.attachEvent("onload",a):e.addEventListener("load",a,!1)}(window,document,window.Beacon||function(){});
-    </script><script type="text/javascript">window.Beacon('init', 'eb1b605d-2f6c-475b-947c-241740608da9')</script>
+    <script type="text/javascript">
+      !(function(e, t, n) {
+        function a() {
+          var e = t.getElementsByTagName("script")[0],
+            n = t.createElement("script");
+          (n.type = "text/javascript"),
+            (n.async = !0),
+            (n.src = "https://beacon-v2.helpscout.net"),
+            e.parentNode.insertBefore(n, e);
+        }
+        if (
+          ((e.Beacon = n = function(t, n, a) {
+            e.Beacon.readyQueue.push({ method: t, options: n, data: a });
+          }),
+          (n.readyQueue = []),
+          "complete" === t.readyState)
+        )
+          return a();
+        e.attachEvent
+          ? e.attachEvent("onload", a)
+          : e.addEventListener("load", a, !1);
+      })(window, document, window.Beacon || function() {});
+    </script>
+    <script type="text/javascript">
+      window.Beacon("init", "eb1b605d-2f6c-475b-947c-241740608da9");
+    </script>
   </body>
 </html>
