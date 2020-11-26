@@ -71,9 +71,11 @@
       },
 
       focus() {
-        const el = this.getElement()
+        if (!this.focused) {
+          const el = this.getElement()
 
-        el && el.focus()
+          el && el.focus()
+        }
       },
 
       blur() {

@@ -202,7 +202,7 @@
       onTab($event) {
         const q = this.$refs.questionComponent
 
-        if (q) {
+        if (q && this.question.type !== QuestionType.Date) {
           this.returnFocus()
           this.$emit('answer', q)
           

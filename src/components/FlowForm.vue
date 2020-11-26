@@ -386,11 +386,11 @@
             this.goToPreviousQuestion()
           }
         } else {
-          e.preventDefault()
-          
           const q = this.activeQuestionComponent()
 
           if (q.shouldFocus()) {
+            e.preventDefault()
+
             q.focusField()
           } else {
             e.stopPropagation()

@@ -14,18 +14,17 @@
     name: QuestionType.Date,
     data() {
       return {
-        inputType: 'date', 
-        canReceiveFocus: true
+        inputType: 'date'
       }
     }, 
     methods: {
       validate() {
         if (this.question.min && this.dataValue < this.question.min) {
-            return false
+          return false
         }
 
         if (this.question.max && this.dataValue > this.question.max) {
-            return false
+          return false
         }
 
         return !this.question.required || this.hasValue
