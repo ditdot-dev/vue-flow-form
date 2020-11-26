@@ -152,9 +152,11 @@
             </info-icon>
           </div>
           <div class="col5 col">
-            <div class="labelbox flex">
-              <h4>How to Open an <br />Individual 401k <br />Account</h4>
-            </div>
+            <a href="https://www.learn.gigfinance.org/blog/2020-07-how-to-get-started-with-an-individual-401-k/">
+              <div class="labelbox flex">
+                <h4>How to Open an <br />Individual 401k <br />Account</h4>
+              </div>
+            </a>
           </div>
         </div>
 
@@ -215,9 +217,11 @@
             </info-icon>
           </div>
           <div class="col5 col">
-            <div class="labelbox flex">
-              <h4>How to Open a <br />SEP-IRA<br />Account</h4>
-            </div>
+            <a href="https://www.learn.gigfinance.org/blog/2020-07-how-to-get-started-with-an-individual-401-k/">
+              <div class="labelbox flex">
+                <h4>How to Open a <br />SEP-IRA<br />Account</h4>
+              </div>
+            </a>
           </div>
         </div>
 
@@ -291,9 +295,11 @@
             </info-icon>
           </div>
           <div class="col5 col">
-            <div class="labelbox flex">
-              <h4>How to Open a <br />SIMPLE-IRA<br />Account</h4>
-            </div>
+            <a href="https://www.learn.gigfinance.org/blog/2020-07-how-to-get-started-with-an-individual-401-k/">
+              <div class="labelbox flex">
+                <h4>How to Open a <br />SIMPLE-IRA<br />Account</h4>
+              </div>
+            </a>
           </div>
         </div>
 
@@ -350,9 +356,11 @@
             </info-icon>
           </div>
           <div class="col5 col">
-            <div class="labelbox flex">
-              <h4>How to Open an <br />Traditional IRA <br />Account</h4>
-            </div>
+            <a href="https://learn.gigfinance.org/blog/2020-11-how-to-get-started-with-a-traditional-ira/">
+              <div class="labelbox flex">
+                <h4>How to Open an <br />Traditional IRA <br />Account</h4>
+              </div>
+            </a>
           </div>
         </div>
       </div>
