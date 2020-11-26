@@ -1,7 +1,7 @@
 <template>
-  <div>
-    <slot></slot>
-  </div>
+<div>
+  <slot></slot>
+</div>
 </template>
 
 <script>
@@ -22,11 +22,11 @@ export default {
       closeMethods: ["overlay", "button", "escape"],
       closeLabel: "Close",
       cssClass: ["custom-class-1", "custom-class-2"],
-      onOpen: function () {},
+      onOpen: function() {},
       onClose: () => {
         this.$emit("input", false);
       },
-      beforeClose: function () {
+      beforeClose: function() {
         // here's goes some logic
         // e.g. save content before closing the modal
         return true; // close the modal
@@ -74,6 +74,7 @@ export default {
   clear: left;
   font: 14px Helvetica, Arial, sans-serif;
 }
+
 /* Add your own Mailchimp form style overrides in your site stylesheet or in this style block.
   We recommend moving this block and the preceding CSS link to the HEAD of your HTML file. */
 </style>

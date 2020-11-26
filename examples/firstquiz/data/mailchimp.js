@@ -9,8 +9,8 @@ export const body = `<div id="mc_embed_signup">
         novalidate
       >
         <div id="mc_embed_signup_scroll" class="manrope-f-16">
-          <h2>Get Early Access.</h2>
-          <h4>Enter your email below for updates on this feature.</h4>
+          <h2>Thank you for your interest!</h2>
+          <h4>Sign up now to be invited to the beta user group when new features are available!</h4>
           <div class="indicates-required">
             <span class="asterisk">*</span> indicates required
           </div>
