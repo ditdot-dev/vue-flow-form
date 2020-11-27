@@ -350,7 +350,19 @@ export default {
         this.reverse = false;
       }
     },
+    isEnd() {
+      return (
+        this.questions[this.questions.length - 1].id ===
+        (this.activeQuestionComponent() &&
+          this.activeQuestionComponent().question.id)
+      );
+    },
     emitEnter() {
+      if (this.isEnd()) {
+        this.submit();
+        this.$router.push("/results");
+        return;
+      }
       const q = this.activeQuestionComponent();
       if (q) {
         // Send enter event to the current question component
@@ -361,6 +373,11 @@ export default {
       }
     },
     emitTab() {
+      if (this.isEnd()) {
+        this.submit();
+        this.$router.push("/results");
+        return;
+      }
       const q = this.activeQuestionComponent();
       if (q) {
         // Send tab event to the current question component
