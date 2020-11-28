@@ -43,18 +43,18 @@ const userInformation = {
     } catch (err) {
         console.error(err);
     }},
-    async getW2Tax ({ commit }) {
+    /* async getW2Tax ({ commit }) {
       try {
         const response = await SMETaxCalculations.w2Tax();
         commit ('setW2Tax', response);
     } catch (err) {
         console.error(err);
-    }},
+    }},*/
     async getTaxSummary ({dispatch}){
       dispatch ('getTotalDeduction')
       dispatch ('getTotalIncome')
       await dispatch ('getProfitAfterExpenses')
-      await dispatch ('getW2Tax')
+    //  await dispatch ('getW2Tax')
       await dispatch ('getProfitAfterTaxes')
     }
    },

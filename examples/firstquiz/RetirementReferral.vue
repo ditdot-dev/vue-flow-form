@@ -1,11 +1,6 @@
 <template>
 <div>
-  <div id="nav" style="text-align: center">
-    <button>
-      <router-link to="/results">Results</router-link>
-    </button>
-    <router-view />
-  </div>
+  <router-view />
   <flow-form ref="flowform" v-on:complete="onComplete" v-on:submit="onSubmit" v-bind:questions="questions" v-bind:language="language" v-bind:standalone="true">
     <!-- Custom content for the Complete/Submit screen slots in the FlowForm component -->
     <!-- We've overriden the default "complete" slot content -->
@@ -78,7 +73,7 @@ export default {
           type: QuestionType.Number,
           required: true,
           mask: "##",
-          placeholder: 'Type a number here...',
+          placeholder: "Type a number here...",
           tooltip: "This information is used to calculate your potential retirement earnings at age 67. Please put your current age, or the age you will be after December 31, 2020.",
         }),
         new QuestionModel({
@@ -123,7 +118,7 @@ export default {
           type: QuestionType.Number,
           required: true,
           mask: "#",
-          placeholder: 'Type a number here...',
+          placeholder: "Type a number here...",
           tooltip: "This information is used to add up the tax deductions available to you. Put the number of individuals who are dependent on your income.",
         }),
         new QuestionModel({
@@ -140,191 +135,191 @@ export default {
           options: [
             new ChoiceOption({
               label: "Alabama",
-              value: "al"
+              value: "al",
             }),
             new ChoiceOption({
               label: "Alaska",
-              value: "ak"
+              value: "ak",
             }),
             new ChoiceOption({
               label: "Arizona",
-              value: "az"
+              value: "az",
             }),
             new ChoiceOption({
               label: "Arkansas",
-              value: "ar"
+              value: "ar",
             }),
             new ChoiceOption({
               label: "California",
-              value: "ca"
+              value: "ca",
             }),
             new ChoiceOption({
               label: "Colorado",
-              value: "co"
+              value: "co",
             }),
             new ChoiceOption({
               label: "Conneticut",
-              value: "ct"
+              value: "ct",
             }),
             new ChoiceOption({
               label: "Delaware",
-              value: "de"
+              value: "de",
             }),
             new ChoiceOption({
               label: "Florida",
-              value: "fl"
+              value: "fl",
             }),
             new ChoiceOption({
               label: "Georgia",
-              value: "ga"
+              value: "ga",
             }),
             new ChoiceOption({
               label: "Hawaii",
-              value: "hi"
+              value: "hi",
             }),
             new ChoiceOption({
               label: "Idaho",
-              value: "id"
+              value: "id",
             }),
             new ChoiceOption({
               label: "Illinois",
-              value: "il"
+              value: "il",
             }),
             new ChoiceOption({
               label: "Indiana",
-              value: "in"
+              value: "in",
             }),
             new ChoiceOption({
               label: "Iowa",
-              value: "ia"
+              value: "ia",
             }),
             new ChoiceOption({
               label: "Kansas",
-              value: "ks"
+              value: "ks",
             }),
             new ChoiceOption({
               label: "Kentucky",
-              value: "ky"
+              value: "ky",
             }),
             new ChoiceOption({
               label: "Louisiana",
-              value: "la"
+              value: "la",
             }),
             new ChoiceOption({
               label: "Maine",
-              value: "me"
+              value: "me",
             }),
             new ChoiceOption({
               label: "Maryland",
-              value: "md"
+              value: "md",
             }),
             new ChoiceOption({
               label: "Massachusetts",
-              value: "ma"
+              value: "ma",
             }),
             new ChoiceOption({
               label: "Michigan",
-              value: "mi"
+              value: "mi",
             }),
             new ChoiceOption({
               label: "Minnesota",
-              value: "mn"
+              value: "mn",
             }),
             new ChoiceOption({
               label: "Mississippi",
-              value: "ms"
+              value: "ms",
             }),
             new ChoiceOption({
               label: "Missouri",
-              value: "mo"
+              value: "mo",
             }),
             new ChoiceOption({
               label: "Montana",
-              value: "mt"
+              value: "mt",
             }),
             new ChoiceOption({
               label: "Nebraska",
-              value: "ne"
+              value: "ne",
             }),
             new ChoiceOption({
               label: "Nevada",
-              value: "nv"
+              value: "nv",
             }),
             new ChoiceOption({
               label: "New Hampshire",
-              value: "nh"
+              value: "nh",
             }),
             new ChoiceOption({
               label: "New Jersey",
-              value: "nj"
+              value: "nj",
             }),
             new ChoiceOption({
               label: "New Mexico",
-              value: "nm"
+              value: "nm",
             }),
             new ChoiceOption({
               label: "New York",
-              value: "ny"
+              value: "ny",
             }),
             new ChoiceOption({
               label: "North Carolina",
-              value: "nc"
+              value: "nc",
             }),
             new ChoiceOption({
               label: "North Dakota",
-              value: "nd"
+              value: "nd",
             }),
             new ChoiceOption({
               label: "Ohio",
-              value: "oh"
+              value: "oh",
             }),
             new ChoiceOption({
               label: "Oklahoma",
-              value: "ok"
+              value: "ok",
             }),
             new ChoiceOption({
               label: "Oregon",
-              value: "or"
+              value: "or",
             }),
             new ChoiceOption({
               label: "Pennsylvania",
-              value: "pa"
+              value: "pa",
             }),
             new ChoiceOption({
               label: "Rhode Island",
-              value: "ri"
+              value: "ri",
             }),
             new ChoiceOption({
               label: "South Carolina",
-              value: "sc"
+              value: "sc",
             }),
             new ChoiceOption({
               label: "South Dakota",
-              value: "sd"
+              value: "sd",
             }),
             new ChoiceOption({
               label: "Tennessee",
-              value: "tn"
+              value: "tn",
             }),
             new ChoiceOption({
               label: "Texas",
-              value: "tx"
+              value: "tx",
             }),
             new ChoiceOption({
               label: "Utah",
-              value: "ut"
+              value: "ut",
             }),
             new ChoiceOption({
               label: "Vermont",
-              value: "vt"
+              value: "vt",
             }),
             new ChoiceOption({
               label: "Virginia",
-              value: "va"
+              value: "va",
             }),
             new ChoiceOption({
               label: "Washington",
-              value: "wa"
+              value: "wa",
             }),
             new ChoiceOption({
               label: "Washington District of Columbia",
@@ -332,15 +327,15 @@ export default {
             }),
             new ChoiceOption({
               label: "West Virginia",
-              value: "wv"
+              value: "wv",
             }),
             new ChoiceOption({
               label: "Wisconsin",
-              value: "wi"
+              value: "wi",
             }),
             new ChoiceOption({
               label: "Wyoming",
-              value: "wy"
+              value: "wy",
             }),
           ],
         }),
@@ -387,7 +382,7 @@ export default {
             llc: "salary",
             sCorporation: "salary",
             soleProprietor: "employee_count",
-            partnership: "employee_count"
+            partnership: "employee_count",
           },
         }),
         new QuestionModel({
@@ -481,16 +476,16 @@ export default {
       this.$refs.flowform.submitted = true;
       this.submitted = true;
       /* Set the data inputs for an object for Track tax api */
-      await this.getData()
-      window.userInput = await this.formatData()
-      console.log(userInput)
-      await this.$store.commit('userInformation/entry', userInput)
-      window.incomeData = taxApi.taxData()
+      await this.getData();
+      window.userInput = await this.formatData();
+      console.log(userInput);
+      await this.$store.commit("userInformation/entry", userInput);
+      window.incomeData = taxApi.taxData();
 
       /* Run taxApi and put the outputs into an object in Vuex store */
-      await taxApi.postTaxData(incomeData)
-      console.log(taxUpdate.data)
-      await this.$store.commit('userInformation/results', taxUpdate.data)
+      await taxApi.postTaxData(incomeData);
+      console.log(taxUpdate.data);
+      await this.$store.commit("userInformation/results", taxUpdate.data);
     },
     getData() {
       window.data = {
@@ -505,16 +500,15 @@ export default {
           data.id.push(question.id);
         }
       });
-      return data
+      return data;
     },
     formatData() {
-      window.userInput = {}
-      data.id.forEach((key, i) =>
-        userInput[key] = data.answers[i]);
-      return userInput
-    }
-  }
-}
+      window.userInput = {};
+      data.id.forEach((key, i) => (userInput[key] = data.answers[i]));
+      return userInput;
+    },
+  },
+};
 </script>
 
 <style lang="css">
