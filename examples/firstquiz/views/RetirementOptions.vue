@@ -151,7 +151,9 @@
               </info-icon>
               <h4>Your Contribution</h4>
               <h2>
-                {{ sliders.individual401kPersonal | currency("$", 0) }} (2.1%)
+                {{ sliders.individual401kPersonal | currency("$", 0) }} ({{
+                  sliderPercentage(sliders.individual401kPersonal)
+                }}%)
               </h2>
               <div class="colBox">
                 <vue-custom-slider
@@ -162,7 +164,9 @@
               <h4>Your Business Contribution</h4>
               <info-icon tooltip="business">
                 <h2>
-                  {{ sliders.individual401kBusiness | currency("$", 0) }} (8.9%)
+                  {{ sliders.individual401kBusiness | currency("$", 0) }} ({{
+                    sliderPercentage(sliders.individual401kBusiness)
+                  }}%)
                 </h2>
               </info-icon>
               <div class="colBox2 colBox">
@@ -231,7 +235,9 @@
               <h4>Your Business Contribution</h4>
               <info-icon tooltip="business">
                 <h2 class="mb-0 pb-0">
-                  {{ sliders.sepIraBusiness | currency("$", 0) }} (10.9%)
+                  {{ sliders.sepIraBusiness | currency("$", 0) }} ({{
+                    sliderPercentage(sliders.sepIraBusiness)
+                  }}%)
                 </h2>
               </info-icon>
               <div class="colBox">
@@ -308,7 +314,9 @@
             <div class="col3 col flex2 justify-content-between">
               <h4>Your Contribution</h4>
               <h2>
-                {{ sliders.simpleIraPersonal | currency("$", 0) }} (10.6%)
+                {{ sliders.simpleIraPersonal | currency("$", 0) }} ({{
+                  sliderPercentage(sliders.simpleIraPersonal)
+                }}%)
               </h2>
               <div class="colBox">
                 <vue-custom-slider v-model="sliders.simpleIraPersonal" />
@@ -316,7 +324,9 @@
               <h4>Your Business Contribution</h4>
               <info-icon tooltip="business">
                 <h2>
-                  {{ sliders.simpleIraBusiness | currency("$", 0) }} (1.4%)
+                  {{ sliders.simpleIraBusiness | currency("$", 0) }} ({{
+                    sliderPercentage(sliders.simpleIraBusiness)
+                  }}%)
                 </h2>
               </info-icon>
               <div class="colBox">
@@ -382,7 +392,9 @@
             <div class="col3 col flex2 mb-5 justify-content-between">
               <h4>Your Contribution</h4>
               <h2>
-                {{ sliders.traditionalIraPersonal | currency("$", 0) }} (8%)
+                {{ sliders.traditionalIraPersonal | currency("$", 0) }} ({{
+                  sliderPercentage(sliders.traditionalIraPersonal)
+                }}%)
               </h2>
               <div class="colBox">
                 <vue-custom-slider v-model="sliders.traditionalIraPersonal" />
@@ -499,6 +511,7 @@ import infoIcon from "../components/info-icon";
 import { body } from "../data/mailchimp";
 import TingleModal from "../components/tingle-modal.vue";
 import { roundOfToTen } from "../../util";
+import { setSliderMax } from "../../../src/taxData/SMETaxCalculations";
 export default {
   name: "RetirementOptions",
   components: {
@@ -526,6 +539,21 @@ export default {
   mounted() {
     this.$store.dispatch("calculatorDrag/getCompoundInterest");
     this.projectedValue = roundOfToTen((this.profitAfterTaxes / 100) * 10);
+    const {
+      personalMax_individual401k = 90,
+      businessMax_individual401k = 9,
+      usinessMax_sepIra = 8,
+      personalMax_simpleIra = 10,
+      businessMax_simpleIra = 40,
+      personalMax_traditionalIra = 60,
+    } = setSliderMax();
+
+    this.sliders.individual401kPersonal = personalMax_individual401k;
+    this.sliders.individual401kBusiness = businessMax_individual401k;
+    this.sliders.sepIraBusiness = usinessMax_sepIra;
+    this.sliders.simpleIraPersonal = personalMax_simpleIra;
+    this.sliders.simpleIraBusiness = businessMax_simpleIra;
+    this.sliders.traditionalIraPersonal = personalMax_traditionalIra;
   },
   methods: {
     handleSignup() {
@@ -533,6 +561,12 @@ export default {
     },
     onFormSubmit() {
       document.getElementById("mc-embedded-subscribe").click();
+    },
+    sliderPercentage(amount) {
+      const number = (
+        amount / roundOfToTen(this.profitAfterTaxes / 100)
+      ).toFixed(1);
+      return number == Infinity ? 0 : number;
     },
   },
   computed: {
@@ -563,7 +597,9 @@ export default {
       this.projectedValue = roundOfToTen((this.profitAfterTaxes / 100) * val);
     },
     projectedValue(val) {
-      this.percent = val / roundOfToTen(this.profitAfterTaxes / 100);
+      const formattedValue = val / roundOfToTen(this.profitAfterTaxes / 100);
+      this.percent =
+        formattedValue == Infinity ? 0 : Math.round(formattedValue);
     },
   },
 };
