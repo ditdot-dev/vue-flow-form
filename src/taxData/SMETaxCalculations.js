@@ -2,7 +2,7 @@ import * as TaxTable from "./TaxTable.js";
 import * as TaxApi from "../api/TaxApi.js";
 import store from "../store";
 import vueCustomSlider from "../../examples/firstquiz/components/vue-slider";
-import RetirementOptions from "../../examples/firstquiz/views/RetirementOptions";
+import * as RetirementOptions from "../../examples/firstquiz/views/RetirementOptions";
 
 // Set the deductions from retirement contribution from W2 Income and/or Business Expenses
 export function addTotalDeduction() {
@@ -43,7 +43,10 @@ export function compoundInterest() {
   let interestRate = 1 + parseFloat(0.08);
   let compoundInterest = Math.pow(interestRate, ageUntilRetirement);
   return {
-    individual401k: parseInt(parseInt(200) * compoundInterest)
+    individual401k: parseInt(RetirementOptions.sliders.individual401kPersonal * compoundInterest),
+    sepIra: 200,
+    simpleIra: 300,
+    traditionalIra: 100,
   };
 }
 

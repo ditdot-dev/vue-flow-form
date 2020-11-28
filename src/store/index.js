@@ -135,10 +135,10 @@ const calculatorDrag = {
       state.taxData0 = data;
     },
     setCompoundInterest(state, data) {
-      (state.contributionCompounded.individual401kInterest = data[0]),
-        (state.contributionCompounded.sepIraInterest = data[1]),
-        (state.contributionCompounded.simpleIraInterest = data[2]),
-        (state.contributionCompounded.traditionalIraInterest = data[3]);
+      (state.contributionCompounded.individual401kInterest = data["individual401k"]),
+      (state.contributionCompounded.sepIraInterest = data["sepIra"]),
+      (state.contributionCompounded.simpleIraInterest = data["simpleIra"]),
+      (state.contributionCompounded.traditionalIraInterest = data["traditionalIra"]);
     }
   },
   actions: {
