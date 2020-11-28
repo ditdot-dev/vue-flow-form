@@ -392,6 +392,7 @@ export default {
     },
     emitComplete() {
       this.$emit("complete", this.completed, this.questionList);
+      this.submit();
     },
     emitSubmit() {
       this.$emit("submit", this.questionList);
