@@ -43,7 +43,7 @@ export function compoundInterest() {
   let interestRate = 1 + parseFloat(0.08);
   let compoundInterest = Math.pow(interestRate, ageUntilRetirement);
   return {
-    individual401k: parseInt(RetirementOptions.sliders.individual401kPersonal * compoundInterest),
+    individual401k: parseInt(200 * compoundInterest),
     sepIra: 200,
     simpleIra: 300,
     traditionalIra: 100,

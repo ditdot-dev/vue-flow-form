@@ -138,7 +138,7 @@
             <p>
               At age 67, your <br />
               contributions could be <br />
-              worth {{ individual401kCompound | currency("$", 0) }}
+              worth {{ sliderCompound(sliders.individual401kPersonal+sliders.individual401kBusiness) | currency("$",0) }}
             </p>
           </div>
 
@@ -208,7 +208,7 @@
             <p>
               At age 67, your <br />
               contributions could be <br />
-              worth {{sepIraCompound | currency("$",0)}}
+              worth {{ sliderCompound(sliders.sepIraBusiness) | currency("$",0) }}
             </p>
           </div>
 
@@ -294,7 +294,7 @@
             <p>
               At age 67, your <br />
               contributions could be <br />
-              worth {{simpleIraCompound | currency("$",0)}}
+              worth {{ sliderCompound(sliders.simpleIraPersonal+sliders.simpleIraBusiness) | currency("$",0) }}
             </p>
           </div>
 
@@ -359,7 +359,7 @@
             <p>
               At age 67, your <br />
               contributions could be <br />
-              worth {{traditionalIraCompound | currency("$",0)}}
+              worth {{ sliderCompound(sliders.traditionalIraPersonal) | currency("$",0) }}
             </p>
           </div>
 
@@ -489,7 +489,6 @@ export default {
     };
   },
   mounted() {
-    this.$store.dispatch("calculatorDrag/getCompoundInterest");
     this.projectedValue = roundOfToTen((this.profitAfterTaxes / 100) * 10);
     const {
       personalMax_individual401k = 90,
@@ -520,6 +519,14 @@ export default {
       ).toFixed(1);
       return number == Infinity ? 0 : number;
     },
+    sliderCompound(amount) {
+      let ageUntilRetirement =
+        67 - parseInt(28);
+      let interestRate = 1 + parseFloat(0.08);
+      let compoundInterest = Math.pow(interestRate, ageUntilRetirement);
+      const number = parseInt(amount * compoundInterest);
+      return number == Infinity ? 0 : number;
+    }
   },
   computed: {
     roundedProjectedValue: {
@@ -532,12 +539,6 @@ export default {
     },
     ...Vuex.mapState("userInformation", {
       profitAfterTaxes: (state) => state.taxSummary.profitAfterTaxes,
-    }),
-    ...Vuex.mapState("calculatorDrag", {
-      individual401kCompound: (state) => state.contributionCompounded.individual401kInterest,
-      sepIraCompound: (state) => state.contributionCompounded.sepIraInterest,
-      simpleIraCompound: (state) => state.contributionCompounded.simpleIraInterest,
-      traditionalIraCompound: (state) => state.contributionCompounded.traditionalIraInterest
     }),
     getRoundofValue() {
       return roundOfToTen(this.profitAfterTaxes);
