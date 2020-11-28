@@ -1,4 +1,5 @@
 import * as TaxTable from './TaxTable.js'
+import * as TaxApi from '../api/TaxApi.js'
 import store from '../store'
 import vueCustomSlider from "../../examples/firstquiz/components/vue-slider";
 import RetirementOptions from "../../examples/firstquiz/views/RetirementOptions"
@@ -35,6 +36,40 @@ export function compoundInterest(){
   }
   }
 
+export function setSliderMax() {
+  let entity = store.state.userInformation.userInput.entity;
+  let salary = parseFloat(store.state.userInformation.userInput.salary);
+  let profitAfterExpenses = parseFloat(store.state.userInformation.taxSummary.profitAfterExpenses)
+  let employeeCount = store.state.userInformation.userInput.employeeCount;
+  let seTaxDeducted = 0.925;
+  let netBizEarnings = profitAfterExpenses * seTaxDeducted
+  let incorporatedEarnings = netBizEarnings + salary
+
+  if ( entity === 'soleProprietor' || entity === 'partnership' || (entity === 'llc' && employeeCount === 'noEmployees')) {
+    // individual401K slider's max
+    return personalMax_individual401k = Math.min(19500,netBizEarnings)
+    return businessMax_individual401k = 0.25*netBizEarnings
+    // sep-Ira slider's max
+    return businessMax_sepIra = 0.20*netBizEarnings
+    // simpleIra slider's max
+    return personalMax_simpleIra = Math.min(13500,netBizEarnings)
+    return businessMax_simpleIra = 0.03*netBizEarnings
+    // traditionalIra slider's max
+    return personalMax_traditionalIra = Math.min(6000,netBizEarnings)
+
+  } else if (entity === 'sCorporation' || entity === 'llc') {
+    // individual401K slider's max
+    return personalMax_individual401k = Math.min(19500,incorporatedEarnings)
+    return businessMax_individual401k = 0.25*netBizEarnings
+    // sep-Ira slider's max
+    return businessMax_sepIra = Math.max(0.20*netBizEarnings, 0.25*salary)
+    // simpleIra slider's max
+    return personalMax_simpleIra = Math.min(13500,incorporatedEarnings)
+    return businessMax_simpleIra = 0.03*salary
+    // traditionalIra slider's max
+    return personalMax_traditionalIra = Math.min(6000,incorporatedEarnings)
+  }
+  }
 
 
 // Adjust deductions based on retirement account contribution modified
