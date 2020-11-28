@@ -21,7 +21,7 @@ const userInformation = {
       totalIncome: 0,
       profitAfterExpenses: 0,
       taxBalance: 0,
-      profitAfterTaxes: 10000,
+      profitAfterTaxes: 42000,
       totalDeduction: 0,
       w2Tax: 0,
     },
