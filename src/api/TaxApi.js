@@ -1,21 +1,27 @@
-import * as store from '../store/index.js'
+import * as store from "../store/index.js";
 
 // api keys need to be moved to environment variables serviced by Netlify build....to be done
 const sandbox_api_user = "https://sandbox-api.track.tax/v2/users/";
 const app_key = "appId_d34638260c364a652c4673eb590af0fd";
 const app_secret = "appSecret_f24d118ff90fa3252a6749dba1276e44";
-const visitor = sandbox_api_user + "userId_15eaa4f418b381d9f3ddafd6d479cd746183f5ed";
-const tax_calculation = visitor + "/taxes/2020"
-var taxUpdate = []; var taxUpdate0 = [];
-var taxBalance; var ira_taxBalance; var sepIra_taxBalance; var simpleIra_taxBalance; var individual401k_taxBalance;
-var baseCalculate = false
-var handleError = function (err) {
+const visitor =
+  sandbox_api_user + "userId_15eaa4f418b381d9f3ddafd6d479cd746183f5ed";
+const tax_calculation = visitor + "/taxes/2020";
+var taxUpdate = [];
+var taxUpdate0 = [];
+var taxBalance;
+var ira_taxBalance;
+var sepIra_taxBalance;
+var simpleIra_taxBalance;
+var individual401k_taxBalance;
+var baseCalculate = false;
+var handleError = function(err) {
   console.warn(err);
-  return err
+  return err;
 };
 
 // PUT method to Track.tax api to calculate tax balance
-export function taxData(){
+export function taxData() {
   window.incomeData = {
     taxes: {
       "1099Income": parseInt(userInput.income),
@@ -23,48 +29,53 @@ export function taxData(){
       w2Income: parseInt(userInput.salary),
       filingState: userInput.tax_filing_state,
       filingStatus: userInput.tax_filing_status,
-      dependents: parseInt(userInput.dependents),
+      dependents: parseInt(userInput.dependents)
     }
   };
-  return incomeData
+  return incomeData;
 }
 
-export async function postTaxData(incomeData){
-  let baseTax = await (fetch (tax_calculation, {
+export async function postTaxData(incomeData) {
+  let baseTax = await fetch(tax_calculation, {
     headers: {
-        "Content-Type": "application/json",
-        "X-Api-Key": app_key,
-        "X-Api-Secret": app_secret,},
+      "Content-Type": "application/json",
+      "X-Api-Key": app_key,
+      "X-Api-Secret": app_secret
+    },
     method: "PUT",
     body: JSON.stringify(incomeData)
-  }).catch(handleError));
+  }).catch(handleError);
   window.taxUpdate = await baseTax.json();
-  console.log("base tax calculation complete!")
-  }
+  console.log("base tax calculation complete!");
+}
 
-export async function repostData(personal, business){
-  await formatData(personal, business)
-  await postApi()
-  }
+export async function repostData(personal, business, userInput) {
+  return await postApi(personal, business, userInput);
+}
 
-  function formatData(personal, business) {
-    const data = {
-      expenseDeduction: parseInt(userInput.expenses) - business,
-      "1099Income": parseInt(userInput.salary) - personal,
-    }};
-
-  async function postApi() {
-    fetch (tax_calculation, {
+async function postApi(personal, business, userInput) {
+  const data = {
+    expenseDeduction: parseInt(userInput.expenses) - business,
+    "1099Income": parseInt(userInput.salary) - personal
+  };
+  try {
+    let response = await fetch(tax_calculation, {
       headers: {
-          "Content-Type": "application/json",
-          "X-Api-Key": app_key,
-          "X-Api-Secret": app_secret,},
+        "Content-Type": "application/json",
+        "X-Api-Key": app_key,
+        "X-Api-Secret": app_secret
+      },
       method: "PUT",
       body: JSON.stringify(data)
-    }).catch(handleError);
-    window.taxUpdate1 = await response.json();
-    console.log("new value for taxes calculated")
-  };
+    });
+    response = await response.json();
+    return response;
+  } catch (e) {
+    handleError(e);
+  }
+
+  console.log("new value for taxes calculated");
+}
 /*
 async function postIraTaxData(iraContribution){
   let iraTax = await (fetch (tax_calculation, {

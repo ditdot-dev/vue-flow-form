@@ -566,12 +566,12 @@ export default {
         traditionalIraPersonal: 60,
       },
       sliders: {
-        individual401kPersonal: 0,
-        individual401kBusiness: 0,
-        sepIraBusiness: 0,
-        simpleIraPersonal: 0,
-        simpleIraBusiness: 0,
-        traditionalIraPersonal: 0,
+        individual401kPersonal: 90,
+        individual401kBusiness: 9,
+        sepIraBusiness: 8,
+        simpleIraPersonal: 10,
+        simpleIraBusiness: 40,
+        traditionalIraPersonal: 60,
       },
       projectedValue: 0,
     };
