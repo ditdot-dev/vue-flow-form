@@ -12,15 +12,16 @@ const userInformation = {
   state: {
     userInput: {
       tax_filing_status: "single",
-      age: 37
+      age: 37,
+      salary: 32000,
     }, // data captured in RetirementReferral.vue input form
-    test: 20,
     incomeData: {}, // data formatted from the input for tax API
-    taxUpdate: {}, // tax API's output data to be displayed in Results.vue
+    taxUpdate: {
+      taxBalance: 24300.12,
+    }, // tax API's output data to be displayed in Results.vue
     taxSummary: {
       totalIncome: 0,
-      profitAfterExpenses: 0,
-      taxBalance: 0,
+      profitAfterExpenses: 123527,
       profitAfterTaxes: 42078,
       totalDeduction: 0,
       w2Tax: 0
@@ -56,7 +57,6 @@ const userInformation = {
       dispatch("getTotalDeduction");
       dispatch("getTotalIncome");
       await dispatch("getProfitAfterExpenses");
-      await dispatch("getW2Tax");
       await dispatch("getProfitAfterTaxes");
     }
   },
@@ -88,8 +88,7 @@ const userInformation = {
     },
     setProfitAfterTaxes(state) {
       state.taxSummary.profitAfterTaxes =
-        parseFloat(state.taxSummary.profitAfterExpenses) -
-        parseFloat(state.taxUpdate.taxBalance);
+        Math.round((parseFloat(state.taxSummary.profitAfterExpenses) - parseFloat(state.taxUpdate.taxBalance)) * 100) / 100
     },
     setTotalDeduction(state, data) {
       state.taxSummary.totalDeduction = data;
@@ -101,12 +100,6 @@ const calculatorDrag = {
   namespaced: true,
   state: {
     taxData0: {}, // additional objects from Results.vue to be used in RetirementOptions.vue
-    contributionCompounded: {
-      individual401kInterest: 0,
-      sepIraInterest: 0,
-      simpleIraInterest: 0,
-      traditionalIraInterest: 0
-    },
     postIraTaxData: {
       taxAvoided: null,
       taxAdvantageRatio: null,
@@ -131,26 +124,8 @@ const calculatorDrag = {
     } // calculations to be displayed in RetirementOptions.vue
   },
   mutations: {
-    baseTax(state, data) {
-      state.taxData0 = data;
-    },
-    setCompoundInterest(state, data) {
-      (state.contributionCompounded.individual401kInterest = data["individual401k"]),
-      (state.contributionCompounded.sepIraInterest = data["sepIra"]),
-      (state.contributionCompounded.simpleIraInterest = data["simpleIra"]),
-      (state.contributionCompounded.traditionalIraInterest = data["traditionalIra"]);
-    }
   },
   actions: {
-    async getCompoundInterest({ commit }) {
-      try {
-        const response = await SMETaxCalculations.compoundInterest();
-        commit("setCompoundInterest", response);
-        await console.log(response.individual401k);
-      } catch (err) {
-        console.error(err);
-      }
-    }
   }
 };
 

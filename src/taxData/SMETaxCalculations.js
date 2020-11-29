@@ -37,30 +37,15 @@ export function addTotalDeduction() {
   //  return elderStandardDeduction = 1300 } else { return elderStandardDeduction = 0 };
 }
 
-export function compoundInterest() {
-  let ageUntilRetirement =
-    67 - parseInt(store.state.userInformation.userInput.age);
-  let interestRate = 1 + parseFloat(0.08);
-  let compoundInterest = Math.pow(interestRate, ageUntilRetirement);
-  return {
-    individual401k: parseInt(200 * compoundInterest),
-    sepIra: 200,
-    simpleIra: 300,
-    traditionalIra: 100,
-  };
-}
-
 export function setSliderMax() {
   const slider = {};
   let entity = store.state.userInformation.userInput.entity;
-  let salary = parseFloat(store.state.userInformation.userInput.salary);
-  let profitAfterExpenses = parseFloat(
-    store.state.userInformation.taxSummary.profitAfterExpenses
-  );
+  let salary = parseInt(store.state.userInformation.userInput.salary);
+  let profitAfterExpenses = parseInt(store.state.userInformation.taxSummary.profitAfterExpenses);
   let employeeCount = store.state.userInformation.userInput.employeeCount;
-  let seTaxDeducted = 0.925;
-  let netBizEarnings = profitAfterExpenses * seTaxDeducted;
-  let incorporatedEarnings = netBizEarnings + salary;
+  let seTaxDeducted = 0.925; //92.5% to deduct half of SE tax
+  let netBizEarnings = Math.round(profitAfterExpenses * seTaxDeducted * 100)/100;
+  let incorporatedEarnings = Math.round((netBizEarnings + salary)*100)/100;
 
   if (
     entity === "soleProprietor" ||
@@ -69,27 +54,28 @@ export function setSliderMax() {
   ) {
     // individual401K slider's max
     slider.personalMax_individual401k = Math.min(19500, netBizEarnings);
-    slider.businessMax_individual401k = 0.25 * netBizEarnings;
+    slider.businessMax_individual401k = Math.round(0.25 * netBizEarnings);
     // sep-Ira slider's max
-    slider.usinessMax_sepIra = 0.2 * netBizEarnings;
+    slider.businessMax_sepIra = Math.round(0.2 * netBizEarnings);
     // simpleIra slider's max
     slider.personalMax_simpleIra = Math.min(13500, netBizEarnings);
-    slider.businessMax_simpleIra = 0.03 * netBizEarnings;
+    slider.businessMax_simpleIra = Math.round(0.03 * netBizEarnings);
     // traditionalIra slider's max
     slider.personalMax_traditionalIra = Math.min(6000, netBizEarnings);
   } else if (entity === "sCorporation" || entity === "llc") {
     // individual401K slider's max
     slider.personalMax_individual401k = Math.min(19500, incorporatedEarnings);
-    slider.businessMax_individual401k = 0.25 * netBizEarnings;
+    slider.businessMax_individual401k = Math.round(0.25 * netBizEarnings);
     // sep-Ira slider's max
     slider.businessMax_sepIra = Math.max(0.2 * netBizEarnings, 0.25 * salary);
     // simpleIra slider's max
     slider.personalMax_simpleIra = Math.min(13500, incorporatedEarnings);
-    slider.businessMax_simpleIra = 0.03 * salary;
+    slider.businessMax_simpleIra = Math.round(0.03 * salary);
     // traditionalIra slider's max
     slider.personalMax_traditionalIra = Math.min(6000, incorporatedEarnings);
   }
   return slider;
+
 }
 
 // Adjust deductions based on retirement account contribution modified
