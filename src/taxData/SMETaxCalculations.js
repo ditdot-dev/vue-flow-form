@@ -13,20 +13,20 @@ export function addTotalDeduction() {
   let totalDeduction;
   if (filingStatus === "headOfHousehold") {
     return (standardDeduction =
-      parseFloat(TaxTable.tax_table_2020.head_of_household_deduction) +
-      parseFloat(qbiDeduction));
+      Math.round((parseFloat(TaxTable.tax_table_2020.head_of_household_deduction) + parseFloat(qbiDeduction))*100)/100
+    );
   } else if (filingStatus === "married") {
     return (standardDeduction =
-      parseFloat(TaxTable.tax_table_2020.married_deduction) +
-      parseFloat(qbiDeduction));
+      Math.round((parseFloat(TaxTable.tax_table_2020.married_deduction) + parseFloat(qbiDeduction))*100)/100;
+    )
   } else if (filingStatus === "single") {
     return (standardDeduction =
-      parseFloat(TaxTable.tax_table_2020.single_deduction) +
-      parseFloat(qbiDeduction));
+      Math.round((parseFloat(TaxTable.tax_table_2020.single_deduction) + parseFloat(qbiDeduction))*100)/100
+    );
   } else if (filingStatus === "marriedFilingSeparately") {
     return (standardDeduction =
-      parseFloat(TaxTable.tax_table_2020.married_filing_separately_deduction) +
-      parseFloat(qbiDeduction));
+      Math.round((parseFloat(TaxTable.tax_table_2020.married_filing_separately_deduction) + parseFloat(qbiDeduction))*100)/100
+    );
   } else {
     standardDeduction = 0;
   }
