@@ -1,7 +1,7 @@
 <template>
   <vue-slider
     v-model="newValue"
-    :interval="1"
+    :interval="10"
     @change="handleChange"
     :min="0"
     :mask="mask"
