@@ -136,7 +136,7 @@
               <vue-custom-slider v-model="sliders.individual401kBusiness" :max="sliderMax.individual401kBusiness" />
             </div>
             <p>
-              At age 67, your <br />
+              At your age 67, these <br />
               contributions could be <br />
               worth
               {{
@@ -156,7 +156,7 @@
             </info-icon>
 
             <p class="p-0 m-0">
-              At age 67, the amount <br />
+              At your age 67, the amount <br />
               you are losing could be <br />
               worth $49,140
             </p>
@@ -212,7 +212,7 @@
             </div>
 
             <p>
-              At age 67, your <br />
+              At your age 67, these <br />
               contributions could be <br />
               worth
               {{ sliderCompound(sliders.sepIraBusiness) | currency("$", 0) }}
@@ -226,7 +226,7 @@
             </info-icon>
 
             <p class="p-0 m-0">
-              At age 67, the amount <br />
+              At your age 67, the amount <br />
               you are losing could be <br />
               worth $49,140
             </p>
@@ -299,7 +299,7 @@
               <vue-custom-slider v-model="sliders.simpleIraBusiness" :max="sliderMax.simpleIraBusiness" />
             </div>
             <p>
-              At age 67, your <br />
+              At your age 67, these <br />
               contributions could be <br />
               worth
               {{
@@ -317,7 +317,7 @@
             </info-icon>
 
             <p class="p-0 m-0">
-              At age 67, the amount <br />
+              At your age 67, the amount <br />
               you are losing could be <br />
               worth $xxxxx
             </p>
@@ -369,7 +369,7 @@
               <vue-custom-slider v-model="sliders.traditionalIraPersonal" :max="sliderMax.traditionalIraPersonal" />
             </div>
             <p>
-              At age 67, your <br />
+              At your age 67, these <br />
               contributions could be <br />
               worth
               {{
@@ -386,7 +386,7 @@
             </info-icon>
 
             <p class="p-0 m-0">
-              At age 67, the amount <br />
+              At your age 67, the amount <br />
               you are losing could be <br />
               worth $xxxxx
             </p>
@@ -562,6 +562,7 @@ export default {
     },
     ...Vuex.mapState("userInformation", {
       profitAfterTaxes: (state) => state.taxSummary.profitAfterTaxes,
+      age: (state) => state.userInput.age,
     }),
     getRoundofValue() {
       return roundOfToTen(this.profitAfterTaxes);
