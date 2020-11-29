@@ -515,12 +515,12 @@ export default {
   mounted() {
     this.projectedValue = roundOfToTen((this.profitAfterTaxes / 100) * 10);
     const {
-      personalMax_individual401k = 100,
-        businessMax_individual401k = 17,
-        businessMax_sepIra = 17,
-        personalMax_simpleIra = 20,
-        businessMax_simpleIra = 50,
-        personalMax_traditionalIra = 70,
+      personalMax_individual401k = 19500,
+        businessMax_individual401k = 37500,
+        businessMax_sepIra = 57000,
+        personalMax_simpleIra = 13500,
+        businessMax_simpleIra = 28500,
+        personalMax_traditionalIra = 6000,
     } = setSliderMax();
 
     this.sliderMax.individual401kPersonal = personalMax_individual401k;

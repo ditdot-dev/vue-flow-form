@@ -69,11 +69,11 @@ async function postApi(personal, business, userInput) {
       body: JSON.stringify(data)
     });
     response = await response.json();
-    return response;
+    return response.data;
   } catch (e) {
     handleError(e);
   }
-
+  console.log(response.data)
   console.log("new value for taxes calculated");
 }
 /*
