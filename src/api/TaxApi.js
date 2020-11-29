@@ -42,6 +42,29 @@ export async function postTaxData(incomeData){
   console.log("base tax calculation complete!")
   }
 
+export async function repostData(personal, business){
+  await formatData(personal, business)
+  await postApi()
+  }
+
+  function formatData(personal, business) {
+    const data = {
+      expenseDeduction: parseInt(userInput.expenses) - business,
+      "1099Income": parseInt(userInput.salary) - personal,
+    }};
+
+  async function postApi() {
+    fetch (tax_calculation, {
+      headers: {
+          "Content-Type": "application/json",
+          "X-Api-Key": app_key,
+          "X-Api-Secret": app_secret,},
+      method: "PUT",
+      body: JSON.stringify(data)
+    }).catch(handleError);
+    window.taxUpdate1 = await response.json();
+    console.log("new value for taxes calculated")
+  };
 /*
 async function postIraTaxData(iraContribution){
   let iraTax = await (fetch (tax_calculation, {
