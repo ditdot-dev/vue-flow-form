@@ -17,8 +17,8 @@ export function addTotalDeduction() {
     );
   } else if (filingStatus === "married") {
     return (standardDeduction =
-      Math.round((parseFloat(TaxTable.tax_table_2020.married_deduction) + parseFloat(qbiDeduction))*100)/100;
-    )
+      Math.round((parseFloat(TaxTable.tax_table_2020.married_deduction) + parseFloat(qbiDeduction))*100)/100
+      );
   } else if (filingStatus === "single") {
     return (standardDeduction =
       Math.round((parseFloat(TaxTable.tax_table_2020.single_deduction) + parseFloat(qbiDeduction))*100)/100
