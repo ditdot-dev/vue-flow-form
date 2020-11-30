@@ -233,6 +233,10 @@ header.vff-header svg.f-logo{
     color: var(--vff-main-accent-color);
   }
 
+  .vff input[type=date]::-webkit-calendar-picker-indicator {
+    filter: invert(100%);
+  }
+
   .vff span.f-answered{
     color: var(--vff-main-accent-color);
   }
