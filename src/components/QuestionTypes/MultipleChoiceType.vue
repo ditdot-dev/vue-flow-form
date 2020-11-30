@@ -168,15 +168,17 @@
         } else {
           this.dataValue = option.selected ? option.choiceValue() : null
         }
+
         if (this.isValid() && this.question.nextStepOnAnswer && !this.question.multiple) {
-          if(!this.debounced) {
-            this.debounce(350)()
+          if (!this.debounced) {
+            this.debounceNext(350)()
           }
         }
+
         this.setAnswer(this.dataValue)
       },
 
-      debounce(delay) {
+      debounceNext(delay) {
         let debounceTimer;
         const self = this;
         
@@ -187,9 +189,10 @@
           debounceTimer = setTimeout(() => {
             self.$emit('next')
             self.debounced = false
-            }, delay);
+          }, delay);
         }
       },
+
       _removeAnswer(value) {
         const index = this.dataValue.indexOf(value)
 
