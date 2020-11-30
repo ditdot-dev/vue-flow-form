@@ -90,8 +90,8 @@
           new QuestionModel({
             id: 'first_name',
             tagline: 'Hi! Welcome to our demo survey 😊',
-            title: 'What is your birthday?',
-            type: QuestionType.Date,
+            title: 'What is your first name?',
+            type: QuestionType.Text,
             required: true,
             placeholder: 'Start typing here...'
           }),
