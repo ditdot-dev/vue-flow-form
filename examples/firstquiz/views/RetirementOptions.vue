@@ -157,7 +157,7 @@
               </h2>
               <div class="colBox">
                 <vue-custom-slider
-                  :handleDrag="handleIndividualDrag('individual401k')"
+                  @handleDrag="handleIndividualDrag"
                   v-model="sliders.individual401kPersonal"
                   ref="sliders.individual401kPersonal"
                   :max="sliderMax.individual401kPersonal"
@@ -173,9 +173,9 @@
               </info-icon>
               <div class="colBox2 colBox">
                 <vue-custom-slider
+                  @handleDrag="handleIndividualDrag"
                   v-model="sliders.individual401kBusiness"
                   :max="sliderMax.individual401kBusiness"
-                  :handleDrag="handleIndividualDrag('individual401k')"
                 />
               </div>
               <p>
@@ -254,9 +254,9 @@
               </info-icon>
               <div class="colBox">
                 <vue-custom-slider
+                  @handleDrag="handleSepIraDrag"
                   v-model="sliders.sepIraBusiness"
                   :max="sliderMax.sepIraBusiness"
-                  :handleDrag="handleIndividualDrag('sepIra')"
                 />
               </div>
 
@@ -339,7 +339,7 @@
                 <vue-custom-slider
                   v-model="sliders.simpleIraPersonal"
                   :max="sliderMax.simpleIraPersonal"
-                  :handleDrag="handleIndividualDrag('simpleIra')"
+                  @handleDrag="handleSimpleIra"
                 />
               </div>
               <h4>Your Business Contribution</h4>
@@ -354,7 +354,7 @@
                 <vue-custom-slider
                   v-model="sliders.simpleIraBusiness"
                   :max="sliderMax.simpleIraBusiness"
-                  :handleDrag="handleIndividualDrag('simpleIra')"
+                  @handleDrag="handleSimpleIra"
                 />
               </div>
               <p>
@@ -430,7 +430,7 @@
                 <vue-custom-slider
                   v-model="sliders.traditionalIraPersonal"
                   :max="sliderMax.traditionalIraPersonal"
-                  :handleDrag="handleIndividualDrag('traditionalIra')"
+                  @handleDrag="handleTraditionalIra"
                 />
               </div>
               <p>
@@ -633,38 +633,37 @@ export default {
       const number = parseInt(amount * compoundInterest);
       return number == Infinity ? 0 : number;
     },
-    async handleIndividualDrag(type) {
+    async handleIndividualDrag() {
       let res;
-      switch (type) {
-        case "individual401k":
-          res = await repostData(
-            this.sliders.individual401kPersonal,
-            this.sliders.individual401kBusiness
-          );
-          const { taxBalance } = res || {};
-          this.printTaxBalance.individual401k = taxBalance - this.taxBalance;
-          break;
-        case "sepIra":
-          res = await repostData("", this.sliders.sepIraBusiness);
-
-          this.printTaxBalance.sepIra = res?.taxBalance - this.taxBalance;
-          break;
-        case "simpleIra":
-          res = await repostData(
-            this.sliders.simpleIraPersonal,
-            this.sliders.simpleIraBusiness
-          );
-
-          this.printTaxBalance.simpleIra = res?.taxBalance - this.taxBalance;
-          break;
-        case "traditionalIra":
-          res = await repostData(this.sliders.traditionalIraPersonal, "");
-          this.printTaxBalance.traditionalIra =
-            res?.taxBalance - this.taxBalance;
-          break;
-        default:
-          break;
-      }
+      res = await repostData(
+        this.sliders.individual401kPersonal,
+        this.sliders.individual401kBusiness
+      );
+      const { taxBalance } = res || {};
+      this.printTaxBalance.individual401k = (
+        this.taxBalance - taxBalance
+      ).toFixed(2);
+    },
+    async handleSepIraDrag() {
+      let res = await repostData("", this.sliders.sepIraBusiness);
+      this.printTaxBalance.sepIra = (this.taxBalance - res?.taxBalance).toFixed(
+        2
+      );
+    },
+    async handleSimpleIra() {
+      let res = await repostData(
+        this.sliders.simpleIraPersonal,
+        this.sliders.simpleIraBusiness
+      );
+      this.printTaxBalance.simpleIra = (
+        this.taxBalance - res?.taxBalance
+      ).toFixed(2);
+    },
+    async handleTraditionalIra() {
+      let res = await repostData(this.sliders.traditionalIraPersonal, "");
+      this.printTaxBalance.traditionalIra = (
+        this.taxBalance - res?.taxBalance
+      ).toFixed(2);
     },
   },
   computed: {
