@@ -230,7 +230,6 @@ header.vff-header svg.f-logo {
     filter: invert(100%);
   }
 
-
   .vff span.f-answered{
     color: var(--vff-main-accent-color);
   }
