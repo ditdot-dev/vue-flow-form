@@ -57,7 +57,8 @@
 
     data() {
       return {
-        editingOther: false
+        editingOther: false,
+        debounced: false
       }
     },
 
@@ -167,14 +168,28 @@
         } else {
           this.dataValue = option.selected ? option.choiceValue() : null
         }
-      
-        this.setAnswer(this.dataValue)
-        
         if (this.isValid() && this.question.nextStepOnAnswer && !this.question.multiple) {
-          setTimeout(() => this.$emit('next'), 350)
+          if(!this.debounced) {
+            this.debounce(350)()
+          }
         }
+        this.setAnswer(this.dataValue)
       },
 
+      debounce(delay) {
+        let debounceTimer;
+        const self = this;
+        
+        this.debounced = true
+       
+         return function() {
+          clearTimeout(debounceTimer);
+          debounceTimer = setTimeout(() => {
+            self.$emit('next')
+            self.debounced = false
+            }, delay);
+        }
+      },
       _removeAnswer(value) {
         const index = this.dataValue.indexOf(value)
 
