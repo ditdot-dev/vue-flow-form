@@ -246,6 +246,10 @@ header.vff-header svg.f-logo{
   .vff span.f-answered{
     color: var(--vff-main-accent-color);
   }
+  
+  .vff ::-webkit-calendar-picker-indicator {
+    filter: invert(100%);
+  }
 
   /*footer*/
   .vff-footer .f-prev.f-disabled svg,
