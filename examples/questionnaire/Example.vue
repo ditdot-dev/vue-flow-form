@@ -124,7 +124,6 @@
             helpTextShow: false,
             type: QuestionType.MultipleChoice,
             multiple: false,
-            nextStepOnAnswer: true,
             allowOther: true,
             required: true,
             options: [
