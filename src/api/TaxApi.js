@@ -54,10 +54,10 @@ export async function repostData(personal, business) {
 }
 
 async function postApi(personal, business) {
-  console.log("Post Api Called");
+  console.log("new value for taxes calculated");
   const data = {
     taxes: {
-      expenseDeduction: parseInt(userInput?.expenses || 90000) - business,
+      expenseDeduction: parseInt(userInput?.expenses || 90000) + business,
       "1099Income": parseInt(userInput?.salary || 120000) - personal
     }
   };
@@ -72,12 +72,11 @@ async function postApi(personal, business) {
       body: JSON.stringify(data)
     });
     response = await response.json();
+    console.log(response.data);
     return response.data;
   } catch (e) {
     handleError(e);
   }
-  console.log(response.data);
-  console.log("new value for taxes calculated");
 }
 /*
 async function postIraTaxData(iraContribution){
