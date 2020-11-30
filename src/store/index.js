@@ -16,9 +16,7 @@ const userInformation = {
       salary: 32000,
     }, // data captured in RetirementReferral.vue input form
     incomeData: {}, // data formatted from the input for tax API
-    taxUpdate: {
-      taxBalance: 24300.12,
-    }, // tax API's output data to be displayed in Results.vue
+    taxUpdate: {}, // tax API's output data to be displayed in Results.vue
     taxSummary: {
       totalIncome: 0,
       profitAfterExpenses: 123527,
@@ -88,7 +86,8 @@ const userInformation = {
     },
     setProfitAfterTaxes(state) {
       state.taxSummary.profitAfterTaxes =
-        Math.round((parseFloat(state.taxSummary.profitAfterExpenses) - parseFloat(state.taxUpdate.taxBalance)) * 100) / 100
+        parseInt(state.taxUpdate.taxBalance)
+        //Math.round((parseFloat(state.taxSummary.profitAfterExpenses) - parseFloat(state.taxUpdate.taxBalance)) * 100) / 100
     },
     setTotalDeduction(state, data) {
       state.taxSummary.totalDeduction = data;
@@ -124,8 +123,19 @@ const calculatorDrag = {
     } // calculations to be displayed in RetirementOptions.vue
   },
   mutations: {
+    setTaxAvoided(state, data) {
+      state.postIraTaxData.taxAvoided = data;
+    },
   },
   actions: {
+    async getTaxAvoided({ commit }) {
+      try {
+        const response = await TaxApi.repostData();
+        commit("setTaxAvoided", response);
+      } catch (err) {
+        console.error(err);
+      }
+    },
   }
 };
 
