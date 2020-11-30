@@ -179,17 +179,17 @@
       },
 
       debounceNext(delay) {
-        let debounceTimer;
-        const self = this;
+        let debounceTimer
+        const self = this
         
         this.debounced = true
        
-         return function() {
-          clearTimeout(debounceTimer);
+        return function() {
+          clearTimeout(debounceTimer)
           debounceTimer = setTimeout(() => {
             self.$emit('next')
             self.debounced = false
-          }, delay);
+          }, delay)
         }
       },
 
