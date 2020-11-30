@@ -9,6 +9,7 @@
     width="300"
     height="30px"
     :tooltip="'none'"
+    @drag-end="handleDrag"
   >
     <template v-slot:dot> <span class="custom-inner-dot" /> </template
   ></vue-slider>
@@ -36,7 +37,11 @@ export default {
       newValue: this.value,
     };
   },
+
   methods: {
+    handleDrag() {
+      this.$emit("handleDrag");
+    },
     handleChange(e) {
       this.$emit("input", e);
     },

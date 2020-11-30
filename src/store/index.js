@@ -13,10 +13,12 @@ const userInformation = {
     userInput: {
       tax_filing_status: "single",
       age: 37,
-      salary: 32000,
+      salary: 32000
     }, // data captured in RetirementReferral.vue input form
     incomeData: {}, // data formatted from the input for tax API
-    taxUpdate: {}, // tax API's output data to be displayed in Results.vue
+    taxUpdate: {
+      taxBalance: 12304.48
+    }, // tax API's output data to be displayed in Results.vue
     taxSummary: {
       totalIncome: 0,
       profitAfterExpenses: 123527,
@@ -85,9 +87,8 @@ const userInformation = {
       state.taxSummary.w2Tax = data;
     },
     setProfitAfterTaxes(state) {
-      state.taxSummary.profitAfterTaxes =
-        parseInt(state.taxUpdate.taxBalance)
-        //Math.round((parseFloat(state.taxSummary.profitAfterExpenses) - parseFloat(state.taxUpdate.taxBalance)) * 100) / 100
+      state.taxSummary.profitAfterTaxes = parseInt(state.taxUpdate.taxBalance);
+      //Math.round((parseFloat(state.taxSummary.profitAfterExpenses) - parseFloat(state.taxUpdate.taxBalance)) * 100) / 100
     },
     setTotalDeduction(state, data) {
       state.taxSummary.totalDeduction = data;
@@ -125,7 +126,7 @@ const calculatorDrag = {
   mutations: {
     setTaxAvoided(state, data) {
       state.postIraTaxData.taxAvoided = data;
-    },
+    }
   },
   actions: {
     async getTaxAvoided({ commit }) {
@@ -135,7 +136,7 @@ const calculatorDrag = {
       } catch (err) {
         console.error(err);
       }
-    },
+    }
   }
 };
 
