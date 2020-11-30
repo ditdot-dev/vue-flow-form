@@ -470,6 +470,10 @@
           return true
         }
 
+        if (this.completed == true && !this.isOnLastStep) {
+          return true
+        }
+   
         return this.activeQuestionIndex < this.questionList.length - 1
       },
 
