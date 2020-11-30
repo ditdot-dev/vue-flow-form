@@ -470,7 +470,7 @@
           return true
         }
 
-        if (this.completed == true && !this.isOnLastStep) {
+        if (this.completed && !this.isOnLastStep) {
           return true
         }
    
