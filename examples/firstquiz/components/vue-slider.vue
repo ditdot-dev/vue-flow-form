@@ -1,7 +1,7 @@
 <template>
   <div @click="handleDrag">
     <vue-slider
-      v-model="value"
+      v-model="newValue"
       :interval="10"
       @change="handleChange"
       :min="0"
@@ -46,6 +46,11 @@ export default {
     },
     handleChange(e) {
       this.$emit("input", e);
+    },
+  },
+  watch: {
+    value(val) {
+      this.newValue = val;
     },
   },
 };

@@ -1,3 +1,3 @@
-export const roundOfToTen = number => {
-  return Math.round(number / 10) * 10;
+export const roundOff = (number, appliedNumber) => {
+  return Math.round(number / (appliedNumber || 10)) * (appliedNumber || 10);
 };

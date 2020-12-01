@@ -84,7 +84,7 @@ async function postApi(personal, business) {
       body: JSON.stringify(data)
     });
     response = await response.json();
-    console.log(taxSummary?.totalIncome, response.data.taxBalance);
+
     return response.data;
   } catch (e) {
     handleError(e);

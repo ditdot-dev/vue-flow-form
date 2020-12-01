@@ -57,7 +57,7 @@
             <h2></h2>
             <vue-slider
               v-model="projectedValue"
-              :interval="10"
+              :interval="100"
               :marks="true"
               :min="0"
               :max="getRoundofValue"
@@ -70,7 +70,7 @@
                 >
                   {{
                     projectedValue === value &&
-                    !(roundOfToTen(profitAfterTaxes) === projectedValue)
+                    !(roundOff(profitAfterTaxes, 100) === projectedValue)
                       ? `${value}`
                       : "" | currency("$", 0)
                   }}
@@ -104,9 +104,18 @@
           <h1>Retirement Account Options</h1>
         </div>
 
-        <div class="boxes relative">
-          <h2 class="p-0 bestOptionLabel p-1">BEST OPTION</h2>
-          <div class="box1 boxwrapper">
+        <div class="boxes">
+          <div
+            :class="`box1 boxwrapper relative ${
+              bestOptionActive.individual401k && 'active-color'
+            }`"
+          >
+            <h2
+              class="p-0 bestOptionLabel p-1"
+              v-if="bestOptionActive.individual401k"
+            >
+              BEST OPTION
+            </h2>
             <div class="col1 best-option-container relative">
               <h4 class="absolute top-60">Account Types</h4>
               <div class="mt-5 mb-4">
@@ -219,7 +228,14 @@
             </div>
           </div>
 
-          <div class="box2 boxwrapper">
+          <div
+            :class="`box2 boxwrapper relative ${
+              bestOptionActive.sepIra && 'active-color'
+            }`"
+          >
+            <h2 class="p-0 bestOptionLabel p-1" v-if="bestOptionActive.sepIra">
+              BEST OPTION
+            </h2>
             <div class="col1 col flex2">
               <h1>SEP-IRA</h1>
               <p>
@@ -295,7 +311,17 @@
             </div>
           </div>
 
-          <div class="box3 boxwrapper">
+          <div
+            :class="`box3 boxwrapper relative ${
+              bestOptionActive.simpleIra && 'active-color'
+            }`"
+          >
+            <h2
+              class="p-0 bestOptionLabel p-1"
+              v-if="bestOptionActive.simpleIra"
+            >
+              BEST OPTION
+            </h2>
             <div class="col1 col flex2">
               <h1>SIMPLE-IRA</h1>
               <p>
@@ -396,7 +422,17 @@
             </div>
           </div>
 
-          <div class="box4 boxwrapper">
+          <div
+            :class="`box4 boxwrapper relative ${
+              bestOptionActive.traditionalIra && 'active-color'
+            }`"
+          >
+            <h2
+              class="p-0 bestOptionLabel p-1"
+              v-if="bestOptionActive.traditionalIra"
+            >
+              BEST OPTION
+            </h2>
             <div class="col1 col flex2">
               <h1>
                 Traditional<br />
@@ -548,7 +584,7 @@ import vueCustomSlider from "../components/vue-slider";
 import infoIcon from "../components/info-icon";
 import { body } from "../data/mailchimp";
 import TingleModal from "../components/tingle-modal.vue";
-import { roundOfToTen } from "../../util";
+import { roundOff } from "../../util";
 import { setSliderMax } from "../../../src/taxData/SMETaxCalculations";
 import { repostData } from "../../../src/api/TaxApi";
 export default {
@@ -560,7 +596,7 @@ export default {
   },
   data() {
     return {
-      roundOfToTen,
+      roundOff,
       body,
       isModalOpen: false,
       percent: 10,
@@ -598,11 +634,11 @@ export default {
         simpleIraBusiness: 40,
         traditionalIraPersonal: 60,
       },
-      projectedValue: 0,
+      projectedValue: 1000,
     };
   },
   mounted() {
-    this.projectedValue = roundOfToTen((this.profitAfterTaxes / 100) * 10);
+    this.projectedValue = roundOff((this.profitAfterTaxes / 100) * 10, 100);
     const {
       personalMax_individual401k = 19500,
       businessMax_individual401k = 37500,
@@ -612,16 +648,16 @@ export default {
       personalMax_traditionalIra = 6000,
     } = setSliderMax();
 
-    this.sliderMax.individual401kPersonal = roundOfToTen(
+    this.sliderMax.individual401kPersonal = roundOff(
       personalMax_individual401k
     );
-    this.sliderMax.individual401kBusiness = roundOfToTen(
+    this.sliderMax.individual401kBusiness = roundOff(
       businessMax_individual401k
     );
-    this.sliderMax.sepIraBusiness = roundOfToTen(businessMax_sepIra);
-    this.sliderMax.simpleIraPersonal = roundOfToTen(personalMax_simpleIra);
-    this.sliderMax.simpleIraBusiness = roundOfToTen(businessMax_simpleIra);
-    this.sliderMax.traditionalIraPersonal = roundOfToTen(
+    this.sliderMax.sepIraBusiness = roundOff(businessMax_sepIra);
+    this.sliderMax.simpleIraPersonal = roundOff(personalMax_simpleIra);
+    this.sliderMax.simpleIraBusiness = roundOff(businessMax_simpleIra);
+    this.sliderMax.traditionalIraPersonal = roundOff(
       personalMax_traditionalIra
     );
   },
@@ -633,9 +669,9 @@ export default {
       document.getElementById("mc-embedded-subscribe").click();
     },
     sliderPercentage(amount) {
-      const number = (
-        amount / roundOfToTen(this.profitAfterTaxes / 100)
-      ).toFixed(1);
+      const number = (amount / roundOff(this.profitAfterTaxes / 100)).toFixed(
+        1
+      );
       return number == Infinity ? 0 : number;
     },
     sliderCompound(amount) {
@@ -696,11 +732,32 @@ export default {
           100
       );
     },
+    largestNumber({ individual401k, sepIra, simpleIra, traditionalIra }) {
+      const largest = Math.max(
+        Number(individual401k),
+        Number(sepIra),
+        Number(simpleIra),
+        Number(traditionalIra)
+      );
+
+      if (individual401k == largest) {
+        return "individual401k";
+      }
+      if (sepIra == largest) {
+        return "sepIra";
+      }
+      if (simpleIra == largest) {
+        return "simpleIra";
+      }
+      if (traditionalIra == largest) {
+        return "traditionalIra";
+      }
+    },
   },
   computed: {
     roundedProjectedValue: {
       get() {
-        return this.roundOfToTen(this.projectedValue % 10);
+        return this.roundOff(this.projectedValue % 10, 100);
       },
       set(val) {
         this.projectedValue = val;
@@ -713,18 +770,18 @@ export default {
       age: (state) => state.userInput.age,
     }),
     getRoundofValue() {
-      return roundOfToTen(this.profitAfterTaxes);
+      return roundOff(this.profitAfterTaxes, 100);
     },
   },
   watch: {
-    sliders(val) {
-      console.log(val);
-    },
+    // sliders(val) {
+    //   console.log(val);
+    // },
     percent(val) {
-      this.projectedValue = roundOfToTen((this.profitAfterTaxes / 100) * val);
+      this.projectedValue = roundOff((this.profitAfterTaxes / 100) * val, 100);
     },
     projectedValue(val) {
-      const formattedValue = val / roundOfToTen(this.profitAfterTaxes / 100);
+      const formattedValue = val / roundOff(this.profitAfterTaxes / 100);
       this.percent =
         formattedValue == Infinity ? 0 : Math.round(formattedValue);
       const {
@@ -734,20 +791,18 @@ export default {
         sepIraBusiness,
       } = this.sliderMax;
       if (val > individual401kBusiness) {
-        this.sliders.individual401kPersonal = roundOfToTen(
+        this.sliders.individual401kPersonal = roundOff(
           val - individual401kBusiness
         );
-        this.sliders.individual401kBusiness = roundOfToTen(
-          individual401kBusiness
-        );
+        this.sliders.individual401kBusiness = roundOff(individual401kBusiness);
       } else {
         this.sliders.individual401kBusiness = val;
       }
       if (val > simpleIraBusiness) {
-        this.sliders.simpleIraPersonal = roundOfToTen(val - simpleIraBusiness);
-        this.sliders.simpleIraBusiness = roundOfToTen(simpleIraBusiness);
+        this.sliders.simpleIraPersonal = roundOff(val - simpleIraBusiness);
+        this.sliders.simpleIraBusiness = roundOff(simpleIraBusiness);
       } else {
-        this.sliders.simpleIraBusiness = roundOfToTen(val);
+        this.sliders.simpleIraBusiness = roundOff(val);
       }
       if (val > traditionalIraPersonal) {
         this.sliders.traditionalIraPersonal = traditionalIraPersonal;
@@ -763,6 +818,14 @@ export default {
       this.handleSepIraDrag();
       this.handleSimpleIra();
       this.handleTraditionalIra();
+    },
+    printTaxBalance: {
+      handler(val) {
+        const find = this.largestNumber({ ...val });
+        this.bestOptionActive = {};
+        this.bestOptionActive[find] = true;
+      },
+      deep: true,
     },
   },
 };
@@ -1218,8 +1281,12 @@ p.percent {
   padding: 1rem;
 }
 
+.active-color {
+  background-color: #f0f0f0 !important;
+}
+
 .box1 {
-  background-color: #f0f0f0;
+  background-color: white;
 }
 
 .box1 .col1 p {
