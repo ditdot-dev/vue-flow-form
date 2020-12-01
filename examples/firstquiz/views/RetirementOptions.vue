@@ -576,6 +576,12 @@ export default {
         simpleIra: "",
         traditionalIra: "",
       },
+      bestOptionActive: {
+        individual401k: true,
+        sepIra: false,
+        simpleIra: false,
+        traditionalIra: false,
+      },
       sliderMax: {
         individual401kPersonal: 90,
         individual401kBusiness: 10,

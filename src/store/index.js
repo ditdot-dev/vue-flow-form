@@ -62,6 +62,7 @@ const userInformation = {
   },
   mutations: {
     entry(state, data) {
+      console.log(data);
       state.userInput = data;
     },
     results(state, data) {
@@ -88,6 +89,7 @@ const userInformation = {
     },
     setProfitAfterTaxes(state) {
       state.taxSummary.profitAfterTaxes = parseInt(state.taxUpdate.taxBalance);
+      console.log(parseInt(state.taxUpdate.taxBalance));
       //Math.round((parseFloat(state.taxSummary.profitAfterExpenses) - parseFloat(state.taxUpdate.taxBalance)) * 100) / 100
     },
     setTotalDeduction(state, data) {

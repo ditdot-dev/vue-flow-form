@@ -19,13 +19,16 @@ var handleError = function(err) {
   console.warn(err);
   return err;
 };
-const { userInput } = store?.state?.userInformation || {};
-const { taxSummary } = store?.state?.userInformation || {};
 // PUT method to Track.tax api to calculate tax balance
 export function taxData() {
-  window.incomeData = {
+  const {
+    userInput,
+    userInput: { taxSummary }
+  } = store?.default?.state?.userInformation || {};
+  console.log(userInput);
+  const incomeData = {
     taxes: {
-      "1099Income": parseInt(userInput.income),
+      "1099Income": parseInt(userInput?.income || 0),
       expenseDeduction: parseInt(userInput.expenses),
       w2Income: parseInt(userInput.salary),
       filingState: userInput.tax_filing_state,
@@ -37,6 +40,10 @@ export function taxData() {
 }
 
 export async function postTaxData(incomeData) {
+  const {
+    userInput,
+    userInput: { taxSummary }
+  } = store?.default?.state?.userInformation || {};
   let baseTax = await fetch(tax_calculation, {
     headers: {
       "Content-Type": "application/json",
@@ -46,8 +53,8 @@ export async function postTaxData(incomeData) {
     method: "PUT",
     body: JSON.stringify(incomeData)
   }).catch(handleError);
-  window.taxUpdate = await baseTax.json();
   console.log("base tax calculation complete!");
+  return await baseTax.json();
 }
 
 export async function repostData(personal, business) {
@@ -55,6 +62,10 @@ export async function repostData(personal, business) {
 }
 
 async function postApi(personal, business) {
+  const {
+    userInput,
+    userInput: { taxSummary }
+  } = store?.default?.state?.userInformation || {};
   console.log("new value for taxes calculated");
   const data = {
     taxes: {
@@ -73,7 +84,7 @@ async function postApi(personal, business) {
       body: JSON.stringify(data)
     });
     response = await response.json();
-    console.log(taxSummary?.totalIncome, response.data.taxBalance)
+    console.log(taxSummary?.totalIncome, response.data.taxBalance);
     return response.data;
   } catch (e) {
     handleError(e);
