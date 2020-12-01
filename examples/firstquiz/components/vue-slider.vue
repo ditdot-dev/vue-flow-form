@@ -1,18 +1,20 @@
 <template>
-  <vue-slider
-    v-model="newValue"
-    :interval="10"
-    @change="handleChange"
-    :min="0"
-    :mask="mask"
-    :max="max || 100"
-    width="300"
-    height="30px"
-    :tooltip="'none'"
-    @drag-end="handleDrag"
-  >
-    <template v-slot:dot> <span class="custom-inner-dot" /> </template
-  ></vue-slider>
+  <div @click="handleDrag">
+    <vue-slider
+      v-model="value"
+      :interval="10"
+      @change="handleChange"
+      :min="0"
+      :mask="mask"
+      :max="max || 100"
+      width="300"
+      height="30px"
+      :tooltip="'none'"
+      @drag-end="handleDrag"
+    >
+      <template v-slot:dot> <span class="custom-inner-dot" /> </template
+    ></vue-slider>
+  </div>
 </template>
 
 <script>
