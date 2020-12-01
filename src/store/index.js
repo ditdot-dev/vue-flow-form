@@ -20,8 +20,8 @@ const userInformation = {
       taxBalance: 12304.48
     }, // tax API's output data to be displayed in Results.vue
     taxSummary: {
-      totalIncome: 0,
-      profitAfterExpenses: 123527,
+      totalIncome: 80000,
+      profitAfterExpenses: 53527,
       profitAfterTaxes: 42078,
       totalDeduction: 0,
       w2Tax: 0

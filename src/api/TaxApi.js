@@ -20,6 +20,7 @@ var handleError = function(err) {
   return err;
 };
 const { userInput } = store?.state?.userInformation || {};
+const { taxSummary } = store?.state?.userInformation || {};
 // PUT method to Track.tax api to calculate tax balance
 export function taxData() {
   window.incomeData = {
@@ -58,7 +59,7 @@ async function postApi(personal, business) {
   const data = {
     taxes: {
       expenseDeduction: parseInt(userInput?.expenses || 90000) + business,
-      "1099Income": parseInt(userInput?.salary || 120000) - personal
+      "1099Income": parseInt(taxSummary?.totalIncome || 120000) - personal
     }
   };
   try {
@@ -72,7 +73,7 @@ async function postApi(personal, business) {
       body: JSON.stringify(data)
     });
     response = await response.json();
-    console.log(response.data);
+    console.log(taxSummary?.totalIncome, response.data.taxBalance)
     return response.data;
   } catch (e) {
     handleError(e);
