@@ -11,13 +11,12 @@ const userInformation = {
   namespaced: true,
   state: {
     userInput: {
-      tax_filing_status: "single",
+      tax_filing_status: "headOfHousehold",
       age: 37,
       salary: 32000
     }, // data captured in RetirementReferral.vue input form
     incomeData: {}, // data formatted from the input for tax API
     taxUpdate: {
-      taxBalance: 12304.48
     }, // tax API's output data to be displayed in Results.vue
     taxSummary: {
       totalIncome: 80000,
@@ -55,7 +54,7 @@ const userInformation = {
     },
     async getTaxSummary({ dispatch }) {
       dispatch("getTotalDeduction");
-      dispatch("getTotalIncome");
+      await dispatch("getTotalIncome");
       await dispatch("getProfitAfterExpenses");
       await dispatch("getProfitAfterTaxes");
     }
@@ -89,7 +88,7 @@ const userInformation = {
     },
     setProfitAfterTaxes(state) {
       console.log(parseInt(state.taxUpdate.taxBalance));
-      Math.round((parseFloat(state.taxSummary.profitAfterExpenses) - parseFloat(state.taxUpdate.taxBalance)) * 100) / 100
+      state.taxSummary.profitAfterTaxes = Math.round((parseFloat(state.taxSummary.profitAfterExpenses) - parseFloat(state.taxUpdate.taxBalance)) * 100) / 100
     },
     setTotalDeduction(state, data) {
       state.taxSummary.totalDeduction = data;

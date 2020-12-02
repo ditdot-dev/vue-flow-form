@@ -478,18 +478,17 @@ export default {
       this.submitted = true;
       /* Set the data inputs for an object for Track tax api */
       await this.getData();
-      console.log(data)
       const userInput = await this.formatData();
       this.$store.commit("userInformation/entry", userInput);
       const incomeData = await taxApi.taxData();
 
       /* Run taxApi and put the outputs into an object in Vuex store */
       const taxUpdate = await taxApi.postTaxData(incomeData);
-      console.log(taxUpdate.data);
-      await this.$store.commit("userInformation/results", taxUpdate.data);
-      this.$store.commit("userInformation/setTotalIncome");
-      this.$store.commit("userInformation/setProfitAfterTaxes");
+      console.log(taxUpdate.data)
+      /* Run dispatch to store the data for Results.vue */
 
+      await this.$store.commit("userInformation/results", taxUpdate.data);
+      this.$store.dispatch('userInformation/getTaxSummary');
     },
     getData() {
       window.data = {

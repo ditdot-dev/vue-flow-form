@@ -8,12 +8,13 @@ import { roundOfToTen } from "../../examples/util/round-of";
 export function addTotalDeduction() {
   let filingStatus = store.state.userInformation.userInput.tax_filing_status;
   let qbiDeduction = store.state.userInformation.taxUpdate.qbiDeduction;
+  console.log("QBI is:"+qbiDeduction)
   let standardDeduction;
   let elderStandardDeduction;
   let totalDeduction;
   if (filingStatus === "headOfHousehold") {
     return (standardDeduction =
-      Math.round((parseFloat(TaxTable.tax_table_2020.head_of_household_deduction) + parseFloat(qbiDeduction))*100)/100
+      Math.round((parseFloat(TaxTable.tax_table_2020.headOfHousehold_deduction) + parseFloat(qbiDeduction))*100)/100
     );
   } else if (filingStatus === "married") {
     return (standardDeduction =
@@ -25,11 +26,12 @@ export function addTotalDeduction() {
     );
   } else if (filingStatus === "marriedFilingSeparately") {
     return (standardDeduction =
-      Math.round((parseFloat(TaxTable.tax_table_2020.married_filing_separately_deduction) + parseFloat(qbiDeduction))*100)/100
+      Math.round((parseFloat(TaxTable.tax_table_2020.marriedFilingSeparately_deduction) + parseFloat(qbiDeduction))*100)/100
     );
   } else {
     standardDeduction = 0;
   }
+  console.log("Standard Deduction is:"+ standardDeduction)
 
   //let elderStandardDeduction; **NOT WORKING YET......**
   //if (age >= 65) {
