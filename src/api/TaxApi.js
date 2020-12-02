@@ -19,11 +19,10 @@ var handleError = function(err) {
   console.warn(err);
   return err;
 };
-// PUT method to Track.tax api to calculate tax balance
+// PUT method to Track.tax api to calculate the initial tax balance
 export function taxData() {
   const {
     userInput,
-    userInput: { taxSummary }
   } = store?.default?.state?.userInformation || {};
   console.log(userInput);
   const incomeData = {
@@ -42,7 +41,7 @@ export function taxData() {
 export async function postTaxData(incomeData) {
   const {
     userInput,
-    userInput: { taxSummary }
+    taxSummary,
   } = store?.default?.state?.userInformation || {};
   let baseTax = await fetch(tax_calculation, {
     headers: {
@@ -64,12 +63,12 @@ export async function repostData(personal, business) {
 async function postApi(personal, business) {
   const {
     userInput,
-    userInput: { taxSummary }
+    taxSummary,
   } = store?.default?.state?.userInformation || {};
-  console.log("new value for taxes calculated");
+  console.log("new value for taxes calculated", "total income is:" + taxSummary?.totalIncome, "personal contribution is:"+personal,"business contribution is:"+business);
   const data = {
     taxes: {
-      expenseDeduction: parseInt(userInput?.expenses || 90000) + business,
+      expenseDeduction: parseInt(userInput?.expenses || 20000) + business,
       "1099Income": parseInt(taxSummary?.totalIncome || 120000) - personal
     }
   };
@@ -84,7 +83,7 @@ async function postApi(personal, business) {
       body: JSON.stringify(data)
     });
     response = await response.json();
-
+    console.log(response.data)
     return response.data;
   } catch (e) {
     handleError(e);

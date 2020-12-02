@@ -21,9 +21,9 @@ const userInformation = {
     }, // tax API's output data to be displayed in Results.vue
     taxSummary: {
       totalIncome: 80000,
-      profitAfterExpenses: 53527,
-      profitAfterTaxes: 42078,
-      totalDeduction: 0,
+      profitAfterExpenses: 51111,
+      profitAfterTaxes: 41111,
+      totalDeduction: 20000,
       w2Tax: 0
     }
   },
@@ -88,9 +88,8 @@ const userInformation = {
       state.taxSummary.w2Tax = data;
     },
     setProfitAfterTaxes(state) {
-      state.taxSummary.profitAfterTaxes = parseInt(state.taxUpdate.taxBalance);
       console.log(parseInt(state.taxUpdate.taxBalance));
-      //Math.round((parseFloat(state.taxSummary.profitAfterExpenses) - parseFloat(state.taxUpdate.taxBalance)) * 100) / 100
+      Math.round((parseFloat(state.taxSummary.profitAfterExpenses) - parseFloat(state.taxUpdate.taxBalance)) * 100) / 100
     },
     setTotalDeduction(state, data) {
       state.taxSummary.totalDeduction = data;
