@@ -46,7 +46,9 @@ export class ChoiceOption {
   }
 
   choiceValue() {
-    return this.value || this.label
+    // returns the value if it's anything other than the default (an empty string).
+    // returns label if the value has not been set.
+    return this.value !== '' ? this.value : this.label
   }
 
   toggle() {
