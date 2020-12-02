@@ -3,35 +3,47 @@ import * as TaxApi from "../api/TaxApi.js";
 import store from "../store";
 import vueCustomSlider from "../../examples/firstquiz/components/vue-slider";
 import * as RetirementOptions from "../../examples/firstquiz/views/RetirementOptions";
-import { roundOfToTen } from "../../examples/util/round-of";
+import { roundOff } from "../../examples/util/round-of";
 // Set the deductions from retirement contribution from W2 Income and/or Business Expenses
 export function addTotalDeduction() {
   let filingStatus = store.state.userInformation.userInput.tax_filing_status;
   let qbiDeduction = store.state.userInformation.taxUpdate.qbiDeduction;
-  console.log("QBI is:"+qbiDeduction)
+  console.log("QBI is:" + qbiDeduction);
   let standardDeduction;
   let elderStandardDeduction;
   let totalDeduction;
   if (filingStatus === "headOfHousehold") {
     return (standardDeduction =
-      Math.round((parseFloat(TaxTable.tax_table_2020.headOfHousehold_deduction) + parseFloat(qbiDeduction))*100)/100
-    );
+      Math.round(
+        (parseFloat(TaxTable.tax_table_2020.headOfHousehold_deduction) +
+          parseFloat(qbiDeduction)) *
+          100
+      ) / 100);
   } else if (filingStatus === "married") {
     return (standardDeduction =
-      Math.round((parseFloat(TaxTable.tax_table_2020.married_deduction) + parseFloat(qbiDeduction))*100)/100
-      );
+      Math.round(
+        (parseFloat(TaxTable.tax_table_2020.married_deduction) +
+          parseFloat(qbiDeduction)) *
+          100
+      ) / 100);
   } else if (filingStatus === "single") {
     return (standardDeduction =
-      Math.round((parseFloat(TaxTable.tax_table_2020.single_deduction) + parseFloat(qbiDeduction))*100)/100
-    );
+      Math.round(
+        (parseFloat(TaxTable.tax_table_2020.single_deduction) +
+          parseFloat(qbiDeduction)) *
+          100
+      ) / 100);
   } else if (filingStatus === "marriedFilingSeparately") {
     return (standardDeduction =
-      Math.round((parseFloat(TaxTable.tax_table_2020.marriedFilingSeparately_deduction) + parseFloat(qbiDeduction))*100)/100
-    );
+      Math.round(
+        (parseFloat(TaxTable.tax_table_2020.marriedFilingSeparately_deduction) +
+          parseFloat(qbiDeduction)) *
+          100
+      ) / 100);
   } else {
     standardDeduction = 0;
   }
-  console.log("Standard Deduction is:"+ standardDeduction)
+  console.log("Standard Deduction is:" + standardDeduction);
 
   //let elderStandardDeduction; **NOT WORKING YET......**
   //if (age >= 65) {
@@ -58,44 +70,40 @@ export function setSliderMax() {
     (entity === "llc" && employeeCount === "noEmployees")
   ) {
     // individual401K slider's max
-    slider.personalMax_individual401k = roundOfToTen(
+    slider.personalMax_individual401k = roundOff(
       Math.min(19500, netBizEarnings)
     );
-    slider.businessMax_individual401k = roundOfToTen(
+    slider.businessMax_individual401k = roundOff(
       Math.round(0.25 * netBizEarnings)
     );
     // sep-Ira slider's max
-    slider.businessMax_sepIra = roundOfToTen(Math.round(0.2 * netBizEarnings));
+    slider.businessMax_sepIra = roundOff(Math.round(0.2 * netBizEarnings));
     // simpleIra slider's max
-    slider.personalMax_simpleIra = roundOfToTen(
-      Math.min(13500, netBizEarnings)
-    );
-    slider.businessMax_simpleIra = roundOfToTen(
-      Math.round(0.03 * netBizEarnings)
-    );
+    slider.personalMax_simpleIra = roundOff(Math.min(13500, netBizEarnings));
+    slider.businessMax_simpleIra = roundOff(Math.round(0.03 * netBizEarnings));
     // traditionalIra slider's max
-    slider.personalMax_traditionalIra = roundOfToTen(
+    slider.personalMax_traditionalIra = roundOff(
       Math.min(6000, netBizEarnings)
     );
   } else if (entity === "sCorporation" || entity === "llc") {
     // individual401K slider's max
-    slider.personalMax_individual401k = roundOfToTen(
+    slider.personalMax_individual401k = roundOff(
       Math.min(19500, incorporatedEarnings)
     );
-    slider.businessMax_individual401k = roundOfToTen(
+    slider.businessMax_individual401k = roundOff(
       Math.round(0.25 * netBizEarnings)
     );
     // sep-Ira slider's max
-    slider.businessMax_sepIra = roundOfToTen(
+    slider.businessMax_sepIra = roundOff(
       Math.max(0.2 * netBizEarnings, 0.25 * salary)
     );
     // simpleIra slider's max
-    slider.personalMax_simpleIra = roundOfToTen(
+    slider.personalMax_simpleIra = roundOff(
       Math.min(13500, incorporatedEarnings)
     );
-    slider.businessMax_simpleIra = roundOfToTen(Math.round(0.03 * salary));
+    slider.businessMax_simpleIra = roundOff(Math.round(0.03 * salary));
     // traditionalIra slider's max
-    slider.personalMax_traditionalIra = roundOfToTen(
+    slider.personalMax_traditionalIra = roundOff(
       Math.min(6000, incorporatedEarnings)
     );
   }
