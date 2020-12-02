@@ -24,6 +24,7 @@
     "es6-object-assign": "^1.1.0",
     "tingle.js": "^0.15.3",
     "v-tooltip": "^2.0.3",
+    "vue-loading-overlay": "^3.4.2",
     "vue-router": "^3.4.8",
     "vue-slider-component": "^3.2.10",
     "vue-textarea-autosize": "^1.1.1",
