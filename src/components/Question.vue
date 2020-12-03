@@ -253,7 +253,7 @@
           return false
         }
       
-        if (!q || !this.dataValue) {
+        if (!q || this.dataValue === null) {
           return false
         }
 

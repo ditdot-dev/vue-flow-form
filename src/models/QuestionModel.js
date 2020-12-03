@@ -120,8 +120,12 @@ export default class QuestionModel {
     }
   }
 
-  getFormattedAnswer() {
-    return this.answer
+  setAnswer(answer) {
+    if (this.type === QuestionType.Number && !isNaN(+answer)) {
+      answer = +answer
+    }
+
+    this.answer = answer
   }
 
   getJumpId() {
