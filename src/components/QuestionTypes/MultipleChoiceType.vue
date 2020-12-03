@@ -167,12 +167,12 @@
         } else {
           this.dataValue = option.selected ? option.choiceValue() : null
         }
-      
-        this.setAnswer(this.dataValue)
-        
+
         if (this.isValid() && this.question.nextStepOnAnswer && !this.question.multiple) {
-          setTimeout(() => this.$emit('next'), 350)
+          this.$emit('next')
         }
+
+        this.setAnswer(this.dataValue)
       },
 
       _removeAnswer(value) {
@@ -221,6 +221,20 @@
       
       stopEditOther() {
         this.editingOther = false
+      }
+    },
+
+    computed: {
+      hasValue() {
+        if (this.question.options.filter(o => o.selected).length) {
+          return true
+        }
+
+        if (this.question.allowOther) {
+          return this.question.other && this.question.other.trim().length > 0
+        }
+
+        return false
       }
     }
   }

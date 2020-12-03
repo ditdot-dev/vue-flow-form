@@ -25,7 +25,7 @@
     data() {
       return {
         dirty: false,
-        dataValue: '',
+        dataValue: null,
         answer: null,
         enterPressed: false,
         allowedChars: null,
@@ -124,8 +124,10 @@
       },
 
       setAnswer(answer) {
+        this.question.setAnswer(answer)
+
+        this.answer = this.question.answer
         this.question.answered = this.isValid()
-        this.answer = this.question.answer = answer
 
         this.$emit('input', this.answer)
       },

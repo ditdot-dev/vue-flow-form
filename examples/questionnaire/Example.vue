@@ -282,7 +282,7 @@
         this.questions.forEach(question => {
           if (question.title) {
             let answer = question.answer
-            if (typeof answer === 'object') {
+            if (Array.isArray(answer)) {
               answer = answer.join(', ')
             }
 

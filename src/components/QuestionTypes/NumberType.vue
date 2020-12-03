@@ -12,10 +12,21 @@
   export default {
     extends: TextType,
     name: QuestionType.Number,
+
     data() {
       return {
         inputType: 'tel',
-        allowedChars: '0123456789.'
+        allowedChars: '-0123456789.'
+      }
+    },
+
+    methods: {
+      validate() {
+        if (this.hasValue) {
+          return !isNaN(+this.dataValue)
+        }
+
+        return !this.question.required || this.hasValue
       }
     }
   }
