@@ -11,6 +11,8 @@
       height="30px"
       :tooltip="'none'"
       @drag-end="handleDrag"
+      :lazy="true"
+      :disabled="disabled"
     >
       <template v-slot:dot> <span class="custom-inner-dot" /> </template
     ></vue-slider>
@@ -21,6 +23,10 @@
 export default {
   name: "vue-custom-slider",
   props: {
+    disabled: {
+      type: Boolean,
+      default: false,
+    },
     max: {
       type: Number,
       default: 100,
@@ -57,4 +63,8 @@ export default {
 </script>
 
 <style>
+.r-container .vue-slider-disabled .vue-slider-process {
+  border-radius: 0px;
+  background: #bdbdbd;
+}
 </style>

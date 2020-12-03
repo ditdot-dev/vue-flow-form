@@ -307,6 +307,7 @@ export default {
         this.dataValue?.includes(",")
       ) {
         this.question.answer = this.dataValue.toString().split(",").join("");
+        console.log(this.question.answer);
       }
       if (this.question.type === QuestionType.SectionBreak) {
         return this.active;
