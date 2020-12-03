@@ -128,7 +128,7 @@
             required: true,
             options: [
               new ChoiceOption({
-                label: 'Answer 1'
+                label: ''
               }),
               new ChoiceOption({
                 label: 'Answer 2'
@@ -282,7 +282,7 @@
         this.questions.forEach(question => {
           if (question.title) {
             let answer = question.answer
-            if (typeof answer === 'object') {
+            if (Array.isArray(answer)) {
               answer = answer.join(', ')
             }
 
