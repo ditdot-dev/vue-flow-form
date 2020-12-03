@@ -189,22 +189,20 @@
        * Emits "answer" event and calls "onEnter" method on Enter press
        */ 
       onEnter($event) {
-        const q = this.$refs.questionComponent
-
-        if (q.isValid() && this.question.nextStepOnAnswer && !this.question.multiple) {
-          this.debounceAnswer(this.emitAnswer, q)
-        } else {
-          this.emitAnswer(q)
-        }
+        this.checkAnswer(this.emitAnswer)
       },
 
       onTab($event) {
+        this.checkAnswer(this.emitAnswerTab)
+      },
+
+      checkAnswer(fn) {
         const q = this.$refs.questionComponent
 
         if (q.isValid() && this.question.nextStepOnAnswer && !this.question.multiple) {
-          this.debounceAnswer(this.emitAnswerTab, q)
+          this.debounce(() => fn(q), 350)
         } else {
-          this.emitAnswerTab(q)
+          fn(q)
         }
       },
 
@@ -227,23 +225,14 @@
         }
       },
 
-      debounceAnswer(fn, q) {
-        if (!this.debounced) {
-          this.debounce(() => {
-            fn(q)
-            this.debounced = false
-          }, 350)()
-        }
-      },
-
       debounce(fn, delay) {
         let debounceTimer
         this.debounced = true
       
-        return function() {
+        return (() => {
           clearTimeout(debounceTimer)
           debounceTimer = setTimeout(fn, delay)
-        }
+        })()
       },
       
       /**
