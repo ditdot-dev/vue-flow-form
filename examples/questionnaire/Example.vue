@@ -128,7 +128,7 @@
             required: true,
             options: [
               new ChoiceOption({
-                label: ''
+                label: 'Answer 1'
               }),
               new ChoiceOption({
                 label: 'Answer 2'
