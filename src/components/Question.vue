@@ -228,7 +228,9 @@
           return false
         }
       
-        if (!q || !this.dataValue) {
+        // If there is no question referenced, or dataValue is still set to its default (null).
+        // This allows a ChoiceOption value of false, but will not allow you to use null as a value.
+        if (!q || this.dataValue === null) {
           return false
         }
 
@@ -241,7 +243,7 @@
       showInvalid() {
         const q = this.$refs.questionComponent
 
-        if (!q || !this.dataValue) {
+        if (!q || this.dataValue === null) {
           return false
         }
 
