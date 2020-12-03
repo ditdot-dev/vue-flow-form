@@ -573,6 +573,7 @@
       buttonText="Yes Signup"
       :submit="onFormSubmit"
     />
+    <loading :active.sync="loader" :can-cancel="false" loader="dots" />
   </div>
 </template>
 
@@ -587,15 +588,19 @@ import TingleModal from "../components/tingle-modal.vue";
 import { roundOff } from "../../util";
 import { setSliderMax } from "../../../src/taxData/SMETaxCalculations";
 import { repostData } from "../../../src/api/TaxApi";
+import Loading from "vue-loading-overlay";
 export default {
   name: "RetirementOptions",
+
   components: {
     vueCustomSlider,
     infoIcon,
     TingleModal,
+    Loading,
   },
   data() {
     return {
+      loader: true,
       roundOff,
       body,
       isModalOpen: false,
@@ -694,6 +699,7 @@ export default {
             this.sliders.individual401kBusiness)) *
           100
       );
+      return res;
     },
     async handleSepIraDrag() {
       let res = await repostData("", this.sliders.sepIraBusiness);
@@ -701,6 +707,7 @@ export default {
       this.taxAdvantageRatio.sepIra = Math.round(
         (this.taxAvoided.sepIra / this.sliders.sepIraBusiness) * 100
       );
+      return res;
     },
     async handleSimpleIra() {
       let res = await repostData(
@@ -715,6 +722,7 @@ export default {
           (this.sliders.simpleIraPersonal + this.sliders.simpleIraBusiness)) *
           100
       );
+      return res;
     },
     async handleTraditionalIra() {
       let res = await repostData(this.sliders.traditionalIraPersonal, "");
@@ -725,6 +733,7 @@ export default {
         (this.taxAvoided.traditionalIra / this.sliders.traditionalIraPersonal) *
           100
       );
+      return res;
     },
     largestNumber({ individual401k, sepIra, simpleIra, traditionalIra }) {
       const largest = Math.max(
@@ -771,7 +780,9 @@ export default {
     percent(val) {
       this.projectedValue = roundOff((this.profitAfterTaxes / 100) * val, 100);
     },
-    projectedValue(val) {
+    async projectedValue(val) {
+      this.loader = true;
+      console.log("loader starts");
       const formattedValue = val / roundOff(this.profitAfterTaxes / 100);
       this.percent =
         formattedValue == Infinity ? 0 : Math.round(formattedValue);
@@ -814,10 +825,13 @@ export default {
       } else {
         this.sliders.sepIraBusiness = val;
       }
-      this.handleIndividualDrag();
-      this.handleSepIraDrag();
-      this.handleSimpleIra();
-      this.handleTraditionalIra();
+
+      await this.handleIndividualDrag();
+      await this.handleSepIraDrag();
+      await this.handleSimpleIra();
+      await this.handleTraditionalIra();
+      this.loader = false;
+      console.log("loader ends");
     },
     taxAvoided: {
       handler(val) {
