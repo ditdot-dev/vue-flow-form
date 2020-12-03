@@ -1,6 +1,7 @@
 <template>
 <div>
   <router-view />
+
   <flow-form ref="flowform" v-on:complete="onComplete" v-on:submit="onSubmit" v-bind:questions="questions" v-bind:language="language" v-bind:standalone="true">
     <!-- Custom content for the Complete/Submit screen slots in the FlowForm component -->
     <!-- We've overriden the default "complete" slot content -->
@@ -66,7 +67,7 @@ export default {
           tooltip: "This tooltip is available on every question to explain why the question is asked. In this case, your name is used to help personalize the results later. 😊",
         }),
         new QuestionModel({
-          answerMessage: "That's great age to be!",
+          answerMessage: "That's a great age to be!",
           tagline: "About You",
           id: "age",
           title: "What is your age?",
@@ -103,10 +104,6 @@ export default {
             new ChoiceOption({
               label: "Married Filing Separately",
               value: "marriedFilingSeparately",
-            }),
-            new ChoiceOption({
-              label: "Qualifying Widow(er) with a Dependent Child",
-              value: "married",
             }),
           ],
         }),
@@ -477,15 +474,17 @@ export default {
       this.submitted = true;
       /* Set the data inputs for an object for Track tax api */
       await this.getData();
-      window.userInput = await this.formatData();
-      console.log(userInput);
-      await this.$store.commit("userInformation/entry", userInput);
-      window.incomeData = taxApi.taxData();
+      const userInput = await this.formatData();
+      this.$store.commit("userInformation/entry", userInput);
+      const incomeData = await taxApi.taxData();
 
       /* Run taxApi and put the outputs into an object in Vuex store */
-      await taxApi.postTaxData(incomeData);
-      console.log(taxUpdate.data);
+      const taxUpdate = await taxApi.postTaxData(incomeData);
+      console.log(taxUpdate.data)
+      /* Run dispatch to store the data for Results.vue */
+
       await this.$store.commit("userInformation/results", taxUpdate.data);
+      this.$store.dispatch('userInformation/getTaxSummary');
     },
     getData() {
       window.data = {
@@ -503,7 +502,7 @@ export default {
       return data;
     },
     formatData() {
-      window.userInput = {};
+      const userInput = {};
       data.id.forEach((key, i) => (userInput[key] = data.answers[i]));
       return userInput;
     },

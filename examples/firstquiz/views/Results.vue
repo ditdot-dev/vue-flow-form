@@ -19,25 +19,25 @@
         <div class="row1Box">
           <div class="row1Col1">
             <p>What's yours after taxes</p>
-            <p class="numbers" v-if="profitAfterTaxes">${{ profitAfterTaxes | currency('', 0) }}</p>
+            <p class="numbers" v-if="profitAfterTaxes">{{ profitAfterTaxes | currency("$", 0) }}</p>
           </div>
-          <div class="row1Col2 ">
+          <div class="row1Col2">
             <p>
               Amount of total deduction you quality for
-              <info-icon onlyClass="none"
-                tooltip="This is all your deductions applied from your business to personal taxes. This includes your tax filing status deduction, and quarterly business income deductions. The Tax Cuts and Job Act passed in 2017 allows eligible self-employed and small-business owners to deduct up to 20% of their qualified business income on their taxes. Your accountant and/or tax software will calculate this value for you in your annual tax returns">
+              <info-icon onlyClass="none" tooltip="This is all your deductions applied from your business to personal taxes. This includes your tax filing status deduction, and quarterly business income deductions. The Tax Cuts and Job Act passed in 2017 allows eligible self-employed and small-business owners to deduct up to 20% of their qualified business income on their taxes.
+                Your accountant and/or tax software will calculate this value for you in your annual tax returns">
               </info-icon>
             </p>
-            <p class="numbers" v-if="totalDeduction">${{ totalDeduction | currency('', 0) }}</p>
+            <p class="numbers" v-if="totalDeduction">{{ totalDeduction | currency("$", 0) }}</p>
           </div>
         </div>
       </div>
       <div class="row2 flex">
         <div class="row2box2">
-          <div class="row2Col1 ">
+          <div class="row2Col1">
             <p>How much taxes you owe in 2020</p>
             <p style="color:#cc3939" class="numbers" v-if="taxBalance">
-              ${{ taxBalance | currency('', 0) }}
+              {{ taxBalance | currency("$", 0) }}
             </p>
           </div>
           <div class="row2Col2">
@@ -218,9 +218,7 @@ export default {
     }),
   },
   methods: {},
-  mounted() {
-    this.$store.dispatch('userInformation/getTaxSummary');
-  }
+  mounted() {}
 };
 </script>
 
@@ -393,6 +391,7 @@ export default {
   /* background-color: blueviolet; */
 }
 
+
 .row2box2 {
   width: 100%;
   height: 80%;
@@ -403,8 +402,8 @@ export default {
   border-radius: 28px;
   grid-row-gap: 1rem;
   display: grid;
-  /* justify-content: center;
-  align-items: center; */
+  justify-content: center;
+  align-items: center;
 }
 
 .row2Col1 p {
@@ -412,7 +411,6 @@ export default {
   font-family: Manrope;
   margin-bottom: 0;
   padding-left: 0.8rem;
-  padding-top: 0.5rem;
 }
 
 .row2Col2 {

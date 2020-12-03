@@ -4,8 +4,8 @@
 export const tax_table_2020 = {
     single_deduction: 12400,
     married_deduction: 24800,
-    married_filing_separately_deduction: 12400,
-    head_of_household_deduction: 18650,
+    marriedFilingSeparately_deduction: 12400,
+    headOfHousehold_deduction: 18650,
     single_tax_bracket: {
     // taxRate: [lowestAmount, highestAmount, rate (in decimal), taxDue]
       "10%": [0, 9875, 0.1, 0],

@@ -1,113 +1,104 @@
-import * as store from '../store/index.js'
+import * as store from "../store/index.js";
 
 // api keys need to be moved to environment variables serviced by Netlify build....to be done
 const sandbox_api_user = "https://sandbox-api.track.tax/v2/users/";
 const app_key = "appId_d34638260c364a652c4673eb590af0fd";
 const app_secret = "appSecret_f24d118ff90fa3252a6749dba1276e44";
-const visitor = sandbox_api_user + "userId_15eaa4f418b381d9f3ddafd6d479cd746183f5ed";
-const tax_calculation = visitor + "/taxes/2020"
-var taxUpdate = []; var taxUpdate0 = [];
-var taxBalance; var ira_taxBalance; var sepIra_taxBalance; var simpleIra_taxBalance; var individual401k_taxBalance;
-var baseCalculate = false
-var handleError = function (err) {
+const visitor =
+  sandbox_api_user + "userId_15eaa4f418b381d9f3ddafd6d479cd746183f5ed";
+const tax_calculation = visitor + "/taxes/2020";
+var taxUpdate = [];
+var taxUpdate0 = [];
+var taxBalance;
+var ira_taxBalance;
+var sepIra_taxBalance;
+var simpleIra_taxBalance;
+var individual401k_taxBalance;
+var baseCalculate = false;
+var handleError = function(err) {
   console.warn(err);
-  return err
+  return err;
 };
-
-// PUT method to Track.tax api to calculate tax balance
-export function taxData(){
-  window.incomeData = {
+// PUT method to Track.tax api to calculate the initial tax balance
+export function taxData() {
+  const {
+    userInput,
+  } = store?.default?.state?.userInformation || {};
+  const incomeData = {
     taxes: {
-      "1099Income": parseInt(userInput.income),
+      "1099Income": parseInt(userInput?.income || 0),
       expenseDeduction: parseInt(userInput.expenses),
       w2Income: parseInt(userInput.salary),
       filingState: userInput.tax_filing_state,
       filingStatus: userInput.tax_filing_status,
-      dependents: parseInt(userInput.dependents),
+      dependents: parseInt(userInput.dependents)
     }
   };
-  return incomeData
+  return incomeData;
 }
 
-export async function postTaxData(incomeData){
-  let baseTax = await (fetch (tax_calculation, {
+export async function postTaxData(incomeData) {
+  const {
+    userInput,
+    taxSummary,
+  } = store?.default?.state?.userInformation || {};
+  let baseTax = await fetch(tax_calculation, {
     headers: {
-        "Content-Type": "application/json",
-        "X-Api-Key": app_key,
-        "X-Api-Secret": app_secret,},
+      "Content-Type": "application/json",
+      "X-Api-Key": app_key,
+      "X-Api-Secret": app_secret
+    },
     method: "PUT",
     body: JSON.stringify(incomeData)
-  }).catch(handleError));
-  window.taxUpdate = await baseTax.json();
-  console.log("base tax calculation complete!")
-  }
+  }).catch(handleError);
+  console.log("base tax calculation complete!");
+  return await baseTax.json();
+}
 
-/*
-async function postIraTaxData(iraContribution){
-  let iraTax = await (fetch (tax_calculation, {
-    headers: {
-        "Content-Type": "application/json",
-        "X-Api-Key": app_key,
-        "X-Api-Secret": app_secret,},
-    method: "PUT",
-    body: JSON.stringify(iraContribution)
-  }).catch(handleError));
-  window.taxUpdate0 = await iraTax.json();
-  console.log("Ira calculation sucess!");
-  // due to Track.tax only calculating taxes on the 1099 income portion, we are missing the w2 income taxes in the balance. This is a temporary work around until they release totalTaxBalance in Q1 2021.
-  window.ira_taxBalance = parseInt(taxUpdate0.data.taxBalance) + parseInt(taxUpdate0.data.smartTaxRate * taxUpdate0.data.w2Income);
-  window.ira_socialSecurityTax = parseInt(taxUpdate0.data.socialSecurityTax);
-  window.ira_medicareTax = parseInt(taxUpdate0.data.medicareTax);
+// Grab data from the sliders to update API calls and post data to RetirementOptions.vue
+export async function repostData(personal, business) {
+  const data = await formatContributionData(personal, business);
+  return await repostApi(data)
+}
+
+async function formatContributionData(personal, business) {
+  const {
+    userInput,
+    taxSummary,
+  } = store?.default?.state?.userInformation || {};
+  const entity = userInput?.entity;
+  const salary = parseInt(userInput?.salary);
+  let data = {};
+  if ( (entity === 'sCorporation' && salary > 0) || (entity === 'llc' && salary > 0) ) {
+    return (data = {
+      taxes: {
+        expenseDeduction: parseInt(userInput?.expenses || 20000) + business,
+        "1099Income": parseInt(userInput?.income || 120000),
+        w2Income: parseInt(userInput?.salary || 40000) - personal
+      }
+    });
+  } else {
+    return (data = {
+      taxes: {
+        expenseDeduction: parseInt(userInput?.expenses || 20000) + business,
+        "1099Income": parseInt(taxSummary?.totalIncome || 120000) - personal
+      }
+    })
   };
+  return data
+};
 
-async function postSepIraTaxData(sepIraContribution){
-  let sepIraTax = await (fetch (tax_calculation, {
-    headers: {
+async function repostApi(data) {
+    let newTax = await fetch(tax_calculation, {
+      headers: {
         "Content-Type": "application/json",
         "X-Api-Key": app_key,
-        "X-Api-Secret": app_secret,},
-    method: "PUT",
-    body: JSON.stringify(sepIraContribution)
-  }).catch(handleError));
-  window.taxUpdate1 = await sepIraTax.json();
-  console.log("SEP Ira calculation sucess!");
-  // due to Track.tax only calculating taxes on the 1099 income portion, we are missing the w2 income taxes in the balance. This is a temporary work around until they release totalTaxBalance in Q1 2021.
-  window.sepIra_taxBalance = parseInt(taxUpdate1.data.taxBalance) + parseInt(taxUpdate1.data.smartTaxRate * taxUpdate1.data.w2Income);
-  window.sepIra_socialSecurityTax = parseInt(taxUpdate1.data.socialSecurityTax);
-  window.sepIra_medicareTax = parseInt(taxUpdate1.data.medicareTax);
+        "X-Api-Secret": app_secret
+      },
+      method: "PUT",
+      body: JSON.stringify(data)
+    }).catch(handleError);
+    const response = await newTax.json();
+    console.log(response.data)
+    return response.data;
   };
-
-async function postSimpleIraTaxData(simpleIraContribution){
-  let simpleIraTax = await (fetch (tax_calculation, {
-    headers: {
-        "Content-Type": "application/json",
-        "X-Api-Key": app_key,
-        "X-Api-Secret": app_secret,},
-    method: "PUT",
-    body: JSON.stringify(simpleIraContribution)
-  }).catch(handleError));
-  window.taxUpdate2 = await simpleIraTax.json();
-  console.log("Simple Ira calculation sucess!");
-  // due to Track.tax only calculating taxes on the 1099 income portion, we are missing the w2 income taxes in the balance. This is a temporary work around until they release totalTaxBalance in Q1 2021.
-  window.simpleIra_taxBalance = parseInt(taxUpdate2.data.taxBalance) + parseInt(taxUpdate2.data.smartTaxRate * taxUpdate2.data.w2Income);
-  window.simpleIra_socialSecurityTax = parseInt(taxUpdate2.data.socialSecurityTax);
-  window.simpleIra_medicareTax = parseInt(taxUpdate2.data.medicareTax);
-  };
-
-async function postIndividual401kTaxData(individual401kContribution){
-  let individual401kTax = await (fetch (tax_calculation, {
-    headers: {
-        "Content-Type": "application/json",
-        "X-Api-Key": app_key,
-        "X-Api-Secret": app_secret,},
-    method: "PUT",
-    body: JSON.stringify(individual401kContribution)
-  }).catch(handleError));
-  window.taxUpdate3 = await individual401kTax.json();
-  console.log("Individual 401k calculation sucess!");
-  // due to Track.tax only calculating taxes on the 1099 income portion, we are missing the w2 income taxes in the balance. This is a temporary work around until they release totalTaxBalance in Q1 2021.
-  window.individual401k_taxBalance = parseInt(taxUpdate3.data.taxBalance) + parseInt(taxUpdate3.data.smartTaxRate * taxUpdate3.data.w2Income);
-  window.individual401k_socialSecurityTax = parseInt(taxUpdate3.data.socialSecurityTax);
-  window.individual401k_medicareTax = parseInt(taxUpdate3.data.medicareTax);
-  }
-*/
