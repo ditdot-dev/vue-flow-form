@@ -25,7 +25,7 @@
     data() {
       return {
         dirty: false,
-        dataValue: '',
+        dataValue: null,
         answer: null,
         enterPressed: false,
         allowedChars: null,

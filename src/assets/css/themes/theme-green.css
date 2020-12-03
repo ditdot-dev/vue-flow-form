@@ -226,6 +226,10 @@ header.vff-header svg.f-logo {
     color: var(--vff-main-accent-color);
   }
 
+  .vff ::-webkit-calendar-picker-indicator {
+    filter: invert(100%);
+  }
+
   .vff span.f-answered{
     color: var(--vff-main-accent-color);
   }
@@ -239,7 +243,7 @@ header.vff-header svg.f-logo {
   }
 
   /*footer*/
-  .vff-footer .footer-inner-wrap{
+  .vff-footer .footer-inner-wrap {
     background-color: var(--vff-bg-color);
   }
 
@@ -253,12 +257,12 @@ header.vff-header svg.f-logo {
     fill: var(--vff-main-text-color);
   }
 
-  .vff-footer .footer-inner-wrap{
+  .vff-footer .footer-inner-wrap {
     background-color: rgba(49,54,64,0.75);
   }
 
   .vff-footer .f-prev:hover,
-  .vff-footer .f-next:hover{
+  .vff-footer .f-next:hover {
     background-color: rgba(0,0,0,0.2);
   }
 
@@ -272,11 +276,11 @@ header.vff-header svg.f-logo {
   }
 
   /*field-multiplechoicetype*/
-  .vff ul.f-radios li{
+  .vff ul.f-radios li {
     color: var(--vff-secondary-text-color);
   }
 
-  .vff .f-key{
+  .vff .f-key {
     color: var(--vff-main-accent-color);
     font-weight: 300;
   }
