@@ -144,7 +144,8 @@
     data() {
       return {
         QuestionType: QuestionType,
-        dataValue: null
+        dataValue: null,
+        debounced: false
       }
     },
     mounted() {
@@ -190,6 +191,24 @@
       onEnter($event) {
         const q = this.$refs.questionComponent
 
+        if (q.isValid() && this.question.nextStepOnAnswer && !this.question.multiple) {
+          this.debounceAnswer(this.emitAnswer, q)
+        } else {
+            this.emitAnswer(q)
+        }
+      },
+
+      onTab($event) {
+        const q = this.$refs.questionComponent
+
+        if (q.isValid() && this.question.nextStepOnAnswer && !this.question.multiple) {
+          this.debounceAnswer(this.emitAnswerTab, q)
+        } else {
+            this.emitAnswerTab(q)
+        }
+      },
+
+      emitAnswer(q) {
         if (q) {
           if (!q.focused) {
             this.$emit('answer', q)
@@ -199,14 +218,31 @@
         }
       },
 
-      onTab($event) {
-        const q = this.$refs.questionComponent
-
+      emitAnswerTab(q) {
         if (q && this.question.type !== QuestionType.Date) {
           this.returnFocus()
           this.$emit('answer', q)
           
           q.onEnter()
+        }
+      },
+
+      debounceAnswer(fn, q) {
+        if (!this.debounced) {
+          this.debounce(() => {
+            fn(q)
+            this.debounced = false
+          }, 350)()
+        }
+      },
+
+      debounce(fn, delay) {
+        let debounceTimer
+        this.debounced = true
+      
+        return function() {
+          clearTimeout(debounceTimer)
+          debounceTimer = setTimeout(fn, delay)
         }
       },
       

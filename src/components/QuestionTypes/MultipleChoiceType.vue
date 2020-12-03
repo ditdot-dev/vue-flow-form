@@ -57,8 +57,7 @@
 
     data() {
       return {
-        editingOther: false,
-        debounced: false
+        editingOther: false
       }
     },
 
@@ -170,27 +169,10 @@
         }
 
         if (this.isValid() && this.question.nextStepOnAnswer && !this.question.multiple) {
-          if (!this.debounced) {
-            this.debounceNext(350)()
-          }
+          this.$emit('next')
         }
 
         this.setAnswer(this.dataValue)
-      },
-
-      debounceNext(delay) {
-        let debounceTimer
-        const self = this
-        
-        this.debounced = true
-       
-        return function() {
-          clearTimeout(debounceTimer)
-          debounceTimer = setTimeout(() => {
-            self.$emit('next')
-            self.debounced = false
-          }, delay)
-        }
       },
 
       _removeAnswer(value) {

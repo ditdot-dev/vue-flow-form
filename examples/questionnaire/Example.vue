@@ -86,7 +86,7 @@
         completed: false,
         language: new LanguageModel(),
         // Create question list with QuestionModel instances
-        questions: [
+        questions: [/*
           new QuestionModel({
             id: 'first_name',
             tagline: 'Hi! Welcome to our demo survey 😊',
@@ -116,6 +116,28 @@
             type: QuestionType.LongText,
             required: true,
             placeholder: 'Start typing here...'
+          }),*/
+          new QuestionModel({
+            id: 'multiple_choice',
+            tagline: 'FYI, You can always go back 👈, use the up arrow on the bottom.',
+            title: 'Multiple choice question:',
+            helpTextShow: false,
+            type: QuestionType.MultipleChoice,
+            multiple: false,
+            nextStepOnAnswer: true,
+            allowOther: true,
+            required: true,
+            options: [
+              new ChoiceOption({
+                label: 'Answer 1'
+              }),
+              new ChoiceOption({
+                label: 'Answer 2'
+               }),
+              new ChoiceOption({
+                label: 'Answer 3'
+              })
+            ]
           }),
           new QuestionModel({
             id: 'multiple_choice',
@@ -124,6 +146,7 @@
             helpTextShow: false,
             type: QuestionType.MultipleChoice,
             multiple: false,
+            nextStepOnAnswer: true,
             allowOther: true,
             required: true,
             options: [
