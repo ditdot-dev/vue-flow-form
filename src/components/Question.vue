@@ -144,7 +144,8 @@
     data() {
       return {
         QuestionType: QuestionType,
-        dataValue: null
+        dataValue: null,
+        debounced: false
       }
     },
     mounted() {
@@ -188,8 +189,24 @@
        * Emits "answer" event and calls "onEnter" method on Enter press
        */ 
       onEnter($event) {
+        this.checkAnswer(this.emitAnswer)
+      },
+
+      onTab($event) {
+        this.checkAnswer(this.emitAnswerTab)
+      },
+
+      checkAnswer(fn) {
         const q = this.$refs.questionComponent
 
+        if (q.isValid() && this.question.nextStepOnAnswer && !this.question.multiple) {
+          this.debounce(() => fn(q), 350)
+        } else {
+          fn(q)
+        }
+      },
+
+      emitAnswer(q) {
         if (q) {
           if (!q.focused) {
             this.$emit('answer', q)
@@ -199,15 +216,23 @@
         }
       },
 
-      onTab($event) {
-        const q = this.$refs.questionComponent
-
+      emitAnswerTab(q) {
         if (q && this.question.type !== QuestionType.Date) {
           this.returnFocus()
           this.$emit('answer', q)
           
           q.onEnter()
         }
+      },
+
+      debounce(fn, delay) {
+        let debounceTimer
+        this.debounced = true
+      
+        return (() => {
+          clearTimeout(debounceTimer)
+          debounceTimer = setTimeout(fn, delay)
+        })()
       },
       
       /**
