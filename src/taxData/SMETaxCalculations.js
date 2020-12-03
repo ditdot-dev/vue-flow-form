@@ -8,7 +8,6 @@ import { roundOff } from "../../examples/util/round-of";
 export function addTotalDeduction() {
   let filingStatus = store.state.userInformation.userInput.tax_filing_status;
   let qbiDeduction = store.state.userInformation.taxUpdate.qbiDeduction;
-  console.log("QBI is:" + qbiDeduction);
   let standardDeduction;
   let elderStandardDeduction;
   let totalDeduction;

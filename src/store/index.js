@@ -88,7 +88,6 @@ const userInformation = {
       state.taxSummary.w2Tax = data;
     },
     setProfitAfterTaxes(state) {
-      console.log(parseInt(state.taxUpdate.taxBalance));
       state.taxSummary.profitAfterTaxes = Math.round((parseFloat(state.taxSummary.profitAfterExpenses) - parseFloat(state.taxUpdate.taxBalance)) * 100) / 100
     },
     setTotalDeduction(state, data) {

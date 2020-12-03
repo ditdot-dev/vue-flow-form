@@ -24,7 +24,6 @@ export function taxData() {
   const {
     userInput,
   } = store?.default?.state?.userInformation || {};
-  console.log(userInput);
   const incomeData = {
     taxes: {
       "1099Income": parseInt(userInput?.income || 0),
