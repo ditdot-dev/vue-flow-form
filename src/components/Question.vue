@@ -194,7 +194,7 @@
         if (q.isValid() && this.question.nextStepOnAnswer && !this.question.multiple) {
           this.debounceAnswer(this.emitAnswer, q)
         } else {
-            this.emitAnswer(q)
+          this.emitAnswer(q)
         }
       },
 
@@ -204,7 +204,7 @@
         if (q.isValid() && this.question.nextStepOnAnswer && !this.question.multiple) {
           this.debounceAnswer(this.emitAnswerTab, q)
         } else {
-            this.emitAnswerTab(q)
+          this.emitAnswerTab(q)
         }
       },
 
