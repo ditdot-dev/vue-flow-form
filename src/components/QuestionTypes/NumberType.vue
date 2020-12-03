@@ -22,7 +22,7 @@
 
     methods: {
       validate() {
-        if (this.hasValue !== null) {
+        if (this.hasValue) {
           return !isNaN(+this.dataValue)
         }
 
