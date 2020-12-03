@@ -35,7 +35,7 @@ export const MaskPresets = Object.freeze({
 export class ChoiceOption {
   constructor(options) {
     this.label = ''
-    this.value = ''
+    this.value = null
     this.selected = false
 
     Object.assign(this, options)
@@ -46,9 +46,9 @@ export class ChoiceOption {
   }
 
   choiceValue() {
-    // returns the value if it's anything other than the default (an empty string).
-    // returns label if the value has not been set.
-    return this.value !== '' ? this.value : this.label
+    // Returns the value if it's anything other than the default (null).
+    // Returns label if the value has not been set.
+    return this.value !== null ? this.value : this.label
   }
 
   toggle() {

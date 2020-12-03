@@ -222,6 +222,20 @@
       stopEditOther() {
         this.editingOther = false
       }
+    },
+
+    computed: {
+      hasValue() {
+        if (this.question.options.filter(o => o.selected).length) {
+          return true
+        }
+
+        if (this.question.allowOther) {
+          return this.question.other && this.question.other.trim().length > 0
+        }
+
+        return false
+      }
     }
   }
 </script>
