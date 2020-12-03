@@ -1,11 +1,7 @@
 <template>
 <div>
-  <div id="nav" style="text-align: center">
-    <button>
-      <router-link to="/results">Results</router-link>
-    </button>
-    <router-view />
-  </div>
+  <router-view />
+
   <flow-form ref="flowform" v-on:complete="onComplete" v-on:submit="onSubmit" v-bind:questions="questions" v-bind:language="language" v-bind:standalone="true">
     <!-- Custom content for the Complete/Submit screen slots in the FlowForm component -->
     <!-- We've overriden the default "complete" slot content -->
