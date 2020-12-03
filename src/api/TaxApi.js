@@ -56,24 +56,41 @@ export async function postTaxData(incomeData) {
   return await baseTax.json();
 }
 
+// Grab data from the sliders to update API calls and post data to RetirementOptions.vue
 export async function repostData(personal, business) {
-  return await postApi(personal, business);
+  const data = await formatContributionData(personal, business);
+  return await repostApi(data)
 }
 
-async function postApi(personal, business) {
+async function formatContributionData(personal, business) {
   const {
     userInput,
     taxSummary,
   } = store?.default?.state?.userInformation || {};
-  console.log("new value for taxes calculated", "total income is:" + taxSummary?.totalIncome, "personal contribution is:"+personal,"business contribution is:"+business);
-  const data = {
-    taxes: {
-      expenseDeduction: parseInt(userInput?.expenses || 20000) + business,
-      "1099Income": parseInt(taxSummary?.totalIncome || 120000) - personal
-    }
+  const entity = userInput?.entity;
+  const salary = parseInt(userInput?.salary);
+  let data = {};
+  if ( (entity === 'sCorporation' && salary > 0) || (entity === 'llc' && salary > 0) ) {
+    return (data = {
+      taxes: {
+        expenseDeduction: parseInt(userInput?.expenses || 20000) + business,
+        "1099Income": parseInt(userInput?.income || 120000),
+        w2Income: parseInt(userInput?.salary || 40000) - personal
+      }
+    });
+  } else {
+    return (data = {
+      taxes: {
+        expenseDeduction: parseInt(userInput?.expenses || 20000) + business,
+        "1099Income": parseInt(taxSummary?.totalIncome || 120000) - personal
+      }
+    })
   };
-  try {
-    let response = await fetch(tax_calculation, {
+  return data
+};
+
+async function repostApi(data) {
+    let newTax = await fetch(tax_calculation, {
       headers: {
         "Content-Type": "application/json",
         "X-Api-Key": app_key,
@@ -81,80 +98,8 @@ async function postApi(personal, business) {
       },
       method: "PUT",
       body: JSON.stringify(data)
-    });
-    response = await response.json();
+    }).catch(handleError);
+    const response = await newTax.json();
     console.log(response.data)
     return response.data;
-  } catch (e) {
-    handleError(e);
-  }
-}
-/*
-async function postIraTaxData(iraContribution){
-  let iraTax = await (fetch (tax_calculation, {
-    headers: {
-        "Content-Type": "application/json",
-        "X-Api-Key": app_key,
-        "X-Api-Secret": app_secret,},
-    method: "PUT",
-    body: JSON.stringify(iraContribution)
-  }).catch(handleError));
-  window.taxUpdate0 = await iraTax.json();
-  console.log("Ira calculation sucess!");
-  // due to Track.tax only calculating taxes on the 1099 income portion, we are missing the w2 income taxes in the balance. This is a temporary work around until they release totalTaxBalance in Q1 2021.
-  window.ira_taxBalance = parseInt(taxUpdate0.data.taxBalance) + parseInt(taxUpdate0.data.smartTaxRate * taxUpdate0.data.w2Income);
-  window.ira_socialSecurityTax = parseInt(taxUpdate0.data.socialSecurityTax);
-  window.ira_medicareTax = parseInt(taxUpdate0.data.medicareTax);
   };
-
-async function postSepIraTaxData(sepIraContribution){
-  let sepIraTax = await (fetch (tax_calculation, {
-    headers: {
-        "Content-Type": "application/json",
-        "X-Api-Key": app_key,
-        "X-Api-Secret": app_secret,},
-    method: "PUT",
-    body: JSON.stringify(sepIraContribution)
-  }).catch(handleError));
-  window.taxUpdate1 = await sepIraTax.json();
-  console.log("SEP Ira calculation sucess!");
-  // due to Track.tax only calculating taxes on the 1099 income portion, we are missing the w2 income taxes in the balance. This is a temporary work around until they release totalTaxBalance in Q1 2021.
-  window.sepIra_taxBalance = parseInt(taxUpdate1.data.taxBalance) + parseInt(taxUpdate1.data.smartTaxRate * taxUpdate1.data.w2Income);
-  window.sepIra_socialSecurityTax = parseInt(taxUpdate1.data.socialSecurityTax);
-  window.sepIra_medicareTax = parseInt(taxUpdate1.data.medicareTax);
-  };
-
-async function postSimpleIraTaxData(simpleIraContribution){
-  let simpleIraTax = await (fetch (tax_calculation, {
-    headers: {
-        "Content-Type": "application/json",
-        "X-Api-Key": app_key,
-        "X-Api-Secret": app_secret,},
-    method: "PUT",
-    body: JSON.stringify(simpleIraContribution)
-  }).catch(handleError));
-  window.taxUpdate2 = await simpleIraTax.json();
-  console.log("Simple Ira calculation sucess!");
-  // due to Track.tax only calculating taxes on the 1099 income portion, we are missing the w2 income taxes in the balance. This is a temporary work around until they release totalTaxBalance in Q1 2021.
-  window.simpleIra_taxBalance = parseInt(taxUpdate2.data.taxBalance) + parseInt(taxUpdate2.data.smartTaxRate * taxUpdate2.data.w2Income);
-  window.simpleIra_socialSecurityTax = parseInt(taxUpdate2.data.socialSecurityTax);
-  window.simpleIra_medicareTax = parseInt(taxUpdate2.data.medicareTax);
-  };
-
-async function postIndividual401kTaxData(individual401kContribution){
-  let individual401kTax = await (fetch (tax_calculation, {
-    headers: {
-        "Content-Type": "application/json",
-        "X-Api-Key": app_key,
-        "X-Api-Secret": app_secret,},
-    method: "PUT",
-    body: JSON.stringify(individual401kContribution)
-  }).catch(handleError));
-  window.taxUpdate3 = await individual401kTax.json();
-  console.log("Individual 401k calculation sucess!");
-  // due to Track.tax only calculating taxes on the 1099 income portion, we are missing the w2 income taxes in the balance. This is a temporary work around until they release totalTaxBalance in Q1 2021.
-  window.individual401k_taxBalance = parseInt(taxUpdate3.data.taxBalance) + parseInt(taxUpdate3.data.smartTaxRate * taxUpdate3.data.w2Income);
-  window.individual401k_socialSecurityTax = parseInt(taxUpdate3.data.socialSecurityTax);
-  window.individual401k_medicareTax = parseInt(taxUpdate3.data.medicareTax);
-  }
-*/
