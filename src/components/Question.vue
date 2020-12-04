@@ -245,6 +245,10 @@
           return this.active
         }
 
+        if (!this.question.required) {
+          return true
+        }
+
         if (this.question.allowOther && this.question.other) {
           return true
         }
