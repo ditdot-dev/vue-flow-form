@@ -71,7 +71,10 @@
           v-bind:aria-label="language.ariaOk"
         >
             <span v-if="question.type === QuestionType.SectionBreak">{{ language.continue }}</span>
-            <span v-else>{{ language.ok }}</span>
+            <span v-else>
+              <span v-if="this.dataValue !== ''">{{ language.ok }}</span>
+              <span v-else>{{ language.skip }}</span>
+            </span>
         </button>
         <a 
           class="f-enter-desc"
