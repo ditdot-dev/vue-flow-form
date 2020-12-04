@@ -17,7 +17,7 @@
       language: LanguageModel,
       question: QuestionModel,
       active: Boolean,
-      value: [String, Array, Boolean, Number]
+      value: [String, Array, Boolean, Number, Object]
     },
     mixins: [
       IsMobile,
