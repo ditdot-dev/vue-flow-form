@@ -123,7 +123,6 @@ export default class QuestionModel {
   }
 
   setAnswer(answer) {
-    console.log(answer)
     if (this.type === QuestionType.Number && answer !== '' && !isNaN(+answer)) {
       answer = +answer
     }
