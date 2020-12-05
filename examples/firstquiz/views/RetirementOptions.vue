@@ -88,14 +88,6 @@ How to Get Started <br />w/ a <template>
                 Individual <br />
                 401K
               </h1>
-              <p>
-                Over 80% of incorporated <br />
-                freelancers use this option. <br />
-                <br />
-                Based on your information, <br />
-                we suggest you open an <br />
-                Individual 401(K)
-              </p>
             </div>
           </div>
           <div class="col2 col flex2 justify-content-start mt-3 relative">
@@ -202,10 +194,6 @@ How to Get Started <br />w/ a <template>
           </h2>
           <div class="col1 col flex2">
             <h1>SEP-IRA</h1>
-            <p>
-              X% of people your age <br />
-              has this account
-            </p>
           </div>
           <div class="col2 col flex2 justify-content-between mt-3">
             <p>
@@ -277,18 +265,6 @@ How to Get Started <br />w/ a <template>
           </h2>
           <div class="col1 col flex2">
             <h1 class="mt-5">SIMPLE IRA</h1>
-            <p>
-              This is suitable for <br />
-              those who have <br />
-              employees and want to<br />
-              offer retirement <br />
-              benefits to their<br />
-              employees <br />
-              <br />
-              Over 65% of users have <br />
-              this as their first <br />
-              retirement account
-            </p>
           </div>
           <div class="col2 col flex2 justify-content-start mt-3">
             <p>
