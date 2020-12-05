@@ -1,4 +1,4 @@
-<template>
+How to Get Started <br />w/ a <template>
 <div class="r-container">
   <div class="main">
     <div class="row1 flex" style="cursor: pointer">
@@ -177,7 +177,7 @@
               <div :class="`labelbox flex ${
                     isIndividual401kDisabled && 'disabled-color'
                   }`">
-                <h4>How to Open an <br />Individual 401k <br />Account</h4>
+                <h4>How to Get Started <br />w/ a Individual 401k <br />Account</h4>
               </div>
               <span class="labelbox-down">
                 You are not eligible due to too many employees in your
@@ -188,7 +188,7 @@
               <div :class="`labelbox flex ${
                     isIndividual401kDisabled && 'disabled-color'
                   }`">
-                <h4>How to Open an <br />Individual 401k <br />Account</h4>
+                <h4>How to Get Started <br />w/ a Individual 401k <br />Account</h4>
               </div>
             </a>
           </div>
@@ -263,7 +263,7 @@
           <div class="col5 col">
             <a href="https://www.learn.gigfinance.org/blog/how-to-get-started-with-a-sep-ira/" target="_blank" rel="noopener noreferrer">
               <div class="labelbox flex">
-                <h4>How to Open a <br />SEP-IRA<br />Account</h4>
+                <h4>How to Get Started <br />w/ a SEP-IRA<br />Account</h4>
               </div>
             </a>
           </div>
@@ -362,7 +362,7 @@
               <div :class="`labelbox flex ${
                     isSimpleIraDisabled && 'disabled-color'
                   }`" v-if="isSimpleIraDisabled">
-                <h4>How to Open a <br />SIMPLE-IRA<br />Account</h4>
+                <h4>How to Get Started <br />w/ a SIMPLE-IRA<br />Account</h4>
               </div>
               <span class="labelbox-down">
                 You are not eligible due to too many employees in your
@@ -373,7 +373,7 @@
               <div :class="`labelbox flex ${
                     isSimpleIraDisabled && 'disabled-color'
                   }`">
-                <h4>How to Open a <br />SIMPLE-IRA<br />Account</h4>
+                <h4>How to Get Started <br />w/ a SIMPLE-IRA<br />Account</h4>
               </div>
             </a>
           </div>
@@ -450,7 +450,7 @@
           <div class="col5 col">
             <a href="https://www.learn.gigfinance.org/blog/how-to-get-started-with-a-traditional-ira/" target="_blank" rel="noopener noreferrer">
               <div class="labelbox flex">
-                <h4>How to Open an <br />Traditional IRA <br />Account</h4>
+                <h4>How to Get Started <br />w/ a Traditional IRA <br />Account</h4>
               </div>
             </a>
           </div>
