@@ -6,10 +6,9 @@
       scale="1"
       class="ml-2 mt-1"
       v-tooltip="{
-        content: !dynamic
-          ? DynamicTooltip('', {
-              description:
-                'This is limited to 25% of the salary you pay yourself if you’ve incorporated. If you don’t pay yourself a salary, this is limited to 20% of the total earnings from your business after deducting half of self employment tax.',
+        content: dynamic
+          ? DynamicTooltip('' || tooltipType, {
+              ...tooltip,
             })
           : tooltip,
         placement: tooltipPlacement || 'bottom',
@@ -21,28 +20,18 @@
 <script>
 import { DynamicTooltip } from "../../util/dynamic-tooltip";
 export default {
-  props: ["tooltip", "tooltipPlacement", "classes", "onlyClass", "dynamic"],
+  props: [
+    "tooltip",
+    "tooltipPlacement",
+    "classes",
+    "onlyClass",
+    "dynamic",
+    "tooltipType",
+  ],
   data() {
     return {
       DynamicTooltip,
     };
-  },
-  created() {
-    console.log(
-      DynamicTooltip({
-        description: "",
-        netEarning: "",
-        taxDeduction: "",
-        irsLimit: "",
-        contributionMax: "",
-      })
-    );
-  },
-  computed: {
-    Dynamic() {
-      console.log(DynamicTooltip());
-      return DynamicTooltip();
-    },
   },
 };
 </script>

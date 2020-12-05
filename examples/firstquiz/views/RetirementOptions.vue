@@ -174,7 +174,10 @@
                 />
               </div>
               <h4>Your Business Contribution</h4>
-              <info-icon tooltip="business">
+              <info-icon
+                :tooltip="tooltip.individual401kBusiness"
+                :dynamic="true"
+              >
                 <h2>
                   {{ sliders.individual401kBusiness | currency("$", 0) }} ({{
                     sliderPercentage(sliders.individual401kBusiness)
@@ -205,7 +208,11 @@
             <div class="col4 col flex2 justify-content-between relative">
               <h4 class="absolute top-60">Impact on your taxes</h4>
               <h4>Tax Avoided</h4>
-              <info-icon tooltip="business">
+              <info-icon
+                :tooltip="tooltip.taxAvoided.individual401k"
+                :dynamic="true"
+                tooltipType="points"
+              >
                 <h2>{{ taxAvoided.individual401k | currency("$", 0) }}</h2>
               </info-icon>
 
@@ -218,7 +225,11 @@
                 }}
               </p>
               <h4>Tax Advantage Ratio</h4>
-              <info-icon tooltip="business">
+              <info-icon
+                :tooltip="tooltip.taxAdvantageRatio.individual401k"
+                tooltipType="description"
+                :dynamic="true"
+              >
                 <h2>{{ taxAdvantageRatio.individual401k }}%</h2>
               </info-icon>
             </div>
@@ -284,7 +295,7 @@
             </div>
             <div class="col3 col flex2 mb-5 justify-content-between m-0 py-0">
               <h4>Your Business Contribution</h4>
-              <info-icon tooltip="business">
+              <info-icon :tooltip="tooltip.sepIraBusiness" :dynamic="true">
                 <h2 class="mb-0 pb-0">
                   {{ sliders.sepIraBusiness | currency("$", 0) }} ({{
                     sliderPercentage(sliders.sepIraBusiness)
@@ -309,7 +320,11 @@
 
             <div class="col4 col flex2 justify-content-between">
               <h4>Tax Avoided</h4>
-              <info-icon tooltip="business">
+              <info-icon
+                :tooltip="tooltip.taxAvoided.sepIra"
+                :dynamic="true"
+                tooltipType="points"
+              >
                 <h2>{{ taxAvoided.sepIra | currency("$", 0) }}</h2>
               </info-icon>
 
@@ -319,7 +334,11 @@
                 worth {{ sliderCompound(taxAvoided.sepIra) | currency("$", 0) }}
               </p>
               <h4>Tax Advantage Ratio</h4>
-              <info-icon tooltip="business">
+              <info-icon
+                :tooltip="tooltip.taxAdvantageRatio.sepIra"
+                tooltipType="description"
+                :dynamic="true"
+              >
                 <h2>{{ taxAdvantageRatio.sepIra }}%</h2>
               </info-icon>
             </div>
@@ -393,7 +412,11 @@
                 />
               </div>
               <h4>Your Business Contribution</h4>
-              <info-icon tooltip="business">
+              <info-icon
+                :tooltip="tooltip.simpleIraBusiness"
+                :dynamic="true"
+                tooltipType="description"
+              >
                 <h2>
                   {{ sliders.simpleIraBusiness | currency("$", 0) }} ({{
                     sliderPercentage(sliders.simpleIraBusiness)
@@ -422,7 +445,11 @@
 
             <div class="col4 col flex2 justify-content-between">
               <h4>Tax Avoided</h4>
-              <info-icon tooltip="business">
+              <info-icon
+                :tooltip="tooltip.taxAvoided.simpleIra"
+                :dynamic="true"
+                tooltipType="points"
+              >
                 <h2>{{ taxAvoided.simpleIra | currency("$", 0) }}</h2>
               </info-icon>
 
@@ -433,7 +460,11 @@
                 {{ sliderCompound(taxAvoided.simpleIra) | currency("$", 0) }}
               </p>
               <h4>Tax Advantage Ratio</h4>
-              <info-icon tooltip="business">
+              <info-icon
+                :tooltip="tooltip.taxAdvantageRatio.simpleIra"
+                tooltipType="description"
+                :dynamic="true"
+              >
                 <h2>{{ taxAdvantageRatio.simpleIra }}%</h2>
               </info-icon>
             </div>
@@ -527,7 +558,11 @@
 
             <div class="col4 f flex2 justify-content-between">
               <h4>Tax Avoided</h4>
-              <info-icon tooltip="business">
+              <info-icon
+                :tooltip="tooltip.taxAvoided.traditionalIra"
+                :dynamic="true"
+                tooltipType="points"
+              >
                 <h2>{{ taxAvoided.traditionalIra | currency("$", 0) }}</h2>
               </info-icon>
 
@@ -540,7 +575,11 @@
                 }}
               </p>
               <h4>Tax Advantage Ratio</h4>
-              <info-icon tooltip="business">
+              <info-icon
+                :tooltip="tooltip.taxAdvantageRatio.traditionalIra"
+                tooltipType="description"
+                :dynamic="true"
+              >
                 <h2>{{ taxAdvantageRatio.traditionalIra }}%</h2>
               </info-icon>
             </div>
@@ -648,6 +687,13 @@ export default {
   },
   data() {
     return {
+      tooltip: {
+        individual401kBusiness: {},
+        sepIraBusiness: {},
+        simpleIraBusiness: {},
+        taxAvoided: {},
+        taxAdvantageRatio: {},
+      },
       loader: true,
       roundOff,
       body,
@@ -664,10 +710,10 @@ export default {
         traditionalIra: "",
       },
       taxAdvantageRatio: {
-        individual401k: "",
-        sepIra: "",
-        simpleIra: "",
-        traditionalIra: "",
+        individual401k: 0,
+        sepIra: 0,
+        simpleIra: 0,
+        traditionalIra: 0,
       },
       bestOptionActive: {
         individual401k: false,
@@ -717,6 +763,10 @@ export default {
     this.sliderMax.traditionalIraPersonal = roundOff(
       personalMax_traditionalIra
     );
+    this.sepIraBusinessTooltip();
+    this.individual401kBusinessTooltip();
+    this.simpleIraBusinessTooltip();
+    this.handleTaxAdvantageRatioTooltip();
   },
   methods: {
     handleSignup() {
@@ -836,6 +886,100 @@ export default {
         };
       }
     },
+    individual401kBusinessTooltip() {
+      this.tooltip = {
+        ...this.tooltip,
+        individual401kBusiness: {
+          description:
+            "This is limited to 20% of the total earnings from your business after deducting half of self employment tax.",
+          netEarning: this.profitAfterTaxes,
+          taxDeduction: "92.5%",
+          irsLimit: "25%",
+          contributionMax: this.sliderMax.individual401kBusiness,
+        },
+      };
+    },
+    sepIraBusinessTooltip() {
+      let irsLimit;
+      if (this.userInput.salary) {
+        irsLimit = "25%";
+      } else {
+        irsLimit = "20%";
+      }
+      this.tooltip = {
+        ...this.tooltip,
+        sepIraBusiness: {
+          description:
+            "This is limited to 25% of the salary you pay yourself if you’ve incorporated. If you don’t pay yourself a salary, this is limited to 20% of the total earnings from your business after deducting half of self employment tax.",
+          netEarning: this.profitAfterTaxes,
+          taxDeduction: "92.5%",
+          irsLimit,
+          contributionMax: this.sliderMax.sepIraBusiness,
+        },
+      };
+    },
+    simpleIraBusinessTooltip() {
+      this.tooltip.simpleIraBusiness = {
+        ...this.tooltip,
+        description: `You can either do a matching 
+        contribution for every dollar up to 3% of 
+        the salary you pay yourself, or 2% of the 
+        salary. This calculator assumes the 3% 
+        matching contribution, therefore has a maximum 
+        business contribution of <span class="text-danger">$${this.sliderMax.simpleIraBusiness}</span>.`,
+      };
+    },
+    handleTaxAvoidedTooltip(res, name) {
+      const taxUpdate = this.taxUpdate;
+      const {
+        federalIncomeTax,
+        stateIncomeTax,
+        socialSecurityTax,
+        medicareTax,
+      } = res || {};
+      const span = (value) =>
+        `<span class="text-danger">${value?.toFixed(2)}</span>`;
+      this.tooltip.taxAvoided = {
+        ...(this.tooltip.taxAvoided || {}),
+        [name]: {
+          description: [
+            `Federal Tax avoided: ${span(
+              taxUpdate.federalIncomeTax - federalIncomeTax
+            )}`,
+            `State Tax avoided: ${span(
+              taxUpdate.stateIncomeTax - stateIncomeTax
+            )}`,
+            `Social Security Tax avoided: ${span(
+              taxUpdate.socialSecurityTax - socialSecurityTax
+            )}`,
+            `Medicare Tax avoided: ${span(
+              taxUpdate.medicareTax - medicareTax
+            )}`,
+          ],
+        },
+      };
+    },
+    handleTaxAdvantageRatioTooltip() {
+      const span = (value) => `The higher the percentage, the better 
+      tax advantage the account offers. This metric shows 
+      tax avoided over contribution amount.  For each $1 
+      you contribute to retirement, you reduce your tax bill by <span class="text-danger">$${value}</span>`;
+      this.tooltip.taxAdvantageRatio = {
+        ...this.tooltip.taxAdvantageRatio,
+        individual401k: {
+          description: span(this.taxAdvantageRatio.individual401k / 100),
+        },
+        sepIra: {
+          description: span(this.taxAdvantageRatio.sepIra?.toFixed(0)),
+        },
+        simpleIra: {
+          description: span(this.taxAdvantageRatio.simpleIra?.toFixed(0)),
+        },
+        traditionalIra: {
+          description: span(this.taxAdvantageRatio.traditionalIra?.toFixed(0)),
+        },
+      };
+    },
   },
   computed: {
     roundedProjectedValue: {
@@ -852,6 +996,7 @@ export default {
       taxBalance: (state) => state.taxUpdate.taxBalance,
       age: (state) => state.userInput.age,
       userInput: (state) => state.userInput,
+      taxUpdate: (state) => state.taxUpdate,
     }),
     getRoundofValue() {
       return roundOff(this.profitAfterTaxes, 100);
@@ -921,10 +1066,14 @@ export default {
         this.sliders.sepIraBusiness = val;
       }
 
-      await this.handleIndividualDrag();
-      await this.handleSepIraDrag();
-      await this.handleSimpleIra();
-      await this.handleTraditionalIra();
+      const individual401k = await this.handleIndividualDrag();
+      this.handleTaxAvoidedTooltip(individual401k, "individual401k");
+      const sepIra = await this.handleSepIraDrag();
+      this.handleTaxAvoidedTooltip(sepIra, "sepIra");
+      const simpleIra = await this.handleSimpleIra();
+      this.handleTaxAvoidedTooltip(simpleIra, "simpleIra");
+      const traditionalIra = await this.handleTraditionalIra();
+      this.handleTaxAvoidedTooltip(traditionalIra, "traditionalIra");
       this.loader = false;
       console.log("loader ends");
     },
@@ -935,6 +1084,12 @@ export default {
         });
         this.bestOptionActive = {};
         this.bestOptionActive[find] = true;
+      },
+      deep: true,
+    },
+    taxAdvantageRatio: {
+      handler(taxAdvantageRatio) {
+        this.handleTaxAdvantageRatioTooltip();
       },
       deep: true,
     },
