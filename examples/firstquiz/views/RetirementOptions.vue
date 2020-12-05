@@ -832,7 +832,7 @@ export default {
       const span = (value) => `The higher the percentage, the better
       tax advantage the account offers. This metric shows
       tax avoided over contribution amount.  For each $1
-      you contribute to retirement, you reduce your tax bill by $<span class="text-danger">{value}</span>.`;
+      you contribute to retirement, you reduce your tax bill by $<span class="text-danger">${value}</span>.`;
       this.tooltip.taxAdvantageRatio = {
         ...this.tooltip.taxAdvantageRatio,
         individual401k: {
