@@ -11,10 +11,10 @@ export const DynamicTooltip = (
   if (!type) {
     return ` <div class="d-flex flex-column inner-body">
       <span class='text-left'>${description}</span>
-      <div class="d-flex flex-column mt-3 justify-content-center align-items-center">
+      <div class="d-flex flex-column mt-3 justify-content-center align-items-end mr-5">
         <div class="d-flex">
           <span>Net Earning:</span>
-          <span class="ml-2 text-danger">${netEarning}</span>
+          <span class="ml-2 ">${netEarning}</span>
         </div>
 		<div class="d-flex">
 		<span class="mx-2">x</span>
@@ -24,13 +24,13 @@ export const DynamicTooltip = (
 		<div class="d-flex">
 		<span class="mx-2">x</span>
           <span>IRS Limit:</span>
-          <span class="ml-2 text-danger">${irsLimit}</span>
+          <span class="ml-2 ">${irsLimit}</span>
         </div>
-        <hr style="border-top: 0.1px solid grey;width:75%"/>
-      </div>
-      <div class="d-flex justify-content-center">
+        </div>
+        <hr style="border-top: 0.1px solid grey;width:70%" class="justify-self-start"/>
+      <div class="d-flex justify-content-end mr-5">
         <span>Contribution Maximum*:</span>
-        <span class="ml-2 text-danger">${contributionMax}</span>
+        <span class="ml-2 ">${contributionMax}</span>
       </div>
     </div>`;
   }
