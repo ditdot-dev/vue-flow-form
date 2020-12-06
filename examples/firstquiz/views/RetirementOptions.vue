@@ -762,13 +762,19 @@ export default {
       }
     },
     individual401kBusinessTooltip() {
+      let irsLimit;
+      if (this.userInput.salary) {
+        irsLimit = "25%";
+      } else {
+        irsLimit = "20%";
+      }
       this.tooltip = {
         ...this.tooltip,
         individual401kBusiness: {
-          description: "For business owners, this is limited to 20% of the total earnings from your business after deducting half of self employment tax.",
+          description: "If you pay yourself a salary (W-2), then this is limited to 25% of the salary you pay yourself. If you don’t pay yourself a salary, this is limited to 20% of the total earnings from your business after deducting half of self employment tax.",
           netEarning: this.profitAfterExpenses,
           taxDeduction: "92.5%",
-          irsLimit: "20%",
+          irsLimit,
           contributionMax: this.sliderMax.individual401kBusiness,
         },
       };
@@ -783,7 +789,7 @@ export default {
       this.tooltip = {
         ...this.tooltip,
         sepIraBusiness: {
-          description: "This is limited to 25% of the salary you pay yourself if you’ve incorporated. If you don’t pay yourself a salary, this is limited to 20% of the total earnings from your business after deducting half of self employment tax.",
+          description: "If you pay yourself a salary (W-2), then this is limited to 25% of the salary you pay yourself. If you don’t pay yourself a salary, this is limited to 20% of the total earnings from your business after deducting half of self employment tax.",
           netEarning: this.profitAfterExpenses,
           taxDeduction: "92.5%",
           irsLimit,
@@ -870,6 +876,7 @@ export default {
     },
     ...Vuex.mapState("userInformation", {
       profitAfterTaxes: (state) => state.taxSummary.profitAfterTaxes,
+      profitAfterExpenses: (state) => state.taxSummary.profitAfterExpenses,
       totalIncome: (state) => state.taxSummary.totalIncome,
       taxBalance: (state) => state.taxUpdate.taxBalance,
       age: (state) => state.userInput.age,
