@@ -1,4 +1,4 @@
-How to Get Started <br />w/ a <template>
+<template>
 <div class="r-container">
   <div class="main">
     <div class="row1 flex" style="cursor: pointer">
@@ -92,7 +92,7 @@ How to Get Started <br />w/ a <template>
           </div>
           <div class="col2 col flex2 justify-content-start mt-3 relative">
             <h4 class="absolute top-75">At a Glance</h4>
-            <p>
+            <p :class="`${isIndividual401kDisabled && 'disabled-color'}`">
               Individual 401(K) allows for <br />
               more retirement contribution <br />
               as a employee and employer. <br />
@@ -108,11 +108,19 @@ How to Get Started <br />w/ a <template>
             </p>
           </div>
           <div class="col3 col flex2 justify-content-between relative">
-            <info-icon tooltip="business" class="absolute top-60" classes="d-flex align-items-end">
+            <info-icon :tooltip="{
+                  description: `There are two forms of contributions available to the self-employed.
+                <br/><br/> <strong>Your Contribution</strong> uses money from your salary to
+                reduce your taxable income.<br/><strong>Your Business Contribution</strong>
+                is a form of employee benefit that is treated as a business expense. Which will lower your business’s taxable profit.<br/><br/>
+                This calculator will always apply your contribution through your business first, because that will maximize tax deduction opportunity for you.`,
+                }" class="absolute top-60" classes="d-flex align-items-end" :dynamic="true" tooltipType="description">
               <h4 class="d-flex align-items-end">Contributions</h4>
             </info-icon>
-            <h4>Your Contribution</h4>
-            <h2>
+            <h4 :class="`${isIndividual401kDisabled && 'disabled-color'}`">
+              Your Contribution
+            </h4>
+            <h2 :class="`${isIndividual401kDisabled && 'disabled-color'}`">
               {{ sliders.individual401kPersonal | currency("$", 0) }} ({{
                   sliderPercentage(sliders.individual401kPersonal)
                 }}%)
@@ -120,9 +128,11 @@ How to Get Started <br />w/ a <template>
             <div class="colBox">
               <vue-custom-slider @handleDrag="handleIndividualDrag" v-model="sliders.individual401kPersonal" ref="sliders.individual401kPersonal" :max="sliderMax.individual401kPersonal" :disabled="isIndividual401kDisabled" />
             </div>
-            <h4>Your Business Contribution</h4>
-            <info-icon tooltip="business">
-              <h2>
+            <h4 :class="`${isIndividual401kDisabled && 'disabled-color'}`">
+              Your Business Contribution
+            </h4>
+            <info-icon :tooltip="tooltip.individual401kBusiness" :dynamic="true">
+              <h2 :class="`${isIndividual401kDisabled && 'disabled-color'}`">
                 {{ sliders.individual401kBusiness | currency("$", 0) }} ({{
                     sliderPercentage(sliders.individual401kBusiness)
                   }}%)
@@ -131,7 +141,7 @@ How to Get Started <br />w/ a <template>
             <div class="colBox2 colBox">
               <vue-custom-slider @handleDrag="handleIndividualDrag" v-model="sliders.individual401kBusiness" :max="sliderMax.individual401kBusiness" :disabled="isIndividual401kDisabled" />
             </div>
-            <p>
+            <p :class="`${isIndividual401kDisabled && 'disabled-color'}`">
               At your age 67, these <br />
               contributions could be <br />
               worth
@@ -146,12 +156,18 @@ How to Get Started <br />w/ a <template>
 
           <div class="col4 col flex2 justify-content-between relative">
             <h4 class="absolute top-60">Impact on your taxes</h4>
-            <h4>Tax Avoided</h4>
-            <info-icon tooltip="business">
-              <h2>{{ taxAvoided.individual401k | currency("$", 0) }}</h2>
+            <h4 :class="`${isIndividual401kDisabled && 'disabled-color'}`">
+              Tax Avoided
+            </h4>
+            <info-icon :tooltip="tooltip.taxAvoided.individual401k" :dynamic="true" tooltipType="points">
+              <h2 :class="`${isIndividual401kDisabled && 'disabled-color'}`">
+                {{ taxAvoided.individual401k | currency("$", 0) }}
+              </h2>
             </info-icon>
 
-            <p class="p-0 m-0">
+            <p :class="`${
+                  isIndividual401kDisabled && 'disabled-color'
+                } p-0 m-0`">
               At your age 67, the amount <br />
               you are losing could be <br />
               worth
@@ -159,15 +175,19 @@ How to Get Started <br />w/ a <template>
                   sliderCompound(taxAvoided.individual401k) | currency("$", 0)
                 }}
             </p>
-            <h4>Tax Advantage Ratio</h4>
-            <info-icon tooltip="business">
-              <h2>{{ taxAdvantageRatio.individual401k }}%</h2>
+            <h4 :class="`${isIndividual401kDisabled && 'disabled-color'}`">
+              Tax Advantage Ratio
+            </h4>
+            <info-icon :tooltip="tooltip.taxAdvantageRatio.individual401k" tooltipType="description" :dynamic="true">
+              <h2 :class="`${isIndividual401kDisabled && 'disabled-color'}`">
+                {{ taxAdvantageRatio.individual401k }}%
+              </h2>
             </info-icon>
           </div>
           <div :class="`col5 col `">
             <div v-if="isIndividual401kDisabled">
               <div :class="`labelbox flex ${
-                    isIndividual401kDisabled && 'disabled-color'
+                    isIndividual401kDisabled && 'disabled-back-color'
                   }`">
                 <h4>How to Get Started <br />w/ a Individual 401k <br />Account</h4>
               </div>
@@ -205,16 +225,16 @@ How to Get Started <br />w/ a <template>
               contribute a maximum of <br />
               $56,000/yr <br />
               <br />
-              Best for simplicity in setup <br />
-              and if you have 2 jobs, one as <br />
+              Best for simplicity in setup. <br />
+              And if you have 2 jobs, one as <br />
               a freelancer and another as a <br />
               full-time employee.
             </p>
           </div>
           <div class="col3 col flex2 mb-5 justify-content-between m-0 py-0">
             <h4>Your Business Contribution</h4>
-            <info-icon tooltip="business">
-              <h2 class="mb-0 pb-0">
+            <info-icon :tooltip="tooltip.sepIraBusiness" :dynamic="true">
+              <h2 :class="` mb-0 pb-0`">
                 {{ sliders.sepIraBusiness | currency("$", 0) }} ({{
                     sliderPercentage(sliders.sepIraBusiness)
                   }}%)
@@ -231,20 +251,23 @@ How to Get Started <br />w/ a <template>
               {{ sliderCompound(sliders.sepIraBusiness) | currency("$", 0) }}
             </p>
           </div>
+        </div>
 
           <div class="col4 col flex2 justify-content-between">
             <h4>Tax Avoided</h4>
-            <info-icon tooltip="business">
-              <h2>{{ taxAvoided.sepIra | currency("$", 0) }}</h2>
+            <info-icon :tooltip="tooltip.taxAvoided.sepIra" :dynamic="true" tooltipType="points">
+              <h2>
+                {{ taxAvoided.sepIra | currency("$", 0) }}
+              </h2>
             </info-icon>
 
-            <p class="p-0 m-0">
+            <p :class="` p-0 m-0`">
               At your age 67, the amount <br />
               you are losing could be <br />
               worth {{ sliderCompound(taxAvoided.sepIra) | currency("$", 0) }}
             </p>
             <h4>Tax Advantage Ratio</h4>
-            <info-icon tooltip="business">
+            <info-icon :tooltip="tooltip.taxAdvantageRatio.sepIra" tooltipType="description" :dynamic="true">
               <h2>{{ taxAdvantageRatio.sepIra }}%</h2>
             </info-icon>
           </div>
@@ -264,10 +287,10 @@ How to Get Started <br />w/ a <template>
             BEST OPTION
           </h2>
           <div class="col1 col flex2">
-            <h1 class="mt-5">SIMPLE IRA</h1>
+            <h1>SIMPLE IRA</h1>
           </div>
           <div class="col2 col flex2 justify-content-start mt-3">
-            <p>
+            <p :class="`${isSimpleIraDisabled && 'disabled-color'}`">
               The SIMPLE-IRA allows for <br />
               retirement contribution as a <br />
               employee and employer. <br />
@@ -284,8 +307,10 @@ How to Get Started <br />w/ a <template>
             </p>
           </div>
           <div class="col3 col flex2 justify-content-between">
-            <h4>Your Contribution</h4>
-            <h2>
+            <h4 :class="`${isSimpleIraDisabled && 'disabled-color'}`">
+              Your Contribution
+            </h4>
+            <h2 :class="`${isSimpleIraDisabled && 'disabled-color'}`">
               {{ sliders.simpleIraPersonal | currency("$", 0) }} ({{
                   sliderPercentage(sliders.simpleIraPersonal)
                 }}%)
@@ -293,9 +318,11 @@ How to Get Started <br />w/ a <template>
             <div class="colBox">
               <vue-custom-slider v-model="sliders.simpleIraPersonal" :max="sliderMax.simpleIraPersonal" @handleDrag="handleSimpleIra" :disabled="isSimpleIraDisabled" />
             </div>
-            <h4>Your Business Contribution</h4>
-            <info-icon tooltip="business">
-              <h2>
+            <h4 :class="`${isSimpleIraDisabled && 'disabled-color'}`">
+              Your Business Contribution
+            </h4>
+            <info-icon :tooltip="tooltip.simpleIraBusiness" :dynamic="true" tooltipType="description">
+              <h2 :class="`${isSimpleIraDisabled && 'disabled-color'}`">
                 {{ sliders.simpleIraBusiness | currency("$", 0) }} ({{
                     sliderPercentage(sliders.simpleIraBusiness)
                   }}%)
@@ -304,7 +331,7 @@ How to Get Started <br />w/ a <template>
             <div class="colBox">
               <vue-custom-slider v-model="sliders.simpleIraBusiness" :max="sliderMax.simpleIraBusiness" @handleDrag="handleSimpleIra" :disabled="isSimpleIraDisabled" />
             </div>
-            <p>
+            <p :class="`${isSimpleIraDisabled && 'disabled-color'}`">
               At your age 67, these <br />
               contributions could be <br />
               worth
@@ -317,20 +344,28 @@ How to Get Started <br />w/ a <template>
           </div>
 
           <div class="col4 col flex2 justify-content-between">
-            <h4>Tax Avoided</h4>
-            <info-icon tooltip="business">
-              <h2>{{ taxAvoided.simpleIra | currency("$", 0) }}</h2>
+            <h4 :class="`${isSimpleIraDisabled && 'disabled-color'}`">
+              Tax Avoided
+            </h4>
+            <info-icon :tooltip="tooltip.taxAvoided.simpleIra" :dynamic="true" tooltipType="points">
+              <h2 :class="`${isSimpleIraDisabled && 'disabled-color'}`">
+                {{ taxAvoided.simpleIra | currency("$", 0) }}
+              </h2>
             </info-icon>
 
-            <p class="p-0 m-0">
+            <p :class="`${isSimpleIraDisabled && 'disabled-color'} p-0 m-0`">
               At your age 67, the amount <br />
               you are losing could be <br />
               worth
               {{ sliderCompound(taxAvoided.simpleIra) | currency("$", 0) }}
             </p>
-            <h4>Tax Advantage Ratio</h4>
-            <info-icon tooltip="business">
-              <h2>{{ taxAdvantageRatio.simpleIra }}%</h2>
+            <h4 :class="`${isSimpleIraDisabled && 'disabled-color'}`">
+              Tax Advantage Ratio
+            </h4>
+            <info-icon :tooltip="tooltip.taxAdvantageRatio.simpleIra" tooltipType="description" :dynamic="true">
+              <h2 :class="`${isSimpleIraDisabled && 'disabled-color'}`">
+                {{ taxAdvantageRatio.simpleIra }}%
+              </h2>
             </info-icon>
           </div>
           <div :class="`col5 col `">
@@ -347,7 +382,7 @@ How to Get Started <br />w/ a <template>
             </div>
             <a href="https://www.learn.gigfinance.org/blog/how-to-get-started-with-a-simple-ira/" target="_blank" rel="noopener noreferrer" v-else>
               <div :class="`labelbox flex ${
-                    isSimpleIraDisabled && 'disabled-color'
+                    isSimpleIraDisabled && 'disabled-back-color'
                   }`">
                 <h4>How to Get Started <br />w/ a SIMPLE-IRA<br />Account</h4>
               </div>
@@ -374,7 +409,7 @@ How to Get Started <br />w/ a <template>
               opened by individuals. You <br />
               can contribute provided you <br />
               have any type of earned <br />
-              income for the year You may <br />
+              income for the year. You may <br />
               contribute up to $6,000/yr <br />
               <br />
               Best for those who have <br />
@@ -403,14 +438,15 @@ How to Get Started <br />w/ a <template>
                 }}
             </p>
           </div>
-
           <div class="col4 f flex2 justify-content-between">
             <h4>Tax Avoided</h4>
-            <info-icon tooltip="business">
-              <h2>{{ taxAvoided.traditionalIra | currency("$", 0) }}</h2>
+            <info-icon :tooltip="tooltip.taxAvoided.traditionalIra" :dynamic="true" tooltipType="points">
+              <h2>
+                {{ taxAvoided.traditionalIra | currency("$", 0) }}
+              </h2>
             </info-icon>
 
-            <p class="p-0 m-0">
+            <p :class="`p-0 m-0`">
               At your age 67, the amount <br />
               you are losing could be <br />
               worth
@@ -419,7 +455,7 @@ How to Get Started <br />w/ a <template>
                 }}
             </p>
             <h4>Tax Advantage Ratio</h4>
-            <info-icon tooltip="business">
+            <info-icon :tooltip="tooltip.taxAdvantageRatio.traditionalIra" tooltipType="description" :dynamic="true">
               <h2>{{ taxAdvantageRatio.traditionalIra }}%</h2>
             </info-icon>
           </div>
@@ -513,6 +549,9 @@ import {
   repostData
 } from "../../../src/api/TaxApi";
 import Loading from "vue-loading-overlay";
+import {
+  usdFormat
+} from "../../util/usd-format";
 export default {
   name: "RetirementOptions",
 
@@ -524,6 +563,13 @@ export default {
   },
   data() {
     return {
+      tooltip: {
+        individual401kBusiness: {},
+        sepIraBusiness: {},
+        simpleIraBusiness: {},
+        taxAvoided: {},
+        taxAdvantageRatio: {},
+      },
       loader: true,
       roundOff,
       body,
@@ -540,10 +586,10 @@ export default {
         traditionalIra: "",
       },
       taxAdvantageRatio: {
-        individual401k: "",
-        sepIra: "",
-        simpleIra: "",
-        traditionalIra: "",
+        individual401k: 0,
+        sepIra: 0,
+        simpleIra: 0,
+        traditionalIra: 0,
       },
       bestOptionActive: {
         individual401k: false,
@@ -568,6 +614,12 @@ export default {
         traditionalIraPersonal: 10,
       },
       projectedValue: 1000,
+      usdFormat: {
+        style: "currency",
+        currency: "USD",
+        minimumFractionDigits: 0,
+        maximumFractionDigits: 0,
+      },
     };
   },
   mounted() {
@@ -593,6 +645,10 @@ export default {
     this.sliderMax.traditionalIraPersonal = roundOff(
       personalMax_traditionalIra
     );
+    this.sepIraBusinessTooltip();
+    this.individual401kBusinessTooltip();
+    this.simpleIraBusinessTooltip();
+    this.handleTaxAdvantageRatioTooltip();
   },
   methods: {
     handleSignup() {
@@ -608,7 +664,7 @@ export default {
       return number == Infinity ? 0 : number;
     },
     sliderCompound(amount) {
-      let ageUntilRetirement = 67 - parseInt(28);
+      let ageUntilRetirement = 67 - parseInt(this.age);
       let interestRate = 1 + parseFloat(0.08);
       let compoundInterest = Math.pow(interestRate, ageUntilRetirement);
       const number = parseInt(amount * compoundInterest);
@@ -628,6 +684,7 @@ export default {
             this.sliders.individual401kBusiness)) *
         100
       );
+      this.handleTaxAvoidedTooltip(res, "individual401k");
       return res;
     },
     async handleSepIraDrag() {
@@ -636,6 +693,7 @@ export default {
       this.taxAdvantageRatio.sepIra = Math.round(
         (this.taxAvoided.sepIra / this.sliders.sepIraBusiness) * 100
       );
+      this.handleTaxAvoidedTooltip(res, "sepIra");
       return res;
     },
     async handleSimpleIra() {
@@ -651,6 +709,7 @@ export default {
           (this.sliders.simpleIraPersonal + this.sliders.simpleIraBusiness)) *
         100
       );
+      this.handleTaxAvoidedTooltip(res, "simpleIra");
       return res;
     },
     async handleTraditionalIra() {
@@ -662,6 +721,7 @@ export default {
         (this.taxAvoided.traditionalIra / this.sliders.traditionalIraPersonal) *
         100
       );
+      this.handleTaxAvoidedTooltip(res, "traditionalIra");
       return res;
     },
     largestNumber(props) {
@@ -722,6 +782,172 @@ export default {
         };
       }
     },
+    individual401kBusinessTooltip() {
+      let irsLimit;
+      let compensation;
+      let seTaxDeduction;
+      if (this.userInput.salary) {
+        compensation =
+          "Your Salary: " +
+          this.userInput.salary.toLocaleString("en-US", {
+            style: "currency",
+            currency: "USD",
+            minimumFractionDigits: 0,
+            maximumFractionDigits: 0,
+          });
+        seTaxDeduction = "";
+        irsLimit = "25%";
+      } else {
+        compensation =
+          "Your Total Profit: " +
+          this.profitAfterExpenses.toLocaleString("en-US", {
+            style: "currency",
+            currency: "USD",
+            minimumFractionDigits: 0,
+            maximumFractionDigits: 0,
+          });
+        seTaxDeduction = "x  Self Employment Deduction*: 92.5%";
+        irsLimit = "20%";
+      }
+      this.tooltip = {
+        ...this.tooltip,
+        individual401kBusiness: {
+          description: "If you pay yourself a salary (receive a W2), then this is limited to 25% of the salary you pay yourself. If you don’t pay yourself a salary, this is limited to 20% of the total earnings from your business after deducting half of self employment tax.",
+          compensation,
+          seTaxDeduction,
+          irsLimit,
+          contributionMax: this.sliderMax.individual401kBusiness.toLocaleString(
+            "en-US", {
+              style: "currency",
+              currency: "USD",
+              minimumFractionDigits: 0,
+              maximumFractionDigits: 0,
+            }
+          ),
+        },
+      };
+    },
+    sepIraBusinessTooltip() {
+      let irsLimit;
+      let compensation;
+      let seTaxDeduction;
+      if (this.userInput.salary) {
+        compensation =
+          "Your Salary: " +
+          this.userInput.salary.toLocaleString("en-US", {
+            style: "currency",
+            currency: "USD",
+            minimumFractionDigits: 0,
+            maximumFractionDigits: 0,
+          });
+        seTaxDeduction = "";
+        irsLimit = "25%";
+      } else {
+        compensation =
+          "Your Total Profit: " +
+          this.profitAfterExpenses.toLocaleString("en-US", {
+            style: "currency",
+            currency: "USD",
+            minimumFractionDigits: 0,
+            maximumFractionDigits: 0,
+          });
+        seTaxDeduction = "x  Self Employment Deduction*: 92.5%";
+        irsLimit = "20%";
+      }
+      this.tooltip = {
+        ...this.tooltip,
+        sepIraBusiness: {
+          description: "If you pay yourself a salary (receive a W2), then this is limited to 25% of the salary you pay yourself. If you don’t pay yourself a salary, this is limited to 20% of the total earnings from your business after deducting half of self employment tax.",
+          compensation,
+          seTaxDeduction,
+          irsLimit,
+          contributionMax: this.sliderMax.sepIraBusiness.toLocaleString(
+            "en-US", {
+              style: "currency",
+              currency: "USD",
+              minimumFractionDigits: 0,
+              maximumFractionDigits: 0,
+            }
+          ),
+        },
+      };
+    },
+    simpleIraBusinessTooltip() {
+      this.tooltip.simpleIraBusiness = {
+        ...this.tooltip,
+        description: `You can either do a matching
+        contribution for every dollar up to 3% of
+        your salary or net earnings, or 2% as an elective deferral. This calculator assumes the 3%
+        matching contribution, therefore has a maximum
+        business contribution of <span class="">${this.sliderMax.simpleIraBusiness.toLocaleString(
+          "en-US",
+          {
+            style: "currency",
+            currency: "USD",
+            minimumFractionDigits: 0,
+            maximumFractionDigits: 0,
+          }
+        )}</span>.`,
+      };
+    },
+    handleTaxAvoidedTooltip(res, name) {
+      const taxUpdate = this.taxUpdate;
+      const {
+        federalIncomeTax,
+        stateIncomeTax,
+        socialSecurityTax,
+        medicareTax,
+      } = res || {};
+      const span = (value) => {
+        return `<span class="">${usdFormat(value)}</span>`;
+      };
+      this.tooltip.taxAvoided = {
+        ...(this.tooltip.taxAvoided || {}),
+        [name]: {
+          description: [
+            `Federal Tax avoided: ${span(
+              taxUpdate.federalIncomeTax - federalIncomeTax
+            )}`,
+            `State Tax avoided: ${span(
+              taxUpdate.stateIncomeTax - stateIncomeTax
+            )}`,
+            `Social Security Tax avoided: ${span(
+              taxUpdate.socialSecurityTax - socialSecurityTax
+            )}`,
+            `Medicare Tax avoided: ${span(
+              taxUpdate.medicareTax - medicareTax
+            )}`,
+          ],
+        },
+      };
+    },
+    handleTaxAdvantageRatioTooltip() {
+      const span = (value) => `The higher the percentage, the better
+      tax advantage the account offers. This metric shows
+      tax avoided over contribution amount.  For each $1
+      you contribute to retirement, you reduce your tax bill by $<span class="">${value}</span>.`;
+      this.tooltip.taxAdvantageRatio = {
+        ...this.tooltip.taxAdvantageRatio,
+        individual401k: {
+          description: span(
+            (this.taxAdvantageRatio.individual401k / 100).toFixed(2)
+          ),
+        },
+        sepIra: {
+          description: span((this.taxAdvantageRatio.sepIra / 100).toFixed(2)),
+        },
+        simpleIra: {
+          description: span(
+            (this.taxAdvantageRatio.simpleIra / 100).toFixed(2)
+          ),
+        },
+        traditionalIra: {
+          description: span(
+            (this.taxAdvantageRatio.traditionalIra / 100).toFixed(2)
+          ),
+        },
+      };
+    },
   },
   computed: {
     roundedProjectedValue: {
@@ -734,10 +960,12 @@ export default {
     },
     ...Vuex.mapState("userInformation", {
       profitAfterTaxes: (state) => state.taxSummary.profitAfterTaxes,
+      profitAfterExpenses: (state) => state.taxSummary.profitAfterExpenses,
       totalIncome: (state) => state.taxSummary.totalIncome,
       taxBalance: (state) => state.taxUpdate.taxBalance,
       age: (state) => state.userInput.age,
       userInput: (state) => state.userInput,
+      taxUpdate: (state) => state.taxUpdate,
     }),
     getRoundofValue() {
       return roundOff(this.profitAfterTaxes, 100);
@@ -763,7 +991,9 @@ export default {
       this.percent =
         formattedValue == Infinity ? 0 : Math.round(formattedValue);
       const {
+        individual401kPersonal,
         individual401kBusiness,
+        simpleIraPersonal,
         simpleIraBusiness,
         traditionalIraPersonal,
         sepIraBusiness,
@@ -778,39 +1008,61 @@ export default {
       };
       if (!this.isIndividual401kDisabled) {
         if (val > individual401kBusiness) {
-          this.sliders.individual401kPersonal = roundOff(
-            val - individual401kBusiness
-          );
-          this.sliders.individual401kBusiness = roundOff(
-            individual401kBusiness
-          );
+          if (val - individual401kBusiness > individual401kPersonal) {
+            this.sliders.individual401kPersonal = roundOff(
+              individual401kPersonal
+            );
+            this.sliders.individual401kBusiness = roundOff(
+              individual401kBusiness
+            );
+            console.log("Exceed maximum of Individual 401k contribution limit");
+          } else {
+            this.sliders.individual401kPersonal = roundOff(
+              val - individual401kBusiness
+            );
+            this.sliders.individual401kBusiness = roundOff(
+              individual401kBusiness
+            );
+          }
         } else {
           this.sliders.individual401kBusiness = val;
         }
       }
       if (!this.isSimpleIraDisabled) {
         if (val > simpleIraBusiness) {
-          this.sliders.simpleIraPersonal = roundOff(val - simpleIraBusiness);
-          this.sliders.simpleIraBusiness = roundOff(simpleIraBusiness);
+          if (val - simpleIraBusiness > simpleIraPersonal) {
+            this.sliders.simpleIraPersonal = roundOff(simpleIraPersonal);
+            this.sliders.simpleIraBusiness = roundOff(simpleIraBusiness);
+            console.log("Exceed maximum of SIMPLE IRA contribution limit");
+          } else {
+            this.sliders.simpleIraPersonal = roundOff(val - simpleIraBusiness);
+            this.sliders.simpleIraBusiness = roundOff(simpleIraBusiness);
+          }
         } else {
           this.sliders.simpleIraBusiness = roundOff(val);
         }
       }
       if (val > traditionalIraPersonal) {
         this.sliders.traditionalIraPersonal = traditionalIraPersonal;
+        console.log("Exceed maximum of Traditional IRA contribution limit");
       } else {
         this.sliders.traditionalIraPersonal = val;
       }
       if (val > sepIraBusiness) {
         this.sliders.sepIraBusiness = sepIraBusiness;
+        console.log("Exceed maximum of SEP-IRA contribution limit");
       } else {
         this.sliders.sepIraBusiness = val;
       }
 
-      await this.handleIndividualDrag();
-      await this.handleSepIraDrag();
-      await this.handleSimpleIra();
-      await this.handleTraditionalIra();
+      const individual401k = await this.handleIndividualDrag();
+      this.handleTaxAvoidedTooltip(individual401k, "individual401k");
+      const sepIra = await this.handleSepIraDrag();
+      this.handleTaxAvoidedTooltip(sepIra, "sepIra");
+      const simpleIra = await this.handleSimpleIra();
+      this.handleTaxAvoidedTooltip(simpleIra, "simpleIra");
+      const traditionalIra = await this.handleTraditionalIra();
+      this.handleTaxAvoidedTooltip(traditionalIra, "traditionalIra");
       this.loader = false;
       console.log("loader ends");
     },
@@ -821,6 +1073,12 @@ export default {
         });
         this.bestOptionActive = {};
         this.bestOptionActive[find] = true;
+      },
+      deep: true,
+    },
+    taxAdvantageRatio: {
+      handler(taxAdvantageRatio) {
+        this.handleTaxAdvantageRatioTooltip();
       },
       deep: true,
     },
@@ -962,8 +1220,12 @@ export default {
 </style>
 
 <style scoped>
-.disabled-color {
+.disabled-back-color {
   background: #bdbdbd !important;
+}
+
+.disabled-color {
+  color: #bdbdbd !important;
 }
 
 .up-drag {
