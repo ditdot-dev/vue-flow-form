@@ -2,10 +2,10 @@ export const DynamicTooltip = (
   type,
   {
     description = "",
-    netEarning = "",
-    taxDeduction = "",
+    compensation = "",
+    seTaxDeduction = "",
     irsLimit = "",
-    contributionMax = ""
+    contributionMax = "",
   }
 ) => {
   if (!type) {
@@ -13,13 +13,12 @@ export const DynamicTooltip = (
       <span class='text-left'>${description}</span>
       <div class="d-flex flex-column mt-3 justify-content-center align-items-end mr-5">
         <div class="d-flex">
-          <span>Net Earning:</span>
-          <span class="ml-2 ">${netEarning}</span>
+          <span class="ml-2 ">${compensation}</span>
         </div>
 		<div class="d-flex">
 		<span class="mx-2">x</span>
           <span>SE Tax Deduction:</span>
-          <span class="ml-2">${taxDeduction}</span>
+          <span class="ml-2">${seTaxDeduction}</span>
         </div>
 		<div class="d-flex">
 		<span class="mx-2">x</span>
@@ -31,7 +30,8 @@ export const DynamicTooltip = (
       <div class="d-flex justify-content-end mr-5">
         <span>Contribution Maximum*:</span>
         <span class="ml-2 ">${contributionMax}</span>
-      </div>
+      </div><br>
+        <div style="color: #BDBDBD; font-size: 12px" class="text-right">*Numbers are rounded for estimation</div>
     </div>`;
   }
   if (type === "description") {

@@ -73,7 +73,7 @@ export function setSliderMax() {
     );
     // sep-Ira slider's max
     slider.businessMax_sepIra = roundOff(
-      Math.max(0.25 * salary)
+      Math.round(0.25 * salary)
     );
     // simpleIra slider's max
     slider.personalMax_simpleIra = roundOff(

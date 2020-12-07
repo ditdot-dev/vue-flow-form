@@ -643,7 +643,7 @@ export default {
       return number == Infinity ? 0 : number;
     },
     sliderCompound(amount) {
-      let ageUntilRetirement = 67 - parseInt(28);
+      let ageUntilRetirement = 67 - parseInt(this.age);
       let interestRate = 1 + parseFloat(0.08);
       let compoundInterest = Math.pow(interestRate, ageUntilRetirement);
       const number = parseInt(amount * compoundInterest);
@@ -763,23 +763,29 @@ export default {
     },
     individual401kBusinessTooltip() {
       let irsLimit;
-      let netEarning;
-      let taxDeduction;
+      let compensation;
+      let seTaxDeduction;
       if (this.userInput.salary) {
-        netEarning = this.userInput.salary;
-        taxDeduction = ""
+        compensation = "Salary: " + this.userInput.salary.toLocaleString("en-US", {
+          style: "currency",
+          currency: "USD"
+        });
+        seTaxDeduction = ""
         irsLimit = "25%";
       } else {
-        netEarning = this.profitAfterExpenses;
-        taxDeduction = "92.5%"
+        compensation = "NetEarning: " + this.profitAfterExpenses.toLocaleString("en-US", {
+          style: "currency",
+          currency: "USD"
+        });
+        seTaxDeduction = "92.5%"
         irsLimit = "20%";
       }
       this.tooltip = {
         ...this.tooltip,
         individual401kBusiness: {
           description: "If you pay yourself a salary (W-2), then this is limited to 25% of the salary you pay yourself. If you don’t pay yourself a salary, this is limited to 20% of the total earnings from your business after deducting half of self employment tax.",
-          netEarning,
-          taxDeduction,
+          compensation,
+          seTaxDeduction,
           irsLimit,
           contributionMax: this.sliderMax.individual401kBusiness,
         },
@@ -787,23 +793,29 @@ export default {
     },
     sepIraBusinessTooltip() {
       let irsLimit;
-      let netEarning;
-      let taxDeduction;
+      let compensation;
+      let seTaxDeduction;
       if (this.userInput.salary) {
-        netEarning = this.userInput.salary;
-        taxDeduction = ""
+        compensation = "Salary: " + this.userInput.salary.toLocaleString("en-US", {
+          style: "currency",
+          currency: "USD"
+        });
+        seTaxDeduction = ""
         irsLimit = "25%";
       } else {
-        netEarning = this.profitAfterExpenses;
-        taxDeduction = "92.5%"
+        compensation = "NetEarning: " + this.profitAfterExpenses.toLocaleString("en-US", {
+          style: "currency",
+          currency: "USD"
+        });
+        seTaxDeduction = "92.5%"
         irsLimit = "20%";
       }
       this.tooltip = {
         ...this.tooltip,
         sepIraBusiness: {
           description: "If you pay yourself a salary (W-2), then this is limited to 25% of the salary you pay yourself. If you don’t pay yourself a salary, this is limited to 20% of the total earnings from your business after deducting half of self employment tax.",
-          netEarning,
-          taxDeduction,
+          compensation,
+          seTaxDeduction,
           irsLimit,
           contributionMax: this.sliderMax.sepIraBusiness,
         },
@@ -814,8 +826,7 @@ export default {
         ...this.tooltip,
         description: `You can either do a matching
         contribution for every dollar up to 3% of
-        the salary you pay yourself, or 2% of the
-        salary. This calculator assumes the 3%
+        your salary or net earnings, or 2% as an elective deferral. This calculator assumes the 3%
         matching contribution, therefore has a maximum
         business contribution of <span class="">${this.sliderMax.simpleIraBusiness}</span>.`,
       };
