@@ -63,7 +63,7 @@ export function setSliderMax() {
     Math.round(profitAfterExpenses * seTaxDeducted * 100) / 100;
   let incorporatedEarnings = Math.round((netBizEarnings + salary) * 100) / 100;
 
-  if (salary === true) {
+  if (salary > 0) {
     // individual401K slider's max
     slider.personalMax_individual401k = roundOff(
       Math.min(19500, incorporatedEarnings)
