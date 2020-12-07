@@ -108,9 +108,8 @@
             </p>
           </div>
           <div class="col3 col flex2 justify-content-between relative">
-            <info-icon
-              tooltip="There are two forms of contributions available to the self-employed. Your Contribution is a salary deferral and reduces your taxable income.Your Business Contribution is a form of employee benefits and is treated as a business expense to the IRS. Thereby lowering your business’s taxable profit."
-              class="absolute top-60" classes="d-flex align-items-end">
+            <info-icon tooltip="There are two forms of contributions available to the self-employed. Your Contribution is a salary deferral and reduces your taxable income.Your Business Contribution is a form of employee benefits and is treated as a business expense to the IRS. Thereby lowering your business’s taxable profit.
+              The calculator assumes you will apply your earnings through business contribution, because that maximizes tax deduction opportunity." class="absolute top-60" classes="d-flex align-items-end">
               <h4 class="d-flex align-items-end">Contributions</h4>
             </info-icon>
             <h4>Your Contribution</h4>
