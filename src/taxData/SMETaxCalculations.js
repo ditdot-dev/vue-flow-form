@@ -69,11 +69,11 @@ export function setSliderMax() {
       Math.min(19500, incorporatedEarnings)
     );
     slider.businessMax_individual401k = roundOff(
-      Math.round(0.25 * salary)
+      Math.min(37500,Math.round(0.25 * salary))
     );
     // sep-Ira slider's max
     slider.businessMax_sepIra = roundOff(
-      Math.round(0.25 * salary)
+      Math.min(57000,Math.round(0.25 * salary))
     );
     // simpleIra slider's max
     slider.personalMax_simpleIra = roundOff(
@@ -90,10 +90,10 @@ export function setSliderMax() {
       Math.min(19500, netBizEarnings)
     );
     slider.businessMax_individual401k = roundOff(
-      Math.round(0.20 * netBizEarnings)
+      Math.min(37500,Math.round(0.20 * netBizEarnings))
     );
     // sep-Ira slider's max
-    slider.businessMax_sepIra = roundOff(Math.round(0.20 * netBizEarnings));
+    slider.businessMax_sepIra = roundOff(Math.min(57000,Math.round(0.20 * netBizEarnings)));
     // simpleIra slider's max
     slider.personalMax_simpleIra = roundOff(Math.min(13500, netBizEarnings));
     slider.businessMax_simpleIra = roundOff(Math.round(0.03 * netBizEarnings));
