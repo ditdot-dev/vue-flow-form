@@ -788,7 +788,7 @@ export default {
       let seTaxDeduction;
       if (this.userInput.salary) {
         compensation =
-          "Salary: " +
+          "Your Salary: " +
           this.userInput.salary.toLocaleString("en-US", {
             style: "currency",
             currency: "USD",
@@ -799,7 +799,7 @@ export default {
         irsLimit = "25%";
       } else {
         compensation =
-          "NetEarning: " +
+          "Your Total Profit: " +
           this.profitAfterExpenses.toLocaleString("en-US", {
             style: "currency",
             currency: "USD",
@@ -833,7 +833,7 @@ export default {
       let seTaxDeduction;
       if (this.userInput.salary) {
         compensation =
-          "Salary: " +
+          "Your Salary: " +
           this.userInput.salary.toLocaleString("en-US", {
             style: "currency",
             currency: "USD",
@@ -844,7 +844,7 @@ export default {
         irsLimit = "25%";
       } else {
         compensation =
-          "NetEarning: " +
+          "Your Total Profit: " +
           this.profitAfterExpenses.toLocaleString("en-US", {
             style: "currency",
             currency: "USD",
