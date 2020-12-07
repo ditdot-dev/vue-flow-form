@@ -599,6 +599,12 @@ export default {
         traditionalIraPersonal: 10,
       },
       projectedValue: 1000,
+      usdFormat: {
+        style: "currency",
+        currency: "USD",
+        minimumFractionDigits: 0,
+        maximumFractionDigits: 0,
+      },
     };
   },
   mounted() {
@@ -768,16 +774,20 @@ export default {
       if (this.userInput.salary) {
         compensation = "Salary: " + this.userInput.salary.toLocaleString("en-US", {
           style: "currency",
-          currency: "USD"
+          currency: "USD",
+          minimumFractionDigits: 0,
+          maximumFractionDigits: 0,
         });
         seTaxDeduction = ""
         irsLimit = "25%";
       } else {
         compensation = "NetEarning: " + this.profitAfterExpenses.toLocaleString("en-US", {
           style: "currency",
-          currency: "USD"
+          currency: "USD",
+          minimumFractionDigits: 0,
+          maximumFractionDigits: 0,
         });
-        seTaxDeduction = "92.5%"
+        seTaxDeduction = "x  Self Employment Deduction*: 92.5%"
         irsLimit = "20%";
       }
       this.tooltip = {
@@ -787,7 +797,12 @@ export default {
           compensation,
           seTaxDeduction,
           irsLimit,
-          contributionMax: this.sliderMax.individual401kBusiness,
+          contributionMax: this.sliderMax.individual401kBusiness.toLocaleString("en-US", {
+            style: "currency",
+            currency: "USD",
+            minimumFractionDigits: 0,
+            maximumFractionDigits: 0,
+          }),
         },
       };
     },
@@ -798,16 +813,20 @@ export default {
       if (this.userInput.salary) {
         compensation = "Salary: " + this.userInput.salary.toLocaleString("en-US", {
           style: "currency",
-          currency: "USD"
+          currency: "USD",
+          minimumFractionDigits: 0,
+          maximumFractionDigits: 0,
         });
         seTaxDeduction = ""
         irsLimit = "25%";
       } else {
         compensation = "NetEarning: " + this.profitAfterExpenses.toLocaleString("en-US", {
           style: "currency",
-          currency: "USD"
+          currency: "USD",
+          minimumFractionDigits: 0,
+          maximumFractionDigits: 0,
         });
-        seTaxDeduction = "92.5%"
+        seTaxDeduction = "x  Self Employment Deduction*: 92.5%"
         irsLimit = "20%";
       }
       this.tooltip = {
@@ -817,7 +836,12 @@ export default {
           compensation,
           seTaxDeduction,
           irsLimit,
-          contributionMax: this.sliderMax.sepIraBusiness,
+          contributionMax: this.sliderMax.sepIraBusiness.toLocaleString("en-US", {
+            style: "currency",
+            currency: "USD",
+            minimumFractionDigits: 0,
+            maximumFractionDigits: 0,
+          }),
         },
       };
     },
@@ -828,7 +852,12 @@ export default {
         contribution for every dollar up to 3% of
         your salary or net earnings, or 2% as an elective deferral. This calculator assumes the 3%
         matching contribution, therefore has a maximum
-        business contribution of <span class="">${this.sliderMax.simpleIraBusiness}</span>.`,
+        business contribution of <span class="">${this.sliderMax.simpleIraBusiness.toLocaleString("en-US", {
+          style: "currency",
+          currency: "USD",
+          minimumFractionDigits: 0,
+          maximumFractionDigits: 0,
+        })}</span>.`,
       };
     },
     handleTaxAvoidedTooltip(res, name) {

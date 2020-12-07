@@ -16,8 +16,6 @@ export const DynamicTooltip = (
           <span class="ml-2 ">${compensation}</span>
         </div>
 		<div class="d-flex">
-		<span class="mx-2">x</span>
-          <span>SE Tax Deduction:</span>
           <span class="ml-2">${seTaxDeduction}</span>
         </div>
 		<div class="d-flex">
