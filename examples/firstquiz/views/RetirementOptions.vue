@@ -1036,7 +1036,7 @@ export default {
         medicareTax,
       } = res || {};
       const span = (value) => {
-        return `<span class="">${usdFormat(Math.round(value))}</span>`;
+        return `<span class="">${usdFormat(value)}</span>`;
       };
       this.tooltip.taxAvoided = {
         ...(this.tooltip.taxAvoided || {}),

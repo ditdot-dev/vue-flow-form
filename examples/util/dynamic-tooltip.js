@@ -5,7 +5,7 @@ export const DynamicTooltip = (
     compensation = "",
     seTaxDeduction = "",
     irsLimit = "",
-    contributionMax = "",
+    contributionMax = ""
   }
 ) => {
   if (!type) {
@@ -38,13 +38,14 @@ export const DynamicTooltip = (
     </div>`;
   }
   if (type === "points") {
-    return ` <div class="d-flex flex-column inner-body">
+    let withoutComma = "";
+    const val = (description || []).map(des => `<li>${des}</li>`);
+    val.forEach(item => (withoutComma = withoutComma + item));
+    return `<div class="d-flex flex-column inner-body">
 	  <ul class="d-flex flex-column align-items-start">
-	 	${(description || []).map(des => `<li>${des}</li>`)}
+	 	${withoutComma}
 	  </ul>
-    </div>`
-      .split(",")
-      .join("");
+    </div>`;
   }
   return "";
 };
