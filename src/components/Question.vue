@@ -72,8 +72,8 @@
         >
             <span v-if="question.type === QuestionType.SectionBreak">{{ language.continue }}</span>
             <span v-else>
-              <span v-if="this.dataValue !== ''">{{ language.ok }}</span>
-              <span v-else>{{ language.skip }}</span>
+              <span v-if="showSkip()">{{ language.skip }}</span>
+              <span v-else>{{ language.ok }}</span>
             </span>
         </button>
         <a 
@@ -267,6 +267,12 @@
         }
 
         return q.hasValue && q.isValid()
+      },
+
+      showSkip() {
+        const q = this.$refs.questionComponent
+
+        return q && !this.question.required && !q.hasValue
       },
 
       /**

@@ -33,10 +33,13 @@
             var url = new URL(this.fixAnswer(this.dataValue))
 
             return true
-          } catch(_) { /* Invalid URL */ }
+          } catch(_) { 
+            // Invalid URL
+            return false
+          }
         }
 
-        return false
+        return !this.question.required
       }
     }
   }
