@@ -53,7 +53,9 @@
 /* The calculate button at the end of the last question in the form*/
 
 .complete-button {
-  background-color: #a1ebc0;
+  background: linear-gradient(rgb(0, 212, 159), rgb(0, 156, 116));
+  color: white;
+  border-radius: 30px;
 }
 
 .f-tagline,
