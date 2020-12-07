@@ -189,18 +189,18 @@
               <div :class="`labelbox flex ${
                     isIndividual401kDisabled && 'disabled-back-color'
                   }`">
-                <h4>How to Open an <br />Individual 401k <br />Account</h4>
+                <h4>How to Get Started <br />w/ a Individual 401k <br />Account</h4>
               </div>
               <span class="labelbox-down">
                 You are not eligible due to too many employees in your
                 business.
               </span>
             </div>
-            <a href="https://www.learn.gigfinance.org/blog/how-to-get-started-with-an-individual-401-k/" v-else>
+            <a href="https://www.learn.gigfinance.org/blog/how-to-get-started-with-an-individual-401-k/" target="_blank" rel="noopener noreferrer" v-else>
               <div :class="`labelbox flex ${
-                    isIndividual401kDisabled && 'disabled-back-color'
+                    isIndividual401kDisabled && 'disabled-color'
                   }`">
-                <h4>How to Open an <br />Individual 401k <br />Account</h4>
+                <h4>How to Get Started <br />w/ a Individual 401k <br />Account</h4>
               </div>
             </a>
           </div>
@@ -251,6 +251,7 @@
               {{ sliderCompound(sliders.sepIraBusiness) | currency("$", 0) }}
             </p>
           </div>
+        </div>
 
           <div class="col4 col flex2 justify-content-between">
             <h4>Tax Avoided</h4>
@@ -271,9 +272,9 @@
             </info-icon>
           </div>
           <div class="col5 col">
-            <a href="https://www.learn.gigfinance.org/blog/how-to-get-started-with-a-sep-ira/">
+            <a href="https://www.learn.gigfinance.org/blog/how-to-get-started-with-a-sep-ira/" target="_blank" rel="noopener noreferrer">
               <div class="labelbox flex">
-                <h4>How to Open a <br />SEP-IRA<br />Account</h4>
+                <h4>How to Get Started <br />w/ a SEP-IRA<br />Account</h4>
               </div>
             </a>
           </div>
@@ -370,20 +371,20 @@
           <div :class="`col5 col `">
             <div v-if="isSimpleIraDisabled">
               <div :class="`labelbox flex ${
-                    isSimpleIraDisabled && 'disabled-back-color'
+                    isSimpleIraDisabled && 'disabled-color'
                   }`" v-if="isSimpleIraDisabled">
-                <h4>How to Open a <br />SIMPLE-IRA<br />Account</h4>
+                <h4>How to Get Started <br />w/ a SIMPLE-IRA<br />Account</h4>
               </div>
               <span class="labelbox-down">
                 You are not eligible due to too many employees in your
                 business.
               </span>
             </div>
-            <a href="https://www.learn.gigfinance.org/blog/how-to-get-started-with-a-simple-ira/" v-else>
+            <a href="https://www.learn.gigfinance.org/blog/how-to-get-started-with-a-simple-ira/" target="_blank" rel="noopener noreferrer" v-else>
               <div :class="`labelbox flex ${
                     isSimpleIraDisabled && 'disabled-back-color'
                   }`">
-                <h4>How to Open a <br />SIMPLE-IRA<br />Account</h4>
+                <h4>How to Get Started <br />w/ a SIMPLE-IRA<br />Account</h4>
               </div>
             </a>
           </div>
@@ -437,7 +438,6 @@
                 }}
             </p>
           </div>
-
           <div class="col4 f flex2 justify-content-between">
             <h4>Tax Avoided</h4>
             <info-icon :tooltip="tooltip.taxAvoided.traditionalIra" :dynamic="true" tooltipType="points">
@@ -460,9 +460,9 @@
             </info-icon>
           </div>
           <div class="col5 col">
-            <a href="https://www.learn.gigfinance.org/blog/how-to-get-started-with-a-traditional-ira/">
+            <a href="https://www.learn.gigfinance.org/blog/how-to-get-started-with-a-traditional-ira/" target="_blank" rel="noopener noreferrer">
               <div class="labelbox flex">
-                <h4>How to Open an <br />Traditional IRA <br />Account</h4>
+                <h4>How to Get Started <br />w/ a Traditional IRA <br />Account</h4>
               </div>
             </a>
           </div>
