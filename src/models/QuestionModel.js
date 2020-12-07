@@ -69,7 +69,7 @@ export class LinkOption {
 export default class QuestionModel {
   constructor(options) {
     this.id = null
-    this.answer = ''
+    this.answer = null
     this.answered = false
     this.index = 0
     this.options = []
@@ -123,7 +123,6 @@ export default class QuestionModel {
   }
 
   setAnswer(answer) {
-    console.log(answer)
     if (this.type === QuestionType.Number && answer !== '' && !isNaN(+answer)) {
       answer = +answer
     }
