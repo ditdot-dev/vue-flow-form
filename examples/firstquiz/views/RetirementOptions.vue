@@ -88,14 +88,6 @@
                 Individual <br />
                 401K
               </h1>
-              <p>
-                Over 80% of incorporated <br />
-                freelancers use this option. <br />
-                <br />
-                Based on your information, <br />
-                we suggest you open an <br />
-                Individual 401(K)
-              </p>
             </div>
           </div>
           <div class="col2 col flex2 justify-content-start mt-3 relative">
@@ -116,7 +108,9 @@
             </p>
           </div>
           <div class="col3 col flex2 justify-content-between relative">
-            <info-icon tooltip="business" class="absolute top-60" classes="d-flex align-items-end">
+            <info-icon
+              tooltip="There are two forms of contributions available to the self-employed. Your Contribution is a salary deferral and reduces your taxable income.Your Business Contribution is a form of employee benefits and is treated as a business expense to the IRS. Thereby lowering your business’s taxable profit."
+              class="absolute top-60" classes="d-flex align-items-end">
               <h4 class="d-flex align-items-end">Contributions</h4>
             </info-icon>
             <h4>Your Contribution</h4>
@@ -202,10 +196,6 @@
           </h2>
           <div class="col1 col flex2">
             <h1>SEP-IRA</h1>
-            <p>
-              X% of people your age <br />
-              has this account
-            </p>
           </div>
           <div class="col2 col flex2 justify-content-between mt-3">
             <p>
@@ -217,8 +207,8 @@
               contribute a maximum of <br />
               $56,000/yr <br />
               <br />
-              Best for simplicity in setup <br />
-              and if you have 2 jobs, one as <br />
+              Best for simplicity in setup. <br />
+              And if you have 2 jobs, one as <br />
               a freelancer and another as a <br />
               full-time employee.
             </p>
@@ -277,18 +267,6 @@
           </h2>
           <div class="col1 col flex2">
             <h1 class="mt-5">SIMPLE IRA</h1>
-            <p>
-              This is suitable for <br />
-              those who have <br />
-              employees and want to<br />
-              offer retirement <br />
-              benefits to their<br />
-              employees <br />
-              <br />
-              Over 65% of users have <br />
-              this as their first <br />
-              retirement account
-            </p>
           </div>
           <div class="col2 col flex2 justify-content-start mt-3">
             <p>
@@ -398,7 +376,7 @@
               opened by individuals. You <br />
               can contribute provided you <br />
               have any type of earned <br />
-              income for the year You may <br />
+              income for the year. You may <br />
               contribute up to $6,000/yr <br />
               <br />
               Best for those who have <br />
@@ -793,7 +771,7 @@ export default {
       this.tooltip = {
         ...this.tooltip,
         individual401kBusiness: {
-          description: "If you pay yourself a salary (W-2), then this is limited to 25% of the salary you pay yourself. If you don’t pay yourself a salary, this is limited to 20% of the total earnings from your business after deducting half of self employment tax.",
+          description: "If you pay yourself a salary (receive a W2), then this is limited to 25% of the salary you pay yourself. If you don’t pay yourself a salary, this is limited to 20% of the total earnings from your business after deducting half of self employment tax.",
           compensation,
           seTaxDeduction,
           irsLimit,
@@ -832,7 +810,7 @@ export default {
       this.tooltip = {
         ...this.tooltip,
         sepIraBusiness: {
-          description: "If you pay yourself a salary (W-2), then this is limited to 25% of the salary you pay yourself. If you don’t pay yourself a salary, this is limited to 20% of the total earnings from your business after deducting half of self employment tax.",
+          description: "If you pay yourself a salary (receive a W2), then this is limited to 25% of the salary you pay yourself. If you don’t pay yourself a salary, this is limited to 20% of the total earnings from your business after deducting half of self employment tax.",
           compensation,
           seTaxDeduction,
           irsLimit,
@@ -959,7 +937,9 @@ export default {
       this.percent =
         formattedValue == Infinity ? 0 : Math.round(formattedValue);
       const {
+        individual401kPersonal,
         individual401kBusiness,
+        simpleIraPersonal,
         simpleIraBusiness,
         traditionalIraPersonal,
         sepIraBusiness,
@@ -974,31 +954,43 @@ export default {
       };
       if (!this.isIndividual401kDisabled) {
         if (val > individual401kBusiness) {
-          this.sliders.individual401kPersonal = roundOff(
-            val - individual401kBusiness
-          );
-          this.sliders.individual401kBusiness = roundOff(
-            individual401kBusiness
-          );
+          if (val - individual401kBusiness > individual401kPersonal) {
+            this.sliders.individual401kPersonal = roundOff(individual401kPersonal);
+            this.sliders.individual401kBusiness = roundOff(individual401kBusiness);
+            console.log("Exceed maximum of Individual 401k contribution limit")
+          } else {
+            this.sliders.individual401kPersonal = roundOff(
+              val - individual401kBusiness);
+            this.sliders.individual401kBusiness = roundOff(
+              individual401kBusiness);
+          };
         } else {
           this.sliders.individual401kBusiness = val;
         }
       }
       if (!this.isSimpleIraDisabled) {
         if (val > simpleIraBusiness) {
-          this.sliders.simpleIraPersonal = roundOff(val - simpleIraBusiness);
-          this.sliders.simpleIraBusiness = roundOff(simpleIraBusiness);
+          if (val - simpleIraBusiness > simpleIraPersonal) {
+            this.sliders.simpleIraPersonal = roundOff(simpleIraPersonal);
+            this.sliders.simpleIraBusiness = roundOff(simpleIraBusiness);
+            console.log("Exceed maximum of SIMPLE IRA contribution limit")
+          } else {
+            this.sliders.simpleIraPersonal = roundOff(val - simpleIraBusiness);
+            this.sliders.simpleIraBusiness = roundOff(simpleIraBusiness);
+          }
         } else {
           this.sliders.simpleIraBusiness = roundOff(val);
         }
       }
       if (val > traditionalIraPersonal) {
         this.sliders.traditionalIraPersonal = traditionalIraPersonal;
+        console.log("Exceed maximum of Traditional IRA contribution limit")
       } else {
         this.sliders.traditionalIraPersonal = val;
       }
       if (val > sepIraBusiness) {
         this.sliders.sepIraBusiness = sepIraBusiness;
+        console.log("Exceed maximum of SEP-IRA contribution limit")
       } else {
         this.sliders.sepIraBusiness = val;
       }
