@@ -512,9 +512,10 @@
               rules for your business type and retirement account to determine
               the total allowable deductions that can be made from your
               business. These deductions have different impact on your taxes.
-              The retirement account option recommend is based on your
-              information, and the highest potential for tax avoided available
-              to you.
+              The retirement account option tagged as 'Best Option' is based on your
+              qualification, and the highest tax avoided amount based on your contribution selection.
+              The amount at 67 is calculated using compound interest growth with an 8% interest rate.
+              You can read more in our FAQ section.
             </p>
           </div>
           <div class="irsImage flex">
