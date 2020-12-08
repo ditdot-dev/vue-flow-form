@@ -251,7 +251,6 @@
               {{ sliderCompound(sliders.sepIraBusiness) | currency("$", 0) }}
             </p>
           </div>
-        </div>
 
           <div class="col4 col flex2 justify-content-between">
             <h4>Tax Avoided</h4>
@@ -261,7 +260,7 @@
               </h2>
             </info-icon>
 
-            <p :class="` p-0 m-0`">
+            <p :class="`p-0 m-0`">
               At your age 67, the amount <br />
               you are losing could be <br />
               worth {{ sliderCompound(taxAvoided.sepIra) | currency("$", 0) }}
@@ -271,6 +270,7 @@
               <h2>{{ taxAdvantageRatio.sepIra }}%</h2>
             </info-icon>
           </div>
+
           <div class="col5 col">
             <a href="https://www.learn.gigfinance.org/blog/how-to-get-started-with-a-sep-ira/" target="_blank" rel="noopener noreferrer">
               <div class="labelbox flex">
@@ -371,7 +371,7 @@
           <div :class="`col5 col `">
             <div v-if="isSimpleIraDisabled">
               <div :class="`labelbox flex ${
-                    isSimpleIraDisabled && 'disabled-color'
+                    isSimpleIraDisabled && 'disabled-back-color'
                   }`" v-if="isSimpleIraDisabled">
                 <h4>How to Get Started <br />w/ a SIMPLE-IRA<br />Account</h4>
               </div>
@@ -382,7 +382,7 @@
             </div>
             <a href="https://www.learn.gigfinance.org/blog/how-to-get-started-with-a-simple-ira/" target="_blank" rel="noopener noreferrer" v-else>
               <div :class="`labelbox flex ${
-                    isSimpleIraDisabled && 'disabled-back-color'
+                    isSimpleIraDisabled && 'disabled-color'
                   }`">
                 <h4>How to Get Started <br />w/ a SIMPLE-IRA<br />Account</h4>
               </div>
@@ -614,12 +614,6 @@ export default {
         traditionalIraPersonal: 10,
       },
       projectedValue: 1000,
-      usdFormat: {
-        style: "currency",
-        currency: "USD",
-        minimumFractionDigits: 0,
-        maximumFractionDigits: 0,
-      },
     };
   },
   mounted() {
