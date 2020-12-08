@@ -493,10 +493,10 @@
               accounts?
             </h2>
             <p>
-              We can help you calculate your overall tax avoided amount and
-              optimize contributions to different accounts.
+              We know it can get complicated quickly between a new account and those old accounts from your old employer. Let us take care of maximizing
+              your tax avoided amount based on contributions to different accounts (new & old).
             </p>
-            <button style="align: flex; border-radius: 46px" @click="handleSignup">
+            <button style="float:right;border-radius: 46px" @click="handleSignup">
               Sign Up
             </button>
           </div>
@@ -1922,12 +1922,11 @@ p.percent {
   background-color: white;
 } */
 .img {
-  background-image: url(../../../src/assets/images/assest1.png);
+  background-image: url(../../../src/assets/images/relax-view-sunset.png);
   background-size: cover;
-  width: 12em;
-  height: 12em;
+  width: 256px;
+  height: 192px;
   margin: 20px 0px 10px 0px;
-  border-radius: 100%;
 }
 
 .column2 {
@@ -2011,10 +2010,10 @@ p.percent {
 }
 
 .img2 {
-  background-image: url(../../../src/assets/images/assest2.png);
+  background-image: url(../../../src/assets/images/irs_logo.png);
   background-size: cover;
-  width: 193.5px;
-  height: 78.62px;
+  width: 123px;
+  height: 171px;
 }
 
 .boxwrapper .col4 {
