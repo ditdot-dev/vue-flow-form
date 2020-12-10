@@ -1,42 +1,63 @@
 <template>
-<div>
-  <router-view />
+  <div>
+    <router-view />
 
-  <flow-form ref="flowform" v-on:complete="onComplete" v-on:submit="onSubmit" v-bind:questions="questions" v-bind:language="language" v-bind:standalone="true">
-    <!-- Custom content for the Complete/Submit screen slots in the FlowForm component -->
-    <!-- We've overriden the default "complete" slot content -->
-    <template v-slot:complete>
-      <div class="f-section-wrap">
-        <p>
-          <span class="fh2">Thank you. 🙏</span>
-          <span class="f-section-text">
-            Great work, please wait while we calculate your results. You can
-            review your answers or press submit.
-          </span>
-        </p>
-        <p class="f-description">
-          Note: No data will be saved and/or sent in this calculator.
-        </p>
-      </div>
-    </template>
+    <flow-form
+      ref="flowform"
+      v-on:complete="onComplete"
+      v-on:submit="onSubmit"
+      v-bind:questions="questions"
+      v-bind:language="language"
+      v-bind:standalone="true"
+    >
+      <!-- Custom content for the Complete/Submit screen slots in the FlowForm component -->
+      <!-- We've overriden the default "complete" slot content -->
+      <template v-slot:complete>
+        <div class="f-section-wrap">
+          <p>
+            <span class="fh2">Thank you. 🙏</span>
+            <span class="f-section-text">
+              Great work, please wait while we calculate your results. You can
+              review your answers or press submit.
+            </span>
+          </p>
+          <p class="f-description">
+            Note: No data will be saved and/or sent in this calculator.
+          </p>
+        </div>
+      </template>
 
-    <!-- We've overriden the default "completeButton" slot content -->
-    <template v-slot:completeButton>
-      <div class="f-submit" v-if="!submitted">
-        <button class="o-btn-action" ref="button" type="submit" href="#" v-on:click.prevent="onSendData()" aria-label="Press to submit">
-          <span>{{ language.submitText }}</span>
-        </button>
-        <a class="f-enter-desc" href="#" v-on:click.prevent="onSendData()" v-html="language.formatString(language.pressEnter)">
-        </a>
-      </div>
+      <!-- We've overriden the default "completeButton" slot content -->
+      <template v-slot:completeButton>
+        <div class="f-submit" v-if="!submitted">
+          <button
+            class="o-btn-action"
+            ref="button"
+            type="submit"
+            href="#"
+            v-on:click.prevent="onSendData()"
+            aria-label="Press to submit"
+          >
+            <span>{{ language.submitText }}</span>
+          </button>
+          <a
+            class="f-enter-desc"
+            href="#"
+            v-on:click.prevent="onSendData()"
+            v-html="language.formatString(language.pressEnter)"
+          >
+          </a>
+        </div>
 
-      <p class="text-success" v-if="submitted">Submitted succesfully.</p>
-    </template>
-  </flow-form>
-</div>
+        <p class="text-success" v-if="submitted">Submitted succesfully.</p>
+      </template>
+    </flow-form>
+  </div>
 </template>
 
 <script>
+// Use this prop if you need to populate personalized answer messages.
+// personalizedAnswerMessages: BOOLEAN
 import FlowForm from "../../src/components/FlowForm.vue";
 import QuestionModel, {
   QuestionType,
@@ -64,7 +85,8 @@ export default {
           title: "What's your first name?",
           type: QuestionType.Text,
           required: true,
-          tooltip: "This tooltip is available on every question to explain why the question is asked. In this case, your name is used to help personalize the results later. 😊",
+          tooltip:
+            "This tooltip is available on every question to explain why the question is asked. In this case, your name is used to help personalize the results later. 😊",
         }),
         new QuestionModel({
           answerMessage: "That's a great age to be!",
@@ -75,7 +97,8 @@ export default {
           required: true,
           mask: "##",
           placeholder: "Type a number here...",
-          tooltip: "This information is used to calculate your potential retirement earnings at age 67. Please put your current age, or the age you will be after December 31, 2020.",
+          tooltip:
+            "This information is used to calculate your potential retirement earnings at age 67. Please put your current age, or the age you will be after December 31, 2020.",
         }),
         new QuestionModel({
           id: "tax_filing_status",
@@ -87,7 +110,8 @@ export default {
           placeholder: "Select status",
           inline: false,
           required: true,
-          tooltip: "This information is used to identify your household tax deductions (standard, not itemized). Please put your marital status as recognized by the IRS.",
+          tooltip:
+            "This information is used to identify your household tax deductions (standard, not itemized). Please put your marital status as recognized by the IRS.",
           options: [
             new ChoiceOption({
               label: "Single",
@@ -116,7 +140,8 @@ export default {
           required: true,
           mask: "#",
           placeholder: "Type a number here...",
-          tooltip: "This information is used to add up the tax deductions available to you. Put the number of individuals who are dependent on your income.",
+          tooltip:
+            "This information is used to add up the tax deductions available to you. Put the number of individuals who are dependent on your income.",
         }),
         new QuestionModel({
           id: "tax_filing_state",
@@ -128,7 +153,8 @@ export default {
           placeholder: "Select state",
           inline: false,
           required: true,
-          tooltip: "This information is used to identify the state tax liability. Please put the state you will be filing with this year. If you have been moving due to COVID-19, put the state of your primary residence and where you’ve been conducting business from.",
+          tooltip:
+            "This information is used to identify the state tax liability. Please put the state you will be filing with this year. If you have been moving due to COVID-19, put the state of your primary residence and where you’ve been conducting business from.",
           options: [
             new ChoiceOption({
               label: "Alabama",
@@ -345,7 +371,8 @@ export default {
           required: true,
           helpTextShow: false,
           placeholder: "The name of my business is...",
-          tooltip: "This information is used so we can identify your work by the name you refer to it by. This can be your Doing Business As (DBA) or your full name if you have not incorporated the business in any form.",
+          tooltip:
+            "This information is used so we can identify your work by the name you refer to it by. This can be your Doing Business As (DBA) or your full name if you have not incorporated the business in any form.",
         }),
         new QuestionModel({
           id: "entity",
@@ -356,7 +383,8 @@ export default {
           placeholder: "Select legal entity",
           inline: false,
           required: true,
-          tooltip: "This information is used to determine your tax legal status and treatment by the IRS. If you have not incorporated your business yet, you are operating as a sole-proprietor.",
+          tooltip:
+            "This information is used to determine your tax legal status and treatment by the IRS. If you have not incorporated your business yet, you are operating as a sole-proprietor.",
           options: [
             new ChoiceOption({
               label: "Sole Proprietorship",
@@ -386,38 +414,43 @@ export default {
           id: "salary",
           tagline: "About Your Business",
           title: "What is the annual income you set for yourself?",
-          answerMessage: "Great job!",
+          answerMessage: { checkbox: "Great job!", answer: "Good salary!" },
           type: QuestionType.Salary,
           placeholder: "Type a number here...",
           required: true,
           checkboxText: "I don't pay myself an income",
           checkbox: false,
-          tooltip: "This is the amount that you have set as a “reasonable salary” when you put yourself on payroll as a full-time owner-employee. This will depend on your industry and work performed. We can help you calculate this if you want.",
+          tooltip:
+            "This is the amount that you have set as a “reasonable salary” when you put yourself on payroll as a full-time owner-employee. This will depend on your industry and work performed. We can help you calculate this if you want.",
         }),
         new QuestionModel({
           id: "employee_count",
           tagline: "About Your Business",
           title: "How many full-time employees do you have?",
-          answerMessage: "Nice!",
+          personalizedAnswerMessages: true, // Use this prop if you need to populate personalized answer messages
           type: QuestionType.Dropdown,
           multiple: false,
           subtitle: "Do not count yourself and/or your spouse",
           placeholder: "The number is...",
           inline: false,
           required: true,
-          tooltip: "This information is used to determine the type of retirement accounts you are eligible for. Don’t count yourself or your spouse as a full-time employee, or any employees who have ownership stake in the business. If you are not sure, refer to the FAQ for what qualifies as a full-time employee in your state.",
+          tooltip:
+            "This information is used to determine the type of retirement accounts you are eligible for. Don’t count yourself or your spouse as a full-time employee, or any employees who have ownership stake in the business. If you are not sure, refer to the FAQ for what qualifies as a full-time employee in your state.",
           options: [
             new ChoiceOption({
               label: "0",
               value: "noEmployees",
+              answerMessage: "1",
             }),
             new ChoiceOption({
               label: "1-99",
               value: "lessthan100",
+              answerMessage: "2",
             }),
             new ChoiceOption({
               label: "100+",
               value: "100plus",
+              answerMessage: "3",
             }),
           ],
         }),
@@ -425,12 +458,14 @@ export default {
           id: "expenses",
           tagline: "About Your Business",
           title: "How much are your business expenses this year?",
-          subtitle: "If you pay yourself a salary, do not count that expense here",
+          subtitle:
+            "If you pay yourself a salary, do not count that expense here",
           answerMessage: "That's great!",
           placeholder: "Type a number here...",
           type: QuestionType.Dollar,
           required: true,
-          tooltip: "This is the annual expenses for your business to operate. Please put the amount you forecast the business will spend this year. This can include office supplies, rent, software subscriptions, work travel, and more.",
+          tooltip:
+            "This is the annual expenses for your business to operate. Please put the amount you forecast the business will spend this year. This can include office supplies, rent, software subscriptions, work travel, and more.",
         }),
         new QuestionModel({
           id: "income",
@@ -440,7 +475,8 @@ export default {
           placeholder: "Type a number here...",
           type: QuestionType.Dollar,
           required: true,
-          tooltip: "This is the income generated by your business every year. Please put the amount you forecast the business will generate by end of the year. This includes all the invoices and cash payments you’ve received under your business entity.",
+          tooltip:
+            "This is the income generated by your business every year. Please put the amount you forecast the business will generate by end of the year. This includes all the invoices and cash payments you’ve received under your business entity.",
         }),
       ],
     };
@@ -480,11 +516,11 @@ export default {
 
       /* Run taxApi and put the outputs into an object in Vuex store */
       const taxUpdate = await taxApi.postTaxData(incomeData);
-      console.log(taxUpdate.data)
+      console.log(taxUpdate.data);
       /* Run dispatch to store the data for Results.vue */
 
       await this.$store.commit("userInformation/results", taxUpdate.data);
-      this.$store.dispatch('userInformation/getTaxSummary');
+      this.$store.dispatch("userInformation/getTaxSummary");
     },
     getData() {
       window.data = {
