@@ -83,7 +83,7 @@ export default {
           id: "tax_filing_status",
           tagline: "About You",
           title: "What is your tax filing status?",
-          answerMessage: "Great!",
+          personalizedAnswerMessages: true,
           type: QuestionType.Dropdown,
           multiple: false,
           placeholder: "Select status",
@@ -94,18 +94,22 @@ export default {
             new ChoiceOption({
               label: "Single",
               value: "single",
+              answerMessage: "Got it! 💪",
             }),
             new ChoiceOption({
               label: "Head of Household",
               value: "headOfHousehold",
+              answerMessage: "Nice! 🏠",
             }),
             new ChoiceOption({
               label: "Married Filing Jointly",
               value: "married",
+              answerMessage: "Got it! We will assume your partner is not making any contributions",
             }),
             new ChoiceOption({
               label: "Married Filing Separately",
               value: "marriedFilingSeparately",
+              answerMessage: "Got it! We will assume your partner's finances are separate from yours",
             }),
           ],
         }),
@@ -125,6 +129,7 @@ export default {
           tagline: "About You",
           title: "What is your tax filing state?",
           answerMessage: "Next let's move onto your business!",
+          personalizedAnswerMessages: true,
           type: QuestionType.Dropdown,
           multiple: false,
           placeholder: "Select state",
@@ -139,6 +144,7 @@ export default {
             new ChoiceOption({
               label: "Alaska",
               value: "ak",
+              answerMessage: "🎉 You have no state income tax!",
             }),
             new ChoiceOption({
               label: "Arizona",
@@ -151,6 +157,7 @@ export default {
             new ChoiceOption({
               label: "California",
               value: "ca",
+              answerMessage: "🚀 the state with the most freelancers!"
             }),
             new ChoiceOption({
               label: "Colorado",
@@ -167,6 +174,7 @@ export default {
             new ChoiceOption({
               label: "Florida",
               value: "fl",
+              answerMessage: "🎉 You have no state income tax!",
             }),
             new ChoiceOption({
               label: "Georgia",
@@ -243,10 +251,12 @@ export default {
             new ChoiceOption({
               label: "Nevada",
               value: "nv",
+              answerMessage: "🎉 You have no state income tax!",
             }),
             new ChoiceOption({
               label: "New Hampshire",
               value: "nh",
+              answerMessage: "🎉 You have no state income tax!",
             }),
             new ChoiceOption({
               label: "New Jersey",
@@ -259,6 +269,7 @@ export default {
             new ChoiceOption({
               label: "New York",
               value: "ny",
+              answerMessage: "🗽 our team is based here too!",
             }),
             new ChoiceOption({
               label: "North Carolina",
@@ -295,14 +306,17 @@ export default {
             new ChoiceOption({
               label: "South Dakota",
               value: "sd",
+              answerMessage: "🎉 You have no state income tax!",
             }),
             new ChoiceOption({
               label: "Tennessee",
               value: "tn",
+              answerMessage: "🎉 You have no state income tax!",
             }),
             new ChoiceOption({
               label: "Texas",
               value: "tx",
+              answerMessage: "🎉 You have no state income tax!",
             }),
             new ChoiceOption({
               label: "Utah",
@@ -319,6 +333,7 @@ export default {
             new ChoiceOption({
               label: "Washington",
               value: "wa",
+              answerMessage: "🎉 You have no state income tax!",
             }),
             new ChoiceOption({
               label: "Washington District of Columbia",
@@ -335,6 +350,7 @@ export default {
             new ChoiceOption({
               label: "Wyoming",
               value: "wy",
+              answerMessage: "🎉 You have no state income tax!",
             }),
           ],
         }),
@@ -353,6 +369,7 @@ export default {
           id: "entity",
           tagline: "About Your Business",
           title: "What is your business legal entity?",
+          personalizedAnswerMessages: true,
           type: QuestionType.Dropdown,
           multiple: false,
           placeholder: "Select legal entity",
@@ -363,18 +380,22 @@ export default {
             new ChoiceOption({
               label: "Sole Proprietorship",
               value: "soleProprietor",
+              answerMessage: "The most common type of business, with over 23 million sole proprietors in the US!",
             }),
             new ChoiceOption({
               label: "Partnership",
               value: "partnership",
+              answerMessage: "Nice work getting partner(s)! 🤝",
             }),
             new ChoiceOption({
               label: "S-Corporation",
               value: "sCorporation",
+              answerMessage: "Nice work incorporating, we'll ask about your salary next",
             }),
             new ChoiceOption({
               label: "LLC (Limited Liability Company)",
               value: "llc",
+              answerMessage: "Nice work incorporating, we'll ask about your salary next",
             }),
           ],
           jump: {
@@ -389,8 +410,8 @@ export default {
           tagline: "About Your Business",
           title: "What is the annual income you set for yourself?",
           answerMessage: {
-            checkbox: "Great job!",
-            answer: "Good salary!"
+            checkbox: "Good work investing back into the business! 💡",
+            answer: "it's good to pay yourself first! 🤩"
           },
           type: QuestionType.Salary,
           placeholder: "Type a number here...",
