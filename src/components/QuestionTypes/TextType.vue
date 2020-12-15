@@ -67,7 +67,7 @@
 
     methods: {
       validate() {
-        if (this.question.mask && this.dataValue.length !== this.question.mask.length) {
+        if (this.question.mask && this.hasValue && this.dataValue.length !== this.question.mask.length) {
           return false
         }
 

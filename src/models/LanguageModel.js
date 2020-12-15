@@ -12,6 +12,7 @@ export default class LanguageModel {
     this.shiftKey = 'Shift'
     this.ok = 'OK'
     this.continue = 'Continue'
+    this.skip = 'Skip'
     this.pressEnter = 'Press :enterKey'
     this.multipleChoiceHelpText = 'Choose as many as you like'
     this.multipleChoiceHelpTextSingle = 'Choose only one answer'

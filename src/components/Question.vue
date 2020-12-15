@@ -71,7 +71,10 @@
           v-bind:aria-label="language.ariaOk"
         >
             <span v-if="question.type === QuestionType.SectionBreak">{{ language.continue }}</span>
-            <span v-else>{{ language.ok }}</span>
+            <span v-else>
+              <span v-if="showSkip()">{{ language.skip }}</span>
+              <span v-else>{{ language.ok }}</span>
+            </span>
         </button>
         <a 
           class="f-enter-desc"
@@ -245,6 +248,10 @@
           return this.active
         }
 
+        if (!this.question.required) {
+          return true
+        }
+
         if (this.question.allowOther && this.question.other) {
           return true
         }
@@ -260,6 +267,12 @@
         }
 
         return q.hasValue && q.isValid()
+      },
+
+      showSkip() {
+        const q = this.$refs.questionComponent
+
+        return q && !this.question.required && !q.hasValue
       },
 
       /**
