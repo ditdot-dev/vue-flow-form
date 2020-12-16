@@ -25,8 +25,11 @@
 }
 
 .answer-messages-parent {
-  display: flex;
+  /* display: flex; */
   width: 100%
+}
+.vff .f-full-width span.faux-form{
+  height: 100%;
 }
 
 /* New progress circles to replace the progress % bars used */
