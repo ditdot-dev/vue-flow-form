@@ -25,7 +25,7 @@
 }
 
 .answer-messages-parent {
-  /* display: flex; */
+  display: flex;
   width: 100%
 }
 .vff .f-full-width span.faux-form{

@@ -303,9 +303,3 @@ export default {
   },
 };
 </script>
-<style>
-.answer-messages-parent {
-  display: flex;
-  width: 100%
-}
-</style>
