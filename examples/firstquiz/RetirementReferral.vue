@@ -37,6 +37,8 @@
 </template>
 
 <script>
+// Use this prop if you need to populate personalized answer messages.
+// personalizedAnswerMessages: BOOLEAN
 import FlowForm from "../../src/components/FlowForm.vue";
 import QuestionModel, {
   QuestionType,
@@ -81,7 +83,7 @@ export default {
           id: "tax_filing_status",
           tagline: "About You",
           title: "What is your tax filing status?",
-          answerMessage: "Great!",
+          personalizedAnswerMessages: true,
           type: QuestionType.Dropdown,
           multiple: false,
           placeholder: "Select status",
@@ -92,18 +94,22 @@ export default {
             new ChoiceOption({
               label: "Single",
               value: "single",
+              answerMessage: "Got it! 💪",
             }),
             new ChoiceOption({
               label: "Head of Household",
               value: "headOfHousehold",
+              answerMessage: "Nice! 🏠",
             }),
             new ChoiceOption({
               label: "Married Filing Jointly",
               value: "married",
+              answerMessage: "Got it! We will assume your partner is not making any contributions",
             }),
             new ChoiceOption({
               label: "Married Filing Separately",
               value: "marriedFilingSeparately",
+              answerMessage: "Got it! We will assume your partner's finances are separate from yours",
             }),
           ],
         }),
@@ -123,6 +129,7 @@ export default {
           tagline: "About You",
           title: "What is your tax filing state?",
           answerMessage: "Next let's move onto your business!",
+          personalizedAnswerMessages: true,
           type: QuestionType.Dropdown,
           multiple: false,
           placeholder: "Select state",
@@ -137,6 +144,7 @@ export default {
             new ChoiceOption({
               label: "Alaska",
               value: "ak",
+              answerMessage: "🎉 You have no state income tax!",
             }),
             new ChoiceOption({
               label: "Arizona",
@@ -149,6 +157,7 @@ export default {
             new ChoiceOption({
               label: "California",
               value: "ca",
+              answerMessage: "🚀 the state with the most freelancers!"
             }),
             new ChoiceOption({
               label: "Colorado",
@@ -165,6 +174,7 @@ export default {
             new ChoiceOption({
               label: "Florida",
               value: "fl",
+              answerMessage: "🎉 You have no state income tax!",
             }),
             new ChoiceOption({
               label: "Georgia",
@@ -241,10 +251,12 @@ export default {
             new ChoiceOption({
               label: "Nevada",
               value: "nv",
+              answerMessage: "🎉 You have no state income tax!",
             }),
             new ChoiceOption({
               label: "New Hampshire",
               value: "nh",
+              answerMessage: "🎉 You have no state income tax!",
             }),
             new ChoiceOption({
               label: "New Jersey",
@@ -257,6 +269,7 @@ export default {
             new ChoiceOption({
               label: "New York",
               value: "ny",
+              answerMessage: "🗽 our team is based here too!",
             }),
             new ChoiceOption({
               label: "North Carolina",
@@ -293,14 +306,17 @@ export default {
             new ChoiceOption({
               label: "South Dakota",
               value: "sd",
+              answerMessage: "🎉 You have no state income tax!",
             }),
             new ChoiceOption({
               label: "Tennessee",
               value: "tn",
+              answerMessage: "🎉 You have no state income tax!",
             }),
             new ChoiceOption({
               label: "Texas",
               value: "tx",
+              answerMessage: "🎉 You have no state income tax!",
             }),
             new ChoiceOption({
               label: "Utah",
@@ -317,6 +333,7 @@ export default {
             new ChoiceOption({
               label: "Washington",
               value: "wa",
+              answerMessage: "🎉 You have no state income tax!",
             }),
             new ChoiceOption({
               label: "Washington District of Columbia",
@@ -333,6 +350,7 @@ export default {
             new ChoiceOption({
               label: "Wyoming",
               value: "wy",
+              answerMessage: "🎉 You have no state income tax!",
             }),
           ],
         }),
@@ -351,6 +369,7 @@ export default {
           id: "entity",
           tagline: "About Your Business",
           title: "What is your business legal entity?",
+          personalizedAnswerMessages: true,
           type: QuestionType.Dropdown,
           multiple: false,
           placeholder: "Select legal entity",
@@ -361,18 +380,22 @@ export default {
             new ChoiceOption({
               label: "Sole Proprietorship",
               value: "soleProprietor",
+              answerMessage: "The most common type of business, with over 23 million sole proprietors in the US!",
             }),
             new ChoiceOption({
               label: "Partnership",
               value: "partnership",
+              answerMessage: "Nice work getting partner(s)! 🤝",
             }),
             new ChoiceOption({
               label: "S-Corporation",
               value: "sCorporation",
+              answerMessage: "Nice work incorporating, we'll ask about your salary next",
             }),
             new ChoiceOption({
               label: "LLC (Limited Liability Company)",
               value: "llc",
+              answerMessage: "Nice work incorporating, we'll ask about your salary next",
             }),
           ],
           jump: {
@@ -386,7 +409,10 @@ export default {
           id: "salary",
           tagline: "About Your Business",
           title: "What is the annual income you set for yourself?",
-          answerMessage: "Great job!",
+          answerMessage: {
+            checkbox: "Good work investing back into the business! 💡",
+            answer: "it's good to pay yourself first! 🤩"
+          },
           type: QuestionType.Salary,
           placeholder: "Type a number here...",
           required: true,
@@ -398,7 +424,7 @@ export default {
           id: "employee_count",
           tagline: "About Your Business",
           title: "How many full-time employees do you have?",
-          answerMessage: "Nice!",
+          personalizedAnswerMessages: true, // Use this prop if you need to populate personalized answer messages
           type: QuestionType.Dropdown,
           multiple: false,
           subtitle: "Do not count yourself and/or your spouse",
@@ -410,14 +436,17 @@ export default {
             new ChoiceOption({
               label: "0",
               value: "noEmployees",
+              answerMessage: "Keep up the great work as a one-person shop!",
             }),
             new ChoiceOption({
               label: "1-99",
               value: "lessthan100",
+              answerMessage: "Thank you for hiring employees!",
             }),
             new ChoiceOption({
               label: "100+",
               value: "100plus",
+              answerMessage: "Wow! Your business is likely too big for this calculator, we can help you find a professional",
             }),
           ],
         }),
@@ -426,7 +455,7 @@ export default {
           tagline: "About Your Business",
           title: "How much are your business expenses this year?",
           subtitle: "If you pay yourself a salary, do not count that expense here",
-          answerMessage: "That's great!",
+          answerMessage: "Keeping track of it all isn't easy! 💸",
           placeholder: "Type a number here...",
           type: QuestionType.Dollar,
           required: true,
@@ -436,7 +465,7 @@ export default {
           id: "income",
           tagline: "About Your Business",
           title: "How much does your business make in a year?",
-          answerMessage: "That's great!",
+          answerMessage: "You did it, amazing work! 💰",
           placeholder: "Type a number here...",
           type: QuestionType.Dollar,
           required: true,
@@ -480,11 +509,11 @@ export default {
 
       /* Run taxApi and put the outputs into an object in Vuex store */
       const taxUpdate = await taxApi.postTaxData(incomeData);
-      console.log(taxUpdate.data)
+      console.log(taxUpdate.data);
       /* Run dispatch to store the data for Results.vue */
 
       await this.$store.commit("userInformation/results", taxUpdate.data);
-      this.$store.dispatch('userInformation/getTaxSummary');
+      this.$store.dispatch("userInformation/getTaxSummary");
     },
     getData() {
       window.data = {

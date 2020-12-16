@@ -31,7 +31,10 @@
             <span class="f-required" v-if="question.required" v-bind:aria-label="language.ariaRequired" role="note"><span aria-hidden="true">*</span></span>
 
             <span v-if="question.inline" class="f-answer">
-              <div style="display: flex" v-if="question.answerMessage">
+              <div class="answer-messages-parent" v-if="
+                    question.answerMessage ||
+                    question.personalizedAnswerMessages
+                  ">
                 <component ref="questionComponent" v-bind:is="question.type" v-bind:question="question" v-bind:language="language" v-model="dataValue" v-bind:active="active" v-on:next="onEnter" />
                 <span class="answerMessage">{{ responseAnswer }}</span>
               </div>
@@ -58,7 +61,9 @@
         </span>
 
         <div v-if="!question.inline" class="f-answer f-full-width">
-          <div style="display: flex" v-if="question.answerMessage">
+          <div class="answer-messages-parent" v-if="
+                question.answerMessage || question.personalizedAnswerMessages
+              ">
             <component ref="questionComponent" v-bind:is="question.type" v-bind:question="question" v-bind:language="language" v-model="dataValue" v-bind:active="active" v-on:next="onEnter" />
             <span class="answerMessage">{{ responseAnswer }}</span>
           </div>
@@ -114,6 +119,9 @@ import {
   VPopover,
   VClosePopover
 } from "v-tooltip";
+import {
+  personalizedAnswerMessages
+} from "../utils";
 export default {
   name: "FlowFormQuestion",
   components: {
@@ -227,7 +235,10 @@ export default {
       if (this.question.checkbox) {
         this.dataValue = "";
         this.question.answer = "";
-        this.responseAnswer = this.question.answerMessage;
+        this.responseAnswer = personalizedAnswerMessages(
+          this.question,
+          QuestionType
+        );
         return true;
       }
       if (!q || !this.dataValue) {
@@ -281,7 +292,10 @@ export default {
   watch: {
     dataValue(newVal) {
       if (this.showOkButton()) {
-        this.responseAnswer = this.question.answerMessage;
+        this.responseAnswer = personalizedAnswerMessages(
+          this.question,
+          QuestionType
+        );
       } else {
         this.responseAnswer = "";
       }

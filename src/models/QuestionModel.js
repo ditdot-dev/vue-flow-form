@@ -18,13 +18,13 @@ export const QuestionType = Object.freeze({
   Text: "FlowFormTextType",
   Url: "FlowFormUrlType",
   Dollar: "FlowFormDollarType",
-  Salary: "FlowFormSalaryType",
+  Salary: "FlowFormSalaryType"
 });
 
 export const DropdownOptionBlank = Object.freeze({
   label: "",
   value: "",
-  disabled: true,
+  disabled: true
 });
 
 export class ChoiceOption {
@@ -88,7 +88,8 @@ export default class QuestionModel {
     this.descriptionLink = [];
     this.tooltip = null;
     this.answerMessage = "";
-    this.checkbox=false
+    this.personalizedAnswerMessages = false;
+    this.checkbox = false;
     Object.assign(this, options);
 
     // Sets default mask and placeholder value on PhoneType question
