@@ -1,197 +1,96 @@
 // Single question template and logic
 
 <template>
-  <div class="vff-animate q-form" v-bind:class="mainClasses" ref="qanimate">
-    <div class="q-inner">
-      <div
-        v-bind:class="{
+<div class="vff-animate q-form" v-bind:class="mainClasses" ref="qanimate">
+  <div class="q-inner">
+    <div v-bind:class="{
           'f-section-wrap': question.type === QuestionType.SectionBreak,
-        }"
-      >
-        <div
-          v-bind:class="{ fh2: question.type !== QuestionType.SectionBreak }"
-        >
-          <span class="f-tagline" v-if="question.tagline">{{
+        }">
+      <div v-bind:class="{ fh2: question.type !== QuestionType.SectionBreak }">
+        <span class="f-tagline" v-if="question.tagline">{{
             question.tagline
           }}</span>
 
-          <template v-if="question.title">
-            <span
-              class="fh2"
-              v-if="question.type === QuestionType.SectionBreak"
-              >{{ question.title }}</span
-            >
-            <span class="f-text" v-else>
-              <div class="d-flex justify-content-start">
-                <div>{{ question.title }}&nbsp;</div>
-                <button
-                  style="
+        <template v-if="question.title">
+          <span class="fh2" v-if="question.type === QuestionType.SectionBreak">{{ question.title }}</span>
+          <span class="f-text" v-else>
+            <div class="d-flex justify-content-start">
+              <div>{{ question.title }}&nbsp;</div>
+              <button style="
                     background-color: transparent;
                     padding: 4px;
                     color: transparent;
-                  "
-                  v-tooltip="{
+                  " v-tooltip="{
                     content: question.tooltip,
                     placement: 'bottom',
-                  }"
-                  class=""
-                >
-                  <b-icon icon="info-circle-fill" variant="dark"></b-icon>
-                </button>
-              </div>
-              <!-- Required questions are marked by an asterisk (*) -->
-              <span
-                class="f-required"
-                v-if="question.required"
-                v-bind:aria-label="language.ariaRequired"
-                role="note"
-                ><span aria-hidden="true">*</span></span
-              >
+                  }" class="">
+                <b-icon icon="info-circle-fill" variant="dark"></b-icon>
+              </button>
+            </div>
+            <!-- Required questions are marked by an asterisk (*) -->
+            <span class="f-required" v-if="question.required" v-bind:aria-label="language.ariaRequired" role="note"><span aria-hidden="true">*</span></span>
 
-              <span v-if="question.inline" class="f-answer">
-                <div
-                  style="display: flex"
-                  v-if="
+            <span v-if="question.inline" class="f-answer">
+              <div class="answer-messages-parent" v-if="
                     question.answerMessage ||
                     question.personalizedAnswerMessages
-                  "
-                >
-                  <component
-                    ref="questionComponent"
-                    v-bind:is="question.type"
-                    v-bind:question="question"
-                    v-bind:language="language"
-                    v-model="dataValue"
-                    v-bind:active="active"
-                    v-on:next="onEnter"
-                  />
-                  <span class="answerMessage">{{ responseAnswer }}</span>
-                </div>
-                <component
-                  v-else
-                  ref="questionComponent"
-                  v-bind:is="question.type"
-                  v-bind:question="question"
-                  v-bind:language="language"
-                  v-model="dataValue"
-                  v-bind:active="active"
-                  v-on:next="onEnter"
-                />
-              </span>
+                  ">
+                <component ref="questionComponent" v-bind:is="question.type" v-bind:question="question" v-bind:language="language" v-model="dataValue" v-bind:active="active" v-on:next="onEnter" />
+                <span class="answerMessage">{{ responseAnswer }}</span>
+              </div>
+              <component v-else ref="questionComponent" v-bind:is="question.type" v-bind:question="question" v-bind:language="language" v-model="dataValue" v-bind:active="active" v-on:next="onEnter" />
             </span>
-          </template>
+          </span>
+        </template>
 
-          <span class="f-sub" v-if="showHelperText">
-            <span v-if="question.subtitle">{{ question.subtitle }}</span>
+        <span class="f-sub" v-if="showHelperText">
+          <span v-if="question.subtitle">{{ question.subtitle }}</span>
 
-            <span
-              class="f-help"
-              v-if="question.type === QuestionType.LongText && !isMobile"
-              v-html="
+          <span class="f-help" v-if="question.type === QuestionType.LongText && !isMobile" v-html="
                 question.helpText ||
                 language.formatString(language.longTextHelpText)
-              "
-            ></span>
+              "></span>
 
-            <span
-              class="f-help"
-              v-if="
+          <span class="f-help" v-if="
                 question.type === QuestionType.MultipleChoice &&
                 question.multiple
-              "
-              >{{ question.helpText || language.multipleChoiceHelpText }}</span
-            >
-            <span
-              class="f-help"
-              v-else-if="question.type === QuestionType.MultipleChoice"
-              >{{
+              ">{{ question.helpText || language.multipleChoiceHelpText }}</span>
+          <span class="f-help" v-else-if="question.type === QuestionType.MultipleChoice">{{
                 question.helpText || language.multipleChoiceHelpTextSingle
-              }}</span
-            >
-          </span>
+              }}</span>
+        </span>
 
-          <div v-if="!question.inline" class="f-answer f-full-width">
-            <div
-              style="display: flex"
-              v-if="
+        <div v-if="!question.inline" class="f-answer f-full-width">
+          <div class="answer-messages-parent" v-if="
                 question.answerMessage || question.personalizedAnswerMessages
-              "
-            >
-              <component
-                ref="questionComponent"
-                v-bind:is="question.type"
-                v-bind:question="question"
-                v-bind:language="language"
-                v-model="dataValue"
-                v-bind:active="active"
-                v-on:next="onEnter"
-              />
-              <span class="answerMessage">{{ responseAnswer }}</span>
-            </div>
-            <component
-              v-else
-              ref="questionComponent"
-              v-bind:is="question.type"
-              v-bind:question="question"
-              v-bind:language="language"
-              v-model="dataValue"
-              v-bind:active="active"
-              v-on:next="onEnter"
-            />
+              ">
+            <component ref="questionComponent" v-bind:is="question.type" v-bind:question="question" v-bind:language="language" v-model="dataValue" v-bind:active="active" v-on:next="onEnter" />
+            <span class="answerMessage">{{ responseAnswer }}</span>
           </div>
+          <component v-else ref="questionComponent" v-bind:is="question.type" v-bind:question="question" v-bind:language="language" v-model="dataValue" v-bind:active="active" v-on:next="onEnter" />
         </div>
-        <p
-          v-if="question.description || question.descriptionLink.length !== 0"
-          class="f-description"
-        >
-          <span v-if="question.description">{{ question.description }}</span>
-          <a
-            v-for="(link, index) in question.descriptionLink"
-            class="f-link"
-            v-bind:key="'m' + index"
-            v-bind:href="link.url"
-            v-bind:target="link.target"
-            >{{ link.text || link.url }}</a
-          >
-        </p>
       </div>
-      <div
-        class="vff-animate f-fade-in f-enter"
-        v-if="showOkButton() && !noButton"
-      >
-        <button
-          class="o-btn-action"
-          type="button"
-          ref="button"
-          href="#"
-          v-on:click.prevent="onEnter"
-          v-bind:aria-label="language.ariaOk"
-        >
-          <span v-if="question.type === QuestionType.SectionBreak">{{
+      <p v-if="question.description || question.descriptionLink.length !== 0" class="f-description">
+        <span v-if="question.description">{{ question.description }}</span>
+        <a v-for="(link, index) in question.descriptionLink" class="f-link" v-bind:key="'m' + index" v-bind:href="link.url" v-bind:target="link.target">{{ link.text || link.url }}</a>
+      </p>
+    </div>
+    <div class="vff-animate f-fade-in f-enter" v-if="showOkButton() && !noButton">
+      <button class="o-btn-action" type="button" ref="button" href="#" v-on:click.prevent="onEnter" v-bind:aria-label="language.ariaOk">
+        <span v-if="question.type === QuestionType.SectionBreak">{{
             language.continue
           }}</span>
-          <span v-else>{{ language.ok }}</span>
-        </button>
-        <a
-          class="f-enter-desc"
-          href="#"
-          v-if="question.type !== QuestionType.LongText || !isMobile"
-          v-on:click.prevent="onEnter"
-          v-html="language.formatString(language.pressEnter)"
-        >
-        </a>
-      </div>
+        <span v-else>{{ language.ok }}</span>
+      </button>
+      <a class="f-enter-desc" href="#" v-if="question.type !== QuestionType.LongText || !isMobile" v-on:click.prevent="onEnter" v-html="language.formatString(language.pressEnter)">
+      </a>
+    </div>
 
-      <div
-        v-if="showInvalid()"
-        class="f-invalid"
-        role="alert"
-        aria-live="assertive"
-      >
-        {{ language.invalidPrompt }}
-      </div>
+    <div v-if="showInvalid()" class="f-invalid" role="alert" aria-live="assertive">
+      {{ language.invalidPrompt }}
     </div>
   </div>
+</div>
 </template>
 
 <script>
@@ -212,9 +111,17 @@ import FlowFormTextType from "./QuestionTypes/TextType.vue";
 import FlowFormUrlType from "./QuestionTypes/UrlType.vue";
 import FlowFormSalaryType from "./QuestionTypes/SalaryType";
 import FlowFormDollarType from "./QuestionTypes/DollarType";
-import { IsMobile } from "../mixins/IsMobile";
-import { VTooltip, VPopover, VClosePopover } from "v-tooltip";
-import { personalizedAnswerMessages } from "../utils";
+import {
+  IsMobile
+} from "../mixins/IsMobile";
+import {
+  VTooltip,
+  VPopover,
+  VClosePopover
+} from "v-tooltip";
+import {
+  personalizedAnswerMessages
+} from "../utils";
 export default {
   name: "FlowFormQuestion",
   components: {
@@ -313,7 +220,9 @@ export default {
      */
     showOkButton() {
       const q = this.$refs.questionComponent;
-      const { type } = this.question;
+      const {
+        type
+      } = this.question;
       if (
         (type === QuestionType.Salary || type === QuestionType.Dollar) &&
         this.dataValue?.includes(",")
@@ -394,3 +303,9 @@ export default {
   },
 };
 </script>
+<style>
+.answer-messages-parent {
+  display: flex;
+  width: 100%
+}
+</style>
