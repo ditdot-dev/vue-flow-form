@@ -122,7 +122,7 @@
             tagline: 'Support page > Ticket status',
             title: 'Please enter your 6-digit code.',
             subtitle: 'You received this when you reported your problem.',
-            type: QuestionType.Number,
+            type: QuestionType.Text,
             multiple: false,
             required: true,
             mask: '#-#-#-#-#-#',
@@ -160,8 +160,6 @@
         const data = this.getData()
 
         this.loading = true
-
-        /* eslint-disable-next-line no-unused-vars */
         
         /*
           You can use Fetch API to send the data to your server, eg.:
@@ -189,7 +187,7 @@
         this.questions.forEach(question => {
           if (question.title) {
             let answer = question.answer
-            if (typeof answer === 'object') {
+            if (Array.isArray(answer)) {
               answer = answer.join(', ')
             }
 
