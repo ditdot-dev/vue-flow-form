@@ -113,7 +113,7 @@
           </a>
         </div>
         <div v-if="timer" class="f-timer">
-            <span>{{ formatTime(time) }}</span>
+          <span>{{ formatTime(time) }}</span>
         </div>
       </div>
     </div>
@@ -128,6 +128,7 @@
   */
 
   import FlowFormQuestion from './Question.vue'
+  import QuestionModel from '../models/QuestionModel'
   import LanguageModel from '../models/LanguageModel'
   import { IsMobile } from '../mixins/IsMobile'
 
@@ -138,7 +139,10 @@
     },
     
     props: {
-      questions: Array,
+      questions:{
+        type: Array,
+        validator: value => value.every(q => q instanceof QuestionModel)
+      }, 
       language: {
         type: LanguageModel,
         default: () => new LanguageModel()
@@ -242,7 +246,7 @@
       },
 
       isOnLastStep() {
-        return this.activeQuestionIndex === this.questionListActivePath.length
+        return this.numActiveQuestions > 0 && this.activeQuestionIndex === this.questionListActivePath.length
       }, 
 
       isOnTimerStartStep() {
@@ -293,6 +297,11 @@
        */
       setQuestionListActivePath() {
         const questions = []
+
+        if (!this.questions.length) {
+          return
+        }
+
         let
           index = 0,
           serialIndex = 0,
