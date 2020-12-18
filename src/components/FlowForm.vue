@@ -113,7 +113,7 @@
           </a>
         </div>
         <div v-if="timer" class="f-timer">
-            <span>{{ formatTime(time) }}</span>
+          <span>{{ formatTime(time) }}</span>
         </div>
       </div>
     </div>
@@ -299,7 +299,7 @@
         const questions = []
 
         if (!this.questions.length) {
-           return questions
+          return
         }
 
         let
