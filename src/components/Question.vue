@@ -71,10 +71,8 @@
           v-bind:aria-label="language.ariaOk"
         >
             <span v-if="question.type === QuestionType.SectionBreak">{{ language.continue }}</span>
-            <span v-else>
-              <span v-if="showSkip()">{{ language.skip }}</span>
-              <span v-else>{{ language.ok }}</span>
-            </span>
+            <span v-else-if="showSkip()">{{ language.skip }}</span>
+            <span v-else>{{ language.ok }}</span>
         </button>
         <a 
           class="f-enter-desc"
@@ -272,7 +270,9 @@
       showSkip() {
         const q = this.$refs.questionComponent
 
-        return q && !this.question.required && !q.hasValue
+        // We might not have a reference to the question component at first
+        // but we know that if we don't, it's definitely empty
+        return !this.question.required && (!q || !q.hasValue)
       },
 
       /**
