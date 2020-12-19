@@ -11,14 +11,15 @@ const userInformation = {
   namespaced: true,
   state: {
     userInput: {
-      tax_filing_status: "headOfHousehold",
-      age: 37,
-      salary: 32000,
-      entity: "llc",
+      ...(JSON.parse(localStorage.getItem("userInput")) || {
+        tax_filing_status: "headOfHousehold",
+        age: 37,
+        salary: 32000,
+        entity: "llc"
+      })
     }, // data captured in RetirementReferral.vue input form
     incomeData: {}, // data formatted from the input for tax API
-    taxUpdate: {
-    }, // tax API's output data to be displayed in Results.vue
+    taxUpdate: {}, // tax API's output data to be displayed in Results.vue
     taxSummary: {
       totalIncome: 80000,
       profitAfterExpenses: 51111,
@@ -88,7 +89,12 @@ const userInformation = {
       state.taxSummary.w2Tax = data;
     },
     setProfitAfterTaxes(state) {
-      state.taxSummary.profitAfterTaxes = Math.round((parseFloat(state.taxSummary.profitAfterExpenses) - parseFloat(state.taxUpdate.taxBalance)) * 100) / 100
+      state.taxSummary.profitAfterTaxes =
+        Math.round(
+          (parseFloat(state.taxSummary.profitAfterExpenses) -
+            parseFloat(state.taxUpdate.taxBalance)) *
+            100
+        ) / 100;
     },
     setTotalDeduction(state, data) {
       state.taxSummary.totalDeduction = data;
