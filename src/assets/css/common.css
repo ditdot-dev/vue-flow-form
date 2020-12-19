@@ -19,8 +19,17 @@
   display: flex;
   justify-content: left;
   align-items: center;
-  width: 40%;
+  width: 100%;
+  max-width: 400px;
   margin-left: 20px;
+}
+
+.answer-messages-parent {
+  display: flex;
+  width: 100%
+}
+.vff .f-full-width span.faux-form{
+  height: 100%;
 }
 
 /* New progress circles to replace the progress % bars used */
