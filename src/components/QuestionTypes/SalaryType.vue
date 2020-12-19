@@ -57,6 +57,17 @@ export default {
       }
     },
     isValid() {
+      const { id, answer } = this.question;
+      if (
+        id === "age" ||
+        id === "salary" ||
+        id === "expenses" ||
+        id === "income"
+      ) {
+        if (answer.toString()[0] == 0) {
+          return false;
+        }
+      }
       if (!this.question.required) {
         return true;
       }

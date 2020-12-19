@@ -183,12 +183,19 @@
       </div>
 
       <div
-        v-if="showInvalid()"
+        v-if="
+          showInvalid() ||
+          (zeroValidationError(question) && zeroValidationError(question).error)
+        "
         class="f-invalid"
         role="alert"
         aria-live="assertive"
       >
-        {{ language.invalidPrompt }}
+        {{
+          (zeroValidationError(question) &&
+            zeroValidationError(question).message) ||
+          language.invalidPrompt
+        }}
       </div>
     </div>
   </div>
@@ -214,7 +221,7 @@ import FlowFormSalaryType from "./QuestionTypes/SalaryType";
 import FlowFormDollarType from "./QuestionTypes/DollarType";
 import { IsMobile } from "../mixins/IsMobile";
 import { VTooltip, VPopover, VClosePopover } from "v-tooltip";
-import { personalizedAnswerMessages } from "../utils";
+import { personalizedAnswerMessages, zeroValidationError } from "../utils";
 export default {
   name: "FlowFormQuestion",
   components: {
@@ -248,6 +255,7 @@ export default {
   mixins: [IsMobile],
   data() {
     return {
+      zeroValidationError,
       QuestionType: QuestionType,
       dataValue: null,
       responseAnswer: "",
