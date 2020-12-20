@@ -93,7 +93,6 @@ export default {
           tagline: "About You",
           id: "age",
           title: "What is your age?",
-
           type: QuestionType.Number,
           required: true,
           mask: "##",

@@ -285,16 +285,19 @@
           </div>
 
           <div
-            :class="`box2 boxwrapper relative ${
+            :class="`box1 boxwrapper relative ${
               bestOptionActive.sepIra && 'active-color'
             }`"
           >
             <h2 class="p-0 bestOptionLabel p-1" v-if="bestOptionActive.sepIra">
               BEST OPTION
             </h2>
-            <div class="col1 col flex2">
-              <h1>SEP-IRA</h1>
+            <div class="col1 best-option-container relative">
+              <div class="col flex2">
+                <h1 class="mt-5">SEP-IRA</h1>
+              </div>
             </div>
+
             <div class="col2 col flex2 justify-content-between mt-3">
               <p>
                 A SEP-IRA is an ideal plan if <br />
@@ -377,7 +380,7 @@
           </div>
 
           <div
-            :class="`box3 boxwrapper relative ${
+            :class="`box1 boxwrapper relative ${
               bestOptionActive.simpleIra && 'active-color'
             }`"
           >
@@ -387,9 +390,12 @@
             >
               BEST OPTION
             </h2>
-            <div class="col1 col flex2" style="padding-bottom: 70%">
-              <h1>SIMPLE IRA</h1>
+            <div class="col1 best-option-container relative">
+              <div class="col flex2">
+                <h1 class="mt-5">SIMPLE IRA</h1>
+              </div>
             </div>
+
             <div class="col2 col flex2 justify-content-start mt-3">
               <p :class="`${isSimpleIraDisabled && 'disabled-color'}`">
                 The SIMPLE-IRA allows for <br />
@@ -524,7 +530,7 @@
           </div>
 
           <div
-            :class="`box4 boxwrapper relative ${
+            :class="`box1 boxwrapper relative ${
               bestOptionActive.traditionalIra && 'active-color'
             }`"
           >
@@ -534,12 +540,15 @@
             >
               BEST OPTION
             </h2>
-            <div class="col1 col flex2">
-              <h1>
-                Traditional<br />
-                IRA
-              </h1>
+            <div class="col1 best-option-container relative">
+              <div class="col flex2">
+                <h1 class="mt-5">
+                  Traditional<br />
+                  IRA
+                </h1>
+              </div>
             </div>
+
             <div class="col2 col flex2 justify-content-between mt-3">
               <p>
                 This is the most common <br />
@@ -729,7 +738,7 @@ export default {
         taxAvoided: {},
         taxAdvantageRatio: {},
       },
-      loader: true,
+      loader: false,
       roundOff,
       body,
       isModalOpen: false,
@@ -751,10 +760,10 @@ export default {
         traditionalIra: 0,
       },
       bestOptionActive: {
-        individual401k: false,
-        sepIra: false,
+        individual401k: true,
+        sepIra: true,
         simpleIra: true,
-        traditionalIra: false,
+        traditionalIra: true,
       },
       sliderMax: {
         individual401kPersonal: 100,
@@ -776,32 +785,32 @@ export default {
     };
   },
   mounted() {
-    this.containerDisablingCondition();
-    this.projectedValue = roundOff((this.profitAfterTaxes / 100) * 10, 100);
-    const {
-      personalMax_individual401k = 19500,
-      businessMax_individual401k = 37500,
-      businessMax_sepIra = 57000,
-      personalMax_simpleIra = 13500,
-      businessMax_simpleIra = 28500,
-      personalMax_traditionalIra = 6000,
-    } = setSliderMax();
-    this.sliderMax.individual401kPersonal = roundOff(
-      personalMax_individual401k
-    );
-    this.sliderMax.individual401kBusiness = roundOff(
-      businessMax_individual401k
-    );
-    this.sliderMax.sepIraBusiness = roundOff(businessMax_sepIra);
-    this.sliderMax.simpleIraPersonal = roundOff(personalMax_simpleIra);
-    this.sliderMax.simpleIraBusiness = roundOff(businessMax_simpleIra);
-    this.sliderMax.traditionalIraPersonal = roundOff(
-      personalMax_traditionalIra
-    );
-    this.sepIraBusinessTooltip();
-    this.individual401kBusinessTooltip();
-    this.simpleIraBusinessTooltip();
-    this.handleTaxAdvantageRatioTooltip();
+    // this.containerDisablingCondition();
+    // this.projectedValue = roundOff((this.profitAfterTaxes / 100) * 10, 100);
+    // const {
+    //   personalMax_individual401k = 19500,
+    //   businessMax_individual401k = 37500,
+    //   businessMax_sepIra = 57000,
+    //   personalMax_simpleIra = 13500,
+    //   businessMax_simpleIra = 28500,
+    //   personalMax_traditionalIra = 6000,
+    // } = setSliderMax();
+    // this.sliderMax.individual401kPersonal = roundOff(
+    //   personalMax_individual401k
+    // );
+    // this.sliderMax.individual401kBusiness = roundOff(
+    //   businessMax_individual401k
+    // );
+    // this.sliderMax.sepIraBusiness = roundOff(businessMax_sepIra);
+    // this.sliderMax.simpleIraPersonal = roundOff(personalMax_simpleIra);
+    // this.sliderMax.simpleIraBusiness = roundOff(businessMax_simpleIra);
+    // this.sliderMax.traditionalIraPersonal = roundOff(
+    //   personalMax_traditionalIra
+    // );
+    // this.sepIraBusinessTooltip();
+    // this.individual401kBusinessTooltip();
+    // this.simpleIraBusinessTooltip();
+    // this.handleTaxAdvantageRatioTooltip();
   },
   methods: {
     handleSignup() {
