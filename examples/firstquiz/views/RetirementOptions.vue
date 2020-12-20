@@ -761,9 +761,9 @@ export default {
       },
       bestOptionActive: {
         individual401k: true,
-        sepIra: true,
-        simpleIra: true,
-        traditionalIra: true,
+        sepIra: false,
+        simpleIra: false,
+        traditionalIra: false,
       },
       sliderMax: {
         individual401kPersonal: 100,
@@ -785,32 +785,32 @@ export default {
     };
   },
   mounted() {
-    // this.containerDisablingCondition();
-    // this.projectedValue = roundOff((this.profitAfterTaxes / 100) * 10, 100);
-    // const {
-    //   personalMax_individual401k = 19500,
-    //   businessMax_individual401k = 37500,
-    //   businessMax_sepIra = 57000,
-    //   personalMax_simpleIra = 13500,
-    //   businessMax_simpleIra = 28500,
-    //   personalMax_traditionalIra = 6000,
-    // } = setSliderMax();
-    // this.sliderMax.individual401kPersonal = roundOff(
-    //   personalMax_individual401k
-    // );
-    // this.sliderMax.individual401kBusiness = roundOff(
-    //   businessMax_individual401k
-    // );
-    // this.sliderMax.sepIraBusiness = roundOff(businessMax_sepIra);
-    // this.sliderMax.simpleIraPersonal = roundOff(personalMax_simpleIra);
-    // this.sliderMax.simpleIraBusiness = roundOff(businessMax_simpleIra);
-    // this.sliderMax.traditionalIraPersonal = roundOff(
-    //   personalMax_traditionalIra
-    // );
-    // this.sepIraBusinessTooltip();
-    // this.individual401kBusinessTooltip();
-    // this.simpleIraBusinessTooltip();
-    // this.handleTaxAdvantageRatioTooltip();
+    this.containerDisablingCondition();
+    this.projectedValue = roundOff((this.profitAfterTaxes / 100) * 10, 100);
+    const {
+      personalMax_individual401k = 19500,
+      businessMax_individual401k = 37500,
+      businessMax_sepIra = 57000,
+      personalMax_simpleIra = 13500,
+      businessMax_simpleIra = 28500,
+      personalMax_traditionalIra = 6000,
+    } = setSliderMax();
+    this.sliderMax.individual401kPersonal = roundOff(
+      personalMax_individual401k
+    );
+    this.sliderMax.individual401kBusiness = roundOff(
+      businessMax_individual401k
+    );
+    this.sliderMax.sepIraBusiness = roundOff(businessMax_sepIra);
+    this.sliderMax.simpleIraPersonal = roundOff(personalMax_simpleIra);
+    this.sliderMax.simpleIraBusiness = roundOff(businessMax_simpleIra);
+    this.sliderMax.traditionalIraPersonal = roundOff(
+      personalMax_traditionalIra
+    );
+    this.sepIraBusinessTooltip();
+    this.individual401kBusinessTooltip();
+    this.simpleIraBusinessTooltip();
+    this.handleTaxAdvantageRatioTooltip();
   },
   methods: {
     handleSignup() {
