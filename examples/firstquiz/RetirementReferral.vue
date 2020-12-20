@@ -542,7 +542,6 @@ export default {
       /* Set the data inputs for an object for Track tax api */
       await this.getData();
       const userInput = await this.formatData();
-      localStorage.setItem("userInput", JSON.stringify(userInput));
       this.$store.commit("userInformation/entry", userInput);
       const incomeData = await taxApi.taxData();
 
