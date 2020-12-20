@@ -1644,7 +1644,7 @@ p.percent {
   grid-area: wrapper;
   /* background-color: aqua; */
   display: grid;
-  grid-template-rows: 10vh minmax(5vh, min-content) minmax(170vh, min-content);
+  /* grid-template-rows: 10vh minmax(5vh, min-content) minmax(170vh, min-content); */
   grid-template-areas:
     "head"
     "item"
