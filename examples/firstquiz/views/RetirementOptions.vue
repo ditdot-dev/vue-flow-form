@@ -12,9 +12,12 @@
     <div class="row2 flex">
       <div class="heading">
         <h2>
-          Your Contribution <br />
-          With Profit After Taxes
+          Amount You Want<br />
+          to Contribute From<br>
+          Profit After Taxes
         </h2>
+
+
       </div>
 
       <div class="adder-subtractor">
@@ -34,7 +37,7 @@
 
     <div class="row3 flex">
       <div class="heading2">
-        <h2 class="mt-3">Projected 2020 <br />Contributions</h2>
+        <h2 class="mt-3">Projected <br />Contributions</h2>
       </div>
       <div class="slider">
         <div style="position: relative" class="up-drag">
@@ -142,7 +145,7 @@
               <vue-custom-slider @handleDrag="handleIndividualDrag" v-model="sliders.individual401kBusiness" :max="sliderMax.individual401kBusiness" :disabled="isIndividual401kDisabled" />
             </div>
             <p :class="`${isIndividual401kDisabled && 'disabled-color'}`">
-              At your age 67, these <br />
+              By your age 67, these <br />
               contributions could be <br />
               worth
               {{
@@ -168,9 +171,9 @@
             <p :class="`${
                   isIndividual401kDisabled && 'disabled-color'
                 } p-0 m-0`">
-              At your age 67, the amount <br />
-              you are losing could be <br />
-              worth
+              By your age 67, the amount <br />
+              you are missing out on could<br />
+              be worth
               {{
                   sliderCompound(taxAvoided.individual401k) | currency("$", 0)
                 }}
@@ -210,15 +213,18 @@
           </div>
         </div>
 
-        <div :class="`box2 boxwrapper relative ${
+        <div :class="`box1 boxwrapper relative ${
               bestOptionActive.sepIra && 'active-color'
             }`">
           <h2 class="p-0 bestOptionLabel p-1" v-if="bestOptionActive.sepIra">
             BEST OPTION
           </h2>
-          <div class="col1 col flex2">
-            <h1>SEP-IRA</h1>
+          <div class="col1 best-option-container relative">
+            <div class="col flex2">
+              <h1 class="mt-5">SEP-IRA</h1>
+            </div>
           </div>
+
           <div class="col2 col flex2 justify-content-between mt-3">
             <p>
               A SEP-IRA is an ideal plan if <br />
@@ -249,7 +255,7 @@
             </div>
 
             <p>
-              At your age 67, these <br />
+              By your age 67, these <br />
               contributions could be <br />
               worth
               {{ sliderCompound(sliders.sepIraBusiness) | currency("$", 0) }}
@@ -265,9 +271,9 @@
             </info-icon>
 
             <p :class="`p-0 m-0`">
-              At your age 67, the amount <br />
-              you are losing could be <br />
-              worth {{ sliderCompound(taxAvoided.sepIra) | currency("$", 0) }}
+              By your age 67, the amount<br />
+              you are missing out on could<br />
+              be worth {{ sliderCompound(taxAvoided.sepIra) | currency("$", 0) }}
             </p>
             <h4>Tax Advantage Ratio</h4>
             <info-icon :tooltip="tooltip.taxAdvantageRatio.sepIra" tooltipType="description" :dynamic="true">
@@ -284,15 +290,18 @@
           </div>
         </div>
 
-        <div :class="`box3 boxwrapper relative ${
+        <div :class="`box1 boxwrapper relative ${
               bestOptionActive.simpleIra && 'active-color'
             }`">
           <h2 class="p-0 bestOptionLabel p-1" v-if="bestOptionActive.simpleIra">
             BEST OPTION
           </h2>
-          <div class="col1 col flex2">
-            <h1>SIMPLE IRA</h1>
+          <div class="col1 best-option-container relative">
+            <div class="col flex2">
+              <h1 class="mt-5">SIMPLE IRA</h1>
+            </div>
           </div>
+
           <div class="col2 col flex2 justify-content-start mt-3">
             <p :class="`${isSimpleIraDisabled && 'disabled-color'}`">
               The SIMPLE-IRA allows for <br />
@@ -336,7 +345,7 @@
               <vue-custom-slider v-model="sliders.simpleIraBusiness" :max="sliderMax.simpleIraBusiness" @handleDrag="handleSimpleIra" :disabled="isSimpleIraDisabled" />
             </div>
             <p :class="`${isSimpleIraDisabled && 'disabled-color'}`">
-              At your age 67, these <br />
+              By your age 67, these <br />
               contributions could be <br />
               worth
               {{
@@ -358,9 +367,9 @@
             </info-icon>
 
             <p :class="`${isSimpleIraDisabled && 'disabled-color'} p-0 m-0`">
-              At your age 67, the amount <br />
-              you are losing could be <br />
-              worth
+              By your age 67, the amount<br />
+              you are missing out on could<br />
+              be worth
               {{ sliderCompound(taxAvoided.simpleIra) | currency("$", 0) }}
             </p>
             <h4 :class="`${isSimpleIraDisabled && 'disabled-color'}`">
@@ -394,18 +403,21 @@
           </div>
         </div>
 
-        <div :class="`box4 boxwrapper relative ${
+        <div :class="`box1 boxwrapper relative ${
               bestOptionActive.traditionalIra && 'active-color'
             }`">
           <h2 class="p-0 bestOptionLabel p-1" v-if="bestOptionActive.traditionalIra">
             BEST OPTION
           </h2>
-          <div class="col1 col flex2">
-            <h1>
-              Traditional<br />
-              IRA
-            </h1>
+          <div class="col1 best-option-container relative">
+            <div class="col flex2">
+              <h1 class="mt-5">
+                Traditional<br />
+                IRA
+              </h1>
+            </div>
           </div>
+
           <div class="col2 col flex2 justify-content-between mt-3">
             <p>
               This is the most common <br />
@@ -433,7 +445,7 @@
               <vue-custom-slider v-model="sliders.traditionalIraPersonal" :max="sliderMax.traditionalIraPersonal" @handleDrag="handleTraditionalIra" />
             </div>
             <p>
-              At your age 67, these <br />
+              By your age 67, these <br />
               contributions could be <br />
               worth
               {{
@@ -451,9 +463,9 @@
             </info-icon>
 
             <p :class="`p-0 m-0`">
-              At your age 67, the amount <br />
-              you are losing could be <br />
-              worth
+              By your age 67, the amount<br />
+              you are missing out on could<br />
+              be worth
               {{
                   sliderCompound(taxAvoided.traditionalIra) | currency("$", 0)
                 }}
@@ -516,15 +528,13 @@
           <div class="irsContent flex2">
             <h1>How This Calculator Works</h1>
             <p>
-              Based on your inputs, we followed the retirement contribution
-              rules for your business type and retirement account to determine
-              the total allowable deductions that can be made from your
-              business. These deductions have different impact on your taxes.
-              The retirement account option tagged as 'Best Option' is based
-              on your qualification, and the highest tax avoided amount based
-              on your contribution selection. The amount at 67 is calculated
-              using compound interest growth with an 8% interest rate. You can
-              read more in our FAQ section.
+              The Internal Revenue Service (IRS) offers different tax benefits for different retirement accounts.
+              We used your inputs to determine the total allowable tax deductions that can be made from your business.
+              The "Tax Avoided" value applies these deductions to calculate the amount of taxes you can avoid by putting money away for retirement.
+              The 'Best Option' tag is applied to the retirement account that you qualify for,
+              and the highest tax avoided amount according to your contribution selection.
+              The dollar value by your age 67 is calculated with a compound interest growth rate of 8% with the number of years until you're age 67.
+              You can read more in our FAQ section if you have questions!
             </p>
           </div>
           <div class="irsImage flex">
@@ -580,7 +590,7 @@ export default {
         taxAvoided: {},
         taxAdvantageRatio: {},
       },
-      loader: true,
+      loader: false,
       roundOff,
       body,
       isModalOpen: false,
@@ -602,9 +612,9 @@ export default {
         traditionalIra: 0,
       },
       bestOptionActive: {
-        individual401k: false,
+        individual401k: true,
         sepIra: false,
-        simpleIra: true,
+        simpleIra: false,
         traditionalIra: false,
       },
       sliderMax: {
@@ -1490,7 +1500,7 @@ p.percent {
   grid-area: wrapper;
   /* background-color: aqua; */
   display: grid;
-  grid-template-rows: 10vh minmax(5vh, min-content) minmax(170vh, min-content);
+  /* grid-template-rows: 10vh minmax(5vh, min-content) minmax(170vh, min-content); */
   grid-template-areas:
     "head"
     "item"

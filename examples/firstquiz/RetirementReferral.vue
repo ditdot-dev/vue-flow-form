@@ -118,6 +118,7 @@ export default {
           answerMessage: "😊",
           tagline: "About You",
           title: "How many dependents do you have?",
+
           type: QuestionType.Number,
           required: true,
           mask: "#",
@@ -157,7 +158,7 @@ export default {
             new ChoiceOption({
               label: "California",
               value: "ca",
-              answerMessage: "🚀 the state with the most freelancers!"
+              answerMessage: "🚀 the state with the most freelancers!",
             }),
             new ChoiceOption({
               label: "Colorado",
@@ -411,7 +412,7 @@ export default {
           title: "What is the annual income you set for yourself?",
           answerMessage: {
             checkbox: "Good work investing back into the business! 💡",
-            answer: "it's good to pay yourself first! 🤩"
+            answer: "it's good to pay yourself first! 🤩",
           },
           type: QuestionType.Salary,
           placeholder: "Type a number here...",
@@ -434,7 +435,7 @@ export default {
           tooltip: "This information is used to determine the type of retirement accounts you are eligible for. Don’t count yourself or your spouse as a full-time employee, or any employees who have ownership stake in the business. If you are not sure, refer to the FAQ for what qualifies as a full-time employee in your state.",
           options: [
             new ChoiceOption({
-              label: "0",
+              label: "Just myself!",
               value: "noEmployees",
               answerMessage: "Keep up the great work as a one-person shop!",
             }),
