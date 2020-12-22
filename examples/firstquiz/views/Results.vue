@@ -1,224 +1,274 @@
 
 <template>
-<div class="containerR">
-  <div class="mainR">
-    <div class="arrowR">
-      <router-link to="/input" aria-label="restart the input page">
-        <svg width="32px" height="20px" viewBox="0 0 27 17" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M1.54169 16L13.5 1.41666L25.4583 16" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-        </svg>
-      </router-link>
+  <div class="containerR">
+    <div class="mainR">
+      <div class="arrowR">
+        <router-link to="/input" aria-label="restart the input page">
+          <svg
+            width="32px"
+            height="20px"
+            viewBox="0 0 27 17"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M1.54169 16L13.5 1.41666L25.4583 16"
+              stroke="black"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+        </router-link>
+      </div>
+      <div class="paraR">
+        <p>{{ name }} {{ businessName }} Tax Results</p>
+      </div>
     </div>
-    <div class="paraR">
-      <p>{{ name }} {{ businessName }} Tax Results</p>
-    </div>
-  </div>
-  <div class="contentR">
-    <div class="mainContent">
-      <div class="row1 flex">
-        <div class="row1Box">
-          <div class="row1Col1">
-            <p>What's yours after taxes</p>
-            <p class="numbers" v-if="profitAfterTaxes">{{ profitAfterTaxes | currency("$", 0) }}</p>
-          </div>
-          <div class="row1Col2">
-            <p>
-              Amount of total deduction you quality for
-              <info-icon onlyClass="none" tooltip="This is all your deductions applied from your business to personal taxes. This includes your tax filing status deduction, and quarterly business income deductions. The Tax Cuts and Job Act passed in 2017 allows eligible self-employed and small-business owners to deduct up to 20% of their qualified business income on their taxes.
-                Your accountant and/or tax software will calculate this value for you in your annual tax returns">
-              </info-icon>
-            </p>
-            <p class="numbers" v-if="totalDeduction">{{ totalDeduction | currency("$", 0) }}</p>
+    <div class="contentR">
+      <div class="mainContent">
+        <div class="row1 flex">
+          <div class="row1Box">
+            <div class="row1Col1">
+              <p>What's yours after taxes</p>
+              <p class="numbers" v-if="profitAfterTaxes">
+                {{ profitAfterTaxes | currency("$", 0) }}
+              </p>
+            </div>
+            <div class="row1Col2">
+              <p>How much taxes you owe in 2020</p>
+              <p style="color: #cc3939" class="numbers" v-if="taxBalance">
+                {{ taxBalance | currency("$", 0) }}
+              </p>
+            </div>
+            <div class="row1Col2">
+              <p>
+                Amount of total deduction you quality for
+                <info-icon
+                  onlyClass="none"
+                  tooltip="This is all your deductions applied from your business to personal taxes. This includes your tax filing status deduction, and quarterly business income deductions. The Tax Cuts and Job Act passed in 2017 allows eligible self-employed and small-business owners to deduct up to 20% of their qualified business income on their taxes.
+                Your accountant and/or tax software will calculate this value for you in your annual tax returns"
+                >
+                </info-icon>
+              </p>
+              <p class="numbers" v-if="totalDeduction">
+                {{ totalDeduction | currency("$", 0) }}
+              </p>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="row2 flex">
-        <div class="row2box2">
-          <div class="row2Col1">
-            <p>How much taxes you owe in 2020</p>
-            <p style="color:#cc3939" class="numbers" v-if="taxBalance">
-              {{ taxBalance | currency("$", 0) }}
-            </p>
+        <div>
+          <h4 class="taxbreakdowntext">Tax Breakdown For Year 2020 (In USD)</h4>
+        </div>
+
+        <div class="row4 flex">
+          <div class="row4Box">
+            <div class="row4Col1">
+              <div class="line1">
+                <p>
+                  Total Income:
+                  <span class="dollaramount">
+                    {{ totalIncome | currency }}
+                  </span>
+                </p>
+                <p class="subtitleinfo">(Business + Personal Income)</p>
+              </div>
+              <div class="line2">
+                <p>
+                  <span class="addminus">-</span> Expenses:
+                  <span class="dollaramount"> {{ expenses | currency }} </span>
+                </p>
+              </div>
+              <div class="line"></div>
+              <div class="line3">
+                <p>
+                  Profit after Expenses:
+                  <span class="dollaramount">{{
+                    profitAfterExpenses | currency
+                  }}</span>
+                </p>
+              </div>
+            </div>
+            <div class="row4Col2">
+              <div class="line1">
+                <p>
+                  Medicare:
+                  <span class="dollaramount">
+                    {{ medicareTax | currency }}
+                  </span>
+                </p>
+              </div>
+              <div class="line2">
+                <p>
+                  <span class="addminus">+</span> Social Security:
+                  <span class="dollaramount">{{
+                    socialSecurityTax | currency
+                  }}</span>
+                </p>
+              </div>
+              <div class="line"></div>
+              <div class="line3">
+                <p>
+                  Self Employement Tax:
+                  <span class="dollaramount">{{
+                    selfEmploymentTax | currency
+                  }}</span>
+                </p>
+              </div>
+            </div>
           </div>
+        </div>
+        <div class="row5 flex">
+          <div class="row5Box">
+            <div class="row5Col1">
+              <div class="line1">
+                <p>
+                  Profit After Expenses:
+                  <span class="dollaramount">
+                    {{ profitAfterExpenses | currency }}</span
+                  >
+                </p>
+              </div>
+              <div class="line2">
+                <p>
+                  <span class="addminus">-</span> Total Tax Balance:
+                  <span class="dollaramount">
+                    {{ taxBalance | currency }}
+                  </span>
+                </p>
+              </div>
+              <div class="line"></div>
+              <div class="line3">
+                <p>
+                  Profit after Taxes:
+                  <span class="dollaramount" v-if="profitAfterTaxes">{{
+                    profitAfterTaxes | currency
+                  }}</span>
+                </p>
+              </div>
+            </div>
+            <div class="row5Col2">
+              <div class="line1">
+                <p>
+                  Self Employement Tax:
+                  <span class="dollaramount">{{
+                    selfEmploymentTax | currency
+                  }}</span>
+                </p>
+              </div>
+              <div class="line2">
+                <p>
+                  <span class="addminus">+</span>
+                  <span style="text-transform: uppercase">{{
+                    filing_state
+                  }}</span>
+                  State Tax:
+                  <span class="dollaramount">{{
+                    stateIncomeTax | currency
+                  }}</span>
+                </p>
+              </div>
+              <div class="line4">
+                <p>
+                  <span class="addminus">+</span> Federal Income Tax:
+                  <span class="dollaramount">
+                    {{ federalIncomeTax | currency }}
+                  </span>
+                </p>
+              </div>
+              <div class="line"></div>
+              <div class="line3">
+                <p>
+                  Total Tax Balance:
+                  <span class="dollaramount" v-if="taxBalance">{{
+                    taxBalance | currency
+                  }}</span>
+                </p>
+                <p class="subtitleinfo2">
+                  (Effective Tax Rate:
+                  {{ (effectiveTaxRate * 100).toFixed(2) }}%)
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row6">
           <div class="row2Col2">
             <div class="row2Col2Box flex1">
-              <router-link class="routemid" to="/retirement-options" aria-label="next page to retirement options">
-                <p>
-                  Click here to see how much you can lower taxes with
-                  different retirement accounts
-                </p>
+              <router-link
+                class="routemid"
+                to="/retirement-options"
+                aria-label="next page to retirement options"
+              >
+                <p>Let's lower your taxes with the best retirement account</p>
               </router-link>
             </div>
           </div>
         </div>
       </div>
-      <div>
-        <h4 class="taxbreakdowntext">Tax Breakdown For Year 2020 (In USD)</h4>
-      </div>
-
-      <div class="row4 flex">
-        <div class="row4Box">
-          <div class="row4Col1">
-            <div class="line1">
-              <p>
-                Total Income:
-                <span class="dollaramount"> {{ totalIncome | currency }} </span>
-              </p>
-              <p class="subtitleinfo">(Business + Personal Income)</p>
-            </div>
-            <div class="line2">
-              <p>
-                <span class="addminus">-</span> Expenses:
-                <span class="dollaramount"> {{ expenses | currency }} </span>
-              </p>
-            </div>
-            <div class="line"></div>
-            <div class="line3">
-              <p>
-                Profit after Expenses:
-                <span class="dollaramount">{{ profitAfterExpenses | currency }}</span>
-              </p>
-            </div>
-          </div>
-          <div class="row4Col2">
-            <div class="line1">
-              <p>
-                Medicare:
-                <span class="dollaramount"> {{ medicareTax | currency }} </span>
-              </p>
-            </div>
-            <div class="line2">
-              <p>
-                <span class="addminus">+</span> Social Security:
-                <span class="dollaramount">{{ socialSecurityTax | currency }}</span>
-              </p>
-            </div>
-            <div class="line"></div>
-            <div class="line3">
-              <p>
-                Self Employement Tax:
-                <span class="dollaramount">{{ selfEmploymentTax | currency }}</span>
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="row5 flex">
-        <div class="row5Box">
-          <div class="row5Col1">
-            <div class="line1">
-              <p>
-                Profit After Expenses:
-                <span class="dollaramount"> {{ profitAfterExpenses | currency }}</span>
-              </p>
-            </div>
-            <div class="line2">
-              <p>
-                <span class="addminus">-</span> Total Tax Balance:
-                <span class="dollaramount"> {{ taxBalance | currency }} </span>
-              </p>
-            </div>
-            <div class="line"></div>
-            <div class="line3">
-              <p>
-                Profit after Taxes:
-                <span class="dollaramount" v-if="profitAfterTaxes">{{ profitAfterTaxes | currency }}</span>
-              </p>
-            </div>
-          </div>
-          <div class="row5Col2">
-            <div class="line1">
-              <p>
-                Self Employement Tax:
-                <span class="dollaramount">{{ selfEmploymentTax | currency }}</span>
-              </p>
-            </div>
-            <div class="line2">
-              <p>
-                <span class="addminus">+</span>
-                <span style="text-transform: uppercase;">{{
-                    filing_state
-                  }}</span>
-                State Tax:
-                <span class="dollaramount">{{ stateIncomeTax | currency }}</span>
-              </p>
-            </div>
-            <div class="line4">
-              <p>
-                <span class="addminus">+</span> Federal Income Tax:
-                <span class="dollaramount"> {{ federalIncomeTax | currency }} </span>
-              </p>
-            </div>
-            <div class="line"></div>
-            <div class="line3">
-              <p>
-                Total Tax Balance:
-                <span class="dollaramount" v-if="taxBalance">{{ taxBalance | currency }}</span>
-              </p>
-              <p class="subtitleinfo2">
-                (Effective Tax Rate: {{ (effectiveTaxRate * 100).toFixed(2) }}%)
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="row6">
-        <div class="flex">
-          <router-link to="/retirement-options" aria-label="next page to retirement options">
-            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="32px" height="20px" viewBox="78.833 5.5 42.333 28.334" aria-hidden="true">
-              <path d="M117.963,8.031l-17.961,20.529L82.042,8.031l-2.041,1.784l18.98,21.695c0.258,0.295,0.629,0.463,1.02,0.463c0.39,0,0.764-0.168,1.02-0.463l18.98-21.695L117.963,8.031z" /></svg></router-link>
-        </div>
-      </div>
     </div>
+    <loading :active.sync="loader" :can-cancel="false" loader="dots" />
   </div>
-</div>
 </template>
 
 <script>
 import Vue from "vue";
-import Vuex from "vuex";
-import infoIcon from "../components/info-icon";
-import Vue2Filters from 'vue2-filters'
-import store from "../../../src/store"
+import Loading from "vue-loading-overlay";
 
-Vue.use(Vue2Filters)
+import Vuex, { mapActions } from "vuex";
+import infoIcon from "../components/info-icon";
+import Vue2Filters from "vue2-filters";
+import store from "../../../src/store";
+import { progressiveTax } from "../../../src/taxData/SMETaxCalculations";
+Vue.use(Vue2Filters);
 
 export default {
   name: "Results",
   components: {
-    infoIcon
+    infoIcon,
+    Loading,
   },
   data() {
     return {
+      progressiveTax,
       function() {
-        console.log(this.$store)
-      }
+        console.log(this.$store);
+      },
     };
   },
   // using computed since the data is reactive and will not change even if refreshed
   computed: {
     ...Vuex.mapState("userInformation", {
-      totalIncome: state => state.taxSummary.totalIncome,
-      profitAfterExpenses: state => state.taxSummary.profitAfterExpenses,
-      taxBalance: state => state.taxUpdate.taxBalance,
-      profitAfterTaxes: state => state.taxSummary.profitAfterTaxes,
-      totalDeduction: state => state.taxSummary.totalDeduction,
-      qbiDeduction: state => state.taxUpdate.qbiDeduction,
-      name: state => state.userInput.first_name + "'s",
-      businessName: state => state.userInput.business_name,
-      expenses: state => state.userInput.expenses,
-      filing_state: state => state.userInput.tax_filing_state,
-      medicareTax: state => state.taxUpdate.medicareTax,
-      socialSecurityTax: state => state.taxUpdate.socialSecurityTax,
-      selfEmploymentTax: state => state.taxUpdate.selfEmploymentTax,
-      stateIncomeTax: state => state.taxUpdate.stateIncomeTax,
-      federalIncomeTax: state => state.taxUpdate.federalIncomeTax,
-      effectiveTaxRate: state => state.taxUpdate.smartTaxRate,
+      totalIncome: (state) => state.taxSummary.totalIncome,
+      profitAfterExpenses: (state) => state.taxSummary.profitAfterExpenses,
+      taxBalance: (state) => state.taxUpdate.taxBalance,
+      profitAfterTaxes: (state) => state.taxSummary.profitAfterTaxes,
+      totalDeduction: (state) => state.taxSummary.totalDeduction,
+      qbiDeduction: (state) => state.taxUpdate.qbiDeduction,
+      name: (state) => state.userInput.first_name + "'s",
+      businessName: (state) => state.userInput.business_name,
+      expenses: (state) => state.userInput.expenses,
+      filing_state: (state) => state.userInput.tax_filing_state,
+      medicareTax: (state) => state.taxUpdate.medicareTax,
+      socialSecurityTax: (state) => state.taxUpdate.socialSecurityTax,
+      selfEmploymentTax: (state) => state.taxUpdate.selfEmploymentTax,
+      stateIncomeTax: (state) => state.taxUpdate.stateIncomeTax,
+      federalIncomeTax: (state) => state.taxUpdate.federalIncomeTax,
+      effectiveTaxRate: (state) => state.taxUpdate.smartTaxRate,
+      userInput: (state) => state.userInput,
+      totalDeduction: (state) => state.taxSummary.totalDeduction,
+      totalFederalTax: (state) => state.taxSummary.totalFederalTax,
+      getProgressiveTax: (state) => state.progressiveTax,
+      totalTaxBalance: (state) => state.taxUpdate.totalTaxBalance,
+      totalProfitAfterTaxes: (state) => state.taxSummary.totalProfitAfterTaxes,
+    }),
+    ...Vuex.mapState("loader", {
+      loader: (state) => state.loader,
     }),
   },
   methods: {},
-  mounted() {}
+  mounted() {},
 };
 </script>
 
@@ -264,7 +314,7 @@ export default {
 
 .containerR {
   display: grid;
-  grid-template-rows: 13vh minmax(205vh, min-content);
+  /* grid-template-rows: 13vh minmax(205vh, min-content); */
   grid-template-areas:
     "main"
     "content";
@@ -312,7 +362,7 @@ export default {
   grid-area: content;
   background-color: #fbe6da;
   display: grid;
-  grid-template-rows: minmax(205vh, min-content);
+  grid-template-rows: minmax(25vh, min-content);
   grid-template-columns: 1fr 20fr 1fr;
   grid-template-areas: ". mainContent .";
 }
@@ -322,11 +372,13 @@ export default {
   background-color: #fbe6da;
   display: grid;
   grid-template-rows:
-    minmax(40vh, min-content) minmax(40vh, min-content) 10vh minmax(50vh,
-      min-content) minmax(50vh, min-content) minmax(10vh, min-content);
+    minmax(40vh, min-content) 10vh minmax(50vh, min-content) minmax(
+      50vh,
+      min-content
+    )
+    minmax(20vh, min-content);
   grid-template-areas:
     "row1"
-    "row2"
     "row3"
     "row4"
     "row5"
@@ -343,7 +395,7 @@ export default {
   background-color: #ffffff;
   display: grid;
   padding-left: 2rem;
-  grid-template-columns: repeat(auto-fit, minmax(28rem, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
   border-radius: 28px;
   grid-row-gap: 1rem;
   justify-content: center;
@@ -358,7 +410,7 @@ export default {
 }
 
 .numbers {
-  font-size: 110px !important;
+  font-size: 80px !important;
   color: #00b488;
   font-weight: bold;
   /* font-family: var(--heading2-font); */
@@ -391,7 +443,6 @@ export default {
   /* background-color: blueviolet; */
 }
 
-
 .row2box2 {
   width: 100%;
   height: 80%;
@@ -421,7 +472,7 @@ export default {
 
 .row2Col2Box {
   height: 112px;
-  width: 285px !important;
+  width: 400px !important;
   background: linear-gradient(180deg, #00d49f 0%, #009c74 100%);
   color: white;
   border-radius: 20px;
@@ -603,7 +654,7 @@ export default {
   /* background-color: rebeccapurple; */
   display: grid;
   overflow-y: hidden;
-  grid-template-rows: 10vh;
+  grid-template-rows: 40vh;
 }
 
 @media only screen and (max-width: 1400px) {
