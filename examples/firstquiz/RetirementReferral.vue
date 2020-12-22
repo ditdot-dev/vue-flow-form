@@ -391,12 +391,12 @@ export default {
             new ChoiceOption({
               label: "S-Corporation",
               value: "sCorporation",
-              answerMessage: "S corporations are corporations that elect to pass corporate income, losses, deductions, and credits through to their shareholders for federal tax purposes. We'll ask about your salary next",
+              answerMessage: "S corporations are corporations that elect to pass corporate income, losses, deductions, and credits through to their shareholders for federal tax purposes. Next, we'll check how much you pay yourself!",
             }),
             new ChoiceOption({
               label: "LLC (Limited Liability Company)",
               value: "llc",
-              answerMessage: "A Limited Liability Company (LLC) is a business structure that is a hybrid between a corporation & sole-proprietor, whereby the owner is not personally liable for the entity's debts or liabilities",
+              answerMessage: "A Limited Liability Company (LLC) is a business structure that is a hybrid between a corporation & sole-proprietor, whereby the owner is not personally liable for the entity's debts or liabilities. Next, we'll check how much you pay yourself!",
             }),
           ],
           jump: {
@@ -455,7 +455,7 @@ export default {
           id: "expenses",
           tagline: "About Your Business",
           title: "How much are your business expenses this year?",
-          subtitle: "This can include office supplies, rent, software subscriptions, work travel, and more. If you provided your salary earlier, please exclude it here.",
+          subtitle: "This can include office supplies, rent, software subscriptions, work travel, and more. If you provided your salary earlier, please add it here as a wage expense.",
           answerMessage: "Keeping track of it all isn't easy! 💸",
           placeholder: "Type a number here...",
           type: QuestionType.Dollar,
