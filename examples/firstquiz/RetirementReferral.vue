@@ -381,22 +381,22 @@ export default {
             new ChoiceOption({
               label: "Sole Proprietorship",
               value: "soleProprietor",
-              answerMessage: "The most common type of business, with over 23 million sole proprietors in the US!",
+              answerMessage: "The most common type of business, a sole proprietor is someone who owns an unincorporated business by himself or herself.",
             }),
             new ChoiceOption({
               label: "Partnership",
               value: "partnership",
-              answerMessage: "Nice work getting partner(s)! 🤝",
+              answerMessage: "A partnership is the relationship between two or more people to do trade or business. Each person contributes money, property, labor or skill, and shares in the profits and losses of the business. 🤝",
             }),
             new ChoiceOption({
               label: "S-Corporation",
               value: "sCorporation",
-              answerMessage: "Nice work incorporating, we'll ask about your salary next",
+              answerMessage: "S corporations are corporations that elect to pass corporate income, losses, deductions, and credits through to their shareholders for federal tax purposes. We'll ask about your salary next",
             }),
             new ChoiceOption({
               label: "LLC (Limited Liability Company)",
               value: "llc",
-              answerMessage: "Nice work incorporating, we'll ask about your salary next",
+              answerMessage: "A Limited Liability Company (LLC) is a business structure that is a hybrid between a corporation & sole-proprietor, whereby the owner is not personally liable for the entity's debts or liabilities",
             }),
           ],
           jump: {
