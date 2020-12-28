@@ -3,8 +3,8 @@
 Extending on the open source package vue-flow-form from Dit-dot-hr, this is a calculator that uses a conversational approach to empower users to select the retirement account suitable for their small business / gig / freelance work.
 
 <p align="center">
-  <img src="../public/welcome-page-gig-retirement-calculator.png" alt="welcome page screenshots">
-  <img src="../public/welcome-page-gig-retirement-calculator.png" alt="input page screenshots">
+  <img src="./public/welcome-page-gig-retirement-calculator.png" alt="welcome page screenshots">
+  <img src="./public/welcome-page-gig-retirement-calculator.png" alt="input page screenshots">
 </p>
 
 <p>
