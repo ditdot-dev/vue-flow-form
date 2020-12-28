@@ -4,7 +4,8 @@ Extending on the open source package vue-flow-form from Dit-dot-hr, this is a ca
 
 <p align="center">
   <img src="./public/welcome-page-gig-retirement-calculator.png" alt="welcome page screenshots">
-  <img src="./public/welcome-page-gig-retirement-calculator.png" alt="input page screenshots">
+  <img src="./public/input-page-gig-retirement-calculator.png" alt="input page screenshots">
+  <img src="./public/results-page-gig-retirement-calculator.png" alt="results page screenshots">
 </p>
 
 <p>
