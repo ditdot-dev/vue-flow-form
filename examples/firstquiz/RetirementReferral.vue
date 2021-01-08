@@ -173,6 +173,10 @@ export default {
               value: "de",
             }),
             new ChoiceOption({
+              label: "District of Columbia",
+              value: "dc",
+            }),
+            new ChoiceOption({
               label: "Florida",
               value: "fl",
               answerMessage: "🎉 You have no state income tax!",
@@ -335,10 +339,6 @@ export default {
               label: "Washington",
               value: "wa",
               answerMessage: "🎉 You have no state income tax!",
-            }),
-            new ChoiceOption({
-              label: "Washington District of Columbia",
-              value: "dc",
             }),
             new ChoiceOption({
               label: "West Virginia",
