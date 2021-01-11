@@ -10,8 +10,9 @@
       your 2020 profit after taxes. <br />
       <br />
 
-      You'll need to know your tax filing information and <br />
-      estimate how much you made and spent in the tax year. <br />
+      You'll need your last year's tax returns, and <br />
+      estimate how much you made and spent this tax year. <br />
+      <br />
 
       Then, we will make a personalized<br />
       retirement account suggestion <br />
