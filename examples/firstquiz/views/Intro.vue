@@ -1,29 +1,32 @@
 <template>
-  <div class="main">
-    <div class="content flex2">
-      <p class="heading">
-        Welcome to the Gig <br />
-        Retirement Calculator
-      </p>
-      <p class="para">
-        Fill out the 10 step questionnaire to calculate <br />
-        your 2020 profit after taxes. <br />
-        <br />
+<div class="main">
+  <div class="content flex2">
+    <p class="heading">
+      Welcome to the Gig <br />
+      Retirement Calculator
+    </p>
+    <p class="para">
+      Fill out the questionnaire to calculate <br />
+      your 2020 profit after taxes. <br />
+      <br />
 
-        Then, we will make a personalized<br />
-        retirement account suggestion <br />
-        to maximize your tax savings💰! <br />
-        <br />
-        <strong>Note:</strong> Your information is safe with us 😊. We <br />
-        will never sell your data.
-      </p>
-      <br /><br />
-      <router-link to="/input" aria-label="start input page"><button>GET STARTED!</button></router-link>
-    </div>
-    <div class="image">
-      <div class="img"></div>
-    </div>
+      You'll need to know your tax filing information and <br />
+      estimate how much you made and spent in the tax year. <br />
+
+      Then, we will make a personalized<br />
+      retirement account suggestion <br />
+      to maximize your tax savings💰! <br />
+      <br />
+      <strong>Note:</strong> Your information is safe with us 😊. <br />
+      We will never sell your data.
+    </p>
+    <br /><br />
+    <router-link to="/input" aria-label="start input page"><button>GET STARTED</button></router-link>
   </div>
+  <div class="image">
+    <div class="img"></div>
+  </div>
+</div>
 </template>
 
 <script>
@@ -65,6 +68,7 @@ export default {
   justify-content: center;
   align-items: center;
 }
+
 .flex2 {
   display: flex;
   justify-content: center;
@@ -148,15 +152,18 @@ export default {
     padding-bottom: 10px;
     line-height: 55px;
   }
+
   .content .para {
     font-size: 21px;
     padding-bottom: 15px;
   }
+
   .content button {
     width: 250px;
     height: 65px;
     font-size: 25px;
   }
+
   .img {
     height: 440px;
     width: 440px;
@@ -176,15 +183,18 @@ export default {
     align-items: flex-start;
     flex-flow: column;
   }
+
   .content .heading {
     font-size: 30px;
     padding-bottom: 10px;
     line-height: 45px;
   }
+
   .content .para {
     font-size: 18px;
     padding-bottom: 10px;
   }
+
   .img {
     height: 400px;
     width: 400px;
@@ -197,10 +207,12 @@ export default {
     grid-template-columns: 5vw 50vw 43vw 3vw;
     grid-template-areas: ". content image .";
   }
+
   .img {
     height: 350px;
     width: 350px;
   }
+
   .content .para {
     line-height: 1.5rem;
   }
@@ -222,12 +234,14 @@ export default {
     justify-content: center;
     /* align-items: flex-start; */
   }
+
   .content {
     display: flex;
     align-items: left;
     justify-content: flex-end;
     padding-top: 0;
   }
+
   .content .heading {
     font-size: 35px;
     padding-bottom: 5px;
@@ -240,11 +254,13 @@ export default {
     /* padding-bottom: 5px; */
     line-height: 1.3rem;
   }
+
   .content button {
     width: 220px;
     height: 50px;
     font-size: 20px;
   }
+
   .img {
     height: 250px;
     width: 250px;
@@ -256,39 +272,47 @@ export default {
     font-size: 30px;
     margin-top: -4rem;
   }
+
   .content .para {
     font-size: 15px;
     padding-top: 2rem;
   }
+
   .content button {
     width: 150px;
     height: 50px;
     font-size: 16px;
   }
+
   .main {
     align-items: center;
   }
+
   .image {
     align-items: center;
   }
 }
+
 @media only screen and (max-width: 420px) {
   .content .heading {
     font-size: 30px;
     /* padding-top: 3rem; */
     /* margin-top: -4rem !important; */
   }
+
   .content .para {
     font-size: 15px;
     padding-top: 2rem;
   }
 }
+
 @media only screen and (max-width: 380px) {
   .content .heading {
     font-size: 30px;
     /* padding-top: 3rem; */
     margin-top: -5rem !important;
   }
+
   .content .para {
     font-size: 15px;
     padding-top: 2rem;
@@ -301,6 +325,7 @@ export default {
     padding-top: 0rem;
     margin-top: 0rem !important;
   }
+
   .main {
     display: grid;
     grid-template-columns: 5fr 90fr 5fr;
@@ -316,6 +341,7 @@ export default {
     font-size: 12px;
     padding: 0;
   }
+
   .content button {
     margin-bottom: 5px;
   }
