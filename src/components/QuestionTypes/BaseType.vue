@@ -137,7 +137,7 @@
       },
 
       isValid() {
-        if (this.question.validator != null && !this.question.validator(this.question.answer)) {
+        if (this.question.validator != null && !this.question.validator(this.question.answer, this.question)) {
           return false
         }
 
