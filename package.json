@@ -2,11 +2,11 @@
   "name": "@ditdot-dev/vue-flow-form",
   "author": "DITDOT",
   "description": "Create conversational conditional-logic forms with Vue.js.",
-  "version": "1.1.6",
+  "version": "1.2.0",
   "private": false,
   "repository": {
     "type": "git",
-    "url": "https://github.com/ditdot-dev/vue-flow-form.git"
+    "url": "https://github.com/hyerdev/vue-flow-form"
   },
   "keywords": [
     "vue",
