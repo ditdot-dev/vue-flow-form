@@ -96,6 +96,7 @@ export default class QuestionModel {
     this.min = null
     this.max = null
     this.nextStepOnAnswer = false
+    this.validator = null
 
     Object.assign(this, options)
 

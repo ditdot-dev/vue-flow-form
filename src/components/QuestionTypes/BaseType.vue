@@ -137,6 +137,10 @@
       },
 
       isValid() {
+        if (this.question.validator != null && !this.question.validator(this.question.answer)) {
+          return false
+        }
+
         if (!this.question.required && !this.hasValue && this.dirty) {
           return true
         }
