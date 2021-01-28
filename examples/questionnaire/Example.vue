@@ -93,7 +93,14 @@
             title: 'What is your first name?',
             type: QuestionType.Text,
             required: true,
-            placeholder: 'Start typing here...'
+            placeholder: 'Start typing here...',
+            validator: (value, questionModel) => {
+              if (value !== "Arthur") {
+                questionModel.description = "Nao sou eu"
+                return false
+              }
+              return true
+            }
           }),
           new QuestionModel({
             id: 'email',
