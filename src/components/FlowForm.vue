@@ -16,6 +16,8 @@
           v-bind:reverse="reverse"
         />
 
+        <slot></slot>
+
         <!-- Complete/Submit screen slots -->   
         <div v-if="isOnLastStep" class="vff-animate f-fade-in-up field-submittype">
           <slot name="complete">
@@ -127,8 +129,8 @@
     https://www.ditdot.hr/en
   */
 
-  import FlowFormQuestion from './Question.vue'
-  import QuestionModel from '../models/QuestionModel'
+  import FlowFormQuestion from './FlowFormQuestion.vue'
+  import QuestionModel, { ChoiceOption, LinkOption } from '../models/QuestionModel'
   import LanguageModel from '../models/LanguageModel'
   import { IsMobile } from '../mixins/IsMobile'
 
@@ -139,7 +141,7 @@
     },
     
     props: {
-      questions:{
+      questions: {
         type: Array,
         validator: value => value.every(q => q instanceof QuestionModel)
       }, 
@@ -212,7 +214,7 @@
       },
 
       activeQuestionId() {
-        const question = this.questions[this.activeQuestionIndex]
+        const question = this.questionModels[this.activeQuestionIndex]
 
         if (this.isOnLastStep) {
           return '_submit'
@@ -271,6 +273,85 @@
         }
 
         return false
+      },
+
+      questionModels() {
+        if (this.questions && this.questions.length) {
+          return this.questions
+        }
+
+        const questions = []
+
+        if (!this.questions) {
+          this
+            .$slots
+            .default
+            .filter(q => q.tag && q.tag.indexOf('Question') !== -1)
+            .forEach(q => {
+              const attrs = q.data.attrs
+              const model = new QuestionModel()
+
+              if (q.data.model) {
+                model.answer = q.data.model.value
+              }
+
+              Object.keys(model).forEach(key => {
+                if (attrs[key] !== undefined) {
+                  if (typeof model[key] === 'boolean') {
+                    model[key] = attrs[key] !== false
+                  } else {
+                    switch(key) {
+                      case 'options':
+                        const options = []
+
+                        attrs[key].forEach(option => {
+                          const choice = new ChoiceOption()
+
+                          Object.keys(choice).forEach(choiceKey => {
+                            if (option[choiceKey] !== undefined) {
+                              choice[choiceKey] = option[choiceKey]
+                            }
+                          })
+
+                          options.push(choice)
+                        })
+
+                        model[key] = options
+                        break
+
+                      case 'descriptionLink':
+                        const links = []
+
+                        attrs[key].forEach(link => {
+                          const linkOption = new LinkOption()
+
+                          Object.keys(linkOption).forEach(optionKey => {
+                            if (link[optionKey] !== undefined) {
+                              linkOption[optionKey] = link[optionKey]
+                            }
+                          })
+
+                          links.push(linkOption)
+                        })
+
+                        model[key] = links
+                        break
+
+                      default:
+                        model[key] = attrs[key]
+                        break
+                    }
+                  }
+                }
+              })
+
+              q.componentInstance.question = model
+
+              questions.push(model)
+            })
+        }
+
+        return questions
       }
     },
 
@@ -298,7 +379,7 @@
       setQuestionListActivePath() {
         const questions = []
 
-        if (!this.questions.length) {
+        if (!this.questionModels.length) {
           return
         }
 
@@ -308,7 +389,7 @@
           nextId
 
         do {
-          let question = this.questions[index]
+          let question = this.questionModels[index]
 
           question.setIndex(serialIndex)
           question.language = this.language
@@ -321,10 +402,10 @@
             nextId = question.getJumpId()
             if (nextId) {
               if (nextId === '_submit') {
-                index = this.questions.length
+                index = this.questionModels.length
               } else {
-                for (let i = 0; i < this.questions.length; i++) {
-                  if (this.questions[i].id === nextId) {
+                for (let i = 0; i < this.questionModels.length; i++) {
+                  if (this.questionModels[i].id === nextId) {
                     index = i
                     break
                   }
@@ -334,11 +415,11 @@
               ++index
             }
           } else {
-            index = this.questions.length
+            index = this.questionModels.length
           }
 
           ++serialIndex
-        } while (index < this.questions.length)
+        } while (index < this.questionModels.length)
 
         this.questionListActivePath = questions
       },
