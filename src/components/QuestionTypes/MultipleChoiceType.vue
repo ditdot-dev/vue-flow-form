@@ -9,12 +9,17 @@
         v-bind:aria-label="getLabel(index)"
         role="option"
       >
-        <span class="f-key">{{ getToggleKey(index) }}</span>
-        <span class="f-label">{{ option.choiceLabel() }}</span>
+        <span v-if="hasImages && option.imageSrc" class="f-image">
+          <img v-bind:src="option.imageSrc" v-bind:alt="option.imageAlt">
+        </span>
+        <div>
+          <span class="f-key">{{ getToggleKey(index) }}</span>
+          <span v-if="option.choiceLabel()" class="f-label">{{ option.choiceLabel() }}</span>
+        </div>
       </li>
       <li
         class="f-other"
-        v-if="question.allowOther"
+        v-if="!hasImages && question.allowOther"
         v-on:click.prevent="startEditOther"
         v-bind:class="{'f-selected': question.other, 'f-focus': editingOther}"
         v-bind:aria-label="language.ariaTypeAnswer"
@@ -57,7 +62,8 @@
 
     data() {
       return {
-        editingOther: false
+        editingOther: false,
+        hasImages: false
       }
     },
 
