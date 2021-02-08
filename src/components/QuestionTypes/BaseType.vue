@@ -156,6 +156,7 @@
         return !this.question.required || this.hasValue
       }
     },
+    
     computed: {
       placeholder() {
         return this.question.placeholder || this.language.placeholder

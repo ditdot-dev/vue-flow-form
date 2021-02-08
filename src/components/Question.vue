@@ -101,6 +101,7 @@
   import FlowFormEmailType from './QuestionTypes/EmailType.vue'
   import FlowFormLongTextType from './QuestionTypes/LongTextType.vue'
   import FlowFormMultipleChoiceType from './QuestionTypes/MultipleChoiceType.vue'
+  import FlowFormMultiplePictureChoiceType from './QuestionTypes/MultiplePictureChoiceType.vue'
   import FlowFormNumberType from './QuestionTypes/NumberType.vue'
   import FlowFormPasswordType from './QuestionTypes/PasswordType.vue'
   import FlowFormPhoneType from './QuestionTypes/PhoneType.vue'
@@ -119,6 +120,7 @@
       FlowFormEmailType,
       FlowFormLongTextType,
       FlowFormMultipleChoiceType,
+      FlowFormMultiplePictureChoiceType,
       FlowFormNumberType,
       FlowFormPasswordType,
       FlowFormPhoneType,
@@ -126,6 +128,7 @@
       FlowFormTextType,
       FlowFormUrlType
     },
+
     props: {
       question: QuestionModel,
       language: LanguageModel,
@@ -139,9 +142,11 @@
         default: false
       }
     },
+
     mixins: [
       IsMobile
     ],
+
     data() {
       return {
         QuestionType: QuestionType,
@@ -149,15 +154,18 @@
         debounced: false
       }
     },
+
     mounted() {
       this.focusField()
       this.dataValue = this.question.answer
 
       this.$refs.qanimate.addEventListener('animationend', this.onAnimationEnd)
     },
+
     beforeDestroy() {
       this.$refs.qanimate.removeEventListener('animationend', this.onAnimationEnd)
     },
+
     methods: {
       /**
        * Autofocus the input box of the current question
@@ -288,6 +296,7 @@
         return q.showInvalid()
       }
     },
+
     computed: {
       mainClasses: {
         cache: false,
@@ -301,7 +310,7 @@
             'f-has-value': this.$refs.questionComponent && this.$refs.questionComponent.hasValue
           }
 
-          classes['field-' + this.question.type.toLowerCase().substring(8)] = true
+          classes['field-' + this.question.type.toLowerCase().substring(8, this.question.type.length - 4)] = true
 
           return classes
         }

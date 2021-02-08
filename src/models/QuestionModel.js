@@ -12,6 +12,7 @@ export const QuestionType = Object.freeze({
   Email: 'FlowFormEmailType',
   LongText: 'FlowFormLongTextType',
   MultipleChoice: 'FlowFormMultipleChoiceType',
+  MultiplePictureChoice: 'FlowFormMultiplePictureChoiceType',
   Number: 'FlowFormNumberType',
   Password: 'FlowFormPasswordType',
   Phone: 'FlowFormPhoneType',
@@ -37,6 +38,8 @@ export class ChoiceOption {
     this.label = ''
     this.value = null
     this.selected = false
+    this.imageSrc = null
+    this.imageAlt = null
 
     Object.assign(this, options)
   }
@@ -47,8 +50,12 @@ export class ChoiceOption {
 
   choiceValue() {
     // Returns the value if it's anything other than the default (null).
-    // Returns label if the value has not been set.
-    return this.value !== null ? this.value : this.label
+    if (this.value !== null) {
+      return this.value
+    }
+
+    // Returns any other non-empty property if the value has not been set.
+    return this.label || this.imageAlt || this.imageSrc
   }
 
   toggle() {
@@ -122,14 +129,6 @@ export default class QuestionModel {
     }
   }
 
-  setAnswer(answer) {
-    if (this.type === QuestionType.Number && answer !== '' && !isNaN(+answer)) {
-      answer = +answer
-    }
-
-    this.answer = answer
-  }
-
   getJumpId() {
     let nextId = null
 
@@ -142,6 +141,14 @@ export default class QuestionModel {
     }
 
     return nextId
+  }
+
+  setAnswer(answer) {
+    if (this.type === QuestionType.Number && answer !== '' && !isNaN(+answer)) {
+      answer = +answer
+    }
+
+    this.answer = answer
   }
 
   setIndex(index) {
