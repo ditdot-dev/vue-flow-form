@@ -9,24 +9,26 @@
       v-bind:questions="questions"
       v-bind:language="language"
       v-bind:progressbar="false"
+      v-bind:standalone="true"
     >
       <!-- Custom content for the Complete/Submit screen slots in the FlowForm component -->
       <!-- We've overriden the default "complete" slot content -->
       <template v-slot:complete>
-        <div class="section-wrap">
+        <div class="f-section-wrap">
           <div v-if="questions[0].answer === 'technical_issue'">
             <span class="f-tagline">Submit issue &gt; Step 3/3</span>
             <div v-if="loading">
-              <span class="fh2">Please wait, submitting your ticket.</span>
+              <span class="fh2">Please wait, submitting...</span>
             </div>
             <div v-else>
               <span class="fh2">Your ticket number is: {{ getTicket() }}</span>
-              <p class="description"><span>Thank You 😊. Our support team will contact you as soon as possible.</span></p>
+              <p class="f-description"><span>Thank You 😊. Our support team will contact you as soon as possible.</span></p>
             </div>
           </div>
           <div v-else>
             <span class="f-tagline">Support page &gt; Ticket status</span>
             <span class="fh2">Good news - the wheels are turning, your ticket is being processed!😉</span>
+            <p class="f-description"><span>Have a great day!</span></p>
           </div>
         </div>  
       </template>
@@ -52,7 +54,7 @@
   import QuestionModel, { QuestionType, ChoiceOption, LinkOption } from '../../src/models/QuestionModel'
   import LanguageModel from '../../src/models/LanguageModel'
   // If using the npm package, use the following line instead of the ones above.
-  // import FlowForm, { QuestionModel, QuestionType, ChoiceOption, LanguageModel } from '@ditdot-dev/vue-flow-form'
+  // import FlowForm, { QuestionModel, QuestionType, ChoiceOption, LinkOption, LanguageModel } from '@ditdot-dev/vue-flow-form'
 
   export default {
     name: 'example',
@@ -107,7 +109,7 @@
             ],
             options: [          
               new ChoiceOption({
-                label: 'Yes, but still couldn’t find the answer.',
+                label: 'Yes, but I couldn’t find the answer',
                 value: 'faq_no'
               }),
             ],
@@ -118,9 +120,9 @@
           new QuestionModel({
             id: 'enter_ticket',
             tagline: 'Support page > Ticket status',
-            title: 'Please enter your 6-digit code',
-            subtitle: 'You received this when you reported your problem',
-            type: QuestionType.Number,
+            title: 'Please enter your 6-digit code.',
+            subtitle: 'You received this when you reported your problem.',
+            type: QuestionType.Text,
             multiple: false,
             required: true,
             mask: '#-#-#-#-#-#',
@@ -132,7 +134,7 @@
           new QuestionModel({
             id: 'faq_no',
             tagline: 'Submit issue > Step 2/3',
-            title: 'Please describe your problem',
+            title: 'Please describe your problem.',
             type: QuestionType.LongText,
             required: true,
             placeholder: 'Start typing here...',
@@ -158,8 +160,6 @@
         const data = this.getData()
 
         this.loading = true
-
-        /* eslint-disable-next-line no-unused-vars */
         
         /*
           You can use Fetch API to send the data to your server, eg.:
@@ -187,7 +187,7 @@
         this.questions.forEach(question => {
           if (question.title) {
             let answer = question.answer
-            if (typeof answer === 'object') {
+            if (Array.isArray(answer)) {
               answer = answer.join(', ')
             }
 

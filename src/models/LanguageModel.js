@@ -1,4 +1,4 @@
-/*
+/*!
   Copyright (c) 2020 - present, DITDOT Ltd. - MIT Licence
   https://github.com/ditdot-dev/vue-flow-form
   https://www.ditdot.hr/en
@@ -12,6 +12,7 @@ export default class LanguageModel {
     this.shiftKey = 'Shift'
     this.ok = 'OK'
     this.continue = 'Continue'
+    this.skip = 'Skip'
     this.pressEnter = 'Press :enterKey'
     this.multipleChoiceHelpText = 'Choose as many as you like'
     this.multipleChoiceHelpTextSingle = 'Choose only one answer'
@@ -24,6 +25,7 @@ export default class LanguageModel {
     this.percentCompleted = ':percent% completed'
     this.invalidPrompt = 'Please fill out the field correctly'
     this.thankYouText = 'Thank you!'
+    this.successText = 'Your submission has been sent.'
     this.ariaOk = 'Press to continue'
     this.ariaRequired = 'This step is required'
     this.ariaPrev = 'Previous step'
@@ -42,7 +44,7 @@ export default class LanguageModel {
   formatString(string) {
     return string.replace(/:(\w+)/g, (match, word) => {
       if (this[word]) {
-        return '<span class="f-uppercase">' + this[word] + '</span>'
+        return '<span class="f-string-em">' + this[word] + '</span>'
       }
       
       return match

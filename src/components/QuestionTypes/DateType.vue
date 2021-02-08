@@ -6,24 +6,25 @@
   */
 
   import TextType from './TextType.vue'
-  import LanguageModel from '../../models/LanguageModel'
   import { QuestionType } from '../../models/QuestionModel'
+  import LanguageModel from '../../models/LanguageModel'
 
   export default {
     extends: TextType,
-    name: QuestionType.Number,
-
+    name: QuestionType.Date,
     data() {
       return {
-        inputType: 'tel',
-        allowedChars: '-0123456789.'
+        inputType: 'date'
       }
-    },
-
+    }, 
     methods: {
       validate() {
-        if (this.hasValue) {
-          return !isNaN(+this.dataValue)
+        if (this.question.min && this.dataValue < this.question.min) {
+          return false
+        }
+
+        if (this.question.max && this.dataValue > this.question.max) {
+          return false
         }
 
         return !this.question.required || this.hasValue

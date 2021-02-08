@@ -1,9 +1,9 @@
 // Single question template and logic
 
 <template>
-  <div class="animate q-form" v-bind:class="mainClasses" ref="qanimate">
+  <div class="vff-animate q-form" v-bind:class="mainClasses" ref="qanimate">
     <div class="q-inner">
-      <div v-bind:class="{'section-wrap': question.type === QuestionType.SectionBreak}">
+      <div v-bind:class="{'f-section-wrap': question.type === QuestionType.SectionBreak}">
         <div v-bind:class="{'fh2': question.type !== QuestionType.SectionBreak}">
           <span class="f-tagline" v-if="question.tagline">{{ question.tagline }}</span>
 
@@ -37,7 +37,7 @@
             <span class="f-help" v-else-if="question.type === QuestionType.MultipleChoice">{{ question.helpText || language.multipleChoiceHelpTextSingle }}</span>
           </span>
 
-          <div v-if="!question.inline" class="f-answer full-width">
+          <div v-if="!question.inline" class="f-answer f-full-width">
             <component
               ref="questionComponent"
               v-bind:is="question.type"
@@ -49,7 +49,7 @@
             />
           </div>
         </div>
-        <p v-if="question.description || question.descriptionLink" class="description">
+        <p v-if="question.description || question.descriptionLink.length !== 0" class="f-description">
           <span v-if="question.description">{{ question.description }}</span>
           <a
             v-for="(link, index) in question.descriptionLink" 
@@ -61,7 +61,7 @@
         </p>
 
       </div>
-      <div class="animate fade-in f-enter" v-if="showOkButton()">
+      <div class="vff-animate f-fade-in f-enter" v-if="showOkButton()">
         <button 
           class="o-btn-action"
           type="button"
@@ -71,6 +71,7 @@
           v-bind:aria-label="language.ariaOk"
         >
             <span v-if="question.type === QuestionType.SectionBreak">{{ language.continue }}</span>
+            <span v-else-if="showSkip()">{{ language.skip }}</span>
             <span v-else>{{ language.ok }}</span>
         </button>
         <a 
@@ -106,12 +107,14 @@
   import FlowFormSectionBreakType from './QuestionTypes/SectionBreakType.vue'
   import FlowFormTextType from './QuestionTypes/TextType.vue'
   import FlowFormUrlType from './QuestionTypes/UrlType.vue'
+  import FlowFormDateType from './QuestionTypes/DateType.vue'
   import { IsMobile } from '../mixins/IsMobile'
   
 
   export default {
     name: 'FlowFormQuestion',
     components: {
+      FlowFormDateType,
       FlowFormDropdownType,
       FlowFormEmailType,
       FlowFormLongTextType,
@@ -126,7 +129,7 @@
     props: {
       question: QuestionModel,
       language: LanguageModel,
-      value: [String, Array],
+      value: [String, Array, Boolean, Number, Object],
       active: {
         type: Boolean,
         default: false
@@ -142,7 +145,8 @@
     data() {
       return {
         QuestionType: QuestionType,
-        dataValue: null
+        dataValue: null,
+        debounced: false
       }
     },
     mounted() {
@@ -186,8 +190,24 @@
        * Emits "answer" event and calls "onEnter" method on Enter press
        */ 
       onEnter($event) {
+        this.checkAnswer(this.emitAnswer)
+      },
+
+      onTab($event) {
+        this.checkAnswer(this.emitAnswerTab)
+      },
+
+      checkAnswer(fn) {
         const q = this.$refs.questionComponent
 
+        if (q.isValid() && this.question.nextStepOnAnswer && !this.question.multiple) {
+          this.debounce(() => fn(q), 350)
+        } else {
+          fn(q)
+        }
+      },
+
+      emitAnswer(q) {
         if (q) {
           if (!q.focused) {
             this.$emit('answer', q)
@@ -197,15 +217,23 @@
         }
       },
 
-      onTab($event) {
-        const q = this.$refs.questionComponent
-
-        if (q) {
+      emitAnswerTab(q) {
+        if (q && this.question.type !== QuestionType.Date) {
           this.returnFocus()
           this.$emit('answer', q)
           
           q.onEnter()
         }
+      },
+
+      debounce(fn, delay) {
+        let debounceTimer
+        this.debounced = true
+      
+        return (() => {
+          clearTimeout(debounceTimer)
+          debounceTimer = setTimeout(fn, delay)
+        })()
       },
       
       /**
@@ -218,11 +246,33 @@
           return this.active
         }
 
-        if (!q || !this.dataValue) {
+        if (!this.question.required) {
+          return true
+        }
+
+        if (this.question.allowOther && this.question.other) {
+          return true
+        }
+
+        if (QuestionType.MultipleChoice && !this.question.multiple && this.question.nextStepOnAnswer) {
+          return false
+        }
+      
+        // If there is no question referenced, or dataValue is still set to its default (null).
+        // This allows a ChoiceOption value of false, but will not allow you to use null as a value.
+        if (!q || this.dataValue === null) {
           return false
         }
 
         return q.hasValue && q.isValid()
+      },
+
+      showSkip() {
+        const q = this.$refs.questionComponent
+
+        // We might not have a reference to the question component at first
+        // but we know that if we don't, it's definitely empty
+        return !this.question.required && (!q || !q.hasValue)
       },
 
       /**
@@ -231,7 +281,7 @@
       showInvalid() {
         const q = this.$refs.questionComponent
 
-        if (!q || !this.dataValue) {
+        if (!q || this.dataValue === null) {
           return false
         }
 
@@ -239,26 +289,33 @@
       }
     },
     computed: {
-      mainClasses() {
-        const classes = {
-          'q-is-active': this.active,
-          'q-is-inactive': !this.active,
-          'fade-in-down': this.reverse,
-          'fade-in-up': !this.reverse
+      mainClasses: {
+        cache: false,
+        get() {
+          const classes = {
+            'q-is-active': this.active,
+            'q-is-inactive': !this.active,
+            'f-fade-in-down': this.reverse,
+            'f-fade-in-up': !this.reverse,
+            'f-focused': this.$refs.questionComponent && this.$refs.questionComponent.focused,
+            'f-has-value': this.$refs.questionComponent && this.$refs.questionComponent.hasValue
+          }
+
+          classes['field-' + this.question.type.toLowerCase().substring(8)] = true
+
+          return classes
         }
-
-        classes['field-' + this.question.type.toLowerCase().substring(8)] = true
-
-        return classes
       },
 
       showHelperText() {
         if (this.question.subtitle) {
           return true
         }
+
         if (this.question.type === QuestionType.LongText || this.question.type === QuestionType.MultipleChoice) {
           return this.question.helpTextShow
         }
+
         return false
       }
     }

@@ -1,5 +1,5 @@
 <template>
-  <span>
+  <span v-bind:data-placeholder="inputType === 'date' ? placeholder : null">
     <the-mask
       v-if="question.mask"
       ref="input"
@@ -15,6 +15,9 @@
       v-on:keyup.enter.prevent="onEnter"
       v-on:keyup.tab.prevent="onEnter"
       v-bind:placeholder="placeholder"
+      v-bind:min="question.min"
+      v-bind:max="question.max"
+      v-on:change="onChange"
     />
     <input
       v-else
@@ -28,6 +31,9 @@
       v-on:keyup.tab.prevent="onEnter"
       v-on:focus="setFocus"
       v-on:blur="unsetFocus"
+      v-bind:min="question.min"
+      v-bind:max="question.max"
+      v-on:change="onChange"
       v-bind:placeholder="placeholder"
     />
   </span>
@@ -51,15 +57,17 @@
     components: {
       TheMask
     },
+
     data() {
       return {
         inputType: 'text', 
         canReceiveFocus: true
       }
     }, 
+
     methods: {
       validate() {
-        if (this.question.mask && this.dataValue.length !== this.question.mask.length) {
+        if (this.question.mask && this.hasValue && this.dataValue.length !== this.question.mask.length) {
           return false
         }
 

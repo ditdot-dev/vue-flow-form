@@ -17,7 +17,7 @@
       language: LanguageModel,
       question: QuestionModel,
       active: Boolean,
-      modelValue: [String, Array]
+      modelValue: [String, Array, Boolean, Number, Object]
     },
     mixins: [
       IsMobile,
@@ -25,13 +25,13 @@
     data() {
       return {
         dirty: false,
-        dataValue: '',
+        dataValue: null,
         answer: null,
         enterPressed: false,
         allowedChars: null,
         alwaysAllowedKeys: ['ArrowLeft', 'ArrowRight', 'Delete', 'Backspace'],
         focused: false,
-        canReceiveFocus: false,
+        canReceiveFocus: false
       }
     },
     mounted() {
@@ -71,9 +71,11 @@
       },
 
       focus() {
-        const el = this.getElement()
+        if (!this.focused) {
+          const el = this.getElement()
 
-        el && el.focus()
+          el && el.focus()
+        }
       },
 
       blur() {
@@ -122,8 +124,10 @@
       },
 
       setAnswer(answer) {
+        this.question.setAnswer(answer)
+
+        this.answer = this.question.answer
         this.question.answered = this.isValid()
-        this.answer = this.question.answer = answer
 
         this.$emit('update:modelValue', this.answer)
       },
@@ -162,10 +166,17 @@
           let v = this.dataValue
 
           if (v.trim) {
-            v = v.trim()
+            // Don't allow empty strings
+            return v.trim().length > 0
           }
 
-          return v.length > 0
+          if (Array.isArray(v)) {
+            // Don't allow empty arrays
+            return v.length > 0
+          }
+
+          // All other non-null values are allowed to pass through
+          return true
         }
 
         return false

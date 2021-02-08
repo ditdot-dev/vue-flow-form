@@ -18,7 +18,11 @@
     },
     methods: {
       validate() {
-        return this.hasValue && /^[^@]+@.+[^.]$/.test(this.dataValue)
+        if (this.hasValue) {
+          return /^[^@]+@.+[^.]$/.test(this.dataValue)
+        }
+
+        return !this.question.required
       }
     }
   }

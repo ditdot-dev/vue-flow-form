@@ -7,6 +7,7 @@
 // Global data store
 
 export const QuestionType = Object.freeze({
+  Date: 'FlowFormDateType',
   Dropdown: 'FlowFormDropdownType',
   Email: 'FlowFormEmailType',
   LongText: 'FlowFormLongTextType',
@@ -25,10 +26,16 @@ export const DropdownOptionBlank = Object.freeze({
   disabled: true
 })
 
+export const MaskPresets = Object.freeze({
+  Date: '##/##/####',
+  DateIso: '####-##-##',
+  PhoneUs: '(###) ###-####'
+})
+
 export class ChoiceOption {
   constructor(options) {
     this.label = ''
-    this.value = ''
+    this.value = null
     this.selected = false
 
     Object.assign(this, options)
@@ -39,7 +46,9 @@ export class ChoiceOption {
   }
 
   choiceValue() {
-    return this.value || this.label
+    // Returns the value if it's anything other than the default (null).
+    // Returns label if the value has not been set.
+    return this.value !== null ? this.value : this.label
   }
 
   toggle() {
@@ -60,7 +69,7 @@ export class LinkOption {
 export default class QuestionModel {
   constructor(options) {
     this.id = null
-    this.answer = ''
+    this.answer = null
     this.answered = false
     this.index = 0
     this.options = []
@@ -84,21 +93,28 @@ export default class QuestionModel {
     this.helpText = null
     this.helpTextShow = true
     this.descriptionLink = []
+    this.min = null
+    this.max = null
+    this.nextStepOnAnswer = false
 
     Object.assign(this, options)
 
     // Sets default mask and placeholder value on PhoneType question
     if (this.type === QuestionType.Phone) {
       if (!this.mask) {
-        this.mask = '(###) ###-####'
+        this.mask = MaskPresets.Phone
       }
       if (!this.placeholder) {
         this.placeholder = this.mask
       }
-    }
+    } 
 
     if (this.type === QuestionType.Url) {
       this.mask = null
+    }
+
+    if (this.type === QuestionType.Date && !this.placeholder) {
+      this.placeholder = 'yyyy-mm-dd'
     }
 
     if (this.multiple) {
@@ -106,8 +122,12 @@ export default class QuestionModel {
     }
   }
 
-  getFormattedAnswer() {
-    return this.answer
+  setAnswer(answer) {
+    if (this.type === QuestionType.Number && answer !== '' && !isNaN(+answer)) {
+      answer = +answer
+    }
+
+    this.answer = answer
   }
 
   getJumpId() {

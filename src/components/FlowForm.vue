@@ -1,9 +1,9 @@
 // Form template and logic
 
 <template>
-  <div class="v-form">
+  <div class="vff" :class="{'vff-not-standalone': !standalone, 'vff-is-mobile': isMobile, 'vff-is-ios': isIos}">
     <div class="f-container">
-      <div class="form-wrap">
+      <div class="f-form-wrap">
         <flow-form-question
           :ref="setQuestionRef"
           v-for="(q, index) in questionList"
@@ -17,10 +17,10 @@
         />
 
         <!-- Complete/Submit screen slots -->   
-        <div v-if="isOnLastStep" class="animate fade-in-up field-submittype">
+        <div v-if="isOnLastStep" class="vff-animate f-fade-in-up field-submittype">
           <slot name="complete">
             <!-- Default content for the "complete" slot -->
-            <div class="section-wrap">
+            <div class="f-section-wrap">
               <p>
                 <span class="fh2">{{ language.thankYouText }}</span>
               </p>
@@ -46,12 +46,13 @@
               v-if="!submitted"
               v-html="language.formatString(language.pressEnter)">
             </a>
+            <p class="text-success" v-if="submitted">{{ language.successText }}</p>
           </slot>
         </div>
       </div>
     </div>
 
-    <div class="f-footer">
+    <div class="vff-footer">
       <div class="footer-inner-wrap">
         <div v-if="progressbar" class="f-progress" v-bind:class="{'not-started': percentCompleted === 0, 'completed': percentCompleted === 100}">
           <div class="f-progress-bar">
@@ -59,7 +60,7 @@
           </div>
           {{ language.percentCompleted.replace(':percent', percentCompleted) }}
         </div>
-        <div class="f-nav">
+        <div v-if="navigation" class="f-nav">
           <a
             class="f-prev"
             href="#"
@@ -111,6 +112,9 @@
             <span class="f-nav-text" aria-hidden="true">{{ language.next }}</span>
           </a>
         </div>
+        <div v-if="timer" class="f-timer">
+          <span>{{ formatTime(time) }}</span>
+        </div>
       </div>
     </div>
   </div>
@@ -124,15 +128,21 @@
   */
 
   import FlowFormQuestion from './Question.vue'
+  import QuestionModel from '../models/QuestionModel'
   import LanguageModel from '../models/LanguageModel'
+  import { IsMobile } from '../mixins/IsMobile'
 
   export default {
     name: 'FlowForm',
     components: {
       FlowFormQuestion
     },
+    
     props: {
-      questions: Array,
+      questions:{
+        type: Array,
+        validator: value => value.every(q => q instanceof QuestionModel)
+      }, 
       language: {
         type: LanguageModel,
         default: () => new LanguageModel()
@@ -140,8 +150,27 @@
       progressbar: {
         type: Boolean, 
         default: true
-      }
+      },
+      standalone: {
+        type: Boolean, 
+        default: true
+      },
+      navigation: {
+        type: Boolean, 
+        default: true
+      },
+      timer: {
+        type: Boolean,
+        default: false
+      },
+      timerStartStep: [String, Number],
+      timerStopStep: [String, Number]
     },
+
+    mixins: [
+      IsMobile,
+    ],
+
     data() {
       return {
         questionRefs: [],
@@ -150,29 +179,34 @@
         activeQuestionIndex: 0,
         questionList: [],
         questionListActivePath: [],
-        reverse: false
+        reverse: false,
+        timerOn: false,
+        timerInterval: null,
+        time: 0
       }
     },
-    watch: {
-      completed() {
-        this.emitComplete()
-      }
-    },
+
     mounted() {
       document.addEventListener('keydown', this.onKeyDownListener)
       document.addEventListener('keyup', this.onKeyUpListener, true)
       window.addEventListener('beforeunload', this.onBeforeUnload)
 
       this.setQuestions()
+      this.checkTimer()
     },
+
     beforeDestroy() {
       document.removeEventListener('keydown', this.onKeyDownListener)
       document.removeEventListener('keyup', this.onKeyUpListener, true)
       window.removeEventListener('beforeunload', this.onBeforeUnload)
+      
+      this.stopTimer()
     },
+
     beforeUpdate() {
       this.questionRefs = []
     },
+    
     computed: {
       numActiveQuestions() {
         return this.questionListActivePath.length
@@ -180,6 +214,20 @@
 
       activeQuestion() {
         return this.questionListActivePath[this.activeQuestionIndex]
+      },
+
+      activeQuestionId() {
+        const question = this.questions[this.activeQuestionIndex]
+
+        if (this.isOnLastStep) {
+          return '_submit'
+        }
+
+        if (question && question.id) {
+          return question.id
+        }
+
+        return null
       },
 
       numCompletedQuestions() {
@@ -203,9 +251,34 @@
       },
 
       isOnLastStep() {
-        return this.activeQuestionIndex === this.questionListActivePath.length
+        return this.numActiveQuestions > 0 && this.activeQuestionIndex === this.questionListActivePath.length
+      }, 
+
+      isOnTimerStartStep() {
+        if (this.activeQuestionId === this.timerStartStep) {
+          return true
+        }
+
+        if (!this.timerOn && !this.timerStartStep && this.activeQuestionIndex === 0) {
+          return true
+        }
+
+        return false
+      },
+
+      isOnTimerStopStep() {
+        if (this.submitted) {
+          return true
+        }
+        
+        if (this.activeQuestionId === this.timerStopStep) {
+          return true 
+        }
+
+        return false
       }
     },
+
     methods: {
       setQuestionRef(el) {
         this.questionRefs.push(el)
@@ -229,6 +302,11 @@
        */
       setQuestionListActivePath() {
         const questions = []
+
+        if (!this.questions.length) {
+          return
+        }
+
         let
           index = 0,
           serialIndex = 0,
@@ -246,7 +324,6 @@
             ++index
           } else if (question.answered) {
             nextId = question.getJumpId()
-
             if (nextId) {
               if (nextId === '_submit') {
                 index = this.questions.length
@@ -319,13 +396,15 @@
           e.stopPropagation()
           e.preventDefault()
 
-          this.goToPreviousQuestion()
+          if (this.navigation) {
+            this.goToPreviousQuestion()
+          }
         } else {
-          e.preventDefault()
-          
           const q = this.activeQuestionComponent()
 
           if (q.shouldFocus()) {
+            e.preventDefault()
+
             q.focusField()
           } else {
             e.stopPropagation()
@@ -401,11 +480,14 @@
         }
 
         const q = this.activeQuestion
-  
         if (q && !q.required) {
           return true
         }
 
+        if (this.completed && !this.isOnLastStep) {
+          return true
+        }
+   
         return this.activeQuestionIndex < this.questionList.length - 1
       },
 
@@ -414,13 +496,15 @@
        */
       onQuestionAnswered(question) {
         if (question.isValid()) {
+          this.$emit('answer', question)
+
           if (this.activeQuestionIndex < this.questionListActivePath.length) {
             ++this.activeQuestionIndex
           }
-
+         
           this.$nextTick(() => {
             this.setQuestions()
-
+            this.checkTimer()
             // Nested $nextTick so we're 100% sure that setQuestions
             // actually updated the question array
             this.$nextTick(() => {
@@ -436,6 +520,8 @@
                 
                 this.$refs.button && this.$refs.button.focus()
               }
+
+              this.$emit('step', this.activeQuestionId, this.activeQuestion)
             })
           })
         } else if (this.completed) {
@@ -448,11 +534,17 @@
        */
       goToPreviousQuestion() {
         this.blurFocus()
-
+    
         if (this.activeQuestionIndex > 0 && !this.submitted) {
+          if (this.isOnTimerStopStep) {
+            this.startTimer()
+          }
+
           --this.activeQuestionIndex
 
           this.reverse = true
+
+          this.checkTimer()
         }
       },
 
@@ -461,7 +553,6 @@
        */
       goToNextQuestion() {
         this.blurFocus()
-
         if (this.isNextQuestionAvailable()) {
           this.emitEnter()
         }
@@ -475,12 +566,64 @@
       blurFocus() {
         document.activeElement && document.activeElement.blur && document.activeElement.blur()
       },
+
+      checkTimer() {
+        if (this.timer) {
+          if (this.isOnTimerStartStep) {
+            this.startTimer()
+          } else if (this.isOnTimerStopStep) {
+            this.stopTimer()
+          }
+        }
+      },
+
+      startTimer() {
+        if (this.timer && !this.timerOn) {
+          this.timerInterval = setInterval(this.incrementTime, 1000)
+          this.timerOn = true
+        }
+      },
+
+      stopTimer() {
+        if (this.timerOn) {
+          clearInterval(this.timerInterval)
+        }
+
+        this.timerOn = false
+      },
+
+      incrementTime() {
+        ++this.time
+        
+        this.$emit('timer', this.time, this.formatTime(this.time))
+      },
+
+      formatTime(seconds) {
+        let
+          startIndex = 14,
+          length = 5
+            
+        if (seconds >= 60 * 60) {
+          startIndex = 11
+          length = 8
+        }
+
+        return new Date(1000 * seconds).toISOString().substr(startIndex, length)
+      }
+    },
+
+    watch: {
+      completed() {
+        this.emitComplete()
+      },
+      
+      submitted() {
+        this.stopTimer()
+      }
     }
   }
 </script>
 
 <style lang="css">
-  @import '../assets/css/normalize.css';
   @import '../assets/css/common.css';
-  @import '../assets/css/animations.css';
 </style>
