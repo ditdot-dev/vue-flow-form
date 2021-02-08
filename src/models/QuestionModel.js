@@ -129,14 +129,6 @@ export default class QuestionModel {
     }
   }
 
-  setAnswer(answer) {
-    if (this.type === QuestionType.Number && answer !== '' && !isNaN(+answer)) {
-      answer = +answer
-    }
-
-    this.answer = answer
-  }
-
   getJumpId() {
     let nextId = null
 
@@ -149,6 +141,14 @@ export default class QuestionModel {
     }
 
     return nextId
+  }
+
+  setAnswer(answer) {
+    if (this.type === QuestionType.Number && answer !== '' && !isNaN(+answer)) {
+      answer = +answer
+    }
+
+    this.answer = answer
   }
 
   setIndex(index) {
