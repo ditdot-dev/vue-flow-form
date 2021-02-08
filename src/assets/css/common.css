@@ -671,9 +671,8 @@ header.vff-header svg.f-logo {
   justify-content: center;
   overflow: hidden;
   width: 100%;
-  height: 180px;
+  height: 164px;
   margin-bottom: 8px;
-  background-color: aqua;
 }
 
 .vff .field-multiplepicturechoice ul.f-radios li span.f-image img{
@@ -682,8 +681,7 @@ header.vff-header svg.f-logo {
   max-width: 100%;
 }
 
-.vff .field-multiplepicturechoice ul.f-radios li > div{
-  background-color: lime;
+.vff .field-multiplepicturechoice ul.f-radios li div.f-label-wrap{
   width: 100%;
   position: relative;
   min-height: 20px;
