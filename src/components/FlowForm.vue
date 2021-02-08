@@ -275,83 +275,92 @@
         return false
       },
 
-      questionModels() {
-        if (this.questions && this.questions.length) {
-          return this.questions
-        }
+      questionModels: {
+        cache: false,
 
-        const questions = []
+        get() {
+          if (this.questions && this.questions.length) {
+            return this.questions
+          }
 
-        if (!this.questions) {
-          this
-            .$slots
-            .default
-            .filter(q => q.tag && q.tag.indexOf('Question') !== -1)
-            .forEach(q => {
-              const attrs = q.data.attrs
-              const model = new QuestionModel()
+          const questions = []
 
-              if (q.data.model) {
-                model.answer = q.data.model.value
-              }
+          if (!this.questions) {
+            this
+              .$slots
+              .default
+              .filter(q => q.tag && q.tag.indexOf('Question') !== -1)
+              .forEach(q => {
+                let model = new QuestionModel()
 
-              Object.keys(model).forEach(key => {
-                if (attrs[key] !== undefined) {
-                  if (typeof model[key] === 'boolean') {
-                    model[key] = attrs[key] !== false
-                  } else {
-                    switch(key) {
-                      case 'options':
-                        const options = []
-
-                        attrs[key].forEach(option => {
-                          const choice = new ChoiceOption()
-
-                          Object.keys(choice).forEach(choiceKey => {
-                            if (option[choiceKey] !== undefined) {
-                              choice[choiceKey] = option[choiceKey]
-                            }
-                          })
-
-                          options.push(choice)
-                        })
-
-                        model[key] = options
-                        break
-
-                      case 'descriptionLink':
-                        const links = []
-
-                        attrs[key].forEach(link => {
-                          const linkOption = new LinkOption()
-
-                          Object.keys(linkOption).forEach(optionKey => {
-                            if (link[optionKey] !== undefined) {
-                              linkOption[optionKey] = link[optionKey]
-                            }
-                          })
-
-                          links.push(linkOption)
-                        })
-
-                        model[key] = links
-                        break
-
-                      default:
-                        model[key] = attrs[key]
-                        break
-                    }
+                if (q.componentInstance.question !== null) {
+                  model = q.componentInstance.question
+                } else {
+                  const attrs = q.data.attrs
+                  
+                  if (q.data.model) {
+                    model.answer = q.data.model.value
                   }
+
+                  Object.keys(model).forEach(key => {
+                    if (attrs[key] !== undefined) {
+                      if (typeof model[key] === 'boolean') {
+                        model[key] = attrs[key] !== false
+                      } else {
+                        switch(key) {
+                          case 'options':
+                            const options = []
+
+                            attrs[key].forEach(option => {
+                              const choice = new ChoiceOption()
+
+                              Object.keys(choice).forEach(choiceKey => {
+                                if (option[choiceKey] !== undefined) {
+                                  choice[choiceKey] = option[choiceKey]
+                                }
+                              })
+
+                              options.push(choice)
+                            })
+
+                            model[key] = options
+                            break
+
+                          case 'descriptionLink':
+                            const links = []
+
+                            attrs[key].forEach(link => {
+                              const linkOption = new LinkOption()
+
+                              Object.keys(linkOption).forEach(optionKey => {
+                                if (link[optionKey] !== undefined) {
+                                  linkOption[optionKey] = link[optionKey]
+                                }
+                              })
+
+                              links.push(linkOption)
+                            })
+
+                            model[key] = links
+                            break
+
+                          default:
+                            model[key] = attrs[key]
+                            break
+                        }
+                      }
+                    }
+                  })
+
+                  q.componentInstance.question = model
                 }
+
+                questions.push(model)
               })
+          }
 
-              q.componentInstance.question = model
-
-              questions.push(model)
-            })
+          return questions
         }
-
-        return questions
       }
     },
 
