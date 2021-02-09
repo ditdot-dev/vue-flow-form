@@ -296,64 +296,63 @@
               .default
               .filter(q => q.tag && q.tag.indexOf('Question') !== -1)
               .forEach(q => {
+                const attrs = q.data.attrs
                 let model = new QuestionModel()
 
                 if (q.componentInstance.question !== null) {
                   model = q.componentInstance.question
-                } else {
-                  const attrs = q.data.attrs
-                  
-                  if (q.data.model) {
-                    model.answer = q.data.model.value
-                  }
+                } 
 
-                  Object.keys(model).forEach(key => {
-                    if (attrs[key] !== undefined) {
-                      if (typeof model[key] === 'boolean') {
-                        model[key] = attrs[key] !== false
-                      } else if (key in classMap) {
-                        const
-                          classReference = classMap[key],
-                          options = []
+                if (q.data.model) {
+                  model.answer = q.data.model.value
+                }
 
-                        attrs[key].forEach(option => {
-                          const instance = new classReference()
+                Object.keys(model).forEach(key => {
+                  if (attrs[key] !== undefined) {
+                    if (typeof model[key] === 'boolean') {
+                      model[key] = attrs[key] !== false
+                    } else if (key in classMap) {
+                      const
+                        classReference = classMap[key],
+                        options = []
 
-                          Object.keys(instance).forEach(instanceKey => {
-                            if (option[instanceKey] !== undefined) {
-                              instance[instanceKey] = option[instanceKey]
-                            }
-                          })
+                      attrs[key].forEach(option => {
+                        const instance = new classReference()
 
-                          options.push(instance)
+                        Object.keys(instance).forEach(instanceKey => {
+                          if (option[instanceKey] !== undefined) {
+                            instance[instanceKey] = option[instanceKey]
+                          }
                         })
 
-                        model[key] = options
-                      } else {
-                        switch(key) {
-                          case 'type':
-                            if (Object.values(QuestionType).indexOf(attrs[key]) !== -1) {
-                              model[key] = attrs[key]
-                            } else {
-                              for (const questionTypeKey in QuestionType) {
-                                if (questionTypeKey.toLowerCase() === attrs[key].toLowerCase()) {
-                                  model[key] = QuestionType[questionTypeKey]
-                                  break
-                                }
+                        options.push(instance)
+                      })
+
+                      model[key] = options
+                    } else {
+                      switch(key) {
+                        case 'type':
+                          if (Object.values(QuestionType).indexOf(attrs[key]) !== -1) {
+                            model[key] = attrs[key]
+                          } else {
+                            for (const questionTypeKey in QuestionType) {
+                              if (questionTypeKey.toLowerCase() === attrs[key].toLowerCase()) {
+                                model[key] = QuestionType[questionTypeKey]
+                                break
                               }
                             }
-                            break
+                          }
+                          break
 
-                          default:
-                            model[key] = attrs[key]
-                            break
-                        }
+                        default:
+                          model[key] = attrs[key]
+                          break
                       }
                     }
-                  })
+                  }
+                })
 
-                  q.componentInstance.question = model
-                }
+                q.componentInstance.question = model
 
                 questions.push(model)
               })
