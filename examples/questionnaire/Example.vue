@@ -105,8 +105,8 @@
           }),
            new QuestionModel({
             id: 'multiple_choice_image',
-            tagline: "Let's take it one step further",
-            title: 'Tell us what is your favorite social network 😍',
+            tagline: "Let's take it one step further...",
+            title: 'Tell us what is your favorite social network hangout.',
             helpTextShow: false,
             type: QuestionType.MultiplePictureChoice,
             multiple: false,
