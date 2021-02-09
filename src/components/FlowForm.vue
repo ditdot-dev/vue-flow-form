@@ -130,7 +130,7 @@
   */
 
   import FlowFormQuestion from './FlowFormQuestion.vue'
-  import QuestionModel, { ChoiceOption, LinkOption } from '../models/QuestionModel'
+  import QuestionModel, { ChoiceOption, LinkOption, QuestionType } from '../models/QuestionModel'
   import LanguageModel from '../models/LanguageModel'
   import { IsMobile } from '../mixins/IsMobile'
 
@@ -286,6 +286,11 @@
           const questions = []
 
           if (!this.questions) {
+            const classMap = {
+              'options': ChoiceOption,
+              'descriptionLink': LinkOption
+            }
+
             this
               .$slots
               .default
@@ -306,42 +311,37 @@
                     if (attrs[key] !== undefined) {
                       if (typeof model[key] === 'boolean') {
                         model[key] = attrs[key] !== false
+                      } else if (key in classMap) {
+                        const
+                          classReference = classMap[key],
+                          options = []
+
+                        attrs[key].forEach(option => {
+                          const instance = new classReference()
+
+                          Object.keys(instance).forEach(instanceKey => {
+                            if (option[instanceKey] !== undefined) {
+                              instance[instanceKey] = option[instanceKey]
+                            }
+                          })
+
+                          options.push(instance)
+                        })
+
+                        model[key] = options
                       } else {
                         switch(key) {
-                          case 'options':
-                            const options = []
-
-                            attrs[key].forEach(option => {
-                              const choice = new ChoiceOption()
-
-                              Object.keys(choice).forEach(choiceKey => {
-                                if (option[choiceKey] !== undefined) {
-                                  choice[choiceKey] = option[choiceKey]
+                          case 'type':
+                            if (Object.values(QuestionType).indexOf(attrs[key]) !== -1) {
+                              model[key] = attrs[key]
+                            } else {
+                              for (const questionTypeKey in QuestionType) {
+                                if (questionTypeKey.toLowerCase() === attrs[key].toLowerCase()) {
+                                  model[key] = QuestionType[questionTypeKey]
+                                  break
                                 }
-                              })
-
-                              options.push(choice)
-                            })
-
-                            model[key] = options
-                            break
-
-                          case 'descriptionLink':
-                            const links = []
-
-                            attrs[key].forEach(link => {
-                              const linkOption = new LinkOption()
-
-                              Object.keys(linkOption).forEach(optionKey => {
-                                if (link[optionKey] !== undefined) {
-                                  linkOption[optionKey] = link[optionKey]
-                                }
-                              })
-
-                              links.push(linkOption)
-                            })
-
-                            model[key] = links
+                              }
+                            }
                             break
 
                           default:
