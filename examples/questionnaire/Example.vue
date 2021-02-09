@@ -106,30 +106,30 @@
            new QuestionModel({
             id: 'multiple_choice_image',
             tagline: "Let's take it one step further",
-            title: 'Tell us about your favorite social network 😍',
+            title: 'Tell us what is your favorite social network 😍',
             helpTextShow: false,
             type: QuestionType.MultiplePictureChoice,
             multiple: false,
             required: true,
             options: [
               new ChoiceOption({
-                imageSrc: require('../../src/assets/images/facebook.png'),
-                imageAlt: 'facebook logo',
+                imageSrc: require('./assets/images/facebook.png'),
+                imageAlt: 'Facebook logo',
                 label: 'Facebook'
               }),
               new ChoiceOption({
-                imageSrc: require('../../src/assets/images/twitter.png'),
-                imageAlt: 'twitter logo',
+                imageSrc: require('./assets/images/twitter.png'),
+                imageAlt: 'Twitter logo',
                 label: 'Twitter'
               }),
               new ChoiceOption({
-                imageSrc: require('../../src/assets/images/instagram.png'),
-                imageAlt: 'instagram logo',
+                imageSrc: require('./assets/images/instagram.png'),
+                imageAlt: 'Instagram logo',
                 label: 'Instagram'
               }),
               new ChoiceOption({
-                imageSrc: require('../../src/assets/images/tiktok.png'),
-                imageAlt: 'tiktok logo',
+                imageSrc: require('./assets/images/tiktok.png'),
+                imageAlt: 'TikTok logo',
                 label: 'TikTok'
               }),
             ]
