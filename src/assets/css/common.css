@@ -634,7 +634,7 @@ header.vff-header svg.f-logo {
 */
 
 .vff .field-multiplepicturechoice ul.f-radios{
-  max-width: 800px;
+  max-width: 750px;
   min-width: auto;
   display: -ms-flexbox;
   display: flex;
@@ -671,7 +671,7 @@ header.vff-header svg.f-logo {
   justify-content: center;
   overflow: hidden;
   width: 100%;
-  height: 164px;
+  height: 140px;
   margin-bottom: 8px;
 }
 
@@ -944,8 +944,10 @@ header.vff-header svg.f-logo {
 
   .vff .field-multiplepicturechoice ul.f-radios li{
     font-size: 14px;
-    -ms-flex: 0 0 calc(33.3333% - 8px);
-    flex: 0 0 calc(33.3333% - 8px);
+  }
+
+  .vff .field-multiplepicturechoice ul.f-radios li span.f-image{
+    height: 90px;
   }
 
 }
@@ -1021,8 +1023,8 @@ header.vff-header svg.f-logo {
     font-size: 16px;
   }
 
-  .vff .field-multiplepicturechoice ul.f-radios li span.f-image{
-    height: 130px;
+  .vff .field-multiplepicturechoice ul.f-radios {
+    max-width: 320px;
   }
 
   .vff .field-multiplepicturechoice ul.f-radios li{
@@ -1065,6 +1067,10 @@ header.vff-header svg.f-logo {
   .vff .fh2 span.f-sub, 
   .vff .fh2 span.f-tagline {
     font-size: .6em;
+  }
+
+  .vff .field-multiplepicturechoice ul.f-radios li span.f-image{
+    height: 90px;
   }
 
 }
