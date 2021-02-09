@@ -103,6 +103,37 @@
             required: true,
             placeholder: 'Start typing here...'
           }),
+           new QuestionModel({
+            id: 'multiple_choice_image',
+            tagline: "Let's take it one step further",
+            title: 'Tell us about your favorite social network 😍',
+            helpTextShow: false,
+            type: QuestionType.MultiplePictureChoice,
+            multiple: false,
+            required: true,
+            options: [
+              new ChoiceOption({
+                imageSrc: require('../../src/assets/images/facebook.png'),
+                imageAlt: 'facebook logo',
+                label: 'Facebook'
+              }),
+              new ChoiceOption({
+                imageSrc: require('../../src/assets/images/twitter.png'),
+                imageAlt: 'twitter logo',
+                label: 'Twitter'
+              }),
+              new ChoiceOption({
+                imageSrc: require('../../src/assets/images/instagram.png'),
+                imageAlt: 'instagram logo',
+                label: 'Instagram'
+              }),
+              new ChoiceOption({
+                imageSrc: require('../../src/assets/images/tiktok.png'),
+                imageAlt: 'tiktok logo',
+                label: 'TikTok'
+              }),
+            ]
+          }),
           new QuestionModel({
             id: 'phone',
             title: 'Doing great! 👍 Go ahead and try with a phone number.',
