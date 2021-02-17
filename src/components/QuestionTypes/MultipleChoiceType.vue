@@ -9,8 +9,8 @@
         v-bind:aria-label="getLabel(index)"
         role="option"
       >
-        <span class="f-image">
-          <img v-if="hasImages && option.imageSrc" v-bind:src="option.imageSrc" v-bind:alt="option.imageAlt">
+        <span class="f-image" v-if="hasImages && option.imageSrc">
+          <img v-bind:src="option.imageSrc" v-bind:alt="option.imageAlt">
         </span>
         <div class="f-label-wrap">
           <span class="f-key">{{ getToggleKey(index) }}</span>
