@@ -168,6 +168,27 @@ header.vff-header + .vff.vff-not-standalone{
   box-sizing: inherit;
 }
 
+.vff .q-is-active {
+  opacity: 1;
+}
+
+.vff .q-form.q-is-inactive {
+  display: none;
+}
+
+.vff .f-full-width {
+  display: block;
+  width: 100%;
+}
+
+.vff .f-string-em {
+  text-transform: uppercase;
+}
+
+.vff .f-enter {
+  margin-bottom: 20px;
+}
+
 /*container*/
 .vff .f-container,
 header.vff-header .f-container{
@@ -204,28 +225,6 @@ header.vff-header svg.f-logo {
   height: 18px;
   max-width: 240px;
   opacity: 1;
-}
-
-/**/
-.vff .q-is-active {
-  opacity: 1;
-}
-
-.vff .q-form.q-is-inactive {
-  display: none;
-}
-
-.vff .f-full-width {
-  display: block;
-  width: 100%;
-}
-
-.vff .f-string-em {
-  text-transform: uppercase;
-}
-
-.vff .f-enter {
-  margin-bottom: 20px;
 }
 
 /*
@@ -620,13 +619,19 @@ header.vff-header svg.f-logo {
   font-size: .4em;
 }
 
+.vff ul.f-radios li div.f-label-wrap{
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+}
+
 .vff ul.f-radios li span.f-label {
-  display: block;
-  margin-left: 1.1em;
+  margin-left: .4em;
 }
 
 .vff ul.f-radios li span.f-key {
-  position: absolute;
+  width: 16px;
+  text-align: center;
 }
 
 /*
@@ -679,12 +684,6 @@ header.vff-header svg.f-logo {
   margin-bottom: .8px;
   max-height: 100%;
   max-width: 100%;
-}
-
-.vff .field-multiplepicturechoice ul.f-radios li div.f-label-wrap{
-  width: 100%;
-  position: relative;
-  min-height: 20px;
 }
 
 /*
