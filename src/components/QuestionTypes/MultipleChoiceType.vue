@@ -25,22 +25,24 @@
         v-bind:aria-label="language.ariaTypeAnswer"
         role="option"
       >
-        <span class="f-key" v-if="!editingOther">{{ getToggleKey(question.options.length) }}</span>
-        <input
-          v-if="editingOther"
-          v-model="question.other"
-          type="text"
-          ref="otherInput"
-          v-on:blur="stopEditOther"
-          v-on:keyup.enter.prevent="stopEditOther"
-          v-on:keyup="onChangeOther"
-          v-on:change="onChangeOther"
-          maxlength="256"
-        />
-        <span v-else-if="question.other" class="f-selected">
-          <span class="f-label">{{ question.other }}</span>
-        </span>
-        <span v-else class="f-label">{{ language.otherPrompt }}</span>
+        <div class="f-label-wrap">
+          <span class="f-key" v-if="!editingOther">{{ getToggleKey(question.options.length) }}</span>
+          <input
+            v-if="editingOther"
+            v-model="question.other"
+            type="text"
+            ref="otherInput"
+            v-on:blur="stopEditOther"
+            v-on:keyup.enter.prevent="stopEditOther"
+            v-on:keyup="onChangeOther"
+            v-on:change="onChangeOther"
+            maxlength="256"
+          />
+          <span v-else-if="question.other" class="f-selected">
+            <span class="f-label">{{ question.other }}</span>
+          </span>
+          <span v-else class="f-label">{{ language.otherPrompt }}</span>
+        </div>
       </li>
     </ul>
   </div>
