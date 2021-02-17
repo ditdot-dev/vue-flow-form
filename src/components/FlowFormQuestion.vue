@@ -303,7 +303,7 @@
             'f-has-value': this.$refs.questionComponent && this.$refs.questionComponent.hasValue
           }
 
-          classes['field-' + this.question.type.toLowerCase().substring(8)] = true
+          classes['field-' + this.question.type.toLowerCase().substring(8, this.question.type.length - 4)] = true
 
           return classes
         }
