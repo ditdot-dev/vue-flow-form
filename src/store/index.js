@@ -3,8 +3,14 @@ import Vuex from "vuex";
 import * as TaxApi from "../api/TaxApi.js";
 import * as SMETaxCalculations from "../taxData/SMETaxCalculations.js";
 import * as TaxTable from "../taxData/TaxTable.js";
+import createPersistedState from "vuex-persistedstate";
 
 Vue.use(Vuex);
+
+// Persistent Vuex
+const persistentState = new createPersistedState({
+  paths: ["userInformation", "calculatorDrag"]
+});
 
 // Module for containing the data to Results.vue for the initial tax calculations based on user's input
 const userInformation = {
@@ -148,7 +154,8 @@ const store = new Vuex.Store({
   modules: {
     userInformation,
     calculatorDrag
-  }
+  },
+  plugins: [persistentState]
 });
 
 export default store;
