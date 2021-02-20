@@ -89,7 +89,7 @@
             </button>
           </router-link>
         </div>
-        <div v-else>
+        <!-- <div v-else>
           <div
             v-if="progressbar"
             class="f-progress"
@@ -137,7 +137,7 @@
               language.percentCompleted.replace(":percent", percentCompleted)
             }}
           </div>
-        </div>
+        </div> -->
       </div>
     </div>
   </div>
