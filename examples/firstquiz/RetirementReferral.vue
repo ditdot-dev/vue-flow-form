@@ -96,11 +96,7 @@ export default {
           id: "age",
           title: "What is your age?",
           type: QuestionType.Number,
-<<<<<<< HEAD
           answer: userInput?.age || "",
-=======
-          answer: userInput?.age,
->>>>>>> 0d600b7a70f06fd27a10eff3a64200254fd3d1b3
           required: true,
           mask: "##",
           placeholder: "Type a number here...",
