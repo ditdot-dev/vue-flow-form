@@ -1,5 +1,5 @@
 export const userInput = JSON.parse(localStorage.getItem("vuex"))
-  ?.userInformation?.userInput;
+  ?.userInformation?.userInput || {};
   
 // example User Input
 // age: "45"
