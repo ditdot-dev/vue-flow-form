@@ -124,8 +124,8 @@ export default class QuestionModel {
       this.placeholder = 'yyyy-mm-dd'
     }
 
-    if (this.multiple) {
-      this.answer = []
+    if (this.multiple && !Array.isArray(this.answer)) {
+      this.answer = this.answer ? [this.answer] : []
     }
   }
 

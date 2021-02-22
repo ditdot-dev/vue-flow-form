@@ -70,8 +70,15 @@
     },
 
     mounted() {
-      if (this.question.multiple) {
-        this.dataValue = []
+      if (this.question.answer) {
+        // Set initial answer when we have one
+        this.question.options.forEach(o => {
+          const optionValue = o.choiceValue()
+
+          if (this.question.answer === optionValue || (Array.isArray(this.question.answer) && this.question.answer.indexOf(optionValue) !== -1)) {
+            this.toggleAnswer(o)
+          }
+        })
       }
 
       this.addKeyListener()
