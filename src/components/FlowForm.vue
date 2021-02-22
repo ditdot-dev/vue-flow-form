@@ -244,6 +244,7 @@ export default {
      * that are in the current path (taking note of logic jumps)
      */
     setQuestionListActivePath() {
+      // this.activeQuestionIndex = this.$route.query.isLast ? 9 : 0;
       const questions = [];
       let index = 0,
         serialIndex = 0,
