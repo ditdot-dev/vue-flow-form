@@ -96,7 +96,11 @@ export default {
           id: "age",
           title: "What is your age?",
           type: QuestionType.Number,
+<<<<<<< HEAD
           answer: userInput?.age || "",
+=======
+          answer: userInput?.age,
+>>>>>>> 0d600b7a70f06fd27a10eff3a64200254fd3d1b3
           required: true,
           mask: "##",
           placeholder: "Type a number here...",
@@ -458,7 +462,7 @@ export default {
           placeholder: "Type a number here...",
           required: true,
           checkboxText: "I don't pay myself an income",
-          checkbox: false,
+          checkbox: userInput?.salary ? false : true,
           tooltip:
             "This is the amount that you have set as a “reasonable salary” when you put yourself on payroll as a full-time owner-employee. This will depend on your industry and work performed. We can help you calculate this if you want.",
         }),
