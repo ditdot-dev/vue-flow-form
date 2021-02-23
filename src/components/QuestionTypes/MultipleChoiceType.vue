@@ -169,18 +169,20 @@
       },
 
       _toggleAnswer(option) {
+        const optionValue = option.choiceValue()
+
         option.toggle()
 
         if (this.question.multiple) {
           this.enterPressed = false
 
           if (!option.selected) {
-            this._removeAnswer(option.choiceValue())
-          } else {
-            this.dataValue.push(option.choiceValue())
+            this._removeAnswer(optionValue)
+          } else if (this.dataValue.indexOf(optionValue) === -1) {
+            this.dataValue.push(optionValue)
           }
         } else {
-          this.dataValue = option.selected ? option.choiceValue() : null
+          this.dataValue = option.selected ? optionValue : null
         }
 
         if (this.isValid() && this.question.nextStepOnAnswer && !this.question.multiple) {
