@@ -14,6 +14,7 @@
           v-model="q.answer"
           v-on:answer="onQuestionAnswered"
           v-bind:reverse="reverse"
+          :questions="questions"
           :noButton="
             questions[questions.length - 1].id ===
             (activeQuestionComponent() && activeQuestionComponent().question.id)
@@ -78,9 +79,10 @@
       <div class="footer-center">
         <div
           v-if="
+            this.activeQuestion &&
+            this.activeQuestion.answer &&
             this.questions[this.questions.length - 1].id ===
-            (this.activeQuestionComponent() &&
-              this.activeQuestionComponent().question.id)
+              (this.activeQuestion && this.activeQuestion.id)
           "
         >
           <router-link to="/results">
@@ -359,6 +361,7 @@ export default {
       );
     },
     emitEnter() {
+      console.log(this.activeQuestionComponent());
       if (this.isEnd()) {
         this.submit();
         this.$router.push("/results");

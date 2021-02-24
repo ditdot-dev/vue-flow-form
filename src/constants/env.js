@@ -1,6 +1,12 @@
-export const userInput = JSON.parse(localStorage.getItem("vuex"))
-  ?.userInformation?.userInput || {};
-  
+export const userInputs =
+  JSON.parse(localStorage.getItem("vuex"))?.userInformation?.userInput || {};
+
+export const localUserInputs = () => {
+  return (
+    JSON.parse(localStorage.getItem("vuex"))?.userInformation?.userInput || {}
+  );
+};
+
 // example User Input
 // age: "45"
 // business_name: "soft"

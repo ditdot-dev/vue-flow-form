@@ -157,7 +157,10 @@
       </div>
       <div
         class="vff-animate f-fade-in f-enter"
-        v-if="showOkButton() && !noButton"
+        v-if="
+          showOkButton() &&
+          !(question.id === questions[questions.length - 1].id)
+        "
       >
         <button
           class="o-btn-action"
@@ -239,8 +242,8 @@ export default {
     FlowFormDollarType,
   },
   props: {
-    noButton: Boolean,
     question: QuestionModel,
+    questions: Array,
     language: LanguageModel,
     value: [String, Array],
     active: {
@@ -259,6 +262,7 @@ export default {
       QuestionType: QuestionType,
       dataValue: null,
       responseAnswer: "",
+      noButton: false,
     };
   },
   mounted() {

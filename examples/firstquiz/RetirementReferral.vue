@@ -67,7 +67,7 @@ import QuestionModel, {
 import LanguageModel from "../../src/models/LanguageModel";
 import Vuex from "vuex";
 import * as taxApi from "../../src/api/TaxApi";
-import { userInput } from "../../src/constants/index";
+import { userInputs, localUserInputs } from "../../src/constants/index";
 export default {
   name: "RetirementReferral",
   components: {
@@ -85,7 +85,7 @@ export default {
           id: "first_name",
           title: "What's your first name?",
           type: QuestionType.Text,
-          answer: userInput?.first_name,
+          answer: localUserInputs()?.first_name,
           required: true,
           tooltip:
             "This tooltip is available on every question to explain why the question is asked. In this case, your name is used to help personalize the results later. 😊",
@@ -96,7 +96,7 @@ export default {
           id: "age",
           title: "What is your age?",
           type: QuestionType.Number,
-          answer: userInput?.age || "",
+          answer: localUserInputs()?.age || "",
           required: true,
           mask: "##",
           placeholder: "Type a number here...",
@@ -109,7 +109,7 @@ export default {
           title: "What is your tax filing status?",
           personalizedAnswerMessages: true,
           type: QuestionType.Dropdown,
-          answer: userInput?.tax_filing_status,
+          answer: localUserInputs()?.tax_filing_status,
           multiple: false,
           placeholder: "Select status",
           inline: false,
@@ -146,7 +146,7 @@ export default {
           answerMessage: "😊",
           tagline: "About You",
           title: "How many dependents do you have?",
-          answer: userInput?.dependents,
+          answer: localUserInputs()?.dependents,
           type: QuestionType.Number,
           required: true,
           mask: "#",
@@ -160,7 +160,7 @@ export default {
           title: "What is your tax filing state?",
           answerMessage: "Next let's move onto your business!",
           personalizedAnswerMessages: true,
-          answer: userInput?.tax_filing_state,
+          answer: localUserInputs()?.tax_filing_state,
           type: QuestionType.Dropdown,
           multiple: false,
           placeholder: "Select state",
@@ -392,7 +392,7 @@ export default {
           title: "What is your business name?",
           answerMessage: "That's a cool name 😎",
           type: QuestionType.LongText,
-          answer: userInput?.business_name,
+          answer: localUserInputs()?.business_name,
           required: true,
           helpTextShow: false,
           placeholder: "The name of my business is...",
@@ -405,7 +405,7 @@ export default {
           title: "What is your business legal entity?",
           personalizedAnswerMessages: true,
           type: QuestionType.Dropdown,
-          answer: userInput?.entity,
+          answer: localUserInputs()?.entity,
           multiple: false,
           placeholder: "Select legal entity",
           inline: false,
@@ -453,12 +453,16 @@ export default {
             checkbox: "Good work investing back into the business! 💡",
             answer: "it's good to pay yourself first! 🤩",
           },
-          answer: userInput?.salary || "",
+          answer: localUserInputs()?.salary || "",
           type: QuestionType.Salary,
           placeholder: "Type a number here...",
           required: true,
           checkboxText: "I don't pay myself an income",
-          checkbox: userInput?.salary ? false : true,
+          checkbox: localUserInputs().first_name
+            ? localUserInputs()?.salary
+              ? false
+              : true
+            : false,
           tooltip:
             "This is the amount that you have set as a “reasonable salary” when you put yourself on payroll as a full-time owner-employee. This will depend on your industry and work performed. We can help you calculate this if you want.",
         }),
@@ -468,7 +472,7 @@ export default {
           title: "How many full-time employees do you have?",
           personalizedAnswerMessages: true, // Use this prop if you need to populate personalized answer messages
           type: QuestionType.Dropdown,
-          answer: userInput?.employee_count || "",
+          answer: localUserInputs()?.employee_count || "",
           multiple: false,
           subtitle: "Do not count yourself and/or your spouse",
           placeholder: "The number is...",
@@ -504,7 +508,7 @@ export default {
           answerMessage: "Keeping track of it all isn't easy! 💸",
           placeholder: "Type a number here...",
           type: QuestionType.Dollar,
-          answer: userInput?.expenses || "",
+          answer: localUserInputs()?.expenses || "",
           required: true,
           tooltip:
             "This is the annual expenses for your business to operate. Please put the amount you forecast the business will spend this year. You can find last year's total expenses on your tax return's Schedule C box 28.",
@@ -516,7 +520,7 @@ export default {
           answerMessage: "You did it, amazing work! 💰",
           placeholder: "Type a number here...",
           type: QuestionType.Dollar,
-          answer: userInput?.income || "",
+          answer: localUserInputs()?.income || "",
           required: true,
           tooltip:
             "This is the income generated by your business every year. Please put the amount you forecast the business will generate by end of the year. This includes all the invoices and cash payments you’ve received under your business entity.",
@@ -526,6 +530,11 @@ export default {
   },
   mounted() {
     document.addEventListener("keyup", this.onKeyListener);
+    console.log("mount");
+    this.$forceUpdate();
+  },
+  created() {
+    console.log("create");
   },
   beforeDestroy() {
     document.removeEventListener("keyup", this.onKeyListener);
