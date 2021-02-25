@@ -14,6 +14,7 @@
           v-model="q.answer"
           v-on:answer="onQuestionAnswered"
           v-bind:reverse="reverse"
+          :questions="questions"
           :noButton="
             questions[questions.length - 1].id ===
             (activeQuestionComponent() && activeQuestionComponent().question.id)
@@ -78,9 +79,10 @@
       <div class="footer-center">
         <div
           v-if="
+            this.activeQuestion &&
+            this.activeQuestion.answer &&
             this.questions[this.questions.length - 1].id ===
-            (this.activeQuestionComponent() &&
-              this.activeQuestionComponent().question.id)
+              (this.activeQuestion && this.activeQuestion.id)
           "
         >
           <router-link to="/results">
@@ -89,7 +91,7 @@
             </button>
           </router-link>
         </div>
-        <div v-else>
+        <!-- <div v-else>
           <div
             v-if="progressbar"
             class="f-progress"
@@ -137,7 +139,7 @@
               language.percentCompleted.replace(":percent", percentCompleted)
             }}
           </div>
-        </div>
+        </div> -->
       </div>
     </div>
   </div>
@@ -244,6 +246,7 @@ export default {
      * that are in the current path (taking note of logic jumps)
      */
     setQuestionListActivePath() {
+      // this.activeQuestionIndex = this.$route.query.isLast ? 9 : 0;
       const questions = [];
       let index = 0,
         serialIndex = 0,
@@ -358,6 +361,7 @@ export default {
       );
     },
     emitEnter() {
+      console.log(this.activeQuestionComponent());
       if (this.isEnd()) {
         this.submit();
         this.$router.push("/results");
