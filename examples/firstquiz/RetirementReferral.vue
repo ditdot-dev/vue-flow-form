@@ -563,6 +563,15 @@ export default {
       /* Set the data inputs for an object for Track tax api */
       await this.getData();
       const userInput = await this.formatData();
+      console.log(userInput);
+      if (
+        userInput.entity === "soleProprietor" ||
+        userInput.entity === "partnership"
+      ) {
+        userInput.salary = "";
+      }
+      console.log(userInput);
+
       this.$store.commit("userInformation/entry", userInput);
       const incomeData = await taxApi.taxData();
 
