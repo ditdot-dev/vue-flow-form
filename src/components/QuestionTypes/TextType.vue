@@ -48,7 +48,6 @@
 
   import BaseType from './BaseType.vue'
   import { QuestionType } from '../../models/QuestionModel'
-  import LanguageModel from '../../models/LanguageModel'
   import TheMask from 'vue-the-mask/src/component'
 
   export default {
@@ -67,8 +66,12 @@
 
     methods: {
       validate() {
-        if (this.question.mask && this.hasValue && this.dataValue.length !== this.question.mask.length) {
-          return false
+        if (this.question.mask && this.hasValue) {
+          if (Array.isArray(this.question.mask)) {
+            return this.question.mask.some(mask => mask.length === this.dataValue.length)
+          }
+
+          return this.dataValue.length !== this.question.mask.length
         }
 
         return !this.question.required || this.hasValue
