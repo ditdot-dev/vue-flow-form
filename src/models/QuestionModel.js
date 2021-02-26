@@ -127,6 +127,8 @@ export default class QuestionModel {
     if (this.multiple && !Array.isArray(this.answer)) {
       this.answer = this.answer ? [this.answer] : []
     }
+
+    this.resetOptions()
   }
 
   getJumpId() {
@@ -157,5 +159,37 @@ export default class QuestionModel {
     }
 
     this.index = index
+  }
+
+  resetOptions() {
+    if (this.options) {
+      const isArray = Array.isArray(this.answer)
+      let numSelected = 0
+
+      this.options.forEach(o => {
+        const optionValue = o.choiceValue()
+
+        if (this.answer === optionValue || (isArray && this.answer.indexOf(optionValue) !== -1)) {
+          o.selected = true
+          ++numSelected
+        }
+      })
+
+      if (this.allowOther) {
+        let otherAnswer = null
+
+        if (isArray) {
+          if (this.answer.length && this.answer.length !== numSelected) {
+            otherAnswer = this.answer[this.answer.length - 1]
+          }
+        } else if (this.options.map(o => o.choiceValue()).indexOf(this.answer) === -1) {
+          otherAnswer = this.answer
+        }
+
+        if (otherAnswer !== null) {
+          this.other = otherAnswer
+        }
+      }
+    }
   }
 }

@@ -354,6 +354,8 @@
 
                 q.componentInstance.question = model
 
+                model.resetOptions()
+
                 questions.push(model)
               })
           }
