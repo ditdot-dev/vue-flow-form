@@ -68,6 +68,7 @@ import LanguageModel from "../../src/models/LanguageModel";
 import Vuex from "vuex";
 import * as taxApi from "../../src/api/TaxApi";
 import { userInputs, localUserInputs } from "../../src/constants/index";
+import { firestore } from "./util";
 export default {
   name: "RetirementReferral",
   components: {
@@ -570,17 +571,22 @@ export default {
       ) {
         userInput.salary = "";
       }
-
+        const store = await firestore.collection("UserInput").add({
+          ...userInput,
+        });
       this.$store.commit("userInformation/entry", userInput);
       const incomeData = await taxApi.taxData();
 
-      /* Run taxApi and put the outputs into an object in Vuex store */
-      const taxUpdate = await taxApi.postTaxData(incomeData);
-      console.log(taxUpdate.data);
-      /* Run dispatch to store the data for Results.vue */
+        /* Run taxApi and put the outputs into an object in Vuex store */
+        const taxUpdate = await taxApi.postTaxData(incomeData);
+        console.log(taxUpdate.data);
+        /* Run dispatch to store the data for Results.vue */
 
-      await this.$store.commit("userInformation/results", taxUpdate.data);
-      this.$store.dispatch("userInformation/getTaxSummary");
+        await this.$store.commit("userInformation/results", taxUpdate.data);
+        this.$store.dispatch("userInformation/getTaxSummary");
+      } catch (error) {
+        console.log(error);
+      }
     },
     getData() {
       window.data = {
