@@ -582,7 +582,7 @@
        */
       onQuestionAnswered(question) {
         if (question.isValid()) {
-          this.$emit('answer', question)
+          this.$emit('answer', question.question)
 
           if (this.activeQuestionIndex < this.questionListActivePath.length) {
             ++this.activeQuestionIndex
