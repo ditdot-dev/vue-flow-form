@@ -361,7 +361,6 @@ export default {
       );
     },
     emitEnter() {
-      console.log(this.activeQuestionComponent());
       if (this.isEnd()) {
         this.submit();
         this.$router.push("/results");

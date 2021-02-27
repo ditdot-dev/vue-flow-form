@@ -68,7 +68,13 @@ import LanguageModel from "../../src/models/LanguageModel";
 import Vuex from "vuex";
 import * as taxApi from "../../src/api/TaxApi";
 import { userInputs, localUserInputs } from "../../src/constants/index";
-import { firestore } from "./util";
+import {
+  firestore,
+  USER_INPUTS,
+  compareTwoObjects,
+  TAX_UPDATE,
+  TAX_SUMMARY,
+} from "./util";
 export default {
   name: "RetirementReferral",
   components: {
@@ -559,31 +565,54 @@ export default {
       this.onSendData();
     },
     async onSendData() {
-      this.$refs.flowform.submitted = true;
-      this.submitted = true;
-      /* Set the data inputs for an object for Track tax api */
-      await this.getData();
-      const userInput = await this.formatData();
+      try {
+        this.$refs.flowform.submitted = true;
+        this.submitted = true;
+        /* Set the data inputs for an object for Track tax api */
+        await this.getData();
+        const userInput = await this.formatData();
 
-      if (
-        userInput.entity === "soleProprietor" ||
-        userInput.entity === "partnership"
-      ) {
-        userInput.salary = "";
-      }
-        const store = await firestore.collection("UserInput").add({
-          ...userInput,
-        });
-      this.$store.commit("userInformation/entry", userInput);
-      const incomeData = await taxApi.taxData();
+        if (
+          userInput.entity === "soleProprietor" ||
+          userInput.entity === "partnership"
+        ) {
+          userInput.salary = "";
+        }
+        const isEqual = compareTwoObjects(localUserInputs(), userInput);
+        let firestoreIds = { userInput: "", taxUpdate: "" };
+        if (!isEqual) {
+          const db = await firestore.collection(USER_INPUTS).add({
+            ...userInput,
+          });
+          firestoreIds.userInput = db.id;
+        }
+        this.$store.commit("userInformation/entry", userInput);
+        const incomeData = await taxApi.taxData();
 
         /* Run taxApi and put the outputs into an object in Vuex store */
         const taxUpdate = await taxApi.postTaxData(incomeData);
         console.log(taxUpdate.data);
         /* Run dispatch to store the data for Results.vue */
-
-        await this.$store.commit("userInformation/results", taxUpdate.data);
-        this.$store.dispatch("userInformation/getTaxSummary");
+        if (firestoreIds.userInput) {
+          const db = await firestore.collection(TAX_UPDATE).add({
+            ...taxUpdate.data,
+            user_input_id: firestoreIds.userInput,
+          });
+          firestoreIds.taxUpdate = db.id;
+        }
+        await this.$store.commit("userInformation/results", {
+          ...taxUpdate.data,
+          user_input_id: firestoreIds.userInput,
+        });
+        await this.$store.dispatch("userInformation/getTaxSummary");
+        if (firestoreIds.userInput && firestoreIds.taxUpdate) {
+          const db = await firestore.collection(TAX_SUMMARY).add({
+            ...this.taxSummary,
+            user_input_id: firestoreIds.userInput,
+            user_tax_update_id: firestoreIds.taxUpdate,
+          });
+          firestoreIds.taxSummary = db.id;
+        }
       } catch (error) {
         console.log(error);
       }
@@ -612,6 +641,7 @@ export default {
   computed: {
     ...Vuex.mapState("userInformation", {
       userInput: (state) => state.userInput,
+      taxSummary: (state) => state.taxSummary,
     }),
   },
 };
