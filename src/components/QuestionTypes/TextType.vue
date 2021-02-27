@@ -71,7 +71,7 @@
             return this.question.mask.some(mask => mask.length === this.dataValue.length)
           }
 
-          return this.dataValue.length !== this.question.mask.length
+          return this.dataValue.length === this.question.mask.length
         }
 
         return !this.question.required || this.hasValue
