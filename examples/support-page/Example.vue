@@ -27,7 +27,7 @@
           </div>
           <div v-else>
             <span class="f-tagline">Support page &gt; Ticket status</span>
-            <span class="fh2">Good news - the wheels are turning, your ticket {{" No. " + formatTicket(questions[2].model) + " " }} is being processed!😉</span>
+            <span class="fh2">Good news - the wheels are turning, your ticket No. {{ formatTicket(questions[2].model) }} is being processed!😉</span>
             <p class="f-description"><span>Have a great day!</span></p>
           </div>
         </div>  
@@ -49,7 +49,7 @@
   import Question from '../../src/components/Question.vue'
   import LanguageModel from '../../src/models/LanguageModel'
   // If using the npm package, use the following line instead of the ones above.
-  // import FlowForm, { QuestionModel, QuestionType, ChoiceOption, LinkOption, LanguageModel } from '@ditdot-dev/vue-flow-form'
+  // import FlowForm, { Question, LanguageModel } from '@ditdot-dev/vue-flow-form'
 
   export default {
     name: 'example',
@@ -85,7 +85,7 @@
               technical_issue: 'technical_issue', 
               enter_ticket: 'enter_ticket'
             },
-            model: null,
+            model: '',
           },
           {
             type: 'multiplechoice',
@@ -112,7 +112,7 @@
             jump: {
               faq_no: 'faq_no'
             },
-            model: null,
+            model: '',
           },
           {
             type: 'text',
@@ -127,7 +127,7 @@
             jump: {
               _other: '_submit'
             },
-            model: null
+            model: ''
           },
           {
             type: 'longText',
@@ -136,7 +136,7 @@
             title: 'Please describe your problem.',
             required: true,
             placeholder: 'Start typing here...',
-            model: null
+            model: ''
           }
         ]
       }
@@ -199,7 +199,7 @@
       },
 
       formatTicket(ticket) {
-        return ticket.replace(/-/g, '')
+        return ticket && ticket.replace(/-/g, '')
       },
 
       getTicket() {
