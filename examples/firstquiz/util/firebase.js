@@ -17,5 +17,6 @@ firebase.analytics();
 
 export const firestore = firebase.firestore();
 export const USER_INPUTS = "UserInputs";
-export const TAX_UPDATE = "taxUpdates";
+// export const TAX_UPDATE = "taxUpdates";
+export const DRAG_CALCULATION = "dragCalculation"
 export const TAX_SUMMARY = "taxSummary";

@@ -725,6 +725,14 @@ import { setSliderMax } from "../../../src/taxData/SMETaxCalculations";
 import { repostData } from "../../../src/api/TaxApi";
 import Loading from "vue-loading-overlay";
 import { usdFormat } from "../../util/usd-format";
+import {
+  firestore,
+  USER_INPUTS,
+  compareTwoObjects,
+  TAX_SUMMARY,
+  DRAG_CALCULATION,
+} from "../util";
+
 export default {
   name: "RetirementOptions",
 
@@ -1214,18 +1222,76 @@ export default {
       console.log("loader ends");
     },
     taxAvoided: {
-      handler(val) {
+      async handler(val) {
         const find = this.largestNumber({
           ...val,
         });
         this.bestOptionActive = {};
         this.bestOptionActive[find] = true;
+
+        if (
+          this.userInput.user_input_id &&
+          val.individual401k &&
+          val.sepIra &&
+          val.simpleIra &&
+          val.traditionalIra
+        ) {
+          await firestore.collection(DRAG_CALCULATION).add({
+            taxAvoided: val,
+            taxAdvantageRatio: this.taxAdvantageRatio,
+            sliders: this.sliders,
+            bestOptionActive: find,
+            user_input_id: this.userInput.user_input_id,
+          });
+        }
+      },
+      deep: true,
+    },
+    slider: {
+      async handler(val) {
+        const fildingBestOption = Object.keys(this.bestOptionActive).find(
+          (item) => this.bestOptionActive[item]
+        );
+        if (
+          this.userInput.user_input_id &&
+          val.individual401k &&
+          val.sepIra &&
+          val.simpleIra &&
+          val.traditionalIra
+        ) {
+          await firestore.collection(DRAG_CALCULATION).add({
+            taxAvoided: this.taxAvoided,
+            taxAdvantageRatio: this.taxAdvantageRatio,
+            sliders: val,
+            bestOptionActive: this.bestOptionActive[fildingBestOption],
+            user_input_id: this.userInput.user_input_id,
+          });
+        }
       },
       deep: true,
     },
     taxAdvantageRatio: {
-      handler(taxAdvantageRatio) {
+      async handler(val) {
         this.handleTaxAdvantageRatioTooltip();
+        const fildingBestOption = Object.keys(this.bestOptionActive).find(
+          (item) => this.bestOptionActive[item]
+        );
+
+        if (
+          this.userInput.user_input_id &&
+          val.individual401k &&
+          val.sepIra &&
+          val.simpleIra &&
+          val.traditionalIra
+        ) {
+          await firestore.collection(DRAG_CALCULATION).add({
+            taxAvoided: this.taxAvoided,
+            taxAdvantageRatio: val,
+            sliders: this.sliders,
+            bestOptionActive: this.bestOptionActive[fildingBestOption],
+            user_input_id: this.userInput.user_input_id,
+          });
+        }
       },
       deep: true,
     },

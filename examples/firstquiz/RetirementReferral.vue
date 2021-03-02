@@ -68,13 +68,7 @@ import LanguageModel from "../../src/models/LanguageModel";
 import Vuex from "vuex";
 import * as taxApi from "../../src/api/TaxApi";
 import { userInputs, localUserInputs } from "../../src/constants/index";
-import {
-  firestore,
-  USER_INPUTS,
-  compareTwoObjects,
-  TAX_UPDATE,
-  TAX_SUMMARY,
-} from "./util";
+import { firestore, USER_INPUTS, compareTwoObjects, TAX_SUMMARY } from "./util";
 export default {
   name: "RetirementReferral",
   components: {
@@ -580,11 +574,12 @@ export default {
         }
         const isEqual = compareTwoObjects(localUserInputs(), userInput);
         let firestoreIds = { userInput: "", taxUpdate: "" };
-        if (!isEqual) {
+        if (!isEqual && !Object.keys(localUserInputs()).length) {
           const db = await firestore.collection(USER_INPUTS).add({
             ...userInput,
           });
           firestoreIds.userInput = db.id;
+          userInput.user_input_id = db.id;
         }
         this.$store.commit("userInformation/entry", userInput);
         const incomeData = await taxApi.taxData();
@@ -593,13 +588,7 @@ export default {
         const taxUpdate = await taxApi.postTaxData(incomeData);
         console.log(taxUpdate.data);
         /* Run dispatch to store the data for Results.vue */
-        if (firestoreIds.userInput) {
-          const db = await firestore.collection(TAX_UPDATE).add({
-            ...taxUpdate.data,
-            user_input_id: firestoreIds.userInput,
-          });
-          firestoreIds.taxUpdate = db.id;
-        }
+
         await this.$store.commit("userInformation/results", {
           ...taxUpdate.data,
           user_input_id: firestoreIds.userInput,
