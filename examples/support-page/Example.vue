@@ -10,7 +10,13 @@
       v-bind:progressbar="false"
       v-bind:standalone="true"
     >
-      <question v-for="(question, index) in questions" v-bind="question" v-bind:key="'m' + index" v-model="question.model"></question>
+      <question 
+        v-for="(question, index) in questions" 
+        v-bind="question" 
+        v-bind:key="'m' + index" 
+        v-model="question.model"
+      >
+      </question>
       
       <!-- Custom content for the Complete/Submit screen slots in the FlowForm component -->
       <template v-slot:complete>
@@ -31,7 +37,7 @@
               <span class="fh2">Please wait, checking...</span>
             </div>
             <div v-else>
-            <span  class="fh2">Good news - the wheels are turning, your ticket No. {{ formatTicket(questions[2].model) }} is being processed!😉</span>
+              <span  class="fh2">Good news - the wheels are turning, your ticket No. {{ formatTicket(questions[2].model) }} is being processed!😉</span>
               <p class="f-description"><span>Have a great day!</span></p>
             </div>
           </div>
@@ -58,7 +64,7 @@
   import Question from '../../src/components/Question.vue'
   import LanguageModel from '../../src/models/LanguageModel'
   // If using the npm package, use the following line instead of the ones above.
-  // import FlowForm, { Question, LanguageModel } from '@ditdot-dev/vue-flow-form'
+  // import FlowForm, Question, { LanguageModel } from '@ditdot-dev/vue-flow-form'
 
   export default {
     name: 'example',
@@ -139,7 +145,7 @@
             model: ''
           },
           {
-            type: 'longText',
+            type: 'longtext',
             id: "faq_no",
             tagline: 'Submit issue > Step 2/3',
             title: 'Please describe your problem.',
