@@ -39,7 +39,7 @@
 
 @media screen and (min-width:2560px) {
   .vff {
-    font-size: 26px;
+    font-size: 25px;
   }
 
 }
@@ -231,7 +231,6 @@ header.vff-header svg.f-logo {
   form elements
 */
 
-/*normalize*/
 .vff button,
 .vff input,
 .vff optgroup,
@@ -443,13 +442,13 @@ header.vff-header svg.f-logo {
 }
 
 /* ios datepicker */
-.vff.vff-is-ios  .field-date:not(.f-has-value) .f-answer > span {
+.vff.vff-is-ios .field-date:not(.f-has-value) .f-answer > span {
   position: relative;
   top: 0;
   left: 0;
 }
 
-.vff.vff-is-ios  .field-date:not(.f-has-value) .f-answer > span::before {
+.vff.vff-is-ios .field-date:not(.f-has-value) .f-answer > span::before {
   position: absolute;
   content: attr(data-placeholder);
   display: block;
@@ -497,7 +496,7 @@ header.vff-header svg.f-logo {
 .vff h1,
 .vff .fh1 {
   font-weight: 900;
-  font-size: 3.0em;
+  font-size: 3em;
   margin: 0.67em 0;
 }
 
@@ -652,13 +651,13 @@ header.vff-header svg.f-logo {
 
 .vff .field-multiplepicturechoice ul.f-radios li{
   position: relative;
+  cursor: pointer;
   display: -ms-flexbox;
   display: flex;
   -moz-box-align: center;
   align-items: center;
   flex-direction: column;
   padding: 8px 8px 10px;
-  cursor: pointer;
   margin-bottom: 8px;
   margin-right: 8px;
   -ms-flex: 0 0 calc(25% - 8px);
@@ -681,7 +680,7 @@ header.vff-header svg.f-logo {
 }
 
 .vff .field-multiplepicturechoice ul.f-radios li span.f-image img{
-  margin-bottom: .8px;
+  margin-bottom: 0;
   max-height: 100%;
   max-width: 100%;
 }
@@ -817,6 +816,7 @@ header.vff-header svg.f-logo {
   100% {
     opacity: 1;
   }
+  
 }
 
 .vff .f-fade-in {
