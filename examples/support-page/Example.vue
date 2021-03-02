@@ -27,13 +27,22 @@
           </div>
           <div v-else>
             <span class="f-tagline">Support page &gt; Ticket status</span>
-            <span class="fh2">Good news - the wheels are turning, your ticket No. {{ formatTicket(questions[2].model) }} is being processed!😉</span>
-            <p class="f-description"><span>Have a great day!</span></p>
+            <div v-if="loading">
+              <span class="fh2">Please wait, checking...</span>
+            </div>
+            <div v-else>
+            <span  class="fh2">Good news - the wheels are turning, your ticket No. {{ formatTicket(questions[2].model) }} is being processed!😉</span>
+              <p class="f-description"><span>Have a great day!</span></p>
+            </div>
           </div>
         </div>  
       </template>
       <!-- We've overriden the default "complete" slot content -->
-      
+      <template v-slot:completeButton>
+        <div class="f-submit">
+          <!-- Leave empty to hide default submit button -->
+        </div>
+      </template>
     </flow-form>
   </div>
 </template>
