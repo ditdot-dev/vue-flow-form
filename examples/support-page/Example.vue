@@ -10,86 +10,12 @@
       v-bind:progressbar="false"
       v-bind:standalone="true"
     >
-     <question 
-      type="multipleChoice" 
-      id="multiple_choice"
-      tagline="Welcome to our demo support page!"
-      title="Hi 👋, how can we help you today?"
-      v-bind:multiple="false"
-      v-bind:helpTextShow="false"
-      v-bind:options="[
-              {
-                label: 'I have a technical issue',
-                value: 'technical_issue'
-              },
-              {
-                label: 'I wish to check my ticket status',
-                value: 'enter_ticket'
-              },
-            ]"
-      v-bind:jump="{
-              technical_issue: 'technical_issue', 
-              enter_ticket: 'enter_ticket'
-            }"
-      >
-      </question>
-      <question
-        type="multipleChoice"
-        id="technical_issue"
-        tagline="Submit issue > Step 1/3"
-        title="Have you read our technical FAQ?"
-        v-bind:multiple="false"
-        required
-        v-bind:helpTextShow="false"
-        description="Here you'll find answers to"
-        v-bind:descriptionLink="[
-              {
-                url: '#',
-                text: 'FAQs',
-                target: '_self'
-              }
-            ]"
-        v-bind:options="[          
-              {
-                label: 'Yes, but I couldn’t find the answer',
-                value: 'faq_no'
-              }
-            ]"
-        v-bind:jump="{
-              faq_no: 'faq_no'
-            }"
-      >
-      </question>
-      <question
-        type="text"
-        id="enter_ticket"
-        tagline="Support page > Ticket status"
-        title="Please enter your 6-digit code."
-        subtitle="You received this when you reported your problem."
-        v-bind:multiple="false"
-        required
-        mask="#-#-#-#-#-#"
-        placeholder="#-#-#-#-#-#"
-        v-bind:jump="{
-              _other: '_submit'
-            }"
-        v-model="ticket"
-      >
-      </question>
-      <question
-        id="faq_no"
-        tagline="Submit issue > Step 2/3"
-        title="Please describe your problem."
-        type="longText"
-        required
-        placeholder="Start typing here..."
-      >
-      </question>
+      <question v-for="(question, index) in questions" v-bind="question" v-bind:key="'m' + index" v-model="question.model"></question>
       
       <!-- Custom content for the Complete/Submit screen slots in the FlowForm component -->
       <template v-slot:complete>
         <div class="f-section-wrap">
-          <div v-if="answer === 'technical_issue'">
+          <div v-if="questions[0].model === 'technical_issue'">
             <span class="f-tagline">Submit issue &gt; Step 3/3</span>
             <div v-if="loading">
               <span class="fh2">Please wait, submitting...</span>
@@ -101,7 +27,7 @@
           </div>
           <div v-else>
             <span class="f-tagline">Support page &gt; Ticket status</span>
-            <span class="fh2">Good news - the wheels are turning, your ticket {{ ticket }} is being processed!😉</span>
+            <span class="fh2">Good news - the wheels are turning, your ticket {{" No. " + formatTicket(questions[2].model) + " " }} is being processed!😉</span>
             <p class="f-description"><span>Have a great day!</span></p>
           </div>
         </div>  
@@ -136,8 +62,83 @@
         loading: false,
         completed: false,
         language: new LanguageModel(),
-        answer: '',
-        ticket: '',
+        questions: [
+          {
+            type: 'multiplechoice',
+            id: 'multiple_choice',
+            tagline: 'Welcome to our demo support page!',
+            title: 'Hi 👋, how can we help you today?',
+            multiple: false,
+            required: true,
+            helpTextShow: false,
+            options: [
+              {
+                label: 'I have a technical issue',
+                value: 'technical_issue'
+              },
+              {
+                label: 'I wish to check my ticket status',
+                value: 'enter_ticket'
+              },
+            ],
+            jump: {
+              technical_issue: 'technical_issue', 
+              enter_ticket: 'enter_ticket'
+            },
+            model: null,
+          },
+          {
+            type: 'multiplechoice',
+            id: 'technical_issue',
+            tagline: 'Submit issue > Step 1/3',
+            title: 'Have you read our technical FAQ?',
+            multiple: false,
+            required: true,
+            helpTextShow: false,
+            description: "Here you'll find answers to",
+            descriptionLink: [
+              {
+                url: '#',
+                text: 'FAQs',
+                target: '_self'
+              }
+            ],
+            options: [          
+              {
+                label: 'Yes, but I couldn’t find the answer',
+                value: 'faq_no'
+              }
+            ],
+            jump: {
+              faq_no: 'faq_no'
+            },
+            model: null,
+          },
+          {
+            type: 'text',
+            id: 'enter_ticket',
+            tagline: 'Support page > Ticket status',
+            title: 'Please enter your 6-digit code.',
+            subtitle: 'You received this when you reported your problem.',
+            multiple: false, 
+            required: true,
+            mask: '#-#-#-#-#-#',
+            placeholder: '#-#-#-#-#-#',
+            jump: {
+              _other: '_submit'
+            },
+            model: null
+          },
+          {
+            type: 'longText',
+            id: "faq_no",
+            tagline: 'Submit issue > Step 2/3',
+            title: 'Please describe your problem.',
+            required: true,
+            placeholder: 'Start typing here...',
+            model: null
+          }
+        ]
       }
     },
     methods: {
@@ -155,7 +156,7 @@
       
       onSendData() {
         const self = this
-       // const data = this.getData()
+        const data = this.getData()
 
         this.loading = true
         
@@ -175,16 +176,16 @@
           self.loading = false
         }, 1500)
       },
-/*
+
       getData() {
         const data = {
           questions: [],
           answers: []
         }
-
+    
         this.questions.forEach(question => {
           if (question.title) {
-            let answer = question.answer
+            let answer = question.model
             if (Array.isArray(answer)) {
               answer = answer.join(', ')
             }
@@ -193,9 +194,13 @@
             data.answers.push(answer)
           }
         })
-
+    
         return data
-      },*/
+      },
+
+      formatTicket(ticket) {
+        return ticket.replace(/-/g, '')
+      },
 
       getTicket() {
         return Math.floor(Math.random() * (999999 - 100000) + 100000).toString()
