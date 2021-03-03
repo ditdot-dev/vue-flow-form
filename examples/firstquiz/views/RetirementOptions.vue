@@ -732,6 +732,7 @@ import {
   TAX_SUMMARY,
   DRAG_CALCULATION,
 } from "../util";
+import differenceInDays from "date-fns/differenceInDays";
 
 export default {
   name: "RetirementOptions",
@@ -860,6 +861,7 @@ export default {
           100
       );
       this.handleTaxAvoidedTooltip(res, "individual401k");
+      await this.addInFirebase();
       return res;
     },
     async handleSepIraDrag() {
@@ -869,6 +871,7 @@ export default {
         (this.taxAvoided.sepIra / this.sliders.sepIraBusiness) * 100
       );
       this.handleTaxAvoidedTooltip(res, "sepIra");
+      await this.addInFirebase();
       return res;
     },
     async handleSimpleIra() {
@@ -885,6 +888,7 @@ export default {
           100
       );
       this.handleTaxAvoidedTooltip(res, "simpleIra");
+      await this.addInFirebase();
       return res;
     },
     async handleTraditionalIra() {
@@ -897,6 +901,7 @@ export default {
           100
       );
       this.handleTaxAvoidedTooltip(res, "traditionalIra");
+      await this.addInFirebase();
       return res;
     },
     largestNumber(props) {
@@ -1103,6 +1108,45 @@ export default {
         },
       };
     },
+    async addInFirebase() {
+      const fildingBestOption = Object.keys(this.bestOptionActive).find(
+        (item) => this.bestOptionActive[item]
+      );
+      const calculationDragId = localStorage.getItem("calculationDragId");
+      if (calculationDragId) {
+        const calculation = await firestore
+          .collection(DRAG_CALCULATION)
+          .doc(calculationDragId)
+          .get();
+        if (calculation.exists) {
+          const calculationData = calculation.data();
+
+          if (
+            !differenceInDays(new Date(calculationData.createdAt), Date.now())
+          ) {
+            return await firestore
+              .collection(DRAG_CALCULATION)
+              .doc(calculationDragId)
+              .update({
+                taxAvoided: this.taxAvoided,
+                taxAdvantageRatio: this.taxAdvantageRatio,
+                sliders: this.sliders,
+                bestOptionActive: fildingBestOption,
+                user_input_id: this.userInput.user_input_id,
+              });
+          }
+        }
+      }
+      const calculationDrag = await firestore.collection(DRAG_CALCULATION).add({
+        taxAvoided: this.taxAvoided,
+        taxAdvantageRatio: this.taxAdvantageRatio,
+        sliders: this.sliders,
+        bestOptionActive: fildingBestOption,
+        user_input_id: this.userInput.user_input_id,
+        createdAt: Date.now(),
+      });
+      localStorage.setItem("calculationDragId", calculationDrag.id);
+    },
   },
   computed: {
     roundedProjectedValue: {
@@ -1219,6 +1263,7 @@ export default {
       const traditionalIra = await this.handleTraditionalIra();
       this.handleTaxAvoidedTooltip(traditionalIra, "traditionalIra");
       this.loader = false;
+      await this.addInFirebase();
       console.log("loader ends");
     },
     taxAvoided: {
@@ -1228,70 +1273,13 @@ export default {
         });
         this.bestOptionActive = {};
         this.bestOptionActive[find] = true;
+      },
+      deep: true,
+    },
 
-        if (
-          this.userInput.user_input_id &&
-          val.individual401k &&
-          val.sepIra &&
-          val.simpleIra &&
-          val.traditionalIra
-        ) {
-          await firestore.collection(DRAG_CALCULATION).add({
-            taxAvoided: val,
-            taxAdvantageRatio: this.taxAdvantageRatio,
-            sliders: this.sliders,
-            bestOptionActive: find,
-            user_input_id: this.userInput.user_input_id,
-          });
-        }
-      },
-      deep: true,
-    },
-    slider: {
-      async handler(val) {
-        const fildingBestOption = Object.keys(this.bestOptionActive).find(
-          (item) => this.bestOptionActive[item]
-        );
-        if (
-          this.userInput.user_input_id &&
-          val.individual401k &&
-          val.sepIra &&
-          val.simpleIra &&
-          val.traditionalIra
-        ) {
-          await firestore.collection(DRAG_CALCULATION).add({
-            taxAvoided: this.taxAvoided,
-            taxAdvantageRatio: this.taxAdvantageRatio,
-            sliders: val,
-            bestOptionActive: this.bestOptionActive[fildingBestOption],
-            user_input_id: this.userInput.user_input_id,
-          });
-        }
-      },
-      deep: true,
-    },
     taxAdvantageRatio: {
       async handler(val) {
         this.handleTaxAdvantageRatioTooltip();
-        const fildingBestOption = Object.keys(this.bestOptionActive).find(
-          (item) => this.bestOptionActive[item]
-        );
-
-        if (
-          this.userInput.user_input_id &&
-          val.individual401k &&
-          val.sepIra &&
-          val.simpleIra &&
-          val.traditionalIra
-        ) {
-          await firestore.collection(DRAG_CALCULATION).add({
-            taxAvoided: this.taxAvoided,
-            taxAdvantageRatio: val,
-            sliders: this.sliders,
-            bestOptionActive: this.bestOptionActive[fildingBestOption],
-            user_input_id: this.userInput.user_input_id,
-          });
-        }
       },
       deep: true,
     },

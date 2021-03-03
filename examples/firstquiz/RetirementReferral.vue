@@ -574,7 +574,8 @@ export default {
         }
         const isEqual = compareTwoObjects(localUserInputs(), userInput);
         let firestoreIds = { userInput: "", taxUpdate: "" };
-        if (!isEqual && !Object.keys(localUserInputs()).length) {
+        console.log(isEqual);
+        if (!isEqual || !Object.keys(localUserInputs()).length) {
           const db = await firestore.collection(USER_INPUTS).add({
             ...userInput,
           });
@@ -594,7 +595,7 @@ export default {
           user_input_id: firestoreIds.userInput,
         });
         await this.$store.dispatch("userInformation/getTaxSummary");
-        if (firestoreIds.userInput && firestoreIds.taxUpdate) {
+        if (firestoreIds.userInput) {
           const db = await firestore.collection(TAX_SUMMARY).add({
             ...this.taxSummary,
             user_input_id: firestoreIds.userInput,
