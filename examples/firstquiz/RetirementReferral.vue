@@ -599,7 +599,6 @@ export default {
           const db = await firestore.collection(TAX_SUMMARY).add({
             ...this.taxSummary,
             user_input_id: firestoreIds.userInput,
-            user_tax_update_id: firestoreIds.taxUpdate,
           });
           firestoreIds.taxSummary = db.id;
         }

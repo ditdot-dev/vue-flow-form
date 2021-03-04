@@ -271,6 +271,7 @@
                 target="_blank"
                 rel="noopener noreferrer"
                 v-else
+                @click="addInFirebase('individual')"
               >
                 <div
                   :class="`labelbox flex ${
@@ -373,6 +374,7 @@
                 href="https://www.learn.gigfinance.org/blog/how-to-get-started-with-a-sep-ira/"
                 target="_blank"
                 rel="noopener noreferrer"
+                @click="addInFirebase('sepra')"
               >
                 <div class="labelbox flex">
                   <h4>How to Get Started <br />w/ a SEP-IRA<br />Account</h4>
@@ -519,6 +521,7 @@
                 target="_blank"
                 rel="noopener noreferrer"
                 v-else
+                @click="addInFirebase('simpleIra')"
               >
                 <div
                   :class="`labelbox flex ${
@@ -625,6 +628,7 @@
                 href="https://www.learn.gigfinance.org/blog/how-to-get-started-with-a-traditional-ira/"
                 target="_blank"
                 rel="noopener noreferrer"
+                @click="addInFirebase('traditionalIra')"
               >
                 <div class="labelbox flex">
                   <h4>
@@ -1108,7 +1112,7 @@ export default {
         },
       };
     },
-    async addInFirebase() {
+    async addInFirebase(clickItem) {
       const fildingBestOption = Object.keys(this.bestOptionActive).find(
         (item) => this.bestOptionActive[item]
       );
@@ -1133,18 +1137,22 @@ export default {
                 sliders: this.sliders,
                 bestOptionActive: fildingBestOption,
                 user_input_id: this.userInput.user_input_id,
+                ...(clickItem ? { dataPoint: clickItem } : {}),
               });
           }
         }
       }
+
       const calculationDrag = await firestore.collection(DRAG_CALCULATION).add({
         taxAvoided: this.taxAvoided,
         taxAdvantageRatio: this.taxAdvantageRatio,
         sliders: this.sliders,
         bestOptionActive: fildingBestOption,
         user_input_id: this.userInput.user_input_id,
+        ...(clickItem ? { dataPoint: clickItem } : {}),
         createdAt: Date.now(),
       });
+
       localStorage.setItem("calculationDragId", calculationDrag.id);
     },
   },
