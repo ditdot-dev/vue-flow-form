@@ -1136,8 +1136,10 @@ export default {
                 taxAdvantageRatio: this.taxAdvantageRatio,
                 sliders: this.sliders,
                 bestOptionActive: fildingBestOption,
-                user_input_id: this.userInput.user_input_id,
-                ...(clickItem ? { dataPoint: clickItem } : {}),
+                user_input_id: this.userInput.user_input_id || "",
+                ...(clickItem ? { clickedGuide: clickItem } : {}),
+                updatedAt: Date.now(),
+                updatedAtView: new Date(),
               });
           }
         }
@@ -1148,9 +1150,10 @@ export default {
         taxAdvantageRatio: this.taxAdvantageRatio,
         sliders: this.sliders,
         bestOptionActive: fildingBestOption,
-        user_input_id: this.userInput.user_input_id,
-        ...(clickItem ? { dataPoint: clickItem } : {}),
+        user_input_id: this.userInput.user_input_id || "",
+        ...(clickItem ? { clickedGuide: clickItem } : {}),
         createdAt: Date.now(),
+        createdAtView: new Date(),
       });
 
       localStorage.setItem("calculationDragId", calculationDrag.id);
