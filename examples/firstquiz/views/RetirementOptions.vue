@@ -271,6 +271,7 @@
                 target="_blank"
                 rel="noopener noreferrer"
                 v-else
+                @click="addInFirebase('individual')"
               >
                 <div
                   :class="`labelbox flex ${
@@ -373,6 +374,7 @@
                 href="https://www.learn.gigfinance.org/blog/how-to-get-started-with-a-sep-ira/"
                 target="_blank"
                 rel="noopener noreferrer"
+                @click="addInFirebase('sepra')"
               >
                 <div class="labelbox flex">
                   <h4>How to Get Started <br />w/ a SEP-IRA<br />Account</h4>
@@ -519,6 +521,7 @@
                 target="_blank"
                 rel="noopener noreferrer"
                 v-else
+                @click="addInFirebase('simpleIra')"
               >
                 <div
                   :class="`labelbox flex ${
@@ -625,6 +628,7 @@
                 href="https://www.learn.gigfinance.org/blog/how-to-get-started-with-a-traditional-ira/"
                 target="_blank"
                 rel="noopener noreferrer"
+                @click="addInFirebase('traditionalIra')"
               >
                 <div class="labelbox flex">
                   <h4>
@@ -725,6 +729,15 @@ import { setSliderMax } from "../../../src/taxData/SMETaxCalculations";
 import { repostData } from "../../../src/api/TaxApi";
 import Loading from "vue-loading-overlay";
 import { usdFormat } from "../../util/usd-format";
+import {
+  firestore,
+  USER_INPUTS,
+  compareTwoObjects,
+  TAX_SUMMARY,
+  DRAG_CALCULATION,
+} from "../util";
+import differenceInDays from "date-fns/differenceInDays";
+
 export default {
   name: "RetirementOptions",
 
@@ -852,6 +865,7 @@ export default {
           100
       );
       this.handleTaxAvoidedTooltip(res, "individual401k");
+      await this.addInFirebase();
       return res;
     },
     async handleSepIraDrag() {
@@ -861,6 +875,7 @@ export default {
         (this.taxAvoided.sepIra / this.sliders.sepIraBusiness) * 100
       );
       this.handleTaxAvoidedTooltip(res, "sepIra");
+      await this.addInFirebase();
       return res;
     },
     async handleSimpleIra() {
@@ -877,6 +892,7 @@ export default {
           100
       );
       this.handleTaxAvoidedTooltip(res, "simpleIra");
+      await this.addInFirebase();
       return res;
     },
     async handleTraditionalIra() {
@@ -889,6 +905,7 @@ export default {
           100
       );
       this.handleTaxAvoidedTooltip(res, "traditionalIra");
+      await this.addInFirebase();
       return res;
     },
     largestNumber(props) {
@@ -1095,6 +1112,52 @@ export default {
         },
       };
     },
+    async addInFirebase(clickItem) {
+      const fildingBestOption = Object.keys(this.bestOptionActive).find(
+        (item) => this.bestOptionActive[item]
+      );
+      const calculationDragId = localStorage.getItem("calculationDragId");
+      if (calculationDragId) {
+        const calculation = await firestore
+          .collection(DRAG_CALCULATION)
+          .doc(calculationDragId)
+          .get();
+        if (calculation.exists) {
+          const calculationData = calculation.data();
+
+          if (
+            !differenceInDays(new Date(calculationData.createdAt), Date.now())
+          ) {
+            return await firestore
+              .collection(DRAG_CALCULATION)
+              .doc(calculationDragId)
+              .update({
+                taxAvoided: this.taxAvoided,
+                taxAdvantageRatio: this.taxAdvantageRatio,
+                sliders: this.sliders,
+                bestOptionActive: fildingBestOption,
+                user_input_id: this.userInput.user_input_id || "",
+                ...(clickItem ? { clickedGuide: clickItem } : {}),
+                updatedAt: Date.now(),
+                updatedAtView: new Date(),
+              });
+          }
+        }
+      }
+
+      const calculationDrag = await firestore.collection(DRAG_CALCULATION).add({
+        taxAvoided: this.taxAvoided,
+        taxAdvantageRatio: this.taxAdvantageRatio,
+        sliders: this.sliders,
+        bestOptionActive: fildingBestOption,
+        user_input_id: this.userInput.user_input_id || "",
+        ...(clickItem ? { clickedGuide: clickItem } : {}),
+        createdAt: Date.now(),
+        createdAtView: new Date(),
+      });
+
+      localStorage.setItem("calculationDragId", calculationDrag.id);
+    },
   },
   computed: {
     roundedProjectedValue: {
@@ -1211,10 +1274,11 @@ export default {
       const traditionalIra = await this.handleTraditionalIra();
       this.handleTaxAvoidedTooltip(traditionalIra, "traditionalIra");
       this.loader = false;
+      await this.addInFirebase();
       console.log("loader ends");
     },
     taxAvoided: {
-      handler(val) {
+      async handler(val) {
         const find = this.largestNumber({
           ...val,
         });
@@ -1223,8 +1287,9 @@ export default {
       },
       deep: true,
     },
+
     taxAdvantageRatio: {
-      handler(taxAdvantageRatio) {
+      async handler(val) {
         this.handleTaxAdvantageRatioTooltip();
       },
       deep: true,

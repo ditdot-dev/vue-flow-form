@@ -21,7 +21,9 @@
   "dependencies": {
     "@popperjs/core": "^2.5.4",
     "bootstrap-vue": "^2.1.0",
+    "date-fns": "^2.18.0",
     "es6-object-assign": "^1.1.0",
+    "firebase": "^8.2.9",
     "tingle.js": "^0.15.3",
     "v-tooltip": "^2.0.3",
     "vue-loading-overlay": "^3.4.2",
