@@ -531,11 +531,7 @@ export default {
   },
   mounted() {
     document.addEventListener("keyup", this.onKeyListener);
-    console.log("mount");
     this.$forceUpdate();
-  },
-  created() {
-    console.log("create");
   },
   beforeDestroy() {
     document.removeEventListener("keyup", this.onKeyListener);
@@ -574,7 +570,6 @@ export default {
         }
         const isEqual = compareTwoObjects(localUserInputs(), userInput);
         let firestoreIds = { userInput: "", taxUpdate: "" };
-        console.log(isEqual);
         if (!isEqual || !Object.keys(localUserInputs()).length) {
           const db = await firestore.collection(USER_INPUTS).add({
             ...userInput,
@@ -587,7 +582,6 @@ export default {
 
         /* Run taxApi and put the outputs into an object in Vuex store */
         const taxUpdate = await taxApi.postTaxData(incomeData);
-        console.log(taxUpdate.data);
         /* Run dispatch to store the data for Results.vue */
 
         await this.$store.commit("userInformation/results", {

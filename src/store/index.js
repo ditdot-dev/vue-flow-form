@@ -67,7 +67,6 @@ const userInformation = {
   },
   mutations: {
     entry(state, data) {
-      console.log(data);
       state.userInput = data;
     },
     results(state, data) {
