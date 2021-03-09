@@ -42,7 +42,7 @@ export function addTotalDeduction() {
   } else {
     standardDeduction = 0;
   }
-  console.log("Standard Deduction is:" + standardDeduction);
+  // "Standard Deduction is:" + standardDeduction;
 
   //let elderStandardDeduction; **NOT WORKING YET......**
   //if (age >= 65) {
