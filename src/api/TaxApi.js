@@ -37,22 +37,21 @@ export function taxData() {
 }
 
 export async function postTaxData(incomeData) {
-  const { userInput, taxSummary } =
-    store?.default?.state?.userInformation || {};
-  let baseTax = await fetch(
-    `https://app.gigfinance.org/.netlify/functions/server`,
-    {
-      method: "POST",
-      body: JSON.stringify({
-        data: incomeData,
-        app_secret,
-        app_key
-      })
-    }
-  );
-  baseTax = await baseTax.json();
+  const {
+    userInput,
+    taxSummary,
+  } = store?.default?.state?.userInformation || {};
+  let baseTax = await fetch("https://app.gigfinance.org/.netlify/functions/server", {
+    headers: {
+      "Content-Type": "application/json",
+      "X-Api-Key": app_key,
+      "X-Api-Secret": app_secret
+    },
+    method: "PUT",
+    body: JSON.stringify(incomeData)
+  }).catch(handleError);
   // "base tax calculation complete!";
-  return baseTax || {};
+  return await baseTax.json();
 }
 
 // Grab data from the sliders to update API calls and post data to RetirementOptions.vue
@@ -91,6 +90,7 @@ async function formatContributionData(personal, business) {
 }
 
 async function repostApi(data) {
+<<<<<<< HEAD
   let newTax = await fetch(tax_calculation, {
     headers: {
       "Content-Type": "application/json",
@@ -103,3 +103,17 @@ async function repostApi(data) {
   const response = await newTax.json();
   return response.data;
 }
+=======
+    let newTax = await fetch(tax_calculation, {
+      headers: {
+        "Content-Type": "application/json",
+        "X-Api-Key": app_key,
+        "X-Api-Secret": app_secret
+      },
+      method: "PUT",
+      body: JSON.stringify(data)
+    }).catch(handleError);
+    const response = await newTax.json();
+    return response.data;
+  };
+>>>>>>> console removed
