@@ -227,9 +227,9 @@ export default {
     handleProgressBar(index) {
       if (
         index < this.numCompletedQuestions &&
-        this.$refs.questions[index].question?.answered
+        this.$refs.questions[index]?.question?.answered
       ) {
-        this.questionListActivePath = this.questions;
+        this.setQuestionListActivePath();
         this.activeQuestionIndex = index;
         this.setQuestionList();
       }
