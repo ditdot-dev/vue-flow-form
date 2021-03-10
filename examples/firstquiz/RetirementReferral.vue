@@ -462,7 +462,15 @@ export default {
             answer: "it's good to pay yourself first! 🤩",
           },
           answer: localUserInputs()?.salary || "",
-          answered: localUserInputs()?.salary ? true : false,
+          answered: (
+            localUserInputs()?.salary || localUserInputs().first_name
+              ? localUserInputs()?.salary
+                ? false
+                : true
+              : false
+          )
+            ? true
+            : false,
           type: QuestionType.Salary,
           placeholder: "Type a number here...",
           required: true,
