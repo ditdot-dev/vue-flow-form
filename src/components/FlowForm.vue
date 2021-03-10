@@ -331,10 +331,6 @@ export default {
                 question?.index >
               1
             ) {
-              console.log(
-                this.questions.find((e) => e.id == nextId)?.index -
-                  question?.index
-              );
               this.questions = this.questions.filter(
                 (que) => que.index !== question.index + 1
               );
