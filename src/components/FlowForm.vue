@@ -256,8 +256,12 @@ export default {
       isJump = index === 9 && isJump;
       if (
         index < this.numCompletedQuestions &&
+<<<<<<< HEAD
         this.$refs.questions[index]?.question?.answered &&
         !isJump
+=======
+        this.$refs.questions[index]?.question?.answered
+>>>>>>> fixes
       ) {
         this.setQuestionListActivePath();
         this.activeQuestionIndex = index;
