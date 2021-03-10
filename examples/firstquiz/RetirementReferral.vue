@@ -464,9 +464,7 @@ export default {
           answer: localUserInputs()?.salary || "",
           answered: (
             localUserInputs()?.salary || localUserInputs().first_name
-              ? localUserInputs()?.salary
-                ? false
-                : true
+              ? true
               : false
           )
             ? true
