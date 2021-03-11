@@ -148,6 +148,7 @@
 <script>
 import FlowFormQuestion from "./Question.vue";
 import LanguageModel from "../models/LanguageModel";
+import { userInputs, localUserInputs } from "../../src/constants/index";
 export default {
   name: "FlowForm",
   components: {
@@ -224,8 +225,13 @@ export default {
   },
   methods: {
     handleProgressBar(index) {
-      if (index < this.numCompletedQuestions) {
+      if (
+        index < this.numCompletedQuestions &&
+        this.$refs.questions[index]?.question?.answered
+      ) {
+        this.setQuestionListActivePath();
         this.activeQuestionIndex = index;
+        this.setQuestionList();
       }
     },
     /**
@@ -261,6 +267,15 @@ export default {
         } else if (question.answered) {
           nextId = question.getJumpId();
           if (nextId) {
+            if (
+              this.questions.find((e) => e.id == nextId)?.index -
+                question?.index >
+              1
+            ) {
+              this.questions = this.questions.filter(
+                (que) => que.index !== question.index + 1
+              );
+            }
             if (nextId === "_submit") {
               index = this.questions.length;
             } else {
@@ -290,6 +305,7 @@ export default {
       for (let index = 0; index < this.questionListActivePath.length; index++) {
         const question = this.questionListActivePath[index];
         questions.push(question);
+
         if (!question.answered) {
           if (this.completed) {
             // The "completed" status changed - user probably changed an
