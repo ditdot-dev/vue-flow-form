@@ -87,7 +87,7 @@
         >
           <router-link to="/results">
             <button class="complete-button" @click="emitComplete">
-              Calculate
+              See My Results
             </button>
           </router-link>
         </div>

@@ -70,7 +70,7 @@
 .complete-button {
   background: linear-gradient(rgb(0, 212, 159), rgb(0, 156, 116));
   color: white;
-  border-radius: 20px;
+  border-radius: 4px;
 }
 
 .f-tagline,
@@ -364,6 +364,8 @@ header.vff-header svg.f-logo {
   z-index: 1;
   line-height: 1.2;
   font-weight: 900;
+  background: linear-gradient(rgb(0, 212, 159), rgb(0, 156, 116));
+  border-radius: 4px;
   text-transform: lowercase;
 }
 
