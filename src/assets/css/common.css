@@ -26,15 +26,15 @@
 
 .answer-messages-parent {
   display: flex;
-  width: 100%
+  width: 100%;
 }
 
-.question-title-parent{
+.question-title-parent {
   /* width: 100%; */
   margin-right: 20%;
 }
 
-.vff .f-full-width span.faux-form{
+.vff .f-full-width span.faux-form {
   height: 100%;
 }
 
@@ -74,7 +74,7 @@
   transition: all 0.4s ease 0s;
 }
 .complete-button:hover,
-.complete-button:focus{
+.complete-button:focus {
   color: #000000;
 }
 
@@ -598,7 +598,8 @@ header.vff-header svg.f-logo {
   margin-top: 0;
 }
 
-.vff span.f-text ,.f-section-text {
+.vff span.f-text,
+.f-section-text {
   font-family: "Manrope", sans-serif;
   font-size: 29px;
   margin-right: 0.6em;
@@ -608,7 +609,9 @@ header.vff-header svg.f-logo {
 }
 
 /*description*/
-.vff p.f-description, .f-help,.f-sub {
+.vff p.f-description,
+.f-help,
+.f-sub {
   font-family: "Manrope", sans-serif;
   font-size: 16px;
   font-weight: 700;
