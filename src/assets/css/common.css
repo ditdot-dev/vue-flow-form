@@ -71,6 +71,11 @@
   background: linear-gradient(rgb(0, 212, 159), rgb(0, 156, 116));
   color: white;
   border-radius: 4px;
+  transition: all 0.4s ease 0s;
+}
+.complete-button:hover,
+.complete-button:focus{
+  color: #000000;
 }
 
 .f-tagline,
