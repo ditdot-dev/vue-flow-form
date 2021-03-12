@@ -19,9 +19,7 @@
               >About</b-nav-item
             >
             <b-nav-item-dropdown text="Guides" right>
-              <b-dropdown-text>
-                For Business of One
-              </b-dropdown-text>
+              <b-dropdown-text> For Business of One </b-dropdown-text>
               <b-dropdown-item
                 href="https://www.learn.gigfinance.org/blog/how-to-get-started-with-an-individual-401-k/"
               >
@@ -37,9 +35,7 @@
               >
                 <li class="nav-li">Traditional IRA</li>
               </b-dropdown-item>
-              <b-dropdown-text>
-                For Business of Many
-              </b-dropdown-text>
+              <b-dropdown-text> For Business of Many </b-dropdown-text>
               <b-dropdown-item
                 href="https://www.learn.gigfinance.org/blog/how-to-get-started-with-a-simple-ira/"
               >
@@ -72,4 +68,25 @@
   list-style-type: disc;
   margin: 0.3rem 1.8rem;
 }
+
+@media (max-width: 767.98px) {
+  .nav-item {
+    text-align: center !important;
+  }
+}
+@media (max-width: 500px) {
+  .logo {
+    width: 12rem;
+  }
+}
+@media (max-width: 300px) {
+  .logo {
+    width: 10rem;
+  }
+}
+/*=========================
+
+    02.HEADER AREA END
+
+=========================*/
 </style>
