@@ -250,7 +250,7 @@ header.vff-header .f-container {
 /*header*/
 header.vff-header {
   line-height: 1;
-  padding: 0.9em 10% 0.8em;
+  padding: 0em 10% 0em;
   box-sizing: border-box;
   position: static;
   width: 100%;
