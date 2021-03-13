@@ -15,6 +15,7 @@
           v-on:answer="onQuestionAnswered"
           v-bind:reverse="reverse"
           :questions="questions"
+          :activeQuestion="activeQuestion"
           :noButton="
             questions[questions.length - 1].id ===
             (activeQuestionComponent() && activeQuestionComponent().question.id)
@@ -68,7 +69,7 @@
         :class="`d-flex justify-content-center progress-circle ${
           activeQuestionIndex === index && 'active'
         }`"
-        v-for="(question, index) in questions"
+        v-for="(question, index) in numOfQuestionInPathLenght"
         :key="index"
         @click="handleProgressBar(index)"
       >
@@ -81,8 +82,9 @@
           v-if="
             this.activeQuestion &&
             this.activeQuestion.answer &&
+            this.questions[this.questions.length - 1].answer &&
             this.questions[this.questions.length - 1].id ===
-              (this.activeQuestion && this.activeQuestion.id)
+              (this.activeQuestion && this.activeQuestion.end_index)
           "
         >
           <router-link to="/results">
@@ -190,6 +192,11 @@ export default {
     window.addEventListener("beforeunload", this.onBeforeUnload);
     this.setQuestions();
   },
+  created() {
+    setTimeout(() => {
+      this.handleProgressBar(1);
+    }, 10);
+  },
   beforeDestroy() {
     document.removeEventListener("keydown", this.onKeyDownListener);
     document.removeEventListener("keyup", this.onKeyUpListener, true);
@@ -211,6 +218,20 @@ export default {
       });
       return num;
     },
+    // activeQuetions() {
+    //   this.questions.forEach((que) => {
+    //     if (que.id === "entity") {
+    //       if (que.answer === "soleProprietor" || que.answer === "partnership") {
+    //         return this.questions.filter((que) => que.id !== "salary");
+    //       }
+    //     }
+    //   });
+    //   return this.questions;
+    // },
+    numOfQuestionInPathLenght() {
+      const questionsLength = this.questions.filter((que) => !que.index_id);
+      return questionsLength.length;
+    },
     percentCompleted() {
       if (!this.numActiveQuestions) {
         return 0;
@@ -225,9 +246,18 @@ export default {
   },
   methods: {
     handleProgressBar(index) {
+      let isJump = this.questions.some((que) => {
+        if (que.id === "entity") {
+          return (
+            que.answer === "soleProprietor" || que.answer === "partnership"
+          );
+        }
+      });
+      isJump = index === 9 && isJump;
       if (
         index < this.numCompletedQuestions &&
-        this.$refs.questions[index]?.question?.answered
+        this.$refs.questions[index]?.question?.answered &&
+        !isJump
       ) {
         this.setQuestionListActivePath();
         this.activeQuestionIndex = index;
@@ -247,6 +277,16 @@ export default {
       this.setQuestionListActivePath();
       this.setQuestionList();
     },
+    isJump() {
+      const isJump = this.questions.some((que) => {
+        if (que.id === "entity") {
+          return (
+            que.answer === "soleProprietor" || que.answer === "partnership"
+          );
+        }
+      });
+      return isJump;
+    },
     /**
      * This method goes through all questions and sets the ones
      * that are in the current path (taking note of logic jumps)
@@ -259,7 +299,22 @@ export default {
         nextId;
       do {
         let question = this.questions[index];
-        question.setIndex(serialIndex);
+        // if (this.isJump() && question.id === "income") {
+        //   question.setIndex(9);
+        // } else if (!this.isJump() && question.id === "income") {
+        //   question.setIndex(8);
+        // } else {
+        //   question.setIndex(serialIndex);
+        // }
+        if (question?.index_id) {
+          const i = this.questions.find((que) => que.id === question?.index_id)
+            .index;
+          if (i) {
+            question.setIndex(i);
+          }
+        } else {
+          question.setIndex(serialIndex);
+        }
         question.language = this.language;
         questions.push(question);
         if (!question.jump) {
@@ -267,15 +322,6 @@ export default {
         } else if (question.answered) {
           nextId = question.getJumpId();
           if (nextId) {
-            if (
-              this.questions.find((e) => e.id == nextId)?.index -
-                question?.index >
-              1
-            ) {
-              this.questions = this.questions.filter(
-                (que) => que.index !== question.index + 1
-              );
-            }
             if (nextId === "_submit") {
               index = this.questions.length;
             } else {
