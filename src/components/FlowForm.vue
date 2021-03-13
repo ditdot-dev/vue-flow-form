@@ -322,15 +322,6 @@ export default {
         } else if (question.answered) {
           nextId = question.getJumpId();
           if (nextId) {
-            if (
-              this.questions.find((e) => e.id == nextId)?.index -
-                question?.index >
-              1
-            ) {
-              this.questions = this.questions.filter(
-                (que) => que.index !== question.index + 1
-              );
-            }
             if (nextId === "_submit") {
               index = this.questions.length;
             } else {
