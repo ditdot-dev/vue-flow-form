@@ -20,7 +20,7 @@ const userInformation = {
       tax_filing_status: "headOfHousehold",
       age: 37,
       salary: 32000,
-      entity: "llc"
+      entity: "llc",
     }, // data captured in RetirementReferral.vue input form
     incomeData: {}, // data formatted from the input for tax API
     taxUpdate: {}, // tax API's output data to be displayed in Results.vue
