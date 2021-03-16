@@ -51,7 +51,7 @@ export async function postTaxData(incomeData) {
     method: "PUT",
     body: JSON.stringify(incomeData)
   }).catch(handleError);
-  console.log("base tax calculation complete!");
+  // "base tax calculation complete!";
   return await baseTax.json();
 }
 
@@ -99,6 +99,5 @@ async function repostApi(data) {
       body: JSON.stringify(data)
     }).catch(handleError);
     const response = await newTax.json();
-    console.log(response.data)
     return response.data;
   };

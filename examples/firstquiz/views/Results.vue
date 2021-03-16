@@ -232,9 +232,6 @@ export default {
   data() {
     return {
       progressiveTax,
-      function() {
-        console.log(this.$store);
-      },
     };
   },
   // using computed since the data is reactive and will not change even if refreshed

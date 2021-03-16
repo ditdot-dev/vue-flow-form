@@ -803,6 +803,7 @@ export default {
     };
   },
   mounted() {
+    this.scrollToTop();
     this.containerDisablingCondition();
     this.projectedValue = roundOff((this.profitAfterTaxes / 100) * 10, 100);
     const {
@@ -831,6 +832,9 @@ export default {
     this.handleTaxAdvantageRatioTooltip();
   },
   methods: {
+    scrollToTop() {
+      window.scrollTo(0, 0);
+    },
     handleSignup() {
       this.isModalOpen = true;
     },
@@ -1196,7 +1200,6 @@ export default {
     },
     async projectedValue(val) {
       this.loader = true;
-      console.log("loader starts");
       const formattedValue = val / roundOff(this.profitAfterTaxes / 100);
       this.percent =
         formattedValue == Infinity ? 0 : Math.round(formattedValue);
@@ -1225,7 +1228,7 @@ export default {
             this.sliders.individual401kBusiness = roundOff(
               individual401kBusiness
             );
-            console.log("Exceed maximum of Individual 401k contribution limit");
+            // "Exceed maximum of Individual 401k contribution limit";
           } else {
             this.sliders.individual401kPersonal = roundOff(
               val - individual401kBusiness
@@ -1243,7 +1246,7 @@ export default {
           if (val - simpleIraBusiness > simpleIraPersonal) {
             this.sliders.simpleIraPersonal = roundOff(simpleIraPersonal);
             this.sliders.simpleIraBusiness = roundOff(simpleIraBusiness);
-            console.log("Exceed maximum of SIMPLE IRA contribution limit");
+            // "Exceed maximum of SIMPLE IRA contribution limit";
           } else {
             this.sliders.simpleIraPersonal = roundOff(val - simpleIraBusiness);
             this.sliders.simpleIraBusiness = roundOff(simpleIraBusiness);
@@ -1254,13 +1257,13 @@ export default {
       }
       if (val > traditionalIraPersonal) {
         this.sliders.traditionalIraPersonal = traditionalIraPersonal;
-        console.log("Exceed maximum of Traditional IRA contribution limit");
+        // "Exceed maximum of Traditional IRA contribution limit";
       } else {
         this.sliders.traditionalIraPersonal = val;
       }
       if (val > sepIraBusiness) {
         this.sliders.sepIraBusiness = sepIraBusiness;
-        console.log("Exceed maximum of SEP-IRA contribution limit");
+        // "Exceed maximum of SEP-IRA contribution limit";
       } else {
         this.sliders.sepIraBusiness = val;
       }
@@ -1275,7 +1278,6 @@ export default {
       this.handleTaxAvoidedTooltip(traditionalIra, "traditionalIra");
       this.loader = false;
       await this.addInFirebase();
-      console.log("loader ends");
     },
     taxAvoided: {
       async handler(val) {

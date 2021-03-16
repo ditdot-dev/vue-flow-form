@@ -1,7 +1,11 @@
 // Single question template and logic
 
 <template>
-  <div class="vff-animate q-form" v-bind:class="mainClasses" ref="qanimate">
+  <div
+    class="vff-animate q-form mb-5"
+    v-bind:class="mainClasses"
+    ref="qanimate"
+  >
     <div class="q-inner">
       <div
         v-bind:class="{
@@ -23,7 +27,9 @@
             >
             <span class="f-text" v-else>
               <div class="d-flex justify-content-start question-title-parent">
-                <div class="question-title">{{ question.title }}&nbsp;</div>
+                <div class="question-title" :id="question.id">
+                  {{ question.title }}&nbsp;
+                </div>
                 <button
                   style="
                     background-color: transparent;
@@ -157,9 +163,37 @@
       </div>
       <div
         class="vff-animate f-fade-in f-enter"
+        v-if="question.end_index && !isLast() && question.answer"
+      >
+        <button
+          class="o-btn-action"
+          type="button"
+          ref="button"
+          href="#"
+          v-on:click.prevent="onEnter"
+          v-bind:aria-label="language.ariaOk"
+        >
+          <span v-if="question.type === QuestionType.SectionBreak">{{
+            language.continue
+          }}</span>
+          <span v-else>{{ language.ok }}</span>
+        </button>
+        <a
+          class="f-enter-desc"
+          href="#"
+          v-if="question.type !== QuestionType.LongText || !isMobile"
+          v-on:click.prevent="onEnter"
+          v-html="language.formatString(language.pressEnter)"
+        >
+        </a>
+      </div>
+      <div
+        class="vff-animate f-fade-in f-enter"
         v-if="
           showOkButton() &&
-          !(question.id === questions[questions.length - 1].id)
+          !(question.id === questions[questions.length - 1].id) &&
+          !(question.end_index && questions[questions.length - 1].answer) &&
+          !question.end_index
         "
       >
         <button
@@ -254,6 +288,7 @@ export default {
       type: Boolean,
       default: false,
     },
+    activeQuestion: Object,
   },
   mixins: [IsMobile],
   data() {
@@ -367,6 +402,11 @@ export default {
       }
       return q.showInvalid();
     },
+    isLast() {
+      return document.getElementById(
+        this.questions[this.questions.length - 1].id
+      );
+    },
   },
   computed: {
     mainClasses() {
@@ -379,6 +419,7 @@ export default {
       classes["field-" + this.question.type.toLowerCase().substring(8)] = true;
       return classes;
     },
+
     showHelperText() {
       if (this.question.subtitle) {
         return true;

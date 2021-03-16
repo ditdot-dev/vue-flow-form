@@ -57,8 +57,8 @@ body {
 
 /*header*/
 header.vff-header {
-  background-color: #001524;
-  color: white;
+  background-color: white;
+  color: black;
 }
 
 header.vff-header svg.f-logo {
@@ -159,14 +159,16 @@ header.vff-header svg.f-logo {
 
 /*buttons*/
 .vff .o-btn-action {
-  color: var(--vff-bg-color);
-  background-color: var(--vff-main-text-color);
+  color: white;
+  /* color: var(--vff-bg-color);
+  background-color: var(--vff-main-text-color); */
 }
 
-.vff .o-btn-action:hover,
-.vff .o-btn-action:focus {
-  background-color: var(--vff-main-text-color);
-  opacity: 0.9;
+.o-btn-action:hover,
+.o-btn-action:focus {
+  color: black;
+  /* color: var(--vff-main-text-color); */
+  /* opacity: 0.9; */
 }
 
 /* progress bar */
@@ -221,9 +223,9 @@ header.vff-header svg.f-logo {
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --vff-bg-color: #313640;
-    --vff-main-text-color: #fff;
-    --vff-secondary-text-color: #aeb6bf;
+    --vff-bg-color: #fbe6da;
+    --vff-main-text-color: #41464f;
+    --vff-secondary-text-color: #000;
     --vff-tertiary-text-color: #41464f;
     --vff-main-accent-color: #41b883;
     --vff-secondary-accent-color: #a0dbc1;
