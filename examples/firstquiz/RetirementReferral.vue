@@ -26,7 +26,6 @@
           </p>
         </div>
       </template>
-
       <!-- We've overriden the default "completeButton" slot content -->
       <template v-slot:completeButton>
         <div class="f-submit" v-if="!submitted">
