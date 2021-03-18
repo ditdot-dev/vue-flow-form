@@ -106,7 +106,6 @@ async function formatContributionData(personal, business) {
 
 async function repostApi(data) {
   const { app_secret, app_key } = await getKeys();
-
   let newTax = await fetch(tax_calculation, {
     headers: {
       "Content-Type": "application/json",
