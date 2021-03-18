@@ -1,10 +1,10 @@
-import * as store from "../store/index.js";
-import axios from "axios";
-import { BASE_URL } from "../constants/env.js";
+import * as store from "@/store/index.js";
+import { TAX_API_KEY, TAX_API_SECRET } from "@/constants/env";
+import { TAX_API_DEV_KEYS } from "@/utils/firebase-queries";
+
 // api keys need to be moved to environment variables serviced by Netlify build....to be done
-const sandbox_api_user = "https://sandbox-api.withabound.com/v2/users/";
-const app_key = "appId_d34638260c364a652c4673eb590af0fd";
-const app_secret = "appSecret_f24d118ff90fa3252a6749dba1276e44";
+const sandbox_api_user = "https://sandbox-api.track.tax/v2/users/";
+
 const visitor =
   sandbox_api_user + "userId_15eaa4f418b381d9f3ddafd6d479cd746183f5ed";
 const tax_calculation = visitor + "/taxes/2020";
@@ -19,6 +19,22 @@ var baseCalculate = false;
 var handleError = function(err) {
   console.warn(err);
   return err;
+};
+const getKeys = async () => {
+  let app_key, app_secret;
+  if (TAX_API_KEY) {
+    app_key = TAX_API_KEY;
+  } else {
+    app_key = await TAX_API_DEV_KEYS();
+    app_key = app_key.APP_KEY;
+  }
+  if (TAX_API_SECRET) {
+    app_secret = TAX_API_SECRET;
+  } else {
+    app_secret = await TAX_API_DEV_KEYS();
+    app_secret = app_secret.APP_SECRET;
+  }
+  return { app_key, app_secret };
 };
 // PUT method to Track.tax api to calculate the initial tax balance
 export function taxData() {
@@ -37,11 +53,10 @@ export function taxData() {
 }
 
 export async function postTaxData(incomeData) {
-  const {
-    userInput,
-    taxSummary,
-  } = store?.default?.state?.userInformation || {};
-  let baseTax = await fetch("https://app.gigfinance.org/.netlify/functions/server", {
+  const { app_secret, app_key } = await getKeys();
+  const { userInput, taxSummary } =
+    store?.default?.state?.userInformation || {};
+  let baseTax = await fetch(tax_calculation, {
     headers: {
       "Content-Type": "application/json",
       "X-Api-Key": app_key,
@@ -90,7 +105,8 @@ async function formatContributionData(personal, business) {
 }
 
 async function repostApi(data) {
-<<<<<<< HEAD
+  const { app_secret, app_key } = await getKeys();
+
   let newTax = await fetch(tax_calculation, {
     headers: {
       "Content-Type": "application/json",
@@ -103,17 +119,3 @@ async function repostApi(data) {
   const response = await newTax.json();
   return response.data;
 }
-=======
-    let newTax = await fetch(tax_calculation, {
-      headers: {
-        "Content-Type": "application/json",
-        "X-Api-Key": app_key,
-        "X-Api-Secret": app_secret
-      },
-      method: "PUT",
-      body: JSON.stringify(data)
-    }).catch(handleError);
-    const response = await newTax.json();
-    return response.data;
-  };
->>>>>>> console removed
