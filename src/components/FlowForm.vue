@@ -193,9 +193,9 @@ export default {
     this.setQuestions();
   },
   created() {
-    setTimeout(() => {
-      this.handleProgressBar(1);
-    }, 10);
+    // setTimeout(() => {
+    //   this.handleProgressBar(1);
+    // }, 10);
   },
   beforeDestroy() {
     document.removeEventListener("keydown", this.onKeyDownListener);

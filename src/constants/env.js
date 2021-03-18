@@ -7,6 +7,10 @@ export const localUserInputs = () => {
   );
 };
 
+export const FIREBASE_API_KEY = process.env.FIREBASE_API_KEY;
+export const FIREBASE_APP_ID = process.env.FIREBASE_APP_ID;
+export const TAX_API_KEY = process.env.APP_KEY;
+export const TAX_API_SECRET = process.env.APP_SECRET;
 // example User Input
 // age: "45"
 // business_name: "soft"
