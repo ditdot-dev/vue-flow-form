@@ -258,7 +258,7 @@
                   }`"
                 >
                   <h4>
-                    How to Get Started <br />w/ a Individual 401k <br />Account
+                    Get Started
                   </h4>
                 </div>
                 <span class="labelbox-down">
@@ -279,7 +279,7 @@
                   }`"
                 >
                   <h4>
-                    How to Get Started <br />w/ a Individual 401k <br />Account
+                    Get Started
                   </h4>
                 </div>
               </a>
@@ -377,7 +377,7 @@
                 @click="addInFirebase('sepra')"
               >
                 <div class="labelbox flex">
-                  <h4>How to Get Started <br />w/ a SEP-IRA<br />Account</h4>
+                  <h4>Get Started</h4>
                 </div>
               </a>
             </div>
@@ -509,7 +509,7 @@
                   }`"
                   v-if="isSimpleIraDisabled"
                 >
-                  <h4>How to Get Started <br />w/ a SIMPLE-IRA<br />Account</h4>
+                  <h4>Get Started</h4>
                 </div>
                 <span class="labelbox-down">
                   You are not eligible due to too many employees in your
@@ -528,7 +528,7 @@
                     isSimpleIraDisabled && 'disabled-color'
                   }`"
                 >
-                  <h4>How to Get Started <br />w/ a SIMPLE-IRA<br />Account</h4>
+                  <h4>Get Started</h4>
                 </div>
               </a>
             </div>
@@ -632,7 +632,7 @@
               >
                 <div class="labelbox flex">
                   <h4>
-                    How to Get Started <br />w/ a Traditional IRA <br />Account
+                    Get Started
                   </h4>
                 </div>
               </a>
