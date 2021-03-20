@@ -229,8 +229,18 @@ export default {
     //   return this.questions;
     // },
     numOfQuestionInPathLenght() {
-      const questionsLength = this.questions.filter((que) => !que.index_id);
-      return questionsLength.length;
+      let count = 0;
+      count = this.questions.filter((que) => !que.index_id).length;
+      this.questions.forEach((que) => {
+        if (que.id === "entity") {
+          if (
+            !(que.answer === "soleProprietor" || que.answer === "partnership")
+          ) {
+            count--;
+          }
+        }
+      });
+      return count;
     },
     percentCompleted() {
       if (!this.numActiveQuestions) {
@@ -256,8 +266,7 @@ export default {
       isJump = index === 9 && isJump;
       if (
         index < this.numCompletedQuestions &&
-        this.$refs.questions[index]?.question?.answered &&
-        !isJump
+        this.$refs.questions[index]?.question?.answered
       ) {
         this.setQuestionListActivePath();
         this.activeQuestionIndex = index;

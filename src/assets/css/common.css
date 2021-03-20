@@ -42,7 +42,7 @@
 
 .progress-cicles {
   position: absolute;
-  color: #f79d7d;
+  color: #f56c3a;
   right: 0;
   top: -10vh;
   margin: 30px;
@@ -51,7 +51,7 @@
 }
 
 .progress-cicles .progress-circle {
-  border: 1px solid #fca68c;
+  border: 1px solid #f56c3a;
   cursor: pointer;
   border-radius: 35px;
   padding-top: 3px;

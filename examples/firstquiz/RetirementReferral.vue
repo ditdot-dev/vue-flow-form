@@ -81,85 +81,6 @@ export default {
       language: new LanguageModel(),
       questions: [
         new QuestionModel({
-          answerMessage: "Hello!",
-          tagline: "About You",
-          id: "first_name",
-          title: "What's your first name?",
-          type: QuestionType.Text,
-          answer: localUserInputs()?.first_name,
-          answered: localUserInputs()?.first_name ? true : false,
-          required: true,
-          tooltip:
-            "This tooltip is available on every question to explain why the question is asked. In this case, your name is used to help personalize the results later. 😊",
-        }),
-        new QuestionModel({
-          answerMessage: "That's a great age to be!",
-          tagline: "About You",
-          id: "age",
-          title: "What is your age?",
-          type: QuestionType.Number,
-          answer: localUserInputs()?.age || "",
-          answered: localUserInputs()?.age ? true : false,
-          required: true,
-          mask: "##",
-          placeholder: "Type a number here...",
-          tooltip:
-            "This information is used to calculate your potential retirement earnings at age 67. Please put your current age, or the age you will be after December 31, 2020.",
-        }),
-        new QuestionModel({
-          id: "tax_filing_status",
-          tagline: "About You",
-          title: "What is your tax filing status?",
-          personalizedAnswerMessages: true,
-          type: QuestionType.Dropdown,
-          answer: localUserInputs()?.tax_filing_status,
-          answered: localUserInputs()?.tax_filing_status ? true : false,
-          multiple: false,
-          placeholder: "Select status",
-          inline: false,
-          required: true,
-          tooltip:
-            "This information is used to identify your household tax deductions (standard, not itemized). Please put your marital status as recognized by the IRS.",
-          options: [
-            new ChoiceOption({
-              label: "Single",
-              value: "single",
-              answerMessage: "Got it! 💪",
-            }),
-            new ChoiceOption({
-              label: "Head of Household",
-              value: "headOfHousehold",
-              answerMessage: "Nice! 🏠",
-            }),
-            new ChoiceOption({
-              label: "Married Filing Jointly",
-              value: "married",
-              answerMessage:
-                "Got it! We will assume your partner is not making any contributions",
-            }),
-            new ChoiceOption({
-              label: "Married Filing Separately",
-              value: "marriedFilingSeparately",
-              answerMessage:
-                "Got it! We will assume your partner's finances are separate from yours",
-            }),
-          ],
-        }),
-        new QuestionModel({
-          id: "dependents",
-          answerMessage: "😊",
-          tagline: "About You",
-          title: "How many dependents do you have?",
-          answer: localUserInputs()?.dependents,
-          type: QuestionType.Number,
-          answered: localUserInputs()?.dependents ? true : false,
-          required: true,
-          mask: "#",
-          placeholder: "Type a number here...",
-          tooltip:
-            "This information is used to add up the tax deductions available to you. Put the number of individuals who are dependent on your income.",
-        }),
-        new QuestionModel({
           id: "tax_filing_state",
           tagline: "About You",
           title: "What is your tax filing state?",
@@ -393,6 +314,59 @@ export default {
           ],
         }),
         new QuestionModel({
+          id: "tax_filing_status",
+          tagline: "About You",
+          title: "What is your tax filing status?",
+          personalizedAnswerMessages: true,
+          type: QuestionType.Dropdown,
+          answer: localUserInputs()?.tax_filing_status,
+          answered: localUserInputs()?.tax_filing_status ? true : false,
+          multiple: false,
+          placeholder: "Select status",
+          inline: false,
+          required: true,
+          tooltip:
+            "This information is used to identify your household tax deductions (standard, not itemized). Please put your marital status as recognized by the IRS.",
+          options: [
+            new ChoiceOption({
+              label: "Single",
+              value: "single",
+              answerMessage: "Got it! 💪",
+            }),
+            new ChoiceOption({
+              label: "Head of Household",
+              value: "headOfHousehold",
+              answerMessage: "Nice! 🏠",
+            }),
+            new ChoiceOption({
+              label: "Married Filing Jointly",
+              value: "married",
+              answerMessage:
+                "Got it! We will assume your partner is not making any contributions",
+            }),
+            new ChoiceOption({
+              label: "Married Filing Separately",
+              value: "marriedFilingSeparately",
+              answerMessage:
+                "Got it! We will assume your partner's finances are separate from yours",
+            }),
+          ],
+        }),
+        new QuestionModel({
+          id: "dependents",
+          answerMessage: "😊",
+          tagline: "About You",
+          title: "How many dependents do you have?",
+          answer: localUserInputs()?.dependents,
+          type: QuestionType.Number,
+          answered: localUserInputs()?.dependents ? true : false,
+          required: true,
+          mask: "#",
+          placeholder: "Type a number here...",
+          tooltip:
+            "This information is used to add up the tax deductions available to you. Put the number of individuals who are dependent on your income.",
+        }),
+        new QuestionModel({
           id: "business_name",
           tagline: "About Your Business",
           title: "What is your business name?",
@@ -454,34 +428,6 @@ export default {
           },
         }),
         new QuestionModel({
-          id: "salary",
-          tagline: "About Your Business",
-          title: "What is the annual income you set for yourself?",
-          answerMessage: {
-            checkbox: "Good work investing back into the business! 💡",
-            answer: "it's good to pay yourself first! 🤩",
-          },
-          answer: localUserInputs()?.salary || "",
-          answered: (
-            localUserInputs()?.salary || localUserInputs().first_name
-              ? true
-              : false
-          )
-            ? true
-            : false,
-          type: QuestionType.Salary,
-          placeholder: "Type a number here...",
-          required: true,
-          checkboxText: "I don't pay myself an income",
-          checkbox: localUserInputs().first_name
-            ? localUserInputs()?.salary
-              ? false
-              : true
-            : false,
-          tooltip:
-            "This is the amount that you have set as a “reasonable salary” when you put yourself on payroll as a full-time owner-employee. This will depend on your industry and work performed. We can help you calculate this if you want.",
-        }),
-        new QuestionModel({
           id: "employee_count",
           tagline: "About Your Business",
           title: "How many full-time employees do you have?",
@@ -516,6 +462,34 @@ export default {
           ],
         }),
         new QuestionModel({
+          id: "salary",
+          tagline: "About Your Business",
+          title: "What is the annual income you set for yourself?",
+          answerMessage: {
+            checkbox: "Good work investing back into the business! 💡",
+            answer: "it's good to pay yourself first! 🤩",
+          },
+          answer: localUserInputs()?.salary || "",
+          answered: (
+            localUserInputs()?.salary || localUserInputs().first_name
+              ? true
+              : false
+          )
+            ? true
+            : false,
+          type: QuestionType.Salary,
+          placeholder: "Type a number here...",
+          required: true,
+          checkboxText: "I don't pay myself an income",
+          checkbox: localUserInputs().first_name
+            ? localUserInputs()?.salary
+              ? false
+              : true
+            : false,
+          tooltip:
+            "This is the amount that you have set as a “reasonable salary” when you put yourself on payroll as a full-time owner-employee. This will depend on your industry and work performed. We can help you calculate this if you want.",
+        }),
+        new QuestionModel({
           id: "expenses",
           tagline: "About Your Business",
           title: "How much are your business expenses this year?",
@@ -527,7 +501,7 @@ export default {
           answer: localUserInputs()?.expenses || "",
           dollar: localUserInputs()?.expenses || "",
           answered: localUserInputs()?.expenses ? true : false,
-          end_index: "income",
+
           required: true,
           tooltip:
             "This is the annual expenses for your business to operate. Please put the amount you forecast the business will spend this year. You can find last year's total expenses on your tax return's Schedule C box 28.",
@@ -541,10 +515,38 @@ export default {
           type: QuestionType.Dollar,
           answer: localUserInputs()?.income || "",
           answered: localUserInputs()?.income ? true : false,
-          index_id: "expenses",
+
           required: true,
           tooltip:
             "This is the income generated by your business every year. Please put the amount you forecast the business will generate by end of the year. This includes all the invoices and cash payments you’ve received under your business entity.",
+        }),
+        new QuestionModel({
+          answerMessage: "Hello!",
+          tagline: "About You",
+          id: "first_name",
+          title: "What's your first name?",
+          type: QuestionType.Text,
+          answer: localUserInputs()?.first_name,
+          answered: localUserInputs()?.first_name ? true : false,
+          required: true,
+          end_index: "age",
+          tooltip:
+            "This tooltip is available on every question to explain why the question is asked. In this case, your name is used to help personalize the results later. 😊",
+        }),
+        new QuestionModel({
+          answerMessage: "That's a great age to be!",
+          tagline: "About You",
+          id: "age",
+          index_id: "first_name",
+          title: "What is your age?",
+          type: QuestionType.Number,
+          answer: localUserInputs()?.age || "",
+          answered: localUserInputs()?.age ? true : false,
+          required: true,
+          mask: "##",
+          placeholder: "Type a number here...",
+          tooltip:
+            "This information is used to calculate your potential retirement earnings at age 67. Please put your current age, or the age you will be after December 31, 2020.",
         }),
       ],
     };

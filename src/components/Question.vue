@@ -15,7 +15,7 @@
         <div
           v-bind:class="{ fh2: question.type !== QuestionType.SectionBreak }"
         >
-          <template v-if="question.id === 'first_name'">
+          <template v-if="question.index === 0">
             <span style="margin-bottom: 2rem" class="f-tagline"
               >Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
               mauris enim, elementum eget ante ac, rutrum dictum odio. Ut varius
