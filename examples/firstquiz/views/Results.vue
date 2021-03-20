@@ -233,12 +233,9 @@ export default {
   data() {
     return {
       progressiveTax,
-<<<<<<< HEAD
-=======
       async function() {
         await logging(this.$store);
       },
->>>>>>> firebase logging
     };
   },
   // using computed since the data is reactive and will not change even if refreshed

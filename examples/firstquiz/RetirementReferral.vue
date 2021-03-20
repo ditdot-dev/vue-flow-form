@@ -551,17 +551,12 @@ export default {
   },
   mounted() {
     document.addEventListener("keyup", this.onKeyListener);
-<<<<<<< HEAD
-    this.$forceUpdate();
-  },
-=======
     logging("mount");
     this.$forceUpdate();
   },
   created() {
     logging("create");
   },
->>>>>>> firebase logging
   beforeDestroy() {
     document.removeEventListener("keyup", this.onKeyListener);
   },
@@ -599,10 +594,7 @@ export default {
         }
         const isEqual = compareTwoObjects(localUserInputs(), userInput);
         let firestoreIds = { userInput: "", taxUpdate: "" };
-<<<<<<< HEAD
-=======
         await logging(isEqual);
->>>>>>> firebase logging
         if (!isEqual || !Object.keys(localUserInputs()).length) {
           const db = await firestore.collection(USER_INPUTS).add({
             ...userInput,
@@ -615,10 +607,7 @@ export default {
 
         /* Run taxApi and put the outputs into an object in Vuex store */
         const taxUpdate = await taxApi.postTaxData(incomeData);
-<<<<<<< HEAD
-=======
         await logging(taxUpdate.data);
->>>>>>> firebase logging
         /* Run dispatch to store the data for Results.vue */
 
         await this.$store.commit("userInformation/results", {
