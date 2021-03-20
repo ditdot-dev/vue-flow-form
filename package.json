@@ -33,6 +33,7 @@
     "express": "^4.17.1",
     "firebase": "^8.2.9",
     "serverless-http": "^2.7.0",
+    "moment": "^2.29.1",
     "tingle.js": "^0.15.3",
     "v-tooltip": "^2.0.3",
     "vue-loading-overlay": "^3.4.2",

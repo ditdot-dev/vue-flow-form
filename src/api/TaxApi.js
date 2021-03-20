@@ -1,6 +1,8 @@
 import * as store from "@/store/index.js";
 import { TAX_API_KEY, TAX_API_SECRET } from "@/constants/env";
 import { TAX_API_DEV_KEYS } from "@/utils/firebase-queries";
+import * as store from "../store/index.js";
+import { logging } from "@/utils/logging";
 
 // api keys need to be moved to environment variables serviced by Netlify build....to be done
 const sandbox_api_user = "https://sandbox-api.track.tax/v2/users/";
@@ -65,7 +67,7 @@ export async function postTaxData(incomeData) {
     method: "PUT",
     body: JSON.stringify(incomeData)
   }).catch(handleError);
-  // "base tax calculation complete!";
+  await logging("base tax calculation complete!");
   return await baseTax.json();
 }
 
@@ -106,15 +108,16 @@ async function formatContributionData(personal, business) {
 
 async function repostApi(data) {
   const { app_secret, app_key } = await getKeys();
-  let newTax = await fetch(tax_calculation, {
-    headers: {
-      "Content-Type": "application/json",
-      "X-Api-Key": app_key,
-      "X-Api-Secret": app_secret
-    },
-    method: "PUT",
-    body: JSON.stringify(data)
-  }).catch(handleError);
-  const response = await newTax.json();
-  return response.data;
-}
+    let newTax = await fetch(tax_calculation, {
+      headers: {
+        "Content-Type": "application/json",
+        "X-Api-Key": app_key,
+        "X-Api-Secret": app_secret
+      },
+      method: "PUT",
+      body: JSON.stringify(data)
+    }).catch(handleError);
+    const response = await newTax.json();
+    await logging(response.data)
+    return response.data;
+  };

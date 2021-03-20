@@ -75,6 +75,7 @@ import SMETaxCalculations from "../../src/taxData/SMETaxCalculations";
 import * as taxApi from "../../src/api/TaxApi";
 // If using the npm package, use the following line instead of the ones above.
 // import FlowForm, { QuestionModel, QuestionType, ChoiceOption, LanguageModel } from '@ditdot-dev/vue-flow-form'
+import { logging } from "@/utils/logging";
 
 export default {
   name: "example",
@@ -175,7 +176,10 @@ export default {
 
       window.data = await this.getData();
       window.incomeData = await this.formatData();
+      await logging(incomeData);
+
       await taxApi.postTaxData(incomeData);
+      await logging(taxUpdate);
       await MoveObjects.postResults();
 
       async function postData() {
@@ -197,7 +201,7 @@ export default {
                     body: JSON.stringify(incomeData)
                   }).catch(handleError));
                   window.taxUpdate = await baseTax.json();
-                  console.log("base tax calculation complete!");}
+                  await logging("base tax calculation complete!");}
 
                 fetch(url, {
                   method: 'POST',

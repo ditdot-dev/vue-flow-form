@@ -4,8 +4,10 @@ import store from "../store";
 import vueCustomSlider from "../../examples/firstquiz/components/vue-slider";
 import * as RetirementOptions from "../../examples/firstquiz/views/RetirementOptions";
 import { roundOff } from "../../examples/util/round-of";
+import { logging } from "@/utils/logging";
+
 // Set the deductions from retirement contribution from W2 Income and/or Business Expenses
-export function addTotalDeduction() {
+export async function addTotalDeduction() {
   let filingStatus = store.state.userInformation.userInput.tax_filing_status;
   let qbiDeduction = store.state.userInformation.taxUpdate.qbiDeduction;
   let standardDeduction;
@@ -42,7 +44,7 @@ export function addTotalDeduction() {
   } else {
     standardDeduction = 0;
   }
-  // "Standard Deduction is:" + standardDeduction;
+  await logging("Standard Deduction is:" + standardDeduction);
 
   //let elderStandardDeduction; **NOT WORKING YET......**
   //if (age >= 65) {

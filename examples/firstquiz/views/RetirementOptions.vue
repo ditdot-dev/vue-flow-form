@@ -257,9 +257,7 @@
                     isIndividual401kDisabled && 'disabled-back-color'
                   }`"
                 >
-                  <h4>
-                    Get Started
-                  </h4>
+                  <h4>Get Started</h4>
                 </div>
                 <span class="labelbox-down">
                   You are not eligible due to too many employees in your
@@ -278,9 +276,7 @@
                     isIndividual401kDisabled && 'disabled-color'
                   }`"
                 >
-                  <h4>
-                    Get Started
-                  </h4>
+                  <h4>Get Started</h4>
                 </div>
               </a>
             </div>
@@ -631,9 +627,7 @@
                 @click="addInFirebase('traditionalIra')"
               >
                 <div class="labelbox flex">
-                  <h4>
-                    Get Started
-                  </h4>
+                  <h4>Get Started</h4>
                 </div>
               </a>
             </div>
@@ -738,6 +732,7 @@ import {
   DRAG_CALCULATION,
 } from "../util";
 import differenceInDays from "date-fns/differenceInDays";
+import { logging } from "@/utils/logging";
 
 export default {
   name: "RetirementOptions",
@@ -1201,6 +1196,7 @@ export default {
     },
     async projectedValue(val) {
       this.loader = true;
+      await logging("loader starts");
       const formattedValue = val / roundOff(this.profitAfterTaxes / 100);
       this.percent =
         formattedValue == Infinity ? 0 : Math.round(formattedValue);
@@ -1229,7 +1225,9 @@ export default {
             this.sliders.individual401kBusiness = roundOff(
               individual401kBusiness
             );
-            // "Exceed maximum of Individual 401k contribution limit";
+            await logging(
+              "Exceed maximum of Individual 401k contribution limit"
+            );
           } else {
             this.sliders.individual401kPersonal = roundOff(
               val - individual401kBusiness
@@ -1247,7 +1245,7 @@ export default {
           if (val - simpleIraBusiness > simpleIraPersonal) {
             this.sliders.simpleIraPersonal = roundOff(simpleIraPersonal);
             this.sliders.simpleIraBusiness = roundOff(simpleIraBusiness);
-            // "Exceed maximum of SIMPLE IRA contribution limit";
+            await logging("Exceed maximum of SIMPLE IRA contribution limit");
           } else {
             this.sliders.simpleIraPersonal = roundOff(val - simpleIraBusiness);
             this.sliders.simpleIraBusiness = roundOff(simpleIraBusiness);
@@ -1258,13 +1256,13 @@ export default {
       }
       if (val > traditionalIraPersonal) {
         this.sliders.traditionalIraPersonal = traditionalIraPersonal;
-        // "Exceed maximum of Traditional IRA contribution limit";
+        await logging("Exceed maximum of Traditional IRA contribution limit");
       } else {
         this.sliders.traditionalIraPersonal = val;
       }
       if (val > sepIraBusiness) {
         this.sliders.sepIraBusiness = sepIraBusiness;
-        // "Exceed maximum of SEP-IRA contribution limit";
+        await logging("Exceed maximum of SEP-IRA contribution limit");
       } else {
         this.sliders.sepIraBusiness = val;
       }
@@ -1279,6 +1277,7 @@ export default {
       this.handleTaxAvoidedTooltip(traditionalIra, "traditionalIra");
       this.loader = false;
       await this.addInFirebase();
+      await logging("loader ends");
     },
     taxAvoided: {
       async handler(val) {
