@@ -221,6 +221,7 @@ import infoIcon from "../components/info-icon";
 import Vue2Filters from "vue2-filters";
 import store from "../../../src/store";
 import { progressiveTax } from "../../../src/taxData/SMETaxCalculations";
+import { logging } from "@/utils/logging";
 Vue.use(Vue2Filters);
 
 export default {
@@ -232,6 +233,12 @@ export default {
   data() {
     return {
       progressiveTax,
+<<<<<<< HEAD
+=======
+      async function() {
+        await logging(this.$store);
+      },
+>>>>>>> firebase logging
     };
   },
   // using computed since the data is reactive and will not change even if refreshed

@@ -24,6 +24,7 @@
     "date-fns": "^2.18.0",
     "es6-object-assign": "^1.1.0",
     "firebase": "^8.2.9",
+    "moment": "^2.29.1",
     "tingle.js": "^0.15.3",
     "v-tooltip": "^2.0.3",
     "vue-loading-overlay": "^3.4.2",
