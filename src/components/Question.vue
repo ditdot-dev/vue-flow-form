@@ -9,18 +9,14 @@
     <div class="q-inner">
       <div
         v-bind:class="{
-          'f-section-wrap': question.type === QuestionType.SectionBreak
+          'f-section-wrap': question.type === QuestionType.SectionBreak,
         }"
       >
         <div
           v-bind:class="{ fh2: question.type !== QuestionType.SectionBreak }"
         >
           <template v-if="question.id === 'first_name'">
-<<<<<<< HEAD
             <span style="margin-bottom: 2rem" class="f-tagline"
-=======
-            <span style="margin-bottom:2rem" class="f-tagline"
->>>>>>> c709d499d10c38993f76538626612b6214660743
               >Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
               mauris enim, elementum eget ante ac, rutrum dictum odio. Ut varius
               auctor gravida.</span
@@ -49,7 +45,7 @@
                   "
                   v-tooltip="{
                     content: question.tooltip,
-                    placement: 'bottom'
+                    placement: 'bottom',
                   }"
                   class=""
                 >
@@ -70,7 +66,7 @@
                   class="answer-messages-parent"
                   v-if="
                     question.answerMessage ||
-                      question.personalizedAnswerMessages
+                    question.personalizedAnswerMessages
                   "
                 >
                   <component
@@ -106,7 +102,7 @@
               v-if="question.type === QuestionType.LongText && !isMobile"
               v-html="
                 question.helpText ||
-                  language.formatString(language.longTextHelpText)
+                language.formatString(language.longTextHelpText)
               "
             ></span>
 
@@ -114,7 +110,7 @@
               class="f-help"
               v-if="
                 question.type === QuestionType.MultipleChoice &&
-                  question.multiple
+                question.multiple
               "
               >{{ question.helpText || language.multipleChoiceHelpText }}</span
             >
@@ -202,15 +198,9 @@
         class="vff-animate f-fade-in f-enter"
         v-if="
           showOkButton() &&
-<<<<<<< HEAD
           !(question.id === questions[questions.length - 1].id) &&
           !(question.end_index && questions[questions.length - 1].answer) &&
           !question.end_index
-=======
-            !(question.id === questions[questions.length - 1].id) &&
-            !(question.end_index && questions[questions.length - 1].answer) &&
-            !question.end_index
->>>>>>> c709d499d10c38993f76538626612b6214660743
         "
       >
         <button
@@ -239,8 +229,7 @@
       <div
         v-if="
           showInvalid() ||
-            (zeroValidationError(question) &&
-              zeroValidationError(question).error)
+          (zeroValidationError(question) && zeroValidationError(question).error)
         "
         class="f-invalid"
         role="alert"
@@ -249,7 +238,7 @@
         {{
           (zeroValidationError(question) &&
             zeroValidationError(question).message) ||
-            language.invalidPrompt
+          language.invalidPrompt
         }}
       </div>
     </div>
@@ -260,7 +249,7 @@
 import LanguageModel from "../models/LanguageModel";
 import QuestionModel, {
   QuestionType,
-  LinkOption
+  LinkOption,
 } from "../models/QuestionModel";
 import FlowFormDropdownType from "./QuestionTypes/DropdownType.vue";
 import FlowFormEmailType from "./QuestionTypes/EmailType.vue";
@@ -291,7 +280,7 @@ export default {
     FlowFormTextType,
     FlowFormUrlType,
     FlowFormSalaryType,
-    FlowFormDollarType
+    FlowFormDollarType,
   },
   props: {
     question: QuestionModel,
@@ -300,17 +289,13 @@ export default {
     value: [String, Array],
     active: {
       type: Boolean,
-      default: false
+      default: false,
     },
     reverse: {
       type: Boolean,
-      default: false
+      default: false,
     },
-<<<<<<< HEAD
     activeQuestion: Object,
-=======
-    activeQuestion: Object
->>>>>>> c709d499d10c38993f76538626612b6214660743
   },
   mixins: [IsMobile],
   data() {
@@ -319,7 +304,7 @@ export default {
       QuestionType: QuestionType,
       dataValue: null,
       responseAnswer: "",
-      noButton: false
+      noButton: false,
     };
   },
   mounted() {
@@ -387,10 +372,7 @@ export default {
         (type === QuestionType.Salary || type === QuestionType.Dollar) &&
         this.dataValue?.includes(",")
       ) {
-        this.question.answer = this.dataValue
-          .toString()
-          .split(",")
-          .join("");
+        this.question.answer = this.dataValue.toString().split(",").join("");
       }
       if (this.question.type === QuestionType.SectionBreak) {
         return this.active;
@@ -431,11 +413,7 @@ export default {
       return document.getElementById(
         this.questions[this.questions.length - 1].id
       );
-<<<<<<< HEAD
     },
-=======
-    }
->>>>>>> c709d499d10c38993f76538626612b6214660743
   },
   computed: {
     mainClasses() {
@@ -443,7 +421,7 @@ export default {
         "q-is-active": this.active,
         "q-is-inactive": !this.active,
         "f-fade-in-down": this.reverse,
-        "f-fade-in-up": !this.reverse
+        "f-fade-in-up": !this.reverse,
       };
       classes["field-" + this.question.type.toLowerCase().substring(8)] = true;
       return classes;
@@ -460,7 +438,7 @@ export default {
         return this.question.helpTextShow;
       }
       return false;
-    }
+    },
   },
   watch: {
     dataValue(newVal) {
@@ -472,7 +450,7 @@ export default {
       } else {
         this.responseAnswer = "";
       }
-    }
-  }
+    },
+  },
 };
 </script>
