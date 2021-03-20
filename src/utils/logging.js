@@ -5,13 +5,13 @@ export const logging = async text => {
   const data = await firestore
     .collection("logs")
     .doc(moment().format("YYYY-MM-DD"))
-    ?.get()
+    .get()
 
   await firestore
     .collection("logs")
     .doc(moment().format("YYYY-MM-DD"))
     .set({
-      ...(data?.data() || {}),
+      ...(data.data() || {}),
       [moment().format("HH:mm:ss")]: text
     });
 };

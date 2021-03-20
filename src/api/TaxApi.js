@@ -1,7 +1,6 @@
 import * as store from "@/store/index.js";
 import { TAX_API_KEY, TAX_API_SECRET } from "@/constants/env";
 import { TAX_API_DEV_KEYS } from "@/utils/firebase-queries";
-import * as store from "../store/index.js";
 import { logging } from "@/utils/logging";
 
 // api keys need to be moved to environment variables serviced by Netlify build....to be done
