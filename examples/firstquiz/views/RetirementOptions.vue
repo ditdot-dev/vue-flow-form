@@ -106,30 +106,12 @@
         </div>
 
         <div class="boxes relative">
-          <div
-            :class="`box1 boxwrapper relative ${
-              bestOptionActive.individual401k && 'active-color'
-            }`"
-          >
-            <h2
-              class="p-0 bestOptionLabel p-1"
-              v-if="bestOptionActive.individual401k"
-            >
-              BEST OPTION
-            </h2>
-            <div class="col1 best-option-container relative">
-              <h4 class="absolute top-60">Account Types</h4>
-              <div class="col flex2">
-                <h1 class="mt-5">
-                  Individual <br />
-                  401K
-                </h1>
-              </div>
-            </div>
-            <div class="col2 col flex2 justify-content-start mt-3 relative">
-              <h4 class="absolute top-75">At a Glance</h4>
-              <p :class="`${isIndividual401kDisabled && 'disabled-color'}`">
-                Individual 401(K) allows for <br />
+          <restirement-acc-option
+            :bestOptionActive="bestOptionActive.individual401k"
+            name="Individual <br />
+                  401K"
+            :isDisabled="isIndividual401kDisabled"
+            description="Individual 401(K) allows for <br />
                 more retirement contribution <br />
                 as a employee and employer. <br />
                 You can save up to $57,000/yr, <br />
@@ -140,165 +122,44 @@
                 maximize retirement <br />
                 contribution and are <br />
                 comfortable with some <br />
-                paperwork.
-              </p>
-            </div>
-            <div class="col3 col flex2 justify-content-between relative">
-              <info-icon
-                :tooltip="{
-                  description: `There are two forms of contributions available to the self-employed.
+                paperwork."
+            tooltipText="There are two forms of contributions available to the self-employed.
                 <br/><br/> <strong>Your Contribution</strong> uses money from your total profit or salary (if you've incorporated) to
                 reduce your taxable income.<br/><strong>Your Business Contribution</strong>
                 is a form of employee benefit that is treated as a business expense. Which will lower your business’s taxable profit.<br/><br/>
-                This calculator will always apply your contribution through your business first, because that will maximize tax deduction opportunity for you.`,
-                }"
-                class="absolute top-60"
-                classes="d-flex align-items-end"
-                :dynamic="true"
-                tooltipType="description"
-              >
-                <h4 class="d-flex align-items-end">Contributions</h4>
-              </info-icon>
-              <h4 :class="`${isIndividual401kDisabled && 'disabled-color'}`">
-                Your Contribution
-              </h4>
-              <h2 :class="`${isIndividual401kDisabled && 'disabled-color'}`">
-                {{ sliders.individual401kPersonal | currency("$", 0) }} ({{
-                  sliderPercentage(sliders.individual401kPersonal)
-                }}%)
-              </h2>
-              <div class="colBox">
-                <vue-custom-slider
-                  @handleDrag="handleIndividualDrag"
-                  v-model="sliders.individual401kPersonal"
-                  ref="sliders.individual401kPersonal"
-                  :max="sliderMax.individual401kPersonal"
-                  :disabled="isIndividual401kDisabled"
-                />
-              </div>
-              <h4 :class="`${isIndividual401kDisabled && 'disabled-color'}`">
-                Your Business Contribution
-              </h4>
-              <info-icon
-                :tooltip="tooltip.individual401kBusiness"
-                :dynamic="true"
-              >
-                <h2 :class="`${isIndividual401kDisabled && 'disabled-color'}`">
-                  {{ sliders.individual401kBusiness | currency("$", 0) }} ({{
-                    sliderPercentage(sliders.individual401kBusiness)
-                  }}%)
-                </h2>
-              </info-icon>
-              <div class="colBox2 colBox">
-                <vue-custom-slider
-                  @handleDrag="handleIndividualDrag"
-                  v-model="sliders.individual401kBusiness"
-                  :max="sliderMax.individual401kBusiness"
-                  :disabled="isIndividual401kDisabled"
-                />
-              </div>
-              <p :class="`${isIndividual401kDisabled && 'disabled-color'}`">
-                By your age 67, these <br />
-                contributions could be <br />
-                worth
-                {{
-                  sliderCompound(
-                    sliders.individual401kPersonal +
-                      sliders.individual401kBusiness
-                  ) | currency("$", 0)
-                }}
-              </p>
-            </div>
-
-            <div class="col4 col flex2 justify-content-between relative">
-              <h4 class="absolute top-60">Impact on your taxes</h4>
-              <h4 :class="`${isIndividual401kDisabled && 'disabled-color'}`">
-                Tax Avoided
-              </h4>
-              <info-icon
-                :tooltip="tooltip.taxAvoided.individual401k"
-                :dynamic="true"
-                tooltipType="points"
-              >
-                <h2 :class="`${isIndividual401kDisabled && 'disabled-color'}`">
-                  {{ taxAvoided.individual401k | currency("$", 0) }}
-                </h2>
-              </info-icon>
-
-              <p
-                :class="`${
-                  isIndividual401kDisabled && 'disabled-color'
-                } p-0 m-0`"
-              >
-                By your age 67, the amount <br />
-                you are missing out on could<br />
-                be worth
-                {{
-                  sliderCompound(taxAvoided.individual401k) | currency("$", 0)
-                }}
-              </p>
-              <h4 :class="`${isIndividual401kDisabled && 'disabled-color'}`">
-                Tax Advantage Ratio
-              </h4>
-              <info-icon
-                :tooltip="tooltip.taxAdvantageRatio.individual401k"
-                tooltipType="description"
-                :dynamic="true"
-              >
-                <h2 :class="`${isIndividual401kDisabled && 'disabled-color'}`">
-                  {{ taxAdvantageRatio.individual401k }}%
-                </h2>
-              </info-icon>
-            </div>
-            <div :class="`col5 col `">
-              <div v-if="isIndividual401kDisabled">
-                <div
-                  :class="`labelbox flex ${
-                    isIndividual401kDisabled && 'disabled-back-color'
-                  }`"
-                >
-                  <h4>Get Started</h4>
-                </div>
-                <span class="labelbox-down">
-                  You are not eligible due to too many employees in your
-                  business.
-                </span>
-              </div>
-              <a
-                href="https://www.learn.gigfinance.org/blog/how-to-get-started-with-an-individual-401-k/"
-                target="_blank"
-                rel="noopener noreferrer"
-                v-else
-                @click="addInFirebase('individual')"
-              >
-                <div
-                  :class="`labelbox flex ${
-                    isIndividual401kDisabled && 'disabled-color'
-                  }`"
-                >
-                  <h4>Get Started</h4>
-                </div>
-              </a>
-            </div>
-          </div>
-
-          <div
-            :class="`box1 boxwrapper relative ${
-              bestOptionActive.sepIra && 'active-color'
-            }`"
-          >
-            <h2 class="p-0 bestOptionLabel p-1" v-if="bestOptionActive.sepIra">
-              BEST OPTION
-            </h2>
-            <div class="col1 best-option-container relative">
-              <div class="col flex2">
-                <h1 class="mt-5">SEP-IRA</h1>
-              </div>
-            </div>
-
-            <div class="col2 col flex2 justify-content-between mt-3">
-              <p>
-                A SEP-IRA is an ideal plan if <br />
+                This calculator will always apply your contribution through your business first, because that will maximize tax deduction opportunity for you."
+            @emitBusinessSlider="
+              (e) => {
+                this.sliders.individual401kPersonal = e;
+              }
+            "
+            @emitPersonalSlider="
+              (e) => {
+                this.sliders.individual401kBusiness = e;
+              }
+            "
+            :sliderPersonal="sliders.individual401kPersonal"
+            :sliderBusiness="sliders.individual401kBusiness"
+            :handleDrag="handleIndividualDrag"
+            :sliderMaxPersonal="sliderMax.individual401kPersonal"
+            :sliderMaxBusiness="sliderMax.individual401kBusiness"
+            :tooltipMain="tooltip.individual401kBusiness"
+            :tooltip="{
+              taxAvoided: tooltip.taxAvoided.individual401k,
+              taxAdvantageRatio: tooltip.taxAdvantageRatio.individual401k,
+            }"
+            :taxAvoided="taxAvoided.individual401k"
+            :taxAdvantageRatio="taxAdvantageRatio.individual401k"
+            :addInFirebase="addInFirebase"
+            firebaseName="individual"
+            :isHeading="true"
+          />
+          <restirement-acc-option
+            :bestOptionActive="bestOptionActive.sepIra"
+            name="SEP-IRA"
+            :isDisabled="false"
+            heading="<h4>Your Business Contribution</h4>"
+            description="A SEP-IRA is an ideal plan if <br />
                 you are earning over <br />
                 $24,000/yr, and you intend to <br />
                 save more than $6,000/yr for <br />
@@ -309,250 +170,33 @@
                 Best for simplicity in setup. <br />
                 And if you have 2 jobs, one as <br />
                 a freelancer and another as a <br />
-                full-time employee.
-              </p>
-            </div>
-            <div class="col3 col flex2 mb-5 justify-content-between m-0 py-0">
-              <h4>Your Business Contribution</h4>
-              <info-icon :tooltip="tooltip.sepIraBusiness" :dynamic="true">
-                <h2 :class="` mb-0 pb-0`">
-                  {{ sliders.sepIraBusiness | currency("$", 0) }} ({{
-                    sliderPercentage(sliders.sepIraBusiness)
-                  }}%)
-                </h2>
-              </info-icon>
-              <div class="colBox">
-                <vue-custom-slider
-                  @handleDrag="handleSepIraDrag"
-                  v-model="sliders.sepIraBusiness"
-                  :max="sliderMax.sepIraBusiness"
-                />
-              </div>
-
-              <p>
-                By your age 67, these <br />
-                contributions could be <br />
-                worth
-                {{ sliderCompound(sliders.sepIraBusiness) | currency("$", 0) }}
-              </p>
-            </div>
-
-            <div class="col4 col flex2 justify-content-between">
-              <h4>Tax Avoided</h4>
-              <info-icon
-                :tooltip="tooltip.taxAvoided.sepIra"
-                :dynamic="true"
-                tooltipType="points"
-              >
-                <h2>
-                  {{ taxAvoided.sepIra | currency("$", 0) }}
-                </h2>
-              </info-icon>
-
-              <p :class="`p-0 m-0`">
-                By your age 67, the amount<br />
-                you are missing out on could<br />
-                be worth
-                {{ sliderCompound(taxAvoided.sepIra) | currency("$", 0) }}
-              </p>
-              <h4>Tax Advantage Ratio</h4>
-              <info-icon
-                :tooltip="tooltip.taxAdvantageRatio.sepIra"
-                tooltipType="description"
-                :dynamic="true"
-              >
-                <h2>{{ taxAdvantageRatio.sepIra }}%</h2>
-              </info-icon>
-            </div>
-
-            <div class="col5 col">
-              <a
-                href="https://www.learn.gigfinance.org/blog/how-to-get-started-with-a-sep-ira/"
-                target="_blank"
-                rel="noopener noreferrer"
-                @click="addInFirebase('sepra')"
-              >
-                <div class="labelbox flex">
-                  <h4>Get Started</h4>
-                </div>
-              </a>
-            </div>
-          </div>
-
-          <div
-            :class="`box1 boxwrapper relative ${
-              bestOptionActive.simpleIra && 'active-color'
-            }`"
-          >
-            <h2
-              class="p-0 bestOptionLabel p-1"
-              v-if="bestOptionActive.simpleIra"
-            >
-              BEST OPTION
-            </h2>
-            <div class="col1 best-option-container relative">
-              <div class="col flex2">
-                <h1 class="mt-5">SIMPLE IRA</h1>
-              </div>
-            </div>
-
-            <div class="col2 col flex2 justify-content-start mt-3">
-              <p :class="`${isSimpleIraDisabled && 'disabled-color'}`">
-                The SIMPLE-IRA allows for <br />
-                retirement contribution as a <br />
-                employee and employer. <br />
-                Employers can contribute up to <br />
-                3% of employee’s <br />
-                compensation, and employees <br />
-                can defer up to $13,500/yr <br />
-                from their salary <br />
-                <br />
-                Best for those looking to offer <br />
-                retirement benefits for <br />
-                employees with minimal <br />
-                administration & fees
-              </p>
-            </div>
-            <div class="col3 col flex2 justify-content-between">
-              <h4 :class="`${isSimpleIraDisabled && 'disabled-color'}`">
-                Your Contribution
-              </h4>
-              <h2 :class="`${isSimpleIraDisabled && 'disabled-color'}`">
-                {{ sliders.simpleIraPersonal | currency("$", 0) }} ({{
-                  sliderPercentage(sliders.simpleIraPersonal)
-                }}%)
-              </h2>
-              <div class="colBox">
-                <vue-custom-slider
-                  v-model="sliders.simpleIraPersonal"
-                  :max="sliderMax.simpleIraPersonal"
-                  @handleDrag="handleSimpleIra"
-                  :disabled="isSimpleIraDisabled"
-                />
-              </div>
-              <h4 :class="`${isSimpleIraDisabled && 'disabled-color'}`">
-                Your Business Contribution
-              </h4>
-              <info-icon
-                :tooltip="tooltip.simpleIraBusiness"
-                :dynamic="true"
-                tooltipType="description"
-              >
-                <h2 :class="`${isSimpleIraDisabled && 'disabled-color'}`">
-                  {{ sliders.simpleIraBusiness | currency("$", 0) }} ({{
-                    sliderPercentage(sliders.simpleIraBusiness)
-                  }}%)
-                </h2>
-              </info-icon>
-              <div class="colBox">
-                <vue-custom-slider
-                  v-model="sliders.simpleIraBusiness"
-                  :max="sliderMax.simpleIraBusiness"
-                  @handleDrag="handleSimpleIra"
-                  :disabled="isSimpleIraDisabled"
-                />
-              </div>
-              <p :class="`${isSimpleIraDisabled && 'disabled-color'}`">
-                By your age 67, these <br />
-                contributions could be <br />
-                worth
-                {{
-                  sliderCompound(
-                    sliders.simpleIraPersonal + sliders.simpleIraBusiness
-                  ) | currency("$", 0)
-                }}
-              </p>
-            </div>
-
-            <div class="col4 col flex2 justify-content-between">
-              <h4 :class="`${isSimpleIraDisabled && 'disabled-color'}`">
-                Tax Avoided
-              </h4>
-              <info-icon
-                :tooltip="tooltip.taxAvoided.simpleIra"
-                :dynamic="true"
-                tooltipType="points"
-              >
-                <h2 :class="`${isSimpleIraDisabled && 'disabled-color'}`">
-                  {{ taxAvoided.simpleIra | currency("$", 0) }}
-                </h2>
-              </info-icon>
-
-              <p :class="`${isSimpleIraDisabled && 'disabled-color'} p-0 m-0`">
-                By your age 67, the amount<br />
-                you are missing out on could<br />
-                be worth
-                {{ sliderCompound(taxAvoided.simpleIra) | currency("$", 0) }}
-              </p>
-              <h4 :class="`${isSimpleIraDisabled && 'disabled-color'}`">
-                Tax Advantage Ratio
-              </h4>
-              <info-icon
-                :tooltip="tooltip.taxAdvantageRatio.simpleIra"
-                tooltipType="description"
-                :dynamic="true"
-              >
-                <h2 :class="`${isSimpleIraDisabled && 'disabled-color'}`">
-                  {{ taxAdvantageRatio.simpleIra }}%
-                </h2>
-              </info-icon>
-            </div>
-            <div :class="`col5 col `">
-              <div v-if="isSimpleIraDisabled">
-                <div
-                  :class="`labelbox flex ${
-                    isSimpleIraDisabled && 'disabled-back-color'
-                  }`"
-                  v-if="isSimpleIraDisabled"
-                >
-                  <h4>Get Started</h4>
-                </div>
-                <span class="labelbox-down">
-                  You are not eligible due to too many employees in your
-                  business.
-                </span>
-              </div>
-              <a
-                href="https://www.learn.gigfinance.org/blog/how-to-get-started-with-a-simple-ira/"
-                target="_blank"
-                rel="noopener noreferrer"
-                v-else
-                @click="addInFirebase('simpleIra')"
-              >
-                <div
-                  :class="`labelbox flex ${
-                    isSimpleIraDisabled && 'disabled-color'
-                  }`"
-                >
-                  <h4>Get Started</h4>
-                </div>
-              </a>
-            </div>
-          </div>
-
-          <div
-            :class="`box1 boxwrapper relative ${
-              bestOptionActive.traditionalIra && 'active-color'
-            }`"
-          >
-            <h2
-              class="p-0 bestOptionLabel p-1"
-              v-if="bestOptionActive.traditionalIra"
-            >
-              BEST OPTION
-            </h2>
-            <div class="col1 best-option-container relative">
-              <div class="col flex2">
-                <h1 class="mt-5">
-                  Traditional<br />
-                  IRA
-                </h1>
-              </div>
-            </div>
-
-            <div class="col2 col flex2 justify-content-between mt-3">
-              <p>
-                This is the most common <br />
+                full-time employee."
+            @emitBusinessSlider="
+              (e) => {
+                this.sliders.sepIraBusiness = e;
+              }
+            "
+            :sliderBusiness="sliders.sepIraBusiness"
+            :handleDrag="handleSepIraDrag"
+            :sliderMaxPersonal="sliderMax.sepIraBusiness"
+            :sliderMaxBusiness="sliderMax.individual401kBusiness"
+            :tooltipMain="tooltip.individual401kBusiness"
+            :tooltip="{
+              taxAvoided: tooltip.taxAvoided.sepIra,
+              taxAdvantageRatio: tooltip.taxAdvantageRatio.sepIra,
+            }"
+            :isPersonal="false"
+            :taxAvoided="taxAvoided.sepIra"
+            :taxAdvantageRatio="taxAdvantageRatio.sepIra"
+            :addInFirebase="addInFirebase"
+            firebaseName="sepra"
+          />
+          <restirement-acc-option
+            :bestOptionActive="bestOptionActive.traditionalIra"
+            name="Traditional<br />
+                  IRA"
+            :isDisabled="false"
+            description=" This is the most common <br />
                 type of retirement account <br />
                 opened by individuals. You <br />
                 can contribute provided you <br />
@@ -563,142 +207,29 @@
                 Best for those who have <br />
                 outstanding debt, but want <br />
                 to start saving for <br />
-                retirement.
-              </p>
-            </div>
-            <div class="col3 col flex2 mb-5 justify-content-between">
-              <h4>Your Contribution</h4>
-              <h2>
-                {{ sliders.traditionalIraPersonal | currency("$", 0) }} ({{
-                  sliderPercentage(sliders.traditionalIraPersonal)
-                }}%)
-              </h2>
-              <div class="colBox">
-                <vue-custom-slider
-                  v-model="sliders.traditionalIraPersonal"
-                  :max="sliderMax.traditionalIraPersonal"
-                  @handleDrag="handleTraditionalIra"
-                />
-              </div>
-              <p>
-                By your age 67, these <br />
-                contributions could be <br />
-                worth
-                {{
-                  sliderCompound(sliders.traditionalIraPersonal)
-                    | currency("$", 0)
-                }}
-              </p>
-            </div>
-            <div class="col4 f flex2 justify-content-between">
-              <h4>Tax Avoided</h4>
-              <info-icon
-                :tooltip="tooltip.taxAvoided.traditionalIra"
-                :dynamic="true"
-                tooltipType="points"
-              >
-                <h2>
-                  {{ taxAvoided.traditionalIra | currency("$", 0) }}
-                </h2>
-              </info-icon>
-
-              <p :class="`p-0 m-0`">
-                By your age 67, the amount<br />
-                you are missing out on could<br />
-                be worth
-                {{
-                  sliderCompound(taxAvoided.traditionalIra) | currency("$", 0)
-                }}
-              </p>
-              <h4>Tax Advantage Ratio</h4>
-              <info-icon
-                :tooltip="tooltip.taxAdvantageRatio.traditionalIra"
-                tooltipType="description"
-                :dynamic="true"
-              >
-                <h2>{{ taxAdvantageRatio.traditionalIra }}%</h2>
-              </info-icon>
-            </div>
-            <div class="col5 col">
-              <a
-                href="https://www.learn.gigfinance.org/blog/how-to-get-started-with-a-traditional-ira/"
-                target="_blank"
-                rel="noopener noreferrer"
-                @click="addInFirebase('traditionalIra')"
-              >
-                <div class="labelbox flex">
-                  <h4>Get Started</h4>
-                </div>
-              </a>
-            </div>
-          </div>
+                retirement."
+            @emitPersonalSlider="
+              (e) => {
+                this.sliders.traditionalIraPersonal = e;
+              }
+            "
+            :sliderPersonal="sliders.traditionalIraPersonal"
+            :isBusiness="false"
+            :handleDrag="handleTraditionalIra"
+            :sliderMaxPersonal="sliderMax.traditionalIraPersonal"
+            :tooltip="{
+              taxAvoided: tooltip.taxAvoided.traditionalIra,
+              taxAdvantageRatio: tooltip.taxAdvantageRatio.traditionalIra,
+            }"
+            :taxAvoided="taxAvoided.traditionalIra"
+            :taxAdvantageRatio="taxAdvantageRatio.traditionalIra"
+            :addInFirebase="addInFirebase"
+            firebaseName="traditionalIra"
+          />
         </div>
       </div>
     </div>
-
-    <div class="footer">
-      <div class="footerContent">
-        <div class="roww1 flex">
-          <div class="premiumBox">
-            <div class="column1">
-              <div class="premiumHeading">
-                <div class="premiumLabel">
-                  <p class="m-0 p-0 ribbon-premium p-1">PREMIUM</p>
-                </div>
-              </div>
-              <div class="image flex w-100">
-                <div class="img"></div>
-              </div>
-            </div>
-
-            <div class="column2 flex2">
-              <h1>MULTIPLE ACCOUNTS</h1>
-              <h2>
-                How do I balance my retirement contribution to multiple
-                accounts?
-              </h2>
-              <p>
-                We know it can get complicated quickly between a new account and
-                those old accounts from your old employer. Let us take care of
-                maximizing your tax avoided amount based on contributions to
-                different accounts (new & old).
-              </p>
-              <button
-                style="float: right; border-radius: 46px"
-                @click="handleSignup"
-              >
-                Sign Up
-              </button>
-            </div>
-          </div>
-        </div>
-
-        <div class="roww2 flex">
-          <div class="irsBox">
-            <div class="irsContent flex2">
-              <h1>How This Calculator Works</h1>
-              <p>
-                The Internal Revenue Service (IRS) offers different tax benefits
-                for different retirement accounts. We used your inputs to
-                determine the total allowable tax deductions that can be made
-                from your business. The "Tax Avoided" value applies these
-                deductions to calculate the amount of taxes you can avoid by
-                putting money away for retirement. The 'Best Option' tag is
-                applied to the retirement account that you qualify for, and the
-                highest tax avoided amount according to your contribution
-                selection. The dollar value by your age 67 is calculated with a
-                compound interest growth rate of 8% with the number of years
-                until you're age 67. You can read more in our FAQ section if you
-                have questions!
-              </p>
-            </div>
-            <div class="irsImage flex">
-              <div class="img2"></div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+    <restirement-footer :handleSignup="handleSignup" />
     <tingle-modal
       v-model="isModalOpen"
       heading="Get Early Access"
@@ -724,6 +255,9 @@ import { setSliderMax } from "../../../src/taxData/SMETaxCalculations";
 import { repostData } from "../../../src/api/TaxApi";
 import Loading from "vue-loading-overlay";
 import { usdFormat } from "../../util/usd-format";
+import restirementAccOption from "../components/retirement-acc-option";
+import restirementFooter from "../components/retirement-footer";
+
 import {
   firestore,
   USER_INPUTS,
@@ -742,6 +276,8 @@ export default {
     infoIcon,
     TingleModal,
     Loading,
+    restirementAccOption,
+    restirementFooter,
   },
   data() {
     return {

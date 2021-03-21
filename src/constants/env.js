@@ -11,6 +11,7 @@ export const FIREBASE_API_KEY = process.env.VUE_APP_FIREBASE_API_KEY;
 export const FIREBASE_APP_ID = process.env.VUE_APP_FIREBASE_APP_ID;
 export const TAX_API_KEY = process.env.VUE_APP_TAX_APP_KEY;
 export const TAX_API_SECRET = process.env.VUE_APP_TAX_APP_SECRET;
+export const NODE_ENV = process.env.VUE_APP_NODE_ENV
 // example User Input
 // age: "45"
 // business_name: "soft"

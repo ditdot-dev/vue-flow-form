@@ -1,5 +1,5 @@
 import * as store from "@/store/index.js";
-import { TAX_API_KEY, TAX_API_SECRET } from "@/constants/env";
+import { TAX_API_KEY, TAX_API_SECRET, NODE_ENV } from "@/constants/env";
 import { TAX_API_DEV_KEYS } from "@/utils/firebase-queries";
 import { logging } from "@/utils/logging";
 
@@ -23,18 +23,18 @@ var handleError = function(err) {
 };
 const getKeys = async () => {
   let app_key, app_secret;
-  if (TAX_API_KEY) {
+  if (NODE_ENV === "prod") {
     app_key = TAX_API_KEY;
-  } else {
-    app_key = await TAX_API_DEV_KEYS();
-    app_key = app_key.APP_KEY;
-  }
-  if (TAX_API_SECRET) {
     app_secret = TAX_API_SECRET;
   } else {
+    app_key = await TAX_API_DEV_KEYS();
+
+    app_key = app_key.APP_KEY;
+
     app_secret = await TAX_API_DEV_KEYS();
     app_secret = app_secret.APP_SECRET;
   }
+
   return { app_key, app_secret };
 };
 // PUT method to Track.tax api to calculate the initial tax balance
@@ -107,16 +107,16 @@ async function formatContributionData(personal, business) {
 
 async function repostApi(data) {
   const { app_secret, app_key } = await getKeys();
-    let newTax = await fetch(tax_calculation, {
-      headers: {
-        "Content-Type": "application/json",
-        "X-Api-Key": app_key,
-        "X-Api-Secret": app_secret
-      },
-      method: "PUT",
-      body: JSON.stringify(data)
-    }).catch(handleError);
-    const response = await newTax.json();
-    await logging(response.data)
-    return response.data;
-  };
+  let newTax = await fetch(tax_calculation, {
+    headers: {
+      "Content-Type": "application/json",
+      "X-Api-Key": app_key,
+      "X-Api-Secret": app_secret
+    },
+    method: "PUT",
+    body: JSON.stringify(data)
+  }).catch(handleError);
+  const response = await newTax.json();
+  await logging(response.data);
+  return response.data;
+}

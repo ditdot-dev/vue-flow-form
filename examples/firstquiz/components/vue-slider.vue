@@ -52,6 +52,7 @@ export default {
     },
     handleChange(e) {
       this.$emit("input", e);
+      this.$emit("CustomHandleChange", e);
     },
   },
   watch: {
