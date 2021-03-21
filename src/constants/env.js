@@ -7,8 +7,8 @@ export const localUserInputs = () => {
   );
 };
 
-export const FIREBASE_API_KEY = process.env.FIREBASE_API_KEY;
-export const FIREBASE_APP_ID = process.env.FIREBASE_APP_ID;
+export const FIREBASE_API_KEY = process.env.VUE_APP_FIREBASE_API_KEY;
+export const FIREBASE_APP_ID = process.env.VUE_APP_FIREBASE_APP_ID;
 export const TAX_API_KEY = process.env.APP_KEY;
 export const TAX_API_SECRET = process.env.APP_SECRET;
 // example User Input

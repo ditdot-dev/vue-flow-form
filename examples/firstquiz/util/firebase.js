@@ -3,7 +3,7 @@ import "firebase/firestore";
 import { FIREBASE_API_KEY,FIREBASE_APP_ID } from "@/constants/env.js";
 let firebaseConfig;
 
-if (process.env.NODE_ENV === "prod") {
+if (process.env.VUE_APP_NODE_ENV === "prod") {
   firebaseConfig = {
     apiKey: FIREBASE_API_KEY,
     authDomain: "gig-finance-calc.firebaseapp.com",

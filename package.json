@@ -6,7 +6,7 @@
   "author": "DITDOT",
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
+    "build": "VUE_APP_FIREBASE_API_KEY = $FIREBASE_API_KEY VUE_APP_FIREBASE_APP_ID = $FIREBASE_APP_ID VUE_APP_NODE_ENV = $VUE_APP_NODE_ENV vue-cli-service build",
     "build:examples": "vue-cli-service build --dest dist/questionnaire examples/questionnaire/main.js && vue-cli-service build --dest dist/quiz examples/quiz/main.js && vue-cli-service build --dest dist/support-page examples/support-page/main.js",
     "prod": "npm run build; npm run build:lambda",
     "build:npm": "rollup --config build/rollup.config.js && npm run cssmin",
