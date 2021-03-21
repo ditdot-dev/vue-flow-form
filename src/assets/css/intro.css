@@ -19,6 +19,7 @@
   justify-content: center;
   align-items: center;
 }
+
 .flex2 {
   display: flex;
   justify-content: center;
@@ -29,11 +30,9 @@
 .container {
   display: grid;
   grid-template-rows: 7vh 93vh;
-  grid-template-areas:
-    "main";
+  grid-template-areas: "main";
   background-color: aliceblue;
 }
-
 
 .main {
   grid-area: main;
@@ -90,7 +89,7 @@
 }
 
 .img {
-  background-image: url(../images/taking-money-from-bank.png);
+  background-image: url(../../../src/assets/images/taking-money-from-bank.png);
   background-size: cover;
   height: 540px;
   width: 540px;
@@ -104,24 +103,26 @@
     padding-bottom: 10px;
     line-height: 55px;
   }
+
   .content .para {
     font-size: 21px;
     padding-bottom: 15px;
   }
+
   .content button {
     width: 250px;
     height: 65px;
     font-size: 25px;
   }
+
   .img {
     height: 440px;
     width: 440px;
   }
-
 }
 
 @media only screen and (max-width: 1090px) {
-  .content{
+  .content {
     justify-content: unset;
   }
 }
@@ -133,15 +134,18 @@
     align-items: flex-start;
     flex-flow: column;
   }
+
   .content .heading {
     font-size: 30px;
     padding-bottom: 10px;
     line-height: 45px;
   }
+
   .content .para {
     font-size: 18px;
     padding-bottom: 10px;
   }
+
   .img {
     height: 400px;
     width: 400px;
@@ -154,11 +158,13 @@
     grid-template-columns: 5vw 50vw 43vw 3vw;
     grid-template-areas: ". content image .";
   }
+
   .img {
     height: 350px;
     width: 350px;
   }
-  .content .para{
+
+  .content .para {
     line-height: 1.5rem;
   }
 }
@@ -179,12 +185,14 @@
     justify-content: center;
     /* align-items: flex-start; */
   }
+
   .content {
     display: flex;
     align-items: left;
     justify-content: flex-end;
     padding-top: 0;
   }
+
   .content .heading {
     font-size: 35px;
     padding-bottom: 5px;
@@ -197,16 +205,17 @@
     /* padding-bottom: 5px; */
     line-height: 1.3rem;
   }
+
   .content button {
     width: 220px;
     height: 50px;
     font-size: 20px;
   }
+
   .img {
     height: 250px;
     width: 250px;
   }
-
 }
 
 @media only screen and (max-width: 560px) {
@@ -214,39 +223,47 @@
     font-size: 30px;
     margin-top: -4rem;
   }
+
   .content .para {
     font-size: 15px;
     padding-top: 2rem;
   }
+
   .content button {
     width: 150px;
     height: 50px;
     font-size: 16px;
   }
-  .main{
+
+  .main {
     align-items: center;
   }
-  .image{
+
+  .image {
     align-items: center;
   }
 }
+
 @media only screen and (max-width: 420px) {
   .content .heading {
     font-size: 30px;
     /* padding-top: 3rem; */
     /* margin-top: -4rem !important; */
   }
+
   .content .para {
     font-size: 15px;
     padding-top: 2rem;
   }
 }
+
 @media only screen and (max-width: 380px) {
   .content .heading {
     font-size: 30px;
     /* padding-top: 3rem; */
     margin-top: -5rem !important;
   }
+
   .content .para {
     font-size: 15px;
     padding-top: 2rem;
@@ -254,12 +271,12 @@
 }
 
 @media only screen and (max-width: 370px) {
-
   .content .heading {
     font-size: 25px;
     padding-top: 0rem;
     margin-top: 0rem !important;
   }
+
   .main {
     display: grid;
     grid-template-columns: 5fr 90fr 5fr;
@@ -275,6 +292,7 @@
     font-size: 12px;
     padding: 0;
   }
+
   .content button {
     margin-bottom: 5px;
   }

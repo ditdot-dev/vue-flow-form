@@ -1,0 +1,30 @@
+
+/*=========================
+
+    02.HEADER AREA START
+
+=========================*/
+.logo {
+  width: 14rem;
+}
+
+@media (max-width: 767.98px) {
+  .nav-item {
+    text-align: center !important;
+  }
+}
+@media (max-width: 500px) {
+  .logo {
+    width: 12rem;
+  }
+}
+@media (max-width: 300px) {
+  .logo {
+    width: 10rem;
+  }
+}
+/*=========================
+
+    02.HEADER AREA END
+
+=========================*/

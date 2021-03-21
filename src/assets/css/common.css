@@ -1153,3 +1153,132 @@ span.info-icon-1:hover {
   opacity: 1;
   transition: opacity 0.15s;
 }
+
+.absolute {
+  position: absolute;
+}
+
+.relative {
+  position: relative;
+}
+
+.top-60 {
+  top: -60px;
+}
+
+.top-75 {
+  top: -75px;
+}
+
+:root {
+  --heading-font: "Manrope", sans-serif;
+  --heading2-font: "Karla", sans-serif;
+  --heading4-font: "Karla", sans-serif;
+  --para-font: "Manrope", sans-serif;
+  --normal-font: 400;
+  --bold-font: 700;
+}
+
+.r-container .vue-slider-marks {
+  background: #f3fcf7;
+  /* border-radius: 10px; */
+}
+
+.r-container .vue-slider-mark-step {
+  background-color: transparent;
+}
+
+.r-container .vue-slider-rail {
+  border-radius: 0px;
+}
+
+.r-container .vue-slider-process {
+  border-radius: 0px;
+  background-color: #00d49f;
+}
+
+.r-container .vue-slider-mark-label {
+  opacity: 0;
+}
+
+.custom-dot {
+  position: absolute;
+  left: 10.02%;
+  right: 85.64%;
+  top: -30px;
+  bottom: 0%;
+  background: #ffffff;
+  border: 1px solid #f0f0f0;
+  box-sizing: border-box;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  width: 16px;
+  height: 70px;
+  /* left: 60px; */
+}
+
+.custom-inner-dot {
+  position: absolute;
+  left: 50.02%;
+  right: 85.64%;
+  top: -12px;
+  bottom: 0%;
+  background: #ffffff;
+  border: 1px solid #f0f0f0;
+  box-sizing: border-box;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  width: 8px;
+  height: 35px;
+  /* left: 60px; */
+}
+
+.r-container .vue-slider-marks {
+  background: #f3fcf7;
+  /* border-radius: 10px; */
+}
+
+.r-container .vue-slider-mark-step {
+  background-color: transparent;
+}
+
+.r-container .vue-slider-rail {
+  border-radius: 0px;
+  background: #f3fcf7;
+}
+
+.r-container .vue-slider-process {
+  border-radius: 0px;
+  background-color: #00d49f;
+}
+
+.r-container .vue-slider-mark-label {
+  opacity: 0;
+}
+
+.custom-label {
+  opacity: 1 !important;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 26px;
+  line-height: 140%;
+  /* or 36px */
+  display: flex;
+  align-items: center;
+  color: #000000;
+  margin: 0px;
+  font-family: var(--heading2-font);
+}
+
+.r-container .h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6,
+.r-container h1,
+.r-container h2,
+.r-container h3,
+.r-container h4,
+.r-container h5,
+.r-container h6 {
+  font-weight: 700;
+}

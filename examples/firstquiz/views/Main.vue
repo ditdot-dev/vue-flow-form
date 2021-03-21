@@ -61,26 +61,8 @@
 </template>
 
 <script></script>
-
+<style scoped src="@/assets/css/main.css"></style>
 <style>
-.component-fade-enter-active,
-.component-fade-leave-active {
-  transition: opacity 0.3s ease;
-}
-
-.component-fade-enter,
-.component-fade-leave-to
-
-/* .component-fade-leave-active below version 2.1.8 */ {
-  opacity: 0;
-}
-
-/*=========================
-
-    02.HEADER AREA START
-
-=========================*/
-
 .navbar-light .navbar-nav .nav-link {
   color: #000000 !important;
   font-size: 22px;
@@ -90,28 +72,4 @@
   list-style-type: disc;
   margin: 0.3rem 1.8rem;
 }
-.logo {
-  width: 14rem;
-}
-
-@media (max-width: 767.98px) {
-  .nav-item {
-    text-align: center !important;
-  }
-}
-@media (max-width: 500px) {
-  .logo {
-    width: 12rem;
-  }
-}
-@media (max-width: 300px) {
-  .logo {
-    width: 10rem;
-  }
-}
-/*=========================
-
-    02.HEADER AREA END
-
-=========================*/
 </style>
