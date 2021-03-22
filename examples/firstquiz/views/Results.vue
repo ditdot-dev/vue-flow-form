@@ -272,4 +272,4 @@ export default {
   mounted() {},
 };
 </script>
-<style scoped src="@/assets/css/results.css"></style>
+<style scoped src="../css/results.css"></style>

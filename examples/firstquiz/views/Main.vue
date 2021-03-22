@@ -57,7 +57,7 @@
 </template>
 
 <script></script>
-<style scoped src="@/assets/css/main.css"></style>
+<style scoped src="../css/main.css"></style>
 <style>
 .navbar-light .navbar-nav .nav-link {
   color: #000000 !important;

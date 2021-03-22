@@ -1299,4 +1299,4 @@ export default {
   },
 };
 </script>
-<style scoped src="@/assets/css/retire-options.css"></style>
+<style scoped src="../css/retire-options.css"></style>

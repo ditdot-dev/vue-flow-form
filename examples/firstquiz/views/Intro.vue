@@ -46,5 +46,5 @@ export default {
   },
 };
 </script>
-<style scoped src="@/assets/css/intro.css"></style>
+<style scoped src="../css/intro.css"></style>
 
