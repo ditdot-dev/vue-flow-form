@@ -233,9 +233,7 @@ export default {
       count = this.questions.filter((que) => !que.index_id).length;
       this.questions.forEach((que) => {
         if (que.id === "entity") {
-          if (
-            !(que.answer === "soleProprietor" || que.answer === "partnership")
-          ) {
+          if (que.answer === "soleProprietor" || que.answer === "partnership") {
             count--;
           }
         }
