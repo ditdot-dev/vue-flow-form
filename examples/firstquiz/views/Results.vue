@@ -201,7 +201,7 @@
                 to="/retirement-options"
                 aria-label="next page to retirement options"
               >
-                <p>Let's lower your taxes with the best retirement account</p>
+                <p>Check out retirement account options</p>
               </router-link>
             </div>
           </div>
