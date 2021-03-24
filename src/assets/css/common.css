@@ -361,6 +361,7 @@ header.vff-header svg.f-logo {
   padding: 0rem 1rem;
   text-align: center;
   min-height: 40px;
+  max-width: 100%;
   transition: all 0.4s ease 0s;
 }
 
@@ -372,7 +373,7 @@ header.vff-header svg.f-logo {
 .o-btn-action:hover,
 .o-btn-action:focus {
   color: white;
-  background: #6D6D6D;
+  background: #6d6d6d;
 }
 
 .vff .o-btn-action span {
