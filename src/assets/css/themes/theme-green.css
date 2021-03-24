@@ -19,7 +19,6 @@
 .vff-footer {
   font-family: "Poppins", sans-serif;
 }
-
 body {
   /*override if needed when using not-standalone option*/
   margin: 0;
