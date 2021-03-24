@@ -354,24 +354,26 @@ header.vff-header svg.f-logo {
 
 /*default button*/
 .vff button {
+  font-family: "Manrope", sans-serif;
+  color: white;
   border: none;
-  outline: 0;
   cursor: pointer;
-  padding: 0.6em 1.4em;
+  padding: 0rem 1rem;
   text-align: center;
-  display: inline-block;
-  min-height: 44px;
-  white-space: pre-wrap;
+  min-height: 40px;
   max-width: 100%;
+  transition: all 0.4s ease 0s;
 }
 
 .vff .o-btn-action {
-  z-index: 1;
-  line-height: 1.2;
-  font-weight: 900;
-  background: linear-gradient(rgb(0, 212, 159), rgb(0, 156, 116));
-  border-radius: 4px;
-  text-transform: lowercase;
+  margin-top: 3rem;
+  background: black;
+}
+
+.o-btn-action:hover,
+.o-btn-action:focus {
+  color: white;
+  background: #6D6D6D;
 }
 
 .vff .o-btn-action span {

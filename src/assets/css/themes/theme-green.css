@@ -156,20 +156,6 @@ header.vff-header svg.f-logo {
   fill: var(--vff-main-text-color);
 }
 
-/*buttons*/
-.vff .o-btn-action {
-  color: white;
-  /* color: var(--vff-bg-color);
-  background-color: var(--vff-main-text-color); */
-}
-
-.o-btn-action:hover,
-.o-btn-action:focus {
-  color: black;
-  /* color: var(--vff-main-text-color); */
-  /* opacity: 0.9; */
-}
-
 /* progress bar */
 .vff-footer .f-prev svg,
 .vff-footer .f-next svg {
