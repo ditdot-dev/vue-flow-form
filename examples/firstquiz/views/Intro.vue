@@ -22,6 +22,7 @@
       <div class="intro_content_right">
         <img class="right_img" src="../../../src/assets/images/wallet.svg" />
       </div>
+<<<<<<< HEAD
     </div>
     <div class="arrow">
       <img
@@ -51,6 +52,17 @@
       <router-link v-if="selected !='placeholder'" class="link" to="/input" aria-label="start input page"
         ><button type="button" class="next_button">Next</button>
       </router-link>
+=======
+      <!-- <router-link to="/input" aria-label="start input page"
+      ><button>GET STARTED</button></router-link
+    > -->
+    </div>
+    <div class="arrow">
+      <img class="down_arrow_img" src="../../../src/assets/images/down_arrow.png" />
+    </div>
+    <div>
+      
+>>>>>>> entry page working
     </div>
   </div>
 </template>
