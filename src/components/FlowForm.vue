@@ -323,7 +323,20 @@ export default {
           question.setIndex(serialIndex);
         }
         question.language = this.language;
-        questions.push(question);
+        if (question.id === "salary") {
+          const entity = this.questions.find((item) => item.id === "entity")
+            ?.answer;
+
+          if (!["soleProprietor", "partnership"].includes(entity)) {
+            questions.push(question);
+          } else {
+            // continue;
+            --serialIndex;
+          }
+        } else {
+          questions.push(question);
+        }
+
         if (!question.jump) {
           ++index;
         } else if (question.answered) {
@@ -357,7 +370,16 @@ export default {
       const questions = [];
       for (let index = 0; index < this.questionListActivePath.length; index++) {
         const question = this.questionListActivePath[index];
+        // if (question.id === "salary") {
+        //   const entity = this.questionListActivePath.find(
+        //     (item) => item.id === "entity"
+        //   )?.answer;
+        //   if (!["soleProprietor", "partnership"].includes(entity)) {
+        //     questions.push(question);
+        //   }
+        // } else {
         questions.push(question);
+        // }
 
         if (!question.answered) {
           if (this.completed) {
@@ -368,6 +390,7 @@ export default {
           break;
         }
       }
+      console.log(questions);
       this.questionList = questions;
     },
     /**

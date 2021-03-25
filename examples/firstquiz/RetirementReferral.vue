@@ -1,5 +1,5 @@
 <template>
-  <div class="hello"> 
+  <div class="hello">
     <router-view />
 
     <flow-form
@@ -420,41 +420,14 @@ export default {
                 "A Limited Liability Company (LLC) is a business structure that is a hybrid between a corporation & sole-proprietor, whereby the owner is not personally liable for the entity's debts or liabilities. Next, we'll check how much you pay yourself!",
             }),
           ],
-          jump: {
-            llc: "salary",
-            sCorporation: "salary",
-            soleProprietor: "employee_count",
-            partnership: "employee_count",
-          },
+          // jump: {
+          //   llc: "salary",
+          //   sCorporation: "salary",
+          //   soleProprietor: "employee_count",
+          //   partnership: "employee_count",
+          // },
         }),
-        new QuestionModel({
-          id: "salary",
-          tagline: "About Your Business",
-          title: "What is the annual income you set for yourself?",
-          answerMessage: {
-            checkbox: "Good work investing back into the business! 💡",
-            answer: "it's good to pay yourself first! 🤩",
-          },
-          answer: localUserInputs()?.salary || "",
-          answered: (
-            localUserInputs()?.salary || localUserInputs().first_name
-              ? true
-              : false
-          )
-            ? true
-            : false,
-          type: QuestionType.Salary,
-          placeholder: "Type a number here...",
-          required: true,
-          checkboxText: "I don't pay myself an income",
-          checkbox: localUserInputs().first_name
-            ? localUserInputs()?.salary
-              ? false
-              : true
-            : false,
-          tooltip:
-            "This is the amount that you have set as a “reasonable salary” when you put yourself on payroll as a full-time owner-employee. This will depend on your industry and work performed. We can help you calculate this if you want.",
-        }),
+
         new QuestionModel({
           id: "employee_count",
           tagline: "About Your Business",
@@ -488,6 +461,34 @@ export default {
                 "Wow! Your business is likely too big for this calculator, we can help you find a professional",
             }),
           ],
+        }),
+        new QuestionModel({
+          id: "salary",
+          tagline: "About Your Business",
+          title: "What is the annual income you set for yourself?",
+          answerMessage: {
+            checkbox: "Good work investing back into the business! 💡",
+            answer: "it's good to pay yourself first! 🤩",
+          },
+          answer: localUserInputs()?.salary || "",
+          answered: (
+            localUserInputs()?.salary || localUserInputs().first_name
+              ? true
+              : false
+          )
+            ? true
+            : false,
+          type: QuestionType.Salary,
+          placeholder: "Type a number here...",
+          required: true,
+          checkboxText: "I don't pay myself an income",
+          checkbox: localUserInputs().first_name
+            ? localUserInputs()?.salary
+              ? false
+              : true
+            : false,
+          tooltip:
+            "This is the amount that you have set as a “reasonable salary” when you put yourself on payroll as a full-time owner-employee. This will depend on your industry and work performed. We can help you calculate this if you want.",
         }),
         new QuestionModel({
           id: "expenses",
