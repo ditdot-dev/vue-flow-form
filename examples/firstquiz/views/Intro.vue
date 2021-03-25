@@ -31,7 +31,10 @@
     </div>
     <div class="first_question">
       <h5>About You</h5>
-      <p>What is your tax filling state?</p>
+      <p>
+        What is your tax filling state?
+        <img class="info" src="../../../src/assets/images/info.png" />
+      </p>
       <select
         v-bind:style="selected === 'placeholder' && 'font-weight:unset'"
         class="first_select"
@@ -44,7 +47,8 @@
           {{ option.text }}
         </option>
       </select>
-      <router-link class="link" to="/input" aria-label="start input page"
+
+      <router-link v-if="selected !='placeholder'" class="link" to="/input" aria-label="start input page"
         ><button type="button" class="next_button">Next</button>
       </router-link>
     </div>
@@ -58,21 +62,21 @@ export default {
       selected: "placeholder",
       options: [
         { text: "Two", value: "B" },
-        { text: "Three", value: "C" },
-      ],
+        { text: "Three", value: "C" }
+      ]
     };
   },
   computed: {
     username() {
       // We will see what `params` is shortly
       return this.$route.params.username;
-    },
+    }
   },
   methods: {
     goBack() {
       window.history.length > 1 ? this.$router.go(-1) : this.$router.push("/");
-    },
-  },
+    }
+  }
 };
 </script>
 <style scoped src="../css/intro.css"></style>
