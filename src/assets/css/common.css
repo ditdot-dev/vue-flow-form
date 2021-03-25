@@ -804,8 +804,6 @@ header.vff-header svg.f-logo {
 .vff-animate {
   -webkit-animation-duration: .4s;
   animation-duration: .4s;
-  -webkit-animation-fill-mode: both;
-  animation-fill-mode: both;
 }
 
 @keyframes ffadeIn {
