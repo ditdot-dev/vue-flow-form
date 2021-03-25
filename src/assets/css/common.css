@@ -808,6 +808,10 @@ header.vff-header svg.f-logo {
   animation-fill-mode: forwards;
 }
 
+.vff .f-fade-in {
+  animation-name: ffadeIn;
+}
+
 @keyframes ffadeIn {
   0% {
     opacity: 0;
@@ -819,8 +823,8 @@ header.vff-header svg.f-logo {
   
 }
 
-.vff .f-fade-in {
-  animation-name: ffadeIn;
+.vff .f-fade-in-down {
+  animation-name: ffadeInDown;
 }
 
 @keyframes ffadeInDown {
@@ -836,8 +840,8 @@ header.vff-header svg.f-logo {
 
 }
 
-.vff .f-fade-in-down {
-  animation-name: ffadeInDown;
+.vff .f-fade-in-up {
+  animation-name: ffadeInUp;
 }
 
 @keyframes ffadeInUp {
@@ -851,10 +855,6 @@ header.vff-header svg.f-logo {
     transform: none;
   }
 
-}
-
-.vff .f-fade-in-up {
-  animation-name: ffadeInUp;
 }
 
 /*
