@@ -179,8 +179,8 @@
             :sliderBusiness="sliders.sepIraBusiness"
             :handleDrag="handleSepIraDrag"
             :sliderMaxPersonal="sliderMax.sepIraBusiness"
-            :sliderMaxBusiness="sliderMax.individual401kBusiness"
-            :tooltipMain="tooltip.individual401kBusiness"
+            :sliderMaxBusiness="sliderMax.sepIraBusiness"
+            :tooltipMain="tooltip.sepIraBusiness"
             :tooltip="{
               taxAvoided: tooltip.taxAvoided.sepIra,
               taxAdvantageRatio: tooltip.taxAdvantageRatio.sepIra,
@@ -190,6 +190,49 @@
             :taxAdvantageRatio="taxAdvantageRatio.sepIra"
             :addInFirebase="addInFirebase"
             firebaseName="sepra"
+          />
+          <restirement-acc-option
+            :bestOptionActive="bestOptionActive.simpleIra"
+            name="SIMPLE IRA"
+            :isDisabled="isSimpleIraDisabled"
+            heading="<h4>Your Business Contribution</h4>"
+            description="The SIMPLE-IRA allows for <br />
+                retirement contribution as a <br />
+                employee and employer. <br />
+                Employers can contribute up to <br />
+                3% of employee’s <br />
+                compensation, and employees <br />
+                can defer up to $13,500/yr <br />
+                from their salary <br />
+                <br />
+                Best for those looking to offer <br />
+                retirement benefits for <br />
+                employees with minimal <br />
+                administration & fees"
+            @emitBusinessSlider="
+              (e) => {
+                this.sliders.simpleIraBusiness = e;
+              }
+            "
+            @emitPersonalSlider="
+              (e) => {
+                this.sliders.simpleIraPersonal = e;
+              }
+            "
+            :sliderPersonal="sliders.simpleIraPersonal"
+            :sliderBusiness="sliders.simpleIraBusiness"
+            :handleDrag="handleSimpleIra"
+            :sliderMaxPersonal="sliderMax.simpleIraPersonal"
+            :sliderMaxBusiness="sliderMax.simpleIraBusiness"
+            :tooltipMain="tooltip.simpleIraBusiness"
+            :tooltip="{
+              taxAvoided: tooltip.taxAvoided.simpleIra,
+              taxAdvantageRatio: tooltip.taxAdvantageRatio.simpleIra,
+            }"
+            :taxAvoided="taxAvoided.simpleIra"
+            :taxAdvantageRatio="taxAdvantageRatio.simpleIra"
+            :addInFirebase="addInFirebase"
+            firebaseName="simpleIra"
           />
           <restirement-acc-option
             :bestOptionActive="bestOptionActive.traditionalIra"
