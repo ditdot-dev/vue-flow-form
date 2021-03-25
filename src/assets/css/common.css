@@ -808,6 +808,11 @@ header.vff-header svg.f-logo {
   animation-fill-mode: forwards;
 }
 
+/* prevent Android Chrome flickering */
+.vff-animate * {
+  -webkit-backface-visibility: hidden;
+}
+
 .vff .f-fade-in {
   animation-name: ffadeIn;
 }
