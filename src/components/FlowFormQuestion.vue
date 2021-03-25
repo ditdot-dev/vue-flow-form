@@ -109,6 +109,7 @@
   import FlowFormTextType from './QuestionTypes/TextType.vue'
   import FlowFormUrlType from './QuestionTypes/UrlType.vue'
   import FlowFormDateType from './QuestionTypes/DateType.vue'
+  import FlowFormFileType from './QuestionTypes/FileType.vue'
   import { IsMobile } from '../mixins/IsMobile'
   
 
@@ -126,6 +127,7 @@
       FlowFormPhoneType,
       FlowFormSectionBreakType,
       FlowFormTextType,
+      FlowFormFileType,
       FlowFormUrlType
     },
     props: {
