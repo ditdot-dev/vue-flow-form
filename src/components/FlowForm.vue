@@ -589,6 +589,8 @@
           }
          
           this.$nextTick(() => {
+            this.reverse = false
+
             this.setQuestions()
             this.checkTimer()
             // Nested $nextTick so we're 100% sure that setQuestions
