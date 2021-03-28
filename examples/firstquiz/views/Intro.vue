@@ -33,7 +33,15 @@
       <h5>About You</h5>
       <p>
         What is your tax filling state?
-        <img class="info" src="../../../src/assets/images/info.png" />
+        <span
+          v-tooltip="{
+            content:
+              'This information is used to identify the state tax liability. Please put the state you will be filing with this year. If you have been moving due to COVID-19, put the state of your primary residence and where you’ve been conducting business from.',
+            placement: 'bottom',
+          }"
+        >
+          <img class="info" src="../../../src/assets/images/info.png" />
+        </span>
       </p>
       <select
         v-bind:style="selected === 'placeholder' && 'font-weight:unset'"
