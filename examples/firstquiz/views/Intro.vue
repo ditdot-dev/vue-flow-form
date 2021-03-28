@@ -39,6 +39,7 @@
         v-bind:style="selected === 'placeholder' && 'font-weight:unset'"
         class="first_select"
         v-model="selected"
+        @change="handleValueChange"
       >
         <option class="select_place_holder" value="placeholder" disabled hidden>
           Select State
@@ -116,6 +117,9 @@ export default {
   methods: {
     goBack() {
       window.history.length > 1 ? this.$router.go(-1) : this.$router.push("/");
+    },
+    handleValueChange() {
+      this.$store.commit("userInformation/addUserInputKey", userInput);
     },
   },
 };

@@ -57,6 +57,9 @@ export default {
     entry(state, data) {
       state.userInput = data;
     },
+    addUserInputKey(state, data) {
+      state.userInput[data.key] = data.value;
+    },
     results(state, data) {
       state.taxUpdate = data;
     },

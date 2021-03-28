@@ -193,9 +193,14 @@ export default {
     this.setQuestions();
   },
   created() {
-    // setTimeout(() => {
-    //   this.handleProgressBar(1);
-    // }, 10);
+    // if (
+    //   this.questions.find(
+    //     (item) => item.id === "tax_filing_state" && item.answer
+    //   )
+    // )
+    setTimeout(() => {
+      this.handleProgressBar(1);
+    }, 10);
   },
   beforeDestroy() {
     document.removeEventListener("keydown", this.onKeyDownListener);
