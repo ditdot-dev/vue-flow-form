@@ -577,7 +577,7 @@ p.percent {
 }
 
 .labelbox h4 {
-  padding: 0px;
+  padding: 0.5rem 0;
   margin: 0px;
   text-align: center;
   font-family: var(--heading4-font);
@@ -1072,6 +1072,10 @@ p.percent {
     display: flex;
     justify-content: center;
     align-items: center;
+  }
+  .labelbox {
+    width: 100%;
+    padding: 0 4rem;
   }
 
   /*

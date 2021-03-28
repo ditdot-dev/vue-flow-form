@@ -14,7 +14,7 @@
             </div>
           </div>
 
-          <div class="column2 flex2">
+          <div style='margin:1rem 0' class="column2 flex2">
             <h1>MULTIPLE ACCOUNTS</h1>
             <h2>
               How do I balance my retirement contribution to multiple accounts?
@@ -26,7 +26,7 @@
               different accounts (new & old).
             </p>
             <button
-              style="float: right; border-radius: 46px"
+              style=":float: right; border-radius: 46px"
               @click="handleSignup"
             >
               Sign Up
