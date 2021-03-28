@@ -44,7 +44,11 @@
         <option class="select_place_holder" value="placeholder" disabled hidden>
           Select State
         </option>
-        <option v-for="option in options" v-bind:key="option.value">
+        <option
+          v-for="(option, i) in options"
+          v-bind:key="i"
+          :value="option.value"
+        >
           {{ option.text }}
         </option>
       </select>
@@ -61,6 +65,8 @@
 </template>
 
 <script>
+import Vuex from "vuex";
+
 export default {
   data() {
     return {
@@ -113,13 +119,25 @@ export default {
       // We will see what `params` is shortly
       return this.$route.params.username;
     },
+    ...Vuex.mapState("userInformation", {
+      userInput: (state) => state.userInput,
+    }),
+  },
+  created() {
+    if (this.userInput.tax_filing_state) {
+      this.selected = this.userInput.tax_filing_state;
+    }
   },
   methods: {
     goBack() {
       window.history.length > 1 ? this.$router.go(-1) : this.$router.push("/");
     },
-    handleValueChange() {
-      this.$store.commit("userInformation/addUserInputKey", userInput);
+    handleValueChange(e) {
+      console.log(e.target.value);
+      this.$store.commit("userInformation/addUserInputKey", {
+        value: e.target.value,
+        key: "tax_filing_state",
+      });
     },
   },
 };

@@ -20,6 +20,11 @@ export default {
       w2Tax: 0
     }
   },
+  getters: {
+    getUserInfo: state => {
+      return state.userInput;
+    }
+  },
   actions: {
     getTotalIncome({ commit }) {
       commit("setTotalIncome");
