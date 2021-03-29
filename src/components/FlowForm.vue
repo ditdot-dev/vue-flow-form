@@ -1,99 +1,134 @@
 // Form template and logic
 
 <template>
-  <div class="vff" :class="{ 'vff-not-standalone': !standalone }">
-    <div class="f-container">
-      <div class="f-form-wrap">
-        <flow-form-question
-          ref="questions"
-          v-for="(q, index) in questionList"
-          v-bind:question="q"
-          v-bind:language="language"
-          v-bind:key="'q' + index"
-          v-bind:active="q.index === activeQuestionIndex"
-          v-model="q.answer"
-          v-on:answer="onQuestionAnswered"
-          v-bind:reverse="reverse"
-          :questions="questions"
-          :activeQuestion="activeQuestion"
-          :noButton="
-            questions[questions.length - 1].id ===
-            (activeQuestionComponent() && activeQuestionComponent().question.id)
-          "
-        />
-
-        <!-- Complete/Submit screen slots -->
-        <div
-          v-if="isOnLastStep"
-          class="vff-animate f-fade-in-up field-submittype"
-        >
-          <slot name="complete">
-            <!-- Default content for the "complete" slot -->
-            <div class="f-section-wrap">
-              <p>
-                <span class="fh2">{{ language.thankYouText }}</span>
-              </p>
-            </div>
-          </slot>
-
-          <slot name="completeButton">
-            <!-- Default content for the "completeButton" slot -->
-            <button
-              class="o-btn-action"
-              ref="button"
-              type="button"
-              href="#"
-              v-on:click.prevent="submit()"
-              v-if="!submitted"
-              v-bind:aria-label="language.ariaSubmitText"
-            >
-              <span>{{ language.submitText }}</span>
-            </button>
-            <a
-              class="f-enter-desc"
-              href="#"
-              v-on:click.prevent="submit()"
-              v-if="!submitted"
-              v-html="language.formatString(language.pressEnter)"
-            >
-            </a>
-            <p class="text-success" v-if="submitted">
-              {{ language.successText }}
+  <div>
+    <div v-if="questions[activeQuestionIndex].intro">
+      <div class="intro_main">
+        <div class="intro_content_left">
+          <h1 class="intro_header">
+            Welcome to the Gig Retirement Calculator
+          </h1>
+          <div class="para">
+            <p>
+              Fill out the questionnaire to calculate your 2020 profit after
+              taxes.
             </p>
-          </slot>
+            <p>
+              We will make a personalized retirement account suggestion to
+              maximize your tax savings 💰!
+            </p>
+            <p>
+              You'll need your last year's tax returns, and estimate how much
+              you made and spent this tax year.
+            </p>
+            <h5>Let’s get started~</h5>
+          </div>
+        </div>
+        <div class="intro_content_right">
+          <img class="right_img" src="../../src/assets/images/wallet.svg" />
         </div>
       </div>
-    </div>
-    <div class="d-flex flex-column progress-cicles">
-      <div
-        :class="`d-flex justify-content-center progress-circle ${
-          activeQuestionIndex === index && 'active'
-        }`"
-        v-for="(question, index) in numOfQuestionInPathLenght"
-        :key="index"
-        @click="handleProgressBar(index)"
-      >
-        {{ index + 1 }}
+      <div class="arrow">
+        <img
+          class="down_arrow_img"
+          src="../../src/assets/images/down_arrow.png"
+        />
       </div>
     </div>
-    <div class="vff-footer">
-      <div class="footer-center">
+    <div class="vff" :class="{ 'vff-not-standalone': !standalone }">
+      <div class="f-container">
+        <div class="f-form-wrap">
+          <flow-form-question
+            ref="questions"
+            v-for="(q, index) in questionList"
+            v-bind:question="q"
+            v-bind:language="language"
+            v-bind:key="'q' + index"
+            v-bind:active="q.index === activeQuestionIndex"
+            v-model="q.answer"
+            v-on:answer="onQuestionAnswered"
+            v-bind:reverse="reverse"
+            :questions="questions"
+            :activeQuestion="activeQuestion"
+            :noButton="
+              questions[questions.length - 1].id ===
+                (activeQuestionComponent() &&
+                  activeQuestionComponent().question.id)
+            "
+          />
+          <!-- Complete/Submit screen slots -->
+          <div
+            v-if="isOnLastStep"
+            class="vff-animate f-fade-in-up field-submittype"
+          >
+            <slot name="complete">
+              <!-- Default content for the "complete" slot -->
+              <div class="f-section-wrap">
+                <p>
+                  <span class="fh2">{{ language.thankYouText }}</span>
+                </p>
+              </div>
+            </slot>
+
+            <slot name="completeButton">
+              <!-- Default content for the "completeButton" slot -->
+              <button
+                class="o-btn-action"
+                ref="button"
+                type="button"
+                href="#"
+                v-on:click.prevent="submit()"
+                v-if="!submitted"
+                v-bind:aria-label="language.ariaSubmitText"
+              >
+                <span>{{ language.submitText }}</span>
+              </button>
+              <a
+                class="f-enter-desc"
+                href="#"
+                v-on:click.prevent="submit()"
+                v-if="!submitted"
+                v-html="language.formatString(language.pressEnter)"
+              >
+              </a>
+              <p class="text-success" v-if="submitted">
+                {{ language.successText }}
+              </p>
+            </slot>
+          </div>
+        </div>
+      </div>
+      <div class="d-flex flex-column progress-cicles">
         <div
-          v-if="
-            this.activeQuestion &&
-            this.activeQuestion.answer &&
-            this.questions[this.questions.length - 1].answer &&
-            this.questions[this.questions.length - 1].id ===
-              (this.activeQuestion && this.activeQuestion.end_index)
+          :class="
+            `d-flex justify-content-center progress-circle ${activeQuestionIndex ===
+              index && 'active'}`
           "
+          v-for="(question, index) in numOfQuestionInPathLenght"
+          :key="index"
+          @click="handleProgressBar(index)"
         >
-          <router-link to="/results">
-            <button class="complete-button" @click="emitComplete">
-              See My Results
-            </button>
-          </router-link>
+          {{ index + 1 }}
         </div>
-        <!-- <div v-else>
+      </div>
+      <div class="vff-footer">
+        <div class="footer-center">
+          <div
+            v-if="
+              this.activeQuestion &&
+                this.activeQuestion.answer &&
+                this.questions[this.questions.length - 1].answer &&
+                this.questions[this.questions.length - 1].id ===
+                  (this.activeQuestion && this.activeQuestion.end_index)
+            "
+          >
+            <router-link to="/results">
+              <button class="complete-button" @click="emitComplete">
+                See My Results
+              </button>
+            </router-link>
+          </div>
+          <!-- <div v-else>
           <div
             v-if="progressbar"
             class="f-progress"
@@ -142,6 +177,7 @@
             }}
           </div>
         </div> -->
+        </div>
       </div>
     </div>
   </div>
@@ -154,22 +190,22 @@ import { userInputs, localUserInputs } from "../../src/constants/index";
 export default {
   name: "FlowForm",
   components: {
-    FlowFormQuestion,
+    FlowFormQuestion
   },
   props: {
     questions: Array,
     language: {
       type: LanguageModel,
-      default: () => new LanguageModel(),
+      default: () => new LanguageModel()
     },
     progressbar: {
       type: Boolean,
-      default: true,
+      default: true
     },
     standalone: {
       type: Boolean,
-      default: false,
-    },
+      default: false
+    }
   },
   data() {
     return {
@@ -178,13 +214,13 @@ export default {
       activeQuestionIndex: 0,
       questionList: [],
       questionListActivePath: [],
-      reverse: false,
+      reverse: false
     };
   },
   watch: {
     completed() {
       this.emitComplete();
-    },
+    }
   },
   mounted() {
     document.addEventListener("keydown", this.onKeyDownListener);
@@ -193,14 +229,9 @@ export default {
     this.setQuestions();
   },
   created() {
-    // if (
-    //   this.questions.find(
-    //     (item) => item.id === "tax_filing_state" && item.answer
-    //   )
-    // )
-    setTimeout(() => {
-      this.handleProgressBar(1);
-    }, 10);
+    // setTimeout(() => {
+    //   this.handleProgressBar(1);
+    // }, 10);
   },
   beforeDestroy() {
     document.removeEventListener("keydown", this.onKeyDownListener);
@@ -216,7 +247,7 @@ export default {
     },
     numCompletedQuestions() {
       let num = 0;
-      this.questionListActivePath.forEach((question) => {
+      this.questionListActivePath.forEach(question => {
         if (question.answered) {
           ++num;
         }
@@ -235,8 +266,8 @@ export default {
     // },
     numOfQuestionInPathLenght() {
       let count = 0;
-      count = this.questions.filter((que) => !que.index_id).length;
-      this.questions.forEach((que) => {
+      count = this.questions.filter(que => !que.index_id).length;
+      this.questions.forEach(que => {
         if (que.id === "entity") {
           if (que.answer === "soleProprietor" || que.answer === "partnership") {
             count--;
@@ -255,11 +286,11 @@ export default {
     },
     isOnLastStep() {
       return this.activeQuestionIndex === this.questionListActivePath.length;
-    },
+    }
   },
   methods: {
     handleProgressBar(index) {
-      let isJump = this.questions.some((que) => {
+      let isJump = this.questions.some(que => {
         if (que.id === "entity") {
           return (
             que.answer === "soleProprietor" || que.answer === "partnership"
@@ -290,7 +321,7 @@ export default {
       this.setQuestionList();
     },
     isJump() {
-      const isJump = this.questions.some((que) => {
+      const isJump = this.questions.some(que => {
         if (que.id === "entity") {
           return (
             que.answer === "soleProprietor" || que.answer === "partnership"
@@ -319,7 +350,7 @@ export default {
         //   question.setIndex(serialIndex);
         // }
         if (question?.index_id) {
-          const i = this.questions.find((que) => que.id === question?.index_id)
+          const i = this.questions.find(que => que.id === question?.index_id)
             .index;
           if (i) {
             question.setIndex(i);
@@ -329,7 +360,7 @@ export default {
         }
         question.language = this.language;
         if (question.id === "salary") {
-          const entity = this.questions.find((item) => item.id === "entity")
+          const entity = this.questions.find(item => item.id === "entity")
             ?.answer;
 
           if (!["soleProprietor", "partnership"].includes(entity)) {
@@ -574,11 +605,12 @@ export default {
       document.activeElement &&
         document.activeElement.blur &&
         document.activeElement.blur();
-    },
-  },
+    }
+  }
 };
 </script>
 
 <style lang="css">
 @import "../assets/css/common.css";
 </style>
+<style scoped src="../../examples/firstquiz/css/intro.css"></style>

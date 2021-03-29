@@ -1,7 +1,6 @@
 <template>
   <div class="hello">
     <router-view />
-
     <flow-form
       ref="flowform"
       v-on:complete="onComplete"
@@ -29,6 +28,7 @@
       <!-- We've overriden the default "completeButton" slot content -->
       <template v-slot:completeButton>
         <div class="f-submit" v-if="!submitted">
+          <h1>asdasd</h1>
           <button
             class="o-btn-action"
             ref="button"
@@ -61,7 +61,7 @@ import FlowForm from "../../src/components/FlowForm.vue";
 import QuestionModel, {
   QuestionType,
   ChoiceOption,
-  LinkOption,
+  LinkOption
 } from "../../src/models/QuestionModel";
 import LanguageModel from "../../src/models/LanguageModel";
 import Vuex from "vuex";
@@ -72,7 +72,7 @@ import { logging } from "@/utils/logging";
 export default {
   name: "RetirementReferral",
   components: {
-    FlowForm,
+    FlowForm
   },
   data() {
     return {
@@ -83,6 +83,7 @@ export default {
         new QuestionModel({
           id: "tax_filing_state",
           tagline: "About You",
+          intro: true,
           title: "What is your tax filing state?",
           answerMessage: "Next let's move onto your business!",
           personalizedAnswerMessages: true,
@@ -98,220 +99,220 @@ export default {
           options: [
             new ChoiceOption({
               label: "Alabama",
-              value: "al",
+              value: "al"
             }),
             new ChoiceOption({
               label: "Alaska",
               value: "ak",
-              answerMessage: "🎉 You have no state income tax!",
+              answerMessage: "🎉 You have no state income tax!"
             }),
             new ChoiceOption({
               label: "Arizona",
-              value: "az",
+              value: "az"
             }),
             new ChoiceOption({
               label: "Arkansas",
-              value: "ar",
+              value: "ar"
             }),
             new ChoiceOption({
               label: "California",
               value: "ca",
-              answerMessage: "🚀 the state with the most freelancers!",
+              answerMessage: "🚀 the state with the most freelancers!"
             }),
             new ChoiceOption({
               label: "Colorado",
-              value: "co",
+              value: "co"
             }),
             new ChoiceOption({
               label: "Conneticut",
-              value: "ct",
+              value: "ct"
             }),
             new ChoiceOption({
               label: "Delaware",
-              value: "de",
+              value: "de"
             }),
             new ChoiceOption({
               label: "District of Columbia",
-              value: "dc",
+              value: "dc"
             }),
             new ChoiceOption({
               label: "Florida",
               value: "fl",
-              answerMessage: "🎉 You have no state income tax!",
+              answerMessage: "🎉 You have no state income tax!"
             }),
             new ChoiceOption({
               label: "Georgia",
-              value: "ga",
+              value: "ga"
             }),
             new ChoiceOption({
               label: "Hawaii",
-              value: "hi",
+              value: "hi"
             }),
             new ChoiceOption({
               label: "Idaho",
-              value: "id",
+              value: "id"
             }),
             new ChoiceOption({
               label: "Illinois",
-              value: "il",
+              value: "il"
             }),
             new ChoiceOption({
               label: "Indiana",
-              value: "in",
+              value: "in"
             }),
             new ChoiceOption({
               label: "Iowa",
-              value: "ia",
+              value: "ia"
             }),
             new ChoiceOption({
               label: "Kansas",
-              value: "ks",
+              value: "ks"
             }),
             new ChoiceOption({
               label: "Kentucky",
-              value: "ky",
+              value: "ky"
             }),
             new ChoiceOption({
               label: "Louisiana",
-              value: "la",
+              value: "la"
             }),
             new ChoiceOption({
               label: "Maine",
-              value: "me",
+              value: "me"
             }),
             new ChoiceOption({
               label: "Maryland",
-              value: "md",
+              value: "md"
             }),
             new ChoiceOption({
               label: "Massachusetts",
-              value: "ma",
+              value: "ma"
             }),
             new ChoiceOption({
               label: "Michigan",
-              value: "mi",
+              value: "mi"
             }),
             new ChoiceOption({
               label: "Minnesota",
-              value: "mn",
+              value: "mn"
             }),
             new ChoiceOption({
               label: "Mississippi",
-              value: "ms",
+              value: "ms"
             }),
             new ChoiceOption({
               label: "Missouri",
-              value: "mo",
+              value: "mo"
             }),
             new ChoiceOption({
               label: "Montana",
-              value: "mt",
+              value: "mt"
             }),
             new ChoiceOption({
               label: "Nebraska",
-              value: "ne",
+              value: "ne"
             }),
             new ChoiceOption({
               label: "Nevada",
               value: "nv",
-              answerMessage: "🎉 You have no state income tax!",
+              answerMessage: "🎉 You have no state income tax!"
             }),
             new ChoiceOption({
               label: "New Hampshire",
               value: "nh",
-              answerMessage: "🎉 You have no state income tax!",
+              answerMessage: "🎉 You have no state income tax!"
             }),
             new ChoiceOption({
               label: "New Jersey",
-              value: "nj",
+              value: "nj"
             }),
             new ChoiceOption({
               label: "New Mexico",
-              value: "nm",
+              value: "nm"
             }),
             new ChoiceOption({
               label: "New York",
               value: "ny",
-              answerMessage: "🗽 our team is based here too!",
+              answerMessage: "🗽 our team is based here too!"
             }),
             new ChoiceOption({
               label: "North Carolina",
-              value: "nc",
+              value: "nc"
             }),
             new ChoiceOption({
               label: "North Dakota",
-              value: "nd",
+              value: "nd"
             }),
             new ChoiceOption({
               label: "Ohio",
-              value: "oh",
+              value: "oh"
             }),
             new ChoiceOption({
               label: "Oklahoma",
-              value: "ok",
+              value: "ok"
             }),
             new ChoiceOption({
               label: "Oregon",
-              value: "or",
+              value: "or"
             }),
             new ChoiceOption({
               label: "Pennsylvania",
-              value: "pa",
+              value: "pa"
             }),
             new ChoiceOption({
               label: "Rhode Island",
-              value: "ri",
+              value: "ri"
             }),
             new ChoiceOption({
               label: "South Carolina",
-              value: "sc",
+              value: "sc"
             }),
             new ChoiceOption({
               label: "South Dakota",
               value: "sd",
-              answerMessage: "🎉 You have no state income tax!",
+              answerMessage: "🎉 You have no state income tax!"
             }),
             new ChoiceOption({
               label: "Tennessee",
               value: "tn",
-              answerMessage: "🎉 You have no state income tax!",
+              answerMessage: "🎉 You have no state income tax!"
             }),
             new ChoiceOption({
               label: "Texas",
               value: "tx",
-              answerMessage: "🎉 You have no state income tax!",
+              answerMessage: "🎉 You have no state income tax!"
             }),
             new ChoiceOption({
               label: "Utah",
-              value: "ut",
+              value: "ut"
             }),
             new ChoiceOption({
               label: "Vermont",
-              value: "vt",
+              value: "vt"
             }),
             new ChoiceOption({
               label: "Virginia",
-              value: "va",
+              value: "va"
             }),
             new ChoiceOption({
               label: "Washington",
               value: "wa",
-              answerMessage: "🎉 You have no state income tax!",
+              answerMessage: "🎉 You have no state income tax!"
             }),
             new ChoiceOption({
               label: "West Virginia",
-              value: "wv",
+              value: "wv"
             }),
             new ChoiceOption({
               label: "Wisconsin",
-              value: "wi",
+              value: "wi"
             }),
             new ChoiceOption({
               label: "Wyoming",
               value: "wy",
-              answerMessage: "🎉 You have no state income tax!",
-            }),
-          ],
+              answerMessage: "🎉 You have no state income tax!"
+            })
+          ]
         }),
         new QuestionModel({
           id: "tax_filing_status",
@@ -331,26 +332,26 @@ export default {
             new ChoiceOption({
               label: "Single",
               value: "single",
-              answerMessage: "Got it! 💪",
+              answerMessage: "Got it! 💪"
             }),
             new ChoiceOption({
               label: "Head of Household",
               value: "headOfHousehold",
-              answerMessage: "Nice! 🏠",
+              answerMessage: "Nice! 🏠"
             }),
             new ChoiceOption({
               label: "Married Filing Jointly",
               value: "married",
               answerMessage:
-                "Got it! We will assume your partner is not making any contributions",
+                "Got it! We will assume your partner is not making any contributions"
             }),
             new ChoiceOption({
               label: "Married Filing Separately",
               value: "marriedFilingSeparately",
               answerMessage:
-                "Got it! We will assume your partner's finances are separate from yours",
-            }),
-          ],
+                "Got it! We will assume your partner's finances are separate from yours"
+            })
+          ]
         }),
         new QuestionModel({
           id: "dependents",
@@ -364,7 +365,7 @@ export default {
           mask: "#",
           placeholder: "Type a number here...",
           tooltip:
-            "This information is used to add up the tax deductions available to you. Put the number of individuals who are dependent on your income.",
+            "This information is used to add up the tax deductions available to you. Put the number of individuals who are dependent on your income."
         }),
         new QuestionModel({
           id: "business_name",
@@ -378,7 +379,7 @@ export default {
           helpTextShow: false,
           placeholder: "The name of my business is...",
           tooltip:
-            "This information is used so we can identify your work by the name you refer to it by. This can be your Doing Business As (DBA) or your full name if you have not incorporated the business in any form.",
+            "This information is used so we can identify your work by the name you refer to it by. This can be your Doing Business As (DBA) or your full name if you have not incorporated the business in any form."
         }),
         new QuestionModel({
           id: "entity",
@@ -399,27 +400,27 @@ export default {
               label: "Sole Proprietorship",
               value: "soleProprietor",
               answerMessage:
-                "The most common type of business, a sole proprietor is someone who owns an unincorporated business by himself or herself.",
+                "The most common type of business, a sole proprietor is someone who owns an unincorporated business by himself or herself."
             }),
             new ChoiceOption({
               label: "Partnership",
               value: "partnership",
               answerMessage:
-                "A partnership is the relationship between two or more people to do trade or business. Each person contributes money, property, labor or skill, and shares in the profits and losses of the business. 🤝",
+                "A partnership is the relationship between two or more people to do trade or business. Each person contributes money, property, labor or skill, and shares in the profits and losses of the business. 🤝"
             }),
             new ChoiceOption({
               label: "S-Corporation",
               value: "sCorporation",
               answerMessage:
-                "S corporations are corporations that elect to pass corporate income, losses, deductions, and credits through to their shareholders for federal tax purposes. Next, we'll check how much you pay yourself!",
+                "S corporations are corporations that elect to pass corporate income, losses, deductions, and credits through to their shareholders for federal tax purposes. Next, we'll check how much you pay yourself!"
             }),
             new ChoiceOption({
               label: "LLC (Limited Liability Company)",
               value: "llc",
               answerMessage:
-                "A Limited Liability Company (LLC) is a business structure that is a hybrid between a corporation & sole-proprietor, whereby the owner is not personally liable for the entity's debts or liabilities. Next, we'll check how much you pay yourself!",
-            }),
-          ],
+                "A Limited Liability Company (LLC) is a business structure that is a hybrid between a corporation & sole-proprietor, whereby the owner is not personally liable for the entity's debts or liabilities. Next, we'll check how much you pay yourself!"
+            })
+          ]
           // jump: {
           //   llc: "salary",
           //   sCorporation: "salary",
@@ -447,20 +448,20 @@ export default {
             new ChoiceOption({
               label: "Just myself!",
               value: "noEmployees",
-              answerMessage: "Keep up the great work as a one-person shop!",
+              answerMessage: "Keep up the great work as a one-person shop!"
             }),
             new ChoiceOption({
               label: "1-99",
               value: "lessthan100",
-              answerMessage: "Thank you for hiring employees!",
+              answerMessage: "Thank you for hiring employees!"
             }),
             new ChoiceOption({
               label: "100+",
               value: "100plus",
               answerMessage:
-                "Wow! Your business is likely too big for this calculator, we can help you find a professional",
-            }),
-          ],
+                "Wow! Your business is likely too big for this calculator, we can help you find a professional"
+            })
+          ]
         }),
         new QuestionModel({
           id: "salary",
@@ -468,14 +469,12 @@ export default {
           title: "What is the annual income you set for yourself?",
           answerMessage: {
             checkbox: "Good work investing back into the business! 💡",
-            answer: "it's good to pay yourself first! 🤩",
+            answer: "it's good to pay yourself first! 🤩"
           },
           answer: localUserInputs()?.salary || "",
-          answered: (
-            localUserInputs()?.salary || localUserInputs().first_name
-              ? true
-              : false
-          )
+          answered: (localUserInputs()?.salary || localUserInputs().first_name
+          ? true
+          : false)
             ? true
             : false,
           type: QuestionType.Salary,
@@ -488,7 +487,7 @@ export default {
               : true
             : false,
           tooltip:
-            "This is the amount that you have set as a “reasonable salary” when you put yourself on payroll as a full-time owner-employee. This will depend on your industry and work performed. We can help you calculate this if you want.",
+            "This is the amount that you have set as a “reasonable salary” when you put yourself on payroll as a full-time owner-employee. This will depend on your industry and work performed. We can help you calculate this if you want."
         }),
         new QuestionModel({
           id: "expenses",
@@ -505,7 +504,7 @@ export default {
 
           required: true,
           tooltip:
-            "This is the annual expenses for your business to operate. Please put the amount you forecast the business will spend this year. You can find last year's total expenses on your tax return's Schedule C box 28.",
+            "This is the annual expenses for your business to operate. Please put the amount you forecast the business will spend this year. You can find last year's total expenses on your tax return's Schedule C box 28."
         }),
         new QuestionModel({
           id: "income",
@@ -519,7 +518,7 @@ export default {
 
           required: true,
           tooltip:
-            "This is the income generated by your business every year. Please put the amount you forecast the business will generate by end of the year. This includes all the invoices and cash payments you’ve received under your business entity.",
+            "This is the income generated by your business every year. Please put the amount you forecast the business will generate by end of the year. This includes all the invoices and cash payments you’ve received under your business entity."
         }),
         new QuestionModel({
           answerMessage: "Hello!",
@@ -532,7 +531,7 @@ export default {
           required: true,
           end_index: "age",
           tooltip:
-            "This tooltip is available on every question to explain why the question is asked. In this case, your name is used to help personalize the results later. 😊",
+            "This tooltip is available on every question to explain why the question is asked. In this case, your name is used to help personalize the results later. 😊"
         }),
         new QuestionModel({
           answerMessage: "That's a great age to be!",
@@ -547,9 +546,9 @@ export default {
           mask: "##",
           placeholder: "Type a number here...",
           tooltip:
-            "This information is used to calculate your potential retirement earnings at age 67. Please put your current age, or the age you will be after December 31, 2020.",
-        }),
-      ],
+            "This information is used to calculate your potential retirement earnings at age 67. Please put your current age, or the age you will be after December 31, 2020."
+        })
+      ]
     };
   },
   mounted() {
@@ -600,7 +599,7 @@ export default {
         await logging(isEqual);
         if (!isEqual || !Object.keys(localUserInputs()).length) {
           const db = await firestore.collection(USER_INPUTS).add({
-            ...userInput,
+            ...userInput
           });
           firestoreIds.userInput = db.id;
           userInput.user_input_id = db.id;
@@ -615,13 +614,13 @@ export default {
 
         await this.$store.commit("userInformation/results", {
           ...taxUpdate.data,
-          user_input_id: firestoreIds.userInput,
+          user_input_id: firestoreIds.userInput
         });
         await this.$store.dispatch("userInformation/getTaxSummary");
         if (firestoreIds.userInput) {
           const db = await firestore.collection(TAX_SUMMARY).add({
             ...this.taxSummary,
-            user_input_id: firestoreIds.userInput,
+            user_input_id: firestoreIds.userInput
           });
           firestoreIds.taxSummary = db.id;
         }
@@ -633,9 +632,9 @@ export default {
       window.data = {
         questions: [],
         answers: [],
-        id: [],
+        id: []
       };
-      this.questions.forEach((question) => {
+      this.questions.forEach(question => {
         if (question.title) {
           data.questions.push(question.title);
           data.answers.push(question.answer);
@@ -648,14 +647,14 @@ export default {
       const userInput = {};
       data.id.forEach((key, i) => (userInput[key] = data.answers[i]));
       return userInput;
-    },
+    }
   },
   computed: {
     ...Vuex.mapState("userInformation", {
-      userInput: (state) => state.userInput,
-      taxSummary: (state) => state.taxSummary,
-    }),
-  },
+      userInput: state => state.userInput,
+      taxSummary: state => state.taxSummary
+    })
+  }
 };
 </script>
 
