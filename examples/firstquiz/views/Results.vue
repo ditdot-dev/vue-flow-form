@@ -3,7 +3,7 @@
   <div class="containerR">
     <div class="mainR">
       <div class="arrowR">
-        <router-link to="/input" aria-label="restart the input page">
+        <router-link to="/" aria-label="restart the input page">
           <svg
             width="32px"
             height="20px"
