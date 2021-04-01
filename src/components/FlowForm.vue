@@ -5,9 +5,7 @@
     <div v-if="questions[activeQuestionIndex].intro">
       <div class="intro_main">
         <div class="intro_content_left">
-          <h1 class="intro_header">
-            Welcome to the Gig Retirement Calculator
-          </h1>
+          <h1 class="intro_header">Welcome to the Gig Retirement Calculator</h1>
           <div class="para">
             <p>
               Fill out the questionnaire to calculate your 2020 profit after
@@ -52,8 +50,8 @@
             :activeQuestion="activeQuestion"
             :noButton="
               questions[questions.length - 1].id ===
-                (activeQuestionComponent() &&
-                  activeQuestionComponent().question.id)
+              (activeQuestionComponent() &&
+                activeQuestionComponent().question.id)
             "
           />
           <!-- Complete/Submit screen slots -->
@@ -100,10 +98,9 @@
       </div>
       <div class="d-flex flex-column progress-cicles">
         <div
-          :class="
-            `d-flex justify-content-center progress-circle ${activeQuestionIndex ===
-              index && 'active'}`
-          "
+          :class="`d-flex justify-content-center progress-circle ${
+            activeQuestionIndex === index && 'active'
+          }`"
           v-for="(question, index) in numOfQuestionInPathLenght"
           :key="index"
           @click="handleProgressBar(index)"
@@ -116,10 +113,10 @@
           <div
             v-if="
               this.activeQuestion &&
-                this.activeQuestion.answer &&
-                this.questions[this.questions.length - 1].answer &&
-                this.questions[this.questions.length - 1].id ===
-                  (this.activeQuestion && this.activeQuestion.end_index)
+              this.activeQuestion.answer &&
+              this.questions[this.questions.length - 1].answer &&
+              this.questions[this.questions.length - 1].id ===
+                (this.activeQuestion && this.activeQuestion.end_index)
             "
           >
             <router-link to="/results">
@@ -190,22 +187,22 @@ import { userInputs, localUserInputs } from "../../src/constants/index";
 export default {
   name: "FlowForm",
   components: {
-    FlowFormQuestion
+    FlowFormQuestion,
   },
   props: {
     questions: Array,
     language: {
       type: LanguageModel,
-      default: () => new LanguageModel()
+      default: () => new LanguageModel(),
     },
     progressbar: {
       type: Boolean,
-      default: true
+      default: true,
     },
     standalone: {
       type: Boolean,
-      default: false
-    }
+      default: false,
+    },
   },
   data() {
     return {
@@ -214,13 +211,13 @@ export default {
       activeQuestionIndex: 0,
       questionList: [],
       questionListActivePath: [],
-      reverse: false
+      reverse: false,
     };
   },
   watch: {
     completed() {
       this.emitComplete();
-    }
+    },
   },
   mounted() {
     document.addEventListener("keydown", this.onKeyDownListener);
@@ -247,7 +244,7 @@ export default {
     },
     numCompletedQuestions() {
       let num = 0;
-      this.questionListActivePath.forEach(question => {
+      this.questionListActivePath.forEach((question) => {
         if (question.answered) {
           ++num;
         }
@@ -266,8 +263,8 @@ export default {
     // },
     numOfQuestionInPathLenght() {
       let count = 0;
-      count = this.questions.filter(que => !que.index_id).length;
-      this.questions.forEach(que => {
+      count = this.questions.filter((que) => !que.index_id).length;
+      this.questions.forEach((que) => {
         if (que.id === "entity") {
           if (que.answer === "soleProprietor" || que.answer === "partnership") {
             count--;
@@ -286,11 +283,11 @@ export default {
     },
     isOnLastStep() {
       return this.activeQuestionIndex === this.questionListActivePath.length;
-    }
+    },
   },
   methods: {
     handleProgressBar(index) {
-      let isJump = this.questions.some(que => {
+      let isJump = this.questions.some((que) => {
         if (que.id === "entity") {
           return (
             que.answer === "soleProprietor" || que.answer === "partnership"
@@ -321,7 +318,7 @@ export default {
       this.setQuestionList();
     },
     isJump() {
-      const isJump = this.questions.some(que => {
+      const isJump = this.questions.some((que) => {
         if (que.id === "entity") {
           return (
             que.answer === "soleProprietor" || que.answer === "partnership"
@@ -350,7 +347,7 @@ export default {
         //   question.setIndex(serialIndex);
         // }
         if (question?.index_id) {
-          const i = this.questions.find(que => que.id === question?.index_id)
+          const i = this.questions.find((que) => que.id === question?.index_id)
             .index;
           if (i) {
             question.setIndex(i);
@@ -360,14 +357,15 @@ export default {
         }
         question.language = this.language;
         if (question.id === "salary") {
-          const entity = this.questions.find(item => item.id === "entity")
+          const entity = this.questions.find((item) => item.id === "entity")
             ?.answer;
 
           if (!["soleProprietor", "partnership"].includes(entity)) {
             questions.push(question);
           } else {
-            // continue;
             --serialIndex;
+            // continue;
+            // question = this.questions[index + 1];
           }
         } else {
           questions.push(question);
@@ -412,6 +410,8 @@ export default {
         //   )?.answer;
         //   if (!["soleProprietor", "partnership"].includes(entity)) {
         //     questions.push(question);
+        //   } else {
+        //     break;
         //   }
         // } else {
         questions.push(question);
@@ -605,8 +605,8 @@ export default {
       document.activeElement &&
         document.activeElement.blur &&
         document.activeElement.blur();
-    }
-  }
+    },
+  },
 };
 </script>
 

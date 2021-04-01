@@ -2,7 +2,7 @@ import * as store from "@/store/index.js";
 import { TAX_API_KEY, TAX_API_SECRET, NODE_ENV } from "@/constants/env";
 import { TAX_API_DEV_KEYS } from "@/utils/firebase-queries";
 import { logging } from "@/utils/logging";
-
+import axios from "axios";
 // api keys need to be moved to environment variables serviced by Netlify build....to be done
 const sandbox_api_user = "https://sandbox-api.track.tax/v2/users/";
 
@@ -18,6 +18,7 @@ var simpleIra_taxBalance;
 var individual401k_taxBalance;
 var baseCalculate = false;
 var handleError = function(err) {
+  console.log(err);
   console.warn(err);
   return err;
 };
@@ -57,17 +58,10 @@ export async function postTaxData(incomeData) {
   const { app_secret, app_key } = await getKeys();
   const { userInput, taxSummary } =
     store?.default?.state?.userInformation || {};
-  let baseTax = await fetch(tax_calculation, {
-    headers: {
-      "Content-Type": "application/json",
-      "X-Api-Key": app_key,
-      "X-Api-Secret": app_secret
-    },
-    method: "PUT",
-    body: JSON.stringify(incomeData)
-  }).catch(handleError);
+
+  let baseTax = await axios.put(tax_calculation, incomeData).catch(handleError);
   await logging("base tax calculation complete!");
-  return await baseTax.json();
+  return baseTax.data;
 }
 
 // Grab data from the sliders to update API calls and post data to RetirementOptions.vue
