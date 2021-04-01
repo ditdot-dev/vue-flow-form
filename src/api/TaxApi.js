@@ -1,5 +1,6 @@
 import * as store from "../store/index.js";
 import axios from "axios";
+import { BASE_URL } from "../constants/env.js";
 // api keys need to be moved to environment variables serviced by Netlify build....to be done
 const sandbox_api_user = "https://sandbox-api.withabound.com/v2/users/";
 const app_key = "appId_d34638260c364a652c4673eb590af0fd";
@@ -39,7 +40,7 @@ export async function postTaxData(incomeData) {
   const { userInput, taxSummary } =
     store?.default?.state?.userInformation || {};
   let baseTax = await fetch(
-    "https://app.gigfinance.org/#/.netlify/functions/server-background",
+    `${BASE_URL}/.netlify/functions/server-background`,
     {
       method: "POST",
       body: JSON.stringify({
