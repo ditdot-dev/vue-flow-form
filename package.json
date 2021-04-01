@@ -23,6 +23,7 @@
   ],
   "dependencies": {
     "@popperjs/core": "^2.5.4",
+    "@vue/babel-preset-app": "^4.5.12",
     "axios": "^0.21.1",
     "body-parser": "^1.19.0",
     "bootstrap-vue": "^2.1.0",
