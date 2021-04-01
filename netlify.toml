@@ -1,0 +1,4 @@
+# example netlify.toml
+[build]
+  functions = "lambda" #  netlify-lambda reads this
+  command = "npm run prod"

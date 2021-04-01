@@ -8,8 +8,11 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "build:examples": "vue-cli-service build --dest dist/questionnaire examples/questionnaire/main.js && vue-cli-service build --dest dist/quiz examples/quiz/main.js && vue-cli-service build --dest dist/support-page examples/support-page/main.js",
+    "prod": "npm run build; npm run build:lambda",
     "build:npm": "rollup --config build/rollup.config.js && npm run cssmin",
-    "cssmin": "postcss dist/vue-flow-form.theme-minimal.css -o dist/vue-flow-form.theme-minimal.min.css && postcss dist/vue-flow-form.theme-green.css -o dist/vue-flow-form.theme-green.min.css && postcss dist/vue-flow-form.theme-purple.css -o dist/vue-flow-form.theme-purple.min.css"
+    "cssmin": "postcss dist/vue-flow-form.theme-minimal.css -o dist/vue-flow-form.theme-minimal.min.css && postcss dist/vue-flow-form.theme-green.css -o dist/vue-flow-form.theme-green.min.css && postcss dist/vue-flow-form.theme-purple.css -o dist/vue-flow-form.theme-purple.min.css",
+    "start:lambda": "netlify-lambda serve functions",
+    "build:lambda": "netlify-lambda build functions"
   },
   "main": "dist/vue-flow-form.umd.js",
   "module": "dist/vue-flow-form.esm.js",
@@ -20,10 +23,15 @@
   ],
   "dependencies": {
     "@popperjs/core": "^2.5.4",
+    "axios": "^0.21.1",
+    "body-parser": "^1.19.0",
     "bootstrap-vue": "^2.1.0",
+    "cors": "^2.8.5",
     "date-fns": "^2.18.0",
     "es6-object-assign": "^1.1.0",
+    "express": "^4.17.1",
     "firebase": "^8.2.9",
+    "serverless-http": "^2.7.0",
     "tingle.js": "^0.15.3",
     "v-tooltip": "^2.0.3",
     "vue-loading-overlay": "^3.4.2",
@@ -48,6 +56,7 @@
     "babel-plugin-transform-vue-jsx": "^3.3.0",
     "bootstrap": "^4.3.1",
     "mutationobserver-shim": "^0.3.3",
+    "netlify-lambda": "^2.0.3",
     "popper.js": "^1.16.0",
     "portal-vue": "^2.1.6",
     "postcss": "^7.0.32",
@@ -95,6 +104,14 @@
     "vue-component",
     "conversational-ui"
   ],
+  "proxy": {
+    "/.netlify/functions": {
+      "target": "http://localhost:8081",
+      "pathRewrite": {
+        "^/\\.netlify/functions": ""
+      }
+    }
+  },
   "license": "MIT",
   "repository": {
     "type": "git",

@@ -24,3 +24,7 @@ yarn-error.log*
 # Misc files
 dev.cmd
 dist.cmd
+
+# ignore lambda function 
+
+/lambda
