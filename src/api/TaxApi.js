@@ -39,14 +39,17 @@ export function taxData() {
 export async function postTaxData(incomeData) {
   const { userInput, taxSummary } =
     store?.default?.state?.userInformation || {};
-  let baseTax = await fetch(`${BASE_URL}/.netlify/functions/server`, {
-    method: "POST",
-    body: JSON.stringify({
-      data: incomeData,
-      app_secret,
-      app_key
-    })
-  });
+  let baseTax = await fetch(
+    `https://app.gigfinance.org/.netlify/functions/server`,
+    {
+      method: "POST",
+      body: JSON.stringify({
+        data: incomeData,
+        app_secret,
+        app_key
+      })
+    }
+  );
   baseTax = await baseTax.json();
   // "base tax calculation complete!";
   return baseTax || {};
@@ -55,7 +58,7 @@ export async function postTaxData(incomeData) {
 // Grab data from the sliders to update API calls and post data to RetirementOptions.vue
 export async function repostData(personal, business) {
   const data = await formatContributionData(personal, business);
-  return await repostApi(data);
+  return await postTaxData(data)?.data;
 }
 
 async function formatContributionData(personal, business) {
