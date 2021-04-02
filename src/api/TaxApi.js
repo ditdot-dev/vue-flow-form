@@ -58,7 +58,8 @@ export async function postTaxData(incomeData) {
 // Grab data from the sliders to update API calls and post data to RetirementOptions.vue
 export async function repostData(personal, business) {
   const data = await formatContributionData(personal, business);
-  return await postTaxData(data)?.data;
+  const filter = await postTaxData(data);
+  return filter.data;
 }
 
 async function formatContributionData(personal, business) {
