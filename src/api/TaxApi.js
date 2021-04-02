@@ -1,5 +1,6 @@
 import * as store from "../store/index.js";
-
+import axios from "axios";
+import { BASE_URL } from "../constants/env.js";
 // api keys need to be moved to environment variables serviced by Netlify build....to be done
 const sandbox_api_user = "https://sandbox-api.withabound.com/v2/users/";
 const app_key = "appId_d34638260c364a652c4673eb590af0fd";
@@ -21,9 +22,7 @@ var handleError = function(err) {
 };
 // PUT method to Track.tax api to calculate the initial tax balance
 export function taxData() {
-  const {
-    userInput,
-  } = store?.default?.state?.userInformation || {};
+  const { userInput } = store?.default?.state?.userInformation || {};
   const incomeData = {
     taxes: {
       "1099Income": parseInt(userInput?.income || 0),
@@ -38,38 +37,37 @@ export function taxData() {
 }
 
 export async function postTaxData(incomeData) {
-  const {
-    userInput,
-    taxSummary,
-  } = store?.default?.state?.userInformation || {};
-  let baseTax = await fetch(tax_calculation, {
-    headers: {
-      "Content-Type": "application/json",
-      "X-Api-Key": app_key,
-      "X-Api-Secret": app_secret
-    },
-    method: "PUT",
-    body: JSON.stringify(incomeData)
-  }).catch(handleError);
+  const { userInput, taxSummary } =
+    store?.default?.state?.userInformation || {};
+  let baseTax = await fetch(`${BASE_URL}/.netlify/functions/server`, {
+    method: "POST",
+    body: JSON.stringify({
+      data: incomeData,
+      app_secret,
+      app_key
+    })
+  });
+  baseTax = await baseTax.json();
   // "base tax calculation complete!";
-  return await baseTax.json();
+  return baseTax || {};
 }
 
 // Grab data from the sliders to update API calls and post data to RetirementOptions.vue
 export async function repostData(personal, business) {
   const data = await formatContributionData(personal, business);
-  return await repostApi(data)
+  return await repostApi(data);
 }
 
 async function formatContributionData(personal, business) {
-  const {
-    userInput,
-    taxSummary,
-  } = store?.default?.state?.userInformation || {};
+  const { userInput, taxSummary } =
+    store?.default?.state?.userInformation || {};
   const entity = userInput?.entity;
   const salary = parseInt(userInput?.salary);
   let data = {};
-  if ( (entity === 'sCorporation' && salary > 0) || (entity === 'llc' && salary > 0) ) {
+  if (
+    (entity === "sCorporation" && salary > 0) ||
+    (entity === "llc" && salary > 0)
+  ) {
     return (data = {
       taxes: {
         expenseDeduction: parseInt(userInput?.expenses || 20000) + business,
@@ -83,21 +81,21 @@ async function formatContributionData(personal, business) {
         expenseDeduction: parseInt(userInput?.expenses || 20000) + business,
         "1099Income": parseInt(taxSummary?.totalIncome || 120000) - personal
       }
-    })
-  };
-  return data
-};
+    });
+  }
+  return data;
+}
 
 async function repostApi(data) {
-    let newTax = await fetch(tax_calculation, {
-      headers: {
-        "Content-Type": "application/json",
-        "X-Api-Key": app_key,
-        "X-Api-Secret": app_secret
-      },
-      method: "PUT",
-      body: JSON.stringify(data)
-    }).catch(handleError);
-    const response = await newTax.json();
-    return response.data;
-  };
+  let newTax = await fetch(tax_calculation, {
+    headers: {
+      "Content-Type": "application/json",
+      "X-Api-Key": app_key,
+      "X-Api-Secret": app_secret
+    },
+    method: "PUT",
+    body: JSON.stringify(data)
+  }).catch(handleError);
+  const response = await newTax.json();
+  return response.data;
+}

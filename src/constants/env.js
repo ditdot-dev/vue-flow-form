@@ -1,6 +1,6 @@
 export const userInputs =
   JSON.parse(localStorage.getItem("vuex"))?.userInformation?.userInput || {};
-
+export const BASE_URL = process.env.VUE_APP_BASE_URL || "http://localhost:9000";
 export const localUserInputs = () => {
   return (
     JSON.parse(localStorage.getItem("vuex"))?.userInformation?.userInput || {}
