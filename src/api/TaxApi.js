@@ -39,14 +39,17 @@ export function taxData() {
 export async function postTaxData(incomeData) {
   const { userInput, taxSummary } =
     store?.default?.state?.userInformation || {};
-  let baseTax = await fetch(`${BASE_URL}/.netlify/functions/server`, {
-    method: "POST",
-    body: JSON.stringify({
-      data: incomeData,
-      app_secret,
-      app_key
-    })
-  });
+  let baseTax = await fetch(
+    `https://app.gigfinance.org/.netlify/functions/server`,
+    {
+      method: "POST",
+      body: JSON.stringify({
+        data: incomeData,
+        app_secret,
+        app_key
+      })
+    }
+  );
   baseTax = await baseTax.json();
   // "base tax calculation complete!";
   return baseTax || {};
