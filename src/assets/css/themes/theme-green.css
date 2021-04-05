@@ -19,7 +19,6 @@
 .vff-footer {
   font-family: "Poppins", sans-serif;
 }
-
 body {
   /*override if needed when using not-standalone option*/
   margin: 0;
@@ -157,20 +156,6 @@ header.vff-header svg.f-logo {
   fill: var(--vff-main-text-color);
 }
 
-/*buttons*/
-.vff .o-btn-action {
-  color: white;
-  /* color: var(--vff-bg-color);
-  background-color: var(--vff-main-text-color); */
-}
-
-.o-btn-action:hover,
-.o-btn-action:focus {
-  color: black;
-  /* color: var(--vff-main-text-color); */
-  /* opacity: 0.9; */
-}
-
 /* progress bar */
 .vff-footer .f-prev svg,
 .vff-footer .f-next svg {
@@ -227,7 +212,7 @@ header.vff-header svg.f-logo {
     --vff-main-text-color: #41464f;
     --vff-secondary-text-color: #000;
     --vff-tertiary-text-color: #41464f;
-    --vff-main-accent-color: #41b883;
+    --vff-main-accent-color: #000;
     --vff-secondary-accent-color: #a0dbc1;
   }
 

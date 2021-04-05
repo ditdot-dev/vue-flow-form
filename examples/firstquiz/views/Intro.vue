@@ -1,350 +1,153 @@
 <template>
-<div class="main">
-  <div class="content flex2">
-    <p class="heading">
-      Welcome to the Gig <br />
-      Retirement Calculator
-    </p>
-    <p class="para">
-      Fill out the questionnaire to calculate <br />
-      your 2020 profit after taxes. <br />
-      <br />
+  <div>
+    <div class="intro_main">
+      <div class="intro_content_left">
+        <h1 class="intro_header">Welcome to the Gig Retirement Calculator</h1>
+        <div class="para">
+          <p>
+            Fill out the questionnaire to calculate your 2020 profit after
+            taxes.
+          </p>
+          <p>
+            We will make a personalized retirement account suggestion to
+            maximize your tax savings 💰!
+          </p>
+          <p>
+            You'll need your last year's tax returns, and estimate how much you
+            made and spent this tax year.
+          </p>
+          <h5>Let’s get started~</h5>
+        </div>
+      </div>
+      <div class="intro_content_right">
+        <img class="right_img" src="../../../src/assets/images/wallet.svg" />
+      </div>
+    </div>
+    <div class="arrow">
+      <img
+        class="down_arrow_img"
+        src="../../../src/assets/images/down_arrow.png"
+      />
+    </div>
+    <div class="first_question">
+      <h5>About You</h5>
+      <p>
+        What is your tax filling state?
+        <span
+          v-tooltip="{
+            content:
+              'This information is used to identify the state tax liability. Please put the state you will be filing with this year. If you have been moving due to COVID-19, put the state of your primary residence and where you’ve been conducting business from.',
+            placement: 'bottom',
+          }"
+        >
+          <img class="info" src="../../../src/assets/images/info.png" />
+        </span>
+      </p>
+      <select
+        v-bind:style="selected === 'placeholder' && 'font-weight:unset'"
+        class="first_select"
+        v-model="selected"
+        @change="handleValueChange"
+      >
+        <option class="select_place_holder" value="placeholder" disabled hidden>
+          Select State
+        </option>
+        <option
+          v-for="(option, i) in options"
+          v-bind:key="i"
+          :value="option.value"
+        >
+          {{ option.text }}
+        </option>
+      </select>
 
-      You'll need your last year's tax returns, and <br />
-      estimate how much you made and spent this tax year. <br />
-      <br />
-
-      Then, we will make a personalized<br />
-      retirement account suggestion <br />
-      to maximize your tax savings💰! <br />
-      <br />
-      <strong>Note:</strong> Your information is safe with us 😊. <br />
-      We will never sell your data.
-    </p>
-    <br /><br />
-    <router-link to="/input" aria-label="start input page"><button>GET STARTED</button></router-link>
+      <router-link
+        v-if="selected != 'placeholder'"
+        class="link"
+        to="/input"
+        aria-label="start input page"
+        ><button type="button" class="next_button">Next</button>
+      </router-link>
+    </div>
   </div>
-  <div class="image">
-    <div class="img"></div>
-  </div>
-</div>
 </template>
 
 <script>
-// import "../../../src/assets/css/intro.css";
+import Vuex from "vuex";
+
 export default {
+  data() {
+    return {
+      selected: "placeholder",
+      options: [
+        { text: "Alabama", value: "al" },
+        { text: "Alaska", value: "ak" },
+        { text: "Arizona", value: "az" },
+        { text: "Arkansas", value: "ar" },
+        { text: "California", value: "ca" },
+        { text: "Colorado", value: "co" },
+        { text: "Conneticut", value: "ct" },
+        { text: "Delaware", value: "de" },
+        { text: "District of Columbia", value: "dc" },
+        { text: "Florida", value: "fl" },
+        { text: "Georgia", value: "ga" },
+        { text: "Hawaii", value: "hi" },
+        { text: "Idaho", value: "id" },
+        { text: "Illinois", value: "il" },
+        { text: "Indiana", value: "ct" },
+        { text: "Delaware", value: "in" },
+        { text: "Iowa", value: "ia" },
+        { text: "Kansas", value: "ks" },
+        { text: "Kentucky", value: "ky" },
+        { text: "Louisiana", value: "la" },
+        { text: "Maine", value: "me" },
+        { text: "Maryland", value: "md" },
+        { text: "Massachusetts", value: "ma" },
+        { text: "Michigan", value: "mi" },
+        { text: "Minnesota", value: "mn" },
+        { text: "Mississippi", value: "ms" },
+        { text: "Missouri", value: "mo" },
+        { text: "Montana", value: "mt" },
+        { text: "Nebraska", value: "ne" },
+        { text: "Nevada", value: "nv" },
+        { text: "New Hampshire", value: "nh" },
+        { text: "New Jersey", value: "nj" },
+        { text: "New Mexico", value: "nm" },
+        { text: "New York", value: "ny" },
+        { text: "North Carolina", value: "nc" },
+        { text: "North Dakota", value: "nd" },
+        { text: "Ohio", value: "oh" },
+        { text: "Oklahoma", value: "ok" },
+        { text: "Oregon", value: "or" },
+      ],
+    };
+  },
   computed: {
     username() {
       // We will see what `params` is shortly
       return this.$route.params.username;
     },
+    ...Vuex.mapState("userInformation", {
+      userInput: (state) => state.userInput,
+    }),
+  },
+  created() {
+    if (this.userInput.tax_filing_state) {
+      this.selected = this.userInput.tax_filing_state;
+    }
   },
   methods: {
     goBack() {
       window.history.length > 1 ? this.$router.go(-1) : this.$router.push("/");
     },
+    handleValueChange(e) {
+      console.log(e.target.value);
+      this.$store.commit("userInformation/addUserInputKey", {
+        value: e.target.value,
+        key: "tax_filing_state",
+      });
+    },
   },
 };
 </script>
-
-<style scoped>
-* {
-  padding: 0;
-  margin: 0;
-  border: 0;
-}
-
-:root {
-  --heading-font: "Manrope", sans-serif;
-  --para-font: "Karla", sans-serif;
-  --light-font: 300;
-  --normal-font: 400;
-  --semi-bold-font: 600;
-  --bold-font: 700;
-  --extra-bold: 900;
-}
-
-.flex {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.flex2 {
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  flex-flow: column;
-}
-
-.container {
-  display: grid;
-  grid-template-rows: 7vh 93vh;
-  grid-template-areas: "main";
-  background-color: aliceblue;
-}
-
-.main {
-  grid-area: main;
-  background: linear-gradient(180deg, #d6ffec 50%, white 50%);
-  display: grid;
-  height: 100vh;
-  /* align-items: center; */
-  /* grid-template-rows: 100%; */
-  grid-template-columns: 10vw 45vw 40vw 5vw;
-  grid-template-areas: ". content image .";
-}
-
-.content {
-  grid-area: content;
-  /* padding-top: 5rem; */
-  /* background-color: cyan; */
-}
-
-.content .heading {
-  font-size: 64px;
-  font-weight: bold !important;
-  font-family: Karla;
-  padding-top: 3rem;
-  /* line-height: 66px; */
-  font-weight: var(--semi-bold-font);
-}
-
-.content .para {
-  font-size: 29px;
-  font-weight: var(--regular-font);
-  font-family: Karla;
-  /* padding-bottom: 20px; */
-  /* line-height: 35.07px; */
-}
-
-.content button {
-  background-color: #f07f62;
-  width: 300px;
-  height: 75px;
-  border-radius: 35px;
-  color: white;
-  font-size: 30px;
-  letter-spacing: 0.3px;
-  line-height: 38px;
-  margin-top: -1rem;
-  font-family: var(--para-font);
-  font-weight: var(--semi-bold-font);
-}
-
-.image {
-  grid-area: image;
-  display: flex;
-  align-items: center;
-}
-
-.img {
-  background-image: url(../../../src/assets/images/taking-money-from-bank.png);
-  background-size: cover;
-  height: 540px;
-  width: 540px;
-}
-
-/* MEDIA QUERIES */
-
-@media only screen and (max-width: 1320px) {
-  .content .heading {
-    font-size: 40px;
-    padding-bottom: 10px;
-    line-height: 55px;
-  }
-
-  .content .para {
-    font-size: 21px;
-    padding-bottom: 15px;
-  }
-
-  .content button {
-    width: 250px;
-    height: 65px;
-    font-size: 25px;
-  }
-
-  .img {
-    height: 440px;
-    width: 440px;
-  }
-}
-
-@media only screen and (max-width: 1090px) {
-  .content {
-    justify-content: unset;
-  }
-}
-
-@media only screen and (max-width: 960px) {
-  .content {
-    display: flex;
-    justify-content: flex-start;
-    align-items: flex-start;
-    flex-flow: column;
-  }
-
-  .content .heading {
-    font-size: 30px;
-    padding-bottom: 10px;
-    line-height: 45px;
-  }
-
-  .content .para {
-    font-size: 18px;
-    padding-bottom: 10px;
-  }
-
-  .img {
-    height: 400px;
-    width: 400px;
-  }
-}
-
-@media only screen and (max-width: 880px) {
-  .main {
-    display: grid;
-    grid-template-columns: 5vw 50vw 43vw 3vw;
-    grid-template-areas: ". content image .";
-  }
-
-  .img {
-    height: 350px;
-    width: 350px;
-  }
-
-  .content .para {
-    line-height: 1.5rem;
-  }
-}
-
-@media only screen and (max-width: 765px) {
-  .main {
-    display: grid;
-    grid-template-columns: 10fr 85fr 5fr;
-    grid-template-rows: 30vh 70vh;
-    grid-template-areas:
-      ". image ."
-      ". content .";
-    /* align-items: unset; */
-  }
-
-  .image {
-    display: flex;
-    justify-content: center;
-    /* align-items: flex-start; */
-  }
-
-  .content {
-    display: flex;
-    align-items: left;
-    justify-content: flex-end;
-    padding-top: 0;
-  }
-
-  .content .heading {
-    font-size: 35px;
-    padding-bottom: 5px;
-    line-height: 40px;
-    padding-top: 1rem;
-  }
-
-  .content .para {
-    font-size: 18px;
-    /* padding-bottom: 5px; */
-    line-height: 1.3rem;
-  }
-
-  .content button {
-    width: 220px;
-    height: 50px;
-    font-size: 20px;
-  }
-
-  .img {
-    height: 250px;
-    width: 250px;
-  }
-}
-
-@media only screen and (max-width: 560px) {
-  .content .heading {
-    font-size: 30px;
-    margin-top: -4rem;
-  }
-
-  .content .para {
-    font-size: 15px;
-    padding-top: 2rem;
-  }
-
-  .content button {
-    width: 150px;
-    height: 50px;
-    font-size: 16px;
-  }
-
-  .main {
-    align-items: center;
-  }
-
-  .image {
-    align-items: center;
-  }
-}
-
-@media only screen and (max-width: 420px) {
-  .content .heading {
-    font-size: 30px;
-    /* padding-top: 3rem; */
-    /* margin-top: -4rem !important; */
-  }
-
-  .content .para {
-    font-size: 15px;
-    padding-top: 2rem;
-  }
-}
-
-@media only screen and (max-width: 380px) {
-  .content .heading {
-    font-size: 30px;
-    /* padding-top: 3rem; */
-    margin-top: -5rem !important;
-  }
-
-  .content .para {
-    font-size: 15px;
-    padding-top: 2rem;
-  }
-}
-
-@media only screen and (max-width: 370px) {
-  .content .heading {
-    font-size: 25px;
-    padding-top: 0rem;
-    margin-top: 0rem !important;
-  }
-
-  .main {
-    display: grid;
-    grid-template-columns: 5fr 90fr 5fr;
-    grid-template-rows: 30vh 70vh;
-    grid-template-areas:
-      ". image ."
-      ". content .";
-  }
-}
-
-@media only screen and (max-width: 345px) {
-  .content .para {
-    font-size: 12px;
-    padding: 0;
-  }
-
-  .content button {
-    margin-bottom: 5px;
-  }
-}
-</style>
+<style scoped src="../css/intro.css"></style>

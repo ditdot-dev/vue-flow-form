@@ -33,6 +33,7 @@
     "express": "^4.17.1",
     "firebase": "^8.2.9",
     "serverless-http": "^2.7.0",
+    "moment": "^2.29.1",
     "tingle.js": "^0.15.3",
     "v-tooltip": "^2.0.3",
     "vue-loading-overlay": "^3.4.2",
@@ -63,6 +64,7 @@
     "postcss": "^7.0.32",
     "postcss-cli": "^7.1.2",
     "postcss-import": "^12.0.1",
+    "postcss-loader": "^5.2.0",
     "prettier-eslint": "^8.8.2",
     "rollup": "^1.17.0",
     "rollup-plugin-cleanup": "^3.1.1",
@@ -76,7 +78,8 @@
     "sass-loader": "^8.0.0",
     "vue": "^2.6.11",
     "vue-cli-plugin-bootstrap": "~0.4.0",
-    "vue-template-compiler": "^2.6.11"
+    "vue-loader": "^15.9.6",
+    "vue-template-compiler": "^2.6.12"
   },
   "eslintConfig": {
     "root": true,

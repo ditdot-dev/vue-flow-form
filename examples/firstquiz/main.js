@@ -4,7 +4,6 @@ import "@babel/polyfill";
 import "mutationobserver-shim";
 import "../../src/plugins/bootstrap-vue";
 import RetirementReferral from "./RetirementReferral.vue";
-import Intro from "./views/Intro.vue";
 import Main from "./views/Main.vue";
 import Results from "./views/Results.vue";
 import RetirementOptions from "./views/RetirementOptions.vue";
@@ -23,11 +22,6 @@ const routes = [
   {
     path: "/",
     name: "Intro",
-    component: Intro
-  },
-  {
-    path: "/input",
-    name: "input",
     component: RetirementReferral
   },
   {

@@ -1,0 +1,194 @@
+/*  TOP INTRO CONTENT STYLING START
+    -------------------------------
+} */
+.intro_main {
+  padding: 4rem 0;
+  height: auto;
+  background: #f1cfb5;
+  display: flex;
+  flex-wrap: wrap-reverse;
+  justify-content: center;
+  align-items: center;
+}
+
+<<<<<<< HEAD .info {
+  margin-left: 0.5rem;
+  cursor: pointer;
+}
+
+=======>>>>>>>entry page work .intro_content_left {
+  width: 50%;
+  padding: 0 7rem 0 0;
+  font-family: "Karla";
+}
+
+.intro_header {
+  font-size: 40px;
+  font-weight: bold;
+}
+
+.para {
+  font-size: 24px;
+}
+
+.para h5 {
+  font-weight: bold;
+  font-size: 1.5rem;
+}
+
+.right_img {
+  height: 30rem;
+  width: 30rem;
+}
+
+/*  TOP INTRO CONTENT STYLING END
+    -----------------------------
+} */
+
+/*  MID ARROW STYLING START
+    -----------------------
+} */
+.arrow {
+  text-align: center;
+}
+
+.down_arrow_img {
+  background: #f1cfb5;
+  border-radius: 50%;
+  object-fit: cover;
+  padding: 1rem 1.5rem;
+  margin-top: -2rem;
+}
+/*  MID ARROW STYLING END
+    ---------------------
+} */
+
+/*  QUESTION PART STYLING START
+    ---------------------------
+} */
+.first_question {
+  width: 80%;
+  margin: 4rem auto;
+}
+
+.first_question p {
+  font-family: "Manrope";
+  font-size: 28px;
+}
+
+.first_question h5 {
+  font-family: "Karla";
+  font-weight: bold;
+}
+
+.first_select {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.6);
+  font-family: "Manrope", sans-serif;
+  padding-bottom: 0.3rem;
+  cursor: pointer;
+  font-weight: bold;
+  margin-left: 0;
+  white-space: nowrap;
+  width: 100%;
+  background-color: transparent;
+  border-left: none;
+  border-top: none;
+  border-right: none;
+  outline: 0;
+  font-size: 20px;
+}
+
+.first_select option {
+  font-size: 14px;
+  color: black;
+}
+
+.first_select .select_place_holder {
+  color: grey !important;
+  background-color: red;
+}
+
+.link {
+  text-decoration: none;
+}
+
+.next_button {
+  font-family: "Manrope", sans-serif;
+  color: white;
+  border: none;
+  cursor: pointer;
+  padding: 0rem 1rem;
+  text-align: center;
+  min-height: 40px;
+  margin-top: 3rem;
+  background: black;
+  font-size: 1.4rem;
+  transition: all 0.4s ease 0s;
+}
+
+.next_button:hover,
+.next_button:focus {
+  color: white;
+  background: #6d6d6d;
+}
+/*  QUESTION PART STYLING END
+    -------------------------
+} */
+
+/*  MEDIA QUERIES START
+    -------------------
+} */
+@media (max-width: 1100px) {
+  .intro_content_left {
+    padding: 0;
+    width: 70%;
+  }
+
+  .right_img {
+    height: 23rem;
+    width: 23rem;
+  }
+
+  .first_question {
+    width: 70% !important;
+    margin: 4rem auto;
+  }
+}
+
+@media (max-width: 880px) {
+  .intro_content_left {
+    width: 80%;
+  }
+
+  .first_question {
+    width: 80% !important;
+    margin: 4rem auto;
+  }
+}
+
+@media (max-width: 550px) {
+  .intro_content_left {
+    width: 90%;
+  }
+
+  .para {
+    font-size: 24px;
+  }
+
+  .intro_header {
+    font-size: 30px;
+  }
+
+  .right_img {
+    height: 18rem;
+    width: 18rem;
+  }
+
+  .first_question {
+    width: 91% !important;
+    margin: 4rem auto;
+  }
+}
+/*  MEDIA QUERIES END
+    -------------------
+} */

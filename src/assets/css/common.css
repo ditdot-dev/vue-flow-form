@@ -26,15 +26,15 @@
 
 .answer-messages-parent {
   display: flex;
-  width: 100%
+  width: 100%;
 }
 
-.question-title-parent{
+.question-title-parent {
   /* width: 100%; */
   margin-right: 20%;
 }
 
-.vff .f-full-width span.faux-form{
+.vff .f-full-width span.faux-form {
   height: 100%;
 }
 
@@ -42,7 +42,7 @@
 
 .progress-cicles {
   position: absolute;
-  color: #f79d7d;
+  color: #f56c3a;
   right: 0;
   top: -10vh;
   margin: 30px;
@@ -51,7 +51,7 @@
 }
 
 .progress-cicles .progress-circle {
-  border: 1px solid #fca68c;
+  border: 1px solid #f56c3a;
   cursor: pointer;
   border-radius: 35px;
   padding-top: 3px;
@@ -74,7 +74,7 @@
   transition: all 0.4s ease 0s;
 }
 .complete-button:hover,
-.complete-button:focus{
+.complete-button:focus {
   color: #000000;
 }
 
@@ -354,24 +354,25 @@ header.vff-header svg.f-logo {
 
 /*default button*/
 .vff button {
+  font-family: "Manrope", sans-serif;
+  color: white;
   border: none;
-  outline: 0;
   cursor: pointer;
-  padding: 0.6em 1.4em;
+  padding: 0rem 1rem;
   text-align: center;
-  display: inline-block;
-  min-height: 44px;
-  white-space: pre-wrap;
-  max-width: 100%;
+  min-height: 40px;
+  transition: all 0.4s ease 0s;
 }
 
 .vff .o-btn-action {
-  z-index: 1;
-  line-height: 1.2;
-  font-weight: 900;
-  background: linear-gradient(rgb(0, 212, 159), rgb(0, 156, 116));
-  border-radius: 4px;
-  text-transform: lowercase;
+  margin-top: 3rem;
+  background: black;
+}
+
+.o-btn-action:hover,
+.o-btn-action:focus {
+  color: white;
+  background: #6d6d6d;
 }
 
 .vff .o-btn-action span {
@@ -598,7 +599,8 @@ header.vff-header svg.f-logo {
   margin-top: 0;
 }
 
-.vff span.f-text ,.f-section-text {
+.vff span.f-text,
+.f-section-text {
   font-family: "Manrope", sans-serif;
   font-size: 29px;
   margin-right: 0.6em;
@@ -608,7 +610,9 @@ header.vff-header svg.f-logo {
 }
 
 /*description*/
-.vff p.f-description, .f-help,.f-sub {
+.vff p.f-description,
+.f-help,
+.f-sub {
   font-family: "Manrope", sans-serif;
   font-size: 16px;
   font-weight: 700;
@@ -785,7 +789,6 @@ header.vff-header svg.f-logo {
   bottom: 0;
   width: 100%;
 }
-
 /*
   animations
 */
@@ -1152,4 +1155,133 @@ span.info-icon-1:hover {
   visibility: visible;
   opacity: 1;
   transition: opacity 0.15s;
+}
+
+.absolute {
+  position: absolute;
+}
+
+.relative {
+  position: relative;
+}
+
+.top-60 {
+  top: -60px;
+}
+
+.top-75 {
+  top: -75px;
+}
+
+:root {
+  --heading-font: "Manrope", sans-serif;
+  --heading2-font: "Karla", sans-serif;
+  --heading4-font: "Karla", sans-serif;
+  --para-font: "Manrope", sans-serif;
+  --normal-font: 400;
+  --bold-font: 700;
+}
+
+.r-container .vue-slider-marks {
+  background: #f3fcf7;
+  /* border-radius: 10px; */
+}
+
+.r-container .vue-slider-mark-step {
+  background-color: transparent;
+}
+
+.r-container .vue-slider-rail {
+  border-radius: 0px;
+}
+
+.r-container .vue-slider-process {
+  border-radius: 0px;
+  background-color: #00d49f;
+}
+
+.r-container .vue-slider-mark-label {
+  opacity: 0;
+}
+
+.custom-dot {
+  position: absolute;
+  left: 10.02%;
+  right: 85.64%;
+  top: -30px;
+  bottom: 0%;
+  background: #ffffff;
+  border: 1px solid #f0f0f0;
+  box-sizing: border-box;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  width: 16px;
+  height: 70px;
+  /* left: 60px; */
+}
+
+.custom-inner-dot {
+  position: absolute;
+  left: 50.02%;
+  right: 85.64%;
+  top: -12px;
+  bottom: 0%;
+  background: #ffffff;
+  border: 1px solid #f0f0f0;
+  box-sizing: border-box;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  width: 8px;
+  height: 35px;
+  /* left: 60px; */
+}
+
+.r-container .vue-slider-marks {
+  background: #f3fcf7;
+  /* border-radius: 10px; */
+}
+
+.r-container .vue-slider-mark-step {
+  background-color: transparent;
+}
+
+.r-container .vue-slider-rail {
+  border-radius: 0px;
+  background: #f3fcf7;
+}
+
+.r-container .vue-slider-process {
+  border-radius: 0px;
+  background-color: #00d49f;
+}
+
+.r-container .vue-slider-mark-label {
+  opacity: 0;
+}
+
+.custom-label {
+  opacity: 1 !important;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 26px;
+  line-height: 140%;
+  /* or 36px */
+  display: flex;
+  align-items: center;
+  color: #000000;
+  margin: 0px;
+  font-family: var(--heading2-font);
+}
+
+.r-container .h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6,
+.r-container h1,
+.r-container h2,
+.r-container h3,
+.r-container h4,
+.r-container h5,
+.r-container h6 {
+  font-weight: 700;
 }

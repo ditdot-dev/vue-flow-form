@@ -1,5 +1,6 @@
 export const personalizedAnswerMessages = (question, QuestionType) => {
   const { options, answer, answerMessage, checkbox } = question;
+
   if (question.type === QuestionType.Dropdown) {
     return (
       options.find(item => item.value === answer).answerMessage || answerMessage

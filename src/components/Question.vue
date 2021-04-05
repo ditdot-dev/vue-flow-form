@@ -303,7 +303,9 @@ export default {
   mounted() {
     this.focusField();
     this.dataValue = this.question.answer;
-    this.$refs.qanimate.addEventListener("animationend", this.onAnimationEnd);
+    if (!this.question.intro) {
+      this.$refs.qanimate.addEventListener("animationend", this.onAnimationEnd);
+    }
   },
   beforeDestroy() {
     this.$refs.qanimate.removeEventListener(
@@ -440,6 +442,7 @@ export default {
           this.question,
           QuestionType
         );
+        // console.log(newVal);
       } else {
         this.responseAnswer = "";
       }

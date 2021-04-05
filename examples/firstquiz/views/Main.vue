@@ -19,9 +19,7 @@
               >About</b-nav-item
             >
             <b-nav-item-dropdown text="Guides" right>
-              <b-dropdown-text>
-                For Business of One
-              </b-dropdown-text>
+              <b-dropdown-text> For Business of One </b-dropdown-text>
               <b-dropdown-item
                 href="https://www.learn.gigfinance.org/blog/how-to-get-started-with-an-individual-401-k/"
               >
@@ -37,9 +35,7 @@
               >
                 <li class="nav-li">Traditional IRA</li>
               </b-dropdown-item>
-              <b-dropdown-text>
-                For Business of Many
-              </b-dropdown-text>
+              <b-dropdown-text> For Business of Many </b-dropdown-text>
               <b-dropdown-item
                 href="https://www.learn.gigfinance.org/blog/how-to-get-started-with-a-simple-ira/"
               >
@@ -61,26 +57,8 @@
 </template>
 
 <script></script>
-
+<style scoped src="../css/main.css"></style>
 <style>
-.component-fade-enter-active,
-.component-fade-leave-active {
-  transition: opacity 0.3s ease;
-}
-
-.component-fade-enter,
-.component-fade-leave-to
-
-/* .component-fade-leave-active below version 2.1.8 */ {
-  opacity: 0;
-}
-
-/*=========================
-
-    02.HEADER AREA START
-
-=========================*/
-
 .navbar-light .navbar-nav .nav-link {
   color: #000000 !important;
   font-size: 22px;
@@ -89,9 +67,6 @@
 .nav-li {
   list-style-type: disc;
   margin: 0.3rem 1.8rem;
-}
-.logo {
-  width: 14rem;
 }
 
 @media (max-width: 767.98px) {
