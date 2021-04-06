@@ -426,7 +426,6 @@ export default {
           break;
         }
       }
-      console.log(questions);
       this.questionList = questions;
     },
     /**

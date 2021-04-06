@@ -130,12 +130,12 @@
                 This calculator will always apply your contribution through your business first, because that will maximize tax deduction opportunity for you."
             @emitBusinessSlider="
               (e) => {
-                this.sliders.individual401kPersonal = e;
+                this.sliders.individual401kBusiness = e;
               }
             "
             @emitPersonalSlider="
               (e) => {
-                this.sliders.individual401kBusiness = e;
+                this.sliders.individual401kPersonal = e;
               }
             "
             :sliderPersonal="sliders.individual401kPersonal"
@@ -434,6 +434,7 @@ export default {
         this.sliders.individual401kPersonal,
         this.sliders.individual401kBusiness
       );
+      console.log(res);
       this.taxAvoided.individual401k = (
         this.taxBalance - res?.taxBalance
       ).toFixed(2);

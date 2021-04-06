@@ -16,7 +16,7 @@ var sepIra_taxBalance;
 var simpleIra_taxBalance;
 var individual401k_taxBalance;
 var baseCalculate = false;
-var handleError = function(err) {
+var handleError = function (err) {
   console.warn(err);
   return err;
 };
@@ -58,7 +58,8 @@ export async function postTaxData(incomeData) {
 // Grab data from the sliders to update API calls and post data to RetirementOptions.vue
 export async function repostData(personal, business) {
   const data = await formatContributionData(personal, business);
-  return await postTaxData(data)?.data;
+  const filtered = await postTaxData(data)
+  return filtered.data;
 }
 
 async function formatContributionData(personal, business) {
