@@ -434,7 +434,6 @@ export default {
         this.sliders.individual401kPersonal,
         this.sliders.individual401kBusiness
       );
-      console.log(res);
       this.taxAvoided.individual401k = (
         this.taxBalance - res?.taxBalance
       ).toFixed(2);
