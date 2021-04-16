@@ -16,7 +16,7 @@
     <div class="col3 col flex2 justify-content-between relative">
       <info-icon
         :tooltip="{
-          description: `${tooltipText}`,
+          description: `${tooltipText}`
         }"
         class="absolute top-60"
         classes="d-flex align-items-end"
@@ -105,22 +105,23 @@
     </div>
     <div :class="`col5 col `">
       <div v-if="isDisabled">
-        <div :class="`labelbox flex ${isDisabled && 'disabled-back-color'}`">
-          <h4>Get Started</h4>
+        <div :class="`common-button ${isDisabled && 'disabled-back-color'}`">
+          Get Started
         </div>
         <span class="labelbox-down">
           You are not eligible due to too many employees in your business.
         </span>
       </div>
       <a
+        style="text-decoration:none"
         href="https://www.learn.gigfinance.org/blog/how-to-get-started-with-an-individual-401-k/"
         target="_blank"
         rel="noopener noreferrer"
         v-else
         @click="addInFirebase(firebaseName)"
       >
-        <div :class="`labelbox flex ${isDisabled && 'disabled-color'}`">
-          <h4>Get Started</h4>
+        <div :class="`common-button ${isDisabled && 'disabled-color'}`">
+          Get Started
         </div>
       </a>
     </div>
@@ -145,75 +146,75 @@ export default {
     vueCustomSlider,
     infoIcon,
     TingleModal,
-    Loading,
+    Loading
   },
 
   props: {
     bestOptionActive: {
-      type: Boolean,
+      type: Boolean
     },
     name: {
-      type: String,
+      type: String
     },
     isDisabled: {
-      type: Boolean,
+      type: Boolean
     },
     description: {
-      type: String,
+      type: String
     },
     tooltipText: {
-      type: String,
+      type: String
     },
     sliderPersonal: {
       type: Number,
-      default: 0,
+      default: 0
     },
     sliderBusiness: {
       type: Number,
-      default: 0,
+      default: 0
     },
     handleDrag: {
-      type: Function,
+      type: Function
     },
     sliderMaxPersonal: {
-      type: Number,
+      type: Number
     },
     sliderMaxBusiness: {
-      type: Number,
+      type: Number
     },
     tooltipMain: {
-      type: Object,
+      type: Object
     },
     tooltip: {
-      type: Object,
+      type: Object
     },
     taxAvoided: {
-      type: String,
+      type: String
     },
     taxAdvantageRatio: {
-      type: Number,
+      type: Number
     },
     addInFirebase: {
-      type: Function,
+      type: Function
     },
     firebaseName: {
-      type: String,
+      type: String
     },
     heading: {
-      type: String,
+      type: String
     },
     isPersonal: {
       type: Boolean,
-      default: true,
+      default: true
     },
     isBusiness: {
       type: Boolean,
-      default: true,
+      default: true
     },
     isHeading: {
       type: Boolean,
-      default: false,
-    },
+      default: false
+    }
   },
 
   methods: {
@@ -235,19 +236,19 @@ export default {
     },
     handlePersonalSlider(e) {
       this.$emit("emitPersonalSlider", e);
-    },
+    }
   },
   computed: {
     ...Vuex.mapState("userInformation", {
-      profitAfterTaxes: (state) => state.taxSummary.profitAfterTaxes,
-      profitAfterExpenses: (state) => state.taxSummary.profitAfterExpenses,
-      totalIncome: (state) => state.taxSummary.totalIncome,
-      taxBalance: (state) => state.taxUpdate.taxBalance,
-      age: (state) => state.userInput.age,
-      userInput: (state) => state.userInput,
-      taxUpdate: (state) => state.taxUpdate,
-    }),
-  },
+      profitAfterTaxes: state => state.taxSummary.profitAfterTaxes,
+      profitAfterExpenses: state => state.taxSummary.profitAfterExpenses,
+      totalIncome: state => state.taxSummary.totalIncome,
+      taxBalance: state => state.taxUpdate.taxBalance,
+      age: state => state.userInput.age,
+      userInput: state => state.userInput,
+      taxUpdate: state => state.taxUpdate
+    })
+  }
 };
 </script>
 

@@ -8,6 +8,22 @@
   -o-font-smoothing: antialiased;
 }
 
+.common-button {
+  background: linear-gradient(rgb(0, 212, 159), rgb(0, 156, 116));
+  color: white;
+  border-radius: 4px;
+  transition: all 0.4s ease 0s;
+  padding: 0.5rem 1rem !important;
+  font-family: "Manrope", sans-serif;
+  font-size: 20px;
+  text-align: center;
+}
+
+.common-button:hover,
+.common-button:focus {
+  color: #000000;
+}
+
 /* New positive validation messages added to the open source package to create gamification elements
 */
 
@@ -890,6 +906,9 @@ header.vff-header svg.f-logo {
 }
 
 @media only screen and (max-width: 767px) {
+  .common-button{
+    font-size: 18px;
+  }
   .vff h2,
   .vff .fh2 {
     font-size: 2.2em;
@@ -926,6 +945,9 @@ header.vff-header svg.f-logo {
 }
 
 @media screen and (max-width: 479px) {
+  .common-button{
+    font-size: 15px;
+  }
   .vff {
     margin-top: 10vh;
     min-height: 180px;
@@ -1284,4 +1306,9 @@ span.info-icon-1:hover {
 .r-container h5,
 .r-container h6 {
   font-weight: 700;
+}
+@media screen and (max-width: 330px) {
+  .common-button{
+    font-size: 12px;
+  }
 }

@@ -28,7 +28,6 @@
       <!-- We've overriden the default "completeButton" slot content -->
       <template v-slot:completeButton>
         <div class="f-submit" v-if="!submitted">
-          <h1>asdasd</h1>
           <button
             class="o-btn-action"
             ref="button"
