@@ -67,14 +67,18 @@
     methods: {
       validate() {
         if (this.question.mask && this.hasValue) {
-          if (Array.isArray(this.question.mask)) {
-            return this.question.mask.some(mask => mask.length === this.dataValue.length)
-          }
-
-          return this.dataValue.length === this.question.mask.length
+          return this.validateMask()
         }
 
         return !this.question.required || this.hasValue
+      },
+
+      validateMask() {
+        if (Array.isArray(this.question.mask)) {
+          return this.question.mask.some(mask => mask.length === this.dataValue.length)
+        }
+
+        return this.dataValue.length === this.question.mask.length
       }
     }
   }
