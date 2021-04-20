@@ -7,6 +7,9 @@
   -moz-font-smoothing: antialiased;
   -o-font-smoothing: antialiased;
 }
+.common-dropdown{
+  border-radius: 25px;
+}
 
 .common-button {
   background: linear-gradient(rgb(0, 212, 159), rgb(0, 156, 116));
