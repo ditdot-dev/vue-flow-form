@@ -114,4 +114,17 @@ select option {
   color: white !important;
 }
 
+::-webkit-scrollbar {
+	width: 10px;
+	height: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+	-webkit-border-radius: 10px;
+	border-radius: 10px;
+	-webkit-box-shadow: inset 0 0 6px white;
+}
+
+::-webkit-scrollbar-thumb:window-inactive {}
 </style>
