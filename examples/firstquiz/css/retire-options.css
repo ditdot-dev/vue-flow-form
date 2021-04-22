@@ -4,7 +4,10 @@
 }
 
 .disabled-color {
-  color: #bdbdbd !important;
+  background: #bdbdbd !important;
+}
+.started-buttons{
+  text-align: center;
 }
 
 .up-drag {

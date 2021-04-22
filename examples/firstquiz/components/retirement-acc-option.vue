@@ -103,11 +103,11 @@
         </h2>
       </info-icon>
     </div>
-    <div :class="`col5 col `">
+    <div :class="`col started-buttons`">
       <div v-if="isDisabled">
-        <div :class="`common-button ${isDisabled && 'disabled-back-color'}`">
+        <button :class="`common-button ${isDisabled && 'disabled-back-color'}`">
           Get Started
-        </div>
+        </button>
         <span class="labelbox-down">
           You are not eligible due to too many employees in your business.
         </span>
@@ -120,9 +120,9 @@
         v-else
         @click="addInFirebase(firebaseName)"
       >
-        <div :class="`common-button ${isDisabled && 'disabled-color'}`">
+        <button :class="`common-button ${isDisabled && 'disabled-color'}`">
           Get Started
-        </div>
+        </button>
       </a>
     </div>
   </div>
