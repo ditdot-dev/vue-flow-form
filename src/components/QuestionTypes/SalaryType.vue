@@ -47,6 +47,11 @@ export default {
   components: {
     TheMask,
   },
+  props: {
+    value: {
+      type: String,
+    },
+  },
   data() {
     return {};
   },
