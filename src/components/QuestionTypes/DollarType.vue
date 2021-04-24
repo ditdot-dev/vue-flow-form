@@ -31,20 +31,35 @@ export default {
   components: {
     TheMask,
   },
+  props: {
+    value: {
+      type: String,
+    },
+  },
   data() {
     return {
       dollar: "",
       Dollarcolor: "grey",
     };
   },
-  mounted() {
-    this.dollar = this.question.answer.replace(
-      /^[0-9]{1,2}([,.][0-9]{1,2})?$/,
-      ""
-    );
-    this.dollar = this.question.answer
-      .replace(/\D/g, "")
-      .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  // mounted() {
+  //   this.dollar = this.question.answer.replace(
+  //     /^[0-9]{1,2}([,.][0-9]{1,2})?$/,
+  //     ""
+  //   );
+  //   this.dollar = this.question.answer
+  //     .replace(/\D/g, "")
+  //     .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  // },
+  watch: {
+    value: {
+      async handler(val) {
+        this.dollar = val.replace(/^[0-9]{1,2}([,.][0-9]{1,2})?$/, "");
+        this.dollar = val
+          .replace(/\D/g, "")
+          .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+      },
+    },
   },
   methods: {
     setFocus() {

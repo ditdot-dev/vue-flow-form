@@ -161,32 +161,7 @@
           >
         </p>
       </div>
-      <div
-        class="vff-animate f-fade-in f-enter"
-        v-if="question.end_index && !isLast() && question.answer"
-      >
-        <button
-          class="o-btn-action"
-          type="button"
-          ref="button"
-          href="#"
-          v-on:click.prevent="onEnter"
-          v-bind:aria-label="language.ariaOk"
-        >
-          <span v-if="question.type === QuestionType.SectionBreak">{{
-            language.continue
-          }}</span>
-          <span v-else>{{ language.ok }}</span>
-        </button>
-        <a
-          class="f-enter-desc"
-          href="#"
-          v-if="question.type !== QuestionType.LongText || !isMobile"
-          v-on:click.prevent="onEnter"
-          v-html="language.formatString(language.pressEnter)"
-        >
-        </a>
-      </div>
+
       <div
         class="vff-animate f-fade-in f-enter"
         v-if="
@@ -301,6 +276,7 @@ export default {
     };
   },
   mounted() {
+    console.log("question mounted");
     this.focusField();
     this.dataValue = this.question.answer;
     if (!this.question.intro) {
@@ -362,6 +338,15 @@ export default {
      */
     showOkButton() {
       const q = this.$refs.questionComponent;
+      this.focusField();
+      this.dataValue = this.question.answer;
+
+      // if (!this.question.intro) {
+      //   this.$refs.qanimate.addEventListener(
+      //     "animationend",
+      //     this.onAnimationEnd
+      //   );
+      // }
       const { type } = this.question;
       if (
         (type === QuestionType.Salary || type === QuestionType.Dollar) &&
@@ -438,10 +423,12 @@ export default {
   watch: {
     dataValue(newVal) {
       if (this.showOkButton()) {
+        // console.log(this.questions);
         this.responseAnswer = personalizedAnswerMessages(
           this.question,
           QuestionType
         );
+
         // console.log(newVal);
       } else {
         this.responseAnswer = "";

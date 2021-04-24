@@ -271,6 +271,14 @@ export default {
           }
         }
       });
+      // const questions = [];
+      // const entity = this.questions.find((item) => item.id === "entity")
+      //   ?.answer;
+      // if (["soleProprietor", "partnership"].includes(entity)) {
+      //   questions.filter((item) => item.id !== "entity");
+      // }
+
+      // this.questionList = questions;
       return count;
     },
     percentCompleted() {
@@ -303,6 +311,11 @@ export default {
         this.activeQuestionIndex = index;
         this.setQuestionList();
       }
+      // document.addEventListener("keydown", this.onKeyDownListener);
+      // document.addEventListener("keyup", this.onKeyUpListener, true);
+      // window.addEventListener("beforeunload", this.onBeforeUnload);
+      // this.setQuestions();
+      this.$forceUpdate();
     },
     /**
      * Returns currently active question component (if any).
@@ -339,13 +352,6 @@ export default {
         nextId;
       do {
         let question = this.questions[index];
-        // if (this.isJump() && question.id === "income") {
-        //   question.setIndex(9);
-        // } else if (!this.isJump() && question.id === "income") {
-        //   question.setIndex(8);
-        // } else {
-        //   question.setIndex(serialIndex);
-        // }
         if (question?.index_id) {
           const i = this.questions.find((que) => que.id === question?.index_id)
             .index;
@@ -364,8 +370,6 @@ export default {
             questions.push(question);
           } else {
             --serialIndex;
-            // continue;
-            // question = this.questions[index + 1];
           }
         } else {
           questions.push(question);
@@ -401,21 +405,21 @@ export default {
      * (all questions up to, and including, the current one)
      */
     setQuestionList() {
-      const questions = [];
+      let questions = [];
       for (let index = 0; index < this.questionListActivePath.length; index++) {
         const question = this.questionListActivePath[index];
-        // if (question.id === "salary") {
-        //   const entity = this.questionListActivePath.find(
-        //     (item) => item.id === "entity"
-        //   )?.answer;
-        //   if (!["soleProprietor", "partnership"].includes(entity)) {
-        //     questions.push(question);
-        //   } else {
-        //     break;
-        //   }
-        // } else {
+        //   // if (question.id === "salary") {
+        //   //   const entity = this.questionListActivePath.find(
+        //   //     (item) => item.id === "entity"
+        //   //   )?.answer;
+        //   //   if (!["soleProprietor", "partnership"].includes(entity)) {
+        //   //     questions.push(question);
+        //   //   } else {
+        //   //     break;
+        //   //   }
+        //   // } else {
         questions.push(question);
-        // }
+        //   // }
 
         if (!question.answered) {
           if (this.completed) {
@@ -426,6 +430,13 @@ export default {
           break;
         }
       }
+
+      // const entity = this.questions.find((item) => item.id === "entity")
+      //   ?.answer;
+      // if (["soleProprietor", "partnership"].includes(entity)) {
+      //   questions = questions.filter((item) => item.id !== "salary");
+      // }
+
       this.questionList = questions;
     },
     /**

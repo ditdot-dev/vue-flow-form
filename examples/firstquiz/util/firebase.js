@@ -1,6 +1,6 @@
-import firebase from "firebase";
+import firebase from "firebase/app";
 import "firebase/firestore";
-import { FIREBASE_API_KEY,FIREBASE_APP_ID } from "@/constants/env.js";
+import { FIREBASE_API_KEY, FIREBASE_APP_ID } from "@/constants/env.js";
 let firebaseConfig;
 
 if (process.env.VUE_APP_NODE_ENV === "prod") {
@@ -27,7 +27,7 @@ if (process.env.VUE_APP_NODE_ENV === "prod") {
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 
-firebase.analytics();
+// firebase.analytics();
 
 export const firestore = firebase.firestore();
 export const USER_INPUTS = "UserInputs";
