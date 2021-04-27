@@ -10,6 +10,7 @@
       v-bind:progressbar="false"
       v-bind:standalone="true"
     >
+      <question type="multiplechoice" title="Multiple choice question" :options="[{label: 'Answer 1', value: 'answer_1'}, {label: 'Answer 2', value: 'answer_2'}]"></question>
       <question 
         v-for="(question, index) in questions" 
         v-bind="question" 

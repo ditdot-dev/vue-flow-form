@@ -21,6 +21,14 @@
 
     methods: {
       validate() {
+        if (this.question.min && this.dataValue < this.question.min) {
+          return false
+        }
+
+        if (this.question.max && this.dataValue > this.question.max) {
+          return false
+        }
+        
         if (this.hasValue) {
           if (this.question.mask) {
             return this.validateMask()
