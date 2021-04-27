@@ -300,7 +300,6 @@ import Loading from "vue-loading-overlay";
 import { usdFormat } from "../../util/usd-format";
 import restirementAccOption from "../components/retirement-acc-option";
 import restirementFooter from "../components/retirement-footer";
-
 import {
   firestore,
   USER_INPUTS,
