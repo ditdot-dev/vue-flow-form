@@ -319,7 +319,7 @@ export default {
         var mailformat = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,24}))$/;
         let email = document.getElementById("mce-EMAIL");
         if (email.value.match(mailformat)) {
-          document.getElementById("mc-embedded-subscribe").click();
+          document.getElementById("email-subscribe").click();
           this.isModalOpen = false;
           localStorage.setItem("email", email.value);
           setTimeout(() => {

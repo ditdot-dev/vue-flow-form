@@ -19,7 +19,7 @@ export const body = `<div id="mc_embed_signup">
             id="mce-EMAIL"
          />
       </div>
-      <input style="display:none" type="submit" class="button button-primary w-100 border-0" value="Send" name="submit" id="mc-embedded-subscribe">
+      <input style="display:none" type="submit" class="button button-primary w-100 border-0" value="Send" name="submit" id="email-subscribe">
    </div>
 </form>
 </div>
