@@ -1,7 +1,7 @@
 <template>
-<div>
-  <slot></slot>
-</div>
+  <div>
+    <slot></slot>
+  </div>
 </template>
 
 <script>
@@ -22,11 +22,11 @@ export default {
       closeMethods: ["overlay", "button", "escape"],
       closeLabel: "Close",
       cssClass: ["custom-class-1", "custom-class-2"],
-      onOpen: function() {},
+      onOpen: function () {},
       onClose: () => {
         this.$emit("input", false);
       },
-      beforeClose: function() {
+      beforeClose: function () {
         // here's goes some logic
         // e.g. save content before closing the modal
         return true; // close the modal
@@ -59,6 +59,10 @@ export default {
   },
   watch: {
     value(val, oldVal) {
+      console.log(val)
+      if (!val) {
+        return this.modal.close();
+      }
       if (val) {
         // open modal
         this.modal.open();

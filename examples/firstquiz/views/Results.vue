@@ -196,7 +196,7 @@
           to="/retirement-options"
           aria-label="next page to retirement options"
         >
-          <button class="common-button" @click="emitComplete">
+          <button class="common-button">
             Check out retirement account options
           </button>
         </router-link>

@@ -50,8 +50,8 @@
             :activeQuestion="activeQuestion"
             :noButton="
               questions[questions.length - 1].id ===
-              (activeQuestionComponent() &&
-                activeQuestionComponent().question.id)
+                (activeQuestionComponent() &&
+                  activeQuestionComponent().question.id)
             "
           />
           <!-- Complete/Submit screen slots -->
@@ -98,9 +98,10 @@
       </div>
       <div class="d-flex flex-column progress-cicles">
         <div
-          :class="`d-flex justify-content-center progress-circle ${
-            activeQuestionIndex === index && 'active'
-          }`"
+          :class="
+            `d-flex justify-content-center progress-circle ${activeQuestionIndex ===
+              index && 'active'}`
+          "
           v-for="(question, index) in numOfQuestionInPathLenght"
           :key="index"
           @click="handleProgressBar(index)"
@@ -113,17 +114,17 @@
           <div
             v-if="
               this.activeQuestion &&
-              this.activeQuestion.answer &&
-              this.questions[this.questions.length - 1].answer &&
-              this.questions[this.questions.length - 1].id ===
-                (this.activeQuestion && this.activeQuestion.end_index)
+                this.activeQuestion.answer &&
+                this.questions[this.questions.length - 1].answer &&
+                this.questions[this.questions.length - 1].id ===
+                  (this.activeQuestion && this.activeQuestion.end_index)
             "
           >
-            <router-link to="/results">
-              <button class="complete-button" @click="emitComplete">
-                See My Results
-              </button>
-            </router-link>
+            <!-- <router-link to="/results"> -->
+            <button class="complete-button" @click="handleEmailPopup">
+              See My Results
+            </button>
+            <!-- </router-link> -->
           </div>
           <!-- <div v-else>
           <div
@@ -176,6 +177,13 @@
         </div> -->
         </div>
       </div>
+      <tingle-modal
+        v-model="isModalOpen"
+        heading="Get Early Access"
+        :content="body"
+        buttonText="Yes Subscribe"
+        :submit="onFormSubmit"
+      />
     </div>
   </div>
 </template>
@@ -184,25 +192,28 @@
 import FlowFormQuestion from "./Question.vue";
 import LanguageModel from "../models/LanguageModel";
 import { userInputs, localUserInputs } from "../../src/constants/index";
+import { body } from "../../examples/firstquiz/data/mail";
+import TingleModal from "../../examples/firstquiz/components/tingle-modal";
 export default {
   name: "FlowForm",
   components: {
     FlowFormQuestion,
+    TingleModal
   },
   props: {
     questions: Array,
     language: {
       type: LanguageModel,
-      default: () => new LanguageModel(),
+      default: () => new LanguageModel()
     },
     progressbar: {
       type: Boolean,
-      default: true,
+      default: true
     },
     standalone: {
       type: Boolean,
-      default: false,
-    },
+      default: false
+    }
   },
   data() {
     return {
@@ -212,12 +223,14 @@ export default {
       questionList: [],
       questionListActivePath: [],
       reverse: false,
+      body,
+      isModalOpen: false
     };
   },
   watch: {
     completed() {
       this.emitComplete();
-    },
+    }
   },
   mounted() {
     document.addEventListener("keydown", this.onKeyDownListener);
@@ -244,7 +257,7 @@ export default {
     },
     numCompletedQuestions() {
       let num = 0;
-      this.questionListActivePath.forEach((question) => {
+      this.questionListActivePath.forEach(question => {
         if (question.answered) {
           ++num;
         }
@@ -263,8 +276,8 @@ export default {
     // },
     numOfQuestionInPathLenght() {
       let count = 0;
-      count = this.questions.filter((que) => !que.index_id).length;
-      this.questions.forEach((que) => {
+      count = this.questions.filter(que => !que.index_id).length;
+      this.questions.forEach(que => {
         if (que.id === "entity") {
           if (que.answer === "soleProprietor" || que.answer === "partnership") {
             count--;
@@ -283,11 +296,31 @@ export default {
     },
     isOnLastStep() {
       return this.activeQuestionIndex === this.questionListActivePath.length;
-    },
+    }
   },
   methods: {
+    handleEmailPopup() {
+      let email = localStorage.getItem("email");
+      if (!email) {
+        this.isModalOpen = true;
+      } else {
+        this.$router.push({ name: "results" });
+      }
+    },
+    onFormSubmit() {
+        var mailformat = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,24}))$/;
+        let email = document.getElementById("mce-EMAIL");
+        if (email.value.match(mailformat)) {
+          document.getElementById("mc-embedded-subscribe").click();
+          this.isModalOpen = false;
+          localStorage.setItem("email", email.value);
+          setTimeout(() => {
+            this.$router.push({ name: "results" });
+          }, [100]);
+        }
+    },
     handleProgressBar(index) {
-      let isJump = this.questions.some((que) => {
+      let isJump = this.questions.some(que => {
         if (que.id === "entity") {
           return (
             que.answer === "soleProprietor" || que.answer === "partnership"
@@ -318,7 +351,7 @@ export default {
       this.setQuestionList();
     },
     isJump() {
-      const isJump = this.questions.some((que) => {
+      const isJump = this.questions.some(que => {
         if (que.id === "entity") {
           return (
             que.answer === "soleProprietor" || que.answer === "partnership"
@@ -347,7 +380,7 @@ export default {
         //   question.setIndex(serialIndex);
         // }
         if (question?.index_id) {
-          const i = this.questions.find((que) => que.id === question?.index_id)
+          const i = this.questions.find(que => que.id === question?.index_id)
             .index;
           if (i) {
             question.setIndex(i);
@@ -357,7 +390,7 @@ export default {
         }
         question.language = this.language;
         if (question.id === "salary") {
-          const entity = this.questions.find((item) => item.id === "entity")
+          const entity = this.questions.find(item => item.id === "entity")
             ?.answer;
 
           if (!["soleProprietor", "partnership"].includes(entity)) {
@@ -604,8 +637,8 @@ export default {
       document.activeElement &&
         document.activeElement.blur &&
         document.activeElement.blur();
-    },
-  },
+    }
+  }
 };
 </script>
 
