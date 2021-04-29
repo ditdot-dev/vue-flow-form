@@ -1,12 +1,11 @@
-
 .disabled-back-color {
   background: #bdbdbd !important;
 }
 
 .disabled-color {
-  background: #bdbdbd !important;
+  color: #bdbdbd !important;
 }
-.started-buttons{
+.started-buttons {
   text-align: center;
 }
 
@@ -60,10 +59,7 @@
 .r-container {
   display: grid;
   background-color: white;
-  grid-template-rows: 7vh 50vh minmax(170vh, min-content) minmax(
-      70vh,
-      min-content
-    );
+  grid-template-rows: 7vh 50vh minmax(170vh, min-content) minmax(70vh, min-content);
   grid-template-columns: 100vw;
   overflow: hidden;
   grid-template-areas:
@@ -1363,4 +1359,3 @@ p.percent {
     /* height: 80%; */
   }
 }
-

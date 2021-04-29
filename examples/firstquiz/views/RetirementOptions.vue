@@ -64,6 +64,7 @@
               :max="getRoundofValue"
               height="60px"
               :tooltip="'none'"
+              @drag-end="handleDragEndOfBigSlider"
             >
               <template v-slot:step="{ active, value }">
                 <div
@@ -300,7 +301,6 @@ import Loading from "vue-loading-overlay";
 import { usdFormat } from "../../util/usd-format";
 import restirementAccOption from "../components/retirement-acc-option";
 import restirementFooter from "../components/retirement-footer";
-
 import {
   firestore,
   USER_INPUTS,
@@ -381,6 +381,7 @@ export default {
     this.scrollToTop();
     this.containerDisablingCondition();
     this.projectedValue = roundOff((this.profitAfterTaxes / 100) * 10, 100);
+    this.handleDragEndOfBigSlider();
     const {
       personalMax_individual401k = 19500,
       businessMax_individual401k = 37500,
@@ -407,6 +408,99 @@ export default {
     this.handleTaxAdvantageRatioTooltip();
   },
   methods: {
+    async handleDragEndOfBigSlider() {
+      try {
+        const val = this.projectedValue;
+        this.loader = true;
+        await logging("loader starts");
+        console.log("loader starts");
+        const formattedValue = val / roundOff(this.profitAfterTaxes / 100);
+        this.percent =
+          formattedValue == Infinity ? 0 : Math.round(formattedValue);
+        const {
+          individual401kPersonal,
+          individual401kBusiness,
+          simpleIraPersonal,
+          simpleIraBusiness,
+          traditionalIraPersonal,
+          sepIraBusiness,
+        } = this.sliderMax;
+        this.sliders = {
+          individual401kPersonal: 0,
+          individual401kBusiness: 0,
+          sepIraBusiness: 0,
+          simpleIraPersonal: 0,
+          simpleIraBusiness: 0,
+          traditionalIraPersonal: 0,
+        };
+        if (!this.isIndividual401kDisabled) {
+          if (val > individual401kBusiness) {
+            if (val - individual401kBusiness > individual401kPersonal) {
+              this.sliders.individual401kPersonal = roundOff(
+                individual401kPersonal
+              );
+              this.sliders.individual401kBusiness = roundOff(
+                individual401kBusiness
+              );
+              await logging(
+                "Exceed maximum of Individual 401k contribution limit"
+              );
+            } else {
+              this.sliders.individual401kPersonal = roundOff(
+                val - individual401kBusiness
+              );
+              this.sliders.individual401kBusiness = roundOff(
+                individual401kBusiness
+              );
+            }
+          } else {
+            this.sliders.individual401kBusiness = val;
+          }
+        }
+        if (!this.isSimpleIraDisabled) {
+          if (val > simpleIraBusiness) {
+            if (val - simpleIraBusiness > simpleIraPersonal) {
+              this.sliders.simpleIraPersonal = roundOff(simpleIraPersonal);
+              this.sliders.simpleIraBusiness = roundOff(simpleIraBusiness);
+              await logging("Exceed maximum of SIMPLE IRA contribution limit");
+            } else {
+              this.sliders.simpleIraPersonal = roundOff(
+                val - simpleIraBusiness
+              );
+              this.sliders.simpleIraBusiness = roundOff(simpleIraBusiness);
+            }
+          } else {
+            this.sliders.simpleIraBusiness = roundOff(val);
+          }
+        }
+        if (val > traditionalIraPersonal) {
+          this.sliders.traditionalIraPersonal = traditionalIraPersonal;
+          await logging("Exceed maximum of Traditional IRA contribution limit");
+        } else {
+          this.sliders.traditionalIraPersonal = val;
+        }
+        if (val > sepIraBusiness) {
+          this.sliders.sepIraBusiness = sepIraBusiness;
+          await logging("Exceed maximum of SEP-IRA contribution limit");
+        } else {
+          this.sliders.sepIraBusiness = val;
+        }
+        const individual401k = await this.handleIndividualDrag();
+        this.handleTaxAvoidedTooltip(individual401k, "individual401k");
+        const sepIra = await this.handleSepIraDrag();
+        this.handleTaxAvoidedTooltip(sepIra, "sepIra");
+        const simpleIra = await this.handleSimpleIra();
+        this.handleTaxAvoidedTooltip(simpleIra, "simpleIra");
+        const traditionalIra = await this.handleTraditionalIra();
+        this.handleTaxAvoidedTooltip(traditionalIra, "traditionalIra");
+        this.loader = false;
+        await this.addInFirebase();
+        await logging("loader ends");
+        console.log("loader ends");
+      } catch (error) {
+        console.log(error);
+      }
+    },
     scrollToTop() {
       window.scrollTo(0, 0);
     },
@@ -774,89 +868,96 @@ export default {
       this.projectedValue = roundOff((this.profitAfterTaxes / 100) * val, 100);
     },
     async projectedValue(val) {
-      this.loader = true;
-      await logging("loader starts");
-      const formattedValue = val / roundOff(this.profitAfterTaxes / 100);
-      this.percent =
-        formattedValue == Infinity ? 0 : Math.round(formattedValue);
-      const {
-        individual401kPersonal,
-        individual401kBusiness,
-        simpleIraPersonal,
-        simpleIraBusiness,
-        traditionalIraPersonal,
-        sepIraBusiness,
-      } = this.sliderMax;
-      this.sliders = {
-        individual401kPersonal: 0,
-        individual401kBusiness: 0,
-        sepIraBusiness: 0,
-        simpleIraPersonal: 0,
-        simpleIraBusiness: 0,
-        traditionalIraPersonal: 0,
-      };
-      if (!this.isIndividual401kDisabled) {
-        if (val > individual401kBusiness) {
-          if (val - individual401kBusiness > individual401kPersonal) {
-            this.sliders.individual401kPersonal = roundOff(
-              individual401kPersonal
-            );
-            this.sliders.individual401kBusiness = roundOff(
-              individual401kBusiness
-            );
-            await logging(
-              "Exceed maximum of Individual 401k contribution limit"
-            );
-          } else {
-            this.sliders.individual401kPersonal = roundOff(
-              val - individual401kBusiness
-            );
-            this.sliders.individual401kBusiness = roundOff(
-              individual401kBusiness
-            );
-          }
-        } else {
-          this.sliders.individual401kBusiness = val;
-        }
-      }
-      if (!this.isSimpleIraDisabled) {
-        if (val > simpleIraBusiness) {
-          if (val - simpleIraBusiness > simpleIraPersonal) {
-            this.sliders.simpleIraPersonal = roundOff(simpleIraPersonal);
-            this.sliders.simpleIraBusiness = roundOff(simpleIraBusiness);
-            await logging("Exceed maximum of SIMPLE IRA contribution limit");
-          } else {
-            this.sliders.simpleIraPersonal = roundOff(val - simpleIraBusiness);
-            this.sliders.simpleIraBusiness = roundOff(simpleIraBusiness);
-          }
-        } else {
-          this.sliders.simpleIraBusiness = roundOff(val);
-        }
-      }
-      if (val > traditionalIraPersonal) {
-        this.sliders.traditionalIraPersonal = traditionalIraPersonal;
-        await logging("Exceed maximum of Traditional IRA contribution limit");
-      } else {
-        this.sliders.traditionalIraPersonal = val;
-      }
-      if (val > sepIraBusiness) {
-        this.sliders.sepIraBusiness = sepIraBusiness;
-        await logging("Exceed maximum of SEP-IRA contribution limit");
-      } else {
-        this.sliders.sepIraBusiness = val;
-      }
-
-      const individual401k = await this.handleIndividualDrag();
-      this.handleTaxAvoidedTooltip(individual401k, "individual401k");
-      const sepIra = await this.handleSepIraDrag();
-      this.handleTaxAvoidedTooltip(sepIra, "sepIra");
-      const simpleIra = await this.handleSimpleIra();
-      this.handleTaxAvoidedTooltip(simpleIra, "simpleIra");
-      const traditionalIra = await this.handleTraditionalIra();
-      this.handleTaxAvoidedTooltip(traditionalIra, "traditionalIra");
-      this.loader = false;
-      await this.addInFirebase();
-      await logging("loader ends");
+      // try {
+      //   this.loader = true;
+      //   await logging("loader starts");
+      //   console.log("loader starts");
+      //   const formattedValue = val / roundOff(this.profitAfterTaxes / 100);
+      //   this.percent =
+      //     formattedValue == Infinity ? 0 : Math.round(formattedValue);
+      //   const {
+      //     individual401kPersonal,
+      //     individual401kBusiness,
+      //     simpleIraPersonal,
+      //     simpleIraBusiness,
+      //     traditionalIraPersonal,
+      //     sepIraBusiness,
+      //   } = this.sliderMax;
+      //   this.sliders = {
+      //     individual401kPersonal: 0,
+      //     individual401kBusiness: 0,
+      //     sepIraBusiness: 0,
+      //     simpleIraPersonal: 0,
+      //     simpleIraBusiness: 0,
+      //     traditionalIraPersonal: 0,
+      //   };
+      //   if (!this.isIndividual401kDisabled) {
+      //     if (val > individual401kBusiness) {
+      //       if (val - individual401kBusiness > individual401kPersonal) {
+      //         this.sliders.individual401kPersonal = roundOff(
+      //           individual401kPersonal
+      //         );
+      //         this.sliders.individual401kBusiness = roundOff(
+      //           individual401kBusiness
+      //         );
+      //         await logging(
+      //           "Exceed maximum of Individual 401k contribution limit"
+      //         );
+      //       } else {
+      //         this.sliders.individual401kPersonal = roundOff(
+      //           val - individual401kBusiness
+      //         );
+      //         this.sliders.individual401kBusiness = roundOff(
+      //           individual401kBusiness
+      //         );
+      //       }
+      //     } else {
+      //       this.sliders.individual401kBusiness = val;
+      //     }
+      //   }
+      //   if (!this.isSimpleIraDisabled) {
+      //     if (val > simpleIraBusiness) {
+      //       if (val - simpleIraBusiness > simpleIraPersonal) {
+      //         this.sliders.simpleIraPersonal = roundOff(simpleIraPersonal);
+      //         this.sliders.simpleIraBusiness = roundOff(simpleIraBusiness);
+      //         await logging("Exceed maximum of SIMPLE IRA contribution limit");
+      //       } else {
+      //         this.sliders.simpleIraPersonal = roundOff(
+      //           val - simpleIraBusiness
+      //         );
+      //         this.sliders.simpleIraBusiness = roundOff(simpleIraBusiness);
+      //       }
+      //     } else {
+      //       this.sliders.simpleIraBusiness = roundOff(val);
+      //     }
+      //   }
+      //   if (val > traditionalIraPersonal) {
+      //     this.sliders.traditionalIraPersonal = traditionalIraPersonal;
+      //     await logging("Exceed maximum of Traditional IRA contribution limit");
+      //   } else {
+      //     this.sliders.traditionalIraPersonal = val;
+      //   }
+      //   if (val > sepIraBusiness) {
+      //     this.sliders.sepIraBusiness = sepIraBusiness;
+      //     await logging("Exceed maximum of SEP-IRA contribution limit");
+      //   } else {
+      //     this.sliders.sepIraBusiness = val;
+      //   }
+      //   const individual401k = await this.handleIndividualDrag();
+      //   this.handleTaxAvoidedTooltip(individual401k, "individual401k");
+      //   const sepIra = await this.handleSepIraDrag();
+      //   this.handleTaxAvoidedTooltip(sepIra, "sepIra");
+      //   const simpleIra = await this.handleSimpleIra();
+      //   this.handleTaxAvoidedTooltip(simpleIra, "simpleIra");
+      //   const traditionalIra = await this.handleTraditionalIra();
+      //   this.handleTaxAvoidedTooltip(traditionalIra, "traditionalIra");
+      //   this.loader = false;
+      //   // await this.addInFirebase();
+      //   // await logging("loader ends");
+      //   console.log("loader starts");
+      // } catch (error) {
+      //   console.log(error);
+      // }
     },
     taxAvoided: {
       async handler(val) {

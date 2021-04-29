@@ -222,48 +222,48 @@ export default {
   name: "Results",
   components: {
     infoIcon,
-    Loading
+    Loading,
   },
   data() {
     return {
       progressiveTax,
       async function() {
         await logging(this.$store);
-      }
+      },
     };
   },
   // using computed since the data is reactive and will not change even if refreshed
   computed: {
     ...Vuex.mapState("userInformation", {
-      totalIncome: state => state.taxSummary.totalIncome,
-      profitAfterExpenses: state => state.taxSummary.profitAfterExpenses,
-      taxBalance: state => state.taxUpdate.taxBalance,
-      profitAfterTaxes: state => state.taxSummary.profitAfterTaxes,
-      totalDeduction: state => state.taxSummary.totalDeduction,
-      qbiDeduction: state => state.taxUpdate.qbiDeduction,
-      name: state => state.userInput.first_name + "'s",
-      businessName: state => state.userInput.business_name,
-      expenses: state => state.userInput.expenses,
-      filing_state: state => state.userInput.tax_filing_state,
-      medicareTax: state => state.taxUpdate.medicareTax,
-      socialSecurityTax: state => state.taxUpdate.socialSecurityTax,
-      selfEmploymentTax: state => state.taxUpdate.selfEmploymentTax,
-      stateIncomeTax: state => state.taxUpdate.stateIncomeTax,
-      federalIncomeTax: state => state.taxUpdate.federalIncomeTax,
-      effectiveTaxRate: state => state.taxUpdate.smartTaxRate,
-      userInput: state => state.userInput,
-      totalDeduction: state => state.taxSummary.totalDeduction,
-      totalFederalTax: state => state.taxSummary.totalFederalTax,
-      getProgressiveTax: state => state.progressiveTax,
-      totalTaxBalance: state => state.taxUpdate.totalTaxBalance,
-      totalProfitAfterTaxes: state => state.taxSummary.totalProfitAfterTaxes
+      totalIncome: (state) => state.taxSummary.totalIncome,
+      profitAfterExpenses: (state) => state.taxSummary.profitAfterExpenses,
+      taxBalance: (state) => state.taxUpdate.taxBalance,
+      profitAfterTaxes: (state) => state.taxSummary.profitAfterTaxes,
+      totalDeduction: (state) => state.taxSummary.totalDeduction,
+      qbiDeduction: (state) => state.taxUpdate.qbiDeduction,
+      name: (state) => state.userInput.first_name + "'s",
+      businessName: (state) => state.userInput.business_name,
+      expenses: (state) => state.userInput.expenses,
+      filing_state: (state) => state.userInput.tax_filing_state,
+      medicareTax: (state) => state.taxUpdate.medicareTax,
+      socialSecurityTax: (state) => state.taxUpdate.socialSecurityTax,
+      selfEmploymentTax: (state) => state.taxUpdate.selfEmploymentTax,
+      stateIncomeTax: (state) => state.taxUpdate.stateIncomeTax,
+      federalIncomeTax: (state) => state.taxUpdate.federalIncomeTax,
+      effectiveTaxRate: (state) => state.taxUpdate.smartTaxRate,
+      userInput: (state) => state.userInput,
+      totalDeduction: (state) => state.taxSummary.totalDeduction,
+      totalFederalTax: (state) => state.taxSummary.totalFederalTax,
+      getProgressiveTax: (state) => state.progressiveTax,
+      totalTaxBalance: (state) => state.taxUpdate.totalTaxBalance,
+      totalProfitAfterTaxes: (state) => state.taxSummary.totalProfitAfterTaxes,
     }),
     ...Vuex.mapState("loader", {
-      loader: state => state.loader
-    })
+      loader: (state) => state.loader,
+    }),
   },
   methods: {},
-  mounted() {}
+  mounted() {},
 };
 </script>
 <style scoped src="../css/results.css"></style>
