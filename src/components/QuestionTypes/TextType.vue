@@ -35,6 +35,7 @@
       v-bind:max="question.max"
       v-on:change="onChange"
       v-bind:placeholder="placeholder"
+      v-bind:maxlength="question.maxLength"
     />
   </span>
 </template>
@@ -59,10 +60,10 @@
 
     data() {
       return {
-        inputType: 'text', 
+        inputType: 'text',
         canReceiveFocus: true
       }
-    }, 
+    },
 
     methods: {
       validate() {
