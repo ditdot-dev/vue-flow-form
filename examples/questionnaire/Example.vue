@@ -103,6 +103,37 @@
             required: true,
             placeholder: 'Start typing here...'
           }),
+           new QuestionModel({
+            id: 'multiple_choice_image',
+            tagline: "Let's take it one step further...",
+            title: 'Tell us what is your favorite social network hangout.',
+            helpTextShow: false,
+            type: QuestionType.MultiplePictureChoice,
+            multiple: false,
+            required: true,
+            options: [
+              new ChoiceOption({
+                imageSrc: require('./assets/images/facebook.png'),
+                imageAlt: 'Facebook logo',
+                label: 'Facebook'
+              }),
+              new ChoiceOption({
+                imageSrc: require('./assets/images/twitter.png'),
+                imageAlt: 'Twitter logo',
+                label: 'Twitter'
+              }),
+              new ChoiceOption({
+                imageSrc: require('./assets/images/instagram.png'),
+                imageAlt: 'Instagram logo',
+                label: 'Instagram'
+              }),
+              new ChoiceOption({
+                imageSrc: require('./assets/images/tiktok.png'),
+                imageAlt: 'TikTok logo',
+                label: 'TikTok'
+              }),
+            ]
+          }),
           new QuestionModel({
             id: 'phone',
             title: 'Doing great! 👍 Go ahead and try with a phone number.',

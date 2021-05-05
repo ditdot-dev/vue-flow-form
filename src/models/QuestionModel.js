@@ -12,6 +12,7 @@ export const QuestionType = Object.freeze({
   Email: 'FlowFormEmailType',
   LongText: 'FlowFormLongTextType',
   MultipleChoice: 'FlowFormMultipleChoiceType',
+  MultiplePictureChoice: 'FlowFormMultiplePictureChoiceType',
   Number: 'FlowFormNumberType',
   Password: 'FlowFormPasswordType',
   Phone: 'FlowFormPhoneType',
@@ -37,6 +38,8 @@ export class ChoiceOption {
     this.label = ''
     this.value = null
     this.selected = false
+    this.imageSrc = null
+    this.imageAlt = null
 
     Object.assign(this, options)
   }
@@ -47,8 +50,12 @@ export class ChoiceOption {
 
   choiceValue() {
     // Returns the value if it's anything other than the default (null).
-    // Returns label if the value has not been set.
-    return this.value !== null ? this.value : this.label
+    if (this.value !== null) {
+      return this.value
+    }
+
+    // Returns any other non-empty property if the value has not been set.
+    return this.label || this.imageAlt || this.imageSrc
   }
 
   toggle() {
@@ -95,6 +102,7 @@ export default class QuestionModel {
     this.descriptionLink = []
     this.min = null
     this.max = null
+    this.maxLength = null
     this.nextStepOnAnswer = false
 
     Object.assign(this, options)
@@ -107,7 +115,7 @@ export default class QuestionModel {
       if (!this.placeholder) {
         this.placeholder = this.mask
       }
-    } 
+    }
 
     if (this.type === QuestionType.Url) {
       this.mask = null
@@ -117,17 +125,11 @@ export default class QuestionModel {
       this.placeholder = 'yyyy-mm-dd'
     }
 
-    if (this.multiple) {
-      this.answer = []
-    }
-  }
-
-  setAnswer(answer) {
-    if (this.type === QuestionType.Number && answer !== '' && !isNaN(+answer)) {
-      answer = +answer
+    if (this.multiple && !Array.isArray(this.answer)) {
+      this.answer = this.answer ? [this.answer] : []
     }
 
-    this.answer = answer
+    this.resetOptions()
   }
 
   getJumpId() {
@@ -144,11 +146,51 @@ export default class QuestionModel {
     return nextId
   }
 
+  setAnswer(answer) {
+    if (this.type === QuestionType.Number && answer !== '' && !isNaN(+answer)) {
+      answer = +answer
+    }
+
+    this.answer = answer
+  }
+
   setIndex(index) {
     if (!this.id) {
       this.id = 'q_' + index
     }
 
     this.index = index
+  }
+
+  resetOptions() {
+    if (this.options) {
+      const isArray = Array.isArray(this.answer)
+      let numSelected = 0
+
+      this.options.forEach(o => {
+        const optionValue = o.choiceValue()
+
+        if (this.answer === optionValue || (isArray && this.answer.indexOf(optionValue) !== -1)) {
+          o.selected = true
+          ++numSelected
+        }
+      })
+
+      if (this.allowOther) {
+        let otherAnswer = null
+
+        if (isArray) {
+          if (this.answer.length && this.answer.length !== numSelected) {
+            otherAnswer = this.answer[this.answer.length - 1]
+          }
+        } else if (this.options.map(o => o.choiceValue()).indexOf(this.answer) === -1) {
+          otherAnswer = this.answer
+        }
+
+        if (otherAnswer !== null) {
+          this.other = otherAnswer
+        }
+      }
+    }
   }
 }

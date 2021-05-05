@@ -9,33 +9,40 @@
         v-bind:aria-label="getLabel(index)"
         role="option"
       >
-        <span class="f-key">{{ getToggleKey(index) }}</span>
-        <span class="f-label">{{ option.choiceLabel() }}</span>
+        <span class="f-image" v-if="hasImages && option.imageSrc">
+          <img v-bind:src="option.imageSrc" v-bind:alt="option.imageAlt">
+        </span>
+        <div class="f-label-wrap">
+          <span class="f-key">{{ getToggleKey(index) }}</span>
+          <span v-if="option.choiceLabel()" class="f-label">{{ option.choiceLabel() }}</span>
+        </div>
       </li>
       <li
         class="f-other"
-        v-if="question.allowOther"
+        v-if="!hasImages && question.allowOther"
         v-on:click.prevent="startEditOther"
         v-bind:class="{'f-selected': question.other, 'f-focus': editingOther}"
         v-bind:aria-label="language.ariaTypeAnswer"
         role="option"
       >
-        <span class="f-key" v-if="!editingOther">{{ getToggleKey(question.options.length) }}</span>
-        <input
-          v-if="editingOther"
-          v-model="question.other"
-          type="text"
-          ref="otherInput"
-          v-on:blur="stopEditOther"
-          v-on:keyup.enter.prevent="stopEditOther"
-          v-on:keyup="onChangeOther"
-          v-on:change="onChangeOther"
-          maxlength="256"
-        />
-        <span v-else-if="question.other" class="f-selected">
-          <span class="f-label">{{ question.other }}</span>
-        </span>
-        <span v-else class="f-label">{{ language.otherPrompt }}</span>
+        <div class="f-label-wrap">
+          <span class="f-key" v-if="!editingOther">{{ getToggleKey(question.options.length) }}</span>
+          <input
+            v-if="editingOther"
+            v-model="question.other"
+            type="text"
+            ref="otherInput"
+            v-on:blur="stopEditOther"
+            v-on:keyup.enter.prevent="stopEditOther"
+            v-on:keyup="onChangeOther"
+            v-on:change="onChangeOther"
+            maxlength="256"
+          />
+          <span v-else-if="question.other" class="f-selected">
+            <span class="f-label">{{ question.other }}</span>
+          </span>
+          <span v-else class="f-label">{{ language.otherPrompt }}</span>
+        </div>
       </li>
     </ul>
   </div>
@@ -57,15 +64,12 @@
 
     data() {
       return {
-        editingOther: false
+        editingOther: false,
+        hasImages: false
       }
     },
 
     mounted() {
-      if (this.question.multiple) {
-        this.dataValue = []
-      }
-
       this.addKeyListener()
     },
 
@@ -154,18 +158,20 @@
       },
 
       _toggleAnswer(option) {
+        const optionValue = option.choiceValue()
+
         option.toggle()
 
         if (this.question.multiple) {
           this.enterPressed = false
 
           if (!option.selected) {
-            this._removeAnswer(option.choiceValue())
-          } else {
-            this.dataValue.push(option.choiceValue())
+            this._removeAnswer(optionValue)
+          } else if (this.dataValue.indexOf(optionValue) === -1) {
+            this.dataValue.push(optionValue)
           }
         } else {
-          this.dataValue = option.selected ? option.choiceValue() : null
+          this.dataValue = option.selected ? optionValue : null
         }
 
         if (this.isValid() && this.question.nextStepOnAnswer && !this.question.multiple) {

@@ -143,23 +143,22 @@ And then in your App.vue file:
 HTML:
 
 ```html
+<!DOCTYPE html>
 <html>
   <head>
     <!-- Requires Vue version 2.6.x -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.min.js"></script>
     <!-- Flow Form -->
-    <script src="https://unpkg.com/@ditdot-dev/vue-flow-form@1.1.6"></script>
+    <script src="https://unpkg.com/@ditdot-dev/vue-flow-form@1.1.7"></script>
     <!-- Flow Form base CSS -->
-    <link rel="stylesheet" href="https://unpkg.com/@ditdot-dev/vue-flow-form@1.1.6/dist/vue-flow-form.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/@ditdot-dev/vue-flow-form@1.1.7/dist/vue-flow-form.min.css">
     <!-- Optional theme.css -->
-    <link rel="stylesheet" href="https://unpkg.com/@ditdot-dev/vue-flow-form@1.1.6/dist/vue-flow-form.theme-minimal.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/@ditdot-dev/vue-flow-form@1.1.7/dist/vue-flow-form.theme-minimal.min.css">
     <!-- Optional font -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;900&amp;display=swap">
   </head>
   <body>
-    <div id="app">
-      <flow-form v-bind:questions="questions" v-bind:language="language" />
-    </div>
+    <div id="app"></div>
     <script src="app.js"></script>
   </body>
 </html>
@@ -170,6 +169,7 @@ JavaScript (content of app.js):
 ```js
 var app = new Vue({
   el: '#app',
+  template: '<flow-form v-bind:questions="questions" v-bind:language="language" />',
   data: function() {
     return {
       language: new FlowForm.LanguageModel({

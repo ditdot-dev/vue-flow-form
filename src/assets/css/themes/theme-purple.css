@@ -116,13 +116,13 @@ header.vff-header svg.f-logo{
 }
 
 /*faux input type date placeholder for iOS*/
-.vff.vff-is-ios .field-datetype:not(.f-has-value) .f-answer > span::before{
+.vff.vff-is-ios .field-date:not(.f-has-value) .f-answer > span::before{
   color: var(--vff-secondary-text-color);
   font-weight: 300;
   font-size: .72em;
 }
 
-/*field-multiplechoicetype*/
+/*field-multiplechoice*/
 .vff ul.f-radios li {
   border: 1px solid var(--vff-secondary-form-bg-color);
   background-color: var(--vff-main-form-bg-color);
@@ -143,7 +143,7 @@ header.vff-header svg.f-logo{
   color: var(--vff-field-key-color);
 }
 
-/*field-dropdowntype*/
+/*field-dropdown*/
 .vff span.f-empty {
   color: var(--vff-secondary-text-color);
 }
@@ -265,7 +265,7 @@ header.vff-header svg.f-logo{
     background-color: rgba(44,62,80,0.8);
   }
 
-  /*field-multiplechoicetype*/
+  /*field-multiplechoice*/
   .vff .f-key {
     font-weight: 400;
   }

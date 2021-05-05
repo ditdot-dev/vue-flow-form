@@ -1,5 +1,6 @@
 // Import vue component
 import FlowForm from './components/FlowForm.vue'
+import Question from './components/Question.vue'
 import QuestionModel, { QuestionType, ChoiceOption, LinkOption, MaskPresets } from './models/QuestionModel'
 import LanguageModel from './models/LanguageModel'
 
@@ -33,6 +34,7 @@ if (GlobalVue) {
 export default FlowForm
 
 export {
+  Question,
   QuestionModel,
   QuestionType,
   ChoiceOption,

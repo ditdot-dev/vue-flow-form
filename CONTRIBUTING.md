@@ -23,6 +23,7 @@
 ## Creating a pull request
 
 * Make your changes on a feature branch. Follow the code style of the project, including indentation.
+* Make sure your commit messages are short, descriptive, and written in English.
 * Create a new PR with the code changes.
 * The PR description should clearly describe the problem and solution, with a reference to the appropriate issue if applicable.
 

@@ -16,6 +16,8 @@
           v-bind:reverse="reverse"
         />
 
+        <slot></slot>
+
         <!-- Complete/Submit screen slots -->   
         <div v-if="isOnLastStep" class="vff-animate f-fade-in-up field-submittype">
           <slot name="complete">
@@ -127,8 +129,8 @@
     https://www.ditdot.hr/en
   */
 
-  import FlowFormQuestion from './Question.vue'
-  import QuestionModel from '../models/QuestionModel'
+  import FlowFormQuestion from './FlowFormQuestion.vue'
+  import QuestionModel, { ChoiceOption, LinkOption, QuestionType } from '../models/QuestionModel'
   import LanguageModel from '../models/LanguageModel'
   import { IsMobile } from '../mixins/IsMobile'
 
@@ -139,7 +141,7 @@
     },
     
     props: {
-      questions:{
+      questions: {
         type: Array,
         validator: value => value.every(q => q instanceof QuestionModel)
       }, 
@@ -217,7 +219,7 @@
       },
 
       activeQuestionId() {
-        const question = this.questions[this.activeQuestionIndex]
+        const question = this.questionModels[this.activeQuestionIndex]
 
         if (this.isOnLastStep) {
           return '_submit'
@@ -276,6 +278,95 @@
         }
 
         return false
+      },
+
+      questionModels: {
+        cache: false,
+
+        get() {
+          if (this.questions && this.questions.length) {
+            return this.questions
+          }
+
+          const questions = []
+
+          if (!this.questions) {
+            const classMap = {
+              'options': ChoiceOption,
+              'descriptionLink': LinkOption
+            }
+
+            this
+              .$slots
+              .default
+              .filter(q => q.tag && q.tag.indexOf('Question') !== -1)
+              .forEach(q => {
+                const attrs = q.data.attrs
+                let model = new QuestionModel()
+
+                if (q.componentInstance.question !== null) {
+                  model = q.componentInstance.question
+                } 
+
+                if (q.data.model) {
+                  model.answer = q.data.model.value
+                }
+
+                Object.keys(model).forEach(key => {
+                  if (attrs[key] !== undefined) {
+                    if (typeof model[key] === 'boolean') {
+                      model[key] = attrs[key] !== false
+                    } else if (key in classMap) {
+                      const
+                        classReference = classMap[key],
+                        options = []
+
+                      attrs[key].forEach(option => {
+                        const instance = new classReference()
+
+                        Object.keys(instance).forEach(instanceKey => {
+                          if (option[instanceKey] !== undefined) {
+                            instance[instanceKey] = option[instanceKey]
+                          }
+                        })
+
+                        options.push(instance)
+                      })
+
+                      model[key] = options
+                    } else {
+                      switch(key) {
+                        case 'type':
+                          if (Object.values(QuestionType).indexOf(attrs[key]) !== -1) {
+                            model[key] = attrs[key]
+                          } else {
+                            for (const questionTypeKey in QuestionType) {
+                              if (questionTypeKey.toLowerCase() === attrs[key].toLowerCase()) {
+                                model[key] = QuestionType[questionTypeKey]
+                                break
+                              }
+                            }
+                          }
+                          break
+
+                        default:
+                          model[key] = attrs[key]
+                          break
+                      }
+                    }
+                  }
+                })
+
+                q.componentInstance.question = model
+
+                model.resetOptions()
+
+                questions.push(model)
+              })
+          }
+
+          return questions
+        }
       }
     },
 
@@ -303,7 +394,7 @@
       setQuestionListActivePath() {
         const questions = []
 
-        if (!this.questions.length) {
+        if (!this.questionModels.length) {
           return
         }
 
@@ -313,7 +404,7 @@
           nextId
 
         do {
-          let question = this.questions[index]
+          let question = this.questionModels[index]
 
           question.setIndex(serialIndex)
           question.language = this.language
@@ -326,10 +417,10 @@
             nextId = question.getJumpId()
             if (nextId) {
               if (nextId === '_submit') {
-                index = this.questions.length
+                index = this.questionModels.length
               } else {
-                for (let i = 0; i < this.questions.length; i++) {
-                  if (this.questions[i].id === nextId) {
+                for (let i = 0; i < this.questionModels.length; i++) {
+                  if (this.questionModels[i].id === nextId) {
                     index = i
                     break
                   }
@@ -339,11 +430,11 @@
               ++index
             }
           } else {
-            index = this.questions.length
+            index = this.questionModels.length
           }
 
           ++serialIndex
-        } while (index < this.questions.length)
+        } while (index < this.questionModels.length)
 
         this.questionListActivePath = questions
       },
@@ -496,13 +587,15 @@
        */
       onQuestionAnswered(question) {
         if (question.isValid()) {
-          this.$emit('answer', question)
+          this.$emit('answer', question.question)
 
           if (this.activeQuestionIndex < this.questionListActivePath.length) {
             ++this.activeQuestionIndex
           }
          
           this.$nextTick(() => {
+            this.reverse = false
+
             this.setQuestions()
             this.checkTimer()
             // Nested $nextTick so we're 100% sure that setQuestions

@@ -13,6 +13,7 @@
       v-on:focus="setFocus"
       v-on:blur="unsetFocus"
       v-bind:placeholder="placeholder"
+      v-bind:maxlength="question.maxLength"
     />
   </span>
 </template>
