@@ -13,15 +13,19 @@
 
   export default {
     name: 'FlowFormBaseType',
+
     props: {
       language: LanguageModel,
       question: QuestionModel,
       active: Boolean,
+      disabled: Boolean,
       modelValue: [String, Array, Boolean, Number, Object]
     },
+
     mixins: [
       IsMobile,
     ],
+
     data() {
       return {
         dirty: false,
@@ -34,6 +38,7 @@
         canReceiveFocus: false
       }
     },
+
     mounted() {
       if (this.question.answer) {
         this.dataValue = this.answer = this.question.answer
@@ -41,6 +46,7 @@
         this.dataValue = []
       }
     },
+
     methods: {
       /**
        * This method can be overriden in custom components to 

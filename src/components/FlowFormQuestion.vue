@@ -22,6 +22,7 @@
                   v-bind:language="language"
                   v-model="dataValue"
                   v-bind:active="active"
+                  v-bind:disabled="disabled"
                   v-on:next="onEnter"
                 />
               </span>
@@ -45,6 +46,7 @@
               v-bind:language="language"
               v-model="dataValue"
               v-bind:active="active"
+              v-bind:disabled="disabled"
               v-on:next="onEnter"
             />
           </div>
@@ -70,10 +72,11 @@
           v-on:click.prevent="onEnter"
           v-bind:aria-label="language.ariaOk"
         >
-            <span v-if="question.type === QuestionType.SectionBreak">{{ language.continue }}</span>
-            <span v-else-if="showSkip()">{{ language.skip }}</span>
-            <span v-else>{{ language.ok }}</span>
+          <span v-if="question.type === QuestionType.SectionBreak">{{ language.continue }}</span>
+          <span v-else-if="showSkip()">{{ language.skip }}</span>
+          <span v-else>{{ language.ok }}</span>
         </button>
+
         <a 
           class="f-enter-desc"
           href="#"
@@ -114,6 +117,7 @@
 
   export default {
     name: 'FlowFormQuestion',
+
     components: {
       FlowFormDateType,
       FlowFormDropdownType,
@@ -128,6 +132,7 @@
       FlowFormTextType,
       FlowFormUrlType
     },
+
     props: {
       question: QuestionModel,
       language: LanguageModel,
@@ -139,11 +144,17 @@
       reverse: {
         type: Boolean,
         default: false
+      },
+      disabled: {
+        type: Boolean,
+        default: false
       }
     },
+
     mixins: [
       IsMobile
     ],
+
     data() {
       return {
         QuestionType: QuestionType,
@@ -151,15 +162,19 @@
         debounced: false
       }
     },
+
     mounted() {
       this.focusField()
+
       this.dataValue = this.question.answer
 
       this.$refs.qanimate.addEventListener('animationend', this.onAnimationEnd)
     },
+
     beforeDestroy() {
       this.$refs.qanimate.removeEventListener('animationend', this.onAnimationEnd)
     },
+
     methods: {
       /**
        * Autofocus the input box of the current question
@@ -202,8 +217,13 @@
       checkAnswer(fn) {
         const q = this.$refs.questionComponent
 
-        if (q.isValid() && this.question.nextStepOnAnswer && !this.question.multiple) {
-          this.debounce(() => fn(q), 350)
+        if (q.isValid() && this.question.isMultipleChoiceType() && this.question.nextStepOnAnswer &&  !this.question.multiple) {
+          this.$emit('disable', true)
+
+          this.debounce(() => {
+            fn(q)
+            this.$emit('disable', false)
+          }, 350)
         } else {
           fn(q)
         }
@@ -256,7 +276,7 @@
           return true
         }
 
-        if (QuestionType.MultipleChoice && !this.question.multiple && this.question.nextStepOnAnswer) {
+        if (this.question.isMultipleChoiceType() && !this.question.multiple && this.question.nextStepOnAnswer) {
           return false
         }
       
@@ -290,6 +310,7 @@
         return q.showInvalid()
       }
     },
+
     computed: {
       mainClasses: {
         cache: false,

@@ -14,6 +14,8 @@
           v-model="q.answer"
           v-on:answer="onQuestionAnswered"
           v-bind:reverse="reverse"
+          v-bind:disabled="disabled"
+          v-on:disable="setDisabled"
         />
 
         <slot></slot>
@@ -184,7 +186,8 @@
         reverse: false,
         timerOn: false,
         timerInterval: null,
-        time: 0
+        time: 0,
+        disabled: false
       }
     },
 
@@ -526,6 +529,10 @@
       },
 
       emitEnter() {
+        if (this.disabled) {
+          return
+        }
+
         const q = this.activeQuestionComponent()
 
         if (q) {
@@ -702,6 +709,10 @@
         }
 
         return new Date(1000 * seconds).toISOString().substr(startIndex, length)
+      },
+
+      setDisabled(state) {
+        this.disabled = state
       }
     },
 

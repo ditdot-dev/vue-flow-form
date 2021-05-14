@@ -193,4 +193,8 @@ export default class QuestionModel {
       }
     }
   }
+
+  isMultipleChoiceType() {
+    return [QuestionType.MultipleChoice, QuestionType.MultiplePictureChoice].includes(this.type)
+  }
 }
