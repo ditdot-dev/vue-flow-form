@@ -4,9 +4,6 @@ import Question from './components/Question.vue'
 import QuestionModel, { QuestionType, ChoiceOption, LinkOption, MaskPresets } from './models/QuestionModel'
 import LanguageModel from './models/LanguageModel'
 
-// IE11 Object.assign polyfill
-import 'es6-object-assign/auto'
-
 // Declare install function executed by Vue.use()
 export function install(Vue) {
   if (install.installed) return
