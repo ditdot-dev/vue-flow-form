@@ -15,11 +15,14 @@ const globals = {
   vue: 'Vue'
 }
 
+const external = ['vue']
+
 const componentName = 'VueFlowForm'
 
 export default [
   {
     input: 'src/main.js',
+    external,
     output: {
       name: componentName,
       exports: 'named',
@@ -63,6 +66,7 @@ export default [
   },
   {
     input: 'src/main.js',
+    external,
     output: {
       name: componentName,
       exports: 'named',
@@ -103,6 +107,7 @@ export default [
   },
   {
     input: 'src/main.js',
+    external,
     output: {
       name: componentName,
       exports: 'named',
@@ -143,6 +148,7 @@ export default [
   },
   {
     input: 'src/main.js',
+    external,
     output: {
       name: componentName,
       exports: 'named',
