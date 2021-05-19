@@ -3,7 +3,7 @@
     <textarea-autosize
       ref="input"
       rows="1"
-      v-bind:value="value"
+      v-bind:value="modelValue"
       v-bind:required="question.required"
       v-on:keydown="onKeyDown"
       v-on:keyup="onChange"
