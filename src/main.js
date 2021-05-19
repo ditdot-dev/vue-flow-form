@@ -5,9 +5,8 @@ import QuestionModel, { QuestionType, ChoiceOption, LinkOption, MaskPresets } fr
 import LanguageModel from './models/LanguageModel'
 
 // To allow use as module (npm/webpack/etc.) export component
-export default FlowForm
-
 export {
+  FlowForm,
   Question,
   QuestionModel,
   QuestionType,

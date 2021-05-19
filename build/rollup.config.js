@@ -15,7 +15,7 @@ const globals = {
   vue: 'Vue'
 }
 
-const componentName = 'FlowForm'
+const componentName = 'VueFlowForm'
 
 export default [
   {
