@@ -10,14 +10,8 @@ import { terser } from 'rollup-plugin-terser'
 import del from 'rollup-plugin-delete'
 import copy from 'rollup-plugin-copy'
 
-import _postcss from 'postcss'
-
-const postcssTrim = _postcss.plugin('postcss-trim', () => css => {
-  css.raws.after = css.raws.after.replace(/^\n*$/g, '')
-})
-
 const globals = {
-  'vue': 'Vue'
+  vue: 'Vue'
 }
 
 const componentName = 'FlowForm'
@@ -44,8 +38,7 @@ export default [
         output: 'css',
         extract: 'vue-flow-form.css',
         plugins: [
-          postcssImport(),
-          postcssTrim()
+          postcssImport()
         ]
       }),
       css(),
@@ -81,8 +74,7 @@ export default [
         output: 'css',
         extract: 'vue-flow-form.css',
         plugins: [
-          postcssImport(),
-          postcssTrim()
+          postcssImport()
         ]
       }),
       css(),
@@ -118,8 +110,7 @@ export default [
         output: 'css',
         extract: 'vue-flow-form.css',
         plugins: [
-          postcssImport(),
-          postcssTrim()
+          postcssImport()
         ]
       }),
       css(),
@@ -155,8 +146,7 @@ export default [
         output: 'css',
         extract: 'vue-flow-form.min.css',
         plugins: [
-          postcssImport(),
-          postcssTrim()
+          postcssImport()
         ],
         sourceMap: true,
         minimize: true
