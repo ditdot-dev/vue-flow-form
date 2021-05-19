@@ -202,7 +202,7 @@
       this.checkTimer()
     },
 
-    beforeDestroy() {
+    beforeUnmount() {
       document.removeEventListener('keydown', this.onKeyDownListener)
       document.removeEventListener('keyup', this.onKeyUpListener, true)
       window.removeEventListener('beforeunload', this.onBeforeUnload)

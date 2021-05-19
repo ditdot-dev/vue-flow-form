@@ -26,27 +26,32 @@
   */
 
   import BaseType from './BaseType.vue'
-  import LanguageModel from '../../models/LanguageModel'
   import { QuestionType } from '../../models/QuestionModel'
   import TextareaAutosize from 'vue-textarea-autosize/src/components/TextareaAutosize'
 
   export default {
     extends: BaseType,
+
     name: QuestionType.LongText,
+
     components: {
       TextareaAutosize
     },
+
     data () {
       return {
         canReceiveFocus: true
       }
     },
+
     mounted() {
       window.addEventListener('resize', this.onResizeListener)
     },
-    beforeDestroy() {
+
+    beforeUnmount() {
       window.removeEventListener('resize', this.onResizeListener)
     },
+
     methods: {
       onResizeListener() {
         this.$refs.input.resize()

@@ -171,7 +171,7 @@
       this.$refs.qanimate.addEventListener('animationend', this.onAnimationEnd)
     },
 
-    beforeDestroy() {
+    beforeUnmount() {
       this.$refs.qanimate.removeEventListener('animationend', this.onAnimationEnd)
     },
 
