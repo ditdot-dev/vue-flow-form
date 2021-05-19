@@ -135,6 +135,7 @@
   import QuestionModel, { ChoiceOption, LinkOption, QuestionType } from '../models/QuestionModel'
   import LanguageModel from '../models/LanguageModel'
   import { IsMobile } from '../mixins/IsMobile'
+  import { ComponentInstance } from '../mixins/ComponentInstance'
 
   export default {
     name: 'FlowForm',
@@ -173,6 +174,7 @@
 
     mixins: [
       IsMobile,
+      ComponentInstance
     ],
 
     data() {
@@ -299,19 +301,18 @@
               descriptionLink: LinkOption
             }
 
-            window.a = this
-
             this
               .$slots
               .default()[0]
               .children
               .filter(q => q.type && q.type.name.indexOf('Question') !== -1)
               .forEach(q => {
-                const  props = q.props
+                const props = q.props
+                const componentInstance = this.getInstance(props.id)
                 let model = new QuestionModel()
 
-                if (q.question !== undefined) {
-                  model = q.question
+                if (componentInstance.question !== null) {
+                  model = componentInstance.question
                 } 
 
                 if (props.modelValue) {
@@ -363,7 +364,7 @@
                   }
                 })
 
-                q.question = model
+                componentInstance.question = model
 
                 model.resetOptions()
 

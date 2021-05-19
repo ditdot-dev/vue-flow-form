@@ -7,7 +7,7 @@
     https://www.ditdot.hr/en
   */
 
-  import QuestionModel, { QuestionType } from '../../models/QuestionModel'
+  import QuestionModel from '../../models/QuestionModel'
   import LanguageModel from '../../models/LanguageModel'
   import { IsMobile } from '../../mixins/IsMobile'
 
