@@ -295,36 +295,39 @@
 
           if (!this.questions) {
             const classMap = {
-              'options': ChoiceOption,
-              'descriptionLink': LinkOption
+              options: ChoiceOption,
+              descriptionLink: LinkOption
             }
+
+            window.a = this
 
             this
               .$slots
-              .default
-              .filter(q => q.tag && q.tag.indexOf('Question') !== -1)
+              .default()[0]
+              .children
+              .filter(q => q.type && q.type.name.indexOf('Question') !== -1)
               .forEach(q => {
-                const attrs = q.data.attrs
+                const  props = q.props
                 let model = new QuestionModel()
 
-                if (q.componentInstance.question !== null) {
-                  model = q.componentInstance.question
+                if (q.question !== undefined) {
+                  model = q.question
                 } 
 
-                if (q.data.model) {
-                  model.answer = q.data.model.value
+                if (props.modelValue) {
+                  model.answer = props.modelValue
                 }
 
                 Object.keys(model).forEach(key => {
-                  if (attrs[key] !== undefined) {
+                  if (props[key] !== undefined) {
                     if (typeof model[key] === 'boolean') {
-                      model[key] = attrs[key] !== false
+                      model[key] = props[key] !== false
                     } else if (key in classMap) {
                       const
                         classReference = classMap[key],
                         options = []
 
-                      attrs[key].forEach(option => {
+                      props[key].forEach(option => {
                         const instance = new classReference()
 
                         Object.keys(instance).forEach(instanceKey => {
@@ -340,11 +343,11 @@
                     } else {
                       switch(key) {
                         case 'type':
-                          if (Object.values(QuestionType).indexOf(attrs[key]) !== -1) {
-                            model[key] = attrs[key]
+                          if (Object.values(QuestionType).indexOf(props[key]) !== -1) {
+                            model[key] = props[key]
                           } else {
                             for (const questionTypeKey in QuestionType) {
-                              if (questionTypeKey.toLowerCase() === attrs[key].toLowerCase()) {
+                              if (questionTypeKey.toLowerCase() === props[key].toLowerCase()) {
                                 model[key] = QuestionType[questionTypeKey]
                                 break
                               }
@@ -353,14 +356,14 @@
                           break
 
                         default:
-                          model[key] = attrs[key]
+                          model[key] = props[key]
                           break
                       }
                     }
                   }
                 })
 
-                q.componentInstance.question = model
+                q.question = model
 
                 model.resetOptions()
 
