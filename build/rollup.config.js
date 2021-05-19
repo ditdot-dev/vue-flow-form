@@ -9,6 +9,7 @@ import postcssImport from 'postcss-import'
 import { terser } from 'rollup-plugin-terser'
 import del from 'rollup-plugin-delete'
 import copy from 'rollup-plugin-copy'
+import replace from '@rollup/plugin-replace'
 
 const globals = {
   vue: 'Vue'
@@ -33,6 +34,10 @@ export default [
       vue({
         css: false,
         compileTemplate: true
+      }),
+      replace({
+        preventAssignment: true,
+        'process.env.NODE_ENV': JSON.stringify('production')
       }),
       postcss({
         output: 'css',
@@ -70,6 +75,10 @@ export default [
         css: false,
         compileTemplate: true
       }),
+      replace({
+        preventAssignment: true,
+        'process.env.NODE_ENV': JSON.stringify('production')
+      }),
       postcss({
         output: 'css',
         extract: 'vue-flow-form.css',
@@ -106,6 +115,10 @@ export default [
         css: false,
         compileTemplate: true
       }),
+      replace({
+        preventAssignment: true,
+        'process.env.NODE_ENV': JSON.stringify('production')
+      }),
       postcss({
         output: 'css',
         extract: 'vue-flow-form.css',
@@ -141,6 +154,10 @@ export default [
       vue({
         css: false,
         compileTemplate: true
+      }),
+      replace({
+        preventAssignment: true,
+        'process.env.NODE_ENV': JSON.stringify('production')
       }),
       postcss({
         output: 'css',
