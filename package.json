@@ -5,6 +5,7 @@
   "version": "1.1.7",
   "private": false,
   "scripts": {
+    "preinstall": "npx npm-force-resolutions",
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "build:npm": "rollup --config build/rollup.config.js && npm run cssmin",
@@ -45,7 +46,7 @@
     "babel-plugin-transform-vue-jsx": "^3.3.0",
     "core-js": "^3.11.3",
     "postcss": "^8.0.0",
-    "postcss-cli": "^7.1.2",
+    "postcss-cli": "^8.3.1",
     "postcss-import": "^12.0.1",
     "prettier-eslint": "^8.8.2",
     "rollup": "^2.0.0",
@@ -58,6 +59,9 @@
     "rollup-plugin-vue": "^6.0.0",
     "vue": "^3.0.0",
     "vue-loader-v16": "^16.0.0-beta.5.4"
+  },
+  "resolutions": {
+    "dns-packet": ">=5.2.2"
   },
   "bugs": {
     "url": "https://github.com/ditdot-dev/vue-flow-form/issues"
