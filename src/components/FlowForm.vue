@@ -139,6 +139,7 @@
 
   export default {
     name: 'FlowForm',
+
     components: {
       FlowFormQuestion
     },
@@ -301,75 +302,81 @@
               descriptionLink: LinkOption
             }
 
-            this
-              .$slots
-              .default()[0]
-              .children
-              .filter(q => q.type && q.type.name.indexOf('Question') !== -1)
-              .forEach(q => {
-                const props = q.props
-                const componentInstance = this.getInstance(props.id)
-                let model = new QuestionModel()
+            const defaultSlot = this.$slots.default()
+            let children = null
 
-                if (componentInstance.question !== null) {
-                  model = componentInstance.question
-                } 
+            if (defaultSlot && defaultSlot.length) {
+              children = defaultSlot[0].children
+            }
 
-                if (props.modelValue) {
-                  model.answer = props.modelValue
-                }
+            if (children) {
+              children
+                .filter(q => q.type && q.type.name.indexOf('Question') !== -1)
+                .forEach(q => {
+                  const props = q.props
+                  const componentInstance = this.getInstance(props.id)
+                  let model = new QuestionModel()
 
-                Object.keys(model).forEach(key => {
-                  if (props[key] !== undefined) {
-                    if (typeof model[key] === 'boolean') {
-                      model[key] = props[key] !== false
-                    } else if (key in classMap) {
-                      const
-                        classReference = classMap[key],
-                        options = []
+                  if (componentInstance.question !== null) {
+                    model = componentInstance.question
+                  } 
 
-                      props[key].forEach(option => {
-                        const instance = new classReference()
+                  if (props.modelValue) {
+                    model.answer = props.modelValue
+                  }
 
-                        Object.keys(instance).forEach(instanceKey => {
-                          if (option[instanceKey] !== undefined) {
-                            instance[instanceKey] = option[instanceKey]
-                          }
+                  Object.keys(model).forEach(key => {
+                    if (props[key] !== undefined) {
+                      if (typeof model[key] === 'boolean') {
+                        model[key] = props[key] !== false
+                      } else if (key in classMap) {
+                        const
+                          classReference = classMap[key],
+                          options = []
+
+                        props[key].forEach(option => {
+                          const instance = new classReference()
+
+                          Object.keys(instance).forEach(instanceKey => {
+                            if (option[instanceKey] !== undefined) {
+                              instance[instanceKey] = option[instanceKey]
+                            }
+                          })
+
+                          options.push(instance)
                         })
 
-                        options.push(instance)
-                      })
-
-                      model[key] = options
-                    } else {
-                      switch(key) {
-                        case 'type':
-                          if (Object.values(QuestionType).indexOf(props[key]) !== -1) {
-                            model[key] = props[key]
-                          } else {
-                            for (const questionTypeKey in QuestionType) {
-                              if (questionTypeKey.toLowerCase() === props[key].toLowerCase()) {
-                                model[key] = QuestionType[questionTypeKey]
-                                break
+                        model[key] = options
+                      } else {
+                        switch(key) {
+                          case 'type':
+                            if (Object.values(QuestionType).indexOf(props[key]) !== -1) {
+                              model[key] = props[key]
+                            } else {
+                              for (const questionTypeKey in QuestionType) {
+                                if (questionTypeKey.toLowerCase() === props[key].toLowerCase()) {
+                                  model[key] = QuestionType[questionTypeKey]
+                                  break
+                                }
                               }
                             }
-                          }
-                          break
+                            break
 
-                        default:
-                          model[key] = props[key]
-                          break
+                          default:
+                            model[key] = props[key]
+                            break
+                        }
                       }
                     }
-                  }
+                  })
+
+                  componentInstance.question = model
+
+                  model.resetOptions()
+
+                  questions.push(model)
                 })
-
-                componentInstance.question = model
-
-                model.resetOptions()
-
-                questions.push(model)
-              })
+            }
           }
 
           return questions
