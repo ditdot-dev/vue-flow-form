@@ -12,8 +12,7 @@ Create conversational conditional-logic forms with Vue.js.
   <img src="https://www.ditdot.hr/demo/vff/visuals/v-form-green-full-rotate-02.png" alt="v-form screenshots">
 </p>
 
-<p>Starting with v2.0.0, Vue Flow Form has migrated from Vue 2 to Vue 3. If you're looking for README for Vue Flow Form v1.1.7, which works with Vue 2, <a href="https://github.com/ditdot-dev/vue-flow-form/blob/bc471447a6aadbbda7df9eb950566ed03a0d5e37/README.md">check it out here</a>.
-</p>
+Starting with v2.0.0, Vue Flow Form has migrated from Vue 2 to **Vue 3**. If you're looking for README for Vue Flow Form v1.1.7, which works with Vue 2, <a href="https://github.com/ditdot-dev/vue-flow-form/blob/bc471447a6aadbbda7df9eb950566ed03a0d5e37/README.md">check it out here</a>.
 
 ## Live Demos
 
