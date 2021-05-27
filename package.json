@@ -61,7 +61,8 @@
     "vue-loader-v16": "^16.0.0-beta.5.4"
   },
   "resolutions": {
-    "dns-packet": ">=5.2.2"
+    "dns-packet": ">=5.2.2",
+    "@nodelib/fs.stat": ">=2.0.0"
   },
   "bugs": {
     "url": "https://github.com/ditdot-dev/vue-flow-form/issues"
