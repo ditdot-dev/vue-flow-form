@@ -7,7 +7,7 @@
     https://www.ditdot.hr/en
   */
 
-  import QuestionModel, { QuestionType } from '../../models/QuestionModel'
+  import QuestionModel from '../../models/QuestionModel'
   import LanguageModel from '../../models/LanguageModel'
   import { IsMobile } from '../../mixins/IsMobile'
 
@@ -19,7 +19,7 @@
       question: QuestionModel,
       active: Boolean,
       disabled: Boolean,
-      value: [String, Array, Boolean, Number, Object]
+      modelValue: [String, Array, Boolean, Number, Object]
     },
 
     mixins: [
@@ -135,7 +135,7 @@
         this.answer = this.question.answer
         this.question.answered = this.isValid()
 
-        this.$emit('input', this.answer)
+        this.$emit('update:modelValue', this.answer)
       },
 
       showInvalid() {

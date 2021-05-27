@@ -77,9 +77,11 @@
 
   export default {
     name: 'example',
+
     components: {
       FlowForm
     },
+
     data() {
       return {
         submitted: false,
@@ -103,7 +105,7 @@
             required: true,
             placeholder: 'Start typing here...'
           }),
-           new QuestionModel({
+          new QuestionModel({
             id: 'multiple_choice_image',
             tagline: "Let's take it one step further...",
             title: 'Tell us what is your favorite social network hangout.',
@@ -220,7 +222,7 @@
               path_b: 'path_b'
             }
           }),
-           new QuestionModel({
+          new QuestionModel({
             id: 'path_a',
             title: 'Excellent choice! 🥳',
             content: 'Press enter or use the continue button for the final submit screen.',
@@ -253,12 +255,15 @@
         ]
       }
     },
+
     mounted() {
       document.addEventListener('keyup', this.onKeyListener)
     },
-    beforeDestroy() {
+
+    beforeUnmount() {
       document.removeEventListener('keyup', this.onKeyListener)
     },
+
     methods: {
       onKeyListener($event) {
         // We've overriden the default "complete" slot so
@@ -324,7 +329,7 @@
 
         return data
       }
-    },
+    }
   }
 </script>
 

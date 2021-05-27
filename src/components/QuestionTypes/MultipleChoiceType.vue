@@ -73,7 +73,7 @@
       this.addKeyListener()
     },
 
-    beforeDestroy() {
+    beforeUnmount() {
       this.removeKeyListener()
     },
 

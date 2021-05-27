@@ -3,15 +3,15 @@
     <textarea-autosize
       ref="input"
       rows="1"
-      v-bind:value="value"
+      v-bind:value="modelValue"
       v-bind:required="question.required"
-      v-on:keydown.native="onKeyDown"
-      v-on:keyup.native="onChange"
-      v-on:keydown.enter.exact.native="onEnterDown"
-      v-on:keyup.enter.exact.prevent.native="onEnter"
-      v-on:keyup.tab.prevent.native="onEnter"
-      v-on:focus.native="setFocus"
-      v-on:blur.native="unsetFocus"
+      v-on:keydown="onKeyDown"
+      v-on:keyup="onChange"
+      v-on:keydown.enter.exact="onEnterDown"
+      v-on:keyup.enter.exact.prevent="onEnter"
+      v-on:keyup.tab.prevent="onEnter"
+      v-on:focus="setFocus"
+      v-on:blur="unsetFocus"
       v-bind:placeholder="placeholder"
       v-bind:maxlength="question.maxLength"
     />
@@ -26,27 +26,32 @@
   */
 
   import BaseType from './BaseType.vue'
-  import LanguageModel from '../../models/LanguageModel'
   import { QuestionType } from '../../models/QuestionModel'
   import TextareaAutosize from 'vue-textarea-autosize/src/components/TextareaAutosize'
 
   export default {
     extends: BaseType,
+
     name: QuestionType.LongText,
+
     components: {
       TextareaAutosize
     },
+
     data () {
       return {
         canReceiveFocus: true
       }
     },
+
     mounted() {
       window.addEventListener('resize', this.onResizeListener)
     },
-    beforeDestroy() {
+
+    beforeUnmount() {
       window.removeEventListener('resize', this.onResizeListener)
     },
+
     methods: {
       onResizeListener() {
         this.$refs.input.resize()
