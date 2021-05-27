@@ -148,6 +148,7 @@ HTML:
 <!DOCTYPE html>
 <html>
   <head>
+    <meta charset="UTF-8">
     <!-- Requires Vue version 3.x -->
     <script src="https://unpkg.com/vue@next"></script>
     <!-- Flow Form -->
