@@ -151,11 +151,11 @@ HTML:
     <!-- Requires Vue version 3.x -->
     <script src="https://unpkg.com/vue@next"></script>
     <!-- Flow Form -->
-    <script src="https://unpkg.com/@ditdot-dev/vue-flow-form@2.0.0"></script>
+    <script src="https://unpkg.com/@ditdot-dev/vue-flow-form@2.0.1"></script>
     <!-- Flow Form base CSS -->
-    <link rel="stylesheet" href="https://unpkg.com/@ditdot-dev/vue-flow-form@2.0.0/dist/vue-flow-form.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/@ditdot-dev/vue-flow-form@2.0.1/dist/vue-flow-form.min.css">
     <!-- Optional theme.css -->
-    <link rel="stylesheet" href="https://unpkg.com/@ditdot-dev/vue-flow-form@2.0.0/dist/vue-flow-form.theme-minimal.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/@ditdot-dev/vue-flow-form@2.0.1/dist/vue-flow-form.theme-minimal.min.css">
     <!-- Optional font -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;900&amp;display=swap">
   </head>

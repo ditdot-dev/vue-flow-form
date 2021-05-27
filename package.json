@@ -2,10 +2,9 @@
   "name": "@ditdot-dev/vue-flow-form",
   "author": "DITDOT",
   "description": "Create conversational conditional-logic forms with Vue.js.",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "private": false,
   "scripts": {
-    "preinstall": "npx npm-force-resolutions",
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "build:npm": "rollup --config build/rollup.config.js && npm run cssmin",
@@ -59,10 +58,6 @@
     "rollup-plugin-vue": "^6.0.0",
     "vue": "^3.0.0",
     "vue-loader-v16": "^16.0.0-beta.5.4"
-  },
-  "resolutions": {
-    "dns-packet": ">=5.2.2",
-    "@nodelib/fs.stat": ">=2.0.0"
   },
   "bugs": {
     "url": "https://github.com/ditdot-dev/vue-flow-form/issues"
