@@ -86,7 +86,7 @@
         </a>
       </div>
 
-      <div v-if="showInvalid()" class="f-invalid" role="alert" aria-live="assertive">{{ language.invalidPrompt }}</div>
+      <div v-if="showInvalid()" class="f-invalid" role="alert" aria-live="assertive">{{ errorMessage }}</div>
     </div>
   </div>
 </template>
@@ -342,6 +342,16 @@
         }
 
         return false
+      },
+
+      errorMessage() {
+        const q = this.$refs.questionComponent
+
+        if (q && q.errorMessage) {
+          return q.errorMessage
+        }
+
+        return this.language.invalidPrompt
       }
     }
   }
