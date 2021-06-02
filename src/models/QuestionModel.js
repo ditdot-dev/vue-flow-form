@@ -103,6 +103,7 @@ export default class QuestionModel {
     this.descriptionLink = []
     this.min = null
     this.max = null
+    this.maxLength = null
     this.nextStepOnAnswer = false
 
     Object.assign(this, options)
@@ -115,7 +116,7 @@ export default class QuestionModel {
       if (!this.placeholder) {
         this.placeholder = this.mask
       }
-    } 
+    }
 
     if (this.type === QuestionType.Url) {
       this.mask = null
@@ -192,5 +193,9 @@ export default class QuestionModel {
         }
       }
     }
+  }
+
+  isMultipleChoiceType() {
+    return [QuestionType.MultipleChoice, QuestionType.MultiplePictureChoice].includes(this.type)
   }
 }

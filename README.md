@@ -12,6 +12,8 @@ Create conversational conditional-logic forms with Vue.js.
   <img src="https://www.ditdot.hr/demo/vff/visuals/v-form-green-full-rotate-02.png" alt="v-form screenshots">
 </p>
 
+Starting with v2.0.0, Vue Flow Form has migrated from Vue 2 to **Vue 3**. If you're looking for README for Vue Flow Form v1.1.7, which works with Vue 2, <a href="https://github.com/ditdot-dev/vue-flow-form/blob/bc471447a6aadbbda7df9eb950566ed03a0d5e37/README.md">check it out here</a>.
+
 ## Live Demos
 
 * [Questionnaire example](https://www.ditdot.hr/demo/vff/questionnaire/)
@@ -98,7 +100,7 @@ And then in your App.vue file:
 
 <script>
   // Import necessary components and classes
-  import FlowForm, { QuestionModel, QuestionType, ChoiceOption, LanguageModel } from '@ditdot-dev/vue-flow-form'
+  import { FlowForm, QuestionModel, QuestionType, ChoiceOption, LanguageModel } from '@ditdot-dev/vue-flow-form'
 
   export default {
     name: 'example',
@@ -146,14 +148,15 @@ HTML:
 <!DOCTYPE html>
 <html>
   <head>
-    <!-- Requires Vue version 2.6.x -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.min.js"></script>
+    <meta charset="UTF-8">
+    <!-- Requires Vue version 3.x -->
+    <script src="https://unpkg.com/vue@next"></script>
     <!-- Flow Form -->
-    <script src="https://unpkg.com/@ditdot-dev/vue-flow-form@1.1.7"></script>
+    <script src="https://unpkg.com/@ditdot-dev/vue-flow-form@2.0.1"></script>
     <!-- Flow Form base CSS -->
-    <link rel="stylesheet" href="https://unpkg.com/@ditdot-dev/vue-flow-form@1.1.7/dist/vue-flow-form.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/@ditdot-dev/vue-flow-form@2.0.1/dist/vue-flow-form.min.css">
     <!-- Optional theme.css -->
-    <link rel="stylesheet" href="https://unpkg.com/@ditdot-dev/vue-flow-form@1.1.7/dist/vue-flow-form.theme-minimal.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/@ditdot-dev/vue-flow-form@2.0.1/dist/vue-flow-form.theme-minimal.min.css">
     <!-- Optional font -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;900&amp;display=swap">
   </head>
@@ -167,21 +170,21 @@ HTML:
 JavaScript (content of app.js):
 
 ```js
-var app = new Vue({
+var app = Vue.createApp({
   el: '#app',
   template: '<flow-form v-bind:questions="questions" v-bind:language="language" />',
   data: function() {
     return {
-      language: new FlowForm.LanguageModel({
+      language: new VueFlowForm.LanguageModel({
         // Your language definitions here (optional).
         // You can leave out this prop if you want to use the default definitions.
       }),
       questions: [
-        new FlowForm.QuestionModel({
+        new VueFlowForm.QuestionModel({
           title: 'Question',
-          type: FlowForm.QuestionType.MultipleChoice,
+          type: VueFlowForm.QuestionType.MultipleChoice,
           options: [
-            new FlowForm.ChoiceOption({
+            new VueFlowForm.ChoiceOption({
               label: 'Answer'
             })
           ]
@@ -189,7 +192,9 @@ var app = new Vue({
       ]
     }
   }
-});
+}).component('FlowForm', VueFlowForm.FlowForm);
+
+const vm = app.mount('#app');
 ```
 
 ## Changelog

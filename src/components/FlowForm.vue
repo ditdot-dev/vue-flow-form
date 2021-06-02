@@ -5,7 +5,7 @@
     <div class="f-container">
       <div class="f-form-wrap">
         <flow-form-question
-          ref="questions"
+          :ref="setQuestionRef"
           v-for="(q, index) in questionList"
           v-bind:question="q"
           v-bind:language="language"
@@ -14,6 +14,8 @@
           v-model="q.answer"
           v-on:answer="onQuestionAnswered"
           v-bind:reverse="reverse"
+          v-bind:disabled="disabled"
+          v-on:disable="setDisabled"
         />
 
         <slot></slot>
@@ -133,9 +135,11 @@
   import QuestionModel, { ChoiceOption, LinkOption, QuestionType } from '../models/QuestionModel'
   import LanguageModel from '../models/LanguageModel'
   import { IsMobile } from '../mixins/IsMobile'
+  import { ComponentInstance } from '../mixins/ComponentInstance'
 
   export default {
     name: 'FlowForm',
+
     components: {
       FlowFormQuestion
     },
@@ -171,10 +175,12 @@
 
     mixins: [
       IsMobile,
+      ComponentInstance
     ],
 
     data() {
       return {
+        questionRefs: [],
         completed: false,
         submitted: false,
         activeQuestionIndex: 0,
@@ -183,7 +189,8 @@
         reverse: false,
         timerOn: false,
         timerInterval: null,
-        time: 0
+        time: 0,
+        disabled: false
       }
     },
 
@@ -196,7 +203,7 @@
       this.checkTimer()
     },
 
-    beforeDestroy() {
+    beforeUnmount() {
       document.removeEventListener('keydown', this.onKeyDownListener)
       document.removeEventListener('keyup', this.onKeyUpListener, true)
       window.removeEventListener('beforeunload', this.onBeforeUnload)
@@ -204,6 +211,10 @@
       this.stopTimer()
     },
 
+    beforeUpdate() {
+      this.questionRefs = []
+    },
+    
     computed: {
       numActiveQuestions() {
         return this.questionListActivePath.length
@@ -287,77 +298,85 @@
 
           if (!this.questions) {
             const classMap = {
-              'options': ChoiceOption,
-              'descriptionLink': LinkOption
+              options: ChoiceOption,
+              descriptionLink: LinkOption
             }
 
-            this
-              .$slots
-              .default
-              .filter(q => q.tag && q.tag.indexOf('Question') !== -1)
-              .forEach(q => {
-                const attrs = q.data.attrs
-                let model = new QuestionModel()
+            const defaultSlot = this.$slots.default()
+            let children = null
 
-                if (q.componentInstance.question !== null) {
-                  model = q.componentInstance.question
-                } 
+            if (defaultSlot && defaultSlot.length) {
+              children = defaultSlot[0].children
+            }
 
-                if (q.data.model) {
-                  model.answer = q.data.model.value
-                }
+            if (children) {
+              children
+                .filter(q => q.type && q.type.name.indexOf('Question') !== -1)
+                .forEach(q => {
+                  const props = q.props
+                  const componentInstance = this.getInstance(props.id)
+                  let model = new QuestionModel()
 
-                Object.keys(model).forEach(key => {
-                  if (attrs[key] !== undefined) {
-                    if (typeof model[key] === 'boolean') {
-                      model[key] = attrs[key] !== false
-                    } else if (key in classMap) {
-                      const
-                        classReference = classMap[key],
-                        options = []
+                  if (componentInstance.question !== null) {
+                    model = componentInstance.question
+                  } 
 
-                      attrs[key].forEach(option => {
-                        const instance = new classReference()
+                  if (props.modelValue) {
+                    model.answer = props.modelValue
+                  }
 
-                        Object.keys(instance).forEach(instanceKey => {
-                          if (option[instanceKey] !== undefined) {
-                            instance[instanceKey] = option[instanceKey]
-                          }
+                  Object.keys(model).forEach(key => {
+                    if (props[key] !== undefined) {
+                      if (typeof model[key] === 'boolean') {
+                        model[key] = props[key] !== false
+                      } else if (key in classMap) {
+                        const
+                          classReference = classMap[key],
+                          options = []
+
+                        props[key].forEach(option => {
+                          const instance = new classReference()
+
+                          Object.keys(instance).forEach(instanceKey => {
+                            if (option[instanceKey] !== undefined) {
+                              instance[instanceKey] = option[instanceKey]
+                            }
+                          })
+
+                          options.push(instance)
                         })
 
-                        options.push(instance)
-                      })
-
-                      model[key] = options
-                    } else {
-                      switch(key) {
-                        case 'type':
-                          if (Object.values(QuestionType).indexOf(attrs[key]) !== -1) {
-                            model[key] = attrs[key]
-                          } else {
-                            for (const questionTypeKey in QuestionType) {
-                              if (questionTypeKey.toLowerCase() === attrs[key].toLowerCase()) {
-                                model[key] = QuestionType[questionTypeKey]
-                                break
+                        model[key] = options
+                      } else {
+                        switch(key) {
+                          case 'type':
+                            if (Object.values(QuestionType).indexOf(props[key]) !== -1) {
+                              model[key] = props[key]
+                            } else {
+                              for (const questionTypeKey in QuestionType) {
+                                if (questionTypeKey.toLowerCase() === props[key].toLowerCase()) {
+                                  model[key] = QuestionType[questionTypeKey]
+                                  break
+                                }
                               }
                             }
-                          }
-                          break
+                            break
 
-                        default:
-                          model[key] = attrs[key]
-                          break
+                          default:
+                            model[key] = props[key]
+                            break
+                        }
                       }
                     }
-                  }
+                  })
+
+                  componentInstance.question = model
+
+                  model.resetOptions()
+
+                  questions.push(model)
                 })
-
-                q.componentInstance.question = model
-
-                model.resetOptions()
-
-                questions.push(model)
-              })
+            }
           }
 
           return questions
@@ -366,15 +385,15 @@
     },
 
     methods: {
+      setQuestionRef(el) {
+        this.questionRefs.push(el)
+      },
+
       /**
        * Returns currently active question component (if any).
        */
       activeQuestionComponent() {
-        if (this.$refs.questions) {
-          return this.$refs.questions[this.activeQuestionIndex]
-        }
-
-        return null
+        return this.questionRefs[this.activeQuestionIndex]
       },
 
       setQuestions() {
@@ -521,6 +540,10 @@
       },
 
       emitEnter() {
+        if (this.disabled) {
+          return
+        }
+
         const q = this.activeQuestionComponent()
 
         if (q) {
@@ -589,6 +612,8 @@
           }
          
           this.$nextTick(() => {
+            this.reverse = false
+
             this.setQuestions()
             this.checkTimer()
             // Nested $nextTick so we're 100% sure that setQuestions
@@ -695,6 +720,10 @@
         }
 
         return new Date(1000 * seconds).toISOString().substr(startIndex, length)
+      },
+
+      setDisabled(state) {
+        this.disabled = state
       }
     },
 

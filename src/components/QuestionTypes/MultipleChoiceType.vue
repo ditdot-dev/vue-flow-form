@@ -73,7 +73,7 @@
       this.addKeyListener()
     },
 
-    beforeDestroy() {
+    beforeUnmount() {
       this.removeKeyListener()
     },
 
@@ -174,7 +174,8 @@
           this.dataValue = option.selected ? optionValue : null
         }
 
-        if (this.isValid() && this.question.nextStepOnAnswer && !this.question.multiple) {
+      
+        if (this.isValid() && this.question.nextStepOnAnswer && !this.question.multiple && !this.disabled) {
           this.$emit('next')
         }
 

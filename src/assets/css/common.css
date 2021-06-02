@@ -804,8 +804,17 @@ header.vff-header svg.f-logo {
 .vff-animate {
   -webkit-animation-duration: .4s;
   animation-duration: .4s;
-  -webkit-animation-fill-mode: both;
-  animation-fill-mode: both;
+  -webkit-animation-fill-mode: forwards;
+  animation-fill-mode: forwards;
+}
+
+/* prevent Android Chrome flickering */
+.vff-animate * {
+  -webkit-backface-visibility: hidden;
+}
+
+.vff .f-fade-in {
+  animation-name: ffadeIn;
 }
 
 @keyframes ffadeIn {
@@ -819,8 +828,8 @@ header.vff-header svg.f-logo {
   
 }
 
-.vff .f-fade-in {
-  animation-name: ffadeIn;
+.vff .f-fade-in-down {
+  animation-name: ffadeInDown;
 }
 
 @keyframes ffadeInDown {
@@ -836,8 +845,8 @@ header.vff-header svg.f-logo {
 
 }
 
-.vff .f-fade-in-down {
-  animation-name: ffadeInDown;
+.vff .f-fade-in-up {
+  animation-name: ffadeInUp;
 }
 
 @keyframes ffadeInUp {
@@ -851,10 +860,6 @@ header.vff-header svg.f-logo {
     transform: none;
   }
 
-}
-
-.vff .f-fade-in-up {
-  animation-name: ffadeInUp;
 }
 
 /*

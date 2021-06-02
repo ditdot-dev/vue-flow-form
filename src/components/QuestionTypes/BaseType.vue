@@ -7,21 +7,25 @@
     https://www.ditdot.hr/en
   */
 
-  import QuestionModel, { QuestionType } from '../../models/QuestionModel'
+  import QuestionModel from '../../models/QuestionModel'
   import LanguageModel from '../../models/LanguageModel'
   import { IsMobile } from '../../mixins/IsMobile'
 
   export default {
     name: 'FlowFormBaseType',
+
     props: {
       language: LanguageModel,
       question: QuestionModel,
       active: Boolean,
-      value: [String, Array, Boolean, Number, Object]
+      disabled: Boolean,
+      modelValue: [String, Array, Boolean, Number, Object]
     },
+
     mixins: [
       IsMobile,
     ],
+
     data() {
       return {
         dirty: false,
@@ -34,6 +38,7 @@
         canReceiveFocus: false
       }
     },
+
     mounted() {
       if (this.question.answer) {
         this.dataValue = this.answer = this.question.answer
@@ -41,6 +46,7 @@
         this.dataValue = []
       }
     },
+
     methods: {
       /**
        * This method can be overriden in custom components to 
@@ -129,7 +135,7 @@
         this.answer = this.question.answer
         this.question.answered = this.isValid()
 
-        this.$emit('input', this.answer)
+        this.$emit('update:modelValue', this.answer)
       },
 
       showInvalid() {

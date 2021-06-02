@@ -71,7 +71,7 @@
         }
       },
       onKeyUpListener($event) {
-        if ($event.key === 'Enter' && this.isValid()) {
+        if ($event.key === 'Enter' && this.isValid() && !this.disabled) {
           $event.stopPropagation()
           this._onEnter()
           this.$emit('next')

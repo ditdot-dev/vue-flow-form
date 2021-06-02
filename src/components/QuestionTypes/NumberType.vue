@@ -6,7 +6,6 @@
   */
 
   import TextType from './TextType.vue'
-  import LanguageModel from '../../models/LanguageModel'
   import { QuestionType } from '../../models/QuestionModel'
 
   export default {
@@ -22,7 +21,19 @@
 
     methods: {
       validate() {
+         if (!isNaN(this.question.min) && this.dataValue < this.question.min) {
+          return false
+        }
+
+        if (!isNaN(this.question.max) && this.dataValue > this.question.max) {
+          return false
+        }
+
         if (this.hasValue) {
+          if (this.question.mask) {
+            return this.validateMask()
+          }
+
           return !isNaN(+this.dataValue)
         }
 
