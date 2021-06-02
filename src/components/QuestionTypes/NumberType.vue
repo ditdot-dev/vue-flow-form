@@ -21,11 +21,11 @@
 
     methods: {
       validate() {
-         if (!isNaN(this.question.min) && this.dataValue < this.question.min) {
+        if (this.question.min !== null && !isNaN(this.question.min) && +this.dataValue < +this.question.min) {
           return false
         }
 
-        if (!isNaN(this.question.max) && this.dataValue > this.question.max) {
+        if (this.question.max !== null && !isNaN(this.question.max) && +this.dataValue > +this.question.max) {
           return false
         }
 
