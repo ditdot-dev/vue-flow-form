@@ -306,7 +306,7 @@
             let children = null
 
             if (defaultSlot && defaultSlot.length) {
-              children = defaultSlot[0].children
+              children = defaultSlot[0].children ?? defaultSlot
             }
 
             if (children) {
