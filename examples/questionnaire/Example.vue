@@ -90,16 +90,167 @@
         // Create question list with QuestionModel instances
         questions: [
           new QuestionModel({
-            id: 'file',
-            title: 'File here',
-            type: QuestionType.File,
+            id: 'first_name',
+            tagline: 'Hi! Welcome to our demo survey 😊',
+            title: 'What is your first name?',
+            type: QuestionType.Text,
             required: true,
-            accept: 'image/*',
+            placeholder: 'Start typing here...'
+          }),
+          new QuestionModel({
+            id: 'email',
+            tagline: "Nice to meet you 👀, let's continue",
+            title: 'Provide an example email.',
+            type: QuestionType.Email,
+            required: true,
+            placeholder: 'Start typing here...'
+          }),
+          new QuestionModel({
+            id: 'multiple_choice_image',
+            tagline: "Let's take it one step further...",
+            title: 'Tell us what is your favorite social network hangout.',
+            helpTextShow: false,
+            type: QuestionType.MultiplePictureChoice,
+            multiple: false,
+            required: true,
+            options: [
+              new ChoiceOption({
+                imageSrc: require('./assets/images/facebook.png'),
+                imageAlt: 'Facebook logo',
+                label: 'Facebook'
+              }),
+              new ChoiceOption({
+                imageSrc: require('./assets/images/twitter.png'),
+                imageAlt: 'Twitter logo',
+                label: 'Twitter'
+              }),
+              new ChoiceOption({
+                imageSrc: require('./assets/images/instagram.png'),
+                imageAlt: 'Instagram logo',
+                label: 'Instagram'
+              }),
+              new ChoiceOption({
+                imageSrc: require('./assets/images/tiktok.png'),
+                imageAlt: 'TikTok logo',
+                label: 'TikTok'
+              }),
+            ]
+          }),
+          new QuestionModel({
+            id: 'phone',
+            title: 'Doing great! 👍 Go ahead and try with a phone number.',
+            type: QuestionType.Phone,
+            required: true,
+            mask: '(###) ###-####'
+          }),
+          new QuestionModel({
+            id: 'movies',
+            title: 'List your favorite movies. 🍿',
+            type: QuestionType.LongText,
+            required: true,
+            placeholder: 'Start typing here...'
+          }),
+          new QuestionModel({
+            id: 'multiple_choice',
+            tagline: 'FYI, You can always go back 👈, use the up arrow on the bottom.',
+            title: 'Multiple choice question:',
+            helpTextShow: false,
+            type: QuestionType.MultipleChoice,
+            multiple: false,
+            allowOther: true,
+            required: true,
+            options: [
+              new ChoiceOption({
+                label: 'Answer 1'
+              }),
+              new ChoiceOption({
+                label: 'Answer 2'
+               }),
+              new ChoiceOption({
+                label: 'Answer 3'
+              })
+            ]
+          }),
+          new QuestionModel({
+            id: 'multiple_choices',
+            title: 'Multiple choices question:',
+            type: QuestionType.MultipleChoice,
             multiple: true,
-            description: 'Upload your profile image here',
-            max: 5,
-            min: 1,
-            maxSize: 1024 * 1024 * 1.33
+            helpText: 'Select all that apply. 👇',
+            required: true,
+            options: [
+              new ChoiceOption({
+                label: 'Answer 1'
+              }),
+              new ChoiceOption({
+                label: 'Answer 2'
+              }),
+              new ChoiceOption({
+                label: 'Answer 3'
+              }),
+              new ChoiceOption({
+                label: 'Answer 4'
+              })
+            ]
+          }),
+          new QuestionModel({
+            id: 'break_1',
+            title: 'Awesome, thank you. 🙏',
+            content: 'You arrived at the section break of our little demo survey. To continue exploring, just press enter or use the continue button.',
+            description: 'Note: We will take a look at our multiple path feature next.',
+            type: QuestionType.SectionBreak
+          }),
+          new QuestionModel({
+            id: 'choose_path',
+            tagline: 'Where would you like to go? 🤔',
+            title: 'Choose your path:',
+            type: QuestionType.Dropdown,
+            multiple: false,
+            placeholder: 'Select',
+            inline: true,
+            required: true,
+            options: [
+              new ChoiceOption({
+                label: 'Path A'
+              }),
+              new ChoiceOption({
+                label: 'Path B',
+                value: 'path_b'
+              })
+            ],
+            jump: {
+              path_b: 'path_b'
+            }
+          }),
+          new QuestionModel({
+            id: 'path_a',
+            title: 'Excellent choice! 🥳',
+            content: 'Press enter or use the continue button for the final submit screen.',
+            type: QuestionType.SectionBreak,
+            jump: {
+              _other: '_submit'
+            }
+          }),
+          new QuestionModel({
+            id: 'path_b',
+            tagline: 'Path B',
+            title: 'Hmm, are you sure?',
+            helpText: 'Path A sounds like a winner! 😉',
+            type: QuestionType.MultipleChoice,
+            multiple: false,
+            required: true,
+            options: [
+              new ChoiceOption({
+                label: 'Ok, let\'s go with A',
+                value: 'path_a'
+              }),
+              new ChoiceOption({
+                label: 'Yes, finish the survey'
+              })
+            ],
+            jump: {
+              path_a: 'path_a'
+            }
           })
         ]
       }
@@ -150,19 +301,33 @@
 
           fetch(url, {
             method: 'POST',
-            body: data
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
           })
         */
       },
 
       getData() {
-        const formData = new FormData()
+        const data = {
+          questions: [],
+          answers: []
+        }
 
         this.questions.forEach(question => {
-          formData.append(question.id, question.answer)
+          if (question.title) {
+            let answer = question.answer
+            if (Array.isArray(answer)) {
+              answer = answer.join(', ')
+            }
+
+            data.questions.push(question.title)
+            data.answers.push(answer)
+          }
         })
 
-        return formData
+        return data
       }
     }
   }
