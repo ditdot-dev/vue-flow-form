@@ -270,12 +270,16 @@ header.vff-header svg.f-logo {
 }
 
 .vff [type="file"] {
+  appearance: none;
+  -moz-appearance: none;
+  -webkit-appearance: none;
   border: 0;
+  outline: 0;
   border-radius: 0;
   margin: 0 .2em;
-  outline: 0;
+  padding: .1em 0 .15em;
   font-size: .72em;
-  line-height: 1.2;
+  line-height: normal;
   font-weight: 900;
 }
 
@@ -291,16 +295,41 @@ header.vff-header svg.f-logo {
 
 }
 
-.vff ::-webkit-file-upload-button, 
-.vff ::file-selector-button {
-  -webkit-appearance: button;
-  -moz-appearance: button;
-  appearance: button;
-  background-color: #efefef;
+.vff input[type=file]::-webkit-file-upload-button {
+  appearance: none;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  outline: 0;
+  border: 0;
   font: inherit;
-  font-size: .88em;
+  font-size: .86em;
   font-weight: 400;
   margin-right: .7em;
+  text-align: center;
+  max-width: 100%;
+  min-width: 90px;
+  min-height: 44px;
+  display: inline-block;
+  white-space: pre-wrap;
+  cursor: pointer;
+  padding: .6em 1.4em; 
+  background-color: #efefef;
+}
+
+.vff input[type=file]::-webkit-file-upload-button:active{
+  color: #000;
+}
+
+.vff input[type=file]::file-selector-button{
+  min-height: 44px;
+  display: inline-block;
+  white-space: pre-wrap;
+  font: inherit;
+  font-size: .86em;
+  font-weight: 400;
+  margin-right: .6em;
+  max-width: 100%;
+  min-width: 90px;
 }
 
 /*buttons*/
@@ -314,9 +343,7 @@ header.vff-header svg.f-logo {
 }
 
 /*default button*/
-.vff button,
-.vff ::-webkit-file-upload-button,
-.vff ::file-selector-button {
+.vff button {
   border: none;
   outline: 0;
   cursor: pointer;
