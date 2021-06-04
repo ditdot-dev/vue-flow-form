@@ -956,6 +956,7 @@ header.vff-header svg.f-logo {
   .vff input[type=url],
   .vff input[type=password],
   .vff input[type=date],
+  .vff input[type=file],
   .vff textarea{
     font-size: .78em;
   }
