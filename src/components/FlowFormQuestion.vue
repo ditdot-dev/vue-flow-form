@@ -86,7 +86,7 @@
         </a>
       </div>
 
-      <div v-if="showInvalid()" class="f-invalid" role="alert" aria-live="assertive">{{ language.invalidPrompt }}</div>
+      <div v-if="showInvalid()" class="f-invalid" role="alert" aria-live="assertive">{{ errorMessage }}</div>
     </div>
   </div>
 </template>
@@ -112,6 +112,7 @@
   import FlowFormTextType from './QuestionTypes/TextType.vue'
   import FlowFormUrlType from './QuestionTypes/UrlType.vue'
   import FlowFormDateType from './QuestionTypes/DateType.vue'
+  import FlowFormFileType from './QuestionTypes/FileType.vue'
   import { IsMobile } from '../mixins/IsMobile'
   
 
@@ -130,6 +131,7 @@
       FlowFormPhoneType,
       FlowFormSectionBreakType,
       FlowFormTextType,
+      FlowFormFileType,
       FlowFormUrlType
     },
 
@@ -340,6 +342,16 @@
         }
 
         return false
+      },
+
+      errorMessage() {
+        const q = this.$refs.questionComponent
+
+        if (q && q.errorMessage) {
+          return q.errorMessage
+        }
+
+        return this.language.invalidPrompt
       }
     }
   }

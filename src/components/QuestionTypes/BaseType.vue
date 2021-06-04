@@ -35,7 +35,8 @@
         allowedChars: null,
         alwaysAllowedKeys: ['ArrowLeft', 'ArrowRight', 'Delete', 'Backspace'],
         focused: false,
-        canReceiveFocus: false
+        canReceiveFocus: false,
+        errorMessage: null
       }
     },
 

@@ -269,9 +269,67 @@ header.vff-header svg.f-logo {
   -webkit-appearance: none;
 }
 
-.vff ::-webkit-file-upload-button {
-  -webkit-appearance: button;
+.vff [type="file"] {
+  appearance: none;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  border: 0;
+  outline: 0;
+  border-radius: 0;
+  margin: 0 .2em;
+  padding: .1em 0 .15em;
+  font-size: .72em;
+  line-height: normal;
+  font-weight: 900;
+}
+
+.vff input[type=file]:focus{
+  outline: 1px dotted #000;
+  outline-offset: 4px;
+}
+
+@media (prefers-color-scheme: dark) {
+  .vff input[type=file]:focus{
+    outline-color: #fff;
+  }
+
+}
+
+.vff input[type=file]::-webkit-file-upload-button {
+  appearance: none;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  outline: 0;
+  border: 0;
   font: inherit;
+  font-size: .86em;
+  font-weight: 400;
+  margin-right: .7em;
+  text-align: center;
+  max-width: 100%;
+  min-width: 90px;
+  min-height: 44px;
+  display: inline-block;
+  white-space: pre-wrap;
+  cursor: pointer;
+  padding: .6em 1.4em; 
+  background-color: #efefef;
+}
+
+.vff input[type=file]::-webkit-file-upload-button:active{
+  color: #000;
+}
+
+.vff input[type=file]::file-selector-button{
+  min-height: 44px;
+  display: inline-block;
+  white-space: pre-wrap;
+  font: inherit;
+  font-size: .86em;
+  font-weight: 400;
+  margin-right: .6em;
+  max-width: 100%;
+  min-width: 90px;
 }
 
 /*buttons*/
@@ -388,6 +446,7 @@ header.vff-header svg.f-logo {
 .vff .f-full-width input[type=url],
 .vff .f-full-width input[type=password],
 .vff .f-full-width input[type=date],
+.vff .f-full-width input[type=file],
 .vff .f-full-width textarea,
 .vff .f-full-width span.faux-form{
   width: 100%;
@@ -811,6 +870,7 @@ header.vff-header svg.f-logo {
 /* prevent Android Chrome flickering */
 .vff-animate * {
   -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
 }
 
 .vff .f-fade-in {
@@ -923,8 +983,13 @@ header.vff-header svg.f-logo {
   .vff input[type=url],
   .vff input[type=password],
   .vff input[type=date],
+  .vff input[type=file],
   .vff textarea{
     font-size: .78em;
+  }
+
+  .vff input[type=file] {
+    font-size: .64em;
   }
   
   .vff .fh2 span.f-sub, 
@@ -977,9 +1042,14 @@ header.vff-header svg.f-logo {
   .vff input[type=url],
   .vff input[type=password],
   .vff input[type=date],
+  .vff input[type=file],
   .vff textarea {
     line-height: 1.4;
     padding: .16em .2em;
+  }
+
+  .vff input[type=file] {
+    font-size: .6em;
   }
 
   .vff select {

@@ -10,6 +10,7 @@ export const QuestionType = Object.freeze({
   Date: 'FlowFormDateType',
   Dropdown: 'FlowFormDropdownType',
   Email: 'FlowFormEmailType',
+  File: 'FlowFormFileType',
   LongText: 'FlowFormLongTextType',
   MultipleChoice: 'FlowFormMultipleChoiceType',
   MultiplePictureChoice: 'FlowFormMultiplePictureChoiceType',
@@ -104,6 +105,8 @@ export default class QuestionModel {
     this.max = null
     this.maxLength = null
     this.nextStepOnAnswer = false
+    this.accept = null
+    this.maxSize = null
 
     Object.assign(this, options)
 
