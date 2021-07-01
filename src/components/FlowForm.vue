@@ -418,7 +418,8 @@
         let
           index = 0,
           serialIndex = 0,
-          nextId
+          nextId,
+          activeIndex = this.activeQuestionIndex
 
         do {
           let question = this.questionModels[index]
@@ -432,13 +433,20 @@
             ++index
           } else if (question.answered) {
             nextId = question.getJumpId()
+            
             if (nextId) {
               if (nextId === '_submit') {
                 index = this.questionModels.length
               } else {
                 for (let i = 0; i < this.questionModels.length; i++) {
                   if (this.questionModels[i].id === nextId) {
-                    index = i
+                    if (i < index) {
+                      question.answered = false
+                      activeIndex = i
+                      ++index
+                    } else {
+                      index = i
+                    }
                     break
                   }
                 }
@@ -454,6 +462,7 @@
         } while (index < this.questionModels.length)
 
         this.questionListActivePath = questions
+        this.goToQuestion(activeIndex)
       },
 
       /**
@@ -667,11 +676,52 @@
        */
       goToNextQuestion() {
         this.blurFocus()
+
         if (this.isNextQuestionAvailable()) {
           this.emitEnter()
         }
 
         this.reverse = false
+      },
+
+      /**
+       * Jumps to question with specific index.
+       */
+      goToQuestion(index) {
+        if (isNaN(+index)) {
+          let questionIndex = this.activeQuestionIndex
+
+          this.questionListActivePath.forEach((question, _index) => {
+            if (question.id === index) {
+              questionIndex = _index
+            }
+          })
+
+          index = questionIndex;
+        }
+
+        if (index !== this.activeQuestionIndex) {
+          this.blurFocus()
+      
+          if (!this.submitted && index <= this.questionListActivePath.length - 1) {
+            // Check if we can actually jump to the wanted question.
+            do {
+              const previousQuestion = index > 0 ? this.questionListActivePath[index - 1] : null
+
+              if (previousQuestion === null || previousQuestion.answered) {
+                break
+              }
+
+              --index
+            }
+            while (index > 0)
+
+            this.reverse = index < this.activeQuestionIndex
+            this.activeQuestionIndex = index
+
+            this.checkTimer()
+          }
+        }
       },
 
       /**
