@@ -777,6 +777,11 @@
 
       setDisabled(state) {
         this.disabled = state
+      },
+
+      reset() {
+        this.questionModels.forEach(question => question.resetAnswer())
+        this.goToQuestion(0)
       }
     },
 

@@ -176,6 +176,8 @@ export default class QuestionModel {
         if (this.answer === optionValue || (isArray && this.answer.indexOf(optionValue) !== -1)) {
           o.selected = true
           ++numSelected
+        } else {
+          o.selected = false
         }
       })
 
@@ -195,6 +197,14 @@ export default class QuestionModel {
         }
       }
     }
+  }
+
+  resetAnswer() {
+    this.answered = false
+    this.answer = this.multiple ? [] : null
+    this.other = null
+
+    this.resetOptions()
   }
 
   isMultipleChoiceType() {
