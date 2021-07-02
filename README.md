@@ -72,6 +72,8 @@ Made with [Vue.js](https://vuejs.org/)
 
 If you don't already have an existing Vue project, the easiest way to create one is to use [Vue CLI](https://cli.vuejs.org/):
 
+(For issues with Vue 3.13 and CLI 4 check [here](https://github.com/vuejs/vue-next/issues/4052))
+
 ```shell
 $ npm install -g @vue/cli
 # OR
