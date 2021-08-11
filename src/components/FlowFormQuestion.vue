@@ -150,6 +150,10 @@
       disabled: {
         type: Boolean,
         default: false
+      },
+      autofocus: {
+        type: Boolean,
+        default: true
       }
     },
 
@@ -166,7 +170,7 @@
     },
 
     mounted() {
-      this.focusField()
+      this.autofocus && this.focusField()
 
       this.dataValue = this.question.answer
 
@@ -188,7 +192,7 @@
       },
 
       onAnimationEnd() {
-        this.focusField()
+        this.autofocus && this.focusField()
       },
 
       shouldFocus() {

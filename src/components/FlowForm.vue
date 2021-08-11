@@ -16,6 +16,7 @@
           v-bind:reverse="reverse"
           v-bind:disabled="disabled"
           v-on:disable="setDisabled"
+          v-bind:autofocus="autofocus"
         />
 
         <slot></slot>
@@ -170,7 +171,11 @@
         default: false
       },
       timerStartStep: [String, Number],
-      timerStopStep: [String, Number]
+      timerStopStep: [String, Number],
+      autofocus: {
+        type: Boolean,
+        default: true
+      }
     },
 
     mixins: [
@@ -634,7 +639,7 @@
               const q = this.activeQuestionComponent()
 
               if (q) {
-                q.focusField()
+                this.autofocus && q.focusField()
                 this.activeQuestionIndex = q.question.index
               } else if (this.isOnLastStep) {
                 // No more questions left - set "completed" to true
