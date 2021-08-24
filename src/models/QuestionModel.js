@@ -76,6 +76,9 @@ export class LinkOption {
 
 export default class QuestionModel {
   constructor(options) {
+    // Make sure the options variable is an object
+    options = options || {}
+
     this.id = null
     this.answer = null
     this.answered = false
@@ -134,7 +137,7 @@ export default class QuestionModel {
 
     // Check if we have an answer already (when we have a pre-filled form)
     // and set the answered property accordingly
-    if (!this.required && options && typeof options.answer !== 'undefined') {
+    if (!this.required && typeof options.answer !== 'undefined') {
       this.answered = true
     } else if (this.answer && (!this.multiple || this.answer.length)) {
       this.answered = true
