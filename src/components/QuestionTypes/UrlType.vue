@@ -30,7 +30,7 @@
       validate() {
         if (this.hasValue) {
           try {
-            var url = new URL(this.fixAnswer(this.dataValue))
+            new URL(this.fixAnswer(this.dataValue))
 
             return true
           } catch(_) { 
