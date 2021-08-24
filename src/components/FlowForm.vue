@@ -718,8 +718,7 @@
               }
 
               --index
-            }
-            while (index > 0)
+            } while (index > 0)
 
             this.reverse = index < this.activeQuestionIndex
             this.activeQuestionIndex = index
