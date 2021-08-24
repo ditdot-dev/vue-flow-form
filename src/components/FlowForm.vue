@@ -702,7 +702,7 @@
             }
           })
 
-          index = questionIndex;
+          index = questionIndex
         }
 
         if (index !== this.activeQuestionIndex) {
@@ -711,9 +711,13 @@
           if (!this.submitted && index <= this.questionListActivePath.length - 1) {
             // Check if we can actually jump to the wanted question.
             do {
-              const previousQuestion = index > 0 ? this.questionListActivePath[index - 1] : null
+              const previousQuestionsAnswered = 
+                this
+                  .questionListActivePath
+                  .slice(0, index)
+                  .every(q => q.answered)
 
-              if (previousQuestion === null || previousQuestion.answered) {
+              if (previousQuestionsAnswered) {
                 break
               }
 
