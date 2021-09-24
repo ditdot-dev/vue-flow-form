@@ -70,8 +70,10 @@
       },
 
       onEnter() {
-        if (!this.isMobile) {
-          this._onEnter()
+        this._onEnter()
+        
+        if (this.isMobile) {
+          this.focus()
         }
       }
     }
