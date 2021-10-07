@@ -89,6 +89,54 @@
         language: new LanguageModel(),
         // Create question list with QuestionModel instances
         questions: [
+           new QuestionModel({
+            id: 'matrix',
+            title: 'Matrix question:',
+            type: QuestionType.Matrix,
+            multiple: false,
+            helpText: 'Select options. 👇',
+            required: false,
+            columns: [
+              new ChoiceOption({
+                value: "1",
+                label: "Strongly Disagree"
+              }), 
+              new ChoiceOption({
+                value: "2",
+                label: "Disagree"
+              }), 
+              new ChoiceOption({
+                value: "3",
+                label: "Neutral"
+              }), 
+              new ChoiceOption({
+                value: "4",
+                label: "Agree"
+              }),
+              new ChoiceOption({
+                value: "5",
+                label: "Strongly agree"
+              })
+            ],
+            rows: [
+              new ChoiceOption({
+                  value: "affordable",
+                  label: "Product is affordable"
+              }), 
+              new ChoiceOption({
+                  value: "does what it claims",
+                  label: "Product does what it claims"
+              }), 
+              new ChoiceOption({
+                  value: "better then others",
+                  label: "Product is better than other products on the market"
+              }), 
+              new ChoiceOption({
+                  value: "easy to use",
+                  label: "Product is easy to use"
+              })
+            ]
+          }),
           new QuestionModel({
             id: 'first_name',
             tagline: 'Hi! Welcome to our demo survey 😊',

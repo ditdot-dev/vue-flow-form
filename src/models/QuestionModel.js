@@ -19,7 +19,8 @@ export const QuestionType = Object.freeze({
   Phone: 'FlowFormPhoneType',
   SectionBreak: 'FlowFormSectionBreakType',
   Text: 'FlowFormTextType',
-  Url: 'FlowFormUrlType'
+  Url: 'FlowFormUrlType',
+  Matrix: 'FlowFormMatrixType'
 })
 
 export const DropdownOptionBlank = Object.freeze({
@@ -109,7 +110,9 @@ export default class QuestionModel {
     this.maxLength = null
     this.nextStepOnAnswer = false
     this.accept = null
-    this.maxSize = null
+    this.maxSize = null, 
+    this.rows = [], 
+    this.columns = []
 
     Object.assign(this, options)
 
