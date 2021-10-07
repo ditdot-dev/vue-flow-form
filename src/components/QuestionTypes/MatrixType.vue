@@ -1,8 +1,8 @@
 <template>
   <div class="f-matrix-wrap">
-    <fieldset>
+    <fieldset class="f-matrix-fieldset">
       <table 
-        class="f-table"
+        class="f-matrix-table"
         v-bind:class="{ 'f-multiple': question.multiple }"
       >
         <thead>
@@ -11,11 +11,9 @@
             <th 
               v-for="(column, index) in question.columns"
               v-bind:key="'c' + index"
-              class="f-table-cell f-table-cell--header"
+              class="f-table-cell f-header-cell"
             >
-              <span>
-                <span class="f-table-string">{{ column.label }}</span>
-              </span>
+              <span class="f-table-string">{{ column.label }}</span>
             </th>
           </tr>
         </thead>
@@ -25,14 +23,13 @@
             v-bind:key="'r' + index"
             class="f-table-row"
           >
-            <td class="f-table-cell f-matrix-cell">
-              <span>
-                <span class="f-table-string">{{ row.label }}</span></span>
+            <td class="f-table-cell">
+                <span class="f-table-string">{{ row.label }}</span>
             </td>
             <td
               v-for="(column, index) in question.columns"
               v-bind:key="'l' + index"
-              :title="row.label"
+              :title="column.label"
               class="f-table-cell f-matrix-cell"
             >
               <label 
@@ -42,20 +39,18 @@
                   :name="row.value"
                   :id="index + '-' + row.value"
                   :aria-label="row.label"
-                  class="f-visuallyhidden f-matrix-control f-radio-control"
+                  class="f-matrix-control f-radio-control"
                   :value="column.value"
                 />
-                <span class="f-matrix-decorator f-radio-decorator">
+                <span class="f-field-mask f-radio-mask">
                   <svg
-                    viewBox="-12 -12 24 24"
-                    class="f-matrix-svg f-radio-svg"
+                    viewBox="0 0 24 24"
+                    class="f-field-svg f-radio-svg"
                   >
-                    <circle r="6" cx="0" cy="0"></circle>
+                    <circle r="6" cx="12" cy="12"></circle>
                   </svg>
                 </span>
-                <span class="circle"></span> 
-                <span class="check"></span>
-                <span>Please indicate if you agree or disagree with the following statements</span></label>
+              </label>
             </td>
           </tr>
         </tbody>

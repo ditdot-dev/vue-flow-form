@@ -99,11 +99,11 @@
             columns: [
               new ChoiceOption({
                 value: "1",
-                label: "Strongly Disagree"
+                label: "Very dissatisfied"
               }), 
               new ChoiceOption({
                 value: "2",
-                label: "Disagree"
+                label: "Dissatisfied"
               }), 
               new ChoiceOption({
                 value: "3",
@@ -111,29 +111,29 @@
               }), 
               new ChoiceOption({
                 value: "4",
-                label: "Agree"
+                label: "Satisfied"
               }),
               new ChoiceOption({
                 value: "5",
-                label: "Strongly agree"
+                label: "Very satisfied"
               })
             ],
             rows: [
               new ChoiceOption({
-                  value: "affordable",
-                  label: "Product is affordable"
+                  value: "product 1",
+                  label: "Product 1"
               }), 
               new ChoiceOption({
-                  value: "does what it claims",
-                  label: "Product does what it claims"
+                  value: "product 2",
+                  label: "Product 2"
               }), 
               new ChoiceOption({
-                  value: "better then others",
-                  label: "Product is better than other products on the market"
+                  value: "product 3",
+                  label: "Product 3"
               }), 
               new ChoiceOption({
-                  value: "easy to use",
-                  label: "Product is easy to use"
+                  value: "product 4",
+                  label: "Product 4"
               })
             ]
           }),
