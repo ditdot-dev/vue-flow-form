@@ -24,26 +24,26 @@
 .vff select option,
 .vff kbd,
 .vff-header,
-.vff-footer{
+.vff-footer {
   font-family: 'Poppins', sans-serif;
 }
 
 body {
-  /*override if needed when using not-standalone option*/
+  /* override if needed when using not-standalone option */
   margin: 0;
   background-color: var(--vff-bg-color);
 }
 
-.vff{
+.vff {
   color: var(--vff-main-text-color);
 }
 
-.vff.vff-not-standalone{
+.vff.vff-not-standalone {
   background-color: var(--vff-bg-color);
   color: var(--vff-main-text-color);
 }
 
-/*header*/
+/* header */
 header.vff-header {
   background-color: transparent;
 }
@@ -80,7 +80,7 @@ header.vff-header svg.f-logo {
   color: var(--vff-main-text-color);
 }
 
-/*placeholder*/
+/* placeholder */
 .vff ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
   color: var(--vff-secondary-text-color);
   opacity: 1;
@@ -105,14 +105,14 @@ header.vff-header svg.f-logo {
   font-weight: 300;
 }
 
-/*faux input type date placeholder for iOS*/
-.vff.vff-is-ios .field-date:not(.f-has-value) .f-answer > span::before{
+/* faux input type date placeholder for iOS */
+.vff.vff-is-ios .field-date:not(.f-has-value) .f-answer > span::before {
   color: var(--vff-secondary-text-color);
   font-weight: 300;
   font-size: .72em;
 }
 
-/*field-multiplechoice*/
+/* field-multiplechoice */
 .vff ul.f-radios li {
   border: 1px solid var(--vff-secondary-text-color);
   font-weight: 900;
@@ -130,12 +130,12 @@ header.vff-header svg.f-logo {
   background-color: var(--vff-tertiary-text-color);
 }
 
-.vff .f-key{
+.vff .f-key {
   color: var(--vff-secondary-accent-color);
   font-weight: 300;
 }
 
-/*field-dropdown*/
+/* field-dropdown */
 .vff span.f-empty {
   color: var(--vff-secondary-text-color);
 }
@@ -148,7 +148,7 @@ header.vff-header svg.f-logo {
   fill: var(--vff-main-text-color);
 }
 
-/*buttons*/
+/* buttons */
 .vff .o-btn-action {
   color: var(--vff-bg-color);
   background-color: var(--vff-main-text-color);
@@ -183,7 +183,7 @@ header.vff-header svg.f-logo {
   background-color: rgba(0,0,0,0.07);
 }
 
-/*text-muted*/
+/* text-muted */
 .vff span.f-tagline,
 .vff span.f-sub,
 .vff p.f-description,
@@ -230,7 +230,7 @@ header.vff-header svg.f-logo {
     filter: invert(100%);
   }
 
-  .vff span.f-answered{
+  .vff span.f-answered {
     color: var(--vff-main-accent-color);
   }
 
@@ -238,11 +238,11 @@ header.vff-header svg.f-logo {
     fill: var(--vff-main-accent-color);
   }
   
-  .vff .text-success{
+  .vff .text-success {
     color: var(--vff-main-accent-color);
   }
 
-  /*footer*/
+  /* footer */
   .vff-footer .footer-inner-wrap {
     background-color: var(--vff-bg-color);
   }
@@ -275,7 +275,7 @@ header.vff-header svg.f-logo {
     background-color: var(--vff-main-accent-color);
   }
 
-  /*field-multiplechoice*/
+  /* field-multiplechoice */
   .vff ul.f-radios li {
     color: var(--vff-secondary-text-color);
   }

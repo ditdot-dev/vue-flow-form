@@ -38,32 +38,32 @@
 .vff select option,
 .vff kbd,
 .vff-header,
-.vff-footer{
+.vff-footer {
   font-family: 'Poppins', sans-serif;
 }
 
 body {
-   /*override if needed when using not-standalone option*/
+  /* override if needed when using not-standalone option */
   margin: 0;
   background-color: var(--vff-bg-color);
 }
 
-.vff{
+.vff {
   color: var(--vff-main-text-color);
 }
 
-.vff.vff-not-standalone{
+.vff.vff-not-standalone {
   background-color: var(--vff-bg-color);
   color: var(--vff-main-text-color);
 }
 
-header.vff-header{
+header.vff-header {
   background-color: var(--vff-header-color);
   border-bottom: 2px solid var(--vff-header-border-color);
   padding-bottom: .6em;
 }
 
-header.vff-header svg.f-logo{
+header.vff-header svg.f-logo {
   fill: var(--vff-main-text-color);
 }
 
@@ -90,7 +90,7 @@ header.vff-header svg.f-logo{
   color: var(--vff-main-text-color);
 }
 
-/*placeholder*/
+/* placeholder */
 .vff ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
   color: var(--vff-secondary-text-color);
   opacity: 1;
@@ -115,14 +115,14 @@ header.vff-header svg.f-logo{
   font-weight: 300;
 }
 
-/*faux input type date placeholder for iOS*/
+/* faux input type date placeholder for iOS */
 .vff.vff-is-ios .field-date:not(.f-has-value) .f-answer > span::before{
   color: var(--vff-secondary-text-color);
   font-weight: 300;
   font-size: .72em;
 }
 
-/*field-multiplechoice*/
+/* field-multiplechoice */
 .vff ul.f-radios li {
   border: 1px solid var(--vff-secondary-form-bg-color);
   background-color: var(--vff-main-form-bg-color);
@@ -139,16 +139,16 @@ header.vff-header svg.f-logo{
   color: inherit;
 }
 
-.vff .f-key{
+.vff .f-key {
   color: var(--vff-field-key-color);
 }
 
-/*field-dropdown*/
+/* field-dropdown */
 .vff span.f-empty {
   color: var(--vff-secondary-text-color);
 }
 
-.vff span.f-answered{
+.vff span.f-answered {
   color: var(--vff-main-text-color);
 }
 
@@ -156,7 +156,7 @@ header.vff-header svg.f-logo{
   fill: var(--vff-arrow-color);
 }
 
-/*buttons*/
+/* buttons */
 .vff .o-btn-action {
   color: var(--vff-button-text-color);
   background-color: var(--vff-button-color);
@@ -168,8 +168,8 @@ header.vff-header svg.f-logo{
   opacity: .9;
 }
 
-/*footer*/
-.vff-footer .footer-inner-wrap{
+/* footer */
+.vff-footer .footer-inner-wrap {
   background-color: var(--vff-footer-color);
 }
 
@@ -199,21 +199,21 @@ header.vff-header svg.f-logo{
 }
 
 .vff-footer .f-prev:hover,
-.vff-footer .f-next:hover{
+.vff-footer .f-next:hover {
   background-color: var(--vff-arrow-hover-color);
 }
 
-/*alerts*/
+/* alerts */
 .vff .text-alert,
-.vff .f-invalid{
+.vff .f-invalid {
   color: #F5554A;
 }
 
-.vff .text-success{
+.vff .text-success {
   color: var(--vff-main-accent-color);
 }
 
-/*text-muted*/
+/* text-muted */
 .vff span.f-tagline,
 .vff span.f-sub,
 .vff p.f-description,
@@ -243,7 +243,7 @@ header.vff-header svg.f-logo{
     --vff-progress-bar-color: var(--vff-main-accent-color);
   }
 
-  .vff span.f-answered{
+  .vff span.f-answered {
     color: var(--vff-main-accent-color);
   }
   
@@ -251,7 +251,7 @@ header.vff-header svg.f-logo{
     filter: invert(100%);
   }
 
-  /*footer*/
+  /* footer */
   .vff-footer .f-prev.f-disabled svg,
   .vff-footer .f-next.f-disabled svg {
     fill: var(--vff-main-text-color);
@@ -261,11 +261,11 @@ header.vff-header svg.f-logo{
     filter: brightness(1);
   }
 
-  .vff-footer .footer-inner-wrap{
+  .vff-footer .footer-inner-wrap {
     background-color: rgba(44,62,80,0.8);
   }
 
-  /*field-multiplechoice*/
+  /* field-multiplechoice */
   .vff .f-key {
     font-weight: 400;
   }

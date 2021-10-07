@@ -14,7 +14,7 @@
   -o-font-smoothing: antialiased;
 }
 
-@media screen and (max-width:1023px){
+@media screen and (max-width:1023px) {
   .vff,
   .vff-footer {
     font-size: 15px;
@@ -48,7 +48,7 @@
   global
 */
 
-.vff hr{
+.vff hr {
   box-sizing: content-box;
   overflow: visible;
   height: 0;
@@ -112,7 +112,7 @@
   margin-bottom: 22px;
 }
 
-/*utils*/
+/* utils */
 .vff .text-thin {
   font-weight: 300;
 }
@@ -154,11 +154,11 @@
   box-sizing: border-box;
 }
 
-header.vff-header + .vff{
+header.vff-header + .vff {
   margin-top: 16vh;
 }
 
-header.vff-header + .vff.vff-not-standalone{
+header.vff-header + .vff.vff-not-standalone {
   margin-top: 0;
 }
 
@@ -189,7 +189,7 @@ header.vff-header + .vff.vff-not-standalone{
   margin-bottom: 20px;
 }
 
-/*container*/
+/* container */
 .vff .f-container,
 header.vff-header .f-container{
   padding: 0 8%;
@@ -201,7 +201,7 @@ header.vff-header .f-container{
   margin-bottom: 1em;
 }
 
-/*header*/
+/* header */
 header.vff-header {
   line-height: 1;
   padding: .9em 10% .8em;
@@ -283,7 +283,7 @@ header.vff-header svg.f-logo {
   font-weight: 900;
 }
 
-.vff input[type=file]:focus{
+.vff input[type=file]:focus {
   outline: 1px dotted #000;
   outline-offset: 4px;
 }
@@ -316,11 +316,11 @@ header.vff-header svg.f-logo {
   background-color: #efefef;
 }
 
-.vff input[type=file]::-webkit-file-upload-button:active{
+.vff input[type=file]::-webkit-file-upload-button:active {
   color: #000;
 }
 
-.vff input[type=file]::file-selector-button{
+.vff input[type=file]::file-selector-button {
   min-height: 44px;
   display: inline-block;
   white-space: pre-wrap;
@@ -332,7 +332,7 @@ header.vff-header svg.f-logo {
   min-width: 90px;
 }
 
-/*buttons*/
+/* buttons */
 .vff button,
 .vff [type="button"],
 .vff [type="reset"],
@@ -342,7 +342,7 @@ header.vff-header svg.f-logo {
   overflow: visible;
 }
 
-/*default button*/
+/* default button */
 .vff button {
   border: none;
   outline: 0;
@@ -448,21 +448,21 @@ header.vff-header svg.f-logo {
 .vff .f-full-width input[type=date],
 .vff .f-full-width input[type=file],
 .vff .f-full-width textarea,
-.vff .f-full-width span.faux-form{
+.vff .f-full-width span.faux-form {
   width: 100%;
   padding-left: .16em;
   padding-right: .16em;
 }
 
 .vff .f-required {
-  display: none; /*hides required asterisks*/
+  display: none; /* hides required asterisks */
 }
 
 .vff .f-answer.f-full-width {
   margin-top: 26px;
 }
 
-.vff span.f-sub + .f-answer.f-full-width{
+.vff span.f-sub + .f-answer.f-full-width {
   margin-top: 22px;
 }
 
@@ -478,11 +478,11 @@ header.vff-header svg.f-logo {
   padding-bottom: 4px;
 }
 
-.vff span.f-answered{
+.vff span.f-answered {
   font-weight: 900;
 }
 
-/*faux select arrow*/
+/* faux select arrow */
 .vff .f-arrow-down {
   display: inline-block;
   margin-left: .2em;
@@ -578,11 +578,11 @@ header.vff-header svg.f-logo {
 
 .vff .fh1,
 .vff .fh2,
-.vff .fh3{
+.vff .fh3 {
   display: block;
 }
 
-/*misc-typography*/
+/* misc-typography */
 .vff span.f-tagline,
 .vff span.f-sub {
   font-weight: 400;
@@ -590,7 +590,7 @@ header.vff-header svg.f-logo {
 }
 
 .vff .fh2 span.f-tagline,
-.vff .fh2 span.f-sub{
+.vff .fh2 span.f-sub {
   font-size: .51em;
 }
 
@@ -608,7 +608,7 @@ header.vff-header svg.f-logo {
   margin-right: .4em;
 }
 
-.vff span.f-sub span.f-help{
+.vff span.f-sub span.f-help {
   display: block;
 }
 
@@ -620,7 +620,7 @@ header.vff-header svg.f-logo {
   margin-right: .6em;
 }
 
-/*description*/
+/* description */
 .vff p.f-description {
   margin-top: 0;
   padding-right: 4em;
@@ -677,7 +677,7 @@ header.vff-header svg.f-logo {
   font-size: .4em;
 }
 
-.vff ul.f-radios li div.f-label-wrap{
+.vff ul.f-radios li div.f-label-wrap {
   display: -ms-flexbox;
   display: flex;
   width: 100%;
@@ -696,7 +696,7 @@ header.vff-header svg.f-logo {
   f-radios (multiple picture choice)
 */
 
-.vff .field-multiplepicturechoice ul.f-radios{
+.vff .field-multiplepicturechoice ul.f-radios {
   max-width: 750px;
   min-width: auto;
   display: -ms-flexbox;
@@ -708,7 +708,7 @@ header.vff-header svg.f-logo {
   flex-wrap: wrap;
 }
 
-.vff .field-multiplepicturechoice ul.f-radios li{
+.vff .field-multiplepicturechoice ul.f-radios li {
   position: relative;
   cursor: pointer;
   display: -ms-flexbox;
@@ -725,7 +725,7 @@ header.vff-header svg.f-logo {
   line-height: 1.38;
 }
 
-.vff .field-multiplepicturechoice ul.f-radios li span.f-image{
+.vff .field-multiplepicturechoice ul.f-radios li span.f-image {
   display: flex;
   display: -ms-flexbox;
   -moz-box-align: center;
@@ -738,7 +738,7 @@ header.vff-header svg.f-logo {
   margin-bottom: 8px;
 }
 
-.vff .field-multiplepicturechoice ul.f-radios li span.f-image img{
+.vff .field-multiplepicturechoice ul.f-radios li span.f-image img {
   margin-bottom: 0;
   max-height: 100%;
   max-width: 100%;
@@ -838,7 +838,7 @@ header.vff-header svg.f-logo {
   not-standalone option
 */
 
-.vff.vff-not-standalone{
+.vff.vff-not-standalone {
   height: 100%;
   margin-top: 0;
   margin-bottom: 0;
@@ -846,11 +846,11 @@ header.vff-header svg.f-logo {
   padding-bottom: 100px;
 }
 
-.vff.vff-not-standalone .f-container{
+.vff.vff-not-standalone .f-container {
   margin: 0;
 }
 
-.vff.vff-not-standalone .vff-footer{
+.vff.vff-not-standalone .vff-footer {
   position: absolute;
   bottom: 0;
   width: 100%;
@@ -984,7 +984,7 @@ header.vff-header svg.f-logo {
   .vff input[type=password],
   .vff input[type=date],
   .vff input[type=file],
-  .vff textarea{
+  .vff textarea {
     font-size: .78em;
   }
 
@@ -993,12 +993,12 @@ header.vff-header svg.f-logo {
   }
   
   .vff .fh2 span.f-sub, 
-  .vff .fh2 span.f-tagline{
+  .vff .fh2 span.f-tagline {
     font-size: .58em;
   }
   
   .vff .f-container,
-  header.vff-header .f-container{
+  header.vff-header .f-container {
     padding: 0 5.5%;
   }
 
@@ -1007,15 +1007,15 @@ header.vff-header svg.f-logo {
     padding-right: 20px;
   }
   
-  .vff p.f-description{
+  .vff p.f-description {
     padding-right: 0;
   }
 
-  .vff .field-multiplepicturechoice ul.f-radios li{
+  .vff .field-multiplepicturechoice ul.f-radios li {
     font-size: 14px;
   }
 
-  .vff .field-multiplepicturechoice ul.f-radios li span.f-image{
+  .vff .field-multiplepicturechoice ul.f-radios li span.f-image {
     height: 90px;
   }
 
@@ -1027,11 +1027,11 @@ header.vff-header svg.f-logo {
     min-height: 180px;
   }
 
-  header.vff-header + .vff{
+  header.vff-header + .vff {
     margin-top: 8vh;
   }
 
-  header.vff-header + .vff.vff-not-standalone{
+  header.vff-header + .vff.vff-not-standalone {
     margin-top: 0;
   }
   
@@ -1075,7 +1075,7 @@ header.vff-header svg.f-logo {
     line-height: 1.5;
   }
 
-  .vff span.f-text{
+  .vff span.f-text {
     margin-right: 0;
   }
 
@@ -1101,7 +1101,7 @@ header.vff-header svg.f-logo {
     max-width: 320px;
   }
 
-  .vff .field-multiplepicturechoice ul.f-radios li{
+  .vff .field-multiplepicturechoice ul.f-radios li {
     -ms-flex: 0 0 calc(50% - 8px);
     flex: 0 0 calc(50% - 8px);
   }
@@ -1118,7 +1118,7 @@ header.vff-header svg.f-logo {
     position: static;
   }
 
-  .vff-footer{
+  .vff-footer {
     font-size: 15px;
   }
 
@@ -1143,7 +1143,7 @@ header.vff-header svg.f-logo {
     font-size: .6em;
   }
 
-  .vff .field-multiplepicturechoice ul.f-radios li span.f-image{
+  .vff .field-multiplepicturechoice ul.f-radios li span.f-image {
     height: 90px;
   }
 
