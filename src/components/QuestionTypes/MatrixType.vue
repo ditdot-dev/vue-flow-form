@@ -11,7 +11,7 @@
             <th 
               v-for="(column, index) in question.columns"
               v-bind:key="'c' + index"
-              class="f-table-cell f-header-cell"
+              class="f-table-cell f-column-cell"
             >
               <span class="f-table-string">{{ column.label }}</span>
             </th>
@@ -23,24 +23,24 @@
             v-bind:key="'r' + index"
             class="f-table-row"
           >
-            <td class="f-table-cell">
+            <td class="f-table-cell f-row-cell">
                 <span class="f-table-string">{{ row.label }}</span>
             </td>
             <td
               v-for="(column, index) in question.columns"
               v-bind:key="'l' + index"
-              :title="column.label"
+              v-bind:title="column.label"
               class="f-table-cell f-matrix-cell"
             >
               <label 
-                class="f-matrix-field f-matrix-radio f-matrix-label">
+                class="f-matrix-field f-matrix-radio">
                 <input
                   type="radio"
-                  :name="row.value"
-                  :id="index + '-' + row.value"
-                  :aria-label="row.label"
-                  class="f-matrix-control f-radio-control"
-                  :value="column.value"
+                  v-bind:name="row.value"
+                  v-bind:id="index + '-' + row.value"
+                  v-bind:aria-label="row.label"
+                  class="f-field-control f-radio-control"
+                  v-bind:value="column.value"
                 />
                 <span class="f-field-mask f-radio-mask">
                   <svg

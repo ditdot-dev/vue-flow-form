@@ -1170,26 +1170,24 @@ header.vff-header svg.f-logo {
   margin-bottom: 0;
 }
 
-.vff .f-table tr:first-child .f-table-cell {
-  padding-top: 1.875em;
-}
-.vff .f-table td:first-child, 
-.vff .f-table th:first-child {
-  padding-left: 1.875em;
-}
-
 .vff .f-table-cell {
   padding: 0.9375em 1em;
   min-width: 10em;
   text-align: left;
 }
-
-.vff .f-header-cell {
-  font-weight: 900;
-  text-align: center;
+ 
+.vff .f-row-cell {
+  padding-left: 1.875em;
+  text-align: left;
 }
 
-.vff .f-matrix-cell{
+.vff .f-column-cell {
+  font-weight: 900;
+  text-align: center;
+  padding-top: 1.875em;
+}
+
+.vff .f-matrix-cell {
   text-align: center;
 }
 

@@ -94,7 +94,6 @@
             title: 'Matrix question:',
             type: QuestionType.Matrix,
             multiple: false,
-            helpText: 'Select options. 👇',
             required: false,
             columns: [
               new ChoiceOption({
