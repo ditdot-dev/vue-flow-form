@@ -86,7 +86,7 @@ export class MatrixColumn {
 
 export class MatrixRow {
   constructor(options) {
-    this.name = ''
+    this.id = ''
     this.label = ''
 
     Object.assign(this, options)

@@ -37,11 +37,12 @@
             >
               <input
                 type="radio"
-                v-bind:name="row.name"
-                v-bind:id="index + '-' + row.name"
+                v-bind:name="row.id"
+                v-bind:id="index + '-' + row.id"
                 v-bind:aria-label="row.label"
-                class="f-field-control f-radio-control"
                 v-bind:value="column.value"
+                class="f-field-control f-radio-control"
+                v-on:change="updateSelected(row.id, column.value)"
               />
               <span class="f-field-mask f-radio-mask">
                 <svg
@@ -58,11 +59,11 @@
               >
               <input
                 type="checkbox"
-                v-bind:name="row.name"
-                v-bind:id="index + '-' + row.name"
+                v-bind:id="index + '-' + row.id"
+                v-bind:value="column.value"
                 v-bind:aria-label="row.label"
                 class="f-field-control f-checkbox-control"
-                v-bind:value="column.value"
+                v-on:change="updateSelected(row.id, column.value)"
               />
               <span class="f-field-mask f-checkbox-mask">
                 <svg
@@ -95,8 +96,21 @@ export default {
   name: QuestionType.Matrix,
 
   data() {
-    return {};
+    return {
+      selected: {}
+    }
   },
+
+  methods: {
+    updateSelected (id, value) {
+      if (this.selected[id]) {
+        this.selected[id] = [...this.selected[id], value]
+      } else {
+        this.selected[id] = [value]
+      }
+      console.log(this.selected)
+    }
+  }
 
 }  
 </script>
