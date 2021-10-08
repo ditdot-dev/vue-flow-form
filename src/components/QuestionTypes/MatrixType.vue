@@ -1,5 +1,5 @@
 <template>
-  <div class="f-matrix-wrap">
+  <div class='f-matrix-wrap'>
     <table 
       class="f-matrix-table"
       v-bind:class="{ 'f-matrix-multiple': question.multiple }"
@@ -41,8 +41,10 @@
                 v-bind:id="index + '-' + row.id"
                 v-bind:aria-label="row.label"
                 v-bind:value="column.value"
+                :checked="modelValue === column.value"
+                v-model="selected[row.id]"
                 class="f-field-control f-radio-control"
-                v-on:change="updateSelected(row.id, column.value)"
+                v-on:change="onChange($event, row.id)"
               />
               <span class="f-field-mask f-radio-mask">
                 <svg
@@ -56,14 +58,14 @@
              <label 
               v-else
               class="f-matrix-field f-matrix-checkbox"
-              >
+            >
               <input
                 type="checkbox"
                 v-bind:id="index + '-' + row.id"
                 v-bind:value="column.value"
                 v-bind:aria-label="row.label"
                 class="f-field-control f-checkbox-control"
-                v-on:change="updateSelected(row.id, column.value)"
+                v-on:change="onChange($event, row.id)"
               />
               <span class="f-field-mask f-checkbox-mask">
                 <svg
@@ -88,8 +90,8 @@
     https://www.ditdot.hr/en
   */
 
-import BaseType from "./BaseType.vue";
-import { QuestionType } from "../../models/QuestionModel";
+import BaseType from "./BaseType.vue"
+import { QuestionType } from "../../models/QuestionModel"
 
 export default {
   extends: BaseType,
@@ -102,13 +104,19 @@ export default {
   },
 
   methods: {
-    updateSelected (id, value) {
-      if (this.selected[id]) {
-        this.selected[id] = [...this.selected[id], value]
-      } else {
-        this.selected[id] = [value]
-      }
-      console.log(this.selected)
+    onChange ($event, id) {
+      if (this.question.multiple) {
+        if (this.selected[id] && !this.selected[id].includes($event.target.value)) {
+            this.selected[id] = [...this.selected[id], $event.target.value]
+        } else {
+          this.selected[id] = [$event.target.value]
+        }
+      } 
+ 
+      this.dirty = true
+      this.dataValue = this.selected
+      this.onKeyDown()
+      this.setAnswer(this.dataValue)
     }
   }
 
