@@ -70,7 +70,7 @@
 
   // Import necessary components and classes
   import FlowForm from '../../src/components/FlowForm.vue'
-  import QuestionModel, { QuestionType, ChoiceOption, LinkOption } from '../../src/models/QuestionModel'
+  import QuestionModel, { QuestionType, ChoiceOption, LinkOption, MatrixColumn, MatrixRow } from '../../src/models/QuestionModel'
   import LanguageModel from '../../src/models/LanguageModel'
   // If using the npm package, use the following line instead of the ones above.
   // import FlowForm, { QuestionModel, QuestionType, ChoiceOption, LanguageModel } from '@ditdot-dev/vue-flow-form'
@@ -96,42 +96,42 @@
             multiple: false,
             required: false,
             columns: [
-              new ChoiceOption({
+              new MatrixColumn({
                 value: "1",
                 label: "Very dissatisfied"
               }), 
-              new ChoiceOption({
+              new MatrixColumn({
                 value: "2",
                 label: "Dissatisfied"
               }), 
-              new ChoiceOption({
+              new MatrixColumn({
                 value: "3",
                 label: "Neutral"
               }), 
-              new ChoiceOption({
+              new MatrixColumn({
                 value: "4",
                 label: "Satisfied"
               }),
-              new ChoiceOption({
+              new MatrixColumn({
                 value: "5",
                 label: "Very satisfied"
               })
             ],
             rows: [
-              new ChoiceOption({
-                  value: "product 1",
+              new MatrixRow({
+                  id: "product 1",
                   label: "Product 1"
               }), 
-              new ChoiceOption({
-                  value: "product 2",
+              new MatrixRow({
+                  id: "product 2",
                   label: "Product 2"
               }), 
-              new ChoiceOption({
-                  value: "product 3",
+              new MatrixRow({
+                  id: "product 3",
                   label: "Product 3"
               }), 
-              new ChoiceOption({
-                  value: "product 4",
+              new MatrixRow({
+                  id: "product 4",
                   label: "Product 4"
               })
             ]

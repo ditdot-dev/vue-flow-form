@@ -75,6 +75,24 @@ export class LinkOption {
   }
 }
 
+export class MatrixColumn {
+  constructor(options) {
+    this.value = ''
+    this.label = ''
+
+    Object.assign(this, options)
+  }
+}
+
+export class MatrixRow {
+  constructor(options) {
+    this.name = ''
+    this.label = ''
+
+    Object.assign(this, options)
+  }
+}
+
 export default class QuestionModel {
   constructor(options) {
     // Make sure the options variable is an object

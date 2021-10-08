@@ -1153,12 +1153,6 @@ header.vff-header svg.f-logo {
   overflow-x: auto;
 }
 
-.vff .f-matrix-fieldset {
-  border: none;
-  padding: 0;
-  margin: 0;
-}
-
 .vff .f-matrix-table {
   width: 100%;
   background-color: #efefef;
@@ -1194,14 +1188,13 @@ header.vff-header svg.f-logo {
 .vff .f-field-mask {
   position: relative;
   display: inline-block;
-  border: solid 1px transparent;
+  cursor: pointer;
+  width: 1.5em;
+  height: 1.5em;
 }
 
 .vff .f-radio-mask {
   border-radius: 100%;
-  cursor: pointer;
-  width: 1.5em;
-  height: 1.5em;
 }
 
 .vff .f-field-svg {
@@ -1210,30 +1203,32 @@ header.vff-header svg.f-logo {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-}
-
-.vff .f-radio-svg {
   color: #999;
   border: 3px solid currentColor;
-  border-radius: 100%;
   fill: transparent;
   width: 100%;
   height: 100%;
   transition: color 0.2s ease 0s;
 }
 
-.vff .f-radio-svg circle {
+.vff .f-radio-svg {
+  border-radius: 100%;
+}
+
+.vff .f-radio-svg circle, 
+.vff .f-checkbox-svg rect {
   fill: inherit;
 }
 
-.vff .f-radio-control:hover ~ .f-radio-mask .f-radio-svg {
+.vff .f-field-control:hover ~ .f-field-mask .f-field-svg {
   fill: #999;
 }
 
-.vff .f-radio-control:checked ~ .f-radio-mask .f-radio-svg {
+.vff .f-field-control:checked ~ .f-field-mask .f-field-svg {
   color: #181818;
   fill: currentColor;
 }
+
  /* matrix-scrollbar */
 .vff .f-matrix-wrap::-webkit-scrollbar {
   height: 10px;
