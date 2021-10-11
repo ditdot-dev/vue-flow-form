@@ -102,10 +102,13 @@ export default {
   },
 
   beforeMount() {
+    // Pre-fill the form if there is a predefined answer
     if (this.question.multiple) {
-      for (let row of this.question.rows) {
-        this.selected[row.id] = []
-      }
+        for (let row of this.question.rows) {
+          this.selected[row.id] = this.question.answer && this.question.answer[row.id] ? [...this.question.answer[row.id]] : []
+        }
+    } else if (this.question.answer) {
+      this.selected = {...this.question.answer}
     }
   },
 

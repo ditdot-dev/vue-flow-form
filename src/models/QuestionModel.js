@@ -152,7 +152,7 @@ export default class QuestionModel {
       this.placeholder = 'yyyy-mm-dd'
     }
 
-    if (this.multiple && !Array.isArray(this.answer)) {
+    if (this.type !== QuestionType.Matrix && this.multiple && !Array.isArray(this.answer)) {
       this.answer = this.answer ? [this.answer] : []
     }
 
