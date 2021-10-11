@@ -31,51 +31,49 @@
             v-bind:title="column.label"
             class="f-table-cell f-matrix-cell"
           >
-            <label 
-              v-if="!question.multiple"
-              class="f-matrix-field f-matrix-radio"
-            >
-              <input
-                type="radio"
-                v-bind:name="row.id"
-                v-bind:id="index + '-' + row.id"
-                v-bind:aria-label="row.label"
-                v-bind:value="column.value"
-                :checked="modelValue === column.value"
-                v-model="selected[row.id]"
-                class="f-field-control f-radio-control"
-                v-on:change="onChange($event, row.id)"
-              />
-              <span class="f-field-mask f-radio-mask">
-                <svg
-                  viewBox="0 0 24 24"
-                  class="f-field-svg f-radio-svg"
-                >
-                  <circle r="6" cx="12" cy="12"></circle>
-                </svg>
-              </span>
-            </label>
-             <label 
-              v-else
-              class="f-matrix-field f-matrix-checkbox"
-            >
-              <input
-                type="checkbox"
-                v-bind:id="index + '-' + row.id"
-                v-bind:value="column.value"
-                v-bind:aria-label="row.label"
-                class="f-field-control f-checkbox-control"
-                v-on:change="onChange($event, row.id)"
-              />
-              <span class="f-field-mask f-checkbox-mask">
-                <svg
-                  viewBox="0 0 24 24"
-                  class="f-field-svg f-checkbox-svg"
-                >
-                  <rect width="12" height="12" x="6" y="6"></rect>
-                </svg>
-              </span>
-            </label>
+            <div v-if="!question.multiple" class="f-field-wrap">
+              <label class="f-matrix-field f-matrix-radio">
+                <input
+                  type="radio"
+                  v-bind:name="row.id"
+                  v-bind:id="index + '-' + row.id"
+                  v-bind:aria-label="row.label"
+                  v-bind:value="column.value"
+                  v-bind:checked="modelValue === column.value"
+                  v-model="selected[row.id]"
+                  class="f-field-control f-radio-control"
+                  v-on:change="onChange($event, row.id)"
+                />
+                <span class="f-field-mask f-radio-mask">
+                  <svg
+                    viewBox="0 0 24 24"
+                    class="f-field-svg f-radio-svg"
+                  >
+                    <circle r="6" cx="12" cy="12"></circle>
+                  </svg>
+                </span>
+              </label>
+            </div>
+            <div v-else class="f-field-wrap">
+              <label class="f-matrix-field f-matrix-checkbox">
+                <input
+                  type="checkbox"
+                  v-bind:id="index + '-' + row.id"
+                  v-bind:value="column.value"
+                  v-bind:aria-label="row.label"
+                  class="f-field-control f-checkbox-control"
+                  v-on:change="onChange($event, row.id)"
+                />
+                <span class="f-field-mask f-checkbox-mask">
+                  <svg
+                    viewBox="0 0 24 24"
+                    class="f-field-svg f-checkbox-svg"
+                  >
+                    <rect width="12" height="12" x="6" y="6"></rect>
+                  </svg>
+                </span>
+              </label>
+            </div>
           </td>
         </tr>
       </tbody>
@@ -112,13 +110,12 @@ export default {
           this.selected[id] = [$event.target.value]
         }
       } 
- 
+
       this.dirty = true
       this.dataValue = this.selected
       this.onKeyDown()
       this.setAnswer(this.dataValue)
     }
   }
-
 }  
 </script>

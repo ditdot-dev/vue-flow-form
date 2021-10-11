@@ -744,6 +744,89 @@ header.vff-header svg.f-logo {
   max-width: 100%;
 }
 
+/*matrix field*/
+.vff .f-matrix-wrap {
+  overflow-x: auto;
+}
+
+.vff .f-matrix-table {
+  width: 100%;
+  font-size: .52em;
+  line-height: normal;
+  font-weight: normal;
+  margin-bottom: 0;
+}
+
+.vff .f-table-cell {
+  padding: .6em .68em;
+  min-width: 10em;
+  text-align: left;
+}
+ 
+.vff .f-row-cell {
+  padding-left: 1.875em;
+}
+
+.vff .f-column-cell {
+  font-weight: 900;
+  text-align: center;
+}
+
+.vff .f-matrix-cell {
+  text-align: center;
+}
+
+.vff .f-field-wrap, 
+.vff .f-matrix-field {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.vff .f-field-mask {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  width: 1.5em;
+  height: 1.5em;
+}
+
+.vff .f-radio-mask {
+  border-radius: 100%;
+}
+
+.vff .f-field-svg {
+  position: absolute;
+  display: inline-block;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #000;
+  border: 1px solid currentColor;
+  fill: transparent;
+  width: 100%;
+  height: 100%;
+  transition: color 0.2s ease 0s;
+}
+
+.vff .f-radio-svg {
+  border-radius: 100%;
+}
+
+.vff .f-radio-svg circle, 
+.vff .f-checkbox-svg rect {
+  fill: inherit;
+}
+
+.vff .f-field-control:checked ~ .f-field-mask .f-field-svg {
+  color: inherit;
+}
+
+.vff .f-field-control:hover ~ .f-field-mask .f-field-svg,
+.vff .f-field-control:checked ~ .f-field-mask .f-field-svg {
+  fill: currentColor;
+}
+
 /*
   footer
 */
@@ -1147,97 +1230,4 @@ header.vff-header svg.f-logo {
     height: 90px;
   }
 
-}
-
-.vff .f-matrix-wrap {
-  overflow-x: auto;
-}
-
-.vff .f-matrix-table {
-  width: 100%;
-  background-color: #efefef;
-  border-collapse: separate;
-  border-spacing: 0;
-  font-size: .52em;
-  line-height: normal;
-  font-weight: normal;
-  margin-bottom: 0;
-}
-
-.vff .f-table-cell {
-  padding: 0.9375em 1em;
-  min-width: 10em;
-  text-align: left;
-}
- 
-.vff .f-row-cell {
-  padding-left: 1.875em;
-  text-align: left;
-}
-
-.vff .f-column-cell {
-  font-weight: 900;
-  text-align: center;
-  padding-top: 1.875em;
-}
-
-.vff .f-matrix-cell {
-  text-align: center;
-}
-
-.vff .f-field-mask {
-  position: relative;
-  display: inline-block;
-  cursor: pointer;
-  width: 1.5em;
-  height: 1.5em;
-}
-
-.vff .f-radio-mask {
-  border-radius: 100%;
-}
-
-.vff .f-field-svg {
-  position: absolute;
-  display: inline-block;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  color: #999;
-  border: 3px solid currentColor;
-  fill: transparent;
-  width: 100%;
-  height: 100%;
-  transition: color 0.2s ease 0s;
-}
-
-.vff .f-radio-svg {
-  border-radius: 100%;
-}
-
-.vff .f-radio-svg circle, 
-.vff .f-checkbox-svg rect {
-  fill: inherit;
-}
-
-.vff .f-field-control:hover ~ .f-field-mask .f-field-svg {
-  fill: #999;
-}
-
-.vff .f-field-control:checked ~ .f-field-mask .f-field-svg {
-  color: #181818;
-  fill: currentColor;
-}
-
- /* matrix-scrollbar */
-.vff .f-matrix-wrap::-webkit-scrollbar {
-  height: 10px;
-}
-
-.vff .f-matrix-wrap::-webkit-scrollbar-track {
-  background-color: #999;
-}
-
-.vff .f-matrix-wrap::-webkit-scrollbar-thumb {
-  background-color: #BBEBD5;
 }

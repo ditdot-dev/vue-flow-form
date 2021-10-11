@@ -148,6 +148,52 @@ header.vff-header svg.f-logo {
   fill: var(--vff-main-text-color);
 }
 
+/*field matrix*/
+.vff .f-matrix-table {
+  border-collapse: separate;
+  border-spacing: 0 .6em;
+}
+
+.vff .f-matrix-table td {
+  border: 1px solid var(--vff-secondary-text-color);
+  border-right:hidden;
+  border-left: hidden;
+}
+
+.vff .f-matrix-table td:first-child {
+  border-left: 1px solid var(--vff-secondary-text-color);
+}
+
+.vff .f-matrix-table td:last-child {
+  border-right: 1px solid var(--vff-secondary-text-color);
+}
+
+.vff .f-matrix-table thead td:first-child {
+  border: none;
+}
+
+.vff .f-field-svg {
+  color: var(--vff-secondary-text-color);
+  border-width: 2px;
+}
+
+.vff .f-field-control:checked ~ .f-field-mask .f-field-svg {
+  color: var(--vff-main-text-color);
+}
+
+/*matrix scrollbar*/
+.vff .f-matrix-wrap::-webkit-scrollbar {
+  height: 10px;
+}
+
+.vff .f-matrix-wrap::-webkit-scrollbar-track {
+  background-color:  var(--vff-tertiary-text-color);
+}
+
+.vff .f-matrix-wrap::-webkit-scrollbar-thumb {
+  background-color: var(--vff-secondary-text-color);
+}
+
 /*buttons*/
 .vff .o-btn-action {
   color: var(--vff-bg-color);
