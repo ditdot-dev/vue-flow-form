@@ -23,7 +23,7 @@
           class="f-table-row"
         >
           <td class="f-table-cell f-row-cell">
-              <span class="f-table-string">{{ row.label }}</span>
+            <span class="f-table-string">{{ row.label }}</span>
           </td>
           <td
             v-for="(column, index) in question.columns"
@@ -58,8 +58,8 @@
                 <input
                   type="checkbox"
                   v-bind:id="'c' + index + '-' + row.id"
-                  v-bind:value="column.value"
                   v-bind:aria-label="row.label"
+                  v-bind:value="column.value"
                   class="f-field-control f-checkbox-control"
                   v-model="selected[row.id]"
                   v-on:change="onChange"
@@ -83,13 +83,13 @@
 
 <script>
 /*
-    Copyright (c) 2020 - present, DITDOT Ltd. - MIT Licence
-    https://github.com/ditdot-dev/vue-flow-form
-    https://www.ditdot.hr/en
-  */
+  Copyright (c) 2020 - present, DITDOT Ltd. - MIT Licence
+  https://github.com/ditdot-dev/vue-flow-form
+  https://www.ditdot.hr/en
+*/
 
-import BaseType from "./BaseType.vue"
-import { QuestionType } from "../../models/QuestionModel"
+import BaseType from './BaseType.vue'
+import { QuestionType } from '../../models/QuestionModel'
 
 export default {
   extends: BaseType,
@@ -104,9 +104,9 @@ export default {
   beforeMount() {
     // Pre-fill the form if there is a predefined answer
     if (this.question.multiple) {
-        for (let row of this.question.rows) {
-          this.selected[row.id] = this.question.answer && this.question.answer[row.id] ? [...this.question.answer[row.id]] : []
-        }
+      for (let row of this.question.rows) {
+        this.selected[row.id] = this.question.answer && this.question.answer[row.id] ? [...this.question.answer[row.id]] : []
+      }
     } else if (this.question.answer) {
       this.selected = {...this.question.answer}
     }
@@ -119,6 +119,6 @@ export default {
       this.onKeyDown()
       this.setAnswer(this.dataValue)
     }
-  }
-}  
+  }  
+}
 </script>
