@@ -36,13 +36,12 @@
                 <input
                   type="radio"
                   v-bind:name="row.id"
-                  v-bind:id="index + '-' + row.id"
+                  v-bind:id="'c' + index + '-' + row.id"
                   v-bind:aria-label="row.label"
                   v-bind:value="column.value"
-                  v-bind:checked="modelValue === column.value"
                   v-model="selected[row.id]"
                   class="f-field-control f-radio-control"
-                  v-on:change="onChange($event, row.id)"
+                  v-on:change="onChange"
                 />
                 <span class="f-field-mask f-radio-mask">
                   <svg
@@ -58,11 +57,12 @@
               <label class="f-matrix-field f-matrix-checkbox">
                 <input
                   type="checkbox"
-                  v-bind:id="index + '-' + row.id"
+                  v-bind:id="'c' + index + '-' + row.id"
                   v-bind:value="column.value"
                   v-bind:aria-label="row.label"
                   class="f-field-control f-checkbox-control"
-                  v-on:change="onChange($event, row.id)"
+                  v-model="selected[row.id]"
+                  v-on:change="onChange"
                 />
                 <span class="f-field-mask f-checkbox-mask">
                   <svg
@@ -101,16 +101,16 @@ export default {
     }
   },
 
-  methods: {
-    onChange ($event, id) {
-      if (this.question.multiple) {
-        if (this.selected[id] && !this.selected[id].includes($event.target.value)) {
-            this.selected[id] = [...this.selected[id], $event.target.value]
-        } else {
-          this.selected[id] = [$event.target.value]
-        }
-      } 
+  beforeMount() {
+    if (this.question.multiple) {
+      for (let row of this.question.rows) {
+        this.selected[row.id] = []
+      }
+    }
+  },
 
+  methods: {
+    onChange($event) {
       this.dirty = true
       this.dataValue = this.selected
       this.onKeyDown()
