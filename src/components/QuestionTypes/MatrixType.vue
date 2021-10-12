@@ -35,6 +35,7 @@
               <label class="f-matrix-field f-matrix-radio">
                 <input
                   type="radio"
+                  v-bind:ref="el => inputList[row.id].push(el)"
                   v-bind:name="row.id"
                   v-bind:id="'c' + index + '-' + row.id"
                   v-bind:aria-label="row.label"
@@ -57,6 +58,7 @@
               <label class="f-matrix-field f-matrix-checkbox">
                 <input
                   type="checkbox"
+                  v-bind:ref="el => inputList[row.id].push(el)"
                   v-bind:id="'c' + index + '-' + row.id"
                   v-bind:aria-label="row.label"
                   v-bind:value="column.value"
@@ -97,7 +99,8 @@ export default {
 
   data() {
     return {
-      selected: {}
+      selected: {},
+      inputList: {}
     }
   },
 
@@ -110,6 +113,11 @@ export default {
     } else if (this.question.answer) {
       this.selected = {...this.question.answer}
     }
+
+    // Setting input list for validation
+    for (let row of this.question.rows) {
+      this.inputList[row.id] = []
+    }
   },
 
   methods: {
@@ -118,7 +126,21 @@ export default {
       this.dataValue = this.selected
       this.onKeyDown()
       this.setAnswer(this.dataValue)
+    }, 
+
+    validate() {
+      if (!this.question.required) {
+        return true
+      }
+
+      const checked = inputs => inputs.some(input => input.checked)
+
+      if (!Object.values(this.inputList).every(value => checked(value))) {
+        return false
+      }
+
+      return true
     }
-  }  
+  }
 }
 </script>
