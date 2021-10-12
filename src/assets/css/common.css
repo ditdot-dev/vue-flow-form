@@ -827,11 +827,11 @@ header.vff-header svg.f-logo {
   fill: currentColor;
 }
 
-.vff .f-field-control:focus ~ .f-field-mask {
+.vff .f-field-control:focus-visible ~ .f-field-mask {
   outline: 1px dotted;
 }
 
-.vff .f-field-control:focus ~ .f-checkbox-mask {
+.vff .f-field-control:focus-visible ~ .f-checkbox-mask {
   outline-offset: 2px;
 }
 
