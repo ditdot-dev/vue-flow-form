@@ -35,10 +35,11 @@
               <label class="f-matrix-field f-matrix-radio">
                 <input
                   type="radio"
-                  v-bind:ref="el => inputList[row.id].push(el)"
+                  v-bind:ref="el => inputList.push(el)"
                   v-bind:name="row.id"
                   v-bind:id="'c' + index + '-' + row.id"
                   v-bind:aria-label="row.label"
+                  v-bind:data-id="row.id"
                   v-bind:value="column.value"
                   v-model="selected[row.id]"
                   class="f-field-control f-radio-control"
@@ -58,9 +59,10 @@
               <label class="f-matrix-field f-matrix-checkbox">
                 <input
                   type="checkbox"
-                  v-bind:ref="el => inputList[row.id].push(el)"
+                  v-bind:ref="el => inputList.push(el)"
                   v-bind:id="'c' + index + '-' + row.id"
                   v-bind:aria-label="row.label"
+                  v-bind:data-id="row.id"
                   v-bind:value="column.value"
                   class="f-field-control f-checkbox-control"
                   v-model="selected[row.id]"
@@ -100,7 +102,7 @@ export default {
   data() {
     return {
       selected: {},
-      inputList: {}
+      inputList: []
     }
   },
 
@@ -112,11 +114,6 @@ export default {
       }
     } else if (this.question.answer) {
       this.selected = {...this.question.answer}
-    }
-
-    // Setting input list for validation
-    for (let row of this.question.rows) {
-      this.inputList[row.id] = []
     }
   },
 
@@ -135,11 +132,31 @@ export default {
 
       const checked = inputs => inputs.some(input => input.checked)
 
-      if (!Object.values(this.inputList).every(value => checked(value))) {
+      if (!Object.values(this.inputGroups).every(value => checked(value))) {
         return false
       }
 
       return true
+    },
+
+    getElement() {
+      return this.inputList[0]
+    }, 
+  },
+
+  computed: {
+    inputGroups() {
+      let inputGroups = {}
+      // Setting input list for validation
+      for (let row of this.question.rows) {
+        inputGroups[row.id] = []
+      }
+      
+      this.inputList.forEach(input => {
+        inputGroups[input.dataset.id].push(input) 
+      })
+
+      return inputGroups
     }
   }
 }

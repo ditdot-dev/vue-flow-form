@@ -823,7 +823,8 @@ header.vff-header svg.f-logo {
 }
 
 .vff .f-field-control:hover ~ .f-field-mask .f-field-svg,
-.vff .f-field-control:checked ~ .f-field-mask .f-field-svg {
+.vff .f-field-control:checked ~ .f-field-mask .f-field-svg,
+.vff .f-field-control:focus ~ .f-field-mask .f-field-svg {
   fill: currentColor;
 }
 
