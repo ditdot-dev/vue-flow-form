@@ -744,7 +744,7 @@ header.vff-header svg.f-logo {
   max-width: 100%;
 }
 
-/*matrix field*/
+/* matrix field*/
 .vff .f-matrix-wrap {
   overflow-x: auto;
 }
@@ -762,7 +762,7 @@ header.vff-header svg.f-logo {
 }
 
 .vff .f-table-cell {
-  padding: .6em .68em;
+  padding: .54em;
   min-width: 9em;
   text-align: left;
 }
@@ -791,12 +791,8 @@ header.vff-header svg.f-logo {
   position: relative;
   display: inline-block;
   cursor: pointer;
-  width: 1.5em;
-  height: 1.5em;
-}
-
-.vff .f-radio-mask {
-  border-radius: 100%;
+  width: 1.4em;
+  height: 1.4em;
 }
 
 .vff .f-field-svg {
@@ -831,15 +827,12 @@ header.vff-header svg.f-logo {
   fill: currentColor;
 }
 
-.vff .f-field-control:focus:not(:checked) ~ .f-field-mask .f-field-svg {
-  outline: 1px solid #000;
-  outline-offset: 4px;
+.vff .f-field-control:focus ~ .f-field-mask {
+  outline: 1px dotted;
 }
 
-@media (prefers-color-scheme: dark) {
-  .vff .f-field-control:focus ~ .f-field-mask .f-field-svg {
-    outline-color: #fff;
-  }
+.vff .f-field-control:focus ~ .f-checkbox-mask {
+  outline-offset: 2px;
 }
 
 /*

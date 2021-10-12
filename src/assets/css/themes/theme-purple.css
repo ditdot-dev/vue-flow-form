@@ -162,6 +162,10 @@ header.vff-header svg.f-logo{
   border-spacing: 0 .6em;
 }
 
+.vff .f-matrix-table thead th {
+  padding-bottom: 0;
+}
+
 .vff .f-matrix-table td {
   border: 1px solid var(--vff-secondary-form-bg-color);
   border-right:hidden;
