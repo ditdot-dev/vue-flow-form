@@ -590,7 +590,7 @@ header.vff-header svg.f-logo {
 }
 
 .vff .fh2 span.f-tagline,
-.vff .fh2 span.f-sub{
+.vff .fh2 span.f-sub { 
   font-size: .51em;
 }
 
@@ -751,20 +751,24 @@ header.vff-header svg.f-logo {
 
 .vff .f-matrix-table {
   width: 100%;
-  font-size: .52em;
+  font-size: .5em;
   line-height: normal;
   font-weight: normal;
   margin-bottom: 0;
 }
 
+.vff .f-table-string {
+  font-size: .875em;
+}
+
 .vff .f-table-cell {
   padding: .6em .68em;
-  min-width: 10em;
+  min-width: 9em;
   text-align: left;
 }
  
 .vff .f-row-cell {
-  padding-left: 1.875em;
+  padding-left: 1.5em;
 }
 
 .vff .f-column-cell {
@@ -823,9 +827,19 @@ header.vff-header svg.f-logo {
 }
 
 .vff .f-field-control:hover ~ .f-field-mask .f-field-svg,
-.vff .f-field-control:checked ~ .f-field-mask .f-field-svg,
-.vff .f-field-control:focus ~ .f-field-mask .f-field-svg {
+.vff .f-field-control:checked ~ .f-field-mask .f-field-svg {
   fill: currentColor;
+}
+
+.vff .f-field-control:focus:not(:checked) ~ .f-field-mask .f-field-svg {
+  outline: 1px solid #000;
+  outline-offset: 4px;
+}
+
+@media (prefers-color-scheme: dark) {
+  .vff .f-field-control:focus ~ .f-field-mask .f-field-svg {
+    outline-color: #fff;
+  }
 }
 
 /*

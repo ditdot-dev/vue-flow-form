@@ -117,6 +117,10 @@ export default {
     }
   },
 
+  beforeUpdate() {
+    this.inputList = []
+  },
+
   methods: {
     onChange($event) {
       this.dirty = true
