@@ -827,6 +827,10 @@ header.vff-header svg.f-logo {
   fill: currentColor;
 }
 
+.vff .f-field-control:focus {
+  outline: none;
+}
+
 .vff .f-field-control:focus-visible ~ .f-field-mask {
   outline: 1px dotted;
 }
