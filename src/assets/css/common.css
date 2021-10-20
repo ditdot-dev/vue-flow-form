@@ -744,7 +744,10 @@ header.vff-header svg.f-logo {
   max-width: 100%;
 }
 
-/* field matrix */
+/* 
+  field matrix
+*/
+
 .vff .f-matrix-wrap {
   overflow-x: auto;
 }
@@ -752,23 +755,27 @@ header.vff-header svg.f-logo {
 .vff .f-matrix-table {
   width: 100%;
   font-size: .5em;
-  line-height: normal;
+  line-height: 1.36;
   font-weight: normal;
   margin-bottom: 0;
 }
 
 .vff .f-table-string {
-  font-size: .875em;
+  font-size: .84em;
 }
 
 .vff .f-table-cell {
-  padding: .54em;
-  min-width: 9em;
+  padding: .52em;
+  min-width: 8.6em;
   text-align: left;
+}
+
+.vff .f-table-cell.f-row-cell {
+  min-width: 9.2em;
 }
  
 .vff .f-row-cell {
-  padding-left: 1.5em;
+  padding-left: 1em;
 }
 
 .vff .f-column-cell {
