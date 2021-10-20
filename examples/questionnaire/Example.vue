@@ -70,7 +70,7 @@
 
   // Import necessary components and classes
   import FlowForm from '../../src/components/FlowForm.vue'
-  import QuestionModel, { QuestionType, ChoiceOption, LinkOption, MatrixColumn, MatrixRow } from '../../src/models/QuestionModel'
+  import QuestionModel, { QuestionType, ChoiceOption, LinkOption } from '../../src/models/QuestionModel'
   import LanguageModel from '../../src/models/LanguageModel'
   // If using the npm package, use the following line instead of the ones above.
   // import FlowForm, { QuestionModel, QuestionType, ChoiceOption, LanguageModel } from '@ditdot-dev/vue-flow-form'
@@ -89,53 +89,6 @@
         language: new LanguageModel(),
         // Create question list with QuestionModel instances
         questions: [
-           new QuestionModel({
-            id: 'matrix',
-            title: 'Matrix question:',
-            type: QuestionType.Matrix,
-            multiple: false,
-            required: false,
-            columns: [
-              new MatrixColumn({
-                value: "1",
-                label: "Very dissatisfied"
-              }), 
-              new MatrixColumn({
-                value: "2",
-                label: "Dissatisfied"
-              }), 
-              new MatrixColumn({
-                value: "3",
-                label: "Neutral"
-              }), 
-              new MatrixColumn({
-                value: "4",
-                label: "Satisfied"
-              }),
-              new MatrixColumn({
-                value: "5",
-                label: "Very satisfied"
-              })
-            ],
-            rows: [
-              new MatrixRow({
-                  id: "product 1",
-                  label: "Product 1"
-              }), 
-              new MatrixRow({
-                  id: "product 2",
-                  label: "Product 2"
-              }), 
-              new MatrixRow({
-                  id: "product 3",
-                  label: "Product 3"
-              }), 
-              new MatrixRow({
-                  id: "product 4",
-                  label: "Product 4"
-              })
-            ]
-          }),
           new QuestionModel({
             id: 'first_name',
             tagline: 'Hi! Welcome to our demo survey 😊',
