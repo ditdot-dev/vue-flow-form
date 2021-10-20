@@ -128,8 +128,8 @@ export default class QuestionModel {
     this.maxLength = null
     this.nextStepOnAnswer = false
     this.accept = null
-    this.maxSize = null, 
-    this.rows = [], 
+    this.maxSize = null
+    this.rows = []
     this.columns = []
 
     Object.assign(this, options)
