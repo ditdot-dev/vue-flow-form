@@ -1,5 +1,5 @@
 <template>
-  <div class='f-matrix-wrap'>
+  <div class="f-matrix-wrap">
     <table 
       class="f-matrix-table"
       v-bind:class="{ 'f-matrix-multiple': question.multiple }"
