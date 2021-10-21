@@ -19,7 +19,8 @@ export const QuestionType = Object.freeze({
   Phone: 'FlowFormPhoneType',
   SectionBreak: 'FlowFormSectionBreakType',
   Text: 'FlowFormTextType',
-  Url: 'FlowFormUrlType'
+  Url: 'FlowFormUrlType',
+  Matrix: 'FlowFormMatrixType'
 })
 
 export const DropdownOptionBlank = Object.freeze({
@@ -74,6 +75,24 @@ export class LinkOption {
   }
 }
 
+export class MatrixColumn {
+  constructor(options) {
+    this.value = ''
+    this.label = ''
+
+    Object.assign(this, options)
+  }
+}
+
+export class MatrixRow {
+  constructor(options) {
+    this.id = ''
+    this.label = ''
+
+    Object.assign(this, options)
+  }
+}
+
 export default class QuestionModel {
   constructor(options) {
     // Make sure the options variable is an object
@@ -110,6 +129,8 @@ export default class QuestionModel {
     this.nextStepOnAnswer = false
     this.accept = null
     this.maxSize = null
+    this.rows = []
+    this.columns = []
 
     Object.assign(this, options)
 
@@ -131,7 +152,7 @@ export default class QuestionModel {
       this.placeholder = 'yyyy-mm-dd'
     }
 
-    if (this.multiple && !Array.isArray(this.answer)) {
+    if (this.type !== QuestionType.Matrix && this.multiple && !Array.isArray(this.answer)) {
       this.answer = this.answer ? [this.answer] : []
     }
 
