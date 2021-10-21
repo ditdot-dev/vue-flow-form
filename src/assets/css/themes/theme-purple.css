@@ -199,7 +199,7 @@ header.vff-header svg.f-logo {
 }
 
 .vff .f-matrix-wrap::-webkit-scrollbar-track {
-  background-color:  var(--vff-tertiary-text-color);
+  background-color: var(--vff-tertiary-text-color);
 }
 
 .vff .f-matrix-wrap::-webkit-scrollbar-thumb {

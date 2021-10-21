@@ -160,7 +160,7 @@ header.vff-header svg.f-logo {
 
 .vff .f-matrix-table td {
   border: 1px solid var(--vff-secondary-text-color);
-  border-right:hidden;
+  border-right: hidden;
   border-left: hidden;
 }
 
@@ -191,13 +191,12 @@ header.vff-header svg.f-logo {
 }
 
 .vff .f-matrix-wrap::-webkit-scrollbar-track {
-  background-color:  var(--vff-tertiary-text-color);
+  background-color: var(--vff-tertiary-text-color);
 }
 
 .vff .f-matrix-wrap::-webkit-scrollbar-thumb {
   background-color: var(--vff-secondary-text-color);
 }
-
 
 /* buttons */
 .vff .o-btn-action {
