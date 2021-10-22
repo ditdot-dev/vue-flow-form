@@ -429,6 +429,10 @@
         do {
           let question = this.questionModels[index]
 
+          if (questions.some(q => q === question)) {
+            break
+          }
+          
           question.setIndex(serialIndex)
           question.language = this.language
 
@@ -445,7 +449,7 @@
               } else {
                 for (let i = 0; i < this.questionModels.length; i++) {
                   if (this.questionModels[i].id === nextId) {
-                    if (i < index) {
+                    if (i < index && questions.some(q => q === this.questionModels[i])) {
                       question.answered = false
                       activeIndex = i
                       ++index
