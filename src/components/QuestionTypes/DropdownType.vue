@@ -47,7 +47,9 @@
 
   export default {
     extends: BaseType,
+
     name: QuestionType.Dropdown,
+
     computed: {
       answerLabel() {
         for (let i = 0; i < this.question.options.length; i++) {
@@ -61,7 +63,8 @@
         return this.question.placeholder
       }
     },
-     methods: {
+
+    methods: {
       onKeyDownListener($event) {
         if ($event.key === 'ArrowDown' || $event.key === 'ArrowUp') {
           this.setAnswer(this.dataValue)
@@ -70,6 +73,7 @@
           this.blur()
         }
       },
+      
       onKeyUpListener($event) {
         if ($event.key === 'Enter' && this.isValid() && !this.disabled) {
           $event.stopPropagation()
