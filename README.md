@@ -68,7 +68,7 @@ $ yarn build
 
 Made with [Vue.js](https://vuejs.org/)
 
-## Usage as npm package
+## Usage as npm Package
 
 If you don't already have an existing Vue project, the easiest way to create one is to use [Vue CLI](https://cli.vuejs.org/):
 
@@ -142,7 +142,7 @@ And then in your App.vue file:
 </style>
 ```
 
-## Usage with plain JavaScript via CDN
+## Usage with Plain JavaScript via CDN
 
 HTML:
 
@@ -203,6 +203,13 @@ const vm = app.mount('#app');
 
 Changes for each release are documented in the [release notes](https://github.com/ditdot-dev/vue-flow-form/releases).
 
+## Stay in Touch
+
+* [Twitter](https://twitter.com/ditdot_info)
+* [DITDOT](https://www.ditdot.hr/en)
+
 ## License
 
 [MIT](https://github.com/ditdot-dev/vue-flow-form/blob/master/LICENSE) license.
+
+Copyright (c) 2020 - present, DITDOT Ltd.
