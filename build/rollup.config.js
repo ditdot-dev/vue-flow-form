@@ -52,7 +52,10 @@ export default [
       css(),
       buble({
         objectAssign: 'Object.assign',
-        jsx: 'h'
+        jsx: 'h',
+        transforms: {
+          dangerousForOf: true
+        }
       }),
       commonjs(),
       resolve({
@@ -93,7 +96,10 @@ export default [
       css(),
       buble({
         objectAssign: 'Object.assign',
-        jsx: 'h'
+        jsx: 'h',
+        transforms: {
+          dangerousForOf: true
+        }
       }),
       commonjs(),
       resolve({
@@ -134,7 +140,10 @@ export default [
       css(),
       buble({
         objectAssign: 'Object.assign',
-        jsx: 'h'
+        jsx: 'h',
+        transforms: {
+          dangerousForOf: true
+        }
       }),
       commonjs(),
       resolve({
@@ -177,7 +186,10 @@ export default [
       css(),
       buble({
         objectAssign: 'Object.assign',
-        jsx: 'h'
+        jsx: 'h',
+        transforms: {
+          dangerousForOf: true
+        }
       }),
       commonjs(),
       resolve({
