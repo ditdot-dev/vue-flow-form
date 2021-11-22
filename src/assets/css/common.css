@@ -19,7 +19,6 @@
   .vff-footer {
     font-size: 15px;
   }
-
 }
 
 @media screen and (min-width:1366px) {
@@ -27,21 +26,18 @@
   .vff-footer {
     font-size: 18px;
   }
-
 }
 
 @media screen and (min-width:1920px) {
   .vff {
     font-size: 22px;
   }
-
 }
 
 @media screen and (min-width:2560px) {
   .vff {
     font-size: 25px;
   }
-
 }
 
 /*
@@ -278,24 +274,23 @@ header.vff-header svg.f-logo {
   border-radius: 0;
   margin: 0 .2em;
   padding: .1em 0 .15em;
-  font-size: .72em;
+  font-size: .5em;
   line-height: normal;
   font-weight: 900;
 }
 
-.vff input[type=file]:focus {
+.vff input[type="file"]:focus {
   outline: 1px dotted #000;
   outline-offset: 4px;
 }
 
 @media (prefers-color-scheme: dark) {
-  .vff input[type=file]:focus{
+  .vff input[type="file"]:focus{
     outline-color: #fff;
   }
-
 }
 
-.vff input[type=file]::-webkit-file-upload-button {
+.vff input[type="file"]::-webkit-file-upload-button {
   appearance: none;
   -moz-appearance: none;
   -webkit-appearance: none;
@@ -316,11 +311,11 @@ header.vff-header svg.f-logo {
   background-color: #efefef;
 }
 
-.vff input[type=file]::-webkit-file-upload-button:active {
+.vff input[type="file"]::-webkit-file-upload-button:active {
   color: #000;
 }
 
-.vff input[type=file]::file-selector-button {
+.vff input[type="file"]::file-selector-button {
   min-height: 44px;
   display: inline-block;
   white-space: pre-wrap;
@@ -405,13 +400,13 @@ header.vff-header svg.f-logo {
   z-index: 1;
 }
 
-.vff input[type=text],
-.vff input[type=number],
-.vff input[type=tel],
-.vff input[type=email],
-.vff input[type=url],
-.vff input[type=password],
-.vff input[type=date],
+.vff input[type="text"],
+.vff input[type="number"],
+.vff input[type="tel"],
+.vff input[type="email"],
+.vff input[type="url"],
+.vff input[type="password"],
+.vff input[type="date"],
 .vff textarea {
   -webkit-appearance: none;
   -moz-appearance: none;
@@ -439,14 +434,14 @@ header.vff-header svg.f-logo {
   resize: vertical;
 }
 
-.vff .f-full-width input[type=text],
-.vff .f-full-width input[type=number],
-.vff .f-full-width input[type=tel],
-.vff .f-full-width input[type=email],
-.vff .f-full-width input[type=url],
-.vff .f-full-width input[type=password],
-.vff .f-full-width input[type=date],
-.vff .f-full-width input[type=file],
+.vff .f-full-width input[type="text"],
+.vff .f-full-width input[type="number"],
+.vff .f-full-width input[type="tel"],
+.vff .f-full-width input[type="email"],
+.vff .f-full-width input[type="url"],
+.vff .f-full-width input[type="password"],
+.vff .f-full-width input[type="date"],
+.vff .f-full-width input[type="file"],
 .vff .f-full-width textarea,
 .vff .f-full-width span.faux-form {
   width: 100%;
@@ -515,7 +510,7 @@ header.vff-header svg.f-logo {
   padding: 0.12em .2em;
 }
 
-.vff.vff-is-ios input[type=date] {
+.vff.vff-is-ios input[type="date"] {
   height: 32px;
   display: block;
 }
@@ -535,8 +530,8 @@ header.vff-header svg.f-logo {
 .vff a.f-link:active,  
 .vff .field-submit .f-section-wrap a:hover, 
 .vff .field-submit .f-section-wrap a:active {
- color: inherit; 
- border-bottom: none;
+  color: inherit; 
+  border-bottom: none;
 }
 
 /*
@@ -657,7 +652,7 @@ header.vff-header svg.f-logo {
   overflow: hidden;
 }
 
-.vff ul.f-radios li.f-other input[type=text] {
+.vff ul.f-radios li.f-other input[type="text"] {
   border-bottom: none;
   width: 100%;
   padding: 0;
@@ -673,7 +668,7 @@ header.vff-header svg.f-logo {
 
 .vff .f-radios-desc,
 .vff ul.f-radios li,
-.vff ul.f-radios li input[type=text] {
+.vff ul.f-radios li input[type="text"] {
   font-size: .4em;
 }
 
@@ -986,8 +981,7 @@ header.vff-header svg.f-logo {
 
   100% {
     opacity: 1;
-  }
-  
+  } 
 }
 
 .vff .f-fade-in-down {
@@ -1004,7 +998,6 @@ header.vff-header svg.f-logo {
     opacity: 1;
     transform: none;
   }
-
 }
 
 .vff .f-fade-in-up {
@@ -1021,7 +1014,6 @@ header.vff-header svg.f-logo {
     opacity: 1;
     transform: none;
   }
-
 }
 
 /*
@@ -1038,7 +1030,6 @@ header.vff-header svg.f-logo {
   .vff .fh2 {
     padding-right: 2.2em;
   }
-
 }
 
 @media only screen and (min-width: 1920px) {
@@ -1046,7 +1037,6 @@ header.vff-header svg.f-logo {
   .vff .field-submit {
     max-width: 1160px;
   }
-
 }
 
 @media screen and (max-width: 1366px) {
@@ -1055,7 +1045,6 @@ header.vff-header svg.f-logo {
     padding-right: 5%;
     padding-left: 5%;
   }
-
 }
 
 @media only screen and (max-width: 1023px) {
@@ -1068,7 +1057,6 @@ header.vff-header svg.f-logo {
     padding-left: 0;
     padding-right: 0;
   }
-
 }
 
 @media only screen and (max-width: 767px) {
@@ -1078,20 +1066,20 @@ header.vff-header svg.f-logo {
     padding-right: 0;
   }
 
-  .vff input[type=text],
-  .vff input[type=number],
-  .vff input[type=tel],
-  .vff input[type=email],
-  .vff input[type=url],
-  .vff input[type=password],
-  .vff input[type=date],
-  .vff input[type=file],
+  .vff input[type="text"],
+  .vff input[type="number"],
+  .vff input[type="tel"],
+  .vff input[type="email"],
+  .vff input[type="url"],
+  .vff input[type="password"],
+  .vff input[type="date"],
+  .vff input[type="file"],
   .vff textarea {
     font-size: .78em;
   }
 
-  .vff input[type=file] {
-    font-size: .64em;
+  .vff input[type="file"] {
+    font-size: .4em;
   }
   
   .vff .fh2 span.f-sub, 
@@ -1120,7 +1108,6 @@ header.vff-header svg.f-logo {
   .vff .field-multiplepicturechoice ul.f-radios li span.f-image {
     height: 90px;
   }
-
 }
 
 @media screen and (max-width:479px) {
@@ -1137,20 +1124,20 @@ header.vff-header svg.f-logo {
     margin-top: 0;
   }
   
-  .vff input[type=text],
-  .vff input[type=number],
-  .vff input[type=tel],
-  .vff input[type=email],
-  .vff input[type=url],
-  .vff input[type=password],
-  .vff input[type=date],
-  .vff input[type=file],
+  .vff input[type="text"],
+  .vff input[type="number"],
+  .vff input[type="tel"],
+  .vff input[type="email"],
+  .vff input[type="url"],
+  .vff input[type="password"],
+  .vff input[type="date"],
+  .vff input[type="file"],
   .vff textarea {
     line-height: 1.4;
     padding: .16em .2em;
   }
 
-  .vff input[type=file] {
+  .vff input[type="file"] {
     font-size: .6em;
   }
 
@@ -1187,7 +1174,7 @@ header.vff-header svg.f-logo {
   }
 
   .vff ul.f-radios li,
-  .vff ul.f-radios li input[type=text] {
+  .vff ul.f-radios li input[type="text"] {
     font-size: .62em;
   }
 
@@ -1207,7 +1194,6 @@ header.vff-header svg.f-logo {
     -ms-flex: 0 0 calc(50% - 8px);
     flex: 0 0 calc(50% - 8px);
   }
-
 }
 
 @media screen and (max-height:400px) {
@@ -1231,7 +1217,7 @@ header.vff-header svg.f-logo {
 
   .vff .f-radios-desc,
   .vff ul.f-radios li,
-  .vff ul.f-radios li input[type=text] {
+  .vff ul.f-radios li input[type="text"] {
     font-size: 14px;
   }
 
@@ -1248,5 +1234,4 @@ header.vff-header svg.f-logo {
   .vff .field-multiplepicturechoice ul.f-radios li span.f-image {
     height: 90px;
   }
-
 }

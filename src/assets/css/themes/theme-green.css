@@ -63,13 +63,13 @@ header.vff-header svg.f-logo {
   color: var(--vff-main-accent-color);
 }
 
-.vff input[type=text],
-.vff input[type=number],
-.vff input[type=tel],
-.vff input[type=email],
-.vff input[type=url],
-.vff input[type=password],
-.vff input[type=date],
+.vff input[type="text"],
+.vff input[type="number"],
+.vff input[type="tel"],
+.vff input[type="email"],
+.vff input[type="url"],
+.vff input[type="password"],
+.vff input[type="date"],
 .vff textarea,
 .vff span.faux-form {
   border-bottom-color: var(--vff-secondary-text-color);
@@ -334,5 +334,4 @@ header.vff-header svg.f-logo {
     color: var(--vff-main-accent-color);
     font-weight: 300;
   }
-
 }

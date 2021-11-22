@@ -51,13 +51,13 @@ header.vff-header svg.f-logo {
   fill: rgba(0,0,0,0.9);
 }
 
-.vff input[type=text],
-.vff input[type=number],
-.vff input[type=tel],
-.vff input[type=email],
-.vff input[type=url],
-.vff input[type=password],
-.vff input[type=date],
+.vff input[type="text"],
+.vff input[type="number"],
+.vff input[type="tel"],
+.vff input[type="email"],
+.vff input[type="url"],
+.vff input[type="password"],
+.vff input[type="date"],
 .vff textarea,
 .vff span.faux-form {
   border-bottom-color: var(--vff-secondary-text-color);
@@ -209,7 +209,6 @@ header.vff-header svg.f-logo {
   .vff-footer .footer-inner-wrap{
     background-color: rgba(240,240,240,0.75);
   }
-
 }
 
 .vff-footer .f-prev svg,
@@ -347,5 +346,4 @@ header.vff-header svg.f-logo {
   .vff .f-matrix-wrap::-webkit-scrollbar-thumb {
     background-color: var(--vff-main-accent-color);
   }
-
 }
