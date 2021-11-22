@@ -28,16 +28,10 @@
     extends: TextType,
 
     name: QuestionType.File,
-    
-    mounted() {
-      if (this.question.accept) {
-        this.mimeTypeRegex = new RegExp(this.question.accept.replace('*', '[^\\/,]+'))
-      }
-    },
 
     methods: {
       setAnswer(answer) {
-        this.question.setAnswer(this.files)
+        this.question.setAnswer(this.$refs.input.files)
 
         this.answer = answer
         this.question.answered = this.isValid()
@@ -49,15 +43,31 @@
         return this.errorMessage !== null
       },
 
-      validate() {
-        this.errorMessage = null
+      checkFileAccept(file) {
+        const extension = '.' + file.name.split('.').pop()
 
+        if (this.acceptedFileExtensionsRegex && this.acceptedFileExtensionsRegex.test(extension)) {
+          return true
+        }
+
+        if (this.acceptedFileMimesRegex && this.acceptedFileMimesRegex.test(file.type)) {
+          return true
+        }
+
+        return false
+      },
+
+      validate() {
         if (this.question.required && !this.hasValue) {
           return false
         }
 
+        const 
+          files = this.$refs.input.files,
+          numFiles = files.length
+
         if (this.question.accept) {
-          if (!Array.from(this.files).every(file => this.mimeTypeRegex.test(file.type))) {
+          if (!Array.from(files).every(file => this.checkFileAccept(file))) {
             this.errorMessage = this.language.formatString(this.language.errorAllowedFileTypes, {
               fileTypes: this.question.accept
             })
@@ -67,9 +77,7 @@
         }
 
         if (this.question.multiple) {
-          const fileCount = this.files.length
-
-          if (this.question.min !== null && fileCount < +this.question.min) {
+          if (this.question.min !== null && numFiles < +this.question.min) {
             this.errorMessage = this.language.formatString(this.language.errorMinFiles, {
               min: this.question.min
             })
@@ -77,7 +85,7 @@
             return false
           }
 
-          if (this.question.max !== null && fileCount > +this.question.max) {
+          if (this.question.max !== null && numFiles > +this.question.max) {
             this.errorMessage = this.language.formatString(this.language.errorMaxFiles, {
               max: this.question.max
             })
@@ -88,7 +96,7 @@
 
         if (this.question.maxSize !== null) {
           const fileSize =
-            Array.from(this.files).reduce((current, file) => current + file.size, 0)
+            Array.from(files).reduce((current, file) => current + file.size, 0)
 
           if (fileSize > +this.question.maxSize) {
             this.errorMessage = this.language.formatString(this.language.errorMaxFileSize, {
@@ -99,14 +107,44 @@
           }
         }
 
+        this.errorMessage = null
+
         return this.$refs.input.checkValidity()
       }
     },
 
     computed: {
-      files() {
-        return this.$refs.input.files
-      } 
+      acceptArray() {
+        if (this.question.accept) {
+          return this.question.accept.split(',')
+        }
+
+        return []
+      },
+
+      acceptedFileMimes() {
+        return this.acceptArray.filter(accept => accept[0] !== '.')
+      },
+
+      acceptedFileMimesRegex() {
+        if (this.acceptedFileMimes.length) {
+          return new RegExp(this.acceptedFileMimes.join('|').replace(/\*/g, '.\*'))
+        }
+
+        return null
+      },
+
+      acceptedFileExtensions() {
+        return this.acceptArray.filter(accept => accept[0] === '.')
+      },
+
+      acceptedFileExtensionsRegex() {
+        if (this.acceptedFileExtensions.length) {
+          return new RegExp(this.acceptedFileExtensions.join('|'))
+        }
+
+        return null
+      }
     }
   }
 </script>
