@@ -62,7 +62,7 @@ export default [
         extensions: ['.mjs', '.js', '.json', '.node', '.vue']
       }),
       del({
-        targets: 'dist/vue-flow-form.umd.css',
+        targets: 'dist/dist',
         hook: 'writeBundle'
       })
     ]
@@ -106,7 +106,7 @@ export default [
         extensions: ['.mjs', '.js', '.json', '.node', '.vue']
       }),
       del({
-        targets: 'dist/vue-flow-form.esm.css',
+        targets: 'dist/dist',
         hook: 'writeBundle'
       })
     ]
@@ -150,7 +150,7 @@ export default [
         extensions: ['.mjs', '.js', '.json', '.node', '.vue']
       }),
       del({
-        targets: 'dist/vue-flow-form.common.css',
+        targets: 'dist/dist',
         hook: 'writeBundle'
       })
     ]
@@ -198,7 +198,7 @@ export default [
       cleanup(),
       terser(),
       del({
-        targets: 'dist/vue-flow-form.umd.min.css',
+        targets: 'dist/dist',
         hook: 'writeBundle'
       }),
       copy({
