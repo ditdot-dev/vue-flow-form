@@ -6,6 +6,7 @@
   "private": false,
   "scripts": {
     "serve": "vue-cli-service serve",
+    "start": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "build:npm": "rollup --config build/rollup.config.js && npm run cssmin",
     "cssmin": "postcss dist/vue-flow-form.theme-minimal.css -o dist/vue-flow-form.theme-minimal.min.css && postcss dist/vue-flow-form.theme-green.css -o dist/vue-flow-form.theme-green.min.css && postcss dist/vue-flow-form.theme-purple.css -o dist/vue-flow-form.theme-purple.min.css",
