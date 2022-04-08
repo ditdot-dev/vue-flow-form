@@ -94,6 +94,14 @@ export class MatrixRow {
   }
 }
 
+export class StepOption {
+  constructor(options) {
+    this.value = 0;
+
+    Object.assign(this, options);
+  }
+}
+
 export default class QuestionModel {
   constructor(options) {
     // Make sure the options variable is an object

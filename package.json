@@ -29,6 +29,7 @@
     }
   },
   "dependencies": {
+    "vue-slider-component": "^4.0.0-beta.4",
     "vue-textarea-autosize": "^1.1.1",
     "vue-the-mask": "^0.11.1"
   },

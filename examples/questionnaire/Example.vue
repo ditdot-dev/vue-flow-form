@@ -116,6 +116,8 @@ export default {
           title: "How confident are you?",
           type: QuestionType.Slider,
           required: true,
+          min: 20,
+          max: 70,
         }),
 
         new QuestionModel({
