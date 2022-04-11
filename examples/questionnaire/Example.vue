@@ -89,7 +89,7 @@ import FlowForm from "../../src/components/FlowForm.vue";
 import QuestionModel, {
   QuestionType,
   ChoiceOption,
-  LinkOption,
+  MarkOption,
 } from "../../src/models/QuestionModel";
 import LanguageModel from "../../src/models/LanguageModel";
 // If using the npm package, use the following line instead of the ones above.
@@ -116,10 +116,24 @@ export default {
           title: "How confident are you?",
           type: QuestionType.Slider,
           required: true,
-          min: 20,
-          max: 70,
-        }),
+          min: 0,
+          max: 100,
+          marks: [
+            new MarkOption({
+              value: 0,
+              label: "Not confident",
+            }),
+            new MarkOption({
+              value: 50,
+              label: "Somewhat confident",
+            }),
 
+            new MarkOption({
+              value: 100,
+              label: "Not confident",
+            }),
+          ],
+        }),
         new QuestionModel({
           id: "first_name",
           tagline: "Hi! Welcome to our demo survey 😊",
