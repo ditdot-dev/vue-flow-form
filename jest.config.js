@@ -5,6 +5,7 @@ module.exports = async () => {
     moduleFileExtensions: ["js", "json", "vue"],
     moduleNameMapper: {
       "^@/(.*)$": "<rootDir>/src/$1",
+      "\\.(css|less|sass|scss)$": "<rootDir>/tests/__mocks__/styleMock.js",
     },
     transform: {
       ".*\\.(vue)$": "@vue/vue3-jest",
