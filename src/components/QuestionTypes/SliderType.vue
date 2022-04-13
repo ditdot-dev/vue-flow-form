@@ -31,7 +31,7 @@
 
 import BaseType from "./BaseType.vue";
 import { QuestionType } from "../../models/QuestionModel";
-import VueSlider from "vue-slider-component";
+import VueSlider from "vue-slider-component/dist/vue-slider-component.common";
 import "vue-slider-component/theme/default.css";
 
 export default {
@@ -52,39 +52,39 @@ export default {
         max: this.question.max,
         marks: this.transformMarks(this.question.marks),
       },
-    }
+    };
   },
   computed: {
     showClearButton() {
-      return this.value !== null
+      return this.value !== null;
     },
   },
   mounted() {
     this.$nextTick(() => {
-      this.$refs.slider.$el.querySelector(".vue-slider-dot").style.left = "50%"
+      this.$refs.slider.$el.querySelector(".vue-slider-dot").style.left = "50%";
     });
   },
   methods: {
     focus() {
-      this.$refs.slider.focus(this.$refs.slider)
+      this.$refs.slider.focus(this.$refs.slider);
     },
     blur() {
-      this.$refs.slider.blur(this.$refs.slider)
+      this.$refs.slider.blur(this.$refs.slider);
     },
     clear() {
-      this.value = null
+      this.value = null;
     },
     broadcastOnChange(e) {
-      this.onChange({ target: { value: e } })
+      this.onChange({ target: { value: e } });
     },
     transformMarks(marks) {
       return marks.reduce(
         (acc, mark) => ({ ...acc, [`${mark.value}`]: mark.label }),
         {}
-      )
+      );
     },
     validate() {
-      return Number.isInteger(this.value) && this.value >= 0
+      return Number.isInteger(this.value) && this.value >= 0;
     },
   },
   watch: {
