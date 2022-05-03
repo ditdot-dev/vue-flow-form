@@ -31,7 +31,7 @@
 
 import BaseType from "./BaseType.vue";
 import { QuestionType } from "../../models/QuestionModel";
-import VueSlider from "vue-slider-component/dist/vue-slider-component.common";
+import VueSlider from "vue-slider-component";
 import "vue-slider-component/theme/default.css";
 
 export default {

@@ -29,7 +29,8 @@
     }
   },
   "dependencies": {
-    "vue-slider-component": "^4.0.0-beta.4",
+    "vue-class-component": "^8.0.0-rc.1",
+    "vue-slider-component": "^4.0.0-beta.5",
     "vue-textarea-autosize": "^1.1.1",
     "vue-the-mask": "^0.11.1"
   },
@@ -88,5 +89,10 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/ditdot-dev/vue-flow-form.git"
+  },
+  "overrides": {
+    "vue-slider-component": {
+      "main": "dist/vue-slider-component.umd.js"
+    }
   }
 }
