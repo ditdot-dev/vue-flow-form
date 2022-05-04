@@ -90,13 +90,13 @@ export default [
         plugins: [postcssImport()],
       }),
       css(),
-      buble({
-        objectAssign: "Object.assign",
-        jsx: "h",
-        transforms: {
-          dangerousForOf: true,
-        },
-      }),
+      // buble({
+      //   objectAssign: "Object.assign",
+      //   jsx: "h",
+      //   transforms: {
+      //     dangerousForOf: true,
+      //   },
+      // }),
       commonjs(),
       resolve({
         extensions: [".mjs", ".js", ".json", ".node", ".vue"],
@@ -132,13 +132,13 @@ export default [
         plugins: [postcssImport()],
       }),
       css(),
-      buble({
-        objectAssign: "Object.assign",
-        jsx: "h",
-        transforms: {
-          dangerousForOf: true,
-        },
-      }),
+      // buble({
+      //   objectAssign: "Object.assign",
+      //   jsx: "h",
+      //   transforms: {
+      //     dangerousForOf: true,
+      //   },
+      // }),
       commonjs(),
       resolve({
         extensions: [".mjs", ".js", ".json", ".node", ".vue"],
@@ -176,13 +176,13 @@ export default [
         minimize: true,
       }),
       css(),
-      buble({
-        objectAssign: "Object.assign",
-        jsx: "h",
-        transforms: {
-          dangerousForOf: true,
-        },
-      }),
+      // buble({
+      //   objectAssign: "Object.assign",
+      //   jsx: "h",
+      //   transforms: {
+      //     dangerousForOf: true,
+      //   },
+      // }),
       commonjs(),
       resolve({
         extensions: [".mjs", ".js", ".json", ".node", ".vue"],
