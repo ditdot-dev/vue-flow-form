@@ -41,6 +41,7 @@ export default {
 
   data() {
     return {
+      interval: null,
       value: null,
       canReceiveFocus: true,
       marks: [],
@@ -63,6 +64,12 @@ export default {
     this.$nextTick(() => {
       this.$refs.slider.$el.querySelector(".vue-slider-dot").style.left = "50%";
     });
+
+    this.interval = setInterval(() => {
+      if (this.value === null)
+        this.$refs.slider.$el.querySelector(".vue-slider-dot").style.left =
+          "50%";
+    }, 0);
   },
   methods: {
     focus() {
@@ -89,6 +96,7 @@ export default {
   },
   watch: {
     value(newValue) {
+      clearInterval(this.interval);
       if (newValue > this.options.max) {
         this.value = this.options.max;
       } else if (newValue < this.options.min) {
