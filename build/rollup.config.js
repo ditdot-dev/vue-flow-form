@@ -2,7 +2,7 @@ import commonjs from "@rollup/plugin-commonjs";
 import vue from "rollup-plugin-vue";
 import buble from "@rollup/plugin-buble";
 import resolve from "@rollup/plugin-node-resolve";
-import cleanup from "rollup-plugin-cleanup";
+// import cleanup from "rollup-plugin-cleanup";
 import css from "rollup-plugin-css-only";
 import postcss from "rollup-plugin-postcss";
 import postcssImport from "postcss-import";
@@ -48,13 +48,13 @@ export default [
         plugins: [postcssImport()],
       }),
       css(),
-      buble({
-        objectAssign: "Object.assign",
-        jsx: "h",
-        transforms: {
-          dangerousForOf: true,
-        },
-      }),
+      // buble({
+      //   objectAssign: "Object.assign",
+      //   jsx: "h",
+      //   transforms: {
+      //     dangerousForOf: true,
+      //   },
+      // }),
       commonjs(),
       resolve({
         extensions: [".mjs", ".js", ".json", ".node", ".vue"],
@@ -90,13 +90,13 @@ export default [
         plugins: [postcssImport()],
       }),
       css(),
-      buble({
-        objectAssign: "Object.assign",
-        jsx: "h",
-        transforms: {
-          dangerousForOf: true,
-        },
-      }),
+      // buble({
+      //   objectAssign: "Object.assign",
+      //   jsx: "h",
+      //   transforms: {
+      //     dangerousForOf: true,
+      //   },
+      // }),
       commonjs(),
       resolve({
         extensions: [".mjs", ".js", ".json", ".node", ".vue"],
@@ -132,13 +132,13 @@ export default [
         plugins: [postcssImport()],
       }),
       css(),
-      buble({
-        objectAssign: "Object.assign",
-        jsx: "h",
-        transforms: {
-          dangerousForOf: true,
-        },
-      }),
+      // buble({
+      //   objectAssign: "Object.assign",
+      //   jsx: "h",
+      //   transforms: {
+      //     dangerousForOf: true,
+      //   },
+      // }),
       commonjs(),
       resolve({
         extensions: [".mjs", ".js", ".json", ".node", ".vue"],
@@ -176,18 +176,18 @@ export default [
         minimize: true,
       }),
       css(),
-      buble({
-        objectAssign: "Object.assign",
-        jsx: "h",
-        transforms: {
-          dangerousForOf: true,
-        },
-      }),
+      // buble({
+      //   objectAssign: "Object.assign",
+      //   jsx: "h",
+      //   transforms: {
+      //     dangerousForOf: true,
+      //   },
+      // }),
       commonjs(),
       resolve({
         extensions: [".mjs", ".js", ".json", ".node", ".vue"],
       }),
-      cleanup(),
+      // cleanup(),
       terser(),
       del({
         targets: "dist/dist",
