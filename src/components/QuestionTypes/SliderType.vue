@@ -49,6 +49,7 @@ export default {
         contained: true,
         useKeyboard: true,
         tooltip: false,
+        interval: String(this.question.interval),
         min: this.question.min,
         max: this.question.max,
         marks: this.transformMarks(this.question.marks),

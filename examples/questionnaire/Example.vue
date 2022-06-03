@@ -118,16 +118,24 @@ export default {
           required: true,
           min: 0,
           max: 100,
+          interval: 25,
           marks: [
             new MarkOption({
               value: 0,
               label: "Not confident",
             }),
             new MarkOption({
+              value: 25,
+              label: "Disagree",
+            }),
+            new MarkOption({
               value: 50,
               label: "Somewhat confident",
             }),
-
+            new MarkOption({
+              value: 75,
+              label: "Agree",
+            }),
             new MarkOption({
               value: 100,
               label: "Not confident",
