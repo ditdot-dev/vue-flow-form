@@ -2101,7 +2101,7 @@ function render$2(_ctx, _cache, $props, $setup, $data, $options) {
     }, $data.options, { onChange: $options.broadcastOnChange }), null, 16 /* FULL_PROPS */, ["modelValue", "onChange"]),
     createElementVNode("div", null, [
       withDirectives(createElementVNode("input", {
-        class: "faux-form",
+        class: "faux-form hidden",
         type: "number",
         "onUpdate:modelValue": _cache[1] || (_cache[1] = $event => (($data.value) = $event)),
         max: "100"
