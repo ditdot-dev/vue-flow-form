@@ -8,7 +8,7 @@
     >
     </vue-slider>
     <div>
-      <input class="faux-form" type="number" v-model="value" max="100" />
+      <input class="faux-form hidden" type="number" v-model="value" max="100" />
       <div class="vff-animate f-fade-in f-enter" v-if="showClearButton">
         <a
           href="#"
@@ -110,5 +110,9 @@ export default {
 <style scoped>
 .vue-slider {
   box-sizing: content-box;
+}
+
+.hidden {
+  display: none;
 }
 </style>
