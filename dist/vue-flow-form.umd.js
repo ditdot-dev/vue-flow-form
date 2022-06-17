@@ -2027,7 +2027,7 @@
     data() {
       return {
         interval: null,
-        value: 50,
+        value: null,
         canReceiveFocus: true,
         marks: [],
         options: {
