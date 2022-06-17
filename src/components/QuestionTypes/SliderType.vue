@@ -42,7 +42,7 @@ export default {
   data() {
     return {
       interval: null,
-      value: null,
+      value: 50,
       canReceiveFocus: true,
       marks: [],
       options: {
