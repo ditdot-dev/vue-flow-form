@@ -32,6 +32,12 @@
     extends: BaseType,
     name: QuestionType.OpinionScale,
 
+    data() {
+      return {
+        isNumberScale: false
+      }
+    },
+
     beforeMount() {
       if (this.question.max && !this.question.options.length) {
         const 

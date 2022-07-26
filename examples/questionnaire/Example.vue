@@ -94,7 +94,7 @@
             tagline: 'Hi! Welcome to our demo survey 😊',
             title: 'Tell us about our service',
             subtitle: '1 - Awful, 5 - So, so, 10 - Excellent',
-            type: QuestionType.OpinionScale,
+            type: QuestionType.OpinionNumberScale,
             required: true,
             min: 1,
             max: 10,
