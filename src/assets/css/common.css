@@ -740,6 +740,54 @@ header.vff-header svg.f-logo {
 }
 
 /* 
+  field opinion scale
+*/
+
+.vff .field-opinionscale ul.f-radios {
+  width: 100%;
+  max-width: 750px;
+  min-width: auto;
+  display: -ms-flexbox;
+  display: -webkit-box;
+  display: flex;
+  margin: 0 -8px 0 0;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-flow: 0 1;
+  -webkit-box-align: stretch;
+  -ms-flex-align: stretch;
+  align-items: stretch;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+}
+
+.vff .field-opinionscale ul.f-radios li {
+  display: -ms-flexbox;
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center;
+  margin-bottom: 8px;
+  position: relative;
+  cursor: pointer;
+  -ms-flex-align: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  padding: 8px 8px 10px;
+  margin-right: 8px;
+  -ms-flex: 0 0 calc(20% - 8px);
+  flex: 0 0 calc(20% - 8px);
+  font-size: 15px;
+  line-height: 1.38;
+  height: 64px; 
+}
+
+.vff .field-opinionscale ul.f-radios.f-numbers li {
+  -ms-flex: 0 0 calc(10% - 8px);
+  flex: 0 0 calc(10% - 8px);
+}
+
+/* 
   field matrix
 */
 
@@ -1186,13 +1234,20 @@ header.vff-header svg.f-logo {
     font-size: 16px;
   }
 
-  .vff .field-multiplepicturechoice ul.f-radios {
+  .vff .field-multiplepicturechoice ul.f-radios,
+  .vff .field-opinionscale ul.f-radios {
     max-width: 320px;
   }
 
-  .vff .field-multiplepicturechoice ul.f-radios li {
+  .vff .field-multiplepicturechoice ul.f-radios li,
+  .vff .field-opinionscale ul.f-radios li {
     -ms-flex: 0 0 calc(50% - 8px);
     flex: 0 0 calc(50% - 8px);
+  }
+
+  .vff .field-opinionscale ul.f-radios.f-numbers li {
+    -ms-flex: 0 0 calc(20% - 8px);
+    flex: 0 0 calc(20% - 8px);
   }
 }
 
