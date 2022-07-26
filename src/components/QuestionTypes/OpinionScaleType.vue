@@ -1,6 +1,6 @@
 <template>
   <div class="f-radios-wrap">
-    <ul class="f-radios" v-bind:class="{'f-numbers': question.max}" role="listbox">
+    <ul class="f-radios" v-bind:class="{'f-numbers': isNumberScale}" role="listbox">
       <li
         v-for="(option, index) in question.options"
         v-on:click.prevent="toggleAnswer(option)"
@@ -10,7 +10,7 @@
         role="option"
       >
         <div class="f-label-wrap">
-          <span class="f-key">{{ getToggleKey(index) }}</span>
+          <span v-if="!isNumberScale" class="f-key">{{ getToggleKey(index) }}</span>
           <span v-if="option.choiceLabel()" class="f-label">{{ option.choiceLabel() }}</span>
         </div>
       </li> 
@@ -35,17 +35,6 @@
     data() {
       return {
         isNumberScale: false
-      }
-    },
-
-    beforeMount() {
-      if (this.question.max && !this.question.options.length) {
-        const 
-          min = this.question.min || 1,
-          max = this.question.max 
-        for (let i = min; i <= max; i++) {
-          this.question.options.push(new ChoiceOption({value: i.toString()}))
-        }
       }
     },
 
@@ -103,6 +92,7 @@
       },
 
       getToggleKey(index) {
+        console.log(index)
         const key = 65 + index
 
         if (key <= 90) {
@@ -126,7 +116,6 @@
 
       _toggleAnswer(option) {
         const optionValue = option.choiceValue() 
-           console.log(option, optionValue)
 
         option.toggle()
 

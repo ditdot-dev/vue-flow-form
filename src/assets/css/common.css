@@ -789,6 +789,14 @@ header.vff-header svg.f-logo {
   flex: 0 0 calc(10% - 8px);
 }
 
+.vff .field-opinionnumberscale ul.f-radios.f-numbers li .f-label-wrap {
+  justify-content: center;
+}
+
+.vff .field-opinionnumberscale ul.f-radios.f-numbers li .f-label {
+  margin: 0;
+}
+
 /* 
   field matrix
 */
