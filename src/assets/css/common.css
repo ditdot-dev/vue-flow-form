@@ -743,8 +743,7 @@ header.vff-header svg.f-logo {
   field opinion scale
 */
 
-.vff .field-opinionscale ul.f-radios,
-.vff .field-opinionnumberscale ul.f-radios {
+.vff .field-opinionscale ul.f-radios {
   width: 100%;
   max-width: 750px;
   min-width: auto;
@@ -762,8 +761,7 @@ header.vff-header svg.f-logo {
   flex-wrap: wrap;
 }
 
-.vff .field-opinionscale ul.f-radios li,
-.vff .field-opinionnumberscale ul.f-radios li {
+.vff .field-opinionscale ul.f-radios li {
   display: -ms-flexbox;
   display: -webkit-box;
   display: flex;
@@ -777,24 +775,73 @@ header.vff-header svg.f-logo {
   -webkit-box-direction: normal;
   padding: 8px 8px 10px;
   margin-right: 8px;
-  -ms-flex: 0 0 calc(20% - 8px);
-  flex: 0 0 calc(20% - 8px);
+  -ms-flex: 1 0 calc(10% - 8px);
+  flex: 1 0 calc(10% - 8px);
   font-size: 15px;
   line-height: 1.38;
   min-height: 64px; 
 }
 
-.vff .field-opinionnumberscale ul.f-radios.f-numbers li {
-  -ms-flex: 0 0 calc(10% - 8px);
-  flex: 0 0 calc(10% - 8px);
-}
-
-.vff .field-opinionnumberscale ul.f-radios.f-numbers li .f-label-wrap {
+.vff .field-opinionscale ul.f-radios li .f-label-wrap {
   justify-content: center;
 }
 
-.vff .field-opinionnumberscale ul.f-radios.f-numbers li .f-label {
+.vff .field-opinionscale ul.f-radios li .f-label {
   margin: 0;
+}
+
+/* 
+  field rate
+*/
+
+.vff .field-iconrate ul.f-radios {
+  width: 100%;
+  max-width: 750px;
+  min-width: auto;
+  display: -ms-flexbox;
+  display: -webkit-box;
+  display: flex;
+  margin: 0 -8px 0 0;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-flow: 0 1;
+  -webkit-box-align: stretch;
+  -ms-flex-align: stretch;
+  align-items: stretch;
+}
+
+.vff .field-iconrate ul.f-radios li {
+  max-width: 64px;
+  height: 100%;
+  flex: 1 0 0%;
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  justify-content: center;
+  cursor: pointer;
+  outline: none;
+  position: relative;
+  margin-right: 8px;
+  padding: 0;
+}
+
+.vff .field-iconrate ul.f-radios li .f-icon-wrap {
+  flex: 1 1 0%;
+  padding-right: 4px;
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.vff .field-iconrate ul.f-radios li .f-icon {
+  margin-bottom: 8px;
+}
+
+.vff .field-iconrate ul.f-radios li .f-icon-wrap svg{
+  height: 100%;
+  width: 100%;
 }
 
 /* 
@@ -1249,13 +1296,12 @@ header.vff-header svg.f-logo {
     max-width: 320px;
   }
 
-  .vff .field-multiplepicturechoice ul.f-radios li,
-  .vff .field-opinionscale ul.f-radios li {
+  .vff .field-multiplepicturechoice ul.f-radios li {
     -ms-flex: 0 0 calc(50% - 8px);
     flex: 0 0 calc(50% - 8px);
   }
 
-  .vff .field-opinionnumberscale ul.f-radios.f-numbers li {
+  .vff .field-opinionscale ul.f-radios li {
     -ms-flex: 0 0 calc(20% - 8px);
     flex: 0 0 calc(20% - 8px);
   }

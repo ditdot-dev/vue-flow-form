@@ -22,7 +22,7 @@ export const QuestionType = Object.freeze({
   Url: 'FlowFormUrlType',
   Matrix: 'FlowFormMatrixType',
   OpinionScale: 'FlowFormOpinionScaleType',
-  OpinionNumberScale: 'FlowFormOpinionNumberScaleType',
+  IconRate: 'FlowFormIconRateType',
 })
 
 export const DropdownOptionBlank = Object.freeze({

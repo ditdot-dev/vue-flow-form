@@ -1,17 +1,22 @@
 <template>
   <div class="f-radios-wrap">
-    <ul class="f-radios" v-bind:class="{'f-numbers': isNumberScale}" role="listbox">
+    <ul class="f-radios" role="listbox">
       <li
         v-for="(option, index) in question.options"
         v-on:click.prevent="toggleAnswer(option)"
         v-bind:class="{'f-selected': option.selected}"
         v-bind:key="'m' + index"
-        v-bind:aria-label="getLabel(index)"
+        v-bind:aria-label="getLabel(option.value)"
         role="option"
       >
-        <div class="f-label-wrap">
-          <span v-if="!isNumberScale" class="f-key">{{ getToggleKey(index) }}</span>
+        <div v-if="!isIconScale" class="f-label-wrap">
           <span v-if="option.choiceLabel()" class="f-label">{{ option.choiceLabel() }}</span>
+        </div>
+        <div v-else-if="isIconScale" class="f-icon-wrap">
+            <div class="f-icon">
+              <svg viewBox="0 0 58 47"><path class="symbolFill" d="M21 27.1L48.05.05l9.9 9.9L21 46.9.05 25.95l9.9-9.9z" fill-rule="nonzero"></path><path class="symbolOutline" d="M21 30.636L9.95 19.586 3.586 25.95 21 43.364 54.414 9.95 48.05 3.586 21 30.636zM48.05.05l9.9 9.9L21 46.9.05 25.95l9.9-9.9L21 27.1 48.05.05z" fill-rule="nonzero"></path></svg>
+            </div>
+            <div class="f-key">{{ getToggleKey(option.value) }}</div>
         </div>
       </li> 
     </ul>
@@ -34,7 +39,19 @@
 
     data() {
       return {
-        isNumberScale: false
+        isIconScale: false
+      }
+    },
+
+    beforeMount() {
+      if (this.question.max && !this.question.options.length) {
+        const 
+          min = this.question.min || 1,
+          max = this.question.max 
+
+        for (let i = min; i <= max; i++) {
+          this.question.options.push(new ChoiceOption({value: i.toString()}))
+        }
       }
     },
 
@@ -67,14 +84,14 @@
       },
 
       /**
-       * Listens for keyboard events (A, B, C, ...)
+       * Listens for keyboard events (1, 2, 3, ...)
        */
       onKeyListener($event) {
         if (this.active && $event.key && $event.key.length === 1) {
           let keyCode = $event.key.toUpperCase().charCodeAt(0)
-
-          if (keyCode >= 65 && keyCode <= 90) {
-            let index = keyCode - 65
+          console.log(keyCode)
+          if (keyCode >= 48 && keyCode <= 57) {
+            let index = keyCode - 49
 
             if (index > -1) {
               let option = this.question.options[index]
@@ -91,15 +108,8 @@
         return this.language.ariaMultipleChoice.replace(':letter', this.getToggleKey(index))
       },
 
-      getToggleKey(index) {
-        console.log(index)
-        const key = 65 + index
-
-        if (key <= 90) {
-          return String.fromCharCode(key)
-        }
-
-        return ''
+      getToggleKey(num) {
+        return num
       },
 
       toggleAnswer(option) {

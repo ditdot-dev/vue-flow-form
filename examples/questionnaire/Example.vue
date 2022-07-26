@@ -94,34 +94,20 @@
             tagline: 'Hi! Welcome to our demo survey 😊',
             title: 'Tell us about our service',
             subtitle: '1 - Awful, 5 - So, so, 10 - Excellent',
-            type: QuestionType.OpinionNumberScale,
+            type: QuestionType.IconRate,
+            required: true,
+            min: 1,
+            max: 5,
+          }),
+          new QuestionModel({
+            id: 'opinion_scale_num',
+            tagline: 'Hi! Welcome to our demo survey 😊',
+            title: 'Tell us about our service',
+            subtitle: '1 - Awful, 5 - So, so, 10 - Excellent',
+            type: QuestionType.OpinionScale,
             required: true,
             min: 1,
             max: 10,
-          }),
-          new QuestionModel({
-            id: 'opinion_scale_text',
-            tagline: 'Hi! Welcome to our demo survey 😊',
-            title: 'Tell us about our service',
-            type: QuestionType.OpinionScale,
-            required: true,
-            options: [
-              new ChoiceOption({
-                label: 'Awful'
-              }),
-              new ChoiceOption({
-                label: 'Poor'
-               }),
-              new ChoiceOption({
-                label: 'Just OK'
-              }),
-              new ChoiceOption({
-                label: 'Very good'
-              }),
-              new ChoiceOption({
-                label: 'Excellent'
-              })
-            ]
           }),
           new QuestionModel({
             id: 'first_name',

@@ -115,7 +115,7 @@
   import FlowFormFileType from './QuestionTypes/FileType.vue'
   import FlowFormMatrixType from './QuestionTypes/MatrixType.vue'
   import FlowFormOpinionScaleType from './QuestionTypes/OpinionScaleType.vue'
-  import FlowFormOpinionNumberScaleType from './QuestionTypes/OpinionNumberScaleType.vue'
+  import FlowFormIconRateType from './QuestionTypes/IconRateType.vue'
   import { IsMobile } from '../mixins/IsMobile'
   
 
@@ -138,7 +138,7 @@
       FlowFormUrlType,
       FlowFormMatrixType,
       FlowFormOpinionScaleType,
-      FlowFormOpinionNumberScaleType,
+      FlowFormIconRateType,
     },
 
     props: {
