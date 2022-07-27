@@ -13,12 +13,12 @@
           <span v-if="option.choiceLabel()" class="f-label">{{ option.choiceLabel() }}</span>
         </div>
         <div v-else-if="isIconScale" class="f-icon-wrap">
-            <div class="f-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                <path d="M12 .587l3.668 7.568 8.332 1.151-6.064 5.828 1.48 8.279-7.416-3.967-7.417 3.967 1.481-8.279-6.064-5.828 8.332-1.151z" stroke-width=".5"/>
-              </svg>
-            </div>
-            <div class="f-key">{{ getToggleKey(option.value) }}</div>
+          <div class="f-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+              <path d="M12 .587l3.668 7.568 8.332 1.151-6.064 5.828 1.48 8.279-7.416-3.967-7.417 3.967 1.481-8.279-6.064-5.828 8.332-1.151z" stroke-width=".5"/>
+            </svg>
+          </div>
+          <div class="f-key">{{ getToggleKey(option.value) }}</div>
         </div>
       </li> 
     </ul>
@@ -47,12 +47,12 @@
     },
 
     beforeMount() {
-      if (this.question.max && !this.question.options.length) {
-        const 
-          min = this.question.min || 1,
-          max = this.question.max 
-
-        for (let i = min; i <= max; i++) {
+      const 
+        size = this.question.maxSize ?? 5,
+        numOptions = Math.min(Math.max(size, 1), 10)
+    
+      if (!this.question.options.length) {
+        for (let i = 1; i <= numOptions; i++) {
           this.question.options.push(new ChoiceOption({value: i.toString()}))
         }
       }
