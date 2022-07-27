@@ -4,7 +4,7 @@
       <li
         v-for="(option, index) in question.options"
         v-on:click.prevent="toggleAnswer(option)"
-        v-bind:class="{'f-selected': option.selected}"
+        v-bind:class="{'f-selected': option.selected, 'f-previous': isPreviousOption(option)}"
         v-bind:key="'m' + index"
         v-bind:aria-label="getLabel(option.value)"
         role="option"
@@ -14,7 +14,9 @@
         </div>
         <div v-else-if="isIconScale" class="f-icon-wrap">
             <div class="f-icon">
-              <svg viewBox="0 0 58 47"><path class="symbolFill" d="M21 27.1L48.05.05l9.9 9.9L21 46.9.05 25.95l9.9-9.9z" fill-rule="nonzero"></path><path class="symbolOutline" d="M21 30.636L9.95 19.586 3.586 25.95 21 43.364 54.414 9.95 48.05 3.586 21 30.636zM48.05.05l9.9 9.9L21 46.9.05 25.95l9.9-9.9L21 27.1 48.05.05z" fill-rule="nonzero"></path></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                <path d="M12 .587l3.668 7.568 8.332 1.151-6.064 5.828 1.48 8.279-7.416-3.967-7.417 3.967 1.481-8.279-6.064-5.828 8.332-1.151z"/>
+              </svg>
             </div>
             <div class="f-key">{{ getToggleKey(option.value) }}</div>
         </div>
@@ -39,7 +41,8 @@
 
     data() {
       return {
-        isIconScale: false
+        isIconScale: false,
+        activeIndex: null
       }
     },
 
@@ -89,7 +92,7 @@
       onKeyListener($event) {
         if (this.active && $event.key && $event.key.length === 1) {
           let keyCode = $event.key.toUpperCase().charCodeAt(0)
-          console.log(keyCode)
+     
           if (keyCode >= 48 && keyCode <= 57) {
             let index = keyCode - 49
 
@@ -108,17 +111,21 @@
         return this.language.ariaMultipleChoice.replace(':letter', this.getToggleKey(index))
       },
 
+      isPreviousOption(option) {
+        return this.getPreviousOptions.includes(option)
+      },
+
       getToggleKey(num) {
         return num
       },
 
       toggleAnswer(option) {
         for (let i = 0; i < this.question.options.length; i++) {
-            let o = this.question.options[i]
+          let o = this.question.options[i]
 
-            if (o.selected) {
-                this._toggleAnswer(o)
-            }
+          if (o.selected) {
+            this._toggleAnswer(o)
+          }
         }
 
         this._toggleAnswer(option)
@@ -130,6 +137,7 @@
         option.toggle()
 
         this.dataValue = option.selected ? optionValue : null
+        this.activeIndex = this.question.options.indexOf(option)
  
         if (this.isValid() && this.question.nextStepOnAnswer  && !this.disabled) {
           this.$emit('next')
@@ -154,6 +162,10 @@
         }
 
         return false
+      },
+
+      getPreviousOptions() {
+        return this.question.options.filter((o, index) => index < this.activeIndex)
       }
     }
   }

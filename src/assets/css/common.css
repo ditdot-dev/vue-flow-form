@@ -842,6 +842,26 @@ header.vff-header svg.f-logo {
 .vff .field-iconrate ul.f-radios li .f-icon-wrap svg{
   height: 100%;
   width: 100%;
+  max-height: 64px;
+  max-width: 64px;
+  fill: transparent;
+  stroke: black;
+}
+
+.vff .field-iconrate ul.f-radios li.f-selected, 
+.vff .field-iconrate ul.f-radios li:active {
+  border-color: unset;
+  background-color: unset;
+}
+
+.vff .field-iconrate ul.f-radios li:hover .f-icon-wrap svg {
+  fill: var(--vff-tertiary-text-color);
+}
+
+.vff .field-iconrate ul.f-radios li.f-selected .f-icon-wrap svg, 
+.vff .field-iconrate ul.f-radios li.f-previous .f-icon-wrap svg,
+.vff .field-iconrate ul.f-radios li:active .f-icon-wrap svg {
+  fill: #000;
 }
 
 /* 
