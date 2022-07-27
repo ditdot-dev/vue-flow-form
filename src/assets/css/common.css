@@ -821,6 +821,7 @@ header.vff-header svg.f-logo {
   justify-content: center;
   cursor: pointer;
   outline: none;
+  border: none;
   position: relative;
   margin-right: 8px;
   padding: 0;
@@ -828,7 +829,6 @@ header.vff-header svg.f-logo {
 
 .vff .field-iconrate ul.f-radios li .f-icon-wrap {
   flex: 1 1 0%;
-  padding-right: 4px;
   display: flex;
   -webkit-box-align: center;
   align-items: center;
@@ -837,6 +837,7 @@ header.vff-header svg.f-logo {
 
 .vff .field-iconrate ul.f-radios li .f-icon {
   margin-bottom: 8px;
+  align-self: stretch;
 }
 
 .vff .field-iconrate ul.f-radios li .f-icon-wrap svg{
@@ -845,7 +846,7 @@ header.vff-header svg.f-logo {
   max-height: 64px;
   max-width: 64px;
   fill: transparent;
-  stroke: black;
+  stroke: var(--vff-secondary-text-color);
 }
 
 .vff .field-iconrate ul.f-radios li.f-selected, 
@@ -861,7 +862,8 @@ header.vff-header svg.f-logo {
 .vff .field-iconrate ul.f-radios li.f-selected .f-icon-wrap svg, 
 .vff .field-iconrate ul.f-radios li.f-previous .f-icon-wrap svg,
 .vff .field-iconrate ul.f-radios li:active .f-icon-wrap svg {
-  fill: #000;
+  fill: var(--vff-main-text-color);
+  stroke: var(--vff-main-text-color);
 }
 
 /* 
