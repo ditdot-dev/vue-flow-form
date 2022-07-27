@@ -96,16 +96,17 @@
             subtitle: '1 - Awful, 5 - So, so, 10 - Excellent',
             type: QuestionType.IconRate,
             required: true,
-          
+            maxSize: 6,
           }),
           new QuestionModel({
             id: 'opinion_scale_num',
             tagline: 'Hi! Welcome to our demo survey 😊',
             title: 'Tell us about our service',
-            subtitle: '1 - Awful, 5 - So, so, 10 - Excellent',
             type: QuestionType.OpinionScale,
             required: true,
-            maxSize: -3
+            maxSize: 8,
+            labelLeft: 'Awful',
+            labelRight: 'Excellent'
           }),
           new QuestionModel({
             id: 'first_name',

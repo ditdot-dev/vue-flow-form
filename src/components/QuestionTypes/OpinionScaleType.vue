@@ -22,6 +22,16 @@
         </div>
       </li> 
     </ul>
+    <div v-if="!isIconScale && (question.labelLeft || question.labelRight)" class="f-label-scale-wrap">
+      <span class="f-label-scale">
+        <span class="f-label-scale-num">1 - </span>
+        {{ question.labelLeft }}
+      </span>
+      <span class="f-label-scale">
+        <span class="f-label-scale-num">{{ question.options.length }} - </span>
+        {{ question.labelRight }}
+      </span>
+    </div>
   </div>
 </template>
 
