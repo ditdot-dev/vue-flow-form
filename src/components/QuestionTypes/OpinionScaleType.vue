@@ -4,7 +4,9 @@
       <li
         v-for="(option, index) in question.options"
         v-on:click.prevent="toggleAnswer(option)"
-        v-bind:class="{'f-selected': option.selected, 'f-previous': isPreviousOption(option)}"
+        v-on:mouseover="isIconScale ? onMouseover(index) : null"
+        v-on:mouseleave="isIconScale ? onMouseleave : null"
+        v-bind:class="{'f-selected': option.selected, ...iconScaleClasses(index)}"
         v-bind:key="'m' + index"
         v-bind:aria-label="getLabel(option.value)"
         role="option"
@@ -12,7 +14,7 @@
         <div v-if="!isIconScale" class="f-label-wrap">
           <span v-if="option.choiceLabel()" class="f-label">{{ option.choiceLabel() }}</span>
         </div>
-        <div v-else-if="isIconScale" class="f-icon-wrap">
+        <div class="f-icon-wrap">
           <div class="f-icon">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
               <path d="M12 .587l3.668 7.568 8.332 1.151-6.064 5.828 1.48 8.279-7.416-3.967-7.417 3.967 1.481-8.279-6.064-5.828 8.332-1.151z" stroke-width=".5"/>
@@ -23,11 +25,11 @@
       </li> 
     </ul>
     <div v-if="!isIconScale && (question.labelLeft || question.labelRight)" class="f-label-scale-wrap">
-      <span class="f-label-scale">
+      <span v-if="question.labelLeft" class="f-label-scale">
         <span class="f-label-scale-num">1 - </span>
         {{ question.labelLeft }}
       </span>
-      <span class="f-label-scale">
+      <span v-if="question.labelRight" class="f-label-scale">
         <span class="f-label-scale-num">{{ question.options.length }} - </span>
         {{ question.labelRight }}
       </span>
@@ -44,6 +46,7 @@
 
   import BaseType from './BaseType.vue'
   import { ChoiceOption, QuestionType } from '../../models/QuestionModel'
+  import { IsMobile } from '../../mixins/IsMobile'
 
   export default {
     extends: BaseType,
@@ -52,9 +55,14 @@
     data() {
       return {
         isIconScale: false,
-        activeIndex: null
+        hoveredIndex: null,
+        activeIndex: null,
       }
     },
+
+    mixins: [
+      IsMobile,
+    ],
 
     beforeMount() {
       const 
@@ -96,6 +104,14 @@
         document.removeEventListener('keyup', this.onKeyListener)
       },
 
+      onMouseover(index) {
+        this.hoveredIndex = index
+      },
+
+      onMouseleave() {
+        this.hoveredIndex = null
+      },
+
       /**
        * Listens for keyboard events (1, 2, 3, ...)
        */
@@ -121,10 +137,6 @@
         return this.language.ariaMultipleChoice.replace(':letter', this.getToggleKey(index))
       },
 
-      isPreviousOption(option) {
-        return this.getPreviousOptions.includes(option)
-      },
-
       getToggleKey(num) {
         return num
       },
@@ -141,13 +153,13 @@
         this._toggleAnswer(option)
       },
 
-      _toggleAnswer(option) {
+      async _toggleAnswer(option) {
         const optionValue = option.choiceValue() 
 
         option.toggle()
-
+        this.activeIndex = option.selected ? this.question.options.indexOf(option) : null
+   
         this.dataValue = option.selected ? optionValue : null
-        this.activeIndex = this.question.options.indexOf(option)
  
         if (this.isValid() && this.question.nextStepOnAnswer  && !this.disabled) {
           this.$emit('next')
@@ -163,6 +175,20 @@
           this.dataValue.splice(index, 1)
         }
       },
+
+      iconScaleClasses(index) {
+        const classes = {}
+
+        if (this.isIconScale) {
+          if (!this.isMobile) {
+            classes['f-hovered'] = this.hoveredIndex ? index <= this.hoveredIndex : null
+          }
+
+          classes['f-previous'] = this.activeIndex ? index < this.activeIndex : null
+        }
+
+        return classes
+      }
     },
 
     computed: {
@@ -172,10 +198,6 @@
         }
 
         return false
-      },
-
-      getPreviousOptions() {
-        return this.question.options.filter((o, index) => index < this.activeIndex)
       }
     }
   }

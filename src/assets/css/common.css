@@ -876,7 +876,7 @@ header.vff-header svg.f-logo {
   background-color: unset;
 }
 
-.vff .field-iconrate ul.f-radios li:hover .f-icon-wrap svg {
+.vff .field-iconrate ul.f-radios li.f-hovered .f-icon-wrap svg {
   fill: var(--vff-tertiary-text-color);
 }
 

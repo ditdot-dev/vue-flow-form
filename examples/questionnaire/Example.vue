@@ -106,7 +106,7 @@
             required: true,
             maxSize: 8,
             labelLeft: 'Awful',
-            labelRight: 'Excellent'
+            
           }),
           new QuestionModel({
             id: 'first_name',
