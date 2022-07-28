@@ -843,8 +843,7 @@ header.vff-header svg.f-logo {
   outline: none;
   border: none;
   position: relative;
-  margin-right: 8px;
-  padding: 0;
+  padding: 0 8px 0 0;
 }
 
 .vff .field-iconrate ul.f-radios li .f-icon-wrap {
@@ -876,7 +875,8 @@ header.vff-header svg.f-logo {
   background-color: unset;
 }
 
-.vff .field-iconrate ul.f-radios li.f-hovered .f-icon-wrap svg {
+.vff .field-iconrate ul.f-radios li.f-hovered .f-icon-wrap svg,
+.vff .field-iconrate ul.f-radios li:hover .f-icon-wrap svg {
   fill: var(--vff-tertiary-text-color);
 }
 

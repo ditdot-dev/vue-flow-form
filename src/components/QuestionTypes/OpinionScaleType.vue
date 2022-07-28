@@ -5,7 +5,7 @@
         v-for="(option, index) in question.options"
         v-on:click.prevent="toggleAnswer(option)"
         v-on:mouseover="isIconScale ? onMouseover(index) : null"
-        v-on:mouseleave="isIconScale ? onMouseleave : null"
+        v-on:mouseleave="isIconScale ? onMouseleave() : null"
         v-bind:class="{'f-selected': option.selected, ...iconScaleClasses(index)}"
         v-bind:key="'m' + index"
         v-bind:aria-label="getLabel(option.value)"
@@ -14,7 +14,7 @@
         <div v-if="!isIconScale" class="f-label-wrap">
           <span v-if="option.choiceLabel()" class="f-label">{{ option.choiceLabel() }}</span>
         </div>
-        <div class="f-icon-wrap">
+        <div v-else class="f-icon-wrap">
           <div class="f-icon">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
               <path d="M12 .587l3.668 7.568 8.332 1.151-6.064 5.828 1.48 8.279-7.416-3.967-7.417 3.967 1.481-8.279-6.064-5.828 8.332-1.151z" stroke-width=".5"/>
@@ -181,7 +181,7 @@
 
         if (this.isIconScale) {
           if (!this.isMobile) {
-            classes['f-hovered'] = this.hoveredIndex ? index <= this.hoveredIndex : null
+            classes['f-hovered'] = this.hoveredIndex ? index < this.hoveredIndex : null
           }
 
           classes['f-previous'] = this.activeIndex ? index < this.activeIndex : null
@@ -198,7 +198,7 @@
         }
 
         return false
-      }
+      },
     }
   }
 </script>
