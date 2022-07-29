@@ -164,7 +164,7 @@
             subtitle: 'You can also use ⌨️ numbers to select an option',
             type: QuestionType.OpinionScale,
             required: true,
-            max: 6,
+            max: 5,
             labelLeft: 'Dissapointing',
             labelRight: 'Exceptional'
           }),

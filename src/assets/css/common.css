@@ -668,6 +668,10 @@ header.vff-header svg.f-logo {
   font-size: inherit;
 }
 
+.vff ul.f-radios li.f-other.f-focus {
+  padding: .48em .68em;
+}
+
 .vff .f-radios-desc {
   display: block;
 }
