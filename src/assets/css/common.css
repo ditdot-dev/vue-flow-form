@@ -592,7 +592,7 @@ header.vff-header svg.f-logo {
 }
 
 .vff .fh2 span.f-label-scale {
-  font-size: .48em;
+  font-size: .42em;
 }
 
 .vff span.f-tagline,
@@ -783,7 +783,7 @@ header.vff-header svg.f-logo {
   flex: 1 0 calc(10% - 8px);
   font-size: 15px;
   line-height: 1.38;
-  min-height: 54px; 
+  min-height: 56px; 
 }
 
 .vff .field-opinionscale ul.f-radios li .f-label-wrap {
@@ -1311,6 +1311,10 @@ header.vff-header svg.f-logo {
   .vff .fh2 span.f-tagline,
   .vff .fh2 span.f-label-scale {
     font-size: .64em;
+  }
+
+  .vff .fh2 span.f-label-scale {
+    margin-bottom: .3em;
   }
 
   .vff span.f-tagline {
