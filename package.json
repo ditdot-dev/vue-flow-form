@@ -2,7 +2,7 @@
   "name": "@ditdot-dev/vue-flow-form",
   "author": "DITDOT",
   "description": "Create conversational conditional-logic forms with Vue.js.",
-  "version": "2.3.0",
+  "version": "2.3.1",
   "private": false,
   "scripts": {
     "serve": "vue-cli-service serve",
