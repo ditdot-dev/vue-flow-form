@@ -14,27 +14,27 @@
   -o-font-smoothing: antialiased;
 }
 
-@media screen and (max-width:1023px) {
+@media screen and (max-width: 1023px) {
   .vff,
   .vff-footer {
     font-size: 15px;
   }
 }
 
-@media screen and (min-width:1366px) {
+@media screen and (min-width: 1366px) {
   .vff,
   .vff-footer {
     font-size: 18px;
   }
 }
 
-@media screen and (min-width:1920px) {
+@media screen and (min-width: 1920px) {
   .vff {
     font-size: 22px;
   }
 }
 
-@media screen and (min-width:2560px) {
+@media screen and (min-width: 2560px) {
   .vff {
     font-size: 25px;
   }
@@ -495,7 +495,7 @@ header.vff-header svg.f-logo {
   height: auto;
 }
 
-/* ios datepicker */
+/* iOS datepicker */
 .vff.vff-is-ios .field-date:not(.f-has-value) .f-answer > span {
   position: relative;
   top: 0;
@@ -542,7 +542,8 @@ header.vff-header svg.f-logo {
 .vff p,
 .vff .f-section-text,
 .vff span.f-tagline,
-.vff span.f-sub {
+.vff span.f-sub,
+.vff .fh2 span.f-label-scale {
   font-size: 1.1em;
   line-height: 1.34;
 }
@@ -560,7 +561,7 @@ header.vff-header svg.f-logo {
   font-size: 2.4em;
   line-height: 1.34;
   padding-right: 1.8em;
-  margin-bottom: 20px;
+  margin-bottom: 21px;
 }
 
 .vff h3,
@@ -585,8 +586,13 @@ header.vff-header svg.f-logo {
 }
 
 .vff .fh2 span.f-tagline,
-.vff .fh2 span.f-sub {
+.vff .fh2 span.f-sub,
+.vff .fh2 span.f-label-scale {
   font-size: .51em;
+}
+
+.vff .fh2 span.f-label-scale {
+  font-size: .42em;
 }
 
 .vff span.f-tagline,
@@ -639,7 +645,7 @@ header.vff-header svg.f-logo {
 }
 
 .vff ul.f-radios li {
-  padding: .6em .68em;
+  padding: .62em .68em;
   margin: .5em 0 .6em;
   font-weight: 300;
   line-height: 1.24;
@@ -660,6 +666,10 @@ header.vff-header svg.f-logo {
   border: 0;
   line-height: inherit;
   font-size: inherit;
+}
+
+.vff ul.f-radios li.f-other.f-focus {
+  padding: .48em .68em;
 }
 
 .vff .f-radios-desc {
@@ -692,7 +702,7 @@ header.vff-header svg.f-logo {
 */
 
 .vff .field-multiplepicturechoice ul.f-radios {
-  max-width: 750px;
+  max-width: 760px;
   min-width: auto;
   display: -ms-flexbox;
   display: flex;
@@ -738,6 +748,151 @@ header.vff-header svg.f-logo {
   max-height: 100%;
   max-width: 100%;
 }
+
+/* 
+  field opinion scale
+*/
+
+.vff .field-opinionscale ul.f-radios {
+  max-width: 760px;
+  min-width: auto;
+  display: -ms-flexbox;
+  display: -webkit-box;
+  display: flex;
+  margin: 0 -8px 0 0;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-box-align: stretch;
+  -ms-flex-align: stretch;
+  align-items: stretch;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+}
+
+.vff .field-opinionscale ul.f-radios li {
+  display: -ms-flexbox;
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center;
+  margin-bottom: 8px;
+  position: relative;
+  cursor: pointer;
+  -ms-flex-align: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  padding: 9px 8px 8px;
+  margin-right: 8px;
+  -ms-flex: 1 0 calc(10% - 8px);
+  flex: 1 0 calc(10% - 8px);
+  font-size: 15px;
+  line-height: 1.38;
+  min-height: 56px; 
+}
+
+.vff .field-opinionscale ul.f-radios li .f-label-wrap {
+  justify-content: center;
+}
+
+.vff .field-opinionscale ul.f-radios li .f-label {
+  margin: 0;
+}
+
+.vff .f-label-scale-wrap {
+  display: -ms-flexbox;
+  display: flex;
+  justify-content: space-between;
+  max-width: 760px;
+  min-width: auto;
+  margin: 2px -8px .6em 0;
+}
+
+.vff .f-label-scale {
+  margin-right: 8px;
+  font-weight: 400;
+  color: var(--vff-secondary-text-color);
+}
+
+.vff .f-label-scale-num {
+  display: none;
+}
+
+/* 
+  field rate
+*/
+
+.vff .field-iconrate ul.f-radios {
+  max-width: 760px;
+  min-width: auto;
+  display: -ms-flexbox;
+  display: -webkit-box;
+  display: flex;
+  margin: 0 -8px 0 0;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-box-align: stretch;
+  -ms-flex-align: stretch;
+  align-items: stretch;
+}
+
+.vff .field-iconrate ul.f-radios li {
+  max-width: 60px;
+  height: 100%;
+  flex: 1 0 0%;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  justify-content: center;
+  cursor: pointer;
+  outline: none;
+  border: none;
+  position: relative;
+  margin-top: 0;
+  padding: 0 10px 0 0;
+}
+
+.vff .field-iconrate ul.f-radios li .f-icon-wrap {
+  flex: 1 1 0%;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.vff .field-iconrate ul.f-radios li .f-icon {
+  margin-bottom: 8px;
+  align-self: stretch;
+}
+
+.vff .field-iconrate ul.f-radios li .f-icon-wrap svg {
+  height: 100%;
+  width: 100%;
+  max-height: 60px;
+  max-width: 60px;
+  fill: transparent;
+  stroke: var(--vff-secondary-text-color);
+}
+
+.vff .field-iconrate ul.f-radios li.f-selected, 
+.vff .field-iconrate ul.f-radios li:active {
+  border-color: unset;
+  background-color: unset;
+}
+
+.vff .field-iconrate ul.f-radios li.f-hovered .f-icon-wrap svg,
+.vff .field-iconrate ul.f-radios li:hover .f-icon-wrap svg {
+  fill: var(--vff-tertiary-text-color);
+}
+
+.vff .field-iconrate ul.f-radios li.f-selected .f-icon-wrap svg, 
+.vff .field-iconrate ul.f-radios li.f-previous .f-icon-wrap svg {
+  fill: var(--vff-tertiary-text-color);
+  stroke: var(--vff-main-text-color);
+}
+
 
 /* 
   field matrix
@@ -1083,7 +1238,8 @@ header.vff-header svg.f-logo {
   }
   
   .vff .fh2 span.f-sub, 
-  .vff .fh2 span.f-tagline {
+  .vff .fh2 span.f-tagline,
+  .vff .fh2 span.f-label-scale {
     font-size: .58em;
   }
   
@@ -1110,7 +1266,7 @@ header.vff-header svg.f-logo {
   }
 }
 
-@media screen and (max-width:479px) {
+@media screen and (max-width: 479px) {
   .vff {
     margin-top: 10vh;
     min-height: 180px;
@@ -1156,8 +1312,13 @@ header.vff-header svg.f-logo {
   }
 
   .vff .fh2 span.f-sub, 
-  .vff .fh2 span.f-tagline {
+  .vff .fh2 span.f-tagline,
+  .vff .fh2 span.f-label-scale {
     font-size: .64em;
+  }
+
+  .vff .fh2 span.f-label-scale {
+    margin-bottom: .3em;
   }
 
   .vff span.f-tagline {
@@ -1186,17 +1347,32 @@ header.vff-header svg.f-logo {
     font-size: 16px;
   }
 
-  .vff .field-multiplepicturechoice ul.f-radios {
-    max-width: 320px;
+  .vff .field-multiplepicturechoice ul.f-radios,
+  .vff .field-opinionscale ul.f-radios,
+  .vff .f-label-scale-wrap {
+    max-width: 330px;
   }
 
   .vff .field-multiplepicturechoice ul.f-radios li {
     -ms-flex: 0 0 calc(50% - 8px);
     flex: 0 0 calc(50% - 8px);
   }
+
+  .vff .field-opinionscale ul.f-radios li {
+    -ms-flex: 0 0 calc(20% - 8px);
+    flex: 0 0 calc(20% - 8px);
+  }
+
+  .vff .f-label-scale-wrap {
+    flex-direction: column;
+  }
+
+  .vff .f-label-scale-num {
+    display: inline;
+  }
 }
 
-@media screen and (max-height:400px) {
+@media screen and (max-height: 400px) {
   .vff {
     margin-top: 12vh;
     min-height: 180px;
@@ -1227,7 +1403,8 @@ header.vff-header svg.f-logo {
   }
 
   .vff .fh2 span.f-sub, 
-  .vff .fh2 span.f-tagline {
+  .vff .fh2 span.f-tagline,
+  .vff .fh2 span.f-label-scale {
     font-size: .6em;
   }
 

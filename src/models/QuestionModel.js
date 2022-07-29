@@ -20,7 +20,9 @@ export const QuestionType = Object.freeze({
   SectionBreak: 'FlowFormSectionBreakType',
   Text: 'FlowFormTextType',
   Url: 'FlowFormUrlType',
-  Matrix: 'FlowFormMatrixType'
+  Matrix: 'FlowFormMatrixType',
+  OpinionScale: 'FlowFormOpinionScaleType',
+  IconRate: 'FlowFormIconRateType',
 })
 
 export const DropdownOptionBlank = Object.freeze({
@@ -131,6 +133,8 @@ export default class QuestionModel {
     this.maxSize = null
     this.rows = []
     this.columns = []
+    this.labelLeft = null
+    this.labelRight = null
 
     Object.assign(this, options)
 
