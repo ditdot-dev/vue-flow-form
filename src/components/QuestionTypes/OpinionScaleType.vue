@@ -4,8 +4,8 @@
       <li
         v-for="(option, index) in question.options"
         v-on:click.prevent="toggleAnswer(option)"
-        v-on:mouseover="isIconScale ? onMouseover(index) : null"
-        v-on:mouseleave="isIconScale ? onMouseleave() : null"
+        v-on:mouseover="isIconScale && onMouseover(index)"
+        v-on:mouseleave="isIconScale && onMouseleave()"
         v-bind:class="{'f-selected': option.selected, ...iconScaleClasses(index)}"
         v-bind:key="'m' + index"
         v-bind:aria-label="getLabel(option.value)"
@@ -56,12 +56,12 @@
       return {
         isIconScale: false,
         hoveredIndex: null,
-        activeIndex: null,
+        activeIndex: null
       }
     },
 
     mixins: [
-      IsMobile,
+      IsMobile
     ],
 
     beforeMount() {
@@ -153,12 +153,12 @@
         this._toggleAnswer(option)
       },
 
-      async _toggleAnswer(option) {
+      _toggleAnswer(option) {
         const optionValue = option.choiceValue() 
 
         option.toggle()
+
         this.activeIndex = option.selected ? this.question.options.indexOf(option) : null
-   
         this.dataValue = option.selected ? optionValue : null
  
         if (this.isValid() && this.question.nextStepOnAnswer  && !this.disabled) {
@@ -181,10 +181,10 @@
 
         if (this.isIconScale) {
           if (!this.isMobile) {
-            classes['f-hovered'] = this.hoveredIndex ? index < this.hoveredIndex : null
+            classes['f-hovered'] = this.hoveredIndex && index < this.hoveredIndex
           }
 
-          classes['f-previous'] = this.activeIndex ? index < this.activeIndex : null
+          classes['f-previous'] = this.activeIndex && index < this.activeIndex
         }
 
         return classes
@@ -198,7 +198,7 @@
         }
 
         return false
-      },
+      }
     }
   }
 </script>
