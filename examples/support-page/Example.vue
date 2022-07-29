@@ -140,7 +140,7 @@
             mask: '#-#-#-#-#-#',
             placeholder: '#-#-#-#-#-#',
             jump: {
-              _other: '_submit'
+              _other: 'icon_rate'
             },
             model: ''
           },
@@ -152,7 +152,16 @@
             required: true,
             placeholder: 'Start typing here...',
             model: ''
-          }
+          },
+          {
+            type: 'iconrate',
+            id: 'icon_rate',
+            tagline: "One more thing before you go",
+            title: 'How would you rate our Customer Support service?',
+            required: false,
+            max: 5,
+            model: ''
+          },
         ]
       }
     },
