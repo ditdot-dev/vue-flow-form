@@ -111,7 +111,7 @@
             title: 'Tell us what is your favorite social network hangout.',
             helpTextShow: false,
             type: QuestionType.MultiplePictureChoice,
-            multiple: false,
+            multiple: true,
             required: true,
             options: [
               new ChoiceOption({
@@ -149,6 +149,24 @@
             type: QuestionType.LongText,
             required: true,
             placeholder: 'Start typing here...'
+          }),
+          new QuestionModel({
+            id: 'icon_rate',
+            tagline: "Thanks for that. Now, let's give it some ⭐ rating",
+            title: 'How good was the last movie you watched?',
+            type: QuestionType.IconRate,
+            required: true,
+            max: 5
+          }),
+          new QuestionModel({
+            id: 'opinion_scale',
+            title: 'Choose a number to express your opinion 👇',
+            subtitle: 'You can also use ⌨️ numbers to select an option',
+            type: QuestionType.OpinionScale,
+            required: true,
+            max: 8,
+            labelLeft: 'Dissapointing',
+            labelRight: 'Well-crafted work of art'
           }),
           new QuestionModel({
             id: 'multiple_choice',
@@ -193,6 +211,7 @@
               })
             ]
           }),
+ 
           new QuestionModel({
             id: 'break_1',
             title: 'Awesome, thank you. 🙏',
