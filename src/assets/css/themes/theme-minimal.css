@@ -205,7 +205,7 @@ header.vff-header svg.f-logo {
   background-color: rgba(255,255,255,0.75);
 }
 
-@media screen and (max-width:479px) {
+@media screen and (max-width: 479px) {
   .vff-footer .footer-inner-wrap{
     background-color: rgba(240,240,240,0.75);
   }
