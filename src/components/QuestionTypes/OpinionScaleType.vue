@@ -66,7 +66,7 @@
 
     beforeMount() {
       const 
-        size = this.question.maxSize ?? 5,
+        size = this.question.max ?? 5,
         numOptions = Math.min(Math.max(size, 1), 10)
     
       if (!this.question.options.length) {
