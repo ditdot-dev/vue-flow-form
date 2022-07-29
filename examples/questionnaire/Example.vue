@@ -164,9 +164,9 @@
             subtitle: 'You can also use ⌨️ numbers to select an option',
             type: QuestionType.OpinionScale,
             required: true,
-            max: 8,
+            max: 6,
             labelLeft: 'Dissapointing',
-            labelRight: 'Well-crafted work of art'
+            labelRight: 'Exceptional'
           }),
           new QuestionModel({
             id: 'multiple_choice',
