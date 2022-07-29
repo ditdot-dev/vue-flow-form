@@ -884,11 +884,11 @@ header.vff-header svg.f-logo {
 }
 
 .vff .field-iconrate ul.f-radios li.f-selected .f-icon-wrap svg, 
-.vff .field-iconrate ul.f-radios li.f-previous .f-icon-wrap svg,
-.vff .field-iconrate ul.f-radios li:active .f-icon-wrap svg {
+.vff .field-iconrate ul.f-radios li.f-previous .f-icon-wrap svg {
   fill: var(--vff-tertiary-text-color);
   stroke: var(--vff-main-text-color);
 }
+
 
 /* 
   field matrix
