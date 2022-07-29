@@ -132,8 +132,8 @@ export default class QuestionModel {
     this.accept = null
     this.maxSize = null
     this.rows = []
-    this.columns = [],
-    this.labelLeft = null,
+    this.columns = []
+    this.labelLeft = null
     this.labelRight = null
 
     Object.assign(this, options)
