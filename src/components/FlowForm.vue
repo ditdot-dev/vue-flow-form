@@ -22,7 +22,7 @@
         <slot></slot>
 
         <!-- Complete/Submit screen slots -->   
-        <div v-if="isOnLastStep" class="vff-animate f-fade-in-up field-submittype">
+        <div v-if="completed" class="vff-animate f-fade-in-up field-submittype">
           <slot name="complete">
             <!-- Default content for the "complete" slot -->
             <div class="f-section-wrap">
