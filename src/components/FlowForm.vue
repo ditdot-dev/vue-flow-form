@@ -307,7 +307,7 @@
               descriptionLink: LinkOption
             }
 
-            const defaultSlot = this.$slots.default()
+            const defaultSlot = this.$slots.default && this.$slots.default()
             let children = null
 
             if (defaultSlot && defaultSlot.length) {
