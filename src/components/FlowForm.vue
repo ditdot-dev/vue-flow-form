@@ -9,6 +9,7 @@
           v-for="(q, index) in questionList"
           v-bind:question="q"
           v-bind:language="language"
+          v-bind:tokens="extraTokens"
           v-bind:key="'q' + index"
           v-bind:active="q.index === activeQuestionIndex"
           v-model="q.answer"
@@ -135,6 +136,7 @@
   import FlowFormQuestion from './FlowFormQuestion.vue'
   import QuestionModel, { ChoiceOption, LinkOption, QuestionType } from '../models/QuestionModel'
   import LanguageModel from '../models/LanguageModel'
+  import {MaskModel} from '../models/MaskModel'
   import { IsMobile } from '../mixins/IsMobile'
   import { ComponentInstance } from '../mixins/ComponentInstance'
 
@@ -153,6 +155,10 @@
       language: {
         type: LanguageModel,
         default: () => new LanguageModel()
+      },
+      extraTokens: {
+        type: MaskModel,
+        default: () => new MaskModel()
       },
       progressbar: {
         type: Boolean, 

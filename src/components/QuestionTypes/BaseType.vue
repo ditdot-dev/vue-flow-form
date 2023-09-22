@@ -9,6 +9,7 @@
 
   import QuestionModel from '../../models/QuestionModel'
   import LanguageModel from '../../models/LanguageModel'
+  import { MaskModel } from '../../models/MaskModel'
   import { IsMobile } from '../../mixins/IsMobile'
 
   export default {
@@ -17,6 +18,7 @@
     props: {
       language: LanguageModel,
       question: QuestionModel,
+      tokens: MaskModel,
       active: Boolean,
       disabled: Boolean,
       modelValue: [String, Array, Boolean, Number, Object]

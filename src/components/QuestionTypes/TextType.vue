@@ -5,6 +5,7 @@
       ref="input"
       v-bind:mask="question.mask"
       v-bind:masked="false"
+      v-bind:tokens="tokens.Build()"
       v-bind:type="inputType"
       v-bind:value="modelValue"
       v-bind:required="question.required"
@@ -75,11 +76,37 @@
       },
 
       validateMask() {
-        if (Array.isArray(this.question.mask)) {
-          return this.question.mask.some(mask => mask.length === this.dataValue.length)
+        console.log(this.question.mask)
+
+        var mask = null;
+        if (Array.isArray(this.question.mask)) 
+          mask = this.question.mask;
+        else{
+          mask = this.question.mask.split("");
         }
 
-        return this.dataValue.length === this.question.mask.length
+        var input = this.dataValue;
+        var tokens = this.tokens.Build();
+
+        for (let i = 0; i < mask.length; i++) {
+          var optional = tokens[mask[i]].optional
+
+          if(optional == true)
+            continue;
+
+          var inputChar = input[i];
+
+          if(inputChar == undefined)
+            inputChar = " "
+
+          var pattern = tokens[mask[i]].pattern;
+
+          if(!pattern.test(inputChar))
+            return false;
+
+        }
+
+        return true
       }
     }
   }

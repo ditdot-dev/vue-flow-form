@@ -19,6 +19,7 @@
                   ref="questionComponent"
                   v-bind:is="question.type"
                   v-bind:question="question"
+                  v-bind:tokens="tokens"
                   v-bind:language="language"
                   v-model="dataValue"
                   v-bind:active="active"
@@ -44,6 +45,7 @@
               v-bind:is="question.type"
               v-bind:question="question"
               v-bind:language="language"
+              v-bind:tokens="tokens"
               v-model="dataValue"
               v-bind:active="active"
               v-bind:disabled="disabled"
@@ -100,6 +102,7 @@
 
   import LanguageModel from '../models/LanguageModel'
   import QuestionModel, { QuestionType, LinkOption } from '../models/QuestionModel'
+  import { MaskModel } from '../models/MaskModel'
   import FlowFormDropdownType from './QuestionTypes/DropdownType.vue'
   import FlowFormEmailType from './QuestionTypes/EmailType.vue'
   import FlowFormLongTextType from './QuestionTypes/LongTextType.vue'
@@ -144,6 +147,7 @@
     props: {
       question: QuestionModel,
       language: LanguageModel,
+      tokens: MaskModel,
       value: [String, Array, Boolean, Number, Object],
       active: {
         type: Boolean,
