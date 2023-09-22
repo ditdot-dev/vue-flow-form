@@ -89,7 +89,12 @@
         var tokens = this.tokens.Build();
 
         for (let i = 0; i < mask.length; i++) {
-          var optional = tokens[mask[i]].optional
+          var token = tokens[mask[i]]
+
+          if(token == undefined)
+            continue;
+
+          var optional = token.optional
 
           if(optional == true)
             continue;
@@ -98,8 +103,8 @@
 
           if(inputChar == undefined)
             inputChar = " "
-
-          var pattern = tokens[mask[i]].pattern;
+          
+          var pattern = token.pattern;
 
           if(!pattern.test(inputChar))
             return false;
