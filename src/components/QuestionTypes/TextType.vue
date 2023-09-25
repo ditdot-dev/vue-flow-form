@@ -76,8 +76,6 @@
       },
 
       validateMask() {
-        console.log(this.question.mask)
-
         var mask = null;
         if (Array.isArray(this.question.mask)) 
           mask = this.question.mask;
