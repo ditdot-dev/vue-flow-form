@@ -635,7 +635,8 @@
           this.$emit('answer', question.question)
 
           if (this.activeQuestionIndex < this.questionListActivePath.length) {
-            ++this.activeQuestionIndex
+            ++this.activeQuestionIndex;
+            this.onQuestionChange();
           }
          
           this.$nextTick(() => {
@@ -655,7 +656,6 @@
                 // No more questions left - set "completed" to true
                 this.completed = true
                 this.activeQuestionIndex = this.questionListActivePath.length
-                
                 this.$refs.button && this.$refs.button.focus()
               }
 
@@ -679,6 +679,7 @@
           }
 
           --this.activeQuestionIndex
+          this.onQuestionChange();
 
           this.reverse = true
 
@@ -736,6 +737,7 @@
 
             this.reverse = index < this.activeQuestionIndex
             this.activeQuestionIndex = index
+            this.onQuestionChange();
 
             this.checkTimer()
           }
@@ -800,6 +802,53 @@
       reset() {
         this.questionModels.forEach(question => question.resetAnswer())
         this.goToQuestion(0)
+      },
+
+      onQuestionChange(){
+
+        var questions = this.questionListActivePath
+        var question = questions[this.activeQuestionIndex];
+        
+        if(question == null) return;
+
+        //handle Title Vars
+        if(question.title){
+          if(question.tmpTitle == null){
+            question.tmpTitle = question.title;
+          }
+  
+          var title = this.UpdateTextFromAnswers(question.tmpTitle,questions)
+  
+          question.title = title;
+        }
+
+        //handle tagline
+        if(question.tagline){
+          if(question.tmpTagline == null){
+            question.tmpTagline = question.tagline;
+          }
+  
+          var tagline = this.UpdateTextFromAnswers(question.tmpTagline,questions)
+  
+          question.tagline = tagline;
+        }
+
+      },
+      UpdateTextFromAnswers(str, questions){
+        return str.replace(/\${(.*?)}/g, (match, key) => {
+            var id = key.trim()
+
+            for (let i = 0; i < questions.length; i++) {
+              const q = questions[i];
+              if(q.type == QuestionType.SectionBreak) continue;
+
+              if(q.id.trim() === id){
+                return q.answer
+              }
+            }
+
+            return  match
+        });
       }
     },
 
