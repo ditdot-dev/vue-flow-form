@@ -835,7 +835,7 @@
 
       },
       UpdateTextFromAnswers(str, questions){
-        return str.replace(/\${(.*?)}/g, (match, key) => {
+        return str.replaceAll(/\${(.*?)}/g, (match, key) => {
             var id = key.trim()
 
             for (let i = 0; i < questions.length; i++) {
