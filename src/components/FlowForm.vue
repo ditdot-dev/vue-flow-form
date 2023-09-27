@@ -633,10 +633,10 @@
       onQuestionAnswered(question) {
         if (question.isValid()) {
           this.$emit('answer', question.question)
-
+          
           if (this.activeQuestionIndex < this.questionListActivePath.length) {
             ++this.activeQuestionIndex;
-            this.onQuestionChange();
+            
           }
          
           this.$nextTick(() => {
@@ -658,7 +658,7 @@
                 this.activeQuestionIndex = this.questionListActivePath.length
                 this.$refs.button && this.$refs.button.focus()
               }
-
+              this.UpdateQuestionFromAnswers(this.activeQuestionIndex);
               this.$emit('step', this.activeQuestionId, this.activeQuestion)
             })
           })
@@ -679,7 +679,6 @@
           }
 
           --this.activeQuestionIndex
-          this.onQuestionChange();
 
           this.reverse = true
 
@@ -737,7 +736,6 @@
 
             this.reverse = index < this.activeQuestionIndex
             this.activeQuestionIndex = index
-            this.onQuestionChange();
 
             this.checkTimer()
           }
@@ -804,12 +802,11 @@
         this.goToQuestion(0)
       },
 
-      onQuestionChange(){
-
+      UpdateQuestionFromAnswers(activeIndex){
         var questions = this.questionListActivePath
-        var question = questions[this.activeQuestionIndex];
-        
-        if(question == null) return;
+        var question = questions[activeIndex];
+
+        if(question == null) return; //must be done if null
 
         //handle Title Vars
         if(question.title){
@@ -818,7 +815,6 @@
           }
   
           var title = this.UpdateTextFromAnswers(question.tmpTitle,questions)
-  
           question.title = title;
         }
 
@@ -832,7 +828,6 @@
   
           question.tagline = tagline;
         }
-
       },
       UpdateTextFromAnswers(str, questions){
         return str.replaceAll(/\${(.*?)}/g, (match, key) => {
