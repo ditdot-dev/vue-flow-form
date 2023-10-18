@@ -24,7 +24,7 @@
 
         <!-- Complete/Submit screen slots -->   
         <div v-if="isOnLastStep" class="vff-animate f-fade-in-up field-submittype">
-          <slot name="complete">
+          <slot name="complete" :submitted="submitted">
             <!-- Default content for the "complete" slot -->
             <div class="f-section-wrap">
               <p>
@@ -33,7 +33,7 @@
             </div>
           </slot>
 
-          <slot name="completeButton">
+          <slot name="completeButton" :submitted="submitted" :submit="submit" >
             <!-- Default content for the "completeButton" slot -->
             <button 
               class="o-btn-action"
@@ -548,6 +548,7 @@
       }, 
 
       onKeyUpListener(e) {
+        console.log("shiftKey:" + e.shiftKey, e.key, this.submitted)
         if (e.shiftKey || ['Tab', 'Enter'].indexOf(e.key) === -1 || this.submitted) {
           return
         }
@@ -558,6 +559,7 @@
           q.focusField()
         } else {
           if (e.key === 'Enter') {
+            
             this.emitEnter()
           } 
 
