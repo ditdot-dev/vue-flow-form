@@ -135,6 +135,7 @@ export default class QuestionModel {
     this.columns = []
     this.labelLeft = null
     this.labelRight = null
+    this.onShow = null
 
     Object.assign(this, options)
 

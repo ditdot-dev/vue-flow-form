@@ -661,6 +661,7 @@
                 this.$refs.button && this.$refs.button.focus()
               }
               this.UpdateQuestionFromAnswers(this.activeQuestionIndex);
+              this.FireOnShow(this.activeQuestionIndex);
               this.$emit('step', this.activeQuestionId, this.activeQuestion)
             })
           })
@@ -803,7 +804,14 @@
         this.questionModels.forEach(question => question.resetAnswer())
         this.goToQuestion(0)
       },
+      FireOnShow(activeIndex){
+        var questions = this.questionListActivePath
+        var question = questions[activeIndex];
 
+        if(question == null) return; //must be done if null
+        if(question.onShow)
+          question.onShow(questions);
+      },
       UpdateQuestionFromAnswers(activeIndex){
         var questions = this.questionListActivePath
         var question = questions[activeIndex];
