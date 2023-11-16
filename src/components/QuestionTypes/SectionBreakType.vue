@@ -1,6 +1,6 @@
 <template>
   <div class="f-content" v-if="question.content">
-    <span class="f-section-text">{{ question.content }}</span>
+    <span class="f-section-text" v-html="question.content"></span>
   </div>
 </template>
 

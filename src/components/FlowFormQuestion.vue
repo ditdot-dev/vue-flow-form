@@ -8,7 +8,7 @@
           <span class="f-tagline" v-if="question.tagline">{{ question.tagline }}</span>
 
           <template v-if="question.title">
-            <span class="fh2" v-if="question.type === QuestionType.SectionBreak">{{ question.title }}</span>
+            <span class="fh2" v-if="question.type === QuestionType.SectionBreak" v-html="question.title"></span>
             <span class="f-text" v-else>
               {{ question.title }}&nbsp;
               <!-- Required questions are marked by an asterisk (*) -->
@@ -31,12 +31,12 @@
           </template>
 
           <span class="f-sub" v-if="showHelperText">
-            <span v-if="question.subtitle">{{ question.subtitle }}</span>
+            <span v-if="question.subtitle" v-html="question.subtitle"></span>
 
             <span class="f-help" v-if="question.type === QuestionType.LongText && !isMobile" v-html="question.helpText || language.formatString(language.longTextHelpText)"></span>
 
-            <span class="f-help" v-if="question.type === QuestionType.MultipleChoice && question.multiple">{{ question.helpText || language.multipleChoiceHelpText }}</span>
-            <span class="f-help" v-else-if="question.type === QuestionType.MultipleChoice">{{ question.helpText || language.multipleChoiceHelpTextSingle }}</span>
+            <span class="f-help" v-if="question.type === QuestionType.MultipleChoice && question.multiple" v-html="question.helpText || language.multipleChoiceHelpText"></span>
+            <span class="f-help" v-else-if="question.type === QuestionType.MultipleChoice" v-html="question.helpText || language.multipleChoiceHelpTextSingle "></span>
           </span>
 
           <div v-if="!question.inline" class="f-answer f-full-width">
