@@ -5,16 +5,7 @@
     https://www.ditdot.hr/en
   */
 
-  import TextType from './TextType.vue'
-  import { QuestionType } from '../../models/QuestionModel'
+  import logic from '../../composables/QuestionTypes/PasswordType'
 
-  export default {
-    extends: TextType,
-    name: QuestionType.Password,
-    data() {
-      return {
-        inputType: 'password'
-      }
-    }
-  }
+  export default logic
 </script>

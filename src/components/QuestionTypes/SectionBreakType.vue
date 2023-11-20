@@ -11,23 +11,7 @@
     https://www.ditdot.hr/en
   */
 
-  import BaseType from './BaseType.vue'
-  import { QuestionType } from '../../models/QuestionModel'
-  import LanguageModel from '../../models/LanguageModel'
+  import logic from '../../composables/QuestionTypes/SectionBreakType'
 
-  export default {
-    extends: BaseType,
-    name: QuestionType.SectionBreak,
-    methods: {
-      onEnter() {
-        this.dirty = true
-
-        this._onEnter()
-      },
-
-      isValid() {
-        return true
-      }
-    }
-  }
+  export default logic
 </script>

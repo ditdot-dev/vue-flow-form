@@ -25,57 +25,7 @@
     https://www.ditdot.hr/en
   */
 
-  import BaseType from './BaseType.vue'
-  import { QuestionType } from '../../models/QuestionModel'
-  import TextareaAutosize from 'vue-textarea-autosize/src/components/TextareaAutosize'
+  import logic from '../../composables/QuestionTypes/LongTextType'
 
-  export default {
-    extends: BaseType,
-
-    name: QuestionType.LongText,
-
-    components: {
-      TextareaAutosize
-    },
-
-    data () {
-      return {
-        canReceiveFocus: true
-      }
-    },
-
-    mounted() {
-      window.addEventListener('resize', this.onResizeListener)
-    },
-
-    beforeUnmount() {
-      window.removeEventListener('resize', this.onResizeListener)
-    },
-
-    methods: {
-      onResizeListener() {
-        this.$refs.input.resize()
-      },
-
-      unsetFocus($event) {
-        if ($event || !this.isMobile) {
-          this.focused = false
-        }
-      },
-
-      onEnterDown($event) {
-        if (!this.isMobile) {
-          $event.preventDefault()
-        }
-      },
-
-      onEnter() {
-        this._onEnter()
-        
-        if (this.isMobile) {
-          this.focus()
-        }
-      }
-    }
-  }
+  export default logic
 </script>

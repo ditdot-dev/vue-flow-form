@@ -5,25 +5,7 @@
     https://www.ditdot.hr/en
   */
 
-  import TextType from './TextType.vue'
-  import { QuestionType } from '../../models/QuestionModel'
+  import logic from '../../composables/QuestionTypes/EmailType'
 
-  export default {
-    extends: TextType,
-    name: QuestionType.Email,
-    data() {
-      return {
-        inputType: 'email'
-      }
-    },
-    methods: {
-      validate() {
-        if (this.hasValue) {
-          return /^[^@]+@.+[^.]$/.test(this.dataValue)
-        }
-
-        return !this.question.required
-      }
-    }
-  }
+  export default logic
 </script>

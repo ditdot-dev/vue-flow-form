@@ -48,69 +48,7 @@
     https://www.ditdot.hr/en
   */
 
-  import BaseType from './BaseType.vue'
-  import { QuestionType } from '../../models/QuestionModel'
-  import TheMask from 'vue-the-mask/src/component'
+  import logic from '../../composables/QuestionTypes/TextType'
 
-  export default {
-    extends: BaseType,
-    name: QuestionType.Text,
-    components: {
-      TheMask
-    },
-
-    data() {
-      return {
-        inputType: 'text',
-        canReceiveFocus: true
-      }
-    },
-
-    methods: {
-      validate() {
-        if (this.question.mask && this.hasValue) {
-          return this.validateMask()
-        }
-
-        return !this.question.required || this.hasValue
-      },
-
-      validateMask() {
-        var mask = null;
-        if (Array.isArray(this.question.mask)) 
-          mask = this.question.mask;
-        else{
-          mask = this.question.mask.split("");
-        }
-
-        var input = this.dataValue;
-        var tokens = this.tokens.Build();
-
-        for (let i = 0; i < mask.length; i++) {
-          var token = tokens[mask[i]]
-
-          if(token == undefined)
-            continue;
-
-          var optional = token.optional
-
-          if(optional == true)
-            continue;
-
-          var inputChar = input[i];
-
-          if(inputChar == undefined)
-            inputChar = " "
-          
-          var pattern = token.pattern;
-
-          if(!pattern.test(inputChar))
-            return false;
-
-        }
-
-        return true
-      }
-    }
-  }
+  export default logic
 </script>

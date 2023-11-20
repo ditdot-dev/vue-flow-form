@@ -5,17 +5,7 @@
     https://www.ditdot.hr/en
   */
 
-  import OpinionScaleType from './OpinionScaleType.vue'
-  import { QuestionType } from '../../models/QuestionModel'
+  import logic from '../../composables/QuestionTypes/IconRateType'
 
-  export default {
-    extends: OpinionScaleType,
-    name: QuestionType.IconRate,
-
-    data() {
-      return {
-        isIconScale: true
-      }
-    },
-  }
+  export default logic
 </script>

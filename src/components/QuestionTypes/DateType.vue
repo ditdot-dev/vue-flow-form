@@ -5,30 +5,7 @@
     https://www.ditdot.hr/en
   */
 
-  import TextType from './TextType.vue'
-  import { QuestionType } from '../../models/QuestionModel'
-  import LanguageModel from '../../models/LanguageModel'
+  import logic from '../../composables/QuestionTypes/DateType'
 
-  export default {
-    extends: TextType,
-    name: QuestionType.Date,
-    data() {
-      return {
-        inputType: 'date'
-      }
-    }, 
-    methods: {
-      validate() {
-        if (this.question.min && this.dataValue < this.question.min) {
-          return false
-        }
-
-        if (this.question.max && this.dataValue > this.question.max) {
-          return false
-        }
-
-        return !this.question.required || this.hasValue
-      }
-    }
-  }
+  export default logic
 </script>
