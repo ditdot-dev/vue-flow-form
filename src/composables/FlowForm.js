@@ -419,7 +419,6 @@ export default {
     },
 
     onKeyUpListener(e) {
-      console.log("shiftKey:" + e.shiftKey, e.key, this.submitted)
       if (e.shiftKey || ['Tab', 'Enter'].indexOf(e.key) === -1 || this.submitted) {
         return
       }
