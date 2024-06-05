@@ -90,7 +90,7 @@
         }
       }
     },
-    
+
     methods: {
       addKeyListener() {
         this.removeKeyListener()
@@ -144,16 +144,14 @@
             this.question.other = this.dataValue = null
             this.setAnswer(this.dataValue)
           }
-
           for (let i = 0; i < this.question.options.length; i++) {
             let o = this.question.options[i]
 
-            if (o.selected) {
+            if (o.selected && o !== option) {
               this._toggleAnswer(o)
             }
           }
         }
-
         this._toggleAnswer(option)
       },
 
@@ -174,7 +172,7 @@
           this.dataValue = option.selected ? optionValue : null
         }
 
-      
+
         if (this.isValid() && this.question.nextStepOnAnswer && !this.question.multiple && !this.disabled) {
           this.$emit('next')
         }
@@ -225,7 +223,7 @@
           this.setAnswer(this.dataValue)
         }
       },
-      
+
       stopEditOther() {
         this.editingOther = false
       }
